@@ -1,0 +1,37 @@
+﻿{from "pattern gun" 
+	{tag "agf"}
+	{filling "bullet76 ger std"}
+	{fireSound "gun/75mm/75mm"}
+	{reloadSound "gun_r00_reload"}
+	("rt" rt(7))	
+	("speed" s(800))
+	("75-76caliber")
+	("damage_arena_cannon" args 136 100 74 44);данные по снаряду Pzgr 39 rot		
+	("health_damage_arena" args 140)
+	("accuracy_medium_at_cannon")
+	("accuracy_at_cannon_stan_pak36r")
+	("realism_range_medium_2")	
+	{bullet_view "shell_view_88mm"}	
+	{parameters attack_ground_forced
+		("rt" rt(5.5))
+		{speed 160}			
+		{spreading 
+			{radiusTable {0 0} {40 2} {55 3} {150 14} {250 ("ak" k(22))} {500 ("ak" k(35))}}
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}			
+	}						
+}

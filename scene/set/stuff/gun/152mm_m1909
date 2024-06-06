@@ -1,0 +1,47 @@
+{from "pattern gun"     ; m1909
+	{tag "agf" "howitzer" "caliber100"}
+	{filling "bullet152 rus std"}
+	{fireSound "gun/150mm_155mm/150mm_155mm"}
+	{reloadSound "gun_r04_reload"}
+	("rt" rt(16.0))
+	("speed" s(400))	
+	("heavy_howitzer_short_stan")
+    ("Ricochet_Chance_0")
+	("realism_range_light_art")
+	{parameters attack_ground_forced
+		("rt" rt(12.0))
+		{speed 80}			
+		{spreading
+			{SpreadPower	
+				0		1.5 
+				250		1 
+				500		0.3
+			}		
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {250 ("ak" k(16))} {500 ("ak" k(20))}}
+			{SpreadXYRatio
+				0	0.6
+				500	1      
+			}			
+			{SpreadYadjust	0}	
+			{SmokeHitMultiplier 1.5}			
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}		
+	}	
+	{bullet_view "shell_view_150mm"}				
+}

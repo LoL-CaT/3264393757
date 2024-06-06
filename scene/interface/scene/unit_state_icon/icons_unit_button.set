@@ -1,0 +1,44 @@
+; SDL
+(include "icons.inc")
+{scalers
+	{"default" ; distance in meter -> hud scale
+		0 1
+		1000 1
+	}
+}
+{select_icon "slot1"
+	{icon {color WHITE}}
+	;{if vehicle and observed {icon "observed_infantry" {color RED}}}	
+	{if vehicle and suspect_stage "hidden"	{icon "suspect_vehicle/stage1" {color GREEN}}}	
+	{if vehicle and suspect_stage "detected"	{icon "suspect_vehicle/stage3" {color RED}}}
+	;{if stealth and observed {icon "observed_infantry" {color RED}}}	
+	{if stealth and suspect_stage "hidden"	{icon "suspect_vehicle/stage1" {color GREEN}}}	
+	{if stealth and suspect_stage "detected"	{icon "suspect_vehicle/stage3" {color RED}}}	
+}
+{select_icon "slot2"
+	{icon {color WHITE}}
+;	{if tags "test" {icon "observed_infantry" {color RED}}}	
+	{if has_order "withdraw" {icon "withdraw_infantry" {color white}}}	
+	{if under_fire {icon "withdraw_infantry" {color RED}}}
+	{if not weapon "binocular" and need_ammo {icon "need_ammo" {color RED}}}
+	{if need_ammo and not props "unarmed" {icon "need_ammo" {color RED}}}	
+	{if vehicle and not fuel_percent 0.15 and not props "cannon" and not props "animal" and not props "airborne" and not props "marine" and not props "searchlight" and not props "railway" and not terrain_pp "water"
+		{icon "need_fuel"}
+		{if not fuel_percent 0.01
+			{icon {color RED}}
+		}
+	}	
+}
+{select_icon "slot3"
+	{icon {color WHITE}}
+;	{if tags "test" {icon "observed_infantry" {color RED}}}		
+}
+
+
+; все смещения указаны относительно левого верхнего угла кнопки юнита
+; размер кнопки юнита см. в #hud2+.lay {"button_size:point2" 126 50}
+{select_slots
+	{"slot1" {size 24 24} {offset 117 17}}
+	{"slot2" {size 24 24} {offset 117 37}}
+;	{"slot3" {size 24 24} {offset 117 39}}
+}

@@ -1,0 +1,41 @@
+; SDL
+(include "icons.inc")
+{scalers
+	{"default" ; distance in meter -> hud scale
+		0 1
+		1000 1
+	}
+}
+(define "select_icon"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{frame
+		{sprite "background/rhomb_frame_64"}
+	}
+	("observed_or_suspected" _type(%_type) _condition_suspected(true))
+) 
+{select_icon "vehicle"
+	("select_icon" _type(vehicle))	
+}
+{select_icon "infantry"
+	("select_icon" _type(infantry))	
+}
+
+{select_slots
+	{if not in_camera and not dead and not has_order "withdraw"
+		{if vehicle and not props "airborne"
+			{if not manual_control or not control_mode_parameter_on "hide_own_icon" ; не в ПУ или выключен control mode параметр "hide_own_icon"
+				{if not mp_game or not abandoned
+					{if observed_or_suspected
+						{"vehicle" 	{size 32 32} {offset 0 0}}
+					}
+				}
+			}
+		}
+		{if ("human_need_observed_icon")
+			{if observed_or_suspected
+				{"infantry" 	{size 32 32} {offset 0 0}}
+			}
+		}
+	}
+}

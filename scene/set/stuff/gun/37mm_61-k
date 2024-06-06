@@ -1,0 +1,34 @@
+{from "pattern gun"			;61-k
+	{tag "aa" "no_ground" "-detect"}
+	{filling "bullet37 rus zenite" 5}
+	{fireSound "gun/37mm_m6/37mm_m6"}
+	{RecoveryTime 0.35}
+	("rt" rt(1.0)) 
+	{reloadSound "61k_reload"}
+	{AimingTolerance 2}
+	{Automatic}
+	{burst
+		{rangekoeftable {0 10 1} {5 10 1}}		
+	}
+	{speed 90}
+	("speed" s(1090))
+	("37-57caliber")
+	("realism_range_autocannon")
+	("damage_arena_zenite" args 60 47 30 15)
+	("health_damage_arena_zenite_61k" args 72)	
+	{curve "autocannon"}	
+	{RelaxationTime 0}
+;	{cursor "zenite_on"}
+;	{cursorReloading "zenite_reload"}
+	("accuracy_zenite_stan")
+	{parameters anti_airborne
+		{range 180 180}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}	
+		{spreading  
+			{radiusTable {0 0}{1000 0.1}} 
+		}
+		{speed 1500}
+		("rt" rt(0.5))		
+	}
+	{bullet_view "shell_view_30mm"}	
+}

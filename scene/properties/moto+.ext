@@ -1,0 +1,30 @@
+;(define "chassis_add"
+;    {Chassis
+;        {Locomotion
+;			("maxspeed" args %speed 1)
+;		}
+;        {speed
+;			{Fast %speed}
+;        }
+;	}
+;)
+(define "chassis_add_moto"
+        {Locomotion
+		    {MaxSpeed (* 1 %MaxSpeed)}
+			{maxSpeedAtMaxTurn (/ %MaxSpeed %Length)}
+			{StartTime	       (/ (/%Mass %Power) 4)}
+			{TurnTime	       (/ 360 %MaxSpeed)}
+			{TurnStart         1} 
+			{BrakeTime         2.5}
+			{StopTime          2.5} 
+			{TurnRadius        (* 1.5 %Length)} 
+			{TurnStop          1} 
+			{Gears             0.2 0.4 0.5 0.8 1.0}
+			{RearGears         (/ %RearSpeed %MaxSpeed)}
+		}
+        {speed
+		    {Slow              (* 0.25 %MaxSpeed)}
+			{Normal            (* 0.5 %MaxSpeed)}
+			{Fast              (* 1 %MaxSpeed)}
+        }
+)

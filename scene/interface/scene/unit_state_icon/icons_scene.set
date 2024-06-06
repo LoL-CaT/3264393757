@@ -1,0 +1,1301 @@
+﻿; SDL
+(include "icons.inc")
+(define "suppressed"
+	{if suppressed %_level
+		{icon %_icon}
+		{if suppressed 2 {icon %_icon {color RED}}}
+		{fill
+			{sprite "background/rhomb_fill_80"}
+			{progress "suppressed"}
+		}
+	}
+)
+(define "icons_by_state"
+	{if not sensible
+		{icon "not_sensible"}
+		{fill
+			{sprite "background/rhomb_fill_80"}
+			{progress "not_sensible"}
+		}
+	}	
+	{if has_order "withdraw" 
+		{icon "withdraw_infantry"}
+	}
+	{if auto_restoring_inventory 
+		{icon "inventory_restore"}
+		{fill
+			{sprite "background/rhomb_fill_64"}
+			{progress "auto_restore_inventory"}
+		}
+	}
+;	{if ("human_need_observed_icon")
+;		("observed_or_suspected" _type(infantry) _condition_suspected(suspected))
+;	}		
+	{if evacuating or heal {icon "heal"}}
+	{if install {icon "install"}}
+	{if tags "repairing" {icon "repair"}}
+	{if tags "obtain_supply"
+		{icon "obtain_supply"}
+;		{duration 1.0}														;dev note/ Пропиши время работы ивентов в скриптах
+	}	
+	{if ai_squad
+		;{if human_motion "flee" or human_motion "retreat" {icon "flee_ai"}}
+		{if morale 50 70 {icon "suppressed_low"}}
+		{if morale 30 50 {icon "suppressed_normal"}}
+		{if morale 0 30 {icon "suppressed_high"}}
+;		{if charge
+;			{icon "charge"}
+;			{fill	; заливка иконки
+;				{sprite "background/rhomb_fill_64"}
+;				{progress "charge"}
+;			}
+;		}
+	}
+	{if not in_assault and cover_kind "vertical" "horizontal"
+		("suppressed" _level(0) _icon("suppressed_low"))
+		("suppressed" _level(1) _icon("suppressed_normal"))
+		("suppressed" _level(2) _icon("pinned"))
+	}
+	{if not weapon "binocular" and need_ammo {icon "need_ammo"}}
+	{if can_detect_mines {icon "weapon_type/detector"}}
+
+;		{if fire_mode "hold_fire" {icon "hold_fire"}}
+;		{if move_mode "hold_position" {icon "hold_position"}}
+;	}
+)
+(define "icons_by_weapon"
+	{if need_weapon {icon "need_weapon"}}
+	{if item_in_hand "mine_detector" {icon "weapon_type/detector"}}
+	{if item_in_hand "dynamite" {icon "weapon_type/dynamite"}}
+	{if true ; = else
+	; as example how use name selector 'by_weapon'
+;----special
+		{icon by_weapon
+			{"flame_thrower" {name "weapon_type/flame"}}
+			{"flame_thrower_g" {name "weapon_type/flame"}}
+			{"flame_thrower_usa" {name "weapon_type/flame"}}
+			{"flame_thrower_roks3" {name "weapon_type/flame"}}			
+			{"binocular" {name "weapon_type/binocular"}}
+			{"sapper_shovel" {name "weapon_type/sapper_shovel"}}
+			{"spade_inv" {name "weapon_type/sapper_shovel"}}
+			{"shovel" {name "weapon_type/sapper_shovel"}}			
+			(define "knife"
+				{"knife_%name" {name "weapon_type/knife"}}
+			)
+			("knife" name(ger))
+			("knife" name(rus))
+			("knife" name(union))
+			("knife" name(japan))
+			{"axe" {name "weapon_type/axe"}}
+	
+;----grenade
+			{"molotov_coctail" {name "weapon_type/molotov"}}
+			{"m24x7" {name "weapon_type/at_grenade"}}
+			{"rgd33x5" {name "weapon_type/at_grenade"}}
+			{"n73at" {name "weapon_type/at_grenade"}}
+			{"pwm1" {name "weapon_type/at_grenade"}}
+			{"rg42x3" {name "weapon_type/at_grenade"}}
+			{"rpg40" {name "weapon_type/at_grenade"}}
+			{"rpg43" {name "weapon_type/at_grenade"}}
+			{"type3at" {name "weapon_type/at_grenade"}}
+			{"type3at_a" {name "weapon_type/at_grenade"}}
+			{"type99at" {name "weapon_type/at_grenade"}}
+			{"f1" {name "weapon_type/grenade"}}
+			{"m24" {name "weapon_type/grenade"}}
+			{"m39" {name "weapon_type/grenade"}}
+			{"m61" {name "weapon_type/grenade"}}
+			{"mk1" {name "weapon_type/grenade"}}
+			{"m24" {name "weapon_type/grenade"}}
+			{"type97" {name "weapon_type/grenade"}}
+			{"rgd33" {name "weapon_type/grenade"}}
+			{"type99" {name "weapon_type/grenade"}}
+			{"type99" {name "weapon_type/grenade"}}
+			{"signal" {name "weapon_type/sl_grenade"}}
+			{"smoke" {name "weapon_type/sk_grenade"}}
+			{"m18" {name "weapon_type/sk_grenade"}}
+			{"nb_hgr39" {name "weapon_type/sk_grenade"}}
+			{"m15" {name "weapon_type/sk_grenade"}}
+			{"rdg1" {name "weapon_type/sk_grenade"}}
+			{"chicken" {name "weapon_type/chicken"}}			
+;----smg
+			{"mp35" {name "weapon_type/mp35"}}
+			{"mp40" {name "weapon_type/mp40"}}
+			{"pps43"{name "weapon_type/pps43"}}
+			{"pps43_fold" {name "weapon_type/pps43"}}
+			{"ppsh" {name "weapon_type/ppsh"}}
+			{"ppsh_box" {name "weapon_type/ppsh"}}
+			{"ppd" {name "weapon_type/ppsh"}}
+			{"mp717r" {name "weapon_type/ppsh"}}			
+			{"thompson" {name "weapon_type/thompson"}}
+			{"thompson_m1a1" {name "weapon_type/thompson"}}
+			{"m3a" {name "weapon_type/m3a"}}
+			{"sten" {name "weapon_type/sten"}}
+;----assault rifle
+			{"sg44" {name "weapon_type/mp44"}}
+			{"fg42" {name "weapon_type/fg42"}}
+			{"fg42_arena" {name "weapon_type/fg42"}}
+;----carbine
+			{"m1_carbine" {name "weapon_type/m1_carbine"}}
+;----rifle
+			{"mauzer" {name "weapon_type/mauzer"}}
+			{"mosin" {name "weapon_type/mosin"}}
+			{"mosin_pb" {name "weapon_type/mosin"}}	
+			{"mosin_rifle_m1891" {name "weapon_type/mosin"}}
+			{"berdan2" {name "weapon_type/berdan2"}}
+			{"berdan2a" {name "weapon_type/berdan2"}}
+			{"m1903" {name "weapon_type/m1903"}}
+			{"em3" {name "weapon_type/enfield"}}
+			{"mauser_g33" {name "weapon_type/mauser_g33"}}
+;----rifle_grenade
+			{"mosin_mortir" {name "weapon_type/rifle_grenade"}}
+;----automatic rifle
+			{"g43" {name "weapon_type/svt40"}}
+			{"svt40" {name "weapon_type/svt40"}}
+			{"avs36" {name "weapon_type/svt40"}}
+			{"avt40" {name "weapon_type/svt40"}}
+			{"garand" {name "weapon_type/garand"}}
+;----scoped rifle
+			{"g41" {name "weapon_type/scoped"}}
+			{"mosin_s" {name "weapon_type/scoped"}}
+			{"mosin_pb_s" {name "weapon_type/scoped"}}
+			{"m1903a4" {name "weapon_type/scoped"}}
+			{"g43_s" {name "weapon_type/scoped"}}
+			{"svt40_sniper" {name "weapon_type/scoped"}}
+			{"garand_sniper" {name "weapon_type/scoped"}}
+;----at rifle
+			{"pzb39" {name "weapon_type/pzb39"}}
+			{"solothurn_s18_1000" {name "weapon_type/solothurn_s18_1000"}}
+			{"ptrd" {name "weapon_type/ptrs"}}
+			{"ptrs" {name "weapon_type/ptrs"}}
+			{"boyes" {name "weapon_type/boyes"}}
+			{"ur" {name "weapon_type/wz35"}}
+;----shotgun
+			{"shotgun" {name "weapon_type/shotgun"}}
+;----launcher
+			{"panzerfaust" {name "weapon_type/panzerfaust"}}
+			{"panzerfaust100" {name "weapon_type/panzerfaust"}}
+			{"panzerfaust150" {name "weapon_type/panzerfaust"}}
+			{"panzershreck" {name "weapon_type/panzershreck"}}
+			{"bazooka" {name "weapon_type/bazooka"}}
+			{"uber_bazooka" {name "weapon_type/bazooka"}}
+			{"m18recoilless" {name "weapon_type/m18"}}
+;----pistol
+			{"valter" {name "weapon_type/valter"}}
+			{"luger" {name "weapon_type/valter"}}
+			{"mauser_c96" {name "weapon_type/k96"}}
+			{"colt" {name "weapon_type/colt"}}
+			{"flaergun" {name "weapon_type/flaergun"}}
+			{"welrod" {name "weapon_type/welrod"}}
+			{"tt" {name "weapon_type/tt"}}
+			{"nagan_pb" {name "weapon_type/nagan_pb"}}
+			{"nagan" {name "weapon_type/nagan"}}
+;----machine gun
+			{"mg34" {name "weapon_type/mg34"}}
+			{"mg34_vh" {name "weapon_type/mg34"}}
+			{"mg34_vh_car" {name "weapon_type/mg34"}}
+			{"mg15" {name "weapon_type/mg34"}}
+			{"mg42" {name "weapon_type/mg42"}}
+			{"mg42_vh" {name "weapon_type/mg42"}}
+			{"mg26(t)" {name "weapon_type/mg26t"}}
+			{"dp" {name "weapon_type/dp27"}}
+			{"dt" {name "weapon_type/dp27"}}
+			{"dt_inf" {name "weapon_type/dp27"}}
+			{"dt_aa" {name "weapon_type/dp27"}}
+			{"dt_aa" {name "weapon_type/dp27"}}
+			{"dt_vh" {name "weapon_type/dp27"}}
+			{"ds" {name "weapon_type/ds"}}
+			{"ds_vh" {name "weapon_type/ds"}}
+			{"ds_vh_car" {name "weapon_type/ds"}}
+			{"dshk" {name "weapon_type/ds"}}
+			{"dshk_stan" {name "weapon_type/ds"}}
+			{"ubt" {name "weapon_type/ds"}}
+			{"maxim" {name "weapon_type/ds"}}
+			{"maxim_inv" {name "weapon_type/ds"}}
+			{"bar" {name "weapon_type/bar"}}
+			{"browning_m19" {name "weapon_type/browning_m19"}}
+			{"browning_m19_stan" {name "weapon_type/browning_m19"}}
+			{"browning_m19_vh_car" {name "weapon_type/browning_m19"}}
+			{"browning_m19_inf" {name "weapon_type/browning_m19"}}
+			{"browning" {name "weapon_type/browning_m19"}}
+			{"browning_stan" {name "weapon_type/browning_m19"}}
+			{"m1941" {name "weapon_type/m1941"}}
+			{"shkas" {name "weapon_type/shkas"}}
+			{"type99_vh" {name "weapon_type/type99mg"}}
+			{"type99_vh_car" {name "weapon_type/type99mg"}}
+			{"type99lmg" {name "weapon_type/type99mg"}}
+			{"type99lmg_stan" {name "weapon_type/type99mg"}}
+		}
+	}
+;----by default
+)
+{scalers ; должны быть до секции "select_slots"
+	{"default" ; distance in meter -> hud scale
+;		10 1.2
+		50 1.0
+		75 0.75
+		100 0.5
+;		100 0.25
+;		120 0.65
+;		150 0.5
+	}
+	{"vehicle_own"
+;		10 1.2
+		25 1.0
+		50 0.75
+		75 0.5
+;		100 0.25
+;		120 0.65
+;		150 0.5
+	}
+}
+
+(define "hp_bar"
+	{if icon_event "human_damage"
+		{bar 
+			{progress "health"}
+			{colors
+				0.7 GREEN	; 70% <= x
+				0.3 YELLOW	; 30% <= x < 70%
+				0.0 RED		; 	 x < 30%
+			}
+		}
+	}
+)
+(define "hp_frame"
+	{frame
+		{sprite "background/rhomb_frame_80"}
+		{progress "health"}
+	}
+;	{if icon_event "human_damage"
+;		{frame
+;			{color %color_damage}
+;		}
+;	}
+)
+
+; 1) Иконки над солдатами/танками игрока видны всегда.
+; 2) отображение иконок у вражеской пехоты должно быть в 2 основных режимах. 1 в мультиплеере пвп. 
+;	иконки у вражеской пехоты со спец оружием(всякие базуки, огнеметы, снайперские винтовки, пт ружья вообщем список задается) 
+;	показываются всегда над ними. У остальной пехоты иконки появляются только тогда, 
+;	когда игрок подводит курсор близко к пехотинцу, чтобы было удобно кликать на этого пехотинца для его атаки.
+; 3) так как иконки у пехоты не показываются постоянно, нужно оставить отображение жизни при попаданиях так как сейчас
+; 4) по поводу бронетехники. в сингл/кооперативе тоже скорее всего не должно быть иконок над техникой 
+;	и не должно быть никаких хелсбаров. но тут лучше бы сделать, чтобы можно было в где то это включить/выключить, 
+;	чтобы еще попробовать, как лучше. хелсбар у техники должен быть интегрирован в иконку. 
+;	т.е. в без иконок игроки не будут видеть и хелсбар, с иконкой, будут видеть.
+; 5) у вражеской техники иконка меньше чем у техники игрока
+; 6) у пустой техники иконки видны всегда
+; 7) если над юнитом есть иконка, хп показывать внутри иконки (фреймом), при попадании фрейм меняет цвет
+; 8) если над юнитом нет иконки, хп показывать полоской над юнитом и только при попадании
+; 9) для контуженных показывать только мелкую каплю, при наведении показывать иконку с оружием
+
+; Формирование иконок происходит в 2 этапа:
+; 1) сначала выбирается шаблон расположения (см. секцию select_slots)
+; 2) для каждой иконки в шаблоне задано одно из условий select_icon - по нему формируется уже содержимое
+; Важное отличие от предыдущей системы: одноуровневые блоки {if..} будут проверяться до тех пор, пока не будет
+; выбрана иконка
+; {if a {icon "aaa"}} ; если условие 'a' не сработает (и соответственно иконка не будет выбрана), будет проверятья следующее условие 'b'
+; {if b {icon "bbb"}} ; если условие b сработает, будет выбрана иконка bbb, и условие 'c' уже проверяться не будет
+; {if c {icon "ccc"}} ;
+; 
+; Новая фича для выбора имени спрайта: теперь после идентов 'background' и 'icon' 
+; можно указывать ключевые слова (+ параметры) для "умного" выбора имени спрайта:
+; by_weapon
+; by_breed
+; by_ammo
+; Примеры использования см. в этом файле.
+
+(define "icon_dying"
+	{if game "groundcontrol" and territory_type "enemy" {icon "dying_on_enemy_territory" {color 0xff9c9c9c}}}
+	{if true {icon "dying_on_friendly_territory" {color %color}}}
+)
+
+{select_icon "human_weapon"
+	{background "background/rhomb_bkg_80"}
+	{icon {color WHITE}}
+	("icons_by_weapon")
+}
+{select_icon "human_dying"
+	{background "background/rhomb_bkg_80"}
+	("icon_dying" color(DRED))
+}
+{select_icon "human_dying_add"
+	("icon_dying" color(DRED))
+}
+{select_icon "human_ally_dying"
+	{background "background/rhomb_bkg_80"}
+	("icon_dying" color(MAGENTA))
+}
+{select_icon "human_ally_dying_add"
+	("icon_dying" color(MAGENTA))
+}
+
+
+{select_icon "human_own"
+	{if not option_show_human_own_icons_never 
+		{if option_show_human_own_icons_always or icon_event "human_damage" or is_mouse_focused or cursor_near 60
+			{background "background/rhomb_bkg_80"}
+			{icon {color WHITE}}
+			; пришли к варианту на пробу, что здоровье в ромбе показывается только когда юниты в селекте, 
+			;когда в него попали оно на пару секунд загорается и когда рядом навел курсор
+		;	{if selected or manual_control or icon_event "human_damage" or is_mouse_focused or cursor_near 60
+		;		("hp_frame")
+		;	}
+			("hp_bar")
+			("icons_by_state")
+			("icons_by_weapon")
+		}
+	}
+}
+{select_icon "human_ally"
+	("hp_bar")
+	{if not option_show_human_ally_icons_never 
+		{if option_show_human_ally_icons_always or icon_event "human_damage" or is_mouse_focused or cursor_near 60
+;			("hp_frame")
+			{background "background/rhomb_bkg_80"}
+			{icon {color 0xff00f7ff}}	
+			("icons_by_weapon")		
+		}	
+
+	}	
+}
+{select_icon "human_ally_manual_control"
+	{icon {color 0xff00f7ff}}	
+	{if manual_control
+		{icon "manual_control"}
+	}
+}
+(define "bodykit_in_progress"
+	{if bodykit %_bodykit_name "in_progress"
+		{icon %_icon}
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "bodykit" %_bodykit_name}
+			{color 0xfff5f5f5}
+		}
+	}	
+)
+;минииконка на вершине ромба у пехоты
+{select_icon "human_add"
+	{icon {color WHITE}}
+	{if charge
+		{icon "charge"}
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "charge"}
+		}
+	}
+	{if not observed and camouflaged {icon "camouflage_human"}}	
+	("bodykit_in_progress" _bodykit_name("camouflage") _icon("camouflage_human_in_progress"))
+}
+
+{select_icon "human_add_down"					;dev note/ Временное решение, пока нет поддержки текста
+	{icon {color WHITE}}	
+	{if ai_squad
+		{if not option_show_human_own_icons_never
+			{if option_show_human_own_icons_always or icon_event "human_damage" or is_mouse_focused or cursor_near 60 
+				{icon "ai_squad"}
+			}
+		}
+	}
+}
+{select_icon "human_add_fire_mode"
+	{icon {color WHITE}}
+	{if fire_mode "hold"	{icon "fire_mode_human/hold" {color RED}}}
+	{if fire_mode "return"	{icon "fire_mode_human/back"}}	
+}
+
+{select_icon "human_enemy"
+    ("hp_bar")
+	{if not option_show_human_enemy_icons_never
+		{icon {color RED}}
+		{if option_show_human_enemy_icons_always
+			or is_mouse_focused 
+			or cursor_near 20
+			{background "background/rhomb_bkg_80"}
+;			("hp_frame")
+;			{if icon_event "human_damage" or is_mouse_focused or cursor_near 20
+;				{frame
+;					{sprite "background/rhomb_frame_80"}
+;					{progress "health"}
+;				}
+;			}
+			{if not in_assault and cover_kind "vertical" "horizontal"
+				("suppressed" _level(0) _icon("suppressed_low"))
+				("suppressed" _level(1) _icon("suppressed_normal"))
+				("suppressed" _level(2) _icon("pinned"))
+			}
+			("icons_by_weapon")
+		}	
+	}
+}
+
+{select_icon "vehicle_own_main"
+	{background "background/rhomb_bkg_128"}
+	{icon {color WHITE}}
+	{if need_ammo and not props "unarmed" "crane_m" "crane_rail" "crane_rail1"
+		{icon "need_ammo"}
+	}
+	{if has_order "withdraw"
+		{icon "withdraw_vehicle"}
+	}
+	{if props "goliath"
+		{icon "vehicle_silhouette/additonal/tank_light"}
+	}	
+	{if props "radar_mount"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}
+	{if props "steam_locomotive"
+		{icon "vehicle_silhouette/steam_locomotive"}
+	}
+	{if props "crane_m" "crane_rail" "crane_rail1"
+		{icon "vehicle_silhouette/crane_m"}
+	}
+	{if props "tradevan_inf"
+		{icon "vehicle_silhouette/tradevan_inf"}
+	}	
+	{if props "air-bag"
+		{icon "vehicle_silhouette/marine"}
+	}	
+	{if props "searchlight" and not props "sc_497"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}	
+	{if props "kp42" "kitchen"
+		{icon "vehicle_silhouette/kitchen"}
+	}
+	{if props "inventory_crate_icon"
+		{icon "inventory_crate"}
+	}	
+	{if props "unarmed" and props "armored_car"
+		{icon "vehicle_silhouette/additonal/apc"}
+	}
+	{if props "kettenkrad"
+		{icon "vehicle_silhouette/additonal/vehicle"}
+	}
+	{if props "horse"
+		{icon "vehicle_silhouette/additonal/vehicle"}
+	}	
+	{if props "unarmed" and props "car"
+		{icon "vehicle_silhouette/additonal/supp_truck"}
+	}
+	{if props "stereotelescope"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}	
+	{if props "unarmed" and props "cannon"
+		{icon "vehicle_silhouette/cannon"}
+	}
+	{if props "cg-4a" "hamilcar" "dc-47" "dc-47_rus" "l-4" "po-2_scout"
+		{icon "vehicle_silhouette/airborne"}
+	}	
+	{icon by_ammo ; by_ammo - новая фича "умного" селектора имён по типу боеприпасов. Можно использовать и для background
+		{"132mm_rocket" "310mm_rocket" "210mm_rocket" "150mm_rocket" "calliope" "m8rocket" "rs82" {name "shell_type/shell_zalp"}}
+		{"air_bomb" 					{name "shell_type/bomb"}}		
+		{"ap" 						{name "shell_type/shell_ap"}}
+		{"bzt" 						{name "shell_type/shell_bzt"}}
+		{"apcr" 					{name "shell_type/shell_apcr"}}
+		{"sk" 						{name "shell_type/shell_sk"}}
+		{"ic" 						{name "shell_type/shell_ic"}}
+		{"fg" 						{name "shell_type/shell_fg"}}
+		{"fr" 						{name "shell_type/shell_fr"}}
+		{"sr" 						{name "shell_type/shell_sr"}}
+		{"ph" 						{name "shell_type/shell_ph"}}
+	 	{"zenite" 					{name "shell_type/shell_zenite"}}
+	 	{"mgun" "hmgun" "pistol" 	{name "shell_type/shell_mg"}}
+		{"bazooka" 					{name "weapon_type/bazooka"}}
+	 	{"sturmtiger" 				{name "shell_type/shell_sturmtiger"}}
+	 	{"smoke" 					{name "shell_type/smoke_screen"}}	
+	 	{"fuel" 					{name "shell_type/flame"}}	
+		{"shell_signal" 			{name "shell_type/shell_signal"}}
+	 	{"ap_gr" 					{name "weapon_type/grenade"}}		
+	}	
+	{fill	; заливка иконки
+		{sprite "background/rhomb_fill_128"}
+		{progress "recharge"}
+	}
+	;{frame
+	;	{sprite "background/rhomb_frame_128"}
+	;	{progress "armor"}
+	;}	
+}
+{select_icon "vehicle_own_1"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}	
+	{if true ; = else
+		{if fire_mode "hold"	{icon "fire_mode_vehicle/hold" {color RED}}}
+		{if fire_mode "return"	{icon "fire_mode_vehicle/back"}}
+	}	
+}
+{select_icon "vehicle_own_2"
+	{background "background/rhomb_bkg_64"}
+;	{if observed {icon "observed_vehicle" {color RED}}}
+	{if true ; = else
+		{frame	; заливка иконки
+			{sprite "background/rhomb_frame_64"}
+			{progress "suspect"}
+			{color 0xfff5f5f5}
+		}
+		{if suspect_stage "detected"	{icon "suspect_vehicle/stage3" {color DRED}}}
+		{if suspect_stage "suspected"	{icon "suspect_vehicle/stage2" {color DYELLOW}}}
+		{if suspect_stage "hidden"		{icon "suspect_vehicle/stage1" {color DGREEN}}}
+	}	
+}
+(define "repairing_progress"
+	{if repairing
+		{icon "repair"}			
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "repair"}
+			{color 0xfff5f5f5}
+		}			
+	}			
+)
+{select_icon "vehicle_own_3"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{if icon_event "crew_dead"
+		{icon "crew_dead"}
+;			{duration 3.0} 											;dev note/ Пропиши время работы ивентов в скриптах
+	}
+	("repairing_progress")
+	{if need_repair 
+		{icon "need_repair"}
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "repair"}
+			{color 0xfff5f5f5}
+		}			
+	}
+}
+
+{select_icon "vehicle_own_4"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{if camouflaged {icon "camouflage_vehicle"}}
+	("bodykit_in_progress" _bodykit_name("camouflage") _icon("camouflage_vehicle_in_progress"))
+}
+{select_icon "vehicle_own_5"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{if install {icon "install"}}
+	("bodykit_in_progress" _bodykit_name("trench_cannon") _icon("trench_vehicle"))
+	("bodykit_in_progress" _bodykit_name("round_dot") _icon("round_dot_vehicle"))
+	("bodykit_in_progress" _bodykit_name("round_sandbag") _icon("round_sandbag_vehicle"))	
+	("bodykit_in_progress" _bodykit_name("build_mgun") _icon("round_sandbag_vehicle"))
+	("bodykit_in_progress" _bodykit_name("build_supp_point") _icon("object_type/supp_point"))				
+}
+{select_icon "vehicle_own_6"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{if attaching_trailer
+		{icon "attach"}
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "attach_trailer"}
+			{color 0xfff5f5f5}
+		}			
+	}
+	{if aim_mode "anti_airborne"
+		{icon "anti_airborne_mode"}
+	}
+	{if aim_mode "attack_ground_forced"
+		{icon "attack_ground_forced"}
+	}
+	{if attack_ground
+		{icon "attack_ground"}
+	}	
+}
+{select_icon "vehicle_own_7"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{if auto_restoring_inventory 
+		{icon "inventory_restore"}
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "auto_restore_inventory"}
+		}
+	}
+}
+{select_icon "vehicle_own_11"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{if auto_restoring_fuel
+		{icon "fuel_restoring"}
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "auto_restore_fuel"}
+		}
+	}
+	{if not fuel_percent 0.15 and not props "cannon" and not props "animal" and not props "airborne" and not props "marine" and not props "searchlight" and not props "railway" and not terrain_pp "water"
+		{icon "need_fuel" {color RED}}
+	}
+}
+{select_icon "vehicle_own_8"
+	{background "background/rhomb_bkg_64"}
+	{icon {color RED}}
+	{if icon_event "burning"
+		{icon "weapon_type/flame"}
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "icon_event" "burning"}
+		}
+	}
+}
+{select_icon "vehicle_own_9"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{if icon_event "contusion"
+		{icon "not_sensible"}
+		{frame
+			{sprite "background/rhomb_frame_64"}
+			{progress "icon_event" "contusion"}
+		}
+	}
+}
+{select_icon "vehicle_own_10"
+	{background "background/rhomb_bkg_64"}
+	{icon {color WHITE}}
+	{if is_warehouse_consumable
+		{if is_warehouse_consumable "restoring"
+			{icon "heal"}
+			{frame
+				{sprite "background/rhomb_frame_80"}
+				{progress "warehouse_consumable"}
+			}
+		}
+		{if is_warehouse_consumable "restore_someone"
+			{icon "supp_state"}
+			{frame
+				{sprite "background/rhomb_frame_80"}
+				{progress "warehouse_consumable"}
+			}
+		}
+		{if warehouse_consumable_empty
+			{icon "need_ammo"}
+		}		
+		{icon "supp_state"}							;{icon "supp_state/00"}
+		{frame
+			{sprite "background/rhomb_frame_80"}
+			{progress "warehouse_consumable"}
+		}
+	}
+	{if is_fuel_point_consumable
+		{if is_fuel_point_consumable "restoring"
+			{icon "heal"}
+			{frame
+				{sprite "background/rhomb_frame_80"}
+				{progress "fuel_point_consumable"}
+			}
+		}
+		{if is_fuel_point_consumable "restore_someone"
+			{icon "supp_state" {color magenta}}
+			{frame
+				{sprite "background/rhomb_frame_80"}
+				{progress "fuel_point_consumable"}
+			}
+		}
+		{if fuel_point_consumable_empty
+			{icon "need_fuel"}
+		}
+		{icon "supp_state" {color magenta}}
+		{frame
+			{sprite "background/rhomb_frame_80"}
+			{progress "fuel_point_consumable"}
+		}
+	}	
+}
+{select_icon "vehicle_enemy_main"
+	{background "background/rhomb_bkg_128"}
+	{icon {color RED}}
+
+	{if has_order "withdraw"
+		{icon "withdraw_vehicle"}
+	}
+	{if tags "mission_target"
+		{icon "mission_target"}
+	}
+	{if tags "level_boss" and crew_count 0 "worker" "gtr"
+		{icon "level_boss"}
+	}
+	{if props "kp42" "kitchen"
+		{icon "vehicle_silhouette/kitchen"}
+	}
+	{if props "goliath"
+		{icon "vehicle_silhouette/additonal/tank_light"}
+	}	
+	{if props "radar_mount"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}
+	{if props "steam_locomotive"
+		{icon "vehicle_silhouette/steam_locomotive"}
+	}
+	{if props "crane_m" "crane_rail" "crane_rail1"
+		{icon "vehicle_silhouette/crane_m"}
+	}
+	{if props "tradevan_inf"
+		{icon "vehicle_silhouette/tradevan_inf"}
+	}	
+	{if props "air-bag"
+		{icon "vehicle_silhouette/marine"}
+	}
+	{if props "marine"
+		{icon "vehicle_silhouette/marine"}
+	}	
+	{if props "searchlight" and not props "sc_497"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}		
+	{if props "inventory_crate_icon"
+		{icon "inventory_crate"}
+	}	
+	{if props "stereotelescope"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}
+	{if props "paratroopers_carrier"
+		{icon "vehicle_silhouette/additonal/paraplane"}
+	}	
+	{if props "airborne"
+		{icon "vehicle_silhouette/additonal/plane"}
+	}
+	{if props "moto" or props "kettenkrad"
+		{icon "vehicle_silhouette/additonal/vehicle"}
+	}	
+	{if props "gaz_aa_supp" or props "opel_blitz_supp" or props "gmc_supp"
+		{icon "vehicle_silhouette/additonal/supp_truck"}
+	}	
+	{if props "armored_car" or props "car" or props "sdkfz251_16"
+		{icon "vehicle_silhouette/additonal/apc"}
+	}
+	{if props "stug3b" or props "sdkfz251_9" or props "sturmpz1" or props "m8" or props "sdkfz124" or props "hummel" or props "bishop" or props "m12gmc" or props "m7" or props "stuh42" or props "su122" or props "brumbar" or props "sturmtiger" or props "karlthor" or props "su152"
+		{icon "vehicle_silhouette/additonal/spg"}
+	}
+	{if props "stug3g" or props "sdkfz251_22" or props "hetzer" or props "m18" or props "marder2" or props "marder3" or props "pzjager1" or props "su76" or props "zis_30" or props "achilles" or props "archer" or props "jagdpanther" or props "jagdpanzer_iv" or props "jagdpanzer_iv_wacher" or props "m10wolverine" or props "m36" or props "nashorn" or props "stug3f" or props "stug4g" or props "su100" or props "su85" or props "elefant" or props "ferdinand" or props "ho-ri" or props "ho-ri_1" or props "isu122" or props "isu152" or props "jagdtiger"	
+		{icon "vehicle_silhouette/additonal/tank_hunt"}
+	}
+	{if props "bt7" or props "bt7_ger" or props "bt7a" or props "chi-ha57" or props "ha-go" or props "ht26" or props "ke-nu" or props "lvt1" or props "lvt4" or props "m24" or props "m3a1" or props "m5a1" or props "mk7" or props "pz1b" or props "pz1c" or props "pz2c" or props "pz2l" or props "pz2h" or props "pz2f" or props "pz35t" or props "pz38g" or props "ss-d" or props "t26" or props "t26e" or props "t40" or props "t40_tns" or props "t60" or props "t70" or props "carro15" or props "m19"
+		{icon "vehicle_silhouette/additonal/tank_light"}
+	}	
+	{if props "chi-ha120" or props "chi-ha47" or props "m4a1" or props "m4a1_eng" or props "m4a1_inf" or props "pz4f2" or props "pz4f2_inf" or props "t34_76" or props "ot34_76_42" or props "t34_76_inf" or props "t34_85" or props "t34_85_po" or props "t34_85m" or props "t34_85m_po" or props "chi-he" or props "chi-nu" or props "chi-nu" or props "chi-to" or props "cometa34" or props "cromwell_mk_vi" or props "grant_m3" or props "ho-i" or props "m2a1_med" or props "m3_lee" or props "m4a2" or props "m4a2_76w" or props "m4a2_76w_thunderbolt" or props "m4a2_76w_rus" or props "m4a2_rus" or props "m4a3_105" or props "m4a3_75" or props "m4a3_zippo" or props "m4a3c" or props "m4a3dd" or props "m4a3dd_inf" or props "m4a3e2" or props "m4a3e2_jumbo_76" or props "m4a3e8" or props "m4a3e8_po" or props "m4a3m" or props "m4a3m_eng" or props "m4a3vc" or props "m4a4" or props "m4a4_tulip" or props "mk3" or props "mk6" or props "mk8" or props "pz3" or props "pz3f" or props "pz3f_rus" or props "pz3j" or props "pz3m" or props "pz3n" or props "pz4d" or props "pz4e" or props "pz4g" or props "pz4g_inf" or props "pz4h" or props "pz5a" or props "pz5a_po" or props "pz5g" or props "t28" or props "t28e" or props "t34_0" or props "t34_1" or props "t34_2" or props "t34_2_inf" or props "ot_34_42" or props "t34_3" or props "t34_57_43" or props "t34_76_41" or props "t34_armored" or props "t34m" or props "valentine_rus" or props "welberwind"
+		{icon "vehicle_silhouette/additonal/tank_medium"}
+	}
+	{if props "mk2a" or props "mk4" or props "black_prince" or props "centurion" or props "chi-ri" or props "churchill_avre" or props "churchill_crocodile" or props "churchill_mk_vii" or props "is1" or props "is2" or props "is2_44" or props "is2_early" or props "is3" or props "kv1" or props "kv1_za_rodinu" or props "kv1_zis5" or props "kv1e" or props "kv1s" or props "kv2" or props "kv85" or props "kv8" or props "m26" or props "m26e4" or props "mk4_rus" or props "pz6b" or props "pz6bh" or props "pz6e" or props "pz6h" or props "pzb2740f" or props "t29" or props "t35"
+		{icon "vehicle_silhouette/additonal/tank_heavy"}
+	}	
+	{if props "d1" or props "ml20" or props "120mm_l50" or props "120mm_l50_360" or props "120mm_l50_360_ny" or props "203b4" or props "203_m1" or props "155gpf" or props "bl6" or props "lefh18" or props "m114" or props "m1909" or props "m2a1l" or props "m30" or props "m8_howitzer" or props "mrs18" or props "sfh18" or props "type96_150mm" or props "sig33" or props "t90_75m" or props "t91_105m"
+		{icon "vehicle_silhouette/additonal/cannon_howitzer"}
+	}
+	{if props "52k" or props "m2cannon90mm" or props "61k" or props "m1_aa" or props "bofors" or props "bofors_eng" or props "oerlikon" or props "oerlikon_eng" or props "20mm_u_boat" or props "flak-38-1" or props "flak18" or props "flak38" or props "flak38_4_wheeled" or props "flak38_platform" or props "flak38_wheeled" or props "maxim_quad" or props "maxson" or props "mk10" or props "type2_20mm" or props "type4_75mm" or props "88mm_u_boat" or props "flak41" or props "flak41_platform" or props "vickers"
+		{icon "vehicle_silhouette/additonal/cannon_aa"}
+	}
+	{if props "cannon"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}
+	
+	
+	{if props "horse"
+		{icon "vehicle_silhouette/horse"}
+	}	
+}
+{select_icon "vehicle_ally_main"
+	{background "background/rhomb_bkg_96"}
+	{icon {color 0xff00f7ff}}	
+	{if has_order "withdraw"
+		{icon "withdraw_vehicle"}
+	}
+	{if props "kp42" "kitchen"
+		{icon "vehicle_silhouette/kitchen"}
+	}
+	{if props "goliath"
+		{icon "vehicle_silhouette/additonal/tank_light"}
+	}	
+	{if props "radar_mount"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}
+	{if props "steam_locomotive"
+		{icon "vehicle_silhouette/steam_locomotive"}
+	}
+	{if props "crane_m" "crane_rail" "crane_rail1"
+		{icon "vehicle_silhouette/crane_m"}
+	}
+	{if props "tradevan_inf"
+		{icon "vehicle_silhouette/tradevan_inf"}
+	}	
+	{if props "air-bag"
+		{icon "vehicle_silhouette/marine"}
+	}
+	{if props "marine"
+		{icon "vehicle_silhouette/marine"}
+	}	
+	{if props "searchlight" and not props "sc_497"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}	
+	{if props "inventory_crate_icon"
+		{icon "inventory_crate"}
+	}	
+	{if props "stereotelescope"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}	
+	{if props "paratroopers_carrier"
+		{icon "vehicle_silhouette/additonal/paraplane"}
+	}	
+	{if props "airborne"
+		{icon "vehicle_silhouette/additonal/plane"}
+	}
+	{if props "moto" or props "kettenkrad"
+		{icon "vehicle_silhouette/additonal/vehicle"}
+	}	
+	{if props "gaz_aa_supp" or props "opel_blitz_supp" or props "gmc_supp"
+		{icon "vehicle_silhouette/additonal/supp_truck"}
+	}
+	{if props "armored_car" or props "car" or props "sdkfz251_16"
+		{icon "vehicle_silhouette/additonal/apc"}
+	}
+	{if props "stug3b" or props "sdkfz251_9" or props "sturmpz1" or props "m8" or props "sdkfz124" or props "hummel" or props "bishop" or props "m12gmc" or props "m7" or props "stuh42" or props "su122" or props "brumbar" or props "sturmtiger" or props "karlthor" or props "su152"
+		{icon "vehicle_silhouette/additonal/spg"}
+	}
+	{if props "stug3g" or props "sdkfz251_22" or props "hetzer" or props "m18" or props "marder2" or props "marder3" or props "pzjager1" or props "su76" or props "zis_30" or props "achilles" or props "archer" or props "jagdpanther" or props "jagdpanzer_iv" or props "jagdpanzer_iv_wacher" or props "m10wolverine" or props "m36" or props "nashorn" or props "stug3f" or props "stug4g" or props "su100" or props "su85" or props "elefant" or props "ferdinand" or props "ho-ri" or props "ho-ri_1" or props "isu122" or props "isu152" or props "jagdtiger" or props "t95"	
+		{icon "vehicle_silhouette/additonal/tank_hunt"}
+	}
+	{if props "bt7" or props "bt7_ger" or props "bt7a" or props "chi-ha57" or props "ha-go" or props "ht26" or props "ke-nu" or props "lvt1" or props "lvt4" or props "m24" or props "m3a1" or props "m5a1" or props "mk7" or props "pz1b" or props "pz1c" or props "pz2c" or props "pz2l" or props "pz2h" or props "pz2f" or props "pz35t" or props "pz38g" or props "ss-d" or props "t26" or props "t26e" or props "t40" or props "t40_tns" or props "t60" or props "t70" or props "carro15" or props "m19"
+		{icon "vehicle_silhouette/additonal/tank_light"}
+	}	
+	{if props "chi-ha120" or props "chi-ha47" or props "m4a1" or props "m4a1_eng" or props "m4a1_inf" or props "pz4f2" or props "pz4f2_inf" or props "t34_76" or props "ot34_76_42" or props "t34_76_inf" or props "t34_85" or props "t34_85_po" or props "t34_85m" or props "t34_85m_po" or props "chi-he" or props "chi-nu" or props "chi-nu" or props "chi-to" or props "cometa34" or props "cromwell_mk_vi" or props "grant_m3" or props "ho-i" or props "m2a1_med" or props "m3_lee" or props "m4a2" or props "m4a2_76w" or props "m4a2_76w_thunderbolt" or props "m4a2_76w_rus" or props "m4a2_rus" or props "m4a3_105" or props "m4a3_75" or props "m4a3_zippo" or props "m4a3c" or props "m4a3dd" or props "m4a3dd_inf" or props "m4a3e2" or props "m4a3e2_jumbo_76" or props "m4a3e8" or props "m4a3e8_po" or props "m4a3m" or props "m4a3m_eng" or props "m4a3vc" or props "m4a4" or props "m4a4_tulip" or props "mk3" or props "mk6" or props "mk8" or props "pz3" or props "pz3f" or props "pz3f_rus" or props "pz3j" or props "pz3m" or props "pz3n" or props "pz4d" or props "pz4e" or props "pz4g" or props "pz4g_inf" or props "pz4h" or props "pz5a" or props "pz5a_po" or props "pz5g" or props "t28" or props "t28e" or props "t34_0" or props "t34_1" or props "t34_2" or props "t34_2_inf" or props "ot_34_42" or props "t34_3" or props "t34_57_43" or props "t34_76_41" or props "t34_armored" or props "t34m" or props "valentine_rus" or props "welberwind"
+		{icon "vehicle_silhouette/additonal/tank_medium"}
+	}
+	{if props "mk2a" or props "mk4" or props "black_prince" or props "centurion" or props "chi-ri" or props "churchill_avre" or props "churchill_crocodile" or props "churchill_mk_vii" or props "is1" or props "is2" or props "is2_44" or props "is2_early" or props "is3" or props "kv1" or props "kv1_za_rodinu" or props "kv1_zis5" or props "kv1e" or props "kv1s" or props "kv2" or props "kv85" or props "kv8" or props "m26" or props "m26e4" or props "mk4_rus" or props "pz6b" or props "pz6bh" or props "pz6e" or props "pz6h" or props "pzb2740f" or props "t29" or props "t35"
+		{icon "vehicle_silhouette/additonal/tank_heavy"}
+	}	
+	{if props "d1" or props "ml20" or props "120mm_l50" or props "120mm_l50_360" or props "120mm_l50_360_ny" or props "203b4" or props "203_m1" or props "155gpf" or props "bl6" or props "lefh18" or props "m114" or props "m1909" or props "m2a1l" or props "m30" or props "m8_howitzer" or props "mrs18" or props "sfh18" or props "type96_150mm" or props "sig33" or props "t90_75m" or props "t91_105m"
+		{icon "vehicle_silhouette/additonal/cannon_howitzer"}
+	}
+	{if props "52k" or props "m2cannon90mm" or props "61k" or props "m1_aa" or props "bofors" or props "bofors_eng" or props "oerlikon" or props "oerlikon_eng" or props "20mm_u_boat" or props "flak-38-1" or props "flak18" or props "flak38" or props "flak38_4_wheeled" or props "flak38_platform" or props "flak38_wheeled" or props "maxim_quad" or props "maxson" or props "mk10" or props "type2_20mm" or props "type4_75mm" or props "88mm_u_boat" or props "flak41" or props "flak41_platform" or props "vickers"
+		{icon "vehicle_silhouette/additonal/cannon_aa"}
+	}	
+	{if props "cannon"
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}	
+	
+	{if props "horse"
+		{icon "vehicle_silhouette/horse"}
+	}	
+}
+{select_icon "vehicle_ally_manual_control"
+	{icon {color 0xff00f7ff}}
+	{if manual_control
+		{icon "manual_control"}
+	}
+}
+{select_icon "vehicle_abandoned"
+	{background "background/rhomb_bkg_96"}
+	{icon {color WHITE}}
+	{if props "cannon" {icon "vehicle_type/art_point"}}
+	{if props "tank" 
+		{if tags "broken_body" {icon "vehicle_type/tank_broken"}}
+		{if not tags "broken_body" {icon "vehicle_type/tank"}}
+	}
+	{if not dead and able "crew" {icon "vehicle_type/car"}}
+}
+{select_icon "vehicle_abandoned_repair"
+	{background "background/rhomb_bkg_96"}
+	{icon {color WHITE}}
+	("repairing_progress")
+}
+{select_icon "house_main"
+	{if relation "ally" or relation "enemy" and observed	
+		;{background "background/rhomb_bkg_96"}
+		{frame
+			{sprite "background/rhomb_frame_96"}
+			{progress "house_fortification"}
+		}
+	}		
+	{if relation "ally" or relation "enemy" and observed	
+		{if house_is_assaulted
+			{icon "house_assaulting"}		
+		}
+	}
+	{if relation "ally" or relation "enemy" and observed	
+		{if house_fortification_state "working"
+			{icon "house_fortify_work"}
+		}
+		{if house_fortification_state "enabled"
+			{icon "house_fortified"}
+		}
+	}
+	{if relation "ally" or relation "enemy" and observed	
+		{if not house_is_empty
+			{icon "house_fortify_empty"}
+		}
+	}	
+}
+{select_icon "human_in_house"
+	{background "background/rhomb_bkg_80"}
+	;{if current_user
+		("hp_frame")
+	;}		
+	{icon {color white}}
+	{if relation "ally" or relation "enemy" and observed	
+		{if not in_assault and cover_kind "vertical" "horizontal"
+			("suppressed" _level(0) _icon("suppressed_low"))
+			("suppressed" _level(1) _icon("suppressed_normal"))
+			("suppressed" _level(2) _icon("pinned"))
+		}
+	}
+	{if relation "ally" or relation "enemy" and observed	
+		("icons_by_weapon")
+	}		
+}
+{select_icon "human_in_house_fire_mode"
+	{if current_user and not in_assault 
+		{icon {color WHITE}}
+		{if fire_mode "hold"	{icon "fire_mode_human/hold" {color RED}}}
+		{if fire_mode "return"	{icon "fire_mode_human/back"}}	
+	}
+}
+(define "house_side"
+		{"human_in_house" {entity "%entity" 0} {size 32 32} {offset %sign35 -19}}
+		{"human_in_house" {entity "%entity" 1} {size 32 32} {offset %sign53 +00}}
+		{"human_in_house" {entity "%entity" 2} {size 32 32} {offset %sign71 -19}}
+		{"human_in_house" {entity "%entity" 3} {size 32 32} {offset %sign89 +00}}
+		{"human_in_house" {entity "%entity" 4} {size 32 32} {offset %sign107 -19}}
+		{"human_in_house" {entity "%entity" 5} {size 32 32} {offset %sign125 +00}}
+		{"human_in_house" {entity "%entity" 6} {size 32 32} {offset %sign143 -19}}
+		{"human_in_house" {entity "%entity" 7} {size 32 32} {offset %sign161 +00}}
+		{"human_in_house" {entity "%entity" 8} {size 32 32} {offset %sign179 -19}}
+		{"human_in_house" {entity "%entity" 9} {size 32 32} {offset %sign197 +00}}
+		{"human_in_house" {entity "%entity" 10} {size 32 32} {offset %sign35 +19}}
+		{"human_in_house" {entity "%entity" 11} {size 32 32} {offset %sign71 +19}}
+		{"human_in_house" {entity "%entity" 12} {size 32 32} {offset %sign107 +19}}
+		{"human_in_house" {entity "%entity" 13} {size 32 32} {offset %sign143 +19}}
+		{"human_in_house" {entity "%entity" 14} {size 32 32} {offset %sign179 +19}}
+		{"human_in_house" {entity "%entity" 15} {size 32 32} {offset %sign53 +38}}
+		{"human_in_house" {entity "%entity" 16} {size 32 32} {offset %sign89 +38}}
+		{"human_in_house" {entity "%entity" 17} {size 32 32} {offset %sign125 +38}}
+		{"human_in_house" {entity "%entity" 18} {size 32 32} {offset %sign161 +38}}
+		{"human_in_house" {entity "%entity" 19} {size 32 32} {offset %sign197 +38}}
+
+		
+		{"human_in_house_fire_mode" {entity "%entity" 0} {size 24 24} {offset %sign35 -3}}
+		{"human_in_house_fire_mode" {entity "%entity" 1} {size 24 24} {offset %sign53 +16}}
+		{"human_in_house_fire_mode" {entity "%entity" 2} {size 24 24} {offset %sign71 -3}}
+		{"human_in_house_fire_mode" {entity "%entity" 3} {size 24 24} {offset %sign89 +16}}
+		{"human_in_house_fire_mode" {entity "%entity" 4} {size 24 24} {offset %sign107 -3}}
+		{"human_in_house_fire_mode" {entity "%entity" 5} {size 24 24} {offset %sign125 +16}}
+		{"human_in_house_fire_mode" {entity "%entity" 6} {size 24 24} {offset %sign143 -3}}
+		{"human_in_house_fire_mode" {entity "%entity" 7} {size 24 24} {offset %sign161 +16}}
+		{"human_in_house_fire_mode" {entity "%entity" 8} {size 24 24} {offset %sign179 -3}}
+		{"human_in_house_fire_mode" {entity "%entity" 9} {size 24 24} {offset %sign197 +16}}
+		{"human_in_house_fire_mode" {entity "%entity" 10} {size 24 24} {offset %sign35 +35}}
+		{"human_in_house_fire_mode" {entity "%entity" 11} {size 24 24} {offset %sign71 +35}}
+		{"human_in_house_fire_mode" {entity "%entity" 12} {size 24 24} {offset %sign107 +35}}
+		{"human_in_house_fire_mode" {entity "%entity" 13} {size 24 24} {offset %sign143 +35}}
+		{"human_in_house_fire_mode" {entity "%entity" 14} {size 24 24} {offset %sign179 +35}}
+		{"human_in_house_fire_mode" {entity "%entity" 15} {size 24 24} {offset %sign53 +44}}
+		{"human_in_house_fire_mode" {entity "%entity" 16} {size 24 24} {offset %sign89 +44}}
+		{"human_in_house_fire_mode" {entity "%entity" 17} {size 24 24} {offset %sign125 +44}}
+		{"human_in_house_fire_mode" {entity "%entity" 18} {size 24 24} {offset %sign161 +44}}
+		{"human_in_house_fire_mode" {entity "%entity" 19} {size 24 24} {offset %sign197 +44}}
+)
+{select_icon "dynamite"
+	{background "background/rhomb_bkg_80"}
+	{if relation "ally"
+		{icon "weapon_type/dynamite"}
+	}
+}
+{select_icon "fuze"
+	{background "background/rhomb_bkg_80"}
+	{if relation "ally"
+		{icon "weapon_type/fuze"}
+	}
+}
+{select_icon "map_point"
+	{background "background/rhomb_bkg_96"}
+	{icon by_map_point_name
+		{"f1" {name "symbols/a"}}
+		{"f2" {name "symbols/b"}}
+		{"f3" {name "symbols/c"}}
+		{"f4" {name "symbols/d"}}
+		{"f5" {name "symbols/e"}}
+		{"f6" {name "symbols/f"}}
+		{"f7" {name "symbols/g"}}
+		{"f8" {name "symbols/h"}}
+		{"f9" {name "symbols/i"}}
+		{"f10" {name "symbols/j"}}
+		{"f11" {name "symbols/k"}}		
+		{"f12" {name "symbols/l"}}
+		{"f13" {name "symbols/m"}}
+		{"f14" {name "symbols/n"}}
+		{"f15" {name "symbols/o"}}	
+		{"f16" {name "symbols/p"}}	
+		{"f17" {name "symbols/q"}}	
+		{"f18" {name "symbols/r"}}
+		{"f19" {name "symbols/s"}}	
+		{"f20" {name "symbols/t"}}	
+		{"f21" {name "symbols/u"}}
+		{"f22" {name "symbols/v"}}
+		{"f23" {name "symbols/w"}}
+		{"f24" {name "symbols/x"}}
+		{"f25" {name "symbols/y"}}
+		{"f26" {name "symbols/z"}}		
+		{"f" {name "weapon_type/scoped"}}				
+	}
+	{if tags "pve_point" {icon "weapon_type/scoped"}}
+	{frame
+		{sprite "background/rhomb_frame_96"}
+		{progress "map_point_capture"}
+	}
+}
+{select_icon "supp_point"
+	{if props "supp_point" and not tags "no_icon" and not tags "crushed" or tags "supp_point" {icon "object_type/supp_point" {color 0xffffd800}}}
+}
+{select_icon "fuel_point"
+	{if props "fuel_point" and not tags "no_icon" and not tags "crushed" or tags "fuel_point" {icon "object_type/fuel_point" {color 0xffffd800}}}
+}
+{select_icon "med_point"
+	{if props "med_point" and not tags "no_icon" and not tags "crushed" {icon "object_type/med_point" {color 0xffffd800}}}
+}
+{select_icon "construction"
+	{if construction "supp_point" 
+		{icon "object_type/supp_point"} 
+	}
+	{if construction "fuel_point"
+		{icon "object_type/fuel_point"} 
+	}
+	{if construction "med_point"
+		{icon "object_type/med_point"} 
+	}
+	{if construction "dot_small_build"
+		{icon "object_type/dot_small"} 
+	}
+	{if construction "dot_wood"
+		{icon "object_type/dot_wood"} 
+	}
+	{if construction "blindage_wood"
+		{icon "object_type/blindage_wood"}
+	}	
+	{if construction "watch_tower_rus" or construction "watch_tower_usa" or construction "watch_tower_ger" or construction "watch_tower_stereotelescope"
+		{icon "object_type/tower"} 
+	}
+	{frame
+		{sprite "background/rhomb_frame_64"}
+		{progress "construction"}
+	}
+}
+
+{altitude
+	{if props "car" 5}
+	{if props "tank heavy" 5}
+	{if props "tank medium" 5}
+	{if props "tank light" 4}
+	{if props "armored_car" 4}
+	{if props "cannon" 4}
+	{if props "cannon_small" 4}
+	{if props "mg_stan" 10}
+	{if props "cannon heavy" 5}
+	{if props "cannon medium" 4}
+	{if props "airborne" 6}
+	{if props "marine" 6}
+	{if props "moto" 3}
+	{if props "train_part" 7}
+	{if props "crane_port" 20}
+	{if human 2
+		{if fsm_pose "down swim" 1}
+		}
+}
+
+(define "if_dying"
+	{if not in_house and not terrain_pp "water"
+		{if action_can "hospitalization" or action_can "injection"
+			{scaler "default"}
+			{if is_mouse_focused or cursor_near 60	; если водим мышкой рядом, показываем иконку с оружием и маленькую каплю сверху
+				{"human_weapon" 	{size 40 40} {offset 0 0}}
+				{"human%ally_dying_add" 	{size 16 16} {offset 0 -16}}
+			}
+			{if true 		; в противном случае (водим мышкой далеко), показываем одну большую каплю
+				{"human%ally_dying" 		{size 40 40} {offset 0 0}}
+			}
+		}
+	}
+)
+; шаблоны состава, расположения и размеров иконок
+
+{select_slots 
+	{if not props "missionwp" "spawn_point" "fog_open_point" "tagged_piece" "paratrooper_attach" "paratrooper_attach_actor" "parachute_lg40_box" "air_strike_target" "frontline_break" ; and in_camera
+		{if not tags "no_icon"
+			{if human and not in_house and not dead			; человек не совсем мертвый
+			{if current_user		; наш 
+				{if dying ; умирающий
+					("if_dying" ally())
+				}
+				{if not linked or in_fortification "trench" or linked "watch_tower" or linked "platform_attach_icon_rules" ; в поле или окопе (исключаем экипажи, в домах и т.п.)
+					{scaler "default"}
+					{"human_own"
+						{size 40 40}
+						{offset 0 0} 
+					}
+					{"human_add"
+						{size 16 16}
+						{offset 0 -16}
+					}
+					{"human_add_down"
+						{size 16 16}
+						{offset 0 16}
+					}
+					{"human_add_fire_mode"
+						{size 26 26}
+						{offset 0 16}
+					}					
+				}
+			}
+			{if relation "enemy" and not dying 			; живой вражеский пехотинец
+				{if not linked or in_fortification "trench" or linked "watch_tower" or linked "platform_attach_icon_rules" 	; в поле или окопе (исключаем экипажи, в домах и т.п.)
+					{scaler "default"}
+					{"human_enemy" ; имя (id) селектора иконок (если такой не будет найден - упадет с соответсвующей ошибкой)
+						{size 40 40}
+						{offset 0 0}
+					}
+				}
+			}       	
+			{if relation "ally" 				; союзный пехотинец
+				{if dying 				; умирающий
+					("if_dying" ally(_ally))
+				}
+				{if not linked or in_fortification "trench" or linked "watch_tower" or linked "platform_attach_icon_rules" ; в поле или окопе (исключаем экипажи, в домах и т.п.)
+					{scaler "default"}
+					{"human_ally" ; имя (id) селектора иконок (если такой не будет найден - упадет с соответсвующей ошибкой)
+						{size 40 40}
+						{offset 0 0}
+					}
+					{"human_ally_manual_control"
+						{size 26 26}
+						{offset 0 26}
+					}
+				}
+			}       	
+		}
+		{if vehicle and not vehicle_broken and not props "platform_attach_icon_rules"; техника не поломанная и не платформа для линкования техники
+			{if not linked or in_fortification "trench" or props "icon_for_linked" or linked "platform_attach_icon_rules"; и не прицепленная к другой технике, кроме тех, что со спец пропсом
+				{if abandoned and can_board	; покинутая и можно захватить
+					{if props "cannon"	; для пушек показываем всегда, 
+					or is_mouse_focused     ; для остального - при наведении на юнита
+					or cursor_near 60 	; или приближении курсора
+						{if not props "goliath" "cistern" "tendor" 
+							{"vehicle_abandoned"	{size 48 48} {offset 0 0}}
+							{if relation "ally" and repairing {"vehicle_abandoned_repair"	{size 48 48} {offset 0 0}}}
+						}
+					}
+				}
+				{if not option_show_vehicle_own_icons_never and current_user   		; наша техника
+					{if option_show_vehicle_own_icons_always or is_mouse_focused or cursor_near 20
+						{if not manual_control or not control_mode_parameter_on "hide_own_icon" ; не в ПУ или выключен control mode параметр "hide_own_icon"
+							{scaler "vehicle_own"}
+							{"vehicle_own_main" 	{size 64 64} {offset 0 0}}
+							{"vehicle_own_1"	{size 26 26} {offset 24 -1}	{group 1}} 	;режим стрельбы ;если указана группа, то неактивная иконка будет замещена следующей активной в это же группе
+						
+							{"vehicle_own_2"	{size 26 26} {offset 24 -25}	{group 2}}	;детектор обнаружения
+							{"vehicle_own_3"	{size 26 26} {offset -0 -25}	{group 3}}	;экипаж мертв и ремонт
+							{"vehicle_own_4"	{size 26 26} {offset -24 -25}	{group 4}}  ;камуфляж
+						
+							{"vehicle_own_5"	{size 26 26} {offset 24 -49}	{group 2}}	;траншеи и укрытия
+							{"vehicle_own_6"	{size 26 26} {offset 0 -49} 	{group 3}}	;сцепка
+							{"vehicle_own_7"	{size 26 26} {offset -24 -49}	{group 4}}	;пополнение бк
+						
+							{"vehicle_own_8"	{size 26 26} {offset 24 -73}	{group 2}}	;огнемет
+							{"vehicle_own_9"	{size 26 26} {offset 0 -73}		{group 3}}	;контузия
+							{"vehicle_own_10"	{size 26 26} {offset -24 -73}	{group 4}}	;саппли
+						
+							{"vehicle_own_11"	{size 26 26} {offset 24 -97}	{group 2}}	;топливо 
+						}
+					}
+				}
+				{if not option_show_vehicle_enemy_icons_never and relation "enemy" 		; вражеская техника
+					{if option_show_vehicle_enemy_icons_always or is_mouse_focused or cursor_near 20
+						{"vehicle_enemy_main"
+							{size 48 48}
+							{offset 0 0}
+						}
+					}
+				}
+				{if not option_show_vehicle_ally_icons_never and relation "ally" 		; союзная техника
+					{if option_show_vehicle_ally_icons_always or is_mouse_focused or cursor_near 20				
+						{"vehicle_ally_main"
+							{size 48 48}
+							{offset 0 0}
+						}
+						{"vehicle_ally_manual_control"
+							{size 24 24}
+							{offset 0 26}
+						}
+					}	
+				}				
+			}
+		}
+		{if house_is_assaulted
+			{"house_main"
+				{size 64 64}
+				{offset 0 0}
+			}
+			("house_side" sign(-) entity(house_defender))
+			("house_side" sign(+) entity(house_attacker))
+		}
+		{if house and not house_is_empty
+			{"house_main"
+				{size 64 64}
+				{offset 0 0}
+			}
+			("house_side" sign(+) entity(dweller))
+		}
+		{if not in_fog and props "mine remote" and tags "fuse" and not linked
+			{scaler "default"}
+			{"dynamite"
+				{size 40 40}
+				{offset 0 0}
+			}
+		}
+		{if props "mine_fuze" and not linked
+			{scaler "default"}
+			{"fuze"
+				{size 40 40}
+				{offset 0 0}
+			}
+		}
+		{if props "flag map_point"
+			{scaler "default"}
+			{bind_bone "handle"}
+			{"map_point"
+				{size 64 64}
+				{offset 0 0}
+			}
+		}
+		{if props "supp_point"
+			{scaler "default"}
+			{bind_bone "handle"}
+			{"supp_point"
+				{size 64 64}
+				{offset 0 0}
+			}			
+		}
+		{if props "fuel_point"
+			{scaler "default"}
+			{bind_bone "handle"}
+			{"fuel_point"
+				{size 64 64}
+				{offset 0 0}
+			}			
+		}
+		{if props "med_point"
+			{scaler "default"}
+			{bind_bone "handle"}
+			{"med_point"
+				{size 64 64}
+				{offset 0 0}
+			}			
+		}		
+		{if construction
+;			{if props "workshop"
+				{scaler "default"}
+				{"construction"
+					{size 64 64}
+					{offset 0 0}
+				}			
+			}		
+		}
+	}
+}

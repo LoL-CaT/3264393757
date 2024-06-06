@@ -1,0 +1,106 @@
+;(define "chassis_add_light"
+;    {Chassis
+;        {Locomotion
+;			("maxspeed" args %speed 1)
+;		}
+;        {speed
+;			{Fast %speed}
+;        }
+;	}
+;)
+;(define "chassis_add_medium"
+;    {Chassis
+;        {Locomotion
+;			("maxspeed" args %speed 1)
+;		}
+;        {speed
+;			{Fast %speed}
+;        }
+;	}
+;)
+;(define "chassis_add_heavy"
+;    {Chassis
+;        {Locomotion
+;			("maxspeed" args %speed 1)
+;		}
+;        {speed
+;			{Fast %speed}
+;        }
+;	}
+;)
+(define "chassis_add_tank"
+        {Locomotion
+		    {MaxSpeed (* 1 %MaxSpeed)}
+			{maxSpeedAtMaxTurn (/ %MaxSpeed %Length)}
+			{StartTime	       (/ (/%Mass %Power) 4)}
+			{TurnTime	       (/ 360 %MaxSpeed)}
+			{TurnStart         1} 
+			{BrakeTime         2.5}
+			{StopTime          2.5} 
+			{TurnRadius        (* 2 %Length)} 
+			{TurnStop          1} 
+			{Gears             0.2 0.4 0.5 0.8 1.0}
+			{RearGears         (/ %RearSpeed %MaxSpeed)}
+		}
+        {speed
+		    {Slow              (* 0.25 %MaxSpeed)}
+			{Normal            (* 0.5 %MaxSpeed)}
+			{Fast              (* 1 %MaxSpeed)}
+        }
+)
+
+(define "components_tank"
+    {component "body"
+        {RepairTime (* %repair_body 3.0)}
+        {tags "mover" "noDestroyedView"}
+    }
+    {component "engine"
+        {RepairTime (* %repair_engine 1.5)}
+    }
+    {component "turret"
+        {RepairTime (* %repair_turret 1.5)}
+    }
+    {component "gun"
+        {RepairTime (* %repair_gun 2.0)}
+    }
+    {component "gun2"
+        {RepairTime (* %repair_gun 2.0)}
+    }
+    {component "gun3"
+        {RepairTime (* %repair_gun 2.0)}
+    }
+    {component "guns" ;calliope
+        {RepairTime (* %repair_gun 2.0)}
+    }
+    {component "trackleft"
+        {RepairTime (* %repair_track 2.0)}
+    }
+    {component "trackright"
+        {RepairTime (* %repair_track 2.0)}
+    }
+)
+
+(define "abm_howitzer"
+    ("accuracy_by_motion"
+        max_linear(10) accuracy_by_linear(0.5)
+        max_angular(10) accuracy_by_angular(0.5)
+        disorder_time(1) order_time(10)
+		namesa(spreadattenuation_how)		
+    )
+)
+(define "abm_howitzer_medium"
+    ("accuracy_by_motion"
+        max_linear(10) accuracy_by_linear(0.5)
+        max_angular(10) accuracy_by_angular(0.5)
+        disorder_time(1) order_time(4)
+		namesa(spreadattenuation_how)		
+    )
+)
+(define "abm_howitzer_medium2"
+    ("accuracy_by_motion"
+        max_linear(10) accuracy_by_linear(0.5)
+        max_angular(10) accuracy_by_angular(0.5)
+        disorder_time(1) order_time(5)
+		namesa(spreadattenuation_how)		
+    )
+)

@@ -1,0 +1,34 @@
+﻿{from "pattern gun"    ;m2cannon90mm
+	{tag "aa"} 
+	{Automatic}
+	{RelaxationTime 0}	
+	{filling "bullet90 usa std"}
+	{fireSound "gun/88mm/88mm"}
+	{reloadSound "gun_r04_reload"}
+	("rt" rt(9))
+	{RecoveryTime 5}	
+	("speed" s(1000))
+	("85-93caliber")            
+	("damage_arena" args 173 133 97 61);данные по снаряду Т33	
+	("health_damage_arena_lvl5_plus" args 234)
+	("realism_range_long_2")
+	("accuracy_heavy_at_cannon")
+	("accuracy_zenite_cannon_stan_m2")		
+	{parameters "fg"
+		{spreading		
+			{radiusTable {0 0} {40 2} {55 3} {120 10} {250 ("ak" k(30))} {500 ("ak" k(40))}}		
+		}	
+	}	
+	{parameters anti_airborne
+		{range 300 300}
+		{spreading  
+			{radiusTable {0 0}{1000 0.1}} 
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}			
+		{speed 1000}
+		("rt" rt(4))		
+	}
+   	{AimingTolerance 1}
+	{AimingToleranceCorrection "attenuated"}	
+	{bullet_view "shell_view_88mm"}
+}

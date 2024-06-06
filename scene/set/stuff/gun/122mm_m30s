@@ -1,0 +1,149 @@
+{from "pattern gun"     ; su-122
+	{tag "agf" "howitzer" "caliber100"}
+	{filling "bullet122 rus std"}
+	{fireSound "gun/120mm_122mm/120mm_122mm"}
+	{reloadSound "tankgun_r04_reload"}
+	("rt" rt(12.0))
+	("speed" s(550))	
+	("100-128caliber")
+	("medium_spg_short")
+	("howitzer_aimtype")	
+    ("Ricochet_Chance_0")
+	("realism_range_light_art")
+	{parameters attack_ground_forced
+		("rt" rt(8.0))
+		{speed 130}			
+		{spreading
+			{SpreadPower	
+				0		1.5 
+				250		1.5 
+				500		1.5
+			}		
+			{radiusTable {0 0} {30 4} {70 8} {120 14} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			{SpreadXYRatio
+				0	0.55
+				500	0.65      
+			}			
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}			
+		}
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		("howitzer_aimtype")		
+	}
+	{parameters "ic"
+		{spreading
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		1
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {120 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}
+	{parameters "ic" "sandbag"
+		{spreading
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		1
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {120 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}	
+	{parameters "ic" "human"
+		{spreading
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		1
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {120 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}	
+	{parameters "ic" "cannon"		
+		{spreading	
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		1
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {120 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}				
+	}
+	{parameters "ic" "vehicle"		
+		{spreading	
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		1
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {120 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}				
+	}
+	{parameters "ic" "house"		
+		{spreading	
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		1
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {120 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}				
+	{bullet_view "shell_view_122mm"}			
+}

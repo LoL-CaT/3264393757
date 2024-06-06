@@ -1,0 +1,96 @@
+﻿;(define "chassis_add"
+;    {Chassis
+;        {Locomotion
+;			("maxspeed" args %speed 1)
+;		}
+;        {speed
+;			{Fast %speed}
+;        }
+;		{PatherIDWithTrailer "vehicle.trailer"}
+;	}
+;)
+(define "chassis_add_armoredcar"
+        {Locomotion
+		    {MaxSpeed (* 1 %MaxSpeed)}
+			{maxSpeedAtMaxTurn (/ %MaxSpeed %Length)}
+			{StartTime	       (/ (/%Mass %Power) 4)}
+			{TurnTime	       (/ 360 %MaxSpeed)}
+			{TurnStart         1} 
+			{BrakeTime         2.5}
+			{StopTime          2.5} 
+			{TurnRadius        (* 1.5 %Length)} 
+			{TurnStop          1} 
+			{Gears             0.2 0.4 0.5 0.8 1.0}
+			{RearGears         (/ %RearSpeed %MaxSpeed)}
+		}
+        {speed
+		    {Slow              (* 0.25 %MaxSpeed)}
+			{Normal            (* 0.5 %MaxSpeed)}
+			{Fast              (* 1 %MaxSpeed)}
+        }
+)
+(define "chassis_add_halftrack"
+        {Locomotion
+		    {MaxSpeed (* 0.75 %MaxSpeed)}
+			{maxSpeedAtMaxTurn (/ %MaxSpeed %Length)}
+			{StartTime	       (/ (/%Mass %Power) 4)}
+			{TurnTime	       (/ 360 %MaxSpeed)}
+			{TurnStart         1} 
+			{BrakeTime         2.5}
+			{StopTime          2.5} 
+			{TurnRadius        (* 1.75 %Length)} 
+			{TurnStop          1} 
+			{Gears             0.2 0.4 0.5 0.8 1.0}
+			{RearGears         (/ %RearSpeed %MaxSpeed)}
+		}
+        {speed
+		    {Slow              (* 0.25 %MaxSpeed)}
+			{Normal            (* 0.5 %MaxSpeed)}
+			{Fast              (* 1 %MaxSpeed)}
+        }
+)
+(define "chassis_add_armoredcar_puma"
+        {Locomotion
+		    {MaxSpeed (* 0.75 %MaxSpeed)}
+			{maxSpeedAtMaxTurn (/ %MaxSpeed %Length)}
+			{StartTime	       (/ (/%Mass %Power) 4)}
+			{TurnTime	       (/ 360 %MaxSpeed)}
+			{TurnStart         1} 
+			{BrakeTime         2.5}
+			{StopTime          2.5} 
+			{TurnRadius        (* 1.25 %Length)} 
+			{TurnStop          1} 
+			{Gears             0.2 0.4 0.5 0.8 1.0}
+			{Gears             0.2 0.4 0.5 0.8 1.0}
+		}
+        {speed
+		    {Slow              (* 0.25 %MaxSpeed)}
+			{Normal            (* 0.5 %MaxSpeed)}
+			{Fast              (* 1 %MaxSpeed)}
+        }
+)
+
+(define "abm_howitzer"
+    ("accuracy_by_motion"
+        max_linear(5) accuracy_by_linear(0.5)
+        max_angular(10) accuracy_by_angular(0.5)
+        disorder_time(1) order_time(10)
+		namesa(spreadattenuation_how)		
+    )
+)
+(define "abm_howitzer_medium"
+    ("accuracy_by_motion"
+        max_linear(5) accuracy_by_linear(0.5)
+        max_angular(10) accuracy_by_angular(0.5)
+        disorder_time(1) order_time(7)
+		namesa(spreadattenuation_how)		
+    )
+)
+(define "abm_howitzer_medium2"
+    ("accuracy_by_motion"
+        max_linear(5) accuracy_by_linear(0.5)
+        max_angular(10) accuracy_by_angular(0.5)
+        disorder_time(1) order_time(8)
+		namesa(spreadattenuation_how)		
+    )
+)

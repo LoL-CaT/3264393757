@@ -1,0 +1,28 @@
+{from "75mm_pak40"				; TEST ENTITY: pz4test
+	{spreading 
+		{SpreadPower												;distance - power	
+			0		2 
+			25		2 
+			50		1.5 
+			75		1.25
+			100		1
+		}
+		{radiusTable {0 0} {25 0.5} {50 1} {75 1.5} {100 2}}		;distance - radius
+	}
+	{parameters "fg"
+		{spreading
+			{SpreadPower											;distance -	power
+				0		2 
+				25		2 
+				50		1.5 
+				75		1.25
+				100		1
+			}
+			{radiusTable {0 0} {25 0.5} {50 1} {75 1.5} {100 2}}	;distance - radius
+		}
+	}
+	("accuracy_main" args 1 1 1 1)
+	("health_damage_arena" args 138)
+	{bullet_view "shell_view_88mm"}	
+}
+

@@ -1,0 +1,35 @@
+{from "pattern gun"    ; 29K
+	{tag "aa"} 
+	{Automatic}
+	{RelaxationTime 0}	
+	{filling "bullet76 29k"}
+	{fireSound "gun/75mm/75mm"}
+	{reloadSound "gun_r04_reload"}
+	("rt" rt(5.875))
+	("speed" s(800))
+	{gravity 2.5}	
+	("85-93caliber")            
+	("damage_arena" args 121 90 65 40)
+	("health_damage_arena" args 140)		
+	("realism_range_medium_2")
+	("accuracy_heavy_at_cannon")
+	{aimtype angle_by_distance 0 0 30 0.5 50 1 60 1.2 70 2 100 5 250 10 500 15}	
+	{parameters "fg"
+		{spreading		
+			{radiusTable {0 0} {40 2} {55 3} {150 10} {250 ("ak" k(30))} {500 ("ak" k(40))}}		
+		}	
+	}	
+	{parameters anti_airborne
+		{range 275 275}
+		{spreading  
+			{radiusTable {0 0}{1000 0.1}} 
+		}
+		{aimtype angle_by_distance 0 0 30 0.5 50 1 60 1.2 70 2 100 5 250 10 500 15}			
+		{speed 1000}
+		("rt" rt(2.9))		
+	}
+   	{AimingTolerance 1}
+	{AimingToleranceCorrection "attenuated"}
+	{bullet_view "shell_view_88mm"}	
+}	
+

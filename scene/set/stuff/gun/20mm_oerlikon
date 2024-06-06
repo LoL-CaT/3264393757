@@ -1,0 +1,34 @@
+{from "pattern gun"
+	{tag "aa" "no_ground" "-detect"}
+	{filling "bullet20 oerlikon" 30}
+	{fireSound "gun/zenite/20mm_oerlikon/20mm_oerlikon"}
+	{RecoveryTime 0.1}
+	("rt" rt(3.75))
+	{reloadSound "flak38_reload"}
+	{Automatic}
+	{burst
+		{rangekoeftable {0 20 5} {0.12 15 5} {0.5 5 2} {1 5 2}}		
+	}	
+	{traceFreq 0.5}
+	("speed" s(1025))
+	("14-20caliber")
+	("realism_range_autocannon")
+
+	("damage_arena_zenite" args 42 25 14 6)		
+	("health_damage_arena_zenite" args 40)
+	{curve "autocannon"}	
+	{RelaxationTime 0}
+;	{cursor "zenite_on"}
+;	{cursorReloading "zenite_reload"}
+	("accuracy_zenite_stan")
+	{parameters anti_airborne
+		{range 120 120}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}	
+		{spreading  
+			{radiusTable {0 0}{1000 5}} 
+		}
+		{speed 1500}
+		("rt" rt(1.875))			
+	}
+	{bullet_view "shell_view_30mm"}	
+}

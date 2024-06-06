@@ -1,0 +1,48 @@
+{from "pattern bullet"
+	{tag "weapon mgun bullet to_hand"}
+	{tag "ui_mgun"}
+	{filling "ammo mgun" 100}
+	{reloadSound "mg1_reload"}
+	{inventory
+		{size 5 2 }
+		{link_bone "gun_back"}
+		{weight 100}
+	}
+	{entity "mg34"}
+	{mass 12}
+	{traceFreq 0.3}
+	{Automatic}
+
+	{aimRange 80}	; == maxRange
+	{maxRange 80}	
+
+
+	("burst_long")
+	{ManualAccuracyScale 3}	
+	{Spreading
+		{SpreadPower	1.5}
+		{SpreadXYRatio	0.5}
+		{SpreadYadjust	0.1}
+		{BurstAccuracy 100 98 96 94 92 90}
+;		{burstSpreadWidth 1}
+;		{burstSpreadDelta 1}
+;		{burstSpreadCount 10}
+	}
+	{gravity 0.2}
+	{recoveryTime 0.01}
+	{rechargeTime 5}
+	{speed 365}
+
+	{healthDamage 100}	
+	
+	{projectileDamageThreshold 1.5}
+	{aimingTolerance 1}
+
+	{projectileDamage 6}
+	{projectileDamageClip 5}
+					
+	{curve "arena_mgun"}	
+	("accuracy_mgun")
+	("damage_arena_mgun" args 7 6 5 4)
+	("destructive_mgun")
+}

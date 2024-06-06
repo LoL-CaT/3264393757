@@ -1,0 +1,42 @@
+{from "pattern throwable"
+	{tag "ap big grenade"}
+	{inventory {size 2 1}}	
+	{entity "grenade_rpg40"}
+	{throw
+		{range 12}
+		{startAngle 25}
+		{spreading 2.5
+			{radiusFunction
+				0.0	0.01 
+				1.00	0.2
+			}
+			{SpreadPower	0.1}
+		}	
+		{constantSpeed 0}
+		{##parameters
+			{"tank heavy"
+				{start_angle 35}
+				{spread_scale 0}
+				{hit_top}
+			}
+			{"tank medium"
+				{start_angle 35}
+				{spread_scale 0}
+				{hit_top}
+			}
+			{"tank light"
+				{start_angle 1}
+				{spread_scale 0}
+			}
+			{"car"
+				{start_angle 1}
+				{spread_scale 0}
+			}
+			{"armored_car"
+				{start_angle 1}
+				{spread_scale 0}
+			}			
+		}
+	}
+	{possibleDamageRadius 5}
+}

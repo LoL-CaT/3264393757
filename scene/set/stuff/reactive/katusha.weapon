@@ -1,0 +1,47 @@
+{weapon_bullet
+	{tag "howitzer"}
+	{filling "132mm_rocket fg" 16}
+	{fireSound "reactive/katyusha_burst/katyusha_burst"}
+	("heavy_artillery")
+;	{burst {min 16} {noaiming}}
+	{cursor "cannon_on_fg"}
+	{cursorReloading "cannon_reload_fg"}
+	{recoveryTime 0.43}
+	{range 250 250}
+	{rechargeTime 240}
+	{gravity 1}
+;	{gravity2 20}
+	{speed 150}
+	{rechargeTime 180}
+	{Automatic}
+	{cursor "cannon_on_fg"}
+	{cursorReloading "cannon_reload_fg"}
+	{parameters "fg"
+		{cursor "cannon_on_fg"}
+		{cursorReloading "cannon_reload_fg"}
+	}	
+	{spreading 
+		{SpreadPower
+			0		1 
+			1000	1
+		}
+		{SpreadXYRatio
+			0	0.3
+			500	0.6 
+			1000 0.6
+		}
+		{SpreadYadjust 0.15}
+		{radiusTable {0 0} {120 15} {250 30} {500 35} {1000 35}}
+		{ZeroingAccuracyMultiplierPowerThreshold 2}
+		{SmokeHitMultiplier 1.5}
+	}
+	{ZeroingAccuracy
+		{Distance 30
+			{AccuracyTable 1 1}
+		}
+	}
+	{aimtype angle_by_distance 0 5 30 20 20 30 20 35 20 40 20 40 20 40 20 40 1000 40}	
+;	{aimtype adaptive}
+;	("range_rocket_artyllery")
+	("armorpassability")
+}

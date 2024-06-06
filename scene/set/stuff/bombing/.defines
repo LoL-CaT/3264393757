@@ -1,0 +1,26 @@
+(include "\set\armorhealth.inc")
+(define "air_bomb"
+		("antitank_range_base_air_bomb"
+			energy_base(%energy_base)
+			energy_construction(%energy_construction)
+			armorhealth_base(%armorhealth_base)
+			range_end(%range_end)
+		)
+		("antipersonnel_75plus" cal(%cal))
+		("stun_heavy" cal(%cal))
+		("seismic_heavy" energy(%energy_base))
+)
+(define "air_bomb_ptab"
+		("antitank_range_apc"
+			energy_base(%energy_apc)
+			energy_apc(%energy_apc)
+			armorhealth_base(%armorhealth)
+			armorhealth_apc(%armorhealth)
+			range_base(0.1)
+			range_apc(%range_apc)
+			range_end(%range_end)
+			k(%k_armor)
+		)
+		("antipersonnel_grenade" k(%k))
+		("seismic_low" energy(%energy_apc))
+)

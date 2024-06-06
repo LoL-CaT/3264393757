@@ -1,0 +1,290 @@
+;SDL
+(define "vehicles" 
+	{"cannon.small"		%cost }
+	{"cannon.large"		%cost }
+	{"cannon.carried"	%cost }
+	{"cannon.micro"		%cost }
+	{"vehicle.small"	%cost }
+	{"vehicle.large"	%cost }
+	{"vehicle.trailer"	%cost }
+	{"armored"			%cost }
+	{"moto"				%cost }
+	{"tank"				%cost }
+	{"tank.light"		%cost }
+	{"amphibia"			%cost }
+	{"amphibia.light"		%cost }
+	{"railway"			%cost }
+)
+(define "marines"
+	{"water"			%cost }
+	{"shallow_water"	%cost }
+	{"shallow_water_0"	%cost }
+	{"deep_water"		%cost }
+	{"deep_water_0"		%cost }
+)
+
+{obstacles
+	{nothing
+		{flag_skip_impregnable}
+		{"human"			0	}
+		{"human_flying"		0	}
+		{"animal"			0	}
+		("vehicles"	   cost(0)	)
+		("marines"	   cost(0)	)
+		{"airborne"			0	}
+		{"trench"			0	}
+		{"trench_cannon"	-1	}
+		{"wire"				0	}
+	}
+	{fire
+		{flag_damage}
+		{"human"			-1	}
+		{"human_flying"		 0	}
+		{"animal"			-1	}
+		("vehicles"	  cost(200)	)
+		("marines"	  cost(200) )
+		{"airborne"			 0	}
+	}
+	{human
+		{flag_human}
+		{flag_skip_impregnable}
+		{"human"			0	}
+		{"human_flying"		0	}
+		{"animal"			-1	}
+		("vehicles"	   cost(0)	)
+		("marines"	   cost(0)	)
+		{"airborne"			0	}
+		{"trench"			0	}
+		{"trench_cannon"	0	}
+		{"wire"				0	}
+	}
+	{horse
+;		{flag_human}
+		{flag_skip_impregnable}
+		{"human"			-1	}
+		{"human_flying"		0	}
+		{"animal"			-1	}
+		("vehicles"	   cost(0)	)
+		("marines"	   cost(0)	)
+		{"airborne"			0	}
+	}
+	{cannon
+		{"trench_cannon"	-1	}
+	}
+	{tank
+		{"human"			-1	}
+		{"human_flying"		-1	}
+		{"animal"			-1	}
+		("vehicles"	   cost(-1)	)
+		("marines"	   cost(0)	)
+		{"airborne"			0	}
+		{"trench"			0	}
+		{"trench_cannon"	-1	}
+		{"wire"				-1	}
+	}
+	{marine
+		{"human"			-1	}
+		{"human_flying"		-1	}
+		{"animal"			-1	}
+		("vehicles"	   cost(-1)	)
+		("marines"	   cost(-1)	)
+		{"airborne"			0	}
+    }
+	{trench_wall
+		{"human"			0	}
+		{"human_flying"		-1	}
+		{"animal"			0	}
+		{"moto"				0	}
+		{"vehicle.small"	0	}
+		{"vehicle.large"	0	}
+		{"vehicle.trailer"	0	}
+		{"armored"			10	}
+		{"cannon.micro"		5	}
+		{"cannon.carried"	5	}
+		{"cannon.small"		10	}
+		{"cannon.large"		10	}
+		{"tank.light"		0   }
+		{"tank"				0   }
+		{"amphibia"			0   }
+		{"amphibia.light"		0   }		
+		{"railway"			0   }
+		{"airborne"			0	}
+		{"trench"			0	}
+    }
+	{trench_entry
+		{"human"			0	}
+		{"trench"			0	}
+	}
+	{corner
+		{"human"			0}
+		{"human_flying"		0}
+		{"animal"			0}
+		("vehicles"	   cost(-1)	)
+		("marines"	   cost(-1)	)
+		{"airborne"			0}
+		{"trench"			0}
+		{"wire"				-1}
+		{"sandbag"			-1	}
+	}
+	{tree
+		{"human"			-1	}
+		{"human_flying"		-1	}
+		{"animal"			-1	}
+
+		{"moto"				-1	}
+		{"vehicle.small"	-1	}
+		{"vehicle.large"	-1	}
+		{"vehicle.trailer"	-1	}
+		{"armored"			0	}
+		{"cannon.micro"		-1	}
+		{"cannon.carried"	-1	}
+		{"cannon.small"		-1	}
+		{"cannon.large"		-1	}
+		{"tank.light"		0   }
+		{"tank"				0   }
+		{"amphibia"			0   }
+		{"amphibia.light"	0   }		
+		{"railway"			0   }
+
+		{"airborne"			0	}
+		{"trench"			0	}
+		{"trench_cannon"	0	}
+		{"wire"				-1	}
+		{"sandbag"			-1	}
+	}
+	{stump
+		{"human"			-1	}
+		{"human_flying"		-1	}
+		{"animal"			0	}
+
+		{"moto"				-1	}
+		{"vehicle.small"	0	}
+		{"vehicle.large"	0	}
+		{"vehicle.trailer"	0	}
+		{"armored"			0	}
+		{"cannon.micro"		0	}
+		{"cannon.carried"	0	}
+		{"cannon.small"		0	}
+		{"cannon.large"		0	}
+		{"tank.light"		0   }
+		{"tank"				0   }
+		{"amphibia"			0   }
+		{"amphibia.light"		0   }		
+		{"railway"			0   }
+
+		{"airborne"			0	}
+	}
+	{unbreakable
+		{"human"			-1	}
+		{"human_flying"		-1	}
+		{"animal"			-1	}
+		("vehicles"	   cost(-1)	)
+		("marines"	   cost(-1)	)
+		{"airborne"			0	}
+		{"wire"				-1	}
+		{"sandbag"			-1	}
+	}
+	{building
+		{flag_crush_in_battle}
+		{"human"			-1	}
+		{"human_flying"		-1	}
+		{"animal"			-1	}
+		("vehicles"	   cost(-1)	)
+		{"tank"				-1 	}
+		("marines"	   cost(-1)	)
+		{"airborne"			0	}
+		{"wire"				-1	}
+		{"sandbag"			-1	}
+	}
+	{small_building
+		{"human"			-1	}
+		{"human_flying"		-1	}
+		{"animal"			-1	}
+
+		{"moto"				-1	}
+		{"vehicle.small"	-1	}
+		{"vehicle.large"	-1	}
+		{"vehicle.trailer"	-1	}
+		{"armored"			0	}
+		{"cannon.micro"		-1	}
+		{"cannon.carried"	-1	}
+		{"cannon.small"		-1	}
+		{"cannon.large"		-1	}
+		{"tank.light"		0   }
+		{"tank"				0   }
+		{"amphibia"			0   }
+		{"amphibia.light"	0   }		
+		{"railway"			0   }
+
+		{"airborne"			0	}
+		("marines"	   cost(0)	)
+		{"wire"				-1	}
+		{"sandbag"			-1	}
+	}
+	{construction
+		{"human"			-1	}
+		{"human_flying"		-1	}
+		{"animal"			-1	}
+
+		{"moto"				500	}
+		{"vehicle.small"	500	}
+		{"vehicle.large"	0	}
+		{"vehicle.trailer"	0	}
+		{"armored"			0	}
+		{"cannon.micro"		500	}
+		{"cannon.carried"	500	}
+		{"cannon.small"		500	}
+		{"cannon.large"		0	}
+		{"tank.light"		0   }
+		{"tank"				0   }
+		{"amphibia"			0   }
+		{"amphibia.light"		0   }		
+		{"railway"			0   }
+
+		{"airborne"			0	}
+		("marines"	   cost(0)	)
+		{"trench"			0	}
+		{"trench_cannon"	0	}
+		{"wire"				-1	}
+		{"sandbag"			-1	}
+	}
+	{stuff
+		{flag_skip_impregnable}
+		{"human"			-1	}
+		{"human_flying"		0	}
+		{"animal"			-1	}
+
+		{"moto"				-1	}
+		{"vehicle.small"	0	}
+		{"vehicle.large"	0	}
+		{"vehicle.trailer"	0	}
+		{"armored"			0	}
+		{"cannon.micro"		-1	}
+		{"cannon.carried"	-1	}
+		{"cannon.small"		0	}
+		{"cannon.large"		0	}
+		{"tank.light"		0	}
+		{"tank"				0	}
+		{"amphibia"			0	}
+		{"amphibia.light"	0	}
+		{"railway"			0	}
+
+		{"airborne"			0	}
+		("marines"	   cost(0)	)
+		{"trench"			0	}
+		{"trench_cannon"	0	}
+		{"wire"				0	}
+	}
+	{mine_antitank
+		{flag_affected_for_player}
+		{"human"			0	}
+		("vehicles"	   cost(-1)	)
+		{"airborne"			0	}
+	}
+	{mine_antipersonnel
+		{flag_affected_for_player}
+		{"human"			-1	}
+		("vehicles"		cost(0)	)
+		{"airborne"			0	}
+	}
+}

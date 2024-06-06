@@ -1,0 +1,45 @@
+{from "pattern bullet"
+	{curve "arena_smg"}
+	{tag "smg std weapon bullet to_hand"}
+	{tag "ui_smg"}
+	{filling "ammo pistol" 71}
+	{inventory
+		{size 4 2 }
+		{link_bone "gun_back"}
+		{weight 100 }
+	}
+	{mass 4}
+	{reloadSound "mp44_reload"}
+	{Automatic}
+	{traceFreq 0.4}
+
+;-------------------------------------------
+	{spreading 1
+		{BurstAccuracy 100 98 96 94 92 90 88 86 80 70 60 50}
+		{SpreadXYRatio 2}
+		{SpreadPower	0.5}
+;		{burstSpreadWidth 0.5}
+;		{burstSpreadDelta 0.5}
+;		{burstSpreadCount 2}		
+	}
+
+	{recoveryTime 0.11}			; s
+	{rechargeTime 3}			; s
+	{speed 250}					; m/s
+	
+	{healthDamage 30}		
+	{projectileDamageTable {0 6} {25 6} {50 5} {75 4}}
+	{projectileDamageThreshold 1.2}		
+	{armorHealthDamageTable {0 6} {75 3}}
+	{ManualAccuracyScale 2}	
+	{aimRange 60}	
+	{maxRange 60}				
+	{burst
+		{rangekoeftable {0 40 5} {0.2 20 5} {0.5 10 5} {1 5 4}}	; 1 число - дистанция до цели относительно aim_range, 2 число - базововая величина бёрста в пулях, 3 число рандомный расброс количества пуль +-	
+	}
+	{LockFireDistanceTime 0.5}	
+	
+	
+	("accuracy_smg")
+	{destructive 0 1}
+}

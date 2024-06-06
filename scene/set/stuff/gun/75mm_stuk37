@@ -1,0 +1,54 @@
+﻿{from "pattern gun"	; "StuG 3b"
+	{tag "agf" "howitzer"}	
+	{filling "bullet75 ger std"}
+	{fireSound "gun/75mm/75mm"}
+	{reloadSound "gun_r03_reload"}
+	("rt" rt(7.0))
+	("speed" s(570))
+	("75-76caliber")
+	("damage_arena" args 56 42 28 16); данные по снаряду K gr rot pz
+	("health_damage_arena" args 138)	
+	("accuracy_m_tank_short")
+	{bullet_view "shell_view_88mm"}
+	("howitzer_aimtype")
+	("light_spg")	
+	("Ricochet_Chance_25")
+	("realism_range_medium")
+	{parameters attack_ground_forced
+		("rt" rt(3.75))
+		{speed 120}			
+			{spreading	
+			{radiusTable {0 0} {40 2} {55 3} {140 14} {250 ("ak" k(22))} {500 ("ak" k(35))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1.5 
+				100		1.5
+				500		1.5				
+			}
+			{SpreadXYRatio
+				0	0.55
+				500	0.65      
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+		}			
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		("howitzer_aimtype")				
+	}	
+	{parameters "ap"	
+		{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}				
+	}	
+}

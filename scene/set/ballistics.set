@@ -1,0 +1,158 @@
+{ballistics
+	; damage damping based on armor/damage ratio
+	{damping
+		{0		1.0}
+		{1		1.0}
+		{1.5	0.5}
+		{2		0.3}
+		{3		0.1}
+		{10		0.0}
+	}
+
+	{curve "linear"
+		{0		1}
+		{1		1}
+		{1.01	0}
+	}
+
+
+	{curve "cumulative"
+		{0		1.0}
+		{1.0	1.0}	
+		{1.5	0.2}	
+		{2.0	0.0}    
+	}
+	{curve "cumulative_bazooka"
+		{0		1.0}
+		{0.1		0.0}
+	}
+
+    ; distance/aim range  --- damage scale
+;----------arena----------
+	{curve "arena_rifle" ;aim range 60 dmg 50
+			{0		1.5}
+			{0.25	0.75}
+			{0.26	0.75}
+			{0.5	0.65}
+			{1		0.4}
+	}
+	{curve "arena_rifle_berdan2" ;aim range 60 dmg 75
+			{0		1.5}
+			{0.35	0.75}
+			{0.36	0.75}			
+			{0.35	0.6}
+			{1		0.3}
+	}
+	{curve "arena_shotgun" ;aim range 35 dmg 100
+			{0		0.5}
+			{0.45	0.5}
+			{0.26	0.35}
+			{1		0.15}
+	}	
+	{curve "arena_sniper_rifle" 	;aim range 150 dmg 100
+			{0		1.5}
+			{0.1	0.75}
+			{0.1	0.65}			
+			{0.5	0.65}
+			{1		0.4}
+	}	
+	{curve "arena_autorifle" 	;aim range 60 dmg 100
+			{0		1.5}
+			{0.25	0.75}
+			{0.26	0.65}			
+			{0.5	0.65}
+			{1		0.4}
+	}
+	{curve "arena_at_rifle" 	;aim range 60 dmg 100
+			{0		1.5}
+			{0.25	0.75}
+			{0.25	0.75}			
+			{0.5	0.6}
+			{1		0.4}
+	}	
+	{curve "arena_smg" ;aim range 50 dmg 30
+			{0		0.65}
+			{0.3		0.5}
+			{0.31		0.5}			
+			{0.5	0.3}		
+			{1		0.3}
+	}
+	{curve "arena_assaultrifle" ;aim range 60 dmg 100
+			{0		0.75}
+			{0.3		0.75}
+			{0.31	0.4}		
+			{1		0.2}
+	}
+	{curve "arena_mgun" ;aim range 60 dmg 100
+			{0		1.5}
+			{0.25	1.5}
+			{0.26	0.75}
+			{1		0.2}
+	}	
+	{curve "autocannon"
+			{0		1}
+			{0.16	0.75}
+			{1		0.75}
+	}
+	{curve "arena_pistol" ;aim range 35 dmg 50
+			{0		0.7}
+			{0.42	0.7}
+			{0.43	0.5}
+			{1		0.3}
+	}	
+;------------------------
+	{curve "mgun"
+			{0		5}
+			{0.16	3}
+			{0.15	1}
+			{1		0.35}
+	}
+	{curve "bullet"
+			{0	3}
+			{0.25	1.4}
+			{0.5	0.8}
+			{1.0	0.5}
+			{4.0	0.1}
+	}
+	{curve "smg"
+			{0	3}
+			{0.25	3}
+			{0.5	2}
+			{1.0	1}
+			{4.0	0.1}
+	}
+	{curve "bullet_rifle"
+			{0		3}
+			{0.25	  2}
+			{0.5   1.25}
+			{1.0	0.75}
+			{4.0	0.25}
+	}
+	{curve "gun_std"
+		{0.1	1.0}
+		{0.5	0.7}
+		{1.0	0.4}
+		{2.0	0.2}
+		{4.0	0.0}
+	}
+
+	{curve "gun_light"
+		{0.2	1.0}
+		{1.0	0.3}
+		{1.4	0.1}
+		{2.5	0.0}
+	}
+	
+	{curve "gun_medium"
+		{0.15	1.0}
+		{1.0	0.2}
+		{2.5	0.0}
+	}
+
+	{curve "gun_heavy"
+		{0.1	1.0}
+		{0.6	0.7}
+		{1.0	0.3}
+		{2.5	0.0}
+	}
+}

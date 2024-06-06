@@ -1,0 +1,47 @@
+{from "pattern gun"    ; "155mm_gpf"
+	{tag "agf" "howitzer" "caliber100"}
+	{filling "bullet155 ally std"}
+	{fireSound "gun/150mm_155mm/150mm_155mm"}
+	{reloadSound "gun_r04_reload"}
+	("rt" rt(14.0))
+	("speed" s(650))	
+	("heavy_howitzer_stan")
+    ("Ricochet_Chance_0")
+	("realism_range_medium_art")
+	{parameters attack_ground_forced
+		("rt" rt(10.0))
+		{speed 130}			
+		{spreading
+			{SpreadPower	
+				0		1.5 
+				250		1.5  
+				500		1.5 
+			}		
+			{radiusTable {0 0} {30 4} {70 6} {120 10.5} {250 ("ak" k(12.75))} {500 ("ak" k(15))}}
+			{SpreadXYRatio
+				0	0.6
+				500	1      
+			}			
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}			
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}		
+	}
+	{bullet_view "shell_view_150mm"}				
+}

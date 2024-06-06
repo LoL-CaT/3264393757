@@ -1,0 +1,36 @@
+{from "pattern gun"
+	{tag "aa" "no_ground" "-detect"}
+	{filling "bullet40 bofors" 8}
+	{fireSound "gun/45mm_20k/45mm_20k"}
+	{RecoveryTime 0.3}
+	("rt" rt(3)) 
+	{reloadSound "flak38_reload"}
+	{AimingTolerance 3}
+	{Automatic}
+	{burst
+		{short 2.5 1}
+		{long 7 2}
+	}
+	{speed 90}
+	{traceFreq 0.5}
+	("realism_range_autocannon")
+	("speed" s(1101))
+	("37-57caliber")
+	("damage_arena_zenite" args 72 48 31 15)
+	("health_damage_arena_zenite_61k" args 80)
+	{curve "autocannon"}	
+	("accuracy_zenite_vh")
+	{RelaxationTime 0}
+;	{cursor "zenite_on"}
+;	{cursorReloading "zenite_reload"}
+	{parameters anti_airborne
+		{range 200 200}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}	
+		{spreading  
+			{radiusTable {0 0}{1000 5}} 
+		}
+		{speed 1500}
+		("rt" rt(1.5))		
+	}
+	{bullet_view "shell_view_50mm"}	
+}

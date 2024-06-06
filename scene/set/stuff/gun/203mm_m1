@@ -1,0 +1,48 @@
+{from "pattern gun"		; "203mm Mortar", "k18"
+	{tag "agf" "howitzer" "caliber100"}
+	{filling "bullet203 usa std"}
+	{fireSound "gun/203mm/203mm"}
+	{reloadSound "tankgun_r02_reload"}
+	("rt" rt(20.0))
+	("speed" s(650))
+	("heavy_howitzer")
+	{AimingTolerance 0.75}
+	("heavy_howitzer_stan")
+    ("Ricochet_Chance_0")
+	("realism_range_heavy_art")
+	{parameters attack_ground_forced
+		("rt" rt(15.0))
+		{speed 130}			
+		{spreading
+			{SpreadPower	
+				0		1.5 
+				250		1.5 
+				500		1.6
+			}		
+			{radiusTable {0 0} {30 4} {70 6} {120 10.5} {250 ("ak" k(12.75))} {500 ("ak" k(15))}}
+			{SpreadXYRatio
+				0	0.6
+				500	1      
+			}			
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}			
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}		
+	}					
+}

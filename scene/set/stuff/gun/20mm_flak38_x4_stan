@@ -1,0 +1,21 @@
+;flak38 ;flak38_platform
+{from "20mm_flak38"	;
+	{tag "aa" "no_ground" "-detect"}
+	{filling "bullet20 flak" 80}
+	{RecoveryTime 0.08}
+	("rt" rt(4.15))
+	("accuracy_zenite_stan_x4")
+	{burst
+		{rangekoeftable {0 40 5} {0.12 30 5} {0.5 10 2} {1 5 2}}		
+	}		
+	{parameters anti_airborne
+		{range 180 180}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}	
+		{spreading  
+			{radiusTable {0 0}{1000 5}} 
+		}
+		{speed 1500}
+		("rt" rt(3))			
+	}
+	{bullet_view "shell_view_30mm"}	
+}

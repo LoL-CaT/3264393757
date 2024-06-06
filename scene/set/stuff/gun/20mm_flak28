@@ -1,0 +1,39 @@
+;20mm_u_boat
+{from "pattern gun"	
+	{tag "aa" "no_ground" "-detect"}
+	{filling "bullet20 flak" 30}
+	{fireSound "gun/zenite/20mm/20mm"}
+	{reloadSound "flak38_reload"}
+	{RecoveryTime 0.1}
+	("rt" rt(3.75))
+	{spreading
+		{BurstAccuracy 100 90 85 80 72 65 50 40 30}
+	}
+	{Automatic}
+	{burst
+		{rangekoeftable {0 20 5} {0.12 15 5} {0.5 5 2} {1 5 2}}		
+	}
+	{traceFreq 0.5}
+
+	("realism_range_autocannon")
+	("speed" s(975))
+	("14-20caliber")
+;	{RelaxationTime 0}
+;	{cursor "zenite_on"}
+;	{cursorReloading "zenite_reload"}
+	{AimingTolerance 5}
+	("damage_arena_zenite" args 36 21 12 6)	
+	("health_damage_arena_zenite" args 40)
+	{curve "autocannon"}	
+	("accuracy_zenite_stan")
+	{parameters anti_airborne
+		{range 180 180}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}	
+		{spreading  
+			{radiusTable {0 0}{1000 5}} 
+		}
+		{speed 1500}
+		("rt" rt(1.875))		
+	}
+	{bullet_view "shell_view_30mm"}	
+}	

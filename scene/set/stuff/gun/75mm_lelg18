@@ -1,0 +1,170 @@
+{from "pattern gun"     ; lelg18
+	{tag "agf"}
+	{filling "bullet75 lelg18"}
+	{fireSound "gun/75mm/75mm"}
+	{reloadSound "gun_r00_reload"}
+	("rt" rt(6.5))
+	("speed" s(200))
+	("75-76caliber")
+	{bullet_view "shell_view_88mm"
+		{tail "shell_tail" "root"}
+	}
+	{traceFreq 0}
+	{DisableRicochet}
+	("realism_range_field_gun")	
+	("accuracy_field_stan")
+	("Ricochet_Chance_25")
+	{parameters attack_ground_forced
+		("rt" rt(5.5))
+		{spreading
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 2} {55 6} {140 18} {250 ("ak" k(25))} {500 ("ak" k(36))}}
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}
+	{bullet_view "shell_view_88mm"}	
+	{parameters "ic"
+		{spreading
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {140 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}	
+        {range 100 100}		
+	}
+	{parameters "ic" "sandbag"
+		{spreading
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {140 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}	
+	{parameters "ic" "human"
+		{spreading
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {140 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}		
+	}	
+	{parameters "ic" "cannon"		
+		{spreading	
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {140 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}		
+	}
+	{parameters "ic" "vehicle"		
+		{spreading	
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {140 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}
+	{parameters "ic" "house"		
+		{spreading	
+			{SpreadPower	
+				0		1 
+				25		1 
+				50		1 
+				75		1
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 0.75} {55 1.125} {140 4.2} {250 ("ak" k(13))} {500 ("ak" k(21))}}	
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}
+	{parameters "fg"
+		{aimtype angle_by_distance 0 10 30 10 50 10 60 15 70 20 100 25 250 30 500 45}		
+	}
+	{parameters "fr"
+		{aimtype angle_by_distance 0 10 30 10 50 10 60 15 70 20 100 25 250 30 500 45}		
+	}
+	{TimeToReadyAfterAim
+		{0 0}
+		{40 0.2}
+	}	
+	{RicochetChance
+		{0 0.0}
+		{70 0.0}
+		{75 0.0}
+		{90 0.0}
+	}
+	{OvermatchDamping
+		{0  0.0001}
+		{20 0.0001}
+	}	
+}

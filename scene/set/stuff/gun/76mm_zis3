@@ -1,0 +1,66 @@
+﻿{from "pattern gun"      ; "ZIS3"
+	{tag "agf"}
+	{filling "bullet76 rus"}
+	{fireSound "gun/75mm/75mm"}
+	{reloadSound "gun_r00_reload"}
+	("rt" rt(6.5))	
+	("speed" s(800))
+	("75-76caliber")
+	("damage_arena" args 87 63 55 26);данные по снаряду БР-350А
+	("damage_arena_apcr" args 125 76 45 18);данные по снаряду БР-350П	
+	("health_damage_arena" args 140)
+	("realism_range_medium_2")
+	("accuracy_medium_at_cannon")
+	("accuracy_at_cannon_stan_zis3")		
+	{bullet_view "shell_view_88mm"}
+	{parameters attack_ground_forced
+		("rt" rt(5.5))
+		{speed 160}			
+		{spreading 
+			{radiusTable {0 0} {40 2} {55 3} {120 14} {250 ("ak" k(22))} {500 ("ak" k(35))}}
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}	
+        ("realism_range_long")		
+	}
+	{parameters "fg"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "human"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "house"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "vehicle"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "sandbag"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "cannon"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "ap"
+		{aimtype angle_by_distance 0 1 30 2 50 3 60 4 70 5 100 6 250 7 500 10}
+	}
+	{parameters "ap" "vehicle"
+		{aimtype angle_by_distance 0 1 30 2 50 3 60 4 70 5 100 6 250 7 500 10}
+	}
+	{parameters "ap" "cannon"
+		{aimtype angle_by_distance 0 1 30 2 50 3 60 4 70 5 100 6 250 7 500 10}
+	}	
+}

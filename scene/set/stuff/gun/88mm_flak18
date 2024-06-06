@@ -1,0 +1,35 @@
+{from "pattern gun"    ; "Flak18"
+	{tag "aa"} 
+	{Automatic}
+	{RelaxationTime 0}	
+	{filling "bullet88 ger std"}
+	{fireSound "gun/88mm_flak18/88mm_flak18"}
+	{reloadSound "gun_r04_reload"}
+	("rt" rt(7))
+	{RecoveryTime 5}	
+	("speed" s(1000))
+	("85-93caliber")            
+	("damage_arena" args 153 116 85 53)
+	("health_damage_arena" args 176)		
+	("realism_range_long")
+	("accuracy_heavy_at_cannon")
+	("accuracy_zenite_cannon_stan_flak18")		
+	{parameters "fg"
+		{spreading		
+			{radiusTable {0 0} {40 2} {55 3} {170 8.5} {250 ("ak" k(26))} {500 ("ak" k(30))}}	
+		}	
+	}	
+	{parameters anti_airborne
+		{aimRange 275}
+		{spreading  
+			{radiusTable {0 0}{1000 0.1}} 
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}			
+		{speed 1000}
+		("rt" rt(2.5))		
+	}
+	{bullet_view "shell_view_88mm"}
+   	{AimingTolerance 1}
+	{AimingToleranceCorrection "attenuated"}		
+}	
+

@@ -1,0 +1,5601 @@
+﻿(define "pass_low_range"
+	{parameters "%0" "%1"
+		{ArmorPassability {1.2 200} {1.25 100}}
+	}
+)
+
+;ARENA_aimtypes__________________________________________________________________________________________________________________________________________________________________
+(define "howitzer_aimtype"
+	{aimtype manual
+		;{distance {slope {angle gravity gravity2}}}
+		;{0 	{0 	{0 7 20}	}}
+
+		;{4 	{-10	{-5 7 20}	}
+		;	{0	{0 7 20}	}
+		;	{5	{15 7 20}	}}
+		;
+		{0 	{-5 	{0 7 20}	}
+			{0 	{5 7 20}	}
+			{15	{10 7 20}	}
+			{30	{15 7 20}	}}
+		
+		{150	{-5 	{0 7 20}	}
+			{0 	{10 7 20}	}
+			{15	{15 7 20}	}
+			{30	{20 7 20}	}}
+		
+		{200	
+			{-5 	{0 7 20}	}
+			{0	{15 7 20}	}
+			{15	{20 7 20}	}
+			{30	{30 7 20}	}}
+		
+		{300	{-5 	{0 7 20}	}
+			{0	{20 7 20}	}
+			{15 	{45 7 20}	}}
+	}
+)
+
+(define "speed"   
+	{parameters "ap" {speed (* 0.65 %s)}}
+	{parameters "apcr" {speed (* 0.65 %s)}}
+    {parameters "bzt" {speed (* 0.65 %s)}}	
+	{parameters "fg" {speed (* 0.5 %s)}}
+	{parameters "fg" "human" {speed (* 0.5 %s)}}
+	{parameters "fg" "cannon" {speed (* 0.5 %s)}}
+	{parameters "fg" "house" {speed (* 0.5 %s)}}
+	{parameters "fg" "vehicle" {speed (* 0.5 %s)}}	
+	{parameters "fg" "sandbag" {speed (* 0.5 %s)}}	
+	{parameters "ic" {speed (* 0.5 %s)}}
+	{parameters "ic" "human" {speed (* 0.5 %s)}}
+	{parameters "ic" "cannon" {speed (* 0.5 %s)}}
+	{parameters "ic" "house" {speed (* 0.5 %s)}}
+	{parameters "ic" "vehicle" {speed (* 0.5 %s)}}	
+	{parameters "ic" "sandbag" {speed (* 0.5 %s)}}	
+	{parameters "sk" {speed (* 0.5 %s)}}
+	{parameters "sk" "human" {speed (* 0.5 %s)}}
+	{parameters "sk" "cannon" {speed (* 0.5 %s)}}
+	{parameters "sk" "house" {speed (* 0.5 %s)}}
+	{parameters "sk" "vehicle" {speed (* 0.5 %s)}}	
+	{parameters "sk" "sandbag" {speed (* 0.5 %s)}}
+	{parameters "fr" {speed (* 0.5 %s)}}
+	{parameters "fr" "human" {speed (* 0.5 %s)}}
+	{parameters "fr" "cannon" {speed (* 0.5 %s)}}
+	{parameters "fr" "house" {speed (* 0.5 %s)}}
+	{parameters "fr" "vehicle" {speed (* 0.5 %s)}}	
+	{parameters "fr" "sandbag" {speed (* 0.5 %s)}}	
+	{parameters "ph" {speed (* 0.5 %s)}}
+	{parameters "ph" "human" {speed (* 0.5 %s)}}
+	{parameters "ph" "cannon" {speed (* 0.5 %s)}}
+	{parameters "ph" "house" {speed (* 0.5 %s)}}
+	{parameters "ph" "vehicle" {speed (* 0.5 %s)}}	
+	{parameters "ph" "sandbag" {speed (* 0.5 %s)}}		
+)
+(define "rt"
+	{rechargeTime (* 1.2 %rt)}
+	{destructive 0 (* 7 %rt)};distance - durability		
+)
+
+(define "damage"                                                              
+	{projectileDamageTable {20 %a} {40 %b} {60 %c} {70 %d} {80 %e} {90 (* 0.8 %e)} {100 (* 0.6 %e)} {130 (* 0.4 %e)} {200 0}}
+)
+(define "damage2"                                                              
+	{projectileDamageTable {15 %a} {30 %b} {50 %c} {65 %d} {85 %e} {100 (* 0.6 %e)} {130 (* 0.4 %e)} {200 0}}
+)
+(define "damage3"                              
+	{projectileDamageTable {20 %a} {35 %b} {50 %c} {65 %d} {80 %e} {110 (* 0.7 %e)} {120 (* 0.5 %e)} {150 (* 0.3 %e)} {200 0}}
+)
+(define "ak"
+	(* 1.33 %k)
+)
+;-----new model for soldiers:arena-----
+(define "projectile_spread_35-47"
+	{ProjectileDamageSpreadRangeMin 0 (* -1 0.1 %0) 59 (* -1 0.1 %0) 60 -34.8}
+	{ProjectileDamageSpreadRangeMax 0 (* 1 0.1 %0) 59 (* 1 0.1 %0) 60 7}
+	{ProjectileDamageSpreadPower 0 1}
+)
+(define "damage_arena_base"																																	;бронепробития и дамаг в Арене для орудий
+	{parameters "ap"
+		{projectileDamageTable {0 %0} {30 %0} {100 (* 1.1 %1)} {150 (*1.25 %2)} {190 (*1.5 %3)}}	
+	;	{armorHealthDamageTable {0 (* %4 %0)} {100 (* %5 %0)}}
+	;	{armorHealthDamageTable {0 (* %4 %0)} {5 (* 5 %0)} {10 (* 4 %0)} {20 (* 3.5 %0)} {25 (* 3 %0)} {30 (* 2 %0)} {50 (* 1.5 %0)} {100 (* 1.3 %0)}}	
+
+		{projectiledamagespread (* -1 0.1 %0) (* 1 0.1 %0) 1}
+	;	{armorhealthdamagespread (* -1 0.1 %4 %0) (* 0.1 %4 %0) 1}
+
+		{ProjectileDamageSpreadTable																															;Шанс пробития. Первое значение - отношение приведённой брони к пробитию в точке. Второе - шанс пробития.
+			0.85	1	
+			0.8		1	
+			0.9		0.6
+			1		0.5
+			1.1		0.25
+			1.2		0.1
+			1.5		0		
+		}
+	}
+	{parameters "ap" "cannon"
+		{projectileDamageTable {0 %0} {30 %0} {100 (* 1.1 %1)} {150 (*1.25 %2)} {190 (*1.5 %3)}}	
+		{projectiledamagespread (* -1 0.1 %0) (* 1 0.1 %0) 1}
+		{ProjectileDamageSpreadTable	
+			0.85	1	
+			0.8		1	
+			0.9		0.6
+			1		0.5
+			1.1		0.25
+			1.2		0.1
+			1.5		0		
+		}
+	}	
+	{parameters "ap" "vehicle"
+		{projectileDamageTable {0 %0} {30 %0} {100 (* 1.1 %1)} {150 (*1.25 %2)} {190 (*1.5 %3)}}	
+		{projectiledamagespread (* -1 0.1 %0) (* 1 0.1 %0) 1}
+		{ProjectileDamageSpreadTable																															;Шанс пробития. Первое значение - отношение приведённой брони к пробитию в точке. Второе - шанс пробития.
+			0.85	1	
+			0.8		1	
+			0.9		0.6
+			1		0.5
+			1.1		0.25
+			1.2		0.1
+			1.5		0		
+		}
+	}
+	{parameters "fg"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "fg" "human"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "fg" "cannon"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "fg" "house"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "fg" "vehicle"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "sk"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "sk" "human"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "sk" "cannon"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "sk" "house"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "sk" "vehicle"
+		{projectileDamageTable {0 0}}
+	}	
+)
+(define "damage_arena_base_apcr"																																	;бронепробития и дамаг в Арене для орудий
+	{parameters "apcr"
+		{projectileDamageTable {0 %0} {30 %0} {100 (* 1.1 %1)} {150 (*1.25 %2)} {190 (*1.5 %3)}}	
+		{projectiledamagespread (* -1 0.1 %0) (* 1 0.1 %0) 1}
+		{ProjectileDamageSpreadTable																															;Шанс пробития. Первое значение - отношение приведённой брони к пробитию в точке. Второе - шанс пробития.
+			0.85	1	
+			0.8		1	
+			0.9		1
+			1		1
+			1.1		0.2
+			1.2		0.0
+			1.5		0		
+		}
+		{destructive 0 1000}		
+	}
+	{parameters "apcr" "cannon"
+		{projectileDamageTable {0 %0} {30 %0} {100 (* 1.1 %1)} {150 (*1.25 %2)} {190 (*1.5 %3)}}	
+		{projectiledamagespread (* -1 0.1 %0) (* 1 0.1 %0) 1}
+		{ProjectileDamageSpreadTable	
+			0.85	1	
+			0.8		1	
+			0.9		1
+			1		1
+			1.1		0.2
+			1.2		0.0
+			1.5		0		
+		}
+		{destructive 0 1000}		
+	}
+	{parameters "apcr" "vehicle"
+		{projectileDamageTable {0 %0} {30 %0} {100 (* 1.1 %1)} {150 (*1.25 %2)} {190 (*1.5 %3)}}	
+		{projectiledamagespread (* -1 0.1 %0) (* 1 0.1 %0) 1}
+		{ProjectileDamageSpreadTable																															;Шанс пробития. Первое значение - отношение приведённой брони к пробитию в точке. Второе - шанс пробития.
+			0.85	1	
+			0.8		1	
+			0.9		1
+			1		1
+			1.1		0.2
+			1.2		0.0
+			1.5		0			
+		}
+		{destructive 0 1000}		
+	}	
+)
+(define "health_damage_arena" 	;дефайн расчета дамага если дамаг указан в пушке	   												
+	{ArmorStrengthToDamageK	
+		{30
+			{0 1}
+			{2 1.2}
+			{10 1.2}			
+		}
+		{70 
+			{0 0.75}
+			{0 1}			
+			{2 1}	
+			{4 1.1}	
+			{10 1.2}			
+		}
+		{120 
+			{0 0.75}
+			{0 1}			
+			{2 1}
+			{4 1.1}
+			{10 1.2}			
+		}		
+	}	
+	{armorHealthDamageTable {0 (* 2.4 %0)} {30 (* 2.4 %0)} {55 (* 2.2 %0)} {70 (* 2 %0)} {105 (* 1.7 %0)} {150 (* 1.6 %0)}}
+	{parameters "apcr"
+		{armorHealthDamageTable {0 (* 1.2 %0)} {30 (* 1.2 %0)} {55 (* 1.1 %0)} {70 (* 1 %0)} {105 (* 0.85 %0)} {150 (* 0.8 %0)}}	
+	}		
+	{parameters "fg"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{parameters "fg" "vehicle"
+		{armorHealthDamageTable {0 0}}
+	}
+	{parameters "fg" "cannon"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{HealthDamage 500}	
+
+	{parameters "ap" "cannon"
+		{armorHealthDamageTable {0 (* 2 %0)}  {30 (* 1.5 %0)} {55 (* 1.25 %0)} {70 (* 1 %0)} {105 (* 0.5 %0)} {150 (* 0.5 %0)}}
+	}
+	{parameters "ap" "vehicle"
+		{armorHealthDamageTable {0 (* 2.4 %0)} {30 (* 2.4 %0)} {55 (* 2.2 %0)} {70 (* 2 %0)} {105 (* 1.7 %0)} {150 (* 1.6 %0)}}	
+	}
+	{parameters "apcr" "cannon"
+		{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 0.75 %0)} {55 (* 0.625 %0)} {70 (* 0.5 %0)} {105 (* 0.25 %0)} {150 (* 0.5 %0)}}
+	}
+	{parameters "apcr" "vehicle"
+		{armorHealthDamageTable {0 (* 1.2 %0)} {30 (* 1.2 %0)} {55 (* 1.1 %0)} {70 (* 1 %0)} {105 (* 0.85 %0)} {150 (* 0.8 %0)}}	
+	}		
+)
+(define "health_damage_arena_lvl4_plus" 	;дефайн расчета дамага если дамаг указан в пушке   												
+	{ArmorStrengthToDamageK	
+		{30
+			{0 1}
+			{2 1.2}
+			{10 1.2}			
+		}
+		{70 
+			{0 0.75}
+			{0 1}			
+			{2 1}	
+			{4 1.1}	
+			{10 1.2}			
+		}
+		{120 
+			{0 0.75}
+			{0 1}			
+			{2 1}
+			{4 1.1}
+			{10 1.2}			
+		}		
+	}	
+	{armorHealthDamageTable {0 (* 2.3 %0)} {30 (* 2.3 %0)} {55 (* 2.2 %0)} {70 (* 2 %0)} {105 (* 2 %0)} {150 (* 1.8 %0)}}		
+	{parameters "fg"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{parameters "fg" "vehicle"
+		{armorHealthDamageTable {0 0}}
+	}
+	{parameters "fg" "cannon"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{HealthDamage 500}	
+
+	{parameters "ap" "cannon"
+		{armorHealthDamageTable {0 (* 2 %0)}  {30 (* 1.5 %0)} {55 (* 1.25 %0)} {70 (* 1 %0)} {105 (* 0.5 %0)} {150 (* 0.5 %0)}}
+	}	
+	{parameters "ap" "vehicle"
+		{armorHealthDamageTable {0 (* 2.3 %0)} {30 (* 2.3 %0)} {55 (* 2.2 %0)} {70 (* 2 %0)} {105 (* 2 %0)} {150 (* 1.8 %0)}}	
+	}
+	{parameters "apcr" "cannon"
+		{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 0.75 %0)} {55 (* 0.625 %0)} {70 (* 0.5 %0)} {105 (* 0.25 %0)} {150 (* 0.5 %0)}}
+	}
+	{parameters "apcr" "vehicle"
+		{armorHealthDamageTable {0 (* 1.2 %0)} {30 (* 1.2 %0)} {55 (* 1.1 %0)} {70 (* 1 %0)} {105 (* 0.85 %0)} {150 (* 0.8 %0)}}	
+	}	
+)
+(define "health_damage_arena_lvl5_plus" 	;дефайн расчета дамага если дамаг указан в пушке   												
+	{ArmorStrengthToDamageK	
+		{30
+			{0 1}
+			{2 1.2}
+			{10 1.2}			
+		}
+		{70 
+			{0 0.75}
+			{0 1}			
+			{2 1}	
+			{4 1.1}	
+			{10 1.2}			
+		}
+		{120 
+			{0 0.75}
+			{0 1}			
+			{2 1}
+			{4 1.1}
+			{10 1.2}			
+		}		
+	}	
+	{armorHealthDamageTable {0 (* 2.0 %0)} {30 (* 2.0 %0)} {55 (* 2.0 %0)} {70 (* 2.0 %0)} {105 (* 2.0 %0)} {150 (* 1.8 %0)}}
+	{parameters "fg"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{parameters "fg" "vehicle"
+		{armorHealthDamageTable {0 0}}
+	}
+	{parameters "fg" "cannon"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{HealthDamage 500}	
+
+	{parameters "ap" "cannon"
+		{armorHealthDamageTable {0 (* 2 %0)}  {30 (* 1.5 %0)} {55 (* 1.25 %0)} {70 (* 1 %0)} {105 (* 0.5 %0)} {150 (* 0.5 %0)}}
+	}	
+	{parameters "ap" "vehicle"
+		{armorHealthDamageTable {0 (* 2.0 %0)} {30 (* 2.0 %0)} {55 (* 2.0 %0)} {70 (* 2.0 %0)} {105 (* 2.0 %0)} {150 (* 1.8 %0)}}
+	}
+	{parameters "apcr" "cannon"
+		{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 0.75 %0)} {55 (* 0.625 %0)} {70 (* 0.5 %0)} {105 (* 0.25 %0)} {150 (* 0.5 %0)}}
+	}
+	{parameters "apcr" "vehicle"
+		{armorHealthDamageTable {0 (* 1.2 %0)} {30 (* 1.2 %0)} {55 (* 1.1 %0)} {70 (* 1 %0)} {105 (* 0.85 %0)} {150 (* 0.8 %0)}}	
+	}	
+)
+(define "health_damage_arena_lvl6_plus" 	;дефайн расчета дамага если дамаг указан в пушке   												
+	{ArmorStrengthToDamageK	
+		{30
+			{0 1}
+			{2 1.2}
+			{10 1.2}			
+		}
+		{70 
+			{0 0.75}
+			{0 1}			
+			{2 1}	
+			{4 1.1}	
+			{10 1.2}			
+		}
+		{120 
+			{0 0.75}
+			{0 1}			
+			{2 1}
+			{4 1.1}
+			{10 1.2}			
+		}		
+	}
+	{armorHealthDamageTable {0 (* 1.8 %0)} {30 (* 1.8 %0)} {55 (* 1.8 %0)} {70 (* 1.8 %0)} {105 (* 1.8 %0)} {150 (* 1.6 %0)}}
+	{parameters "fg"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{parameters "fg" "vehicle"
+		{armorHealthDamageTable {0 0}}
+	}
+	{parameters "fg" "cannon"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{HealthDamage 500}	
+
+	{parameters "ap" "cannon"
+		{armorHealthDamageTable {0 (* 2 %0)}  {30 (* 1.5 %0)} {55 (* 1.25 %0)} {70 (* 1 %0)} {105 (* 0.5 %0)} {150 (* 0.5 %0)}}
+	}	
+	{parameters "ap" "vehicle"
+		{armorHealthDamageTable {0 (* 1.8 %0)} {30 (* 1.8 %0)} {55 (* 1.8 %0)} {70 (* 1.8 %0)} {105 (* 1.8 %0)} {150 (* 1.6 %0)}}
+	}
+	{parameters "apcr" "cannon"
+		{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 0.75 %0)} {55 (* 0.625 %0)} {70 (* 0.5 %0)} {105 (* 0.25 %0)} {150 (* 0.5 %0)}}
+	}
+	{parameters "apcr" "vehicle"
+		{armorHealthDamageTable {0 (* 1.2 %0)} {30 (* 1.2 %0)} {55 (* 1.1 %0)} {70 (* 1 %0)} {105 (* 0.85 %0)} {150 (* 0.8 %0)}}	
+	}	
+)
+
+(define "damage_arena"
+	("damage_arena_base" args %0 %1 %2 %3 5)
+)
+(define "damage_arena_apcr"
+	("damage_arena_base_apcr" args %0 %1 %2 %3 5)
+)
+(define "damage_arena_cannon"
+	("damage_arena_base" args %0 %1 %2 %3 5)
+)
+(define "damage_arena_zenite"												;бронепробития и дамаг в Арене для автопушек
+	{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 1 %0)} {70 (* 1 %0)} {105 (* 0.8 %0)} {150 (* 0.5 %0)}}	
+	{projectileDamageTable {0 %0} {30 %0} {100 (* 1.1 %1)} {150 (*1.25 %2)} {190 (*1.5 %3)}}
+
+	{projectiledamagespread (* -1 0.1 %0) (* 1 0.1 %0) 1}
+	{armorhealthdamagespread (* -1 0.1 0.5 %0) (* 1 0.1 0.5 %0) 1}
+	{parameters "ap" "vehicle"
+		{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 1 %0)} {70 (* 1 %0)} {105 (* 0.8 %0)} {150 (* 0.5 %0)}}	
+	}	
+	{parameters "ap" "cannon"
+		{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 0.5 %0)} {70 (* 0.25 %0)} {105 (* 0.1 %0)} {150 (* 0.1 %0)}}
+	}	
+	{parameters "ap" "vehicle"
+		{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 1 %0)} {70 (* 1 %0)} {105 (* 0.8 %0)} {150 (* 0.5 %0)}}	
+	}		
+	{ProjectileDamageSpreadTable											;Шанс пробития. Первое значение - отношение приведённой брони к пробитию в точке. Второе - шанс пробития.
+		0.8		1
+		0.9		0.65
+		1		0.5
+		1.1		0.25
+		1.2		0.1
+		1.25	0
+	}
+	{parameters "fg"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "fg" "human"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "fg" "cannon"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "fg" "house"
+		{projectileDamageTable {0 0}}
+	}
+	{parameters "fg" "vehicle"
+		{projectileDamageTable {0 0}}
+	}
+)
+
+(define "health_damage_arena_zenite"
+	{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 1 %0)} {70 (* 1 %0)} {105 (* 0.8 %0)} {150 (* 0.5 %0)}}	   	;дефайн расчета дамага если дамаг указан в пушке
+	{parameters "bzt" "vehicle"
+		{armorHealthDamageTable {0 (* 0.8 %0)}  {30 (* 0.08 %0)} {70 (* 0.8 %0)} {105 (* 0.6 %0)} {150 (* 0.5 %0)}}	
+	}
+	{parameters "bzt" "cannon"
+		{armorHealthDamageTable {0 (* 0.1 %0)}  {30 (* 0.05 %0)} {70 (* 0.025 %0)} {105 (* 0.015 %0)} {150 (* 0.001 %0)}}
+	}
+	{parameters "ap" "cannon"
+		{armorHealthDamageTable {0 (* 0.1 %0)}  {30 (* 0.05 %0)} {70 (* 0.025 %0)} {105 (* 0.015 %0)} {150 (* 0.001 %0)}}
+	}
+	{parameters "ap" "vehicle"
+		{armorHealthDamageTable {0 (* 1 %0)}  {30 (* 1 %0)} {70 (* 1 %0)} {105 (* 0.8 %0)} {150 (* 0.5 %0)}}	
+	}	
+	{healthDamage (* %0 1)}
+	{parameters "fg"
+		{armorHealthDamageTable {0 0}}
+	}
+	{curve "autocannon"}	
+	{ProjectileDamageSpreadTable																															;Шанс пробития. Первое значение - отношение приведённой брони к пробитию в точке. Второе - шанс пробития.
+		0.85	1	
+		0.8		0.9	
+		0.9		0.6
+		1		0.5
+		1.1		0.25
+		1.2		0.1
+		1.25	0
+	}
+	{parameters "fg"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{parameters "fg" "vehicle"
+		{armorHealthDamageTable {0 0}}
+	}
+	{parameters "fg" "cannon"
+		{armorHealthDamageTable {0 0}}
+	}	
+)
+(define "health_damage_arena_zenite_61k"
+	{armorHealthDamageTable {0 (* 0.5 %0)}  {30 (* 0.5 %0)} {70 (* 0.4 %0)} {105 (* 0.3 %0)} {150 (* 0.25 %0)}}	   	;дефайн расчета дамага если дамаг указан в пушке
+	{parameters "ap" "cannon"
+		{armorHealthDamageTable {0 (* 0.1 %0)}  {30 (* 0.05 %0)} {70 (* 0.025 %0)} {105 (* 0.015 %0)} {150 (* 0.001 %0)}}
+	}
+	{parameters "ap" "vehicle"
+		{armorHealthDamageTable {0 (* 0.5 %0)}  {30 (* 0.5 %0)} {70 (* 0.4 %0)} {105 (* 0.3 %0)} {150 (* 0.25 %0)}}
+	}	
+	{healthDamage (* %0 1)}
+	{parameters "fg"
+		{armorHealthDamageTable {0 0}}
+	}
+	{curve "autocannon"}	
+	{ProjectileDamageSpreadTable																															;Шанс пробития. Первое значение - отношение приведённой брони к пробитию в точке. Второе - шанс пробития.
+		0.85	1	
+		0.8		0.9	
+		0.9		0.6
+		1		0.5
+		1.1		0.25
+		1.2		0.1
+		1.25	0
+	}
+	{parameters "ap" "airborne"
+		{armorHealthDamageTable {0 (* 2 %0)}  {30 (* 2 %0)} {70 (* 1.5 %0)} {105 (* 1 %0)} {150 (* 1 %0)}}
+	}	
+	{parameters "fg"
+		{armorHealthDamageTable {0 0}}
+	}	
+	{parameters "fg" "vehicle"
+		{armorHealthDamageTable {0 0}}
+	}
+	{parameters "fg" "cannon"
+		{armorHealthDamageTable {0 0}}
+	}	
+)
+
+(define "damage_arena_35-47"
+	("damage_arena" args %0 %1 %2 %3)
+	;("projectile_spread_35-47" args %0)
+)
+(define "damage_arena_cannon_35-47"
+	("damage_arena_cannon" args %0 %1 %2 %3)
+	;("projectile_spread_35-47" args %0)
+)
+=======================================================================
+(define "Ricochet_Chance_0"
+	{parameters "ap"
+		{RicochetChance
+			{0 0}
+			{90 0}
+		}
+	}
+)
+(define "Ricochet_Chance_25"
+	{parameters "ap"
+		{RicochetChance
+			{0 0}
+			{60 0}
+			{75 0.25}
+			{90  0.25}
+		}
+	}
+)
+(define "Ricochet_Chance_tup_ostr"
+	{parameters "ap"
+		{RicochetChance
+			{0 0}
+			{47 0}
+			{60 0.5}
+			{65 1}
+			{90 1}
+		}
+	}
+)
+(define "Ricochet_Chance_tup_bk"
+	{parameters "ap"
+		{RicochetChance
+			{0 0}
+			{48 0}
+			{63 0.5}
+			{71 1}
+			{90 1}
+		}
+	}
+)
+(define "Ricochet_Chance_bp_katush"
+	{parameters "ap"
+		{RicochetChance
+			{0 0}
+			{66 0}
+			{70 0.5}
+			{72 1}
+			{90 1}
+		}
+	}
+)
+(define "Ricochet_Chance_shrapn"
+	{parameters "ap"
+		{RicochetChance
+			{0 0}
+			{62 0}
+			{69 0.5}
+			{73 1}
+			{90 1}
+		}
+	}
+)
+(define "Ricochet_Chance_basic"
+	{parameters "ap"
+		{RicochetChance
+			{0 0}
+			{45 0}
+			{60 1}
+			{90 1}
+		}
+	}
+)
+=======================================================================
+(define "accuracy"   
+	{spreading 
+		{radiusTable {0 0} {25 %r1} {50 (* 1.5 %r1)} {80 %r2} {120 (* 2.5 %r2)} {240 (* 5 %r2)} {320 (* 8 %r2)}}
+	}
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {25 %r1} {50 (* 1.35 %r1)} {80 (* 2 %r1)} {120 (* 2.5 %r2)} {240 (* 5 %r2)} {320 (* 8 %r2)}}
+		}
+	}	
+)
+(define "accuracy_2" 
+	{spreading 
+		{radiusTable {0 0} {50 %r1} {110 (* 0.65 %r2)} {120 (* 0.6 %r3)} {170 (* 0.6 %r4)}}
+	}		
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {50 %r1} {110 (* 0.65 %r2)} {120 (* 0.6 %r3)} {170 (* 0.6 %r4)}}
+		}
+	}
+)
+(define "accuracy_3"  
+	{spreading 
+		{radiusTable {0 0} {40 %r1} {60 %r2} {90 %r3} {130 %r4} {240 (* 2.5 %r4)} {320 (* 6 %r4)}}
+	}
+)
+(define "accuracy_4"   
+	{spreading 
+	{radiusTable {0 0} {15 %r1} {30 %r2} {45 %r3} {90 (* 2.5 %r3)} {180 (* 5 %r3)} {360 (* 10 %r3)}}
+	}	
+)
+(define "accuracy_5"   
+	{spreading 
+		{radiusTable {0 0} {20 %r1} {40 %r2} {70 %r3} {120 (* 2 %r3)} {280 (* 5 %r3)}}
+	}
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {20 %r1} {40 %r2} {70 %r3} {120 (* 2 %r3)} {280 (* 5 %r3)}}
+		}
+	}	
+)
+(define "accuracy_t29" 
+	("accuracy" r1(0.45) r2(1.45))
+)
+(define "accuracy_nashorn" 
+	("accuracy" r1(0.65) r2(2.5))
+)	
+(define "accuracy_panther" 
+	("accuracy" r1(0.3) r2(1.2))
+)
+(define "accuracy_is2" 
+	("accuracy" r1(0.5) r2(1.65))
+)		
+(define "accuracy_pz4" 
+	("accuracy_5" r1(0.6) r2(2) r3(4.75))
+)	 
+(define "accuracy_sherman" 
+	("accuracy" r1(0.8) r2(2))
+)
+(define "accuracy_bt7a"
+	("accuracy" r1(1.8) r2(2.8))
+)
+(define "accuracy_zenite"
+	("accuracy" r1(1.75) r2(3))
+)
+(define "accuracy_pz2l"
+	("accuracy_4" r1(0.6) r2(1.5) r3(2.5))
+)
+(define "accuracy_kv2" 
+	("accuracy_2" r1(0.85) r2(4.5) r3(6) r4(8))
+)
+(define "accuracy_isu152" 
+	("accuracy_2" r1(0.8) r2(2.5) r3(4) r4(8))
+)
+(define "accuracy_su122" 
+	("accuracy_2" r1(1) r2(3.5) r3(5.5) r4(7.5))
+)
+(define "accuracy_howitzer" 
+	("accuracy_3" r1(2) r2(4) r3(8) r4(12))
+)
+
+
+;----------------------------
+;------------------------------------------------------------------------------------------------------
+;										New Accuracy
+;------------------------------------------------------------------------------------------------------
+;						HEAVY
+(define "accuracy_hbase"							;"n_accuracy_pz6bh"
+;	("accuracy" r1(0.65) r2(1.05))					;(base) (base) = hbase
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_hspg"								;"n_accuracy_elefant"
+;	("accuracy" r1(0.585) r2(0.945))				;(hbase -10%) (hbase -10%) = hspg
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_small_hspg_hbase"					;"n_accuracy_jagdpanther"
+;	("accuracy" r1(0.556) r2(1.05))					;(hspg -5%) (hbase) = small_hspg_hbase
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_small_hbase"						;"n_accuracy_pz6e"
+;	("accuracy" r1(0.618) r2(1.05))					;(hbase -5%) (hbase) = small_hbase
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_small_hspg"						;"n_accuracy_jagdtiger" 
+;	("accuracy" r1(0.556) r2(0.945))				;(hspg -5%) (hspg) = small_hspg
+	("accuracy_main" args  1 1 1 1)
+)
+;						MEDIUM
+(define "accuracy_mbase"							;"n_accuracy_panther"
+;	("accuracy" r1(0.52) r2(1.6))					;(hbase -20%) (hbase ~+52.38%) = mbase
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_mspg"								;"n_accuracy_jagdpz4"
+;	("accuracy" r1(0.468) r2(1.44))					;(mbase -10%) (mbase -10%) = mspg
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_mbase2"							;"n_accuracy_pz4"
+;	("accuracy_5" r1(0.416) r2(0.676) r3(1.4))		;(mbase -7.5%) (mbase +5%) = mbase2
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_big_mbase2"						;"n_accuracy_bt7a"
+;	("accuracy" r1(0.5) r2(1.764))					;(mbase2 +3.95%) (mbase2 +5%) = big_mbase2
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_mspg2"							;"n_accuracy_stug4g"
+;	("accuracy_5" r1(0.374) r2(0.608) r3(1.26))		;(mbase2 ~-10%) (mbase2 -10%) = mspg2
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_zbase"							;"n_accuracy_zenite"
+	("accuracy" r1(0.5) r2(0.9))					;(zbase) (zbase) = zbase
+)
+(define "accuracy_zlbase"
+	("accuracy" r1(0.5) r2(0.85))
+)
+
+(define "accuracy_small_mspg"						;"n_accuracy_nashorn" 
+;	("accuracy" r1(0.447) r2(1.368))				;(mspg ~-4.5%) (mspg -5%) =small_mspg
+	("accuracy_main" args  1 1 1 1)
+)
+;						LIGHT
+(define "accuracy_lbase"							;"n_accuracy_pz38t" 
+;	("accuracy" r1(0.8) r2(2))						;(hbase +18.75%) (hbase ~+90.5%)||(mbase ~+53.85%) (mbase +25%) = lbase
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_small_lbase"						;"n_accuracy_carro" 
+;	("accuracy" r1(0.76) r2(2))						;(lbase -5%) (lbase) = small_lbase
+	("accuracy_main" args  1 1 1 1)
+)
+(define "accuracy_lspg"								;"n_accuracy_hetzer" 
+;	("accuracy_5" r1(0.576) r2(0.936) r3(1.56))		;(lbase -16.75%) (lbase -6.4%) =lspg
+	("accuracy_main" args  1 1 1 1)
+)
+;					Howitzer
+(define "howitzer_base";internal define
+	{spreading 
+		{radiusTable {0 0} {40 (* %k %r1)} {60 (* %k %r2)} {90 (* %k %r3)} {130 (* %k %r4)} {500 (* %k %r5)}}
+	}
+)
+(define "how_base"
+	("howitzer_base" r1(1) r2(6) r3(12) r4(20) r5(30) k(%k))
+)
+(define "accuracy_light_howitzer"
+	("how_base" k(1.25))
+)
+(define "accuracy_medium_howitzer"
+	("how_base" k(1.22))
+)
+(define "accuracy_heavy_howitzer"
+	("how_base" k(1.2))
+)
+
+(define "14-20caliber"
+	{projectileDamageThreshold 1.0}
+)
+(define "37-57caliber"
+	{projectileDamageThreshold 1.0}
+)
+(define "75-76caliber"
+	{projectileDamageThreshold 1.0}
+)
+(define "85-93caliber"
+	{projectileDamageThreshold 1.0}
+)
+(define "100-128caliber"
+	{projectileDamageThreshold 1.0}
+)
+(define "howitzer_caliber"
+	{projectileDamageThreshold 1.0}
+)
+(define "range_small_gun"
+	{spreading                   
+		{SpreadPower 1}
+;		{SpreadYadjust	0} 
+	}	
+	{SpreadTolerance 0}
+	
+	{range 75 1000}
+	{parameters "fg"
+		{spreading
+			{SpreadXYRatio	5};2.6}
+			{SpreadPower 1}
+			{SpreadYadjust	0}
+		}
+	}	
+	{gravity 1.5}
+)
+
+(define "range_45-57"; use in main
+	{spreading                   
+		{SpreadPower 1}
+;		{SpreadYadjust	0} 
+	}	
+	{SpreadTolerance 0}
+	
+	{range 75 1000}
+	{parameters "fg"
+		{spreading
+			{SpreadXYRatio	5};2.6}
+			{SpreadPower 1}
+			{SpreadYadjust	0}
+		}
+	}	
+	{gravity 1.5}
+    {RelaxationTime 0.4}
+)
+
+(define "range_zenite"
+	("accuracy_zbase")
+	{spreading 
+;		{SpreadXYRatio	1.8}
+		{SpreadPower	1};1.5}
+		{BurstAccuracy 100 93 86 79}
+		{BurstRecoveryTime 0.5}
+	}
+	{SpreadTolerance 0}
+	{range 75 1000}	
+	{RelaxationTime 0.2}
+	{gravity 1.5}
+)
+
+(define "range_pz2l"
+	("accuracy_zlbase")
+	{spreading 1
+		{SpreadXYRatio	1.8}
+		{SpreadPower	1}
+		{BurstAccuracy 100 98 96 90 82}
+		{BurstRecoveryTime 0.5}
+	}
+	{SpreadTolerance 0}
+	
+	{range 75 1000}	
+
+  {RelaxationTime 0.2}
+	{gravity 1.5}
+)
+
+(define "range_pz1c"
+	("accuracy_zlbase")
+	{spreading 1
+		{SpreadXYRatio	1.8}
+		{SpreadPower	1}
+		{BurstAccuracy 100 98 96 90 82 72}
+		{BurstRecoveryTime 0.5}
+	}
+	{SpreadTolerance 0}
+	
+	{range 75 1000}	
+
+  {RelaxationTime 0.2}
+	{gravity 1.5}
+)
+
+(define "range_medium_gun"
+	{spreading			
+		{SpreadXYRatio	0.65}
+		{SpreadPower 1.1}
+;		{SpreadYadjust	0}
+	}
+	
+	{SpreadTolerance 0}
+				
+	{range 150 1000}
+	
+	{parameters "fg"
+		{spreading
+			{SpreadXYRatio	5};2.2}
+			{SpreadPower 1.2}
+			{SpreadYadjust	0}
+		}
+	}
+	{gravity 1.4}
+    {RelaxationTime 0.4}
+)
+ 
+(define "range_at_heavy"
+	{spreading			
+		{SpreadXYRatio	0.65}  
+		{SpreadPower 1}
+	}
+	{SpreadTolerance 0}
+
+	{range 150 1000}
+		
+	{parameters "fg"
+		{spreading
+			{SpreadXYRatio	5.5};2.7}
+			{SpreadPower 1}
+			{SpreadYadjust	0}
+		}
+	}	
+    {RelaxationTime 0.4}
+	{gravity 1.4}
+)
+
+(define "range_at_extreme"
+	{spreading			
+		{SpreadXYRatio	0.65}  
+		{SpreadPower 1}
+	}
+	{SpreadTolerance 0}
+
+	{range 150 1000}
+		
+	{parameters "fg"
+		{spreading
+			{SpreadXYRatio	5.5};2.7}
+			{SpreadPower 1}
+			{SpreadYadjust	0}
+		}
+	}	
+    {RelaxationTime 0.4}
+	{gravity 1.4}
+)
+
+(define "range_light_howitzer"
+	{curve "gun_medium"}
+	{spreading			
+		{SpreadXYRatio	0.7}
+		{SpreadPower	1}
+;		{SpreadYadjust	0}
+	}
+	
+	{SpreadTolerance 0}			
+	{range 150 1000}
+	
+	{parameters "fg"	
+		{spreading
+			{SpreadXYRatio	2}
+			{SpreadPower	1.2}
+		}
+	}
+    	{RelaxationTime 0.4}
+	{gravity 3}
+)
+
+(define "range_grazing_howitzer"
+	{curve "gun_medium"}
+	{spreading			
+		{SpreadXYRatio	0.7}
+		{SpreadPower	1}
+;		{SpreadYadjust	0}
+	}
+	
+	{SpreadTolerance 0}			
+	{range 150 1000}
+	
+
+	{parameters "fg"	
+		{range 150 1000}
+		{spreading
+			{SpreadXYRatio	1.3}
+			{SpreadPower	1.2}
+;			{SpreadYadjust	0}
+		}
+	}
+   	{RelaxationTime 0.4}
+	{gravity 3}
+)
+;-------------------------------------------------Arena_Howitzers------------------------------------------------------
+(define "default_light_howitzer"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.9 0.8}}
+		{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+		{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.55}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5 
+				250		1.5 
+				500		1.5
+			}		
+			{radiusTable {0 0} {120 4} {210 15} {250 ("ak" k(22))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fr"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fr" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{parameters "fr" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{parameters "fr" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fr" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fr" "house"
+		{spreading
+			{SpreadPower
+				0		1.5 
+				250		1.5 
+				500		1.5
+			}		
+			{radiusTable {0 0} {120 4} {210 15} {250 ("ak" k(22))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 500}
+	("howitzer_time_after_aim")
+)
+(define "default_light_howitzer_plus"
+	("accuracy_main" args  1.3 1.4 1.5 1.5)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.9 0.8}}
+		{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+		{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.55}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 6} {210 15} {250 ("ak" k(21))} {500 ("ak" k(23))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 6} {210 15} {250 ("ak" k(21))} {500 ("ak" k(23))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 6} {210 15} {250 ("ak" k(21))} {500 ("ak" k(23))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 6} {210 15} {250 ("ak" k(18))} {500 ("ak" k(18))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 6} {210 15} {250 ("ak" k(18))} {500 ("ak" k(18))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5 
+				250		1.5 
+				500		1.5
+			}		
+			{radiusTable {0 0} {120 4} {210 15} {250 ("ak" k(22))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 300}
+	("howitzer_time_after_aim")
+)
+(define "default_light_howitzer_plus_stan"
+	("accuracy_main" args  1.3 1.4 1.5 1.5)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.9 0.8}}
+		{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+		{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.55}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 4.5} {210 15} {250 ("ak" k(15.75))} {500 ("ak" k(17.25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 4.5} {210 15} {250 ("ak" k(15.75))} {500 ("ak" k(17.25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 4.5} {210 15} {250 ("ak" k(13.5))} {500 ("ak" k(13.5))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.7}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.6}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}	
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 4.5} {210 15} {250 ("ak" k(13.5))} {500 ("ak" k(13.5))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 4.5} {210 15} {250 ("ak" k(13.5))} {500 ("ak" k(13.5))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65 0.6 0.5}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5 
+				250		1.5 
+				500		1.5
+			}		
+			{radiusTable {0 0} {120 3} {210 15} {250 ("ak" k(16.5))} {500 ("ak" k(16.5))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 500	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 10}
+	}
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 300}
+	("howitzer_time_after_aim")
+)
+(define "default_light_howitzer_short"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+		{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {40 0.5} {55 1} {120 4} {210 15} {250 ("ak" k(22))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{DisableRicochet}
+	{bullet_view "howitzer_shell"
+		{tail "shell_tail" "root"}
+	}	
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 250}
+	("howitzer_time_after_aim")
+)
+
+(define "default_medium_howitzer"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+		{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {40 0.5} {55 1} {120 4} {210 15} {250 ("ak" k(22))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {40 0.5} {55 1} {120 4} {210 15} {250 ("ak" k(22))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{DisableRicochet}
+	{bullet_view "howitzer_shell"
+		{tail "shell_tail" "root"}
+	}	
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 250}
+	("howitzer_time_after_aim")
+)
+(define "default_medium_howitzer_short"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+		{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {40 0.5} {55 1} {120 5} {210 15} {250 ("ak" k(13))} {500 ("ak" k(15))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 9} {210 15} {250 ("ak" k(25))} {500 ("ak" k(30))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fr" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {40 0.5} {55 1} {120 5} {210 15} {250 ("ak" k(13))} {500 ("ak" k(15))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{DisableRicochet}
+	{bullet_view "howitzer_shell"
+		{tail "shell_tail" "root"}
+	}	
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 250}
+	("howitzer_time_after_aim")
+)
+
+(define "default_medium_howitzer_stan"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+		{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 5.25} {210 15} {250 ("ak" k(16.5))} {500 ("ak" k(18.75))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 5.25} {210 15} {250 ("ak" k(16.5))} {500 ("ak" k(18.75))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 5.25} {210 15} {250 ("ak" k(16.5))} {500 ("ak" k(18.75))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 5.25} {210 15} {250 ("ak" k(16.5))} {500 ("ak" k(18.75))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 5.25} {210 15} {250 ("ak" k(16.5))} {500 ("ak" k(18.75))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.3}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4 0.3 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				500		1.5
+			}
+			{radiusTable {0 0} {40 0.5} {55 1} {120 3} {210 15} {250 ("ak" k(16.5))} {500 ("ak" k(16.5))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.6 0.4}}
+			{Distance 500	{AccuracyTable 0.9 0.8 0.6 0.4}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{DisableRicochet}
+	{bullet_view "howitzer_shell"
+		{tail "shell_tail" "root"}
+	}	
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 250}
+	("howitzer_time_after_aim")
+)
+(define "default_heavy_howitzer"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.7 0.5 0.3}}
+		{Distance 500	{AccuracyTable 0.7 0.5 0.3 0.1}}	
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(17))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(17))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(17))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 10} {250 ("ak" k(12))} {500 ("ak" k(12))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}	
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 11} {250 ("ak" k(12))} {500 ("ak" k(12))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {40 0.5} {55 1} {120 3} {210 10} {250 ("ak" k(8))} {500 ("ak" k(8))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	("howitzer_caliber")
+	{bullet_view "howitzer_shell"
+	{tail "shell_tail" "root"}
+	}
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}	 ; дистанция для расчёта adaptive траектории
+	{speed 100}
+	("howitzer_time_after_aim")
+)
+(define "default_heavy_howitzer_stan"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.7 0.5 0.3}}
+		{Distance 500	{AccuracyTable 0.7 0.5 0.3 0.1}}	
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 4} {70 6} {120 10.5} {210 12} {250 ("ak" k(12.75))} {500 ("ak" k(15))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 4} {70 6} {120 10.5} {210 12} {250 ("ak" k(12.75))} {500 ("ak" k(15))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 4} {70 6} {120 10.5} {210 12} {250 ("ak" k(12.75))} {500 ("ak" k(15))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 5.25} {210 10} {250 ("ak" k(10))} {500 ("ak" k(10))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}	
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 5.25} {210 10} {250 ("ak" k(10))} {500 ("ak" k(10))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 3} {120 5.25} {210 10} {250 ("ak" k(10))} {500 ("ak" k(10))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	("howitzer_caliber")
+	{bullet_view "howitzer_shell"
+	{tail "shell_tail" "root"}
+	}
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}	 ; дистанция для расчёта adaptive траектории
+	{speed 100}
+	("howitzer_time_after_aim")
+)
+
+(define "default_heavy_howitzer_isu152"
+	("accuracy_main" args  1 1 1 1)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.7 0.5 0.3}}
+		{Distance 500	{AccuracyTable 0.7 0.5 0.3 0.1}}	
+	}
+	{aimtype angle_by_distance 0 0 30 0.01 50 0.025 60 0.05 70 0.5 100 2 250 5 500 5}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(17))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(17))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(17))} {500 ("ak" k(20))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 10} {250 ("ak" k(12))} {500 ("ak" k(12))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}	
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 10} {250 ("ak" k(12))} {500 ("ak" k(12))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}	
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.5
+				1500		1.5
+			}
+			{radiusTable {0 0} {40 0.5} {55 1} {120 3} {210 10} {250 ("ak" k(10))} {500 ("ak" k(10))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.7 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	("howitzer_caliber")
+	{bullet_view "howitzer_shell"
+	{tail "shell_tail" "root"}
+	}
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}	 ; дистанция для расчёта adaptive траектории
+	{speed 100}
+	("howitzer_time_after_aim")
+)
+(define "default_heavy_howitzer_short"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.7 0.5 0.2}}
+		{Distance 500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5 
+				250		1.4 
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 1.5} {70 3} {120 5} {210 15} {250 ("ak" k(15))} {500 ("ak" k(15))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(15))} {500 ("ak" k(15))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 1.5} {70 3} {120 5} {210 10} {250 ("ak" k(12))} {500 ("ak" k(12))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	("howitzer_caliber")
+	{bullet_view "howitzer_shell"
+	{tail "shell_tail" "root"}
+	}
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 100}
+)
+(define "default_heavy_howitzer_short_stan"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.7 0.5 0.2}}
+		{Distance 500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5 
+				250		1.4 
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 5} {210 12} {250 ("ak" k(13))} {500 ("ak" k(14))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 5} {210 12} {250 ("ak" k(13))} {500 ("ak" k(14))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 1.5} {70 3} {120 4} {210 10} {250 ("ak" k(10.6))} {500 ("ak" k(11.6))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "sr"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "sr" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	{parameters "sr" "human"
+		{spreading
+			{SpreadPower
+				0		1.5 
+				250		1.4 
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "sr" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 5} {210 12} {250 ("ak" k(13))} {500 ("ak" k(14))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "sr" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 5} {210 12} {250 ("ak" k(13))} {500 ("ak" k(14))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "sr" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 1.5} {70 3} {120 4} {210 10} {250 ("ak" k(10.6))} {500 ("ak" k(11.6))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "ph"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "ph" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	{parameters "ph" "human"
+		{spreading
+			{SpreadPower
+				0		1.5 
+				250		1.4 
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 3.2} {120 5.25} {210 15} {250 ("ak" k(17))} {500 ("ak" k(22))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "ph" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 5} {210 12} {250 ("ak" k(13))} {500 ("ak" k(14))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "ph" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 5} {210 12} {250 ("ak" k(13))} {500 ("ak" k(14))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}
+	{parameters "ph" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.4
+				1500		1.4
+			}
+			{radiusTable {0 0} {30 1.5} {70 3} {120 4} {210 10} {250 ("ak" k(10.6))} {500 ("ak" k(11.6))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}
+	}	
+	("howitzer_caliber")
+	{bullet_view "howitzer_shell"
+	{tail "shell_tail" "root"}
+	}
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 100}
+)
+(define "default_heavy_howitzer_short_kv2"
+	("accuracy_main" args  1.3 1.4 1.5 1.6)
+	{ZeroingAccuracy ; опции которые будут использоваться по умолчанию
+		{Distance 50	{AccuracyTable 0.8 0.4}}
+		{Distance 125	{AccuracyTable 0.7 0.5 0.2}}
+		{Distance 500	{AccuracyTable 0.7 0.5 0.2 0.1}}
+	}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.2 60 0.25 70 0.5 100 0.75 250 1 500 5}
+	{parameters "fg"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.2
+				1500		1.2
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+	{aimtype angle_by_distance 0 0 30 0.1 50 1 60 1.75 70 2.5 100 5 250 5 500 9 1000 18}
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.2
+				1500		1.2
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+	{aimtype angle_by_distance 0 0 30 0.1 50 1 60 1.75 70 2.5 100 5 250 5 500 9 1000 18}
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.2
+				1500		1.2
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+	{aimtype angle_by_distance 0 0 30 0.1 50 1 60 1.75 70 2.5 100 5 250 5 500 9 1000 18}
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.2
+				1500		1.2
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.8 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+	{aimtype angle_by_distance 0 0 30 0.1 50 1 60 1.75 70 2.5 100 5 250 5 500 9 1000 18}
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.2
+				1500		1.2
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+	{aimtype angle_by_distance 0 0 30 0.1 50 1 60 1.75 70 2.5 100 5 250 5 500 9 1000 18}
+	}
+	{parameters "fg" "house"
+		{spreading
+			{SpreadPower
+				0		1.5
+				250		1.2
+				1500		1.2
+			}
+			{radiusTable {0 0} {30 2} {70 4} {120 7} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+			("%spreadxy")
+			("%spotter")
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}
+		}
+		{ZeroingAccuracy
+			{Distance 50	{AccuracyTable 0.9 0.4}}
+			{Distance 125	{AccuracyTable 0.8 0.5 0.2 0.1}}
+			{Distance 1500	{AccuracyTable 0.8 0.5 0.2 0.1}}
+		}
+	{aimtype angle_by_distance 0 0 30 0.1 50 1 60 1.75 70 2.5 100 5 250 5 500 9 1000 18}
+	}
+	("howitzer_caliber")
+	{bullet_view "howitzer_shell"
+	{tail "shell_tail" "root"}
+	}
+	{DisableRicochet}
+	{curve "gun_heavy"}
+	{traceFreq 0}
+	;{range 1000 1000}
+	{aimRangeForTrajectory 300}
+	{speed 100}
+)
+;сборка:
+(define "howitzer_spread_xy_ratio"
+	{SpreadXYRatio
+		0	0.6
+		500	1
+	}
+)
+(define "howitzer_fg_cannon_spread_xy_ratio"
+	{SpreadXYRatio
+		0	0.3
+		500	1
+	}
+)
+(define "spg_spread_xy_ratio"
+	{SpreadXYRatio
+		0	0.55
+		500	0.65
+	}
+)
+(define "kv2_spread_xy_ratio"
+	{SpreadXYRatio
+		0	0.1
+		1000	0.2
+	}
+)
+(define "howitzer_spotter"
+	{ZeroingAccuracyMultiplierBySpotter 0.99 0.5 0.25 0.1}
+)
+(define "none")
+
+;;howitzer
+(define "light_howitzer"			("default_light_howitzer"			spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "light_howitzer_plus"			("default_light_howitzer_plus"			spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "light_howitzer_plus_stan"			("default_light_howitzer_plus_stan"			spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "light_howitzer_short"		("default_light_howitzer_short" 	spreadxy(howitzer_spread_xy_ratio)	spreadxy_fg_cannon(howitzer_fg_cannon_spread_xy_ratio)	spotter(howitzer_spotter)))	;проверить таблицу для fg cannon
+(define "medium_howitzer"			("default_medium_howitzer"			spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "medium_howitzer_stan"			("default_medium_howitzer_stan"			spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "heavy_howitzer"			("default_heavy_howitzer"			spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "heavy_howitzer_stan"			("default_heavy_howitzer_stan"			spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "heavy_howitzer_short"		("default_heavy_howitzer_short" 	spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "heavy_howitzer_short_stan"		("default_heavy_howitzer_short_stan" 	spreadxy(howitzer_spread_xy_ratio)	spotter(howitzer_spotter)))
+(define "heavy_howitzer_short_kv2"	("default_heavy_howitzer_short_kv2" spreadxy(kv2_spread_xy_ratio)	spotter(howitzer_spotter)))
+;;spg
+(define "light_spg"					("default_light_howitzer"			spreadxy(spg_spread_xy_ratio)		spotter(howitzer_spotter)))
+(define "light_spg_short"			("default_light_howitzer_short"		spreadxy(spg_spread_xy_ratio)		spotter(howitzer_spotter)))
+(define "medium_spg"				("default_medium_howitzer"			spreadxy(spg_spread_xy_ratio)		spotter(howitzer_spotter)))
+(define "medium_spg_short"				("default_medium_howitzer_short"			spreadxy(spg_spread_xy_ratio)		spotter(howitzer_spotter)))
+(define "heavy_spg"					("default_heavy_howitzer"			spreadxy(spg_spread_xy_ratio)		spotter(howitzer_spotter)))
+(define "heavy_spg_isu152"		("default_heavy_howitzer_isu152"			spreadxy(spg_spread_xy_ratio)		spotter(howitzer_spotter)))
+(define "heavy_spg_short"			("default_heavy_howitzer"			spreadxy(spg_spread_xy_ratio)		spotter(howitzer_spotter)))
+
+(define "aimtype_at_cannon"											;дефайн для пт пушек. 
+	{spreading	
+		{SpreadXYRatio	0.3}
+	}
+	{aimtype angle_by_distance 0 0 30 0 50 2 100 3 250 4 500 10}	
+)
+
+
+(define "overmatch_100mm"
+		{OvermatchDamping
+			{0 -1}
+		}
+		;{OvermatchDamping
+		;	{0	1}
+		;	{30	1}
+		;	{55	1.15}
+		;	{60	1.25}
+		;	{75	2}		
+		;	{90	4}		
+		;}
+)
+
+(define "overmatch_128mm"
+		{OvermatchDamping
+			{0 -1}
+		}
+		;{OvermatchDamping
+		;	{0	1}
+		;	{10	1}
+		;	{55	1.1}
+		;	{65	1.2}
+		;	{80	2}		
+		;	{90	3}		
+		;}
+)               
+;{healthDamage 1000}
+
+;ARENA_точности____________________________________________________________________________________________________________________________________________________________________
+
+(define "accuracy_main"																		;базовый дефайн точности орудий
+	{spreading 
+		{SpreadPower	
+			0		4 
+			25		3 
+			50		2.5 
+			75		2
+			100		1
+			1500		1
+		}
+		{SpreadXYRatio
+			0		0.02
+			25		0.1	
+			100		0.2				
+			300		0.3	
+			500		0.5					
+		}		
+		{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}
+		{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+		{ZeroingAccuracyMultiplierPowerThreshold 2}
+		{SmokeHitMultiplier 6}	
+	}	
+	{ZeroingAccuracy
+		{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+		{Distance 75	{AccuracyTable 0.9 0.8 0.7 0.6 0.5}}
+		{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+		{Distance 250	{AccuracyTable 0.97 0.95 0.92 0.9 0.87 0.85 0.83 0.8 0.77 0.7}}	
+	}
+;	{gravity 1.5}
+	{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	{parameters "ap" "cannon"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}	
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+			{SmokeHitMultiplier 6}			
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.9 0.8 0.7 0.6 0.5}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 250	{AccuracyTable 0.97 0.95 0.92 0.9 0.87 0.85 0.83 0.8 0.77 0.7}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}
+	{parameters "ap" "vehicle"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+			{SmokeHitMultiplier 6}		
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 75	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 125	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 250	{AccuracyTable 0.6 0.4 0.2 0.1}}	
+		}		
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}
+	{parameters "apcr"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+			{SmokeHitMultiplier 6}	
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.9 0.8 0.7 0.6 0.5}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 250	{AccuracyTable 0.97 0.95 0.92 0.9 0.87 0.85 0.83 0.8 0.77 0.7}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}	
+	{parameters "apcr" "cannon"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}	
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+			{SmokeHitMultiplier 6}			
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.9 0.8 0.7 0.6 0.5}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 250	{AccuracyTable 0.97 0.95 0.92 0.9 0.87 0.85 0.83 0.8 0.77 0.7}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}
+	{parameters "apcr" "vehicle"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+			{SmokeHitMultiplier 6}		
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 75	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 125	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 250	{AccuracyTable 0.6 0.4 0.2 0.1}}	
+		}		
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}	
+	{parameters "fg"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "fg" "sandbag"
+		{ManualAccuracyScale 1.25}													;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+	{parameters "fg" "human"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+	{parameters "fg" "cannon"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "fg" "house"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}
+	{parameters "fg" "vehicle"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "sk"
+		{ManualAccuracyScale 1.25}													;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "sr"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5						
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 1 30 10 50 10 60 10 70 10 100 10 250 20 500 30}
+		{gravity 1.5}		
+	}
+	{parameters "sr" "human"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5						
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 1 30 10 50 10 60 10 70 10 100 10 250 20 500 30}
+		{gravity 1.5}		
+	}
+	{parameters "sr" "cannon"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5						
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 1 30 10 50 10 60 10 70 10 100 10 250 20 500 30}
+		{gravity 1.5}		
+	}
+	{parameters "sr" "vehicle"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5						
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 1 30 10 50 10 60 10 70 10 100 10 250 20 500 30}
+		{gravity 1.5}		
+	}
+	{parameters "sr" "climb"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5						
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 1 30 10 50 10 60 10 70 10 100 10 250 20 500 30}
+		{gravity 1.5}		
+	}
+	{parameters "sr" "house"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5						
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 1 30 10 50 10 60 10 70 10 100 10 250 20 500 30}
+		{gravity 1.5}		
+	}
+	{parameters "sr" "sandbag"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5						
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 1 30 10 50 10 60 10 70 10 100 10 250 20 500 30}
+		{gravity 1.5}		
+	}
+	{parameters "ph"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}
+	{parameters "ph" "sandbag"
+		{ManualAccuracyScale 1.25}													;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+	{parameters "ph" "human"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+	{parameters "ph" "cannon"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}
+	{parameters "ph" "house"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}
+	{parameters "ph" "vehicle"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}	
+	}
+	{parameters "fr"
+		{ManualAccuracyScale 1.25}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}				
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "fr" "sandbag"
+		{ManualAccuracyScale 1.25}													;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+	{parameters "fr" "human"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}	
+	}	
+	{parameters "fr" "cannon"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}
+	{parameters "fr" "house"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}	
+	}
+	{parameters "fr" "vehicle"
+		{ManualAccuracyScale 1.25}	
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		0.75			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+			{SmokeHitMultiplier 4}			
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+)
+
+(define "accuracy_main_small"																		;базовый дефайн точности орудий до 57мм
+	{spreading 
+		{SpreadPower	
+			0		4 
+			25		3 
+			50		2.5 
+			75		2
+			100		1
+			1500		1
+		}
+		{SpreadXYRatio
+			0		0.02
+			25		0.1	
+			100		0.2				
+			300		0.3	
+			500		0.5					
+		}		
+		{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}	
+		{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+		{ZeroingAccuracyMultiplierPowerThreshold 2}
+	}	
+	{ZeroingAccuracy
+		{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+		{Distance 75	{AccuracyTable 0.9 0.8 0.7 0.6 0.5}}
+		{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+		{Distance 250	{AccuracyTable 0.97 0.95 0.92 0.9 0.87 0.85 0.83 0.8 0.77 0.7}}	
+	}
+;	{gravity 1.5}
+	{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	{parameters "ap" "cannon"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.9 0.8 0.7 0.6 0.5}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 250	{AccuracyTable 0.97 0.95 0.92 0.9 0.87 0.85 0.83 0.8 0.77 0.7}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}
+	{parameters "ap" "vehicle"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 75	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 125	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 250	{AccuracyTable 0.6 0.4 0.2 0.1}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}
+	{parameters "apcr"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}	
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.9 0.8 0.7 0.6 0.5}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 250	{AccuracyTable 0.97 0.95 0.92 0.9 0.87 0.85 0.83 0.8 0.77 0.7}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}	
+	{parameters "apcr" "cannon"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.9 0.8 0.7 0.6 0.5}}
+			{Distance 125	{AccuracyTable 0.95 0.9 0.85 0.8 0.75 0.7 0.65}}
+			{Distance 250	{AccuracyTable 0.97 0.95 0.92 0.9 0.87 0.85 0.83 0.8 0.77 0.7}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}
+	{parameters "apcr" "vehicle"
+		{spreading 
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		1
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}		
+			{radiusTable {0 0} {100 (* %0 1.5)} {120 (* %1 2)} {210 (* %1 5)} {250 (* %2 8.5)} {500 (* %3 14.2)}}
+			{ZeroingAccuracyMultiplier 0.7 4 0.75 3 0.8 2.5 1 1}
+			{ZeroingAccuracyMultiplierPowerThreshold 2}
+		}	
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 75	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 125	{AccuracyTable 0.6 0.4 0.2 0.1}}
+			{Distance 250	{AccuracyTable 0.6 0.4 0.2 0.1}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.01 60 0.05 70 0.05 100 0.05 250 1 500 3}
+	}	
+	{parameters "fg"
+		{ManualAccuracyScale 1}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1.5} {55 2.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		1
+				25		1
+				50		1 
+				100		1
+				1500		1				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "fg" "sandbag"
+		{ManualAccuracyScale 1}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1.5} {55 2.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		1
+				25		1
+				50		1 
+				100		1
+				1500		1		
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+	{parameters "fg" "human"
+		{ManualAccuracyScale 1}
+		{spreading	
+			{radiusTable {0 0} {40 1.5} {55 2.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		1
+				25		1
+				50		1 
+				100		1
+				1500		1		
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+	{parameters "fg" "cannon"
+		{ManualAccuracyScale 1}
+		{spreading	
+			{radiusTable {0 0} {40 1.5} {55 2.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		1
+				25		1
+				50		1 
+				100		1
+				1500		1		
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}
+	{parameters "fg" "house"
+		{ManualAccuracyScale 1}
+		{spreading	
+			{radiusTable {0 0} {40 1.5} {55 2.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		1
+				25		1
+				50		1 
+				100		1
+				1500		1				
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "fg" "vehicle"
+		{ManualAccuracyScale 1}
+		{spreading	
+			{radiusTable {0 0} {40 1.5} {55 2.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		1
+				25		1
+				50		1 
+				100		1
+				1500		1			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}
+	{parameters "sk"
+		{ManualAccuracyScale 1}												;множитель радиуса расброса в ПУ для фугаса
+		{spreading	
+			{radiusTable {0 0} {40 1.5} {55 2.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+			{SpreadPower	
+				0		4
+				25		3
+				50		1 
+				100		1
+				1500		1			
+			}
+			{SpreadXYRatio
+				0		0.02
+				25		0.1	
+				100		0.2				
+				300		0.3	
+				500		0.5					
+			}			
+			{ZeroingAccuracyMultiplierPowerThreshold 1}
+		}			
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}
+	}	
+)
+
+(define "accuracy_over_tank_short"															;дефайн точности свертяжёлых коротких танковых пушек
+	("accuracy_main" args  1 1 1 1)
+		{spreading
+		{radiusTable {0 0} {120 5} {210 10} {250 ("ak" k(12))} {500 ("ak" k(25))}}
+		}	
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {120 10} {210 15} {250 ("ak" k(20))} {500 ("ak" k(30))}}
+		}
+		{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}			
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{radiusTable {0 0} {120 10} {210 15} {250 ("ak" k(20))} {500 ("ak" k(30))}}
+		}
+		{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}			
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{radiusTable {0 0} {120 10} {210 15} {250 ("ak" k(20))} {500 ("ak" k(30))}}
+		}
+		{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}			
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{radiusTable {0 0} {120 10} {210 15} {250 ("ak" k(20))} {500 ("ak" k(30))}}
+		}
+		{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}			
+	}
+	{parameters "fg" "house"
+		{spreading
+			{radiusTable {0 0} {120 10} {210 15} {250 ("ak" k(20))} {500 ("ak" k(30))}}
+		}
+		{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}			
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{radiusTable {0 0} {120 10} {210 15} {250 ("ak" k(20))} {500 ("ak" k(30))}}
+		}
+		{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 1 100 5 250 10 500 15}			
+	}	
+)
+(define "accuracy_l_tank_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_m_tank_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_h_tank_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_l_tank_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_m_tank_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_h_tank_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_over_tank_long"	("accuracy_main" args  1 1 1 1))
+(define "accuracy_l_spg_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_m_spg_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_h_spg_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_over_spg_short"	("accuracy_main" args  1 1 1 1))
+(define "accuracy_l_spg_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_m_spg_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_h_spg_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_over_spg_long"	("accuracy_main" args  1 1 1 1))
+(define "accuracy_l_stan_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_m_stan_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_h_stan_short"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_over_stan_short"	("accuracy_main" args  1 1 1 1))
+(define "accuracy_l_stan_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_m_stan_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_h_stan_long"		("accuracy_main" args  1 1 1 1))
+(define "accuracy_over_stan_long"	("accuracy_main" args  1 1 1 1))
+
+
+;подробно по орудиям
+
+
+;=====стационарные пт пушки=====
+;ger
+(define "accuracy_at_cannon_stan_spzb41"			("accuracy_main_small" args  0.9 0.9 1 1.5))
+(define "accuracy_at_cannon_stan_pak35"			("accuracy_main_small" args  1.15 1.3 1.5 1.7))
+(define "accuracy_at_cannon_stan_pak41le" 		("accuracy_main_small" args  1.1 1.2 1.4 1.5))
+(define "accuracy_at_cannon_stan_pak38" 		("accuracy_main_small" args  1 1.1 1.2 1.3))
+(define "accuracy_at_cannon_stan_pak37t" 		("accuracy_main_small" args  1 1.1 1.2 1.3))
+(define "accuracy_at_cannon_stan_pak36r" 		("accuracy_main" args  1 1.1 1.1 1.1))
+(define "accuracy_at_cannon_stan_sk18" 			("accuracy_main" args  1 1.3 1.3 1.5))
+(define "accuracy_at_cannon_stan_pak40" 		("accuracy_main" args  0.9 0.9 0.8 0.8))
+(define "accuracy_at_cannon_stan_pak43" 		("accuracy_main" args  0.75 0.75 0.75 0.75))
+;rus
+(define "accuracy_at_cannon_stan_53k"			("accuracy_main_small" args  1.2 1.4 1.5 1.6))
+(define "accuracy_at_cannon_stan_m42"			("accuracy_main_small" args  1.1 1.2 1.3 1.5))
+(define "accuracy_at_cannon_stan_f22"			("accuracy_main" args  1.1 1.1 1.2 1.3))
+(define "accuracy_at_cannon_stan_zis3"			("accuracy_main" args  1 1 1 1))
+(define "accuracy_at_cannon_stan_zis2"			("accuracy_main_small" args  0.9 0.9 0.9 0.9))
+(define "accuracy_at_cannon_stan_bs3"			("accuracy_main" args  0.75 0.8 0.8 0.8))
+;usa
+(define "accuracy_at_cannon_stan_m3"			("accuracy_main_small" args  1.15 1.3 1.5 1.6))
+(define "accuracy_at_cannon_stan_m5"			("accuracy_main" args  1 0.9 0.9 0.9))
+;eng
+(define "accuracy_at_cannon_stan_qf6" 			("accuracy_main_small" args  1 1.2 1.2 1.3))
+
+
+;=====Пушки-гаубицы=====
+;rus
+(define "accuracy_at_howitzer_stan_ml20"		("accuracy_main" args  1.2 1.1 1 0.9))
+
+;=====Пушки установленные на ПТ-сау=====
+;ger
+(define "accuracy_tank_hunter_cannon_pak36t" 	("accuracy_main_small" args  1.0 1.0 1.1 1.3))
+(define "accuracy_tank_hunter_cannon_pak36r" 	("accuracy_main" args  1 1.1 1.1 1.1))
+(define "accuracy_tank_hunter_cannon_pak39" 	("accuracy_main" args  1 1 1 0.9))
+(define "accuracy_tank_hunter_cannon_stuk40" 	("accuracy_main" args  0.9 0.9 0.8 0.8))
+(define "accuracy_tank_hunter_cannon_pak40" 	("accuracy_main" args  0.9 0.9 0.9 0.9))
+(define "accuracy_tank_hunter_cannon_pak42" 	("accuracy_main" args  0.85 0.8 0.75 0.75))
+(define "accuracy_tank_hunter_cannon_pak43" 	("accuracy_main" args  0.75 0.75 0.75 0.75))
+(define "accuracy_tank_hunter_cannon_pak44" 	("accuracy_main" args  0.75 0.75 0.7 0.7))
+;rus
+(define "accuracy_tank_hunter_cannon_zis2" 		("accuracy_main_small" args  0.9 1 1 1.05))
+(define "accuracy_tank_hunter_cannon_zis3" 		("accuracy_main" args  1 1 1 1))
+(define "accuracy_tank_hunter_cannon_d5s" 		("accuracy_main" args  1 0.98 0.95 0.9))
+(define "accuracy_tank_hunter_cannon_d10c" 		("accuracy_main" args  0.9 0.8 0.8 0.9))
+(define "accuracy_tank_hunter_cannon_a19" 		("accuracy_main" args  0.8 0.8 0.78 0.75))
+(define "accuracy_tank_hunter_cannon_ml20" 		("accuracy_main" args  1.2 1.1 1 0.9))
+;usa 
+(define "accuracy_tank_hunter_cannon_qf6" 		("accuracy_main_small" args  1 1.2 1.2 1.3));57mm
+(define "accuracy_tank_hunter_cannon_m1" 		("accuracy_main" args  1.1 1 1 1))
+(define "accuracy_tank_hunter_cannon_m3" 		("accuracy_main" args  0.9 0.9 0.9 0.9));90мм
+;eng
+;jap
+
+;=====Танковые пушки=====
+;ger
+(define "accuracy_tank_cannon_kwk34"				("accuracy_main_small" args  1.2 1.4 1.5 1.6))
+(define "accuracy_tank_cannon_kwk38"				("accuracy_main_small" args  1.1 1.1 1.1 1.1))
+(define "accuracy_tank_cannon_kwk39"				("accuracy_main_small" args  1.0 1.0 1.0 1.1))
+(define "accuracy_tank_cannon_kwk36" 			("accuracy_main" args  0.89 0.88 0.85 0.85))
+(define "accuracy_tank_cannon_kwk40" 			("accuracy_main" args  0.9 0.9 0.9 0.9))
+(define "accuracy_tank_cannon_kwk40_l48" 		("accuracy_main" args  0.9 0.9 0.8 0.8))
+(define "accuracy_tank_cannon_kwk43" 			("accuracy_main" args  0.75 0.75 0.75 0.75))
+;rus
+(define "accuracy_tank_cannon_20k"				("accuracy_main_small" args  1.2 1.4 1.5 1.6))
+(define "accuracy_tank_cannon_l11" 				("accuracy_main" args  1.1 1.1 1.1 1.2))
+(define "accuracy_tank_cannon_f34" 				("accuracy_main" args  0.9 0.95 1 1.15))
+(define "accuracy_tank_cannon_zis4"				("accuracy_main_small" args  1 1 1 1))
+(define "accuracy_tank_cannon_zis5" 			("accuracy_main" args  0.98 1 1 1))
+(define "accuracy_tank_cannon_d5t" 				("accuracy_main" args  1 0.98 0.95 0.9))
+(define "accuracy_tank_cannon_d25" 				("accuracy_main" args  1 0.99 0.99 0.9))
+;usa
+(define "accuracy_tank_cannon_m5" 				("accuracy_main" args  1.2 1.4 1.5 1.6));37мм
+(define "accuracy_tank_cannon_m6" 				("accuracy_main" args  1.2 1.3 1.3 1.3));37мм
+(define "accuracy_tank_cannon_m3" 				("accuracy_main" args  0.9 0.9 0.9 0.9));90мм
+(define "accuracy_tank_cannon_t5e2" 			("accuracy_main" args  0.75 0.75 0.77 0.8))
+;eng
+(define "accuracy_tank_cannon_qf2" 				("accuracy_main_small" args  0.9 1 1 1.1))
+(define "accuracy_tank_cannon_qf4" 				("accuracy_main_small" args  0.9 1 1 1))
+(define "accuracy_tank_cannon_qf6" 				("accuracy_main" args  0.9 0.9 0.9 0.9))
+;jap
+(define "accuracy_tank_cannon_type1"				("accuracy_main_small" args  1.1 1.1 1.1 1.2));37mm
+;fra
+(define "accuracy_tank_cannon_sa35"				("accuracy_main_small" args  1.3 1.5 1.7 1.8))
+;ita
+(define "accuracy_tank_cannon_l40"				("accuracy_main_small" args  1.2 1.4 1.5 1.6))
+
+;=====Зенитные полуавтоматические пушки=====
+;ger
+(define "accuracy_zenite_cannon_stan_flak18" 	("accuracy_main" args  1 0.95 0.9 0.87))
+;rus
+(define "accuracy_zenite_cannon_stan_52k" 	 	("accuracy_main" args  1 0.98 0.95 0.9))
+;usa
+(define "accuracy_zenite_cannon_stan_m2" 	 	("accuracy_main" args  0.85 0.85 0.85 0.85))
+
+;=====Авиапушки=====
+(define "accuracy_air_bk37" 		("accuracy_main_small" args  0.1 0.1 0.1 0.1))
+
+
+(define "accuracy_zenite_stan"		("arena_zenite_stan")
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}	
+	{parameters "fg" "cannon"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "house"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+)
+(define "accuracy_zenite_stan_x4"		("arena_zenite_stan_x4")
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}	
+	{parameters "fg" "cannon"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "house"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+)
+(define "accuracy_zenite_vh"		("arena_zenite_vh")
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}
+	{parameters "fg" "house"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 2.25} {120 5.5} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}	
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+)
+(define "accuracy_zenite_vh_x4"		("arena_zenite_vh_x4")
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}
+	{parameters "fg" "house"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{radiusTable {0 0} {40 1.25} {55 2.5} {120 6} {210 15} {250 ("ak" k(31.2))} {500 ("ak" k(49.4))}}
+			{SpreadXYRatio	0.1}	
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}	
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+)
+(define "accuracy_auto_cannon"		("accuracy_zenite_vh" args  1 1 1 1)
+	{spreading 			
+		{ZeroingAccuracyMultiplier 1}
+	}
+	{ZeroingAccuracy
+		{Distance 5
+			{AccuracyTable 1 1}
+		}
+		{Distance 500
+			{AccuracyTable 1 1}
+		}	
+	}
+    {parameters "bzt"
+		{spreading
+;			{radiusTable {0 0} {40 1} {55 1.5} {120 2} {210 15} {250 ("ak" k(20))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}			
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}	
+	{parameters "ap"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 1.5} {120 2} {210 15} {250 ("ak" k(20))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}			
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}		
+	}	
+	{parameters "fg"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 1.5} {120 4} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}			
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 1.5} {120 4} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}			
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}	
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 1.5} {120 4} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}			
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "cannon"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 1.5} {120 4} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}			
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "house"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 1.5} {120 4} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}			
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}
+	{parameters "fg" "vehicle"
+		{spreading
+			{radiusTable {0 0} {40 1} {55 1.5} {120 4} {210 15} {250 ("ak" k(30))} {500 ("ak" k(45))}}
+			{SpreadXYRatio	0.1}			
+		}
+		{aimtype angle_by_distance 0 0 30 1 50 3 60 4 100 5 250 5 500 10}			
+	}	
+)	
+(define "accuracy_field_stan"																		;дефайн точности полевых пушек
+	("accuracy_main" args  1.1 1.5 1.8 2)
+	{parameters "fg"
+		{spreading
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 1} {55 1.5} {120 10} {210 15} {250 ("ak" k(25))} {500 ("ak" k(36))}}
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 1} {55 1.5} {120 10} {210 15} {250 ("ak" k(25))} {500 ("ak" k(36))}}
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 1} {55 1.5} {120 10} {210 15} {250 ("ak" k(25))} {500 ("ak" k(36))}}
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}	
+	{parameters "fg" "cannon"		
+		{spreading	
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 1} {55 1.5} {120 10} {210 15} {250 ("ak" k(25))} {500 ("ak" k(36))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}				
+	}
+	{parameters "fg" "vehicle"		
+		{spreading	
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 1} {55 1.5} {120 10} {210 15} {250 ("ak" k(25))} {500 ("ak" k(36))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}				
+	}
+	{parameters "fg" "house"		
+		{spreading	
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}			
+			{radiusTable {0 0} {40 1} {55 1.5} {120 10} {210 15} {250 ("ak" k(25))} {500 ("ak" k(36))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}		
+)
+(define "accuracy_recoilless";																		;дефайн точности стационарных безоткатных орудий
+	("accuracy_main" args  1 1 1 1)
+	{parameters "fg"
+		{spreading
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}		
+			{radiusTable {0 0} {40 1} {55 3} {120 14} {210 15} {250 ("ak" k(25))} {500 ("ak" k(40))}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}
+	{parameters "fg" "sandbag"
+		{spreading
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}		
+			{radiusTable {0 0} {40 1} {55 3} {120 14} {210 15} {250 ("ak" k(25))} {500 ("ak" k(40))}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}	
+	{parameters "fg" "human"
+		{spreading
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}		
+			{radiusTable {0 0} {40 1} {55 3} {120 14} {210 15} {250 ("ak" k(25))} {500 ("ak" k(40))}}
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}	
+	{parameters "fg" "cannon"		
+		{spreading	
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}		
+			{radiusTable {0 0} {40 1} {55 3} {120 14} {210 15} {250 ("ak" k(25))} {500 ("ak" k(40))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}
+	{parameters "fg" "vehicle"		
+		{spreading	
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}		
+			{radiusTable {0 0} {40 1} {55 3} {120 14} {210 15} {250 ("ak" k(25))} {500 ("ak" k(40))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}
+	{parameters "fg" "house"		
+		{spreading	
+			{SpreadPower	
+				0		4 
+				25		3 
+				50		2.5 
+				75		2
+				100		1
+				1500		0.5
+			}		
+			{radiusTable {0 0} {40 1} {55 3} {120 14} {210 15} {250 ("ak" k(25))} {500 ("ak" k(40))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 2 50 3 60 4 100 6 250 25 500 35}			
+	}	
+)
+(define "accuracy_light_at_cannon"																	;дефайн точности  лёгких пт пушек (20 - 50мм)	
+	("accuracy_main" args  1 1 1 1)
+	{parameters "fg" "cannon"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 6} {210 15} {250 ("ak" k(20))} {500 ("ak" k(26))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}	
+	}
+	{parameters "fg" "vehicle"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}			
+	}
+	{parameters "fg" "human"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}			
+	}	
+	{parameters "fg" "house"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 6} {210 15} {250 ("ak" k(20))} {500 ("ak" k(26))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}			
+	}	
+)
+(define "accuracy_medium_at_cannon"																	;дефайн точности средних пт пушек (50-80мм)
+	("accuracy_main" args  1 1 1 1)
+	{parameters "fg" "cannon"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 6} {210 15} {250 ("ak" k(20))} {500 ("ak" k(26))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}		
+	}
+	{parameters "fg" "vehicle"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}			
+	}
+	{parameters "fg" "human"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}			
+	}	
+	{parameters "fg" "house"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 6} {210 15} {250 ("ak" k(20))} {500 ("ak" k(26))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}			
+	}	
+)
+(define "accuracy_heavy_at_cannon"																	;дефайн точности тяж пт пушек (80-100мм)
+	("accuracy_main" args  1 1 1 1)
+	{parameters "fg" "cannon"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 6} {210 15} {250 ("ak" k(20))} {500 ("ak" k(26))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}	
+	}
+	{parameters "fg" "vehicle"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}		
+	}
+	{parameters "fg" "human"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}		
+	}	
+	{parameters "fg" "house"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 6} {210 15} {250 ("ak" k(20))} {500 ("ak" k(26))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.35 50 0.7 60 1 70 2 100 5 250 10 500 15}		
+	}	
+)
+(define "accuracy_heavy_flak"																		;дефайн точности занитных (80-100мм)
+	("accuracy_main" args  1 1 1 1)
+	{spreading 	
+		{radiusTable {0 0} {100 1} {120 1} {250 2} {500 3}}
+	}
+	{parameters "fg"		
+		{spreading	
+			{radiusTable {0 0} {40 2} {55 2.5} {120 8} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}		
+	}	
+	{parameters "fg" "cannon"		
+		{spreading	
+			{radiusTable {0 0} {40 2} {55 2.5} {120 8} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}		
+	}
+	{parameters "fg" "human"		
+		{spreading	
+			{radiusTable {0 0} {40 2} {55 2.5} {120 8} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}		
+	}
+	{parameters "fg" "house"		
+		{spreading	
+			{radiusTable {0 0} {40 2} {55 2.5} {120 8} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}		
+	}
+	{parameters "fg" "vehicle"		
+		{spreading	
+			{radiusTable {0 0} {40 2} {55 2.5} {120 8} {210 15} {250 ("ak" k(25))} {500 ("ak" k(35))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}		
+	}				
+)
+(define "accuracy_superheavy_at_cannon"																;дефайн точности супер тяж пт пушек (100+ мм)
+	("accuracy_main" args  1 1 1 1)
+	{parameters "fg" "cannon"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 6} {210 15} {250 ("ak" k(20))} {500 ("ak" k(26))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}		
+	}
+	{parameters "fg" "vehicle"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}			
+	}
+	{parameters "fg" "human"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 7} {210 15} {250 ("ak" k(22))} {500 ("ak" k(28))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}			
+	}	
+	{parameters "fg" "house"		
+		{spreading	
+			{radiusTable {0 0} {40 1} {55 1.5} {120 6} {210 15} {250 ("ak" k(20))} {500 ("ak" k(26))}}
+		}
+		{ZeroingAccuracy
+			{Distance 30	{AccuracyTable 0.7 0.5 0.3}}
+			{Distance 75	{AccuracyTable 0.8 0.6 0.5 0.4 0.3}}
+			{Distance 125	{AccuracyTable 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}
+			{Distance 250	{AccuracyTable 0.95 0.9 0.8 0.7 0.6 0.5 0.4 0.3}}	
+		}
+		{aimtype angle_by_distance 0 0 30 0.2 50 0.3 60 0.5 70 1 100 5 250 10 500 15}			
+	}	
+)
+(define "arena_zenite_vh"	
+	("accuracy_main" args  1.5 1.5 1.5 1.5)																		;дефайн	точности зенитных автопушек на подвижном шассии
+	{spreading 
+		{SpreadPower	
+			0		10 
+			25		5 
+			30		1.5 
+			50		1
+			100		1
+		}
+		{SpreadXYRatio	0.3}		
+	}
+	{ZeroingAccuracy
+		{Distance 30	{AccuracyTable 1 1}}
+		{Distance 75	{AccuracyTable 1 1}}
+		{Distance 125	{AccuracyTable 1 1}}
+		{Distance 250	{AccuracyTable 1 1}}
+	}	
+)
+(define "arena_zenite_vh_x4"																			;дефайн	точности зенитных автопушек с 4 стволами на подвижном шассии
+	("accuracy_main" args  1.6 1.6 1.6 1.6)																		;дефайн	точности зенитных автопушек на подвижном шассии
+	{spreading 
+		{SpreadPower	
+			0		10 
+			25		5 
+			30		1.5 
+			50		1
+			100		1
+		}
+		{SpreadXYRatio	0.3}		
+	}
+	{ZeroingAccuracy
+		{Distance 30	{AccuracyTable 1 1}}
+		{Distance 75	{AccuracyTable 1 1}}
+		{Distance 125	{AccuracyTable 1 1}}
+		{Distance 250	{AccuracyTable 1 1}}
+	}	
+)
+(define "arena_zenite_stan"																			;дефайн	точности стационарных зенитных автопушек 
+	("accuracy_main" args  1.2 1.2 1.2 1.2)																		;дефайн	точности зенитных автопушек на подвижном шассии
+	{spreading 
+		{SpreadPower	
+			0		10 
+			25		5 
+			30		1.5 
+			50		1
+			100		1
+		}
+		{SpreadXYRatio	0.3}		
+	}
+	{ZeroingAccuracy
+		{Distance 30	{AccuracyTable 1 1}}
+		{Distance 75	{AccuracyTable 1 1}}
+		{Distance 125	{AccuracyTable 1 1}}
+		{Distance 250	{AccuracyTable 1 1}}
+	}	
+)
+(define "arena_zenite_stan_x4"																			;дефайн	точности стационарных зенитных автопушек c 4 стволами
+	("accuracy_main" args  1.3 1.3 1.3 1.3)																		;дефайн	точности зенитных автопушек на подвижном шассии
+	{spreading 
+		{SpreadPower	
+			0		10 
+			25		5 
+			30		1.5 
+			50		1
+			100		1
+		}
+		{SpreadXYRatio	0.3}		
+	}
+	{ZeroingAccuracy
+		{Distance 30	{AccuracyTable 1 1}}
+		{Distance 75	{AccuracyTable 1 1}}
+		{Distance 125	{AccuracyTable 1 1}}
+		{Distance 250	{AccuracyTable 1 1}}
+	}	
+)
+;ARENA_time_after_aim_____________________________________________________________________________________________________________________________________________________________
+(define "howitzer_time_after_aim"
+	{TimeToReadyAfterAim
+		{0 0.1}
+		{30 0.3}
+		{50 1}
+		{100 3}
+		{150 5}
+		{500 6}
+	}
+)
+;ARENA_range______________________________________________________________________________________________________________________________________________________________________
+(define "range_flak_small"		{range 100 100})
+(define "range_flak75_90"		{range 150 150})
+(define "range_field_gun"		{range 170 170})
+(define "range_cannon37_45"		{range 110 110})
+(define "range_cannon46_74"		{range 110 110})
+(define "range_cannon75_90"		{range 140 140})
+(define "range_cannon91_160"	{range 170 170})
+(define "range_autocannon"		{range 100 100})
+(define "range_gun37_45"		{range 110 110})
+(define "range_gun45_49"		{range 110 110})
+(define "range_gun50_76"		{range 110 110})
+(define "range_gun77_90"		{range 140 140})
+(define "range_gun91_105"		{range 170 170})
+(define "range_gun106_130"		{range 250 250})
+(define "range_gun131_159"		{range 350 350})
+;Realism_range______________________________________________________________________________________________________________________________________________________________________
+(define "realism_range_autocannon"		{range 100 100})
+(define "realism_range_field_gun"		{range 140 140})
+(define "realism_range_short"		    {range 120 120})
+(define "realism_range_medium"		    {range 140 140})
+(define "realism_range_medium_2"		{range 150 150})
+(define "realism_range_long"		    {range 170 170})
+(define "realism_range_long_2"		    {range 190 190})
+(define "realism_range_light_art"		{range 250 250})
+(define "realism_range_medium_art"		{range 350 350})
+(define "realism_range_heavy_art"		{range 500 500})

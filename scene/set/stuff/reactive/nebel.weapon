@@ -1,0 +1,47 @@
+{weapon_bullet
+	{tag "howitzer"}
+	{filling "ammo 210mm_rocket" 6}
+	{fireSound "reactive/nebelwerfer_burst/nebelwerfer_burst"}
+	("heavy_artillery")
+	{cursor "cannon_on_fg"}
+	{cursorReloading "cannon_reload_fg"}
+	{burst {min 6} {noaiming}}	
+	{recoveryTime 1}
+	{rechargeTime 180}
+	{AimingTolerance 0.1}
+	{foresight "foresight"}
+	{gravity 1}
+;	{gravity2 20}
+	{speed 100} ;100
+	{range 300 300}
+	{cursor "cannon_on_fg"}
+	{cursorReloading "cannon_reload_fg"}
+	{parameters "fg"
+		{cursor "cannon_on_fg"}
+		{cursorReloading "cannon_reload_fg"}
+	}	
+	{spreading 
+		{SpreadPower	
+			0		1 
+			1000	1
+		}
+		{SpreadXYRatio
+			0	0.3
+			500	0.6
+			1000 0.7
+		}
+		{SpreadYadjust 0.5} 		
+		{radiusTable {0 0} {120 12} {250 30} {500 35} {1000 35}}	
+		{ZeroingAccuracyMultiplierPowerThreshold 2}
+		{SmokeHitMultiplier 1.5}		
+	}
+	{ZeroingAccuracy
+		{Distance 30
+			{AccuracyTable 1 1}
+		}		
+	}
+	{aimtype angle_by_distance 0 5 30 20 20 30 20 35 20 40 20 40 20 40 20 40 1000 40}	
+;	{aimtype adaptive}	
+;	("range_rocket_artyllery")
+	("armorpassability")
+}

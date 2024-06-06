@@ -1,0 +1,39 @@
+{position_check
+	{forbidden_zones "spawn_forbidden*"}
+	{distance
+		; расстояния считаются до окружности, описывающей юнита!
+		{enemy 125		; default settings
+					; condition 'not dead' hardcoded
+			{if props "map_point" 0}					
+			{if game "combat" 20
+			;	{if house 60}
+				{if props "tank" 70}
+			}
+			{if game "battlezones" 20
+				{if props "tank" 70}
+				{if props "flag_point" 120}
+			}			
+			{if house 135}
+			{if props "tank" 135}
+			{if tags "paratrooper" or props "car" "armoredcar" "cannon" 135}	
+			{if not observed 125}
+			{if props "human" 135
+				{if breed_mask "*/tankman" 100}
+				{if breed_mask "*/artilleryman" 100}
+				{if breed_mask "*/scout" 0}
+				{if breed_mask "*/apc_m3scout_scout" 0}					
+				{if breed_mask "*/saboteur*" 0}	
+				{if breed_mask "*/sniper_elite" 0}
+				{if breed_mask "*/brandenburger*" 0}				
+			}
+		}
+		{ally 0
+			{if house 10}
+			{if props "flag_point" 120}
+		}	
+		{neutral 0
+			{if house 10}
+			{if props "flag_point" 120}
+		}	
+	}
+}

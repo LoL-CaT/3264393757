@@ -1,0 +1,42 @@
+﻿{from "pattern gun"      ; bs3
+	{tag "agf" "caliber100"}
+	{filling "bullet100 rus std"}
+	{fireSound "gun/100mm_bs3/100mm_bs3"}
+	{reloadSound "tankgun_r04_reload"}
+	("rt" rt(8))
+	("speed" s(990))
+	("100-128caliber")
+	("damage_arena" args 218 160 115 70);данные по снаряду БР-412Б
+	("health_damage_arena_lvl5_plus" args 250)
+	("realism_range_long_2")	
+	("accuracy_heavy_at_cannon")
+	("accuracy_at_cannon_stan_bs3")	
+	("Ricochet_Chance_tup_bk")
+	{parameters "ap" "vehicle"
+		{destructive 0 50}		
+	}	
+	{parameters attack_ground_forced
+		("rt" rt(4))
+		{speed 198}		
+		{spreading 
+			{radiusTable {0 0} {40 2} {55 3} {190 14} {250 ("ak" k(22))} {500 ("ak" k(35))}}
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype angle_by_distance 0 0 30 0 50 0.1 60 0.5 70 1 100 5 250 10 500 15}		
+        ("realism_range_light_art")		
+	}
+	{bullet_view "shell_view_122mm"}		
+}

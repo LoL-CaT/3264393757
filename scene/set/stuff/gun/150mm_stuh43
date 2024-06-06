@@ -1,0 +1,48 @@
+{from "pattern gun"     ; brumbar
+	{tag "weapon" "build_in" "gun" "agf" "howitzer" "caliber100"}
+
+	{foresight "foresight"}           
+	("speed" s(620))
+
+	{filling "bullet150 ger std" 1}
+	{fireSound "gun/150mm_155mm/150mm_stuh43"}
+	{reloadSound "gun_r04_reload"}
+	("heavy_spg_short")
+	("rt" rt(18))
+	("howitzer_aimtype")
+    ("realism_range_medium_2")
+	{parameters attack_ground_forced
+		("rt" rt(15))
+		{speed 130}			
+		{spreading
+			{SpreadPower	
+				0		1.5 
+				250		1.5 
+				500		1.5
+			}		
+			{radiusTable {0 0} {30 6} {70 10} {120 14} {150 18} {250 ("ak" k(20))} {500 ("ak" k(25))}}
+			{SpreadXYRatio
+				0	0.55
+				500	0.65      
+			}				
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}				
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		("howitzer_aimtype")			
+	}	
+	{bullet_view "shell_view_150mm"}							
+}

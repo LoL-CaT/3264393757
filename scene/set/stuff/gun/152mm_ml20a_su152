@@ -1,0 +1,67 @@
+﻿{from "pattern gun"     ; isu-152
+	{tag "agf" "howitzer" "caliber100"}
+	{filling "bullet152 rus std"}
+	{fireSound "gun/150mm_155mm/150mm_155mm"}
+	{reloadSound "tankgun_r04_reload"}
+	("rt" rt(18))
+	{bullet_view "howitzer_shell"
+		{tail "shell_tail" "root"}
+	}               
+	("speed" s(800))
+	
+	("howitzer_caliber")
+
+	("damage_arena" args 167 127 83 56); данные по снаряду БР540
+	("health_damage_arena_lvl6_plus" args 500)
+	{DisableRicochet}	
+	("accuracy_tank_hunter_cannon_ml20")	
+	("overmatch_128mm")
+	("heavy_spg")	
+	("howitzer_aimtype")
+	("Ricochet_Chance_25")
+	("realism_range_medium_art")
+	{parameters attack_ground_forced
+		("rt" rt(14))
+		{speed 120}			
+		{spreading
+			{SpreadPower	
+				0		1.5 
+				250		1.5 
+				500		1.5
+			}		
+			{radiusTable {0 0} {30 4} {70 8} {120 14} {250 ("ak" k(17))} {500 ("ak" k(20))}}
+			{SpreadXYRatio
+				0	0.55
+				500	0.65      
+			}			
+			{SpreadYadjust	0}	
+			{SmokeHitMultiplier 1.5}			
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		("howitzer_aimtype")
+	}	
+	{bullet_view "shell_view_150mm"}	
+	{parameters "ap"	
+		{aimtype angle_by_distance 0 1 30 2 50 3 60 4 70 5 100 6 250 7 500 10}
+		{speed 200}
+		("realism_range_long_2")
+	}
+	{parameters "ap" "vehicle"
+		{aimtype angle_by_distance 0 1 30 2 50 3 60 4 70 5 100 6 250 7 500 10}
+		{speed 200}		
+		{destructive 0 1000}		
+	}	
+}

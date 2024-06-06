@@ -1,0 +1,54 @@
+{from "pattern gun"     ;"m8"
+	{tag "agf" "howitzer"}
+	{filling "bullet75 ally std"}
+	{fireSound "gun/75mm/75mm"}
+	{reloadSound "gun_r00_reload"}
+	("rt" rt(6.8))	
+	("speed" s(600))
+	("75-76caliber")
+	{bullet_view "shell_view_88mm"
+		{tail "shell_tail" "root"}
+	}
+	{traceFreq 0}	
+;	("damage_arena" args 76 57 38 19)
+;	("health_damage_arena" args 138)	
+	("light_howitzer_plus_stan")
+	("Ricochet_Chance_25")
+	("realism_range_long")
+	{parameters attack_ground_forced
+		("rt" rt(5.0))
+		{speed 120}			
+		{spreading
+			{SpreadPower	
+				0		1.5 
+				250		1.5 
+				500		1.5
+			}		
+			{radiusTable {0 0} {30 2} {70 3} {190 9.0} {250 ("ak" k(15.75))} {500 ("ak" k(17.25))}} 
+			{SpreadXYRatio
+				0	0.6
+				500	1      
+			}			
+			{SpreadYadjust	0}
+			{SmokeHitMultiplier 1.5}			
+		}				
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype adaptive}
+		{gravity 7}
+		{gravity2 20}			
+	}
+	{bullet_view "shell_view_88mm"}	
+}

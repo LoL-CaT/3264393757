@@ -1,0 +1,337 @@
+
+(define "arena_armor_car"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		("module_cabine" t(%cabin) n())
+		("module_glass")
+		("module_shields_car" t(%shield))
+		
+;		("module_gun_light"		gun(%gun) n())
+;		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_car"	engine(%engine) n())
+	}
+	("components_car" 
+		repair_body(20)
+		repair_engine(19)
+		repair_turret(12)
+		repair_gun(19)
+		repair_track(11)
+		repair_wheel(11)
+	)
+)
+(define "arena_armor_btr"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		
+		("module_gun_light"		gun(%gun) n())
+		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_btr" 
+		repair_body(20)
+		repair_engine(21)
+		repair_turret(22)
+		repair_gun(14)
+		repair_track(9)
+		repair_wheel(11)
+	)
+)
+(define "arena_armor_btr_with_track"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		
+		("module_track_light"	track(%track))
+		("module_gun_light"		gun(%gun) n())
+		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_btr" 
+		repair_body(20)
+		repair_engine(18)
+		repair_turret(19)
+		repair_gun(11)
+		repair_track(7)
+		repair_wheel(7)
+	)
+)
+(define "arena_armor_light"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_light"	track(%track))
+		("module_gun_light"		gun(%gun) n())
+		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(45)
+		repair_engine(24)
+		repair_turret(24)
+		repair_gun(15)
+		repair_track(10)
+	)
+	{sensor
+		{visor "view-around"
+			{vision "tank_around-l"}
+			{bone "basis"}
+		}
+		{visor "main"
+			{vision "tank_main-l"}
+		}
+	}
+)
+(define "arena_armor_medium"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_medium"	track(%track))
+		("module_gun_medium"	gun(%gun) n())
+		("module_turret_medium"	turret(%turret) n() hp_k(1))
+		("module_body_medium"	body(%body) n())
+		("module_engine_medium"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(45)
+		repair_engine(37)
+		repair_turret(37)
+		repair_gun(27)
+		repair_track(18)
+	)
+   {sensor
+        {visor "view-around"
+            {vision "tank_around-m"}
+            {bone "basis"}
+        }
+        {visor "main"
+            {vision "tank_main-m"}
+        }
+    }
+)
+(define "arena_armor_heavy"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_heavy"	track(%track))
+		("module_gun_heavy"		gun(%gun) n())
+		("module_turret_heavy"	turret(%turret) n() hp_k(1))
+		("module_body_heavy"	body(%body) n())
+		("module_engine_heavy"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(45)
+		repair_engine(45)
+		repair_turret(45)
+		repair_gun(33)
+		repair_track(24)
+	)
+    {sensor
+        {visor "view-around"
+            {vision "tank_around-h"}
+            {bone "basis"}
+        }
+        {visor "main"
+            {vision "tank_main-h"}
+        }
+    }
+)
+(define "arena_armor_spa_btr"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		
+		("module_gun_light"		gun(%gun) n())
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_btr" 
+		repair_body(20)
+		repair_engine(21)
+		repair_turret(22)
+		repair_gun(14)
+		repair_track(9)
+		repair_wheel(11)
+	)
+)
+(define "arena_armor_spa_btr_with_track"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		
+		("module_track_light"	track(%track))
+		("module_gun_light"		gun(%gun) n())
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_btr" 
+		repair_body(20)
+		repair_engine(21)
+		repair_turret(22)
+		repair_gun(14)
+		repair_track(9)
+		repair_wheel(11)
+	)
+)
+(define "arena_armor_spa_light"
+    {volume "turret"
+       {component "turret"}
+       {tags "turret" "body" "turret_armor"}
+    }
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_light"	track(%track))
+		("module_gun_light"		gun(%gun) n())
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(20)
+		repair_engine(15)
+		repair_turret(16)
+		repair_gun(12)
+		repair_track(8)
+	)
+	{sensor
+		{visor "view-around"
+			{vision "tank_around-l"}
+			{bone "basis"}
+		}
+		{visor "main"
+			{vision "tank_main-l"}
+		}
+	}
+)
+(define "arena_armor_spa_medium"
+    {volume "turret"
+       {component "turret"}
+       {tags "turret" "body" "turret_armor"}
+    }
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_medium"	track(%track))
+		("module_gun_medium"	gun(%gun) n())
+		("module_body_medium"	body(%body) n())
+		("module_engine_medium"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(45)
+		repair_engine(37)
+		repair_turret(37)
+		repair_gun(27)
+		repair_track(18)
+	)
+   {sensor
+        {visor "view-around"
+            {vision "tank_around-m"}
+            {bone "basis"}
+        }
+        {visor "main"
+            {vision "tank_main-m"}
+        }
+    }
+)
+(define "arena_armor_spa_heavy"
+    {volume "turret"
+       {component "turret"}
+       {tags "turret" "body" "turret_armor"}
+    }
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_heavy"	track(%track))
+		("module_gun_heavy"		gun(%gun) n())
+		("module_body_heavy"	body(%body) n())
+		("module_engine_heavy"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(45)
+		repair_engine(45)
+		repair_turret(45)
+		repair_gun(33)
+		repair_track(24)
+	)
+    {sensor
+        {visor "view-around"
+            {vision "tank_around-h"}
+            {bone "basis"}
+        }
+        {visor "main"
+            {vision "tank_main-h"}
+        }
+    }
+)
+
+(define "arena_armor_car"
+	{armor
+		{health (* 0.5 %hp)}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		("module_cabine" t(%cabin) n())
+		("module_glass")
+		("module_shields_car" t(%shield))
+		
+;		("module_gun_light"		gun(%gun) n())
+;		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_car"	engine(%engine) n())
+	}
+	("components_car" 
+		repair_body(20)
+		repair_engine(19)
+		repair_turret(12)
+		repair_gun(14)
+		repair_track(11)
+		repair_wheel(11)
+	)
+)
+
+(define "module_track" 
+	{setting "track"
+		{thickness %track}
+		{durability
+			{blast	{value (* %dur 25)} {koef 0.99}}
+			{pierce	{value %pierce_dur}};2 hits
+		}
+		{threshold
+			{blast	{value 5} {koef 0.99}}
+			{pierce {koef 0.99}}
+		}
+		{volumes "track*"}
+		("set_track")
+		{whole_wound}
+	}
+)
+(define "module_track_light"		("module_track"		dur(1)		track(%track) pierce_dur(12)))
+(define "module_track_medium"		("module_track"		dur(1.75)	track(%track) pierce_dur(50)))
+(define "module_track_heavy"		("module_track"		dur(4)		track(%track) pierce_dur(60)))

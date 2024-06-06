@@ -1,0 +1,78 @@
+(include "\set\armorhealth.inc")
+(define "armorpassability"
+	{ArmorPassability 100}
+	{parameters "fg" "vehicle"
+		{ArmorPassability 100}
+	}
+	(define "pass_low_range"
+		{parameters "%0" "%1"
+			{ArmorPassability {1.2 200} {1.25 100}}
+		}
+	)
+	("pass_low_range" args ap sandbag)
+	("pass_low_range" args fg sandbag)
+	("pass_low_range" args ap climb)
+	("pass_low_range" args fg climb)
+)
+(define "heavy_artillery"
+	{tag "mrl"}
+	{fillingVisible "rocket"}
+	{inventory {noView}}
+	{foresight "foresight"}
+	;{aimRange 170}
+	;{maxRange 500}
+	{spreading
+		{SpreadRadius 17}
+;		{SpreadPower 1}
+;		{SpreadYadjust 1.5} 
+		{radiusFunction
+			0.0		0.1
+			0.2		0.3
+			0.5		0.6
+			0.8		1
+			1.00	1.2
+		}
+		{SmokeHitMultiplier 1.5}		
+	}
+	{aimtype adaptive}
+	{gravity 3}
+	{AimingTolerance 0.1}
+	{cursor "cannon_on"}
+	{cursorReloading "cannon_reload"}
+	{rechargeTime 210}
+)
+(define "accuracy_rocket_artyllery"																		;дефайн точности реактивной артиллерии
+	{cursor "cannon_on_fg"}
+	{cursorReloading "cannon_reload_fg"}
+	{parameters "fg"
+		{cursor "cannon_on_fg"}
+		{cursorReloading "cannon_reload_fg"}
+	}	
+	{spreading 
+		{SpreadPower	
+			0		1 
+			1000	1
+		}
+		{SpreadXYRatio
+			0		-1	
+			1000	-10			
+		}
+		{SpreadYadjust 2} 		
+		{radiusTable {0 0} {120 15} {250 20} {500 25} {1000 25}}	
+		{ZeroingAccuracyMultiplierPowerThreshold 2}
+		{SmokeHitMultiplier 1.5}		
+	}
+	{ZeroingAccuracy
+		{Distance 30
+			{AccuracyTable 1 1}
+		}		
+	}
+	{aimtype angle_by_distance 0 0 30 0 50 2 100 5 250 15 500 30}		
+)
+(define "range_rocket_artyllery"
+	;{aimRange 500}
+	;{maxRange 500}
+)
+(define "rt"
+	{rechargeTime (* 1.2 %rt)}
+)	

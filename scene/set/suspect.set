@@ -1,0 +1,329 @@
+(define "loudness_dec_range"
+	{loudness_decrement
+		0					0
+		(* %range_end 0.99) 0
+		%range_end 			0.25
+	}
+)
+(define "small_range"	("loudness_dec_range" range_end(20)))
+(define "average_range"	("loudness_dec_range" range_end(30)))
+(define "large_range"	("loudness_dec_range" range_end(50)))
+(define "rocket_range"	("loudness_dec_range" range_end(100)))
+(define "base"
+	{noise_increment (* (+ %noise_k (* (- %lvl 1) 0.01)) (/ %noise %burst))}	; Увеличение шума зоны при каждом выстреле.
+											; Умножается на noise_increment_mod(distance_to_target).
+	{loudness_increment	; увеличение "звучимости" орудия при стрельбе в зависимости от шума в точке-позиции орудия 
+		0		0.01
+		0.01	0.02    ; при шуме в точке = 0.01 каждый выстрел звучимость будет увеличиваться на 2%.
+		0.1		0.05    ; при шуме в точке = 0.10 каждый выстрел звучимость будет увеличиваться на 5%.
+		0.2 	0.1
+		0.5 	0.2
+		0.8		0.35
+		1		0.5
+	}
+)
+(define "suspect"				("base" noise(%noise) noise_k(%noise_k)	lvl(%lvl) clip_size(%clip_size)	burst(%burst)))
+
+{suspect
+				; Терминология
+				; noise - шум зоны [0..1]. Каждое стреляющее орудие создает зону шума - круг с центром в точке выстрела.
+				; Каждая зона характеризуется значением шума в центре. Шум увеличивается при каждом выстреле
+				; и уменьшается с течением времени. Значение шума в остальных точках круга вычисляется по 
+				; таблице noise_fading.
+
+				; loudness - "звучимость" орудия [0..1]. Звучимость пушки стремится к значению шума в точке-позиции пушки.
+
+	{noise_increment_mod	; модификатор шума в точке выстрела в зависимости от расстояния до ближайшего слушателя
+		30 	6 	; на 30м и ближе шум от каждого выстрела множится на 6
+		40	2
+		50	1.6	; на 50м добавляется 160% от шума каждого выстрела
+		75  1.3
+		250 0.5
+		999	0.5
+		1000 0
+		{if props "tank_hunt"
+			30		6
+			40		2.5
+			50		2.4
+			50.1	1.8
+			75		1.3
+			250		0.5
+			999		0.5
+			1000	0
+		}
+		{if props "sturmtiger"
+			30 	6
+			40	2
+			50	1.6
+			75  1.3
+			250 1
+			999 1
+			1000 0
+		}
+	}
+	{noise_fading   	; затухание шума в зависимости от расстояния до центра зоны
+		5	1	; в центре и до 5м - максимальный
+		7.5	0.5	; 7.5м до центра - шум = 50% от шума в центре
+		15	0	; в 15м шума нет
+	}
+	{noise_decrement 0.033}  	; уменьшение шума зоны c течением времением (в секунду)
+	{loudness_decrement	; уменьшение "звучимости" нестреляющего орудия в секунду в зависимости от разницы loudness-noise в точке-позиции орудия,
+		0	0.05	; заметность орудия меньше или равна слышимости - уменьшаем заметность на 5% каждую секунду
+		0.1	0.1    	; при разнице = 0.1 каждую секунду звучимость будет уменьшаться на 10% (но в итоге не будет ниже шума в точке)
+		1	0.2		; при разнице = 1 каждую секунду звучимость будет уменьшаться на 20%.
+	}
+	{stages					; стадии засвета
+		{"hidden" 0 0.2          	; 0 < loudness <= 0.2
+			{color green}
+		}			
+		{"detected" 0.2 1           ; 0.2 < loudness <= 1
+			{fx_radius 30 10}
+			{color red}
+			{detect 0.8}			; значение loudness, при котором будет засвечен юнит
+		}
+	}
+
+	{fx {name "flash_light"} {interval 0.5} ; @note: fx must to be added to fxmanager.set
+		{if human ; no fx
+;			{if breed_mask "*/sniper" {name "flash_sniper"} {interval 1.0}}
+			{if weapon "sniper"	{name "flash_light"} {interval 1}}
+		}
+	}
+{selector
+	{if props "vehicle"
+	;==============MGUN INPROGRESS================
+	;----machine gun
+		{if weapon "mg34" "mg34_vh_car" "mg34_tower" "mg42" "browning_m19_vh_car" "maxim_inv"				("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(20))("average_range")};20
+		{if weapon "dp" "bar" "type99lmg" "type99_vh_car"													("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(16.7))("average_range")};16.7
+	;----machine gun vh
+		{if weapon "browning" "browning_b17" "type99_vh" 													("suspect" noise(0.9) noise_k(1) lvl(1)	burst(16.7))("average_range")};16.7
+		{if weapon "mg37t" "browning_m19" "browning_m19_x2" "ds_vh_car" "mg34_vh" "ds_vh" "mg42_vh" "browning_x2" "dt" "dt_vh" "dt_aa" "vickers_mgun_vh" "bren_vh"	("suspect" noise(0.9) noise_k(1)	lvl(1)	burst(20))("average_range")};20
+	
+		{if weapon "flame_thrower"																			("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(1))("average_range")}
+		{if weapon "80mm_sgrw34" "81mm_m1"																	("suspect" noise(0.16)	noise_k(1)	lvl(2)	burst(1))("average_range")}
+		{if weapon "37mm_m6"																				("suspect" noise(0.53)	noise_k(1) 	lvl(3)	burst(1))("large_range");m8grayhound: browning, browning_m19
+			{if props "m5a1" "dodgewc51_m6"																	("suspect" noise(0.8)	noise_k(1) 	lvl(2)	burst(1))("large_range")};browning_m19
+		}
+		{if weapon "28mm_pzb41" 																			("suspect" noise(0.13)	noise_k(1) 	lvl(1)	burst(1))("small_range")
+			{if props "sdkfz221"																			("suspect" noise(0.8)	noise_k(1) 	lvl(2)	burst(1))("large_range")}
+		}
+	;===============CANNON==============
+		{if props "cannon"
+			{if props "mg_stan"
+					{if weapon "browning_stan"	"type99lmg_stan"											("suspect" noise(0.9) noise_k(1) lvl(1)	burst(4))("average_range")};16.7
+					{if weapon "mg42_stan" "browning_m19_stan" "mg34_stan" "ds_stan" "maxim" 				("suspect" noise(0.9) noise_k(1) lvl(1)	burst(5))("average_range")};20
+					{if weapon "dshk_stan"																	("suspect" noise(0.9) noise_k(1) lvl(2)	burst(4))("average_range")};16.7
+			}
+		;-------------------------Mortars--------------------------------
+			{if weapon "50mm_legrw36" "50mm_rm38" "60mm_m2"													("suspect" noise(0.09)	noise_k(1)	lvl(1)	burst(1))("small_range")}
+			{if weapon "82mm_bm37"																			("suspect" noise(0.1)	noise_k(1)	lvl(2)	burst(1))("average_range")}
+			{if weapon "120mm_sgrw42" "120mm_pm41" "107mm_m2"												("suspect" noise(0.12)	noise_k(1)	lvl(3)	burst(1))("average_range")}
+		;---------------------------Flaks--------------------------------
+			{if weapon "20mm_flak38_stan" "20mm_oerlikon" "20mm_flak38_x4_stan"								("suspect" noise(0.5)	noise_k(1) 	lvl(1)	burst(4))("small_range")}
+			{if weapon "37mm_61-k" "37mm_m1" "40mm_bofors"															("suspect" noise(0.65)	noise_k(1) 	lvl(2)	burst(4))("small_range")}
+			{if weapon "browning_x4_stan"																	("suspect" noise(0.16)	noise_k(1) 	lvl(2)	burst(5))("small_range")}
+			{if weapon "browning_x2_stan"																	("suspect" noise(0.16)	noise_k(1) 	lvl(2)	burst(5))("small_range")}			
+		;---------------------------Cannons------------------------------
+		;light
+			{if weapon "37mm_pak35" "45mm_53k" "37mm_m3"													("suspect" noise(0.65)	noise_k(1) 	lvl(1)	burst(1))("small_range")}
+			{if weapon "42mm_pak41" "45mm_m42" "47mm_pak37t"												("suspect" noise(0.65)	noise_k(1) 	lvl(2)	burst(1))("small_range")}
+		;medium
+			{if weapon "50mm_pak38"	 																		("suspect" noise(0.7)	noise_k(1) 	lvl(2)	burst(1))("small_range")}
+			{if weapon "76mm_f22" "76mm_1943" "76mm_1927" "75mm_lelg18"			 							("suspect" noise(0.75) 	noise_k(1) 	lvl(2)	burst(1))("average_range")}
+			{if weapon "105mm_lg40"											 								("suspect" noise(0.86) 	noise_k(1) 	lvl(2)	burst(1))("average_range")}	
+			{if weapon "76mm_zis3" "76mm_pak36r_stan" "76mm_m5" "57mm_oqf"									("suspect" noise(0.75) 	noise_k(1) 	lvl(3)	burst(1))("average_range")}
+			{if weapon "75mm_pak40"		 																	("suspect" noise(0.75) 	noise_k(1) 	lvl(4)	burst(1))("average_range")}
+			{if weapon "105mm_sk18" 																		("suspect" noise(0.8) 	noise_k(1) 	lvl(4)	burst(1))("average_range")}
+			{if weapon "57mm_zis2"																			("suspect" noise(0.7) 	noise_k(1) 	lvl(4)	burst(1))("average_range")}
+		;heavy
+			{if weapon "88mm_pak43" "100mm_bs3"																("suspect" noise(0.8) 	noise_k(1) 	lvl(5)	burst(1))("average_range")}
+		;AA cannon
+			{if weapon "88mm_flak18" "85mm_52k" "90mm_m2"													("suspect" noise(0.8)	noise_k(1) 	lvl(4)	burst(1))("average_range")}
+		;---------------------------Howitzers----------------------------
+		;light cannon
+			{if weapon "75mm_m2_how" 																		("suspect" noise(0.86)	noise_k(1) 	lvl(1)	burst(1))("average_range")}
+		;medium cannon
+			{if weapon "105mm_lefh18" "122mm_m30" "105mm_m2a1_stan"											("suspect" noise(0.86)	noise_k(1) 	lvl(2)	burst(3))("average_range")}
+		;heavy cannon
+			{if weapon "150mm_sfh18" "152mm_ml20" "155mm_m114" "152mm_m1909" "150mm_sig33_stan" 	("suspect" noise(0.86)	noise_k(1) 	lvl(3)	burst(3))("average_range")}
+			{if weapon "152mm_d1"  																					("suspect" noise(0.92)	noise_k(1) 	lvl(3)	burst(3))("average_range")}			
+			{if weapon "152mm_m1909_x2"								   										("suspect" noise(1)   	noise_k(1) 	lvl(3)	burst(3))("average_range")}
+		;super heavy cannon
+			{if weapon "203mm_gun"																			("suspect" noise(0.9)	noise_k(1) 	lvl(5)	burst(3))("average_range")}
+			{if weapon "203mm_m1"																			("suspect" noise(0.9)	noise_k(1) 	lvl(5)	burst(3))("average_range")}			
+			{if weapon "210mm_mrs18"																			("suspect" noise(0.95)	noise_k(1) 	lvl(5)	burst(3))("average_range")}			
+		;-----------------------------РСЗО-------------------------------
+			{if weapon "nebel41" "nebel"																	("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("rocket_range")}
+		};cannon
+
+	;===============MOTO==============
+	;	{if props "moto"
+	;		{if props "r12" "m72" "hd" "type97"																("suspect" noise(0.8) noise_k(1) 	lvl(1)	burst(20))("large_range")};mg34_vh_car ds_vh_car browning_m19_vh_car type99_vh_car
+	;	}
+	;===============CAR================
+		{if props "car"
+		;-----------------------------AA car---------------------------
+			{if weapon "76mm_29k" 																			("suspect" noise(0.8) 	noise_k(1) 	lvl(4)	burst(1))("large_range")}
+			{if weapon "dshk_x3"																			("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(20))("large_range")}
+		;------------------------------MGUN--------------------------------
+		;	{if props "kubel_mgun" "gaz67b" "willysmb" "willysmb_eng" "dodgewc55" "willysat_mgun" 							("suspect" noise(0.8) noise_k(1) 	lvl(1)	burst(20))("large_range")}; mg34_vh_car ds_vh_car browning_m19_vh_car vickers_mgun_vh
+			{if weapon "doublebazooka" 																		("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(1))("large_range")}
+		;-----------------------------РСЗО-----------------------------
+			{if weapon "katusha"																			("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("rocket_range")}
+		}
+	;===============TANK==============
+		{if props "tank"
+		;---------------------------Howitzers SPG-----------------------
+			{if weapon "75mm_m2_how_vh"																		("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(1))("average_range")};m8: browning
+			{if weapon "75mm_kwk37_how" 																	("suspect" noise(0.68) noise_k(1) 	lvl(2)	burst(1))("average_range")};sdkfz251_9: mg34
+			{if weapon "150mm_sig33" "75mm_stuk37" 															("suspect" noise(0.9) noise_k(1) 	lvl(3)	burst(2))("average_range")}
+			{if weapon "105mm_lefh18_wespe" 																("suspect" noise(0.7) noise_k(1) 	lvl(4)	burst(2))("average_range")};wespe ;баф для увеличения выживаемости		
+			{if weapon "105mm_stuh42" "105mm_m2a1" "122mm_m30s" "155mm_m1917"								("suspect" noise(0.9) noise_k(1) 	lvl(4)	burst(2))("average_range")};m7: browning
+			{if weapon "105mm_m4" 																			("suspect" noise(0.9) noise_k(1) 	lvl(4)	burst(1))("average_range")};sherman 105w			
+			{if weapon "75mm_pak40_3_l46"																	("suspect" noise(0.81) noise_k(1) 	lvl(4)	burst(1))("average_range")};sdkfz251_22: mg34
+			{if weapon "150mm_sfh18a" "150mm_stuh43" 														("suspect" noise(0.9) noise_k(1) 	lvl(5)	burst(2))("average_range")};brumbar: mg34_vh
+			{if weapon "380mm_rw61" 																		("suspect" noise(1)   noise_k(1) 	lvl(6)	burst(1))("large_range")};sturmtiger: mg34_vh
+		;---------------------------Tank Hunt----------------------------
+		;light
+			{if weapon "47mm_pak36t"																		("suspect" noise(0.7) noise_k(1) 	lvl(2)	burst(1))("small_range")}
+			{if weapon "57mm_zis30" 																		("suspect" noise(0.7) noise_k(1) 	lvl(3)	burst(1))("small_range")};zis_30: dt_vh
+			{if weapon "57mm_m1" 																			("suspect" noise(0.7) noise_k(1) 	lvl(3)	burst(1))("small_range")}			
+			{if weapon "76mm_pak36r" "76mm_su76" "76mm_m1_hellcat"				 							("suspect" noise(0.75) noise_k(1) 	lvl(3)	burst(1))("average_range")};marder2/3:  mg34_vh ;m18: browning
+			{if weapon "76mm_m7"	 																		("suspect" noise(0.75) noise_k(1) 	lvl(3)	burst(1))("average_range")}
+			{if weapon "75mm_pak39" 																		("suspect" noise(0.75) noise_k(1)	lvl(4)	burst(1))("average_range")};hetzer: mg34_vh
+		;medium
+			{if weapon "75mm_stuk40" "75mm_stuk40_l43"		 												("suspect" noise(0.75)	noise_k(1.6)	lvl(4)	burst(1))("average_range")};stug3g/4g: mg34_vh
+			{if weapon "85mm_d5s"																			("suspect" noise(0.75)	noise_k(1.33)	lvl(4)	burst(1))("average_range")}
+			{if weapon "88mm_pak43_nashorn" "90mm_m3_slugger" 												("suspect" noise(0.8)	noise_k(1)		lvl(5)	burst(1))("average_range")};m36: browning, browning_m19
+			{if weapon "75mm_pak42_jagdpz4" 																("suspect" noise(0.75)	noise_k(1.33)	lvl(5)	burst(1))("average_range")};jagdpanzer_iv: mg42_vh
+			{if weapon "100mm_d10c"				 															("suspect" noise(0.8)	noise_k(1.11)	lvl(5)	burst(1))("average_range")}
+		;heavy
+			{if weapon "105mm_t5e1"																			("suspect" noise(0.8)	noise_k(1.03)	lvl(6)	burst(1))("large_range")};t95: browning	
+			{if weapon "128mm_pak44"																		("suspect" noise(0.8)	noise_k(1.03)	lvl(6)	burst(1))("large_range")};jagdtiger: mg42_vh
+			{if weapon "152mm_ml20a" 																		("suspect" noise(0.8)	noise_k(1) 	lvl(6)	burst(1))("large_range")};isu152: dshk
+			{if weapon "152mm_ml20a_su152" 																		("suspect" noise(0.8)	noise_k(1) 	lvl(6)	burst(1))("large_range")};su152		
+			{if weapon "122mm_a19"																			("suspect" noise(0.8)	noise_k(1) 	lvl(6)	burst(1))("large_range")};isu122: dshk
+			{if weapon "88mm_pak43_jagdpanther" "88mm_pak43_elefant" 										("suspect" noise(0.8)	noise_k(1) 	lvl(6)	burst(1))("large_range")};jagdpanther: mg34_vh
+		;----------------------------Сarrier----------------------------
+		;	{if props "t20" "universal_carrier_usa" "universal_carrier"										("suspect" noise(0.8) noise_k(1) 	lvl(1)	burst(20))("large_range")};dt, bren_vh
+		;---------------------------Minesweeper-------------------------
+		;	{if props "pz3m" "m4a3m" "t34m"																	("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(20))("large_range")}; mg34_vh, browning_m19, dt_vh
+		;---------------------------IFV (БМП) mgun----------------------
+		;	{if props "sdkfz223" "sdkfz251c" "sdkfz251" "ba20" "ba64" "m3" "m3_ally" "m20" "m3_g" "m3_ally_g"				("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(20))("large_range")}; mg34, dt, dt_aa, browning_m19, browning
+			{if weapon "signal_smoke"																		("suspect" noise(0.14) noise_k(1) 	lvl(2)	burst(1))("large_range")};mg34
+		;	{if props "m2" "m2_ally"														 				("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(20))("large_range")};browning, browning_m19
+		;	{if props "sdkfz251_16" 																		("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(20))("large_range")};mg42
+		;---------------------------IFV (БМП) + light tank + medium--------------------------
+			{if weapon "37mm_pak35_sdkfz251_10"																("suspect" noise(0.7) noise_k(1) 	lvl(2)	burst(1))("large_range")};sdkfz251_10/10c: mg34
+			{if weapon "20mm_kwk30" 																		("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(4))("large_range") ; mg34_vh
+				{if props "sdkfz232"																		("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(4))("large_range")};mg34_vh 
+			}
+			{if weapon "20mm_breda"																			("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(4))("large_range")};ab41: breda38_vh
+			{if weapon "45mm_20k"																			("suspect" noise(0.53) noise_k(1) 	lvl(3)	burst(1))("large_range");ba11: dt
+				{if props "t26" "t26e" "t70" "bt7" "bt7_ger"												("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(1))("large_range")}; dt_vh
+				{if props "kv8"																				("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("large_range")}
+			}
+			{if weapon "50mm_kwk39" 																		("suspect" noise(0.53) noise_k(1) 	lvl(4)	burst(1))("large_range");sdkfz234: mg42_vh
+				{if props "pz3j"																			("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range")}; mg34_vh
+			}
+			{if weapon "pak38_vh"																			("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range")};pz2f			
+		;------------------------------СЗУ-----------------------------
+			{if weapon "20mm_flak38"																		("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(4))("large_range")}
+			{if weapon "browning_x4"																		("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(20))("large_range")}
+			{if weapon "40mm_m19"																			("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(4))("large_range")}
+			{if weapon "37mm_zsu37" 																		("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range")}
+			{if weapon "20mm_flak38_x4" 																	("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(4))("large_range")
+				{if props "welberwind"																		("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(4))("large_range")};welberwind: mg34_vh
+			}
+		;--------------------------Light Tank-------------------------
+			{if weapon "mg34_x2" "dshk"																		("suspect" noise(0.8) noise_k(1) 	lvl(1)	burst(20))("large_range")};pz1b: mg34_x2;t40: dshk, dt_vh
+			{if weapon "7_92mm_ew141"																		("suspect" noise(0.8) noise_k(1) 	lvl(1)	burst(4))("large_range")};pz1c: mg34_vh 
+			{if weapon "20mm_tns"																			("suspect" noise(0.8) noise_k(1) 	lvl(1)	burst(4))("large_range");t40_tns : dt_vh
+				{if props "t60"																				("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(4))("large_range")};dt_vh
+			}																																									
+			{if weapon "20mm_kwk38"																			("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(4))("large_range")};mg34_vh
+			{if weapon "37mm_kwk38(l47)" "37mm_kwk34t" "37mm_m5" "37mm_type1_chiri"							("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(1))("large_range")};mg34_vh mg37t ;browning_m19
+			{if weapon "47mm_40" "75mm_m2" "75mm_m6" 														("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range")};breda38_vh, breda38_vh_x2; dt_vh; browning, browning_m19
+			{if weapon "76mm_kt28"																			("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range");dt_vh
+				{if props "t35"																				("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(1))("large_range")}; dt_vh
+			}
+		;--------------------------Meium Tank-------------------------
+			{if weapon "50mm_kwk38" "76mm_l10" "40mm_oqf2pdr"												("suspect" noise(0.8) noise_k(1)	lvl(2)	burst(1))("large_range")};mg34_vh; dt_vh; besa
+			{if weapon "76mm_l11"																			("suspect" noise(0.8) noise_k(1)	lvl(2)	burst(1))("large_range");dt_vh
+				{if props "t34_76" "kv1" "kv1_za_rodinu"													("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range")};dt_vh ;dt
+			}
+			{if weapon "75mm_kwk37"																			("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range")};mg34_vh
+			{if weapon "75mm_kwk40" "57mm_zis4" "76mm_f34"													("suspect" noise(0.8) noise_k(1) 	lvl(4)	burst(1))("large_range")};mg34_vh ;dt_vh; browning browning_m19
+			{if weapon "75mm_kwk40(l48)"																	("suspect" noise(0.8) noise_k(1) 	lvl(4)	burst(1))("large_range");mg34_vh
+				{if props "pz4h"																			("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("large_range")};mg34_vh mg42_vh
+			}
+			{if weapon "75mm_m3"																			("suspect" noise(0.8) noise_k(1) 	lvl(4)	burst(1))("large_range");browning browning_m19
+				{if props "m4a3e2"																			("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("large_range")};browning browning_m19
+			}
+			{if weapon "76mm_m1a2"																			("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("large_range")};dt_vh;browning browning_m19
+			{if weapon "76mm_mk4"																			("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("large_range");browning browning_m19
+				{if props "centurion"																		("suspect" noise(0.8) noise_k(1) 	lvl(6)	burst(1))("large_range")};browning browning_m19
+			}
+			{if weapon "85mm_zis53"																			("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("large_range");dt_vh
+				{if props "t34_85m"																			("suspect" noise(0.8) noise_k(1) 	lvl(6)	burst(1))("large_range")};dt_vh
+			}
+			{if weapon "75mm_kwk42" 																		("suspect" noise(0.8) noise_k(1) 	lvl(6)	burst(1))("large_range")};mg34_vh
+		;--------------------------Heavy Tank------------------------
+			{if weapon "45mm_20k_t35" "75mm_sa35" "47mm_sa35"												("suspect" noise(0.8) noise_k(1) 	lvl(2)	burst(1))("large_range")}; reibel dt_vh
+			{if weapon "76mm_f32" "57mm_oqf_mk4"															("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range")};dt ;besa
+			{if weapon "76mm_zis5"																			("suspect" noise(0.8) noise_k(1) 	lvl(3)	burst(1))("large_range");dt
+				{if props "kv1_zis5"																		("suspect" noise(0.8) noise_k(1) 	lvl(4)	burst(1))("large_range")};dt
+			}
+			{if weapon "152mm_m10t"																			("suspect" noise(0.8) noise_k(1) 	lvl(4)	burst(1))("large_range")};dt
+			{if weapon "85mm_d5t"																			("suspect" noise(0.8) noise_k(1) 	lvl(4)	burst(1))("large_range");dt
+				{if props "is1"																				("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("large_range")};dt
+			}
+			{if weapon "88mm_kwk36" "90mm_m3" 	"90mm_t15"													("suspect" noise(0.8) noise_k(1) 	lvl(5)	burst(1))("large_range")};mg34_vh ;browning browning_m19
+			{if weapon "88mm_kwk43" "122mm_d25" "122mm_d25p" "105mm_t5e2" "75mm_type5_chiri"				("suspect" noise(0.8) noise_k(1) 	lvl(6)	burst(1))("large_range")};mg34_vh ;dt ;dshk ;browning browning_m19 browning_x2 ;type99_vh type1hmg_vh
+		;----------------------------РСЗО---------------------------
+			{if weapon "panzerwerfer42" 																	("suspect" noise(0.8) noise_k(1) 	lvl(6)	burst(1))("rocket_range")};mg42
+			{if weapon "calliope" 																			("suspect" noise(0.8) noise_k(1) 	lvl(6)	burst(1))("large_range")};browning_m19
+		};tank
+	};vehicle
+	
+	{if props "human"
+		{if weapon "bazooka" "panzershreck" "piatrocket" "uber_bazooka" "panzerfaust150" "panzerfaust100" "panzerfaust"	("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(1))("average_range")}		
+		{if weapon "flame_thrower"																			("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(1))("average_range")}
+	;----scoped rifle + pistol silence
+		{if weapon "g41" "mosin_s" "m1903a4"																("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(1))("average_range")}
+		{if weapon "g43_s" "svt40_sniper" "garand_sniper"													("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(1))("average_range")}
+		{if weapon "mosin_pb_s" "mosin_pb"																	("suspect" 	noise(0.4) noise_k(1)	lvl(1)	burst(1))("average_range")}		
+		{if weapon "welrod" "nagan_pb"																		("suspect" 	noise(0.2) noise_k(1)	lvl(1)	burst(3))("average_range")}
+	;----smg
+		{if weapon "mp35"																					("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(4))("average_range")};16.7
+		{if weapon "mp40" "ppsh" "ppsh_box" "pps43" "thompson" "m3a" "thompson_m1a1" "sten"		("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(5))("average_range")};20
+	;----assault rifle
+		{if weapon "avs36"																					("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(5))("average_range")}
+		{if weapon "avt40"																					("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(5))("average_range")}		
+		{if weapon "sg44"																					("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(5))("average_range")};20
+		{if weapon "fg42_arena"																				("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(3))("average_range")};12
+	;----carabine
+		{if weapon "m1_carbine"																				("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(5))("average_range")}
+	;----rifle
+		{if weapon "mauzer" "mosin" "m1903" "mosin_rifle_m1891"	"mauser_g33"								("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(1.1))("average_range")}
+		{if weapon "berdan2" "berdan2a"																		("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(1))("average_range")}
+	;----automatic rifle
+		{if weapon "g43" "svt40" "garand"																	("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(4))("average_range")}
+	;----at rifle
+		{if weapon "at_rifle"																				("suspect" 	noise(0.13) noise_k(1)	lvl(1)	burst(1))("average_range")}
+	;----rifle grenade
+		{if weapon "rifle_grenade"																			("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(1))("average_range")}
+	;----shotgun
+		{if weapon "shotgun"																				("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(2))("average_range")}
+	;----pistol
+		{if weapon "valter" "colt" "tt" "nambu"	"mauser_c96" "luger" "webley"								("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(5))("average_range")};6.7
+	;----machine gun
+		{if weapon "mg34" "mg34_vh_car" "mg34_tower" "mg42" "browning_m19_vh_car" "ds" "maxim_inv" "browning_m19_inf" "m1941"	("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(5))("average_range")};20
+		{if weapon "dp" "bar" "type99lmg" "type99_vh_car"													("suspect" 	noise(0.9) noise_k(1)	lvl(1)	burst(4))("average_range")};16.7
+	;----machine gun vh
+		{if weapon "browning" "browning_b17" "type99_vh"													("suspect" noise(0.9) noise_k(1) lvl(1)	burst(4))("average_range")};16.7
+		{if weapon "mg37t" "browning_m19" "ds_vh_car" "mg34_vh" "ds_vh" "mg42_vh" "browning_x2" "dt" "dt_vh" "dt_aa" "dt_inf" "vickers_mgun_vh" "bren_vh"	("suspect" noise(0.9) noise_k(1)	lvl(1)	burst(5))("average_range")};20
+	};human
+} ;selector
+	(include "suspect_loudness.inc")
+}

@@ -1,0 +1,40 @@
+{from "pattern rifle"
+	{tag "sniper" "-std"}
+	{tag "-ui_rifle" "ui_sniper"}
+	{special
+		{mode aim}
+		{PrepareTime 2.55}			
+		{DistanceToPrepareTimeModifier	{0 0.72} {100 1.845} {500 3.96}}
+		{PrepareCursor "aimed_shot"}
+		{minRange 30}
+		{accuracy 4}
+		{damage 8.5}
+		{throw_off}
+	}
+;	{Automatic}
+	{burst
+		{rangekoeftable {0 5 0} {0.2 1 0} {0.5 1 0} {1 1 0}}	
+	}
+	{recoveryTime 0.5}
+	{rechargeTime 4}
+	{speed 350}
+	{healthDamage 50}
+	{aimRange 110}	; == maxRange
+	{maxRange 110}	
+	{aimingTolerance 0.8}
+	{spreading
+		{SpreadYadjust	0}
+		{SmokeHitMultiplier 55}	
+		{SpreadPower	1}		
+	}
+	{ManualAccuracyScale 2}		
+	("accuracy_sniper_rifle")
+	{curve "arena_sniper_rifle"}	
+	
+	{calibre 9.72}                           
+	{projectileDamageTable {0 6} {25 6} {50 5} {75 3}}
+	{projectileDamageThreshold 1.5}		
+	{armorHealthDamageTable {0 25} {75 15}}
+	{aimtype angle_by_distance 0 0 30 0.1 50 0.25 60 0.5 70 2 100 4 250 4 500 4}
+	{destructive 0 1}
+}

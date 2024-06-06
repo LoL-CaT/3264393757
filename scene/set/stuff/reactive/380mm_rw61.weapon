@@ -1,0 +1,52 @@
+{weapon_bullet
+	{tag "mrl gun"}
+	{filling "ammo sturmtiger" 1}
+	{fillingVisible "rocket00"}
+
+	{fireSound "reactive/katyusha_burst/katyusha_burst"}
+	{foresight "foresight"}
+	{spreading 
+		{radiusTable	{0 5} {30 1} {85 5} {250 13}  {500 30} {1000 50}}
+		{SpreadXYRatio	0.3}
+		{SmokeHitMultiplier 2}
+	}
+	{ZeroingAccuracy 0.85 0.75 0.65}
+
+	{rechargeTime 105}
+	{RelaxationTime 1.5}
+
+	{speed 50}
+	{AimingTolerance 0.1}
+	{cursor "cannon_on_fg"}
+	{cursorReloading "cannon_reload_fg"}
+;------------------------------------------------
+	;{aimtype adaptive}
+	{speed 40}
+	{gravity 1}
+	
+	{DisableRicochet}
+	{range 140 140}
+	{parameters "fg"
+		{spreading 
+			{radiusTable	{0 5} {30 1} {85 4} {250 10}  {500 30} {1000 50}}
+			{SpreadXYRatio	0.3}
+			{SmokeHitMultiplier 1.5}
+		}		
+	}	
+	{parameters "fg" "house"
+		{spreading 
+			{radiusTable	{0 5} {30 1} {85 2} {250 6} {500 15} {1000 25}}
+			{SpreadXYRatio	0.3}
+			{SmokeHitMultiplier 1.5}
+		}		
+	}
+	{TimeToReadyAfterAim
+		{0 0.1}
+		{30 0.3}
+		{50 0.3}
+		{100 1}
+		{150 2}
+		{500 3}
+	}
+	("armorpassability")
+}

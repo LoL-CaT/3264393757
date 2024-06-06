@@ -1,0 +1,56 @@
+﻿{from "pattern gun"      ; "f22"
+	{tag "agf"}
+	{filling "bullet76 rus"}
+	{fireSound "gun/75mm/75mm"}
+	{reloadSound "gun_r00_reload"}
+	("rt" rt(6.75))
+	("speed" s(700))
+	("75-76caliber")
+	("damage_arena" args 82 59 47 25);данные по снаряду БР-350А
+	("health_damage_arena" args 140)
+	("realism_range_medium_2")
+	("accuracy_medium_at_cannon")
+	("accuracy_at_cannon_stan_f22")	
+	{bullet_view "shell_view_88mm"}
+	{parameters attack_ground_forced
+		("rt" rt(5.5))
+		{speed 117}			
+		{spreading 
+			{radiusTable {0 0} {40 2} {55 3} {150 14} {250 ("ak" k(22))} {500 ("ak" k(35))}}
+		}		
+		{ZeroingAccuracy 
+			{Distance 30
+				{AccuracyTable 1 1}
+			}
+			{Distance 75
+				{AccuracyTable 1 1}
+			}
+			{Distance 125
+				{AccuracyTable 1 1}
+			}
+			{Distance 250
+				{AccuracyTable 1 1}
+			}
+		}
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}	
+        ("realism_range_long")			
+	}
+	{parameters "fg"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "human"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "house"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "vehicle"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "sandbag"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+	{parameters "fg" "cannon"
+		{aimtype angle_by_distance 0 5 30 6 50 7 60 8 100 10 250 15 500 25}			
+	}
+}
