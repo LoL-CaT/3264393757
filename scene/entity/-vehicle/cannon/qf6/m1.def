@@ -1,0 +1,102 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{props "vehicle" "cannon" "medium" "wheeled" "round_sandbag2" "art_point" "vision_lev03_can" "texmod_w_cf_cd"}
+	("v_gun" n(01))
+	("v_gun" n(02))
+	("v_gun" n(_rot01))
+	("armor_medium_hp" hp(200))
+	("round_sandbag2")
+	("round_dot2")
+	("trench_cannon")	
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+
+	("crew_wheeled_gun")
+	("crew_2_supporter_any_set"
+		place_l1(charger_l1)
+		place_r1(charger_r1)
+	)
+	{boarder
+		{anm "gunner"
+			{forward	{end "cannon_small_gunner" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "charger_r1"
+			{forward {end "artillery_support_r" 10}}
+		}
+		{anm "charger_l1"
+			{forward {end "artillery_support_l" 10}}
+		}
+		{anm "seat1"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat2"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat3"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat4"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "driver1"
+		} 
+		{anm "driver2"
+		}
+	}
+
+	{extender "inventory"
+		{box
+			{item "ammo bullet57 ap eng std" 25}
+			{item "ammo bullet57 fg eng std" 60}
+			{item "sandbag_kit2"}
+			{item "dot_kit"}
+		}
+	}
+	{Weaponry
+
+		{place "gun"
+			{weapon "57mm_oqf" filled}
+
+			{Rotate}
+			("abm_field_gun")
+		}
+	}
+	{mass 1150}
+	{extension "qf6.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mgun_browning_driver_r" "mgun_browning_driver_l"}
+			{aim "cannon_small_commander_aim" "" "" ""}
+			{fire  "cannon_small_commander_reaction" "cannon_small_charger_reaction" "cannon_small_support_l_reaction" "cannon_small_support_r_reaction"}
+			{reload  "cannon_small_commander_charge" "cannon_small_charger_charge" "cannon_small_support_charge_l" "cannon_small_support_charge_r"}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"}{workers "driver1" "driver2" "driver_l1" "driver_r1"}}
+		{attack {obstacle "open"}{workers "gunner" "commander" "charger_l1" "charger_r1"}}
+		{trailing {workers "seat1" "seat2" "seat3" "seat4"}}
+	}
+	{Chassis "track"
+		("arena_cannon_medium_4gunners_carrier")
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{bone "basis"
+		{limits}
+		{speed 0.01}
+	}	
+	{bone "turret"
+		{limits -20 20}
+		{speed 0.025}
+	}
+	{bone "gun_rot"
+		{limits -5 15}
+		{speed 0.01}
+	}
+}

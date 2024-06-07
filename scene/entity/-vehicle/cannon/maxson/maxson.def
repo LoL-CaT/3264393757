@@ -1,0 +1,127 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{props "vehicle" "cannon" "cannon_small" "flak" "wheeled" "round_sandbag2" "vision_lev02" "art_spec" "turret_rotator" "texmod_w_cf_cd" "anm_aa"}
+	{collider "cannon_small"}
+   	 {targetSelector "cannon_hmgun_aa"}
+	
+	(define "v_body"
+	{volume "%name%s%n"
+		{tags "body"}
+		{component "%name"}
+	}
+	)
+	("v_body" name(body) s() n(01))
+	("v_body" name(body) s() n(02))
+	("v_body" name(body) s() n(03))
+	("v_body" name(body) s() n(04))
+ 	("v_body" name(turret) s() n(01))
+	("v_body" name(turret) s() n(02))
+	(define "v_shields"
+		("v_body" name(shield) s(_front) n())
+	)
+	("v_shields" n())
+	("v_gun" n(_rot01))
+	("v_gun" n(_rot02))
+	("v_gun" n(_rot03))
+	("v_gun" n(_rot04))
+	("v_gun" n(_rot05))
+	("v_gun" n(_rot06))
+	("v_gun" n(01))
+	("v_gun" n(02))
+	("v_gun" n(03))
+	("v_gun" n(04))
+	("armor_light_hp" hp(150))
+
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+
+	{component "shield_front"
+		{RepairTime 20}
+	}
+	{extender "shield"
+			{on}
+	}
+
+	("round_sandbag3")
+	("round_dot2")
+	("crew_wheeled_gun")
+	("crew_2_supporter")
+	("crew_human" place(driver) bone(driver)	door(emit1) animation(driver1))
+	("crew_human" place(gunner) bone(gunner)	door(emit1) animation(gunner))
+	{boarder
+		{anm "gunner"
+			{forward	{end "zenit_pointer_right" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat2"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat3"
+			{forward {end "cannon_crew" 10}}
+		}
+		{link "seat1" "driver1"}
+	}
+	("crew_human" place(seat1) bone(seat1)		door(emit1) animation(seat1))
+	("crew_human" place(seat2) bone(seat2)		door(emit2) animation(seat2))
+	("crew_human" place(seat3) bone(seat3)		door(emit3) animation(seat3))
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mortar_driver_r"}
+			;{aim "cannon_flak38-1_gunlayer" "" "" ""}	
+			{reload "" "cannon_lg40_charger" "" ""}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"} {workers "driver1" "driver2" "supportmove1"}}
+		{attack {obstacle "open"} {workers "gunner" "commander" "support1"}}
+		{trailing {workers "seat1" "seat2" "seat3"}}
+	}
+	
+	
+	{mass 500}
+	{extension "maxson.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+
+	{extender "inventory"
+		{box
+			{clear}		
+			{item "hmgun" 800}	
+			{item "repair_kit"}
+			{item "plant" 3}
+			{item "sandbag_kit2"}			
+		}
+	}	
+	{Weaponry
+		{place "gun"
+			{weapon "browning_x4_stan" filled}
+			{foresight "foresight1"}
+			{Barrels 4}
+		}
+	}
+	{mass 500}
+	{bone "gun_rot"
+		{speed 0.03}
+		{limits -5 80}
+	}
+	{bone "turret"
+		{speed 0.03}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}	
+	{Chassis "human_carrier"
+		("arena_flak_stan_4gunners_carrier")
+	}
+}

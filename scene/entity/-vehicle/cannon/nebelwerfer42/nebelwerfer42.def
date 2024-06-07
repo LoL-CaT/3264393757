@@ -1,0 +1,113 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{props "vehicle" "cannon" "nebelwerfer" "wheeled" "round_sandbag2" "vision_lev05_can" "reactive_artyllery" "texmod_cw_cf_cd"}
+	{able "-emit_on_attack"}
+	{collider "cannon_small"}
+	{targetSelector "cannon_rocket"}
+	("trench_cannon")
+	{volume "body2"
+		{tags "body"}
+		{component "body"}
+	}
+	
+	("v_gun" n(01))
+	("v_gun" n(02))
+	("armor_light_hp" hp(250))
+	{armor	
+        	("module_gun" tur(7) t_thr(3) t_dur(50) hp_k(1))
+	}
+
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+
+	("crew_2_human")
+	("crew_human" place(driver1) bone(driver1)	door(emit1) animation(driver1))
+	("crew_human" place(driver2) bone(driver2)	door(emit2) animation(driver2))
+	("crew_human" place(seat1) bone(seat1)		door(emit1) animation(seat1))
+	("crew_human" place(seat2) bone(seat2)		door(emit2) animation(seat2))
+	("crew_2_supporter")
+
+	{boarder
+		{anm "gunner"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_charger" 10}}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat2"
+			{forward {end "cannon_crew" 10}}
+		}
+		{link "driver1" "gunner"}
+		{link "driver2" "commander"}
+		{link "seat1" "driver1"}
+		{link "seat2" "driver2"}
+
+	}
+	{extender "inventory"
+		{box
+	        {item "repair_kit" {cell 4 0}}
+			{item "ammo 210mm_rocket" 6}
+			{item "sandbag_kit2"}
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "weapon nebel" filled}
+			{Barrels 6}
+			{StationaryFiring}
+			("abm_field_gun")
+		}
+	}
+
+	{mass 605}
+	{Extension "nebelwerfer42.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+
+	{extender "cannon"
+		{attach_time 10}				;специальный дебаф для развёртываемых РСЗО
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mgun_browning_driver_r" "mgun_browning_driver_l"}
+			{aim "cannon_small_commander_aim" "" "" ""}
+			{fire  "cannon_small_commander_reaction" "cannon_small_charger_reaction" "cannon_small_support_l_reaction" "cannon_small_support_l_reaction"}
+			{reload "" "" "" ""}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"} {workers "driver1" "driver2" "supportmove1" "supportmove2"}}
+		{attack {obstacle "open"} {workers "gunner" "commander" "support1" "support2"}}
+		{trailing {workers "seat1" "seat2" "seat3" "seat4"}}
+	}
+	{Chassis "track"
+		("car_trace" fx("tracewheel05") step(0.07) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("loco_big")
+	}
+	{bone "basis"
+		{speed 0.005}
+	}
+	{bone "turret"
+		{limits 0 35}
+	}
+	{brain
+		{properties
+			{fire_mode hold}
+		}
+	}	
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator4" {bone "gun_rotator3"} {on}}
+	}	
+}

@@ -1,0 +1,90 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{Extension "nebelwerfer41.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	{props "vehicle" "cannon" "nebelwerfer" "wheeled" "round_sandbag2" "vision_lev05_can" "reactive_artyllery"}
+;	{able "emit_on_attack"}
+	{targetSelector "cannon_rocket"}
+	{collider "cannon_small"}
+	("trench_cannon")	
+	{volume "body*"
+        {tags "body"}
+		{component "body"}
+	}
+	("v_gun")
+	("armor_light_hp" hp(250))
+	("round_sandbag2")
+	("round_dot2")
+
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+
+    ("crew_wheeled_gun")
+	("crew_2_supporter")
+
+	{boarder
+		{anm "gunner"
+			{forward	{end "cannon_small_gunner" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat2"
+			{forward {end "cannon_crew" 10}}
+		}
+	}
+	{extender "inventory"
+		{box
+			{item "ammo 150mm_rocket" 6}
+			{item "sandbag_kit2"}
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "nebel41" filled}
+			{Barrels 6}
+			{StationaryFiring}
+			("abm_field_gun")			
+		}
+	}
+	{mass 540}
+	{extender "cannon"
+		{attach_time 10}				;специальный дебаф для развёртываемых РСЗО
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mgun_browning_driver_r" "mgun_browning_driver_l"}
+			{aim "cannon_small_commander_aim" "" "" "" "" ""}
+			{fire  "cannon_small_commander_reaction" "cannon_small_charger_reaction" "cannon_small_support_l_reaction" "cannon_small_support_l_reaction"}
+			{reload  "" "" "" "" "" ""}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"} {workers "driver1" "driver2" "supportmove1" "supportmove2"}}
+		{attack {obstacle "open"} {workers "gunner" "commander" "support1" "support2"}}
+		{trailing {workers "seat1" "seat2" "seat3" "seat4"}}
+		{rotate_ik_Limit -1}
+	}
+	{Chassis "track"
+		("car_trace" fx("tracewheel05") step(0.07) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("loco_big")
+	}
+	{brain
+		{properties
+			{fire_mode hold}
+		}
+	}
+	{bone "gun"
+		{limits -65 5}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}	
+}

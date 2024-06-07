@@ -1,0 +1,184 @@
+;Exported by:	 Oleksandr Tsaprylov
+;Date:			 08.04.2022 13:38:56
+;File:			 E:\projects\gem2-mdl-soldiers\models\unit\vehicle\Bulldog_Lanz_38\Bulldog_Lanz_38hp_x_anm.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{animation
+				{sequence "break" {file "body_b"}{speed 0.5}}
+			}
+			{Position 2.0636 	 0.8064 	 23.6464}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone "engine"
+				{parameters "id=engine;"}
+				{animation
+					{sequence "break" {file "engine_b"}{speed 0.5}}
+				}
+				{LODView
+					{poly "engine"}
+					{poly "engine_lod1"}
+					{poly "engine_lod2"}
+					{poly "engine_lod3"}
+				}
+			}
+		}
+		{bone "pivot_back"
+			{parameters "id=body;"}
+			{Position -14.3312 	 -0.1001 	 14.0076}
+			{LODView
+				{poly "pivot_back"}
+				{poly "pivot_back_lod1"}
+				{poly "pivot_back_lod2"}
+				{poly "pivot_back_lod3"}
+			}
+			{bone revolute "wheell2"
+				{parameters "id=wheelleft2;support=1;radius=0.66;"}
+				{matrix34
+					-1 	 0 	 0
+					0 	 0 	 1
+					0 	 1 	 0
+					0.7575 	 14.3284 	 -0.0513
+				}
+				{LODView
+					{poly "wheell2"}
+					{poly "wheell2_lod1"}
+					{poly "wheell2_lod2"}
+					{poly "wheell2_lod3"}
+				}
+			}
+			{bone revolute "wheelr2"
+				{parameters "id=wheelright2;support=1;radius=0.66;"}
+				{matrix34
+					-1 	 0 	 0
+					0 	 0 	 1
+					0 	 1 	 0
+					0.7575 	 -14.3284 	 -0.0513
+				}
+				{LODView
+					{poly "wheelr2"}
+					{poly "wheelr2_lod1"}
+					{poly "wheelr2_lod2"}
+					{poly "wheelr2_lod3"}
+				}
+			}
+		}
+		{bone "pivot_front"
+			{parameters "id=body;"}
+			{Position 24.306 	 -0.0064 	 10.4869}
+			{LODView
+				{poly "pivot_front"}
+				{poly "pivot_front_lod1"}
+				{poly "pivot_front_lod2"}
+				{poly "pivot_front_lod3"}
+			}
+			{bone "steer_l"
+				{Position 1.0909 	 15.8135 	 -0.543}
+				{bone revolute "wheell1"
+					{parameters "id=wheelleft1;support=1;radius=0.46;"}
+					{matrix34
+						-1 	 0 	 0
+						0 	 0 	 1
+						0 	 1 	 0
+						0 	 -2.9359 	 0
+					}
+					{LODView
+						{poly "wheell1"}
+						{poly "wheell1_lod1"}
+						{poly "wheell1_lod2"}
+						{poly "wheell1_lod3"}
+					}
+				}
+			}
+			{bone "steer_r"
+				{parameters "lastpose=undefined;"}
+				{Position 1.0909 	 -15.8007 	 -0.543}
+				{bone revolute "wheelr1"
+					{parameters "id=wheelright1;support=1;radius=0.46;"}
+					{matrix34
+						-1 	 0 	 0
+						0 	 0 	 1
+						0 	 1 	 0
+						0 	 2.7357 	 0
+					}
+					{LODView
+						{poly "wheelr1"}
+						{poly "wheelr1_lod1"}
+						{poly "wheelr1_lod2"}
+						{poly "wheelr1_lod3"}
+					}
+				}
+			}
+		}
+	}
+}
+{volume "body"
+	{box 26.3721 18.7759 11.9517}
+	{bone "body"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		-18.9435 	 -0.9462 	 -9.0832
+	}
+}
+{volume "engine"
+	{box 27.9088 12.3526 17.5761}
+	{bone "engine"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		7.6273 	 -0.6166 	 -1.4475
+	}
+}
+{volume "wheelleft1"
+	{cylinder 9.20017 4.89034}
+	{bone "wheell1"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		-0.0014 	 -0.0568 	 0.1113
+	}
+}
+{volume "wheelleft2"
+	{cylinder 13.3471 10.405}
+	{bone "wheell2"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		0.0599 	 0.0386 	 0.2608
+	}
+}
+{volume "wheelright1"
+	{cylinder 9.20017 4.89034}
+	{bone "wheelr1"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		0.0898 	 -0.0568 	 0.0717
+	}
+}
+{volume "wheelright2"
+	{cylinder 13.3471 10.405}
+	{bone "wheelr2"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		0.0599 	 0.0386 	 0.2389
+	}
+}

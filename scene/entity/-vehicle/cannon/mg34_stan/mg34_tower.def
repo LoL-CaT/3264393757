@@ -1,0 +1,65 @@
+{actor
+	(include "/properties/cannon_mgun_1.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{simulation {able 1}}
+	{props "place_mg_stan" "cannon_small" "-with_gun" "texmod_w" "anm_mgun_stan" "icon_for_linked"}
+	{targetSelector "cannon_bullet"}
+	{targetClass "cannon_tower"}
+	
+	{collider "cannon_small"}
+
+	{Weaponry
+		{place "mgun"
+			{weapon "mg34_stan" filled}
+			{charger "gunner"}
+		}
+	}
+	{extender "inventory"
+		{box
+			{clear}
+			{item "ammo" "mgun" 2500}
+		}
+	}
+	{armor {health 100}}
+	{mass 31}
+
+	{Extension "mg34_tower.mdl"}
+	{bone "turret" 
+		{speed 0.04}
+		{limits -50 50}
+	}
+	{bone "gun_rot_vert" 
+		{speed 0.05}
+		{limits -40 15}
+	}
+
+	{placer	{place "gunner" {visor "main"}}}
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_mgun_stan1"}}
+		}
+	}
+
+	{Volume "body"
+		{tags "body"}
+		{able{obstacle 0}}
+		{thickness 1}
+		{component "body"}
+	}
+	{Volume "touch"
+		{Box 14.6637 12.7125 30.6316}
+		{Bone "body"}
+		{Position 1.8832	0	-7.5}
+		{able clear {touch}}
+	}
+	{extension "sensor_tower.ext"}
+	{extender "cannon"
+		{animation
+			{aim ""}
+			{reload "mgun_stan_charger1"}
+		}
+		{move {workers clear} {obstacle "close"}}
+		{attack {workers "gunner"} {obstacle "open"}}
+	;	{rotate_bone "turret"}
+	}
+}

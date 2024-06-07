@@ -1,0 +1,147 @@
+;Exported by:	 seryoga
+;Date:			 15.09.2017 11:06:32
+;File:			 D:\git\gem2-mdl-soldiers\models\unit\vehicle\pm38\x\PM_38_x.max
+{skeleton
+	{bone revolute "turret"
+		{limits -180 180}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{matrix34
+				0.9763 	 0 	 -0.2164
+				0 	 1 	 0
+				0.2164 	 0 	 0.9763
+				-0.1968 	 0 	 0
+			}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone "gun"
+				{parameters "id=gun;"}
+				{matrix34
+					0.8842 	 0.0668 	 -0.4624
+					-0.0851 	 0.9962 	 -0.0189
+					0.4594 	 0.056 	 0.8865
+					-0.3586 	 -0.3852 	 0.7899
+				}
+				{LODView
+					{poly "gun"}
+					{poly "gun_lod1"}
+					{poly "gun_lod2"}
+					{poly "gun_lod3"}
+				}
+				{bone "rod"
+					{parameters "id=gun;"}
+					{matrix34
+						0.4614 	 0.0066 	 0.8872
+						-0.0064 	 1 	 -0.0041
+						-0.8872 	 -0.0038 	 0.4615
+						1.1186 	 0.0212 	 10.2084
+					}
+					{LODView
+						{poly "rod"}
+						{poly "rod_lod1"}
+						{poly "rod_lod2"}
+						{poly "rod_lod3"}
+					}
+					{bone "stand"
+						{parameters "id=gun;"}
+						{matrix34
+							0.9997 	 -0.0263 	 -0.0004
+							0.0262 	 0.9962 	 0.0831
+							-0.0018 	 -0.0831 	 0.9965
+							0.3107 	 0.2487 	 -5.3561
+						}
+						{LODView
+							{poly "stand"}
+							{poly "stand_lod1"}
+							{poly "stand_lod2"}
+							{poly "stand_lod3"}
+						}
+						{bone "standl"
+							{parameters "id=gun;"}
+							{Position -0.0088 	 0.1291 	 3.307}
+							{LODView
+								{poly "standl"}
+								{poly "standl_lod1"}
+								{poly "standl_lod2"}
+								{poly "standl_lod3"}
+							}
+						}
+						{bone "standr"
+							{parameters "id=gun;"}
+							{matrix34
+								0.9977 	 0.0634 	 -0.0229
+								-0.0663 	 0.985 	 -0.1595
+								0.0125 	 0.1607 	 0.9869
+								-0.047 	 0.1579 	 3.307
+							}
+							{LODView
+								{poly "standr"}
+								{poly "standr_lod1"}
+								{poly "standr_lod2"}
+								{poly "standr_lod3"}
+							}
+						}
+						{bone "lever"
+							{parameters "id=gun;"}
+							{LODView
+								{poly "lever"}
+								{poly "lever_lod1"}
+								{poly "lever_lod2"}
+								{poly "lever_lod3"}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+{volume "body"
+	{box 2.31055 3.85804 0.353291}
+	{bone "body"}
+	{Position 0.121 	 0 	 0.3676}
+}
+{volume "gun"
+	{cylinder 0.474419 12.1891}
+	{bone "gun"}
+	{matrix34
+		0.9948 	 -0.05 	 0.0888
+		0.056 	 0.9962 	 -0.0668
+		-0.0852 	 0.0714 	 0.9938
+		-0.0049 	 0.0503 	 6.0271
+	}
+}
+{volume "rod"
+	{cylinder 0.256144 5.79881}
+	{bone "stand"}
+	{Position 0.0242 	 0.1253 	 2.4657}
+}
+{volume "standl"
+	{cylinder 0.256144 7.65444}
+	{bone "standl"}
+	{matrix34
+		0.9803 	 -0.1772 	 -0.0875
+		0.197 	 0.8432 	 0.5002
+		-0.0148 	 -0.5076 	 0.8615
+		-0.1452 	 2.4492 	 -3.1213
+	}
+}
+{volume "standr"
+	{cylinder 0.256144 7.94438}
+	{bone "standr"}
+	{matrix34
+		0.9677 	 0.2152 	 -0.1312
+		-0.2519 	 0.8387 	 -0.4828
+		0.0062 	 0.5003 	 0.8658
+		0.0779 	 -2.574 	 -3.3216
+	}
+}

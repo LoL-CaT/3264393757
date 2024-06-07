@@ -1,0 +1,149 @@
+;Exported by:	 joomb
+;Date:			 22.06.2021 11:49:22
+;File:			 D:\git\gem2-mdl-soldiers\models\unit\vehicle\browning_stan\brovning_stan_x.max
+{skeleton
+	{animation
+		{sequence "close" {speed 0.5}}
+	}
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0 	 0 	 12.1336}
+			{poly "body"}
+			{bone "stand"
+				{parameters "id=body;"}
+				{Position 1.7409 	 0 	 -1.6069}
+				{LODView
+					{poly "stand"}
+					{poly "stand_lod1"}
+					{poly "stand_lod2"}
+					{poly "stand_lod3"}
+				}
+			}
+			{bone "support1"
+				{parameters "id=body;"}
+				{matrix34
+					0.8138 	 -0.5 	 0.2962
+					0.4698 	 0.866 	 0.171
+					-0.342 	 0 	 0.9397
+					-1.1873 	 0.1815 	 -1.3237
+				}
+				{LODView
+					{poly "support1"}
+					{poly "support1_lod1"}
+					{poly "support1_lod2"}
+					{poly "support1_lod3"}
+				}
+			}
+			{bone "support2"
+				{parameters "id=body;"}
+				{matrix34
+					0.8138 	 0.5 	 0.2962
+					-0.4698 	 0.866 	 -0.171
+					-0.342 	 0 	 0.9397
+					-1.1879 	 -0.1839 	 -1.3238
+				}
+				{LODView
+					{poly "support2"}
+					{poly "support2_lod1"}
+					{poly "support2_lod2"}
+					{poly "support2_lod3"}
+				}
+				{bone "crank"
+					{parameters "id=body;"}
+					{matrix34
+						0.866 	 -0.5 	 0
+						0.5 	 0.866 	 0
+						0 	 0 	 1
+						-6.9862 	 0.5396 	 0.0639
+					}
+					{LODView
+						{poly "crank"}
+						{poly "crank_lod1"}
+						{poly "crank_lod2"}
+						{poly "crank_lod3"}
+					}
+				}
+			}
+			{bone revolute "turret"
+				{parameters "id=turret;"}
+				{limits -15 15}
+				{speed 0.01}
+				{Position 0 	 0 	 0}
+				{LODView
+					{poly "turret"}
+					{poly "turret_lod1"}
+					{poly "turret_lod2"}
+					{poly "turret_lod3"}
+				}
+				{bone revolute "gun_rot"
+					{parameters "id=gun;"}
+					{limits -15 5}
+					{speed 0.08}
+					{orientation
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+					}
+					{bone "mgun"
+						{Position -6.715 	 -1.2101 	 0}
+					}
+				}
+				{bone "visor"
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						0 	 0 	 11.0695
+					}
+				}
+			}
+		}
+	}
+}
+{volume "body"
+	{polyhedron}
+	{bone "body"}
+	{Position -0.1279 	 0 	 -2.2735}
+}
+{volume "stand"
+	{cylinder 0.380573 12.3833}
+	{bone "stand"}
+	{matrix34
+		0.7009 	 0 	 0.7133
+		0.0203 	 0.9996 	 -0.0199
+		-0.713 	 0.0284 	 0.7006
+		4.6486 	 -0.1471 	 -4.2074
+	}
+}
+{volume "support1"
+	{cylinder 0.380573 17.8275}
+	{bone "support1"}
+	{matrix34
+		-0.0064 	 -0.1173 	 0.9931
+		-0.0273 	 0.9927 	 0.1171
+		-0.9996 	 -0.0264 	 -0.0095
+		-8.7236 	 -0.351 	 -0.0833
+	}
+}
+{volume "support2"
+	{cylinder 0.380573 21.2559}
+	{bone "support2"}
+	{matrix34
+		-0.046 	 0.03 	 0.9985
+		0.0125 	 0.9995 	 -0.0295
+		-0.9989 	 0.0111 	 -0.0463
+		-10.6162 	 0.1211 	 -0.4604
+	}
+}
+{volume "turret"
+	{cylinder 0.667367 1.25258}
+	{bone "turret"}
+	{Position 0 	 0 	 -0.1443}
+}

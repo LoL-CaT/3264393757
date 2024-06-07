@@ -1,0 +1,76 @@
+{game_entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{props "vehicle" "cannon" "turret_rotator" "heavy" "bkg_sound" "howitzer" "two_barrel_cannon_ny" "xmas_present_tank" "stat_gun_hotbar"}
+	{simulation {able 0}}
+	{targetSelector "cannon_howitzer"}		
+	{targetClass "cannon_howitzer"}	
+	{obstacleId "unbreakable"}
+	{collider "tank.heavy"}
+	("v_gun" n(1))
+	("v_gun" n(2))
+	("armor_medium_hp" hp(250))
+	{armor
+		("module_gun" tur(200) t_thr(200) t_dur(60) hp_k(0))
+	}
+
+	("crew_2_human")
+
+	{Boarder
+	{anm "gunner"
+		{forward	{end "pose_mgun_stan"}}
+	}
+	{anm "commander"
+		{forward	{end "pose_mgun_stan"}}
+	}
+		{place "gunner"}
+		{door "emit1"}
+		{door "emit2"}
+		{link "emit1" "gunner"}
+		{link "emit2" "commander"}
+		{place "commander"}
+		{door "emit1"}
+		{door "emit2"}
+		{link "emit1" "gunner"}
+		{link "emit2" "commander"}
+	}
+	
+	{Volume "turret"
+		{component "turret"}
+	}
+	{Volume "gun1"
+		{component "gun"}
+	}
+
+	{Volume "gun2"
+		{component "gun"}
+	}
+
+	{extender "inventory"
+		{box
+			{item "bullet152 fg rus std" 100}
+		}
+	}	
+	{Weaponry
+		{place "gun"
+			{weapon "152mm_m1909_x2" filled}
+			{Barrels 2}
+			("abm_howitzer")
+		}
+	}
+	{mass 5000}
+	{Extension "120mm_l50_ny.mdl"}
+	{extender "cannon"
+		{## animation
+			{switch "close"}
+			{move "" ""}
+			{aim "" ""}
+			{fire  "" ""}
+			{reload  "" ""}
+		}
+		{move {workers clear} {obstacle "close"}}
+		{attack {workers clear} {obstacle "open"}}
+	}	
+	{texmod "ny"}			
+}
+

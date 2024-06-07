@@ -1,0 +1,180 @@
+;Exported by	: KobaA
+;Date			: 20.03.2023 10:15:44
+;File			: D:\git\gem2-mdl-soldiers\models\inventory\-weapon\Maxim\Maxim_stan.max
+{skeleton
+	{animation
+		{sequence "close" {speed 0.5}}
+	}
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0.0161 	 0 	 2.954}
+			{poly "body" {lod 0}}
+			{poly "body_lod1" {lod 1}}
+			{poly "body_lod2" {lod 2}}
+			{poly "body_lod3" {lod 3 {last}}}
+			{bone revolute "turret"
+				{parameters "id=turret;"}
+				{limits -20 20}
+				{speed 0.01}
+				{Position -3.0313 	 0 	 1.5979}
+				{poly "turret" {lod 0}}
+				{poly "turret_lod1" {lod 1}}
+				{poly "turret_lod2" {lod 2}}
+				{poly "turret_lod3" {lod 3 {last}}}
+				{bone "visor2"
+					{Position 0.9638 	 0.4033 	 9.7941}
+				}
+				{bone "visor"
+					{Position 0.9638 	 0.4033 	 6.186}
+				}
+				{bone revolute "mgun"
+					{parameters "id=gun;"}
+					{limits -20 20}
+					{speed 0.08}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0246 	 0 	 2.1127
+					}
+					{bone "fxshell"
+						{matrix34
+							1 	 0 	 0
+							0 	 0 	 -1
+							0 	 1 	 0
+							0.7538 	 0.2694 	 0
+						}
+					}
+				}
+			}
+			{bone "pivot_front"
+				{bone revolute "wheell"
+					{parameters "id=wheelleft;support=1;radius=0.15;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0095 	 4.878 	 -0.0055
+					}
+					{poly "wheell" {lod 0}}
+					{poly "wheell_lod1" {lod 1}}
+					{poly "wheell_lod2" {lod 2}}
+					{poly "wheell_lod3" {lod 3 {last}}}
+					{bone "fxtracel1"
+						{matrix34
+							-0.9659 	 0.2588 	 0
+							0 	 0 	 1
+							0.2588 	 0.9659 	 0
+							-0.512 	 -2.9038 	 0
+						}
+					}
+				}
+				{bone revolute "wheelr"
+					{parameters "id=wheelright;support=1;radius=0.15;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0095 	 -4.878 	 -0.0055
+					}
+					{poly "wheelr" {lod 0}}
+					{poly "wheelr_lod1" {lod 1}}
+					{poly "wheelr_lod2" {lod 2}}
+					{poly "wheelr_lod3" {lod 3 {last}}}
+					{bone "fxtracer1"
+						{matrix34
+							-0.9659 	 0.2588 	 0
+							0 	 0 	 1
+							0.2588 	 0.9659 	 0
+							0 	 -2.9485 	 0
+						}
+					}
+				}
+			}
+			{bone "pivot_back"
+				{Position -17.8008 	 0 	 0}
+			}
+		}
+		{bone "emit1"
+			{Position -24.2743 	 0 	 0}
+		}
+		{bone "driver"
+			{Position 14.9992 	 -1.6889 	 0}
+		}
+		{bone "support1"
+			{Position -18.9343 	 6.0666 	 0}
+		}
+		{bone "support2"
+			{Position -18.9343 	 -6.0665 	 0}
+		}
+		{bone "gunner"
+			{Position -26.2201 	 0 	 0}
+		}
+	}
+}
+{obstacle "close"
+	{obb2
+		{center -5.30863 0}
+		{extent 12.9184 2.85231}
+		{axis -1 0}
+	}
+	{Tags "close"}
+	{rotate}
+}
+{obstacle "obstacle"
+	{obb2
+		{center -2.82729 -5.68434e-014}
+		{extent 6.88976 5.90551}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body01"
+		{box 6.71783 5.73145 2.16535}
+		{bone "body"}
+		{Position -2.9628 	 0 	 0.3456}
+	}
+	{"body02"
+		{box 11.811 5.7286 0.731643}
+		{bone "body"}
+		{Position -10.9803 	 0 	 -1.0004}
+	}
+	{"turret01"
+		{polyhedron}
+		{bone "turret"}
+		{Position -2.2366 	 0.04 	 0.3024}
+	}
+	{"turret02"
+		{polyhedron}
+		{bone "turret"}
+		{matrix34
+			0 	 0 	 -1
+			0 	 1 	 0
+			1 	 0 	 0
+			0.1793 	 0.4648 	 3.9671
+		}
+	}
+	{"wheelleft"
+		{cylinder 2.95276 0.984252}
+		{bone "wheell"}
+		{matrix34
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 -1
+			0 	 0 	 -0.0053
+		}
+	}
+	{"wheelright"
+		{cylinder 2.95276 0.984252}
+		{bone "wheelr"}
+		{Position 0 	 0 	 0.0053}
+	}
+}

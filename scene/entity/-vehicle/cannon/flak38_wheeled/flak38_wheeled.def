@@ -1,0 +1,115 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{Extension "flak38_wheeled.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	{props "vehicle" "cannon" "cannon_small" "flak" "barrel1" "wheeled" "round_sandbag2" "vision_lev02" "art_spec" "turret_rotator" "texmod_w_cw_cf_c2f_cd" "anm_empty_commander_small"}
+	{placer	{place "gunner" {UseVision 0}}}
+	{collider "cannon_small"}
+	("trench_cannon")	
+	{targetSelector "cannon_autocannon_aa"}
+	(define "v_body"
+	{volume "%name%s%n"
+		{tags "body"}
+		{component "%name"}
+	}
+	)
+	("v_body" name(body) s() n(01))
+	("v_body" name(body) s() n(02))
+ 	("v_body" name(turret) s() n(01))
+	("v_body" name(turret) s() n(02))
+	("v_body" name(turret) s() n(03))
+	(define "v_shields"
+		("v_body" name(shield) s(l) n(%n))
+		("v_body" name(shield) s(r) n(%n))
+	)
+	("v_shields" n(01))
+	("v_shields" n(02))
+
+	("v_gun" n(01))
+	("v_gun" n(02))
+	("armor_light_hp" hp(150))
+	("round_sandbag3")
+	("round_dot2")
+
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+
+	("crew_wheeled_gun")
+	("crew_2_supporter_custom"
+		door3(emit3)	anm_seat3(seat3)
+		door4(emit4)	anm_seat4(seat4)
+	)
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_flak38-1_gunlayer" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "pose_m42_gunlayer" 10}}
+		}
+		{anm "seat2"
+			{forward {end "pose_flak38-1_gunlayer" 10}}
+		}
+		{anm "seat3"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat4"
+			{forward {end "cannon_crew" 10}}
+		}
+	}
+	{extender "inventory"
+		{box
+			{item "bullet20 ap ger flak" 250}
+			{item "bullet20 fg ger flak" 250}			
+			{item "sandbag_kit2"}
+			{item "repair_kit"}			
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "20mm_flak38_stan" filled}
+			("abm_zenite")
+		}
+	}  	
+	{mass 450}
+	{bone "basis"
+	      {limits}
+	}
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mgun_browning_driver_r" "mgun_browning_driver_l"}
+			{aim "cannon_flak38-1_gunlayer" "" "" ""}	
+			{reload "" "cannon_lg40_charger" "" ""}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"} {workers "driver1" "driver2" "supportmove1" "supportmove2"}}
+		{attack {obstacle "open"} {workers "gunner" "commander" "support1" "support2"}}
+		{trailing {workers "seat1" "seat2" "seat3" "seat4"}}
+	}
+	{bone "gun_rot"
+		{limits -30 40}
+	}
+	{bone "turret"
+		{speed 0.035}
+	}
+	{bone "basis"
+		{speed 0.025}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}	
+	
+	{Chassis "human_carrier"
+		("arena_flak_stan_4gunners_carrier")
+	}	
+}

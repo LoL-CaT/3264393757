@@ -1,0 +1,141 @@
+;Exported by:	 KobaA
+;Date:			 24.11.2020 14:48:43
+;File:			 G:\_GIT_\gem2\gem2-mdl-soldiers\models\inventory\-weapon\Maxim\Maxim_stan_x.max
+{skeleton
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0.0161 	 0 	 2.954}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone revolute "turret"
+				{parameters "id=turret;"}
+				{limits -20 20}
+				{speed 0.01}
+				{Position -3.0313 	 0 	 1.5979}
+				{LODView
+					{poly "turret"}
+					{poly "turret_lod1"}
+					{poly "turret_lod2"}
+					{poly "turret_lod3"}
+				}
+				{bone revolute "mgun"
+					{parameters "id=gun;"}
+					{limits -20 20}
+					{speed 0.08}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0246 	 0 	 2.1127
+					}
+				}
+				{bone "gunner"
+					{Position -23.205 	 0 	 -4.5519}
+				}
+			}
+			{bone "pivot_front"
+				{bone revolute "wheell"
+					{parameters "id=wheelleft;support=1;radius=0.15;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0095 	 4.878 	 -0.0055
+					}
+					{LODView
+						{poly "wheell"}
+						{poly "wheell_lod1"}
+						{poly "wheell_lod2"}
+						{poly "wheell_lod3"}
+					}
+				}
+				{bone revolute "wheelr"
+					{parameters "id=wheelright;support=1;radius=0.15;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0095 	 -4.878 	 -0.0055
+					}
+					{LODView
+						{poly "wheelr"}
+						{poly "wheelr_lod1"}
+						{poly "wheelr_lod2"}
+						{poly "wheelr_lod3"}
+					}
+				}
+			}
+			{bone "pivot_back"
+				{Position -17.8008 	 0 	 0}
+			}
+		}
+	}
+}
+{obstacle "close"
+	{obb2
+		{center -5.30863 0}
+		{extent 12.9184 2.85231}
+		{axis -1 0}
+	}
+	{Tags "close"}
+	{rotate}
+}
+{obstacle "obstacle"
+	{obb2
+		{center -2.82729 -5.68434e-014}
+		{extent 6.88976 5.90551}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{volume "body01"
+	{box 6.71783 5.73145 2.16535}
+	{bone "body"}
+	{Position -2.9628 	 0 	 0.3456}
+}
+{volume "body02"
+	{box 11.811 5.7286 0.731643}
+	{bone "body"}
+	{Position -10.9803 	 0 	 -1.0004}
+}
+{volume "turret01"
+	{polyhedron}
+	{bone "turret"}
+	{Position -2.2366 	 0.04 	 0.3024}
+}
+{volume "turret02"
+	{polyhedron}
+	{bone "turret"}
+	{matrix34
+		0.0872 	 0 	 -0.9962
+		0 	 1 	 0
+		0.9962 	 0 	 0.0872
+		0.061 	 0.4648 	 3.9671
+	}
+}
+{volume "wheelleft"
+	{cylinder 2.95276 0.984252}
+	{bone "wheell"}
+	{matrix34
+		1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 -1
+		0 	 0 	 -0.0053
+	}
+}
+{volume "wheelright"
+	{cylinder 2.95276 0.984252}
+	{bone "wheelr"}
+	{Position 0 	 0 	 0.0053}
+}

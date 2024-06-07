@@ -1,0 +1,149 @@
+;Exported by: garry
+;Date:        Fri Feb 22 14:49:18 2008
+;File:        D:\-Projects-\-3DWork-\Model\Корабли\Antonio Da Noli\turret.max
+{Skeleton
+	{animation
+		{sequence "recoil" {speed 0.7}}
+		{sequence "xmas" {speed 0.5}}
+	}
+	{bone "basis"
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{bone "fx_h_point1"
+			{Position -5.29371	0	20.1342}
+			{bone "fx_point1"
+				{Position 0	-47.0425	0}
+			}
+		}
+		{bone "fx_h_point2"
+			{Matrix34
+				0	1	0
+				-1	0	0
+				0	0	1
+				-5.29267	0	20.1342
+			}
+			{bone "fx_point2"
+				{Position 0	-47.0425	0}
+			}
+		}
+		{bone "fx_h_point3"
+			{Matrix34
+				1	0	0
+				0	0	-1
+				0	1	0
+				-5.31736	0	20.1342
+			}
+			{bone "fx_point3"
+				{Position 0	-47.0425	0}
+			}
+		}
+		{bone revolute "turret"
+		{speed 0.01}
+			{parameters "ID=body;"}
+			{Position 0	0	-2.69449}
+			{poly "body"}
+			{bone revolute "gun_rot1"
+				{parameters "ID=turret;"}
+				{limits -10 75}
+				{Matrix34
+					0.996195	0	0.0871557
+					-0.0871557	0	0.996195
+					0	-1	0
+					-2.21103	0.00345221	31.8779
+				}
+				{poly "gun_rot1"}
+				{bone "gun2"
+					{parameters "ID=gun2;"}
+					{Matrix34
+						1	0	0
+						0	0	-1
+						0	1	0
+						-20.1098	-0.0528358	6.49298
+					}
+					{poly "gun2"}
+					{bone "shooter_c01"
+						{Position 100.707	0.710174	0.266878}
+					}
+					{bone "fx_h_point4"
+						{bone "fx_point4"
+							{Position 0	3.80558	0}
+						}
+					}
+				}
+				{bone "gun1"
+					{parameters "ID=gun1;"}
+					{Matrix34
+						1	0	0
+						0	0	-1
+						0	1	0
+						-19.9314	-0.0528318	-4.92945
+					}
+					{poly "gun1"}
+					{bone "shooter_c00"
+						{Position 100.529	0.869525	0.266874}
+					}
+					{bone "fx_h_point5"
+						{Position -0.178402	0.787559	0}
+						{bone "fx_point5"
+							{Position 0	3.80558	0}
+						}
+					}
+				}
+				{bone "foresight1"
+					{Matrix34
+						1	0	0
+						0	0	-1
+						0	1	0
+						81.3343	0.214048	0.00345521
+					}
+				}
+			}
+			{bone "turret1"
+				{parameters "ID=turret;"}
+				{poly "turret"}
+			}
+			{bone "commander"
+				{Position -20.0168	-18.7977	2.69448}
+			}
+			{bone "gunner"
+				{Position -20.0168	18.1597	2.69448}
+			}
+		}
+		{bone "emit2"
+			{Position -34.9094	20.1949	0.463551}
+			{visibility 0}
+		}
+		{bone "emit1"
+			{Position -34.9094	-18.5884	0.463551}
+			{visibility 0}
+		}
+	}
+}
+{Volume "gun1"
+	{Cylinder 2.57768 77.6751}
+	{Bone "gun1"}
+	{Matrix34
+		0	1	0
+		0	0	1
+		1	0	0
+		60.9799	0.66836	-0.0139315
+	}
+}
+{Volume "gun2"
+	{Cylinder 2.57768 77.6751}
+	{Bone "gun2"}
+	{Matrix34
+		0	1	0
+		0	0	1
+		1	0	0
+		61.1584	0.854042	-0.0139218
+	}
+}
+{Volume "turret1"
+	{polyhedron}
+	{Bone "turret"}
+	{Position -0.0431248	0.101931	2.69449}
+}

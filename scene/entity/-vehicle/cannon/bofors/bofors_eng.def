@@ -1,0 +1,115 @@
+{game_entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{extension "bofors.mdl"}
+	{props "vehicle" "cannon" "flak" "barrel1" "wheeled" "turret" "turret_rotator" "vision_lev03_can" "round_sandbag2" "level03" "art_spec" "texmod_w_cw_cf_cd" "anm_empty"}
+	{PatherID "cannon.large"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	("armor_light_hp" hp(200))
+	("round_sandbag_flak")
+	("round_dot2")
+	("trench_cannon")	
+	{targetSelector "cannon_autocannon_aa"}	
+
+	{Volume "body*"
+		{thickness 10}
+		{tags "body"}
+		{component "body"}
+	}
+	("v_gun" n(_rot1))
+	("v_gun" n(_rot2))
+	{Volume "wheelleft2"
+		{tags "wheelleft"}
+		{component "wheelleft"}
+	}
+	{Volume "wheelleft"
+	}
+	{Volume "wheelright2"
+		{tags "wheelright"}
+		{component "wheelright"}
+	}
+	{Volume "wheelright"
+	}
+
+	
+	{placer	
+		{place "gunner" {visor "main"} {useVision 0}}
+	}	
+	
+	("wheel" args "wheelright1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelleft2")
+
+	("crew_wheeled_gun")
+	("crew_2_supporter")
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_61K_gunlayer_right" 10}}
+		}
+		{anm "commander"
+			{forward	{end "pose_61K_gunlayer_left" 10}}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat2"
+			{forward {end "cannon_crew" 10}}
+		}
+	}
+
+	{extender "inventory"
+		{box
+			{item "bullet40 ap ally bofors" 100}
+			{item "bullet40 fg ally bofors" 100}
+			{item "sandbag_kit2"}	
+			{item "repair_kit"}	
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "40mm_bofors" filled}
+			("abm_zenite")
+		}
+	}
+
+	{mass 2100}
+	
+	{extender "cannon"
+		("attach_time")		
+		{animation
+			{aim "Cannon_61K_gunlayer_right" "Cannon_61K_gunlayer_left"}
+;			{fire	"" ""}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mgun_browning_driver_r" "mgun_browning_driver_l"}
+;			{reload  "" "cannon_flak38_charger_left"}
+			{switch "close"}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"}{workers "driver1" "driver2" "supportmove1" "supportmove2"}}
+		{attack {obstacle "open"} {workers "gunner" "commander" "support1" "support2"}}
+		{trailing {workers "seat1" "seat2" "seat3" "seat4"}}
+	}
+	{bone "turret"
+		{speed 0.028}
+	}
+	{bone "gun_rot"
+		{speed 0.01}
+		{limits -5 60}
+	}
+	{bone "foresight1"  {bone "shooter00"}};for flash gun
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{Chassis "human_carrier"
+		("arena_flak_stan_4gunners_carrier")
+	}
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+	}
+}

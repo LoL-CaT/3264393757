@@ -1,0 +1,116 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{Extension "pak37-t.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	{props "vehicle" "cannon" "cannon_small" "medium" "wheeled" "round_sandbag2" "vision_lev02_can" "art_point" "level02" "texmod_cw_cf_cd" "muzzle_brake"}
+	{collider "cannon_small"}
+	{PatherID "cannon.small"}
+	("armor_light_hp" hp(150))
+	("round_sandbag2")
+	("round_dot2")
+	("trench_cannon")
+	{volume "body"
+		{tags "body"}
+		{component "body"}
+		{thickness 15}
+	}
+	{Volume "turret"
+		{thickness 15}
+	}
+	("v_gun" n(_rot))
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+
+	("crew_wheeled_gun")
+	("crew_2_supporter_any_set"
+		place_l1(charger_l1)
+		place_r1(charger_r1)
+	)
+	{boarder
+		{anm "gunner"
+			{forward	{end "cannon_small_gunner" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "charger_r1"
+			{forward {end "artillery_support_r" 10}}
+		}
+		{anm "charger_l1"
+			{forward {end "artillery_support_l" 10}}
+		}
+		{anm "seat1"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat2"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat3"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat4"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "driver1"
+		} 
+		{anm "driver2"
+		}
+	}
+	{extender "inventory"
+		{box
+			{item "bullet47 ap ger std" 27}
+			{item "bullet47 fg ger std" 15}
+			{item "bullet47 apcr ger std" 3}
+			{item "sandbag_kit2"}
+			{item "dot_kit"}
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "47mm_pak37t" filled}
+			("abm_field_gun")
+		}
+	}
+	{mass 590}
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mgun_browning_driver_r" "mgun_browning_driver_l"}
+			{aim "cannon_small_commander_aim" "" "" ""}
+			{fire  "cannon_small_commander_reaction" "cannon_small_charger_reaction" "cannon_small_support_l_reaction" "cannon_small_support_r_reaction"}
+			{reload  "cannon_small_commander_charge" "cannon_small_charger_charge" "cannon_small_support_charge_l" "cannon_small_support_charge_r"}
+		}
+		{driver {workers "driver1" "driver2"}}	
+		{move {obstacle "close"}{workers "driver1" "driver2" "driver_l1" "driver_r1"}}
+		{attack {obstacle "open"}{workers "gunner" "commander" "charger_l1" "charger_r1"}}
+		{trailing {workers "seat1" "seat2" "seat3" "seat4"}}
+	}
+
+	{Chassis "track"
+		("car_trace" fx("tracewheel05") step(0.07) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("loco_small")
+	}
+	{bone "turret"
+		{limits -30 30}
+		{speed 0.025}
+	}
+	{bone "gun_rot"
+		{limits -15 30}	
+		{speed 0.01}
+	}
+	{bone "basis"
+	    {limits}
+	    {speed 0.01}
+	}
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}	
+	{Chassis "human_carrier"
+		("arena_cannon_light_4gunners_carrier")
+	}	
+}

@@ -1,0 +1,552 @@
+;Exported by	: joomb
+;Date			: 09.05.2023 15:46:21
+;File			: H:\git\gem2-mdl-soldiers\models\unit\vehicle\PO_2\PO-2_x.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0 	 0 	 7.0057}
+			{poly "body" {lod 0}}
+			{poly "body_lod1" {lod 1}}
+			{poly "body_lod2" {lod 2}}
+			{poly "body_lod3" {lod 3 {last}}}
+			{bone "engine"
+				{parameters "id=engine;"}
+				{Position 26.7043 	 0.0327 	 25.8736}
+				{poly "engine" {lod 0}}
+				{poly "engine_lod1" {lod 1}}
+				{poly "engine_lod2" {lod 2}}
+				{poly "engine_lod3" {lod 3 {last}}}
+				{bone "propeller"
+					{parameters "id=engine;"}
+					{Position 11.066 	 -0.0327 	 0.1033}
+					{poly "propeller" {lod 0}}
+					{poly "propeller_lod1" {lod 1}}
+					{poly "propeller_lod2" {lod 2}}
+					{poly "propeller_lod3" {lod 3 {last}}}
+					{bone "vane"
+						{parameters "id=engine;"}
+						{poly "vane" {lod 0}}
+						{poly "vane_lod1" {lod 1}}
+						{poly "vane_lod2" {lod 2}}
+						{poly "vane_lod3" {lod 3 {last}}}
+					}
+				}
+			}
+			{bone "body_back"
+				{Position -99.7349 	 0 	 16.3472}
+				{bone "pivot_back"
+				}
+				{bone "elevator2"
+					{parameters "id=body_back;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						-7.4428 	 0 	 16.7803
+					}
+					{poly "elevator2" {lod 0}}
+					{poly "elevator2_lod1" {lod 1}}
+					{poly "elevator2_lod2" {lod 2}}
+					{poly "elevator2_lod3" {lod 3 {last}}}
+				}
+				{bone "rudder"
+					{parameters "id=body_back;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-8.539 	 0 	 25.2105
+					}
+					{poly "rudder" {lod 0}}
+					{poly "rudder_lod1" {lod 1}}
+					{poly "rudder_lod2" {lod 2}}
+					{poly "rudder_lod3" {lod 3 {last}}}
+				}
+				{bone "elevator1"
+					{parameters "id=body_back;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						-7.4428 	 0 	 16.7803
+					}
+					{poly "elevator1" {lod 0}}
+					{poly "elevator1_lod1" {lod 1}}
+					{poly "elevator1_lod2" {lod 2}}
+					{poly "elevator1_lod3" {lod 3 {last}}}
+				}
+			}
+			{bone revolute "bomb"
+				{limits -20 20}
+				{speed 0.01}
+				{matrix34
+					1 	 0 	 0
+					0 	 0 	 1
+					0 	 -1 	 0
+					38.8202 	 0 	 25.977
+				}
+				{bone revolute "foresight_main"
+					{limits -20 20}
+					{speed 0.01}
+					{orientation
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+					}
+				}
+			}
+			{bone "visor1"
+				{Position 2.2204 	 0 	 41.2032}
+			}
+			{bone "driver"
+				{Position -8.6927 	 0 	 13.997}
+			}
+			{bone "passengers"
+				{Position -26.1772 	 0 	 13.997}
+			}
+			{bone "enumerator"
+				{matrix34
+					0.9914 	 0.1305 	 0
+					-0.1305 	 0.9914 	 0
+					0 	 0 	 1
+					-82.9547 	 5.1447 	 23.7822
+				}
+				{poly "enumerator"}
+			}
+			{bone "stanina"
+				{matrix34
+					1 	 0 	 0
+					0 	 0 	 1
+					0 	 -1 	 0
+					-44.4136 	 0 	 -5.6994
+				}
+				{poly "stanina"}
+				{bone revolute "mgun_turret"
+					{speed 0.03}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						10.6737 	 43.3578 	 0.0039
+					}
+					{poly "mgun_turret"}
+					{bone revolute "turret_mgun_rot"
+						{limits -20 40}
+						{speed 0.03}
+						{matrix34
+							1 	 0 	 0
+							0 	 0 	 1
+							0 	 -1 	 0
+							-1.3423 	 0 	 1.9311
+						}
+						{poly "turret_mgun_rot"}
+						{bone "mgun"
+							{matrix34
+								-1 	 0 	 0
+								0 	 1 	 0
+								0 	 0 	 -1
+								0.0313 	 0.1448 	 -0.0039
+							}
+						}
+					}
+				}
+			}
+		}
+		{bone "pivot_front"
+			{Position 0 	 0 	 7.0057}
+			{bone revolute "wheelr"
+				{parameters "id=wheelright;radius=0.34;support;"}
+				{matrix34
+					1 	 0 	 0
+					0 	 0 	 -1
+					0 	 1 	 0
+					-0.0176 	 -16.6079 	 0.0059
+				}
+				{poly "wheelr" {lod 0}}
+				{poly "wheelr_lod1" {lod 1}}
+				{poly "wheelr_lod2" {lod 2}}
+				{poly "wheelr_lod3" {lod 3 {last}}}
+			}
+			{bone revolute "wheell"
+				{parameters "id=wheelleft;radius=0.34;support;"}
+				{matrix34
+					1 	 0 	 0
+					0 	 0 	 -1
+					0 	 1 	 0
+					-0.0176 	 16.6079 	 0.0059
+				}
+				{poly "wheell" {lod 0}}
+				{poly "wheell_lod1" {lod 1}}
+				{poly "wheell_lod2" {lod 2}}
+				{poly "wheell_lod3" {lod 3 {last}}}
+			}
+			{bone "wingl1"
+				{parameters "id=wingleft;"}
+				{Position -2.8434 	 66.2336 	 52.335}
+				{poly "wingl1" {lod 0}}
+				{poly "wingl1_lod1" {lod 1}}
+				{poly "wingl1_lod2" {lod 2}}
+				{poly "wingl1_lod3" {lod 3 {last}}}
+				{bone "aileron1"
+					{parameters "id=wingleft;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0.0382 	 -0.9993
+						0 	 0.9993 	 0.0382
+						-8.5988 	 12.2878 	 -0.1057
+					}
+					{poly "aileron1" {lod 0}}
+					{poly "aileron1_lod1" {lod 1}}
+					{poly "aileron1_lod2" {lod 2}}
+					{poly "aileron1_lod3" {lod 3 {last}}}
+				}
+			}
+			{bone "wingl2"
+				{parameters "id=wingleft;"}
+				{Position -18.7196 	 58.8567 	 17.0196}
+				{poly "wingl2" {lod 0}}
+				{poly "wingl2_lod1" {lod 1}}
+				{poly "wingl2_lod2" {lod 2}}
+				{poly "wingl2_lod3" {lod 3 {last}}}
+				{bone "aileron3"
+					{parameters "id=wingleft;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0.0382 	 -0.9993
+						0 	 0.9993 	 0.0382
+						-8.5886 	 12.2878 	 0.9722
+					}
+					{poly "aileron3" {lod 0}}
+					{poly "aileron3_lod1" {lod 1}}
+					{poly "aileron3_lod2" {lod 2}}
+					{poly "aileron3_lod3" {lod 3 {last}}}
+				}
+				{bone "bomb02"
+					{parameters "id=wingleft;"}
+					{Position 11.2198 	 -13.2703 	 -4.3739}
+					{poly "bomb02"}
+				}
+				{bone "bomb00"
+					{parameters "id=wingleft;"}
+					{Position 11.2198 	 -18.6461 	 -4.487}
+					{poly "bomb00"}
+				}
+			}
+			{bone "wingr1"
+				{parameters "id=wingright;"}
+				{Position -2.8434 	 -65.9745 	 52.335}
+				{poly "wingr1" {lod 0}}
+				{poly "wingr1_lod1" {lod 1}}
+				{poly "wingr1_lod2" {lod 2}}
+				{poly "wingr1_lod3" {lod 3 {last}}}
+				{bone "aileron2"
+					{parameters "id=wingleft;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 -0.0382 	 -0.9993
+						0 	 0.9993 	 -0.0382
+						-8.5686 	 -12.2878 	 -0.1057
+					}
+					{poly "aileron2" {lod 0}}
+					{poly "aileron2_lod1" {lod 1}}
+					{poly "aileron2_lod2" {lod 2}}
+					{poly "aileron2_lod3" {lod 3 {last}}}
+				}
+			}
+			{bone "wingr2"
+				{parameters "id=wingright;"}
+				{Position -18.7196 	 -58.8567 	 17.0196}
+				{poly "wingr2" {lod 0}}
+				{poly "wingr2_lod1" {lod 1}}
+				{poly "wingr2_lod2" {lod 2}}
+				{poly "wingr2_lod3" {lod 3 {last}}}
+				{bone "aileron4"
+					{parameters "id=wingleft;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 -0.0382 	 -0.9993
+						0 	 0.9993 	 -0.0382
+						-8.5886 	 -12.2878 	 0.9722
+					}
+					{poly "aileron4" {lod 0}}
+					{poly "aileron4_lod1" {lod 1}}
+					{poly "aileron4_lod2" {lod 2}}
+					{poly "aileron4_lod3" {lod 3 {last}}}
+				}
+				{bone "bomb01"
+					{parameters "id=wingright;"}
+					{Position 11.2198 	 18.6461 	 -4.4869}
+					{poly "bomb01"}
+				}
+				{bone "bomb03"
+					{parameters "id=wingright;"}
+					{Position 11.2198 	 13.2703 	 -4.3738}
+					{poly "bomb03"}
+				}
+			}
+		}
+		{bone "emit2"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				-42.4719 	 -18.6522 	 0
+			}
+		}
+		{bone "emit1"
+			{matrix34
+				0 	 -1 	 0
+				1 	 0 	 0
+				0 	 0 	 1
+				-42.4719 	 20.6806 	 0
+			}
+		}
+	}
+}
+{obstacle "rectangle001"
+	{obb2
+		{center -17.3518 2.73593e-05}
+		{extent 20.6693 104.524}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{obstacle "rectangle002"
+	{obb2
+		{center -38.0211 2.76566e-05}
+		{extent 9.09449 71.0763}
+		{axis 0 1}
+	}
+	{rotate}
+}
+{obstacle "rectangle003"
+	{obb2
+		{center -107.776 2.73593e-05}
+		{extent 14.5596 47.0914}
+		{axis 1 -3.25841e-07}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body01"
+		{polyhedron}
+		{bone "body"}
+		{Position -12.3025 	 -0.1156 	 14.5702}
+	}
+	{"body02"
+		{box 32.4973 21.2386 3.02367}
+		{bone "body"}
+		{matrix34
+			0.9986 	 0 	 0.0524
+			-0.0019 	 0.9994 	 0.0353
+			-0.0524 	 -0.0353 	 0.998
+			-21.6265 	 18.897 	 15.2938
+		}
+	}
+	{"body03"
+		{box 32.4973 21.2386 3.02367}
+		{bone "body"}
+		{matrix34
+			0.9986 	 0 	 0.0524
+			0.0019 	 0.9994 	 -0.0353
+			-0.0524 	 0.0354 	 0.998
+			-21.6265 	 -18.8969 	 15.2938
+		}
+	}
+	{"body04"
+		{box 32.4973 51.4875 3.02367}
+		{bone "body"}
+		{matrix34
+			0.9986 	 0 	 0.0524
+			0 	 1 	 0
+			-0.0524 	 0 	 0.9986
+			-5.7388 	 0 	 49.7384
+		}
+	}
+	{"body05"
+		{polyhedron}
+		{bone "body"}
+		{matrix34
+			0 	 1 	 0
+			-1 	 0 	 0
+			0 	 0 	 1
+			-92.0537 	 -0.0921 	 31.2843
+		}
+	}
+	{"body06"
+		{polyhedron}
+		{bone "body"}
+		{Position -106.275 	 0.0593 	 31.6862}
+	}
+	{"body07"
+		{cylinder 0.714666 33.101}
+		{bone "body"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0 	 1
+			0 	 -1 	 0
+			0 	 -0.0007 	 0
+		}
+	}
+	{"body08"
+		{cylinder 1.41504 17.1596}
+		{bone "body"}
+		{matrix34
+			0.9604 	 0.2786 	 0.0046
+			-0.2354 	 0.8201 	 -0.5216
+			-0.1491 	 0.4999 	 0.8532
+			-1.2793 	 -11.5287 	 7.854
+		}
+	}
+	{"body09"
+		{cylinder 1.41496 17.126}
+		{bone "body"}
+		{matrix34
+			0.9644 	 -0.2644 	 0.0019
+			0.2285 	 0.837 	 0.4972
+			-0.133 	 -0.4791 	 0.8676
+			-1.1391 	 11.538 	 7.9635
+		}
+	}
+	{"body10"
+		{cylinder 0.714666 21.1847}
+		{bone "body"}
+		{matrix34
+			0.766 	 0 	 -0.6428
+			0.2717 	 0.9063 	 0.3237
+			0.5826 	 -0.4226 	 0.6943
+			6.1707 	 11.1637 	 7.8878
+		}
+	}
+	{"body11"
+		{cylinder 0.714666 21.1847}
+		{bone "body"}
+		{matrix34
+			0.766 	 0 	 -0.6428
+			-0.2717 	 0.9063 	 -0.3237
+			0.5826 	 0.4226 	 0.6943
+			6.1707 	 -11.3408 	 7.8878
+		}
+	}
+	{"elevator1"
+		{polyhedron}
+		{bone "elevator1"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0 	 -1
+			0 	 1 	 0
+			-7.6689 	 1.3698 	 24.534
+		}
+	}
+	{"elevator2"
+		{polyhedron}
+		{bone "elevator2"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0 	 1
+			0 	 -1 	 0
+			-7.6689 	 -0.077 	 -24.534
+		}
+	}
+	{"engine"
+		{cylinder 6.10559 6.9568}
+		{bone "engine"}
+		{matrix34
+			0 	 0 	 -1
+			0 	 1 	 0
+			1 	 0 	 0
+			1.4398 	 0 	 0
+		}
+	}
+	{"propeller"
+		{box 1.77235 4.43326 54.129}
+		{bone "propeller"}
+		{Position -3.5089 	 0 	 0.0939}
+	}
+	{"rudder01"
+		{polyhedron}
+		{bone "rudder"}
+		{matrix34
+			0 	 0 	 -1
+			-1 	 0 	 0
+			0 	 1 	 0
+			0 	 4.0515 	 0
+		}
+	}
+	{"rudder02"
+		{polyhedron}
+		{bone "rudder"}
+		{matrix34
+			0 	 0 	 -1
+			0 	 -1 	 0
+			-1 	 0 	 0
+			0 	 -3.175 	 0
+		}
+	}
+	{"wheell"
+		{cylinder 7.21889 3.59077}
+		{bone "wheell"}
+		{matrix34
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 -1
+			0 	 0 	 -0.0161
+		}
+	}
+	{"wheelr"
+		{cylinder 7.21889 3.59077}
+		{bone "wheelr"}
+		{matrix34
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 -1
+			0 	 0 	 -0.0161
+		}
+	}
+	{"wingl1"
+		{polyhedron}
+		{bone "wingl1"}
+		{matrix34
+			0.9986 	 -0.0023 	 0.0523
+			0 	 0.999 	 0.0448
+			-0.0524 	 -0.0447 	 0.9976
+			-2.8162 	 0.9504 	 -2.2523
+		}
+	}
+	{"wingl2"
+		{polyhedron}
+		{bone "wingl2"}
+		{matrix34
+			0.9986 	 -0.0023 	 0.0523
+			0 	 0.999 	 0.0448
+			-0.0524 	 -0.0447 	 0.9976
+			-2.8529 	 1.3518 	 -1.3792
+		}
+	}
+	{"wingr1"
+		{polyhedron}
+		{bone "wingr1"}
+		{matrix34
+			-0.9986 	 0.0023 	 -0.0523
+			-0.0047 	 -0.999 	 0.0448
+			-0.0522 	 0.045 	 0.9976
+			-2.8162 	 -0.8745 	 -2.2522
+		}
+	}
+	{"wingr2"
+		{polyhedron}
+		{bone "wingr2"}
+		{matrix34
+			-0.9986 	 0.0023 	 -0.0523
+			-0.0047 	 -0.999 	 0.0448
+			-0.0522 	 0.045 	 0.9976
+			-2.9971 	 -1.3077 	 -1.3834
+		}
+	}
+}

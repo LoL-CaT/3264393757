@@ -1,0 +1,75 @@
+{entity
+	(include "/properties/cannon_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{props "vision_lev01_can" "round_sandbag" "cannon_small" "place_mg_stan" "level02" "-with_gun" "texmod_w_cf_cd" "anm_mgun_stan"}
+	{collider "cannon_small"}
+	("round_sandbag")
+	("round_dot")
+		
+	{targetClass "cannon"}	
+    {targetSelector "cannon_hmgun_aa"}
+
+	{Weaponry
+		{place "mgun"
+			{weapon "ds_stan" filled}
+		}
+	}  	
+	{extender "inventory"
+		{box
+			{clear}
+			{item "sandbag_kit2"}
+			{item "dot_kit"}
+			{item "ammo" "mgun" 700}
+		}	
+	}
+	{Extension "degtyarev_stan.mdl"}
+	{Volume "body"
+		{tags "body"}
+		{able{obstacle 0}}
+		{thickness 1}
+		{component "body"}
+	}
+	(define "set_support"
+		{tags "body"}
+		{able{obstacle 0}{blast 0}}
+		{thickness 1}
+		{component "body"}
+	)
+	{Volume "stand"
+		("set_support")
+	}
+	{Volume "support1"
+		("set_support")
+	}
+	{Volume "support2"
+		("set_support")
+	}
+	{Volume "turret01"
+		{tags "turret"}
+		{component "turret"}
+	}
+	{Volume "turret02"
+		{tags "turret"}
+		{component "turret"}
+	}
+	{Volume "turret03"
+		{tags "turret"}
+		{component "turret"}
+	}
+	{Volume "shield"
+		{tags "turret"}
+		{component "turret"}
+	}
+	{mass 55}
+	{bone "basis"
+		{speed 0.04}
+	}
+	{bone "gun_rot"
+		{limits -15 55}
+		{speed 0.08}
+	}	
+	{extension "sensor.ext"}
+	{Chassis "human_carrier"
+		("arena_mgun_stan_2gunners_carrier")
+	}	
+}

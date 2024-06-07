@@ -1,0 +1,219 @@
+;Exported by	: KobaA
+;Date			: 18.12.2023 16:26:01
+;File			: d:\git\gem2-mdl-soldiers\models\unit\vehicle\flak_36\flak_36_stan_xx.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{matrix34
+				1 	 0 	 -0.0003
+				0 	 1 	 -0.0002
+				0.0003 	 0.0002 	 1
+				0.0004 	 -0.0003 	 13.5827
+			}
+			{poly "body" {lod 0}}
+			{poly "body_lod1" {lod 1}}
+			{poly "body_lod2" {lod 2}}
+			{poly "body_lod3" {lod 3 {last}}}
+			{bone revolute "turret"
+				{parameters "id=turret;"}
+				{speed 0.01}
+				{Position -0.0008 	 -0.0007 	 2.8835}
+				{poly "turret" {lod 0}}
+				{poly "turret_lod1" {lod 1}}
+				{poly "turret_lod2" {lod 2}}
+				{poly "turret_lod3" {lod 3 {last}}}
+				{bone revolute "part6"
+					{parameters "id=gun;"}
+					{limits -4 25}
+					{speed 0.08}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-13.7413 	 -0.0039 	 17.2339
+					}
+					{poly "part6" {lod 0}}
+					{poly "part6_lod1" {lod 1}}
+					{poly "part6_lod2" {lod 2}}
+					{poly "part6_lod3" {lod 3 {last}}}
+				}
+			}
+			{bone "part3"
+				{parameters "id=body;"}
+				{Position 0.3293 	 17.5221 	 -9.2348}
+				{poly "part3" {lod 0}}
+				{poly "part3_lod1" {lod 1}}
+				{poly "part3_lod2" {lod 2}}
+				{poly "part3_lod3" {lod 3 {last}}}
+			}
+			{bone "part4"
+				{parameters "id=body;"}
+				{Position -0.3877 	 -17.5059 	 -9.243}
+				{poly "part4" {lod 0}}
+				{poly "part4_lod1" {lod 1}}
+				{poly "part4_lod2" {lod 2}}
+				{poly "part4_lod3" {lod 3 {last}}}
+			}
+		}
+		{bone "pivot_front"
+			{Position 42.8329 	 0 	 8.6461}
+		}
+		{bone "pivot_back"
+			{Position -42.8329 	 0 	 8.6461}
+		}
+	}
+}
+{obstacle "obstacle01"
+	{obb2
+		{center 0 -2.32831e-10}
+		{extent 17.7165 22.6378}
+		{axis -1 6.3339e-08}
+	}
+	{rotate}
+}
+{obstacle "obstacle02"
+	{obb2
+		{center -0.0892258 -2.32831e-10}
+		{extent 57.3615 5.56233}
+		{axis -1 6.3339e-08}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body01"
+		{box 108.268 6.26832 5.31496}
+		{bone "body"}
+		{matrix34
+			1 	 0 	 0.0003
+			0 	 1 	 0.0002
+			-0.0003 	 -0.0002 	 1
+			0.0635 	 0.0024 	 -9.4489
+		}
+	}
+	{"body04"
+		{box 20.5963 24.9688 5.90551}
+		{bone "body"}
+		{matrix34
+			0.7071 	 -0.7071 	 0
+			0.7071 	 0.7071 	 0.0004
+			-0.0003 	 -0.0002 	 1
+			-1.9497 	 -1.6369 	 -9.3453
+		}
+	}
+	{"body05"
+		{cylinder 6.88976 9.84252}
+		{bone "body"}
+		{matrix34
+			1 	 0 	 0.0003
+			0 	 1 	 0.0002
+			-0.0003 	 -0.0002 	 1
+			0 	 0.0007 	 -1.7978
+		}
+	}
+	{"part3"
+		{box 5.34268 38.2505 4.92126}
+		{bone "part3"}
+		{matrix34
+			1 	 0 	 0.0003
+			0 	 1 	 0.0002
+			-0.0003 	 -0.0002 	 1
+			-0.3749 	 15.0047 	 -0.419
+		}
+	}
+	{"part4"
+		{box 5.34268 38.2505 4.92126}
+		{bone "part4"}
+		{matrix34
+			-1 	 0 	 -0.0003
+			0 	 -1 	 -0.0002
+			-0.0003 	 -0.0002 	 1
+			0.3421 	 -15.0159 	 -0.4256
+		}
+	}
+	{"part6_01"
+		{box 61.9121 4.08908 3.93701}
+		{bone "part6"}
+		{matrix34
+			1 	 0.0003 	 0
+			0 	 0.0002 	 -1
+			-0.0003 	 1 	 0.0002
+			10.605 	 -5.1473 	 -0.0015
+		}
+	}
+	{"part6_02"
+		{polyhedron}
+		{bone "part6"}
+		{matrix34
+			-0.0171 	 -0.9999 	 0
+			-0.0174 	 0.0003 	 -0.9998
+			0.9997 	 -0.0171 	 -0.0175
+			-7.4645 	 0.0848 	 0.5151
+		}
+	}
+	{"part6_03"
+		{cylinder 2.13558 32.4803}
+		{bone "part6"}
+		{matrix34
+			0.0003 	 -1 	 -0.0002
+			0 	 0.0002 	 -1
+			1 	 0.0003 	 0
+			17.841 	 5.527 	 -0.0617
+		}
+	}
+	{"turret04"
+		{box 19.685 17.126 7.87402}
+		{bone "turret"}
+		{matrix34
+			1 	 0 	 0.0003
+			0 	 1 	 0.0002
+			-0.0003 	 -0.0002 	 1
+			3.7259 	 -1.3321 	 3.8472
+		}
+	}
+	{"turret05"
+		{box 10.8268 5.90551 16.7323}
+		{bone "turret"}
+		{matrix34
+			1 	 0 	 0.0003
+			0 	 1 	 0.0002
+			-0.0003 	 -0.0002 	 1
+			-1.5889 	 11.2835 	 3.0941
+		}
+	}
+	{"turret06"
+		{polyhedron}
+		{bone "turret"}
+		{matrix34
+			1 	 0 	 0.0003
+			0 	 0.9744 	 -0.2247
+			-0.0003 	 0.2247 	 0.9744
+			-3.078 	 6.8086 	 8.4967
+		}
+	}
+	{"turret08"
+		{cylinder 2.3622 5.90551}
+		{bone "turret"}
+		{matrix34
+			1 	 0 	 0.0003
+			-0.0003 	 -0.0002 	 1
+			0 	 -1 	 -0.0002
+			7.3306 	 -9.279 	 13.9938
+		}
+	}
+	{"turret09"
+		{polyhedron}
+		{bone "turret"}
+		{matrix34
+			1 	 0 	 0.0003
+			0 	 0.9396 	 0.3422
+			-0.0003 	 -0.3422 	 0.9396
+			-3.078 	 -6.3144 	 8.4937
+		}
+	}
+}

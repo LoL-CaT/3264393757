@@ -1,0 +1,152 @@
+;Exported by:	 Oleksandr Tsaprylov
+;Date:			 14.05.2021 17:46:52
+;File:			 E:\projects\gem2-mdl-soldiers\models\unit\vehicle\76_rk_27\76_rk_27_xx.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position -0.0045 	 0 	 10.1982}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone "pivot_front"
+				{Position -0.0069 	 0 	 -0.0158}
+				{bone "part1"
+					{parameters "id=wheelleft;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						0.0475 	 12.9134 	 0.1325
+					}
+					{LODView
+						{poly "part1"}
+						{poly "part1_lod1"}
+						{poly "part1_lod2"}
+						{poly "part1_lod3"}
+					}
+				}
+				{bone "part2"
+					{parameters "id=wheelright;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						0.007 	 -12.9134 	 0.0158
+					}
+					{LODView
+						{poly "part2"}
+						{poly "part2_lod1"}
+						{poly "part2_lod2"}
+						{poly "part2_lod3"}
+					}
+				}
+			}
+			{bone "pivot_back"
+				{Position -40.6837 	 0 	 -10.1982}
+			}
+			{bone revolute "gun_rot"
+				{parameters "id=gun;ikspeed2=30;"}
+				{limits -30 5}
+				{speed 0.08}
+				{matrix34
+					0.9962 	 0 	 0.0872
+					0.0872 	 0 	 -0.9962
+					0 	 1 	 0
+					0.5163 	 -0.0062 	 2.8136
+				}
+				{LODView
+					{poly "gun_rot"}
+					{poly "gun_rot_lod1"}
+					{poly "gun_rot_lod2"}
+					{poly "gun_rot_lod3"}
+				}
+				{bone "part3"
+					{parameters "id=gun;"}
+					{orientation
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+					}
+					{LODView
+						{poly "part3"}
+						{poly "part3_lod1"}
+						{poly "part3_lod2"}
+						{poly "part3_lod3"}
+					}
+					{bone "crank"
+						{parameters "id=gun;"}
+						{Position -8.5158 	 -2.3175 	 4.6959}
+						{LODView
+							{poly "crank"}
+							{poly "crank_lod1"}
+							{poly "crank_lod2"}
+							{poly "crank_lod3"}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+{obstacle "obstacle"
+	{obb2
+		{center 0.0736122 -0.193717}
+		{extent 10.2931 14.7638}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{volume "body01"
+	{box 51.8207 7.9108 5.13997}
+	{bone "body"}
+	{matrix34
+		0.9848 	 0 	 0.1736
+		0 	 1 	 0
+		-0.1736 	 0 	 0.9848
+		-22.3839 	 0 	 -4.3362
+	}
+}
+{volume "body02"
+	{box 1.51137 20.5181 11.2223}
+	{bone "body"}
+	{matrix34
+		0.9848 	 0 	 0.1736
+		0 	 1 	 0
+		-0.1736 	 0 	 0.9848
+		2.6282 	 0.0555 	 5.1405
+	}
+}
+{volume "gun_rot"
+	{box 23.5449 5.07178 2.33651}
+	{bone "gun_rot"}
+	{matrix34
+		1 	 0 	 0
+		0 	 0 	 1
+		0 	 -1 	 0
+		-1.239 	 -0.7735 	 0.0062
+	}
+}
+{volume "part1"
+	{polyhedron}
+	{bone "part1"}
+	{Position -0.0406 	 0.1167 	 -2.5513}
+}
+{volume "part2"
+	{polyhedron}
+	{bone "part2"}
+	{Position 0 	 0 	 -0.8932}
+}
+{volume "part3"
+	{box 29.8899 4.37222 3.86466}
+	{bone "part3"}
+	{Position -0.585 	 0.0062 	 3.5968}
+}

@@ -1,0 +1,213 @@
+;Exported by	: joomb
+;Date			: 13.03.2023 10:43:43
+;File			: H:\git\gem2-mdl-soldiers\models\unit\vehicle\sGrW_42\sGrW42_anim.max
+{skeleton
+	{animation
+		{sequence "recoil"}
+		{sequence "close"}
+	}
+	{bone revolute "turret"
+		{limits -180 180}
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{matrix34
+				0.9379 	 0 	 -0.347
+				0.004 	 0.9999 	 0.0107
+				0.3469 	 -0.0114 	 0.9378
+				0.6276 	 -0.0189 	 1.9536
+			}
+			{poly "body" {lod 0}}
+			{poly "body_lod1" {lod 1}}
+			{poly "body_lod2" {lod 2}}
+			{poly "body_lod3" {lod 3 {last}}}
+			{bone "gun"
+				{parameters "id=gun;"}
+				{matrix34
+					0.9664 	 -0.0029 	 -0.257
+					0 	 0.9999 	 -0.0114
+					0.257 	 0.011 	 0.9663
+					0 	 0.0909 	 -0.001
+				}
+				{poly "gun" {lod 0}}
+				{poly "gun_lod1" {lod 1}}
+				{poly "gun_lod2" {lod 2}}
+				{poly "gun_lod3" {lod 3 {last}}}
+				{bone revolute "foresight"
+					{limits -20 25}
+					{matrix34
+						-0.0034 	 0 	 1
+						-1 	 0 	 -0.0034
+						0 	 -1 	 0
+						0.0521 	 -0.1026 	 31.3155
+					}
+				}
+			}
+			{bone "handle1"
+				{matrix34
+					0 	 -0.9999 	 0.0114
+					0.9379 	 0.004 	 0.3469
+					-0.347 	 0.0107 	 0.9378
+					18.9913 	 0.3054 	 25.0727
+				}
+			}
+			{bone "handle2"
+				{matrix34
+					0 	 0.9999 	 -0.0114
+					-0.9379 	 -0.004 	 -0.3469
+					-0.347 	 0.0107 	 0.9378
+					-10.174 	 0.1234 	 9.1422
+				}
+			}
+			{bone "stan"
+				{parameters "id=body;"}
+				{matrix34
+					0.9379 	 0.004 	 0.3469
+					0 	 0.9999 	 -0.0114
+					-0.347 	 0.0107 	 0.9378
+					9.0023 	 0.2808 	 22.9128
+				}
+				{poly "stan" {lod 0}}
+				{poly "stan_lod1" {lod 1}}
+				{poly "stan_lod2" {lod 2}}
+				{poly "stan_lod3" {lod 3 {last}}}
+				{bone "stan_l"
+					{parameters "id=body;"}
+					{matrix34
+						0.9826 	 0 	 0.1856
+						-0.0043 	 0.9997 	 0.0228
+						-0.1855 	 -0.0232 	 0.9824
+						1.6749 	 0 	 -4.0387
+					}
+					{poly "stan_l" {lod 0}}
+					{poly "stan_l_lod1" {lod 1}}
+					{poly "stan_l_lod2" {lod 2}}
+					{poly "stan_l_lod3" {lod 3 {last}}}
+					{bone "s"
+						{parameters "id=body;"}
+						{matrix34
+							0.9981 	 -0.0138 	 0.0601
+							0.0589 	 0.5015 	 -0.8631
+							-0.0182 	 0.865 	 0.5014
+							0.1602 	 -4.4714 	 -7.1387
+						}
+						{poly "s" {lod 0}}
+						{poly "s_lod1" {lod 1}}
+						{poly "s_lod2" {lod 2}}
+						{poly "s_lod3" {lod 3 {last}}}
+					}
+				}
+				{bone "stan_r"
+					{parameters "id=body;"}
+					{matrix34
+						0.9876 	 -0.0326 	 0.1536
+						0.0322 	 0.9995 	 0.0053
+						-0.1537 	 -0.0003 	 0.9881
+						1.6345 	 0 	 -4.0463
+					}
+					{poly "stan_r" {lod 0}}
+					{poly "stan_r_lod1" {lod 1}}
+					{poly "stan_r_lod2" {lod 2}}
+					{poly "stan_r_lod3" {lod 3 {last}}}
+				}
+				{bone "stan_dummy"
+					{parameters "id=body;"}
+					{matrix34
+						0.96 	 0.2086 	 0.1868
+						-0.2047 	 0.978 	 -0.0398
+						-0.191 	 0 	 0.9816
+						2.8037 	 -0.4546 	 -8.8577
+					}
+					{poly "stan_dummy" {lod 0}}
+					{poly "stan_dummy_lod1" {lod 1}}
+					{poly "stan_dummy_lod2" {lod 2}}
+					{poly "stan_dummy_lod3" {lod 3 {last}}}
+				}
+			}
+		}
+		{bone "commander"
+			{matrix34
+				0.9659 	 0.2588 	 0
+				-0.2588 	 0.9659 	 0
+				0 	 0 	 1
+				7.5187 	 -12.966 	 0.1412
+			}
+		}
+		{bone "gunner"
+			{matrix34
+				0.9063 	 -0.4226 	 0
+				0.4226 	 0.9063 	 0
+				0 	 0 	 1
+				4.7789 	 8.3596 	 0.1412
+			}
+		}
+		{bone "driver1"
+			{Position 24.3715 	 -3.5061 	 0.1412}
+		}
+		{bone "driver2"
+			{Position -1.5481 	 0 	 0.1412}
+		}
+		{bone "emit1"
+			{parameters "group=crew;"}
+			{Position 4.1241 	 -19.0582 	 0.1412}
+			{visibility 0}
+		}
+		{bone "emit2"
+			{parameters "group=crew;"}
+			{Position 14.9998 	 19.7349 	 0.5701}
+			{visibility 0}
+		}
+		{bone "support1"
+			{Position 0.9215 	 0.032 	 0.1412}
+		}
+		{bone "support2"
+			{Position 22.0565 	 -11.04 	 0.1412}
+		}
+		{bone "support3"
+			{Position 21.9288 	 10.9416 	 0.1412}
+		}
+		{bone "visor"
+			{matrix34
+				0.9996 	 0 	 -0.0296
+				0 	 1 	 0
+				0.0296 	 0 	 0.9996
+				20.917 	 -6.5021 	 24.1295
+			}
+		}
+		{bone "visor2"
+			{matrix34
+				0.9996 	 0 	 -0.0296
+				0 	 1 	 0
+				0.0296 	 0 	 0.9996
+				20.917 	 6.4197 	 24.1295
+			}
+		}
+	}
+}
+{"volumes"
+	{"body"
+		{cylinder 8.55182 5.81132}
+		{bone "body"}
+		{matrix34
+			0.9379 	 0.004 	 0.3469
+			0 	 0.9999 	 -0.0114
+			-0.347 	 0.0107 	 0.9378
+			-0.14 	 -0.0405 	 1.1144
+		}
+	}
+	{"gun"
+		{cylinder 1.37795 29.7887}
+		{bone "gun"}
+		{matrix34
+			-1 	 0 	 -0.0034
+			0 	 -1 	 0
+			-0.0034 	 0 	 1
+			0.039 	 -0.072 	 16.5853
+		}
+	}
+}

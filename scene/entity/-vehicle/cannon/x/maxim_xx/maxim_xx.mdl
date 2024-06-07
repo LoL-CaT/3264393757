@@ -1,0 +1,132 @@
+;Exported by:	 KobaA
+;Date:			 24.11.2020 16:51:23
+;File:			 G:\_GIT_\gem2\gem2-mdl-soldiers\models\inventory\-weapon\Maxim\Maxim_stan_xx.max
+{skeleton
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "part5"
+			{parameters "id=body;"}
+			{Position 0.0161 	 0 	 2.954}
+			{LODView
+				{poly "part5"}
+				{poly "part5_lod1"}
+				{poly "part5_lod2"}
+				{poly "part5_lod3"}
+			}
+			{bone revolute "part2"
+				{parameters "id=turret;"}
+				{limits -20 20}
+				{speed 0.01}
+				{Position -3.0313 	 0 	 1.5979}
+				{LODView
+					{poly "part2"}
+					{poly "part2_lod1"}
+					{poly "part2_lod2"}
+					{poly "part2_lod3"}
+				}
+				{bone revolute "mgun"
+					{parameters "id=gun;"}
+					{limits -20 20}
+					{speed 0.08}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0246 	 0 	 2.1127
+					}
+				}
+				{bone revolute "part1"
+					{parameters "id=turret;"}
+					{limits -20 20}
+					{speed 0.01}
+					{LODView
+						{poly "part1"}
+						{poly "part1_lod1"}
+						{poly "part1_lod2"}
+						{poly "part1_lod3"}
+					}
+				}
+			}
+			{bone "pivot_front"
+				{bone revolute "part3"
+					{parameters "id=wheelleft;support=1;radius=0.15;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0095 	 4.878 	 -0.0055
+					}
+					{LODView
+						{poly "part3"}
+						{poly "part3_lod1"}
+						{poly "part3_lod2"}
+						{poly "part3_lod3"}
+					}
+				}
+				{bone revolute "part4"
+					{parameters "id=wheelright;support=1;radius=0.15;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						-0.0095 	 -4.878 	 -0.0055
+					}
+					{LODView
+						{poly "part4"}
+						{poly "part4_lod1"}
+						{poly "part4_lod2"}
+						{poly "part4_lod3"}
+					}
+				}
+			}
+			{bone "pivot_back"
+				{Position -17.8008 	 0 	 0}
+			}
+		}
+	}
+}
+{volume "part1"
+	{polyhedron}
+	{bone "part1"}
+	{matrix34
+		0.0872 	 0 	 -0.9962
+		0 	 1 	 0
+		0.9962 	 0 	 0.0872
+		0.1975 	 0.4648 	 3.9671
+	}
+}
+{volume "part2"
+	{polyhedron}
+	{bone "part2"}
+	{Position -2.2366 	 0.04 	 0.3024}
+}
+{volume "part3"
+	{cylinder 2.95276 0.984252}
+	{bone "part3"}
+	{matrix34
+		1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 -1
+		0 	 0 	 -0.0053
+	}
+}
+{volume "part4"
+	{cylinder 2.95276 0.984252}
+	{bone "part4"}
+	{Position 0 	 0 	 0.0053}
+}
+{volume "part5_01"
+	{box 6.71783 5.73145 2.16535}
+	{bone "part5"}
+	{Position -2.9628 	 0 	 0.3456}
+}
+{volume "part5_02"
+	{box 11.811 5.7286 0.984252}
+	{bone "part5"}
+	{Position -11.6437 	 0 	 -1.2091}
+}

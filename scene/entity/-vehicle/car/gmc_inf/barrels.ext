@@ -1,0 +1,77 @@
+;SDl
+	(define "bone"
+		{bone "place%n"
+			{matrix34
+				(* %scale -1) 	 0 	 0
+				0 	 (* %scale -1) 	 0
+				0 	 0 	 (* %scale 1)
+				(+ %step 0.59) 	 (* %sign 5.5) 	 -5.0
+			}
+		}
+	)
+	{bone "body"
+		("bone" n(02) step(-8)	sign(-1)	scale(0.75))
+		("bone" n(03) step(-16)	sign(1)		scale(0.75))
+		("bone" n(04) step(-24)	sign(-1)	scale(0.75))
+		("bone" n(05) step(-32)	sign(1)		scale(0.75))
+		("bone" n(06) step(-40)	sign(-1)	scale(0.75))
+		("bone" n(01) step(-48)	sign(1)		scale(0.75))
+		("bone" n(07) step(-54)	sign(-1)	scale(0.75))
+	}
+	{bone "link2"
+		{bone "barrel_dropper"
+			{Position 0 	 0 	 15}
+		}
+	}
+	(define "add_barrel"
+		{armor "barrel%n"
+			{mask "barrel"}
+			{bone "place%n"}
+		}
+	)
+	(define "add_armor_barrels"
+		("add_barrel" n(01))
+		("add_barrel" n(02))
+		("add_barrel" n(03))
+		("add_barrel" n(04))
+		("add_barrel" n(05))
+		("add_barrel" n(06))
+		("add_barrel" n(07))
+	)
+	{extender "inventory"
+		{box
+			{clear}
+			{item "repair_kit" {cell 0 0}}
+			;{item "can" {cell 6 0}}
+			;{item "mine antitank" 10 {cell 2 0}}
+			;{item "mine antitank" 10 {cell 4 0}}
+			;{item "mine antipersonnel" 25 {cell 0 2}}
+			;{item "grenade n73at" 20 {cell 6 2}}
+			;{item "grenade m61" 15 {cell 6 3}}
+			;{item "bandage" 20}
+			;{item "bandage" 20}
+			;{item "ammo calliope" 60}
+			{item "barrel_g2_fuel01"}
+			{item "barrel_g2_fuel02"}
+			{item "barrel_g2_fuel03"}
+			{item "barrel_g2_fuel04"}
+			{item "barrel_g2_fuel05"}
+			{item "barrel_g2_fuel06"}
+			{item "barrel_g2_fuel07"}
+			{item "fuel_point_kit"}			
+		}
+		("add_armor_barrels")
+
+	}
+
+
+	{##extender "structure"
+		{place "place01" "barrelmetal3a_g2_fuel"}
+		{place "place02" "barrelmetal3a_g2_fuel"}
+		{place "place03" "barrelmetal3a_g2_fuel"}
+		{place "place04" "barrelmetal3a_g2_fuel"}
+		{place "place05" "barrelmetal3a_g2_fuel"}
+		{place "place06" "barrelmetal3a_g2_fuel"}
+		{place "place07" "barrelmetal3a_g2_fuel"}
+	}
+	{tag "fuel_barrels"}

@@ -1,0 +1,161 @@
+{entity
+	(include "/properties/car.ext")
+	(include "/properties/shadow/tank.inc"	scale(1.0))
+	(include "/properties/selection/vehicle.inc" scale(1.1))
+	("bone_rotator")
+	{targetSelector "cannon_rocket"}
+	{collider "truck"}
+	{props "vehicle" "car" "wheeled" "katusha" "truck" "vision_lev07" "reactive_artyllery" "deploy_support" "texmod_w_cw_cf_cd"}
+;	{able "emit_on_attack"}
+
+
+	{volume "gun01"
+		{able {bullet 0} {visible 0}}
+		{tags "gun_armor"}
+	}
+	{volume "gun02"
+		{able {bullet 0} {visible 0}}
+		{tags "gun_armor"}
+	}
+	;("v_gun" n(01) t())
+	;("v_gun" n(02) t())
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	(define "v_cabin"
+	{volume "cabin%0"
+			{component "cabin"}
+			{tags "cabin" "cabin_armor"}
+	}
+	)
+	("v_cabin" args 01)
+	("v_cabin" args 02)
+	("v_cabin" args 03)
+	("v_cabin" args 04)
+	("v_cabin" args 05)
+	("v_cabin" args 06)
+	{volume "window1"
+		{tags "glass"}
+	}
+	{volume "window2"
+		{tags "glass"}
+	}
+	{volume "window3"
+		{tags "glass"}
+	}
+	("v_turret" n() t())
+	{volume "doorl"
+			{component "cabin"}
+			{tags "cabin" "cabin_armor"}
+			{able {holed}}
+	}
+	{volume "doorr"
+			{component "cabin"}
+			{tags "cabin" "cabin_armor"}
+			{able {holed}}
+	}
+	("arena_armor_car" engine(4) body(4) cabin(4) shield(5) hp(216))
+	{armor
+		("module_gun_light"		gun(8) n())
+		("module_turret_light"	turret(10) n() hp_k(1))
+		("module_other" t(1))
+	}
+
+	("crew_2_human")
+	("board_animation" place(driver) board_begin(board_big-midcar_driver) board_end(driver_car_big) base(doorleft))
+	("board_animation" place(commander) board_begin(board_big-midcar) board_end(passenger_car_small) base(doorright))
+	{placer
+		{place "driver" 	{visor "main"}{group "crew"}}
+		{place "commander"	{visor "main"}{group "crew"}}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+	("wheel" args "wheelright3")
+	("wheel" args "wheelleft3")
+	("components_car" 
+		repair_body(20)
+		repair_engine(19)
+		repair_wheel(11)
+	)
+
+	{extender "enumerator"}
+
+	{extender "inventory"
+		{box
+			{clear}
+			{weight 10000}
+			{size 8 10}
+			{item "132mm_rocket fg" 32}
+			{item "repair_kit"}
+			{item "can"}
+		}
+	}
+	{Weaponry
+		{ManualAccuracy 1}
+		{place "gun"
+			{weapon "weapon katusha" filled}
+			{Barrels 16}
+			{charger "driver"}
+			{gunner "driver"}
+;			{StationaryFiring}
+			("abm_reactive1")
+		}
+	}	
+
+
+	{mass 3100}
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed	       40}
+			{maxSpeedAtMaxTurn 40}
+			{StartTime	       1}
+			{TurnTime	        1}
+			{TurnStart        0.5}
+			{BrakeTime        0.5}
+			{StopTime         0.5}
+			{TurnRadius         3}
+			{TurnStop         0.1}
+			{Gears      0.5  1}
+			{RearGears       0.9}
+		}
+		("fuelbag"
+			volume(225)
+			rate(50)
+			remain(225)
+		)
+		("car_trace" fx("tracewheel03") step(0.08) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("car_trace" fx("tracewheel03") step(0.08) wheell("wlr") wheelr("wrr") bonel("FXtraceL2") boner("FXtraceR2"))
+		{DisableMoveWhileFiring}
+		{MaxTrailerMass 3650}
+	}	
+	("chassis_add" speed(60))
+	{Extension "bm13.mdl"}
+    ("animation_resume")
+	{bone "turret"
+		{limits -10 10}
+		{speed 0.009}
+	}
+
+	{bone "gun"
+		{limits 0 45}
+		{speed 0.004}
+	}
+	{brain
+		{properties
+			{fire_mode hold}
+		}
+	}
+
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+	}
+	{bone "basis"
+		{parameters "SteerMax=30;WheelRadius=0.48;"}
+	}
+}

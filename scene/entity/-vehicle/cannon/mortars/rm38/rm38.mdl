@@ -1,0 +1,205 @@
+;Exported by:	 seryoga
+;Date:			 18.09.2017 11:16:36
+;File:			 D:\git\gem2-mdl-soldiers\models\unit\vehicle\pm38\PM_38_anim.max
+{skeleton
+	{animation
+		{sequence "recoil" {speed 0.5}}
+		{sequence "close" {speed 0.5}}
+	}
+	{bone revolute "turret"
+		{limits -180 180}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{matrix34
+				0.9763 	 0 	 -0.2164
+				0 	 1 	 0
+				0.2164 	 0 	 0.9763
+				-0.1968 	 0 	 0
+			}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone "gun"
+				{parameters "id=gun;"}
+				{matrix34
+					0.9239 	 0 	 -0.3827
+					0 	 1 	 0
+					0.3827 	 0 	 0.9239
+					0.0888 	 -0.0096 	 0.5491
+				}
+				{LODView
+					{poly "gun"}
+					{poly "gun_lod1"}
+					{poly "gun_lod2"}
+					{poly "gun_lod3"}
+				}
+				{bone "rod"
+					{parameters "id=gun;"}
+					{matrix34
+						0.5373 	 0 	 0.8434
+						0 	 1 	 0
+						-0.8434 	 0 	 0.5373
+						1.1031 	 -0.0417 	 10.1892
+					}
+					{LODView
+						{poly "rod"}
+						{poly "rod_lod1"}
+						{poly "rod_lod2"}
+						{poly "rod_lod3"}
+					}
+					{bone "stand"
+						{parameters "id=gun;"}
+						{Position 0.2941 	 -0.0933 	 -5.4001}
+						{LODView
+							{poly "stand"}
+							{poly "stand_lod1"}
+							{poly "stand_lod2"}
+							{poly "stand_lod3"}
+						}
+						{bone "standl"
+							{parameters "id=gun;"}
+							{Position -0.0088 	 0.1291 	 3.307}
+							{LODView
+								{poly "standl"}
+								{poly "standl_lod1"}
+								{poly "standl_lod2"}
+								{poly "standl_lod3"}
+							}
+						}
+						{bone "standr"
+							{parameters "id=gun;"}
+							{Position -0.047 	 0.1579 	 3.307}
+							{LODView
+								{poly "standr"}
+								{poly "standr_lod1"}
+								{poly "standr_lod2"}
+								{poly "standr_lod3"}
+							}
+						}
+						{bone "lever"
+							{parameters "id=gun;"}
+							{LODView
+								{poly "lever"}
+								{poly "lever_lod1"}
+								{poly "lever_lod2"}
+								{poly "lever_lod3"}
+							}
+						}
+						{bone "lock"
+							{parameters "id=gun;"}
+							{matrix34
+								1 	 0 	 0
+								0 	 0.866 	 0.5
+								0 	 -0.5 	 0.866
+								0.0166 	 -0.2936 	 0.7305
+							}
+							{LODView
+								{poly "lock"}
+								{poly "lock_lod1"}
+								{poly "lock_lod2"}
+								{poly "lock_lod3"}
+							}
+						}
+					}
+				}
+				{bone revolute "foresight"
+					{limits -10 10}
+					{matrix34
+						-0.342 	 0 	 0.9397
+						-0.9397 	 0 	 -0.342
+						0 	 -1 	 0
+						-0.031 	 0 	 12.2072
+					}
+				}
+			}
+			{bone "handle1"
+				{matrix34
+					0.9763 	 0 	 0.2164
+					0 	 1 	 0
+					-0.2164 	 0 	 0.9763
+					11.9408 	 0 	 10.7124
+				}
+			}
+			{bone "handle2"
+				{matrix34
+					0.9763 	 0 	 0.2164
+					0 	 1 	 0
+					-0.2164 	 0 	 0.9763
+					-2.473 	 0 	 7.5169
+				}
+			}
+		}
+		{bone "driver1"
+			{Position 5.3129 	 5.315 	 0}
+		}
+		{bone "driver2"
+			{Position 5.3129 	 5.315 	 0}
+		}
+		{bone "emit1"
+			{Position 5.3129 	 -5.315 	 0}
+		}
+		{bone "emit2"
+			{Position 5.3129 	 5.315 	 0}
+		}
+		{bone "gunner"
+			{Position -13.9054 	 0.0927 	 0}
+		}
+		{bone "support1"
+		}
+		{bone "support2"
+			{Position 10.171 	 -4.758 	 0}
+		}
+		{bone "support3"
+			{Position 10.171 	 4.366 	 0}
+		}
+		{bone "visor1"
+			{Position 13.7795 	 3.937 	 7.874}
+		}
+		{bone "visor"
+			{Position 13.7795 	 -3.937 	 7.874}
+		}
+	}
+}
+{volume "body"
+	{box 2.31055 3.85804 0.353291}
+	{bone "body"}
+	{Position 0.121 	 0 	 0.3676}
+}
+{volume "gun"
+	{cylinder 0.474419 12.1891}
+	{bone "gun"}
+	{Position 0 	 0 	 6.0945}
+}
+{volume "rod"
+	{cylinder 0.256144 5.79881}
+	{bone "stand"}
+	{Position 0.0242 	 0.1253 	 2.4657}
+}
+{volume "standl"
+	{cylinder 0.256144 7.65444}
+	{bone "standl"}
+	{matrix34
+		0.9803 	 -0.1772 	 -0.0875
+		0.197 	 0.8432 	 0.5002
+		-0.0148 	 -0.5076 	 0.8615
+		-0.1452 	 2.4492 	 -3.1213
+	}
+}
+{volume "standr"
+	{cylinder 0.256144 7.94438}
+	{bone "standr"}
+	{matrix34
+		0.9677 	 0.2152 	 -0.1312
+		-0.2519 	 0.8387 	 -0.4828
+		0.0062 	 0.5003 	 0.8658
+		0.0779 	 -2.574 	 -3.3216
+	}
+}

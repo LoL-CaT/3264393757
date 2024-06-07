@@ -1,0 +1,195 @@
+;Exported by	: Inna
+;Date			: 16.01.2023 13:08:13
+;File			: F:\GIT\gem2-mdl-soldiers\models\unit\vehicle\60cm_Flak_SW36\60cm_Flak_SW36_wheeled_xx.max
+{skeleton
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "flak"
+			{parameters "id=body;"}
+			{poly "flak" {lod 0}}
+			{poly "flak_lod1" {lod 1}}
+			{poly "flak_lod2" {lod 2}}
+			{poly "flak_lod3" {lod 3 {last}}}
+			{bone "body"
+				{parameters "id=body;"}
+				{Position -8.0535 	 0 	 7.3274}
+				{poly "body" {lod 0}}
+				{poly "body_lod1" {lod 1}}
+				{poly "body_lod2" {lod 2}}
+				{poly "body_lod3" {lod 3 {last}}}
+				{bone revolute "turret"
+					{parameters "id=turret;"}
+					{limits -20 20}
+					{speed 0.01}
+					{Position 4.7337 	 0 	 1.7517}
+					{poly "turret" {lod 0}}
+					{poly "turret_lod1" {lod 1}}
+					{poly "turret_lod2" {lod 2}}
+					{poly "turret_lod3" {lod 3 {last}}}
+					{bone "part3"
+						{parameters "id=turret;"}
+						{Position -15.8031 	 -4.4377 	 3.8412}
+						{poly "part3" {lod 0}}
+						{poly "part3_lod1" {lod 1}}
+						{poly "part3_lod2" {lod 2}}
+						{poly "part3_lod3" {lod 3 {last}}}
+						{bone "part3_01"
+							{matrix34
+								0.9427 	 0.3308 	 0.0422
+								-0.3333 	 0.9294 	 0.1585
+								0.0132 	 -0.1635 	 0.9864
+								1.6076 	 0.175 	 -0.286
+							}
+						}
+						{bone "part3_02"
+							{matrix34
+								0.9128 	 0.3099 	 0.2662
+								-0.3348 	 0.9408 	 0.0528
+								-0.234 	 -0.1373 	 0.9625
+								-2.1894 	 -0.7514 	 1.3902
+							}
+						}
+					}
+					{bone revolute "part4"
+						{parameters "id=gun;"}
+						{matrix34
+							1 	 0 	 0
+							0 	 0 	 1
+							0 	 -1 	 0
+							7.1955 	 0 	 13.68
+						}
+						{poly "part4" {lod 0}}
+						{poly "part4_lod1" {lod 1}}
+						{poly "part4_lod2" {lod 2}}
+						{poly "part4_lod3" {lod 3 {last}}}
+					}
+				}
+				{bone "pivot_back"
+					{Position -16.9697 	 0 	 0.0543}
+				}
+				{bone "pivot_front"
+					{Position 7.5238 	 0 	 0.0543}
+					{bone revolute "part1"
+						{parameters "id=wheelleft;support=1;radius=0.38;"}
+						{matrix34
+							1 	 0 	 0
+							0 	 0 	 -1
+							0 	 1 	 0
+							-0.0841 	 16.0216 	 0.0095
+						}
+						{poly "part1" {lod 0}}
+						{poly "part1_lod1" {lod 1}}
+						{poly "part1_lod2" {lod 2}}
+						{poly "part1_lod3" {lod 3 {last}}}
+					}
+					{bone revolute "part2"
+						{parameters "id=wheelright;support=1;radius=0.38;"}
+						{matrix34
+							1 	 0 	 0
+							0 	 0 	 -1
+							0 	 1 	 0
+							-0.0841 	 -16.0216 	 0.0095
+						}
+						{poly "part2" {lod 0}}
+						{poly "part2_lod1" {lod 1}}
+						{poly "part2_lod2" {lod 2}}
+						{poly "part2_lod3" {lod 3 {last}}}
+					}
+				}
+			}
+		}
+	}
+}
+{obstacle "obstacle"
+	{obb2
+		{center -15.234 0.505549}
+		{extent 27.1649 12.2523}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{obstacle "obstacle1"
+	{obb2
+		{center -0.876637 -0.201777}
+		{extent 12.7931 19.3228}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body01"
+		{cylinder 8.95669 0.641333}
+		{bone "body"}
+		{Position 4.8037 	 0 	 1.8835}
+	}
+	{"body02"
+		{box 33.3253 24.787 2.54788}
+		{bone "flak"}
+		{Position -9.7667 	 0 	 7.5881}
+	}
+	{"body03"
+		{box 11.982 7.8202 1.33354}
+		{bone "flak"}
+		{matrix34
+			0.866 	 0 	 -0.5
+			0 	 1 	 0
+			0.5 	 0 	 0.866
+			-31.2251 	 0 	 10.9961
+		}
+	}
+	{"part1"
+		{cylinder 5.11049 2.32539}
+		{bone "part1"}
+		{matrix34
+			-1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+			-0.0629 	 -0.0072 	 -0.0992
+		}
+	}
+	{"part2"
+		{cylinder 5.12469 2.30661}
+		{bone "part2"}
+		{matrix34
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 -1
+			-0.049 	 0.008 	 0.0727
+		}
+	}
+	{"part4_01"
+		{cylinder 8.62079 16.636}
+		{bone "part4"}
+		{matrix34
+			0 	 0 	 1
+			0 	 1 	 0
+			-1 	 0 	 0
+			-0.9779 	 0.0252 	 0.0488
+		}
+	}
+	{"part4_02"
+		{box 9.23564 5.249 1.012}
+		{bone "part4"}
+		{matrix34
+			1 	 0 	 0
+			0 	 -0.7071 	 -0.7071
+			0 	 0.7071 	 -0.7071
+			-1.8787 	 6.1592 	 -6.0507
+		}
+	}
+	{"part4_03"
+		{box 10.3771 5.04217 1.53334}
+		{bone "part4"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0 	 -1
+			0 	 1 	 0
+			-1.5253 	 9.1688 	 0
+		}
+	}
+}

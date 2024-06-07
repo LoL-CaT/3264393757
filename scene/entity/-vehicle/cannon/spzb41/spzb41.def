@@ -1,0 +1,108 @@
+{game_entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.5))
+	{extension "spzb41.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	{props "vehicle" "cannon" "cannon_small" "small" "wheeled" "round_sandbag2" "vision_lev03_can" "level02" "texmod_w_cw_cf_cd" "muzzle_brake"}
+	{collider "cannon_small"}
+
+	{volume "body*"
+		{tags "body"}
+		{component "body"}
+	}
+	("v_gun" n(01))
+	("v_gun" n(02))
+	("v_gun" n(_rot01))
+	("v_gun" n(_rot02))
+	("v_gun" n(_rot03))
+	("v_gun" n(_rot04))
+	("v_stand")
+	{volume "turret*"
+		{tags "turret"}
+		{component "turret"}
+	}
+
+	("armor_light_hp" hp(100))
+	("round_sandbag2")
+	("round_dot2")
+
+	("crew_wheeled_gun")
+
+	{boarder
+		{anm "gunner"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_charger" 10}}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "pose_seat_cannon_left" 10}}
+		}
+		{anm "seat2"
+			{forward {end "pose_seat_cannon_right" 10}}
+		}
+	}
+
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+
+	{extender "inventory"
+		{box
+			{item "bullet28 apcr ger spzb41" 50}
+			{item "sandbag_kit2"}
+			{item "dot_kit"}
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "28mm_pzb41" filled}
+			{RestoreIKAfterAim}
+			{Rotate}
+			("abm_field_gun")
+		}
+	}
+
+	{mass 229}
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{switch "close"}
+			{move "mgun_browning_driver_r" "mgun_browning_driver_l"}
+			{aim "Cannon_lg40_gunlayer" ""}
+			{fire  "pose_kpvt_gunlayer" "cannon_zis3_charger_fire 0.13"}
+			{reload  "" "Cannon_zis3_charger"}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"} {workers "driver1" "driver2" "supportmove1" "supportmove2"}}
+		{attack {obstacle "open"} {workers "gunner" "commander"}}
+		{trailing {workers "seat1" "seat2"}}
+;		{rotate_ik_Limit 17}
+	}
+	{Chassis "track"
+		("car_trace" fx("tracewheel01a") step(0.08) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("loco_small")
+	}
+	{bone "turret"
+		{limits -20 20}
+		{speed 0.025}
+	}
+	{bone "gun_rot"
+		{limits 45 -10}	
+		{speed 0.01}
+	}
+	{bone "basis"
+		{limits}
+		{speed 0.01}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{Chassis "human_carrier"
+		("arena_cannon_light_2gunners_carrier")
+	}
+}

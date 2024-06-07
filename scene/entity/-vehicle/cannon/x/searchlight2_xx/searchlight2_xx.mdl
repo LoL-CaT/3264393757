@@ -1,0 +1,129 @@
+;Exported by:	 KobaA
+;Date:			 18.11.2022 11:39:19
+;File:			 D:\git\gem2-mdl-soldiers\models\unit\vehicle\60cm_Flak_SW36\60cm_Flak_SW36_xx.max
+{skeleton
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				8.0535 	 0 	 2.8929
+			}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone revolute "turret"
+				{parameters "id=turret;"}
+				{limits -20 20}
+				{speed 0.01}
+				{Position 4.7337 	 0 	 1.7517}
+				{LODView
+					{poly "turret"}
+					{poly "turret_lod1"}
+					{poly "turret_lod2"}
+					{poly "turret_lod3"}
+				}
+				{bone "part3"
+					{parameters "id=turret;"}
+					{Position -15.8031 	 -4.4377 	 3.8412}
+					{LODView
+						{poly "part3"}
+						{poly "part3_lod1"}
+						{poly "part3_lod2"}
+						{poly "part3_lod3"}
+					}
+					{bone "part3_01"
+						{matrix34
+							0.9427 	 0.3308 	 0.0422
+							-0.3333 	 0.9294 	 0.1585
+							0.0132 	 -0.1635 	 0.9864
+							1.6076 	 0.175 	 -0.286
+						}
+					}
+					{bone "part3_02"
+						{matrix34
+							0.9128 	 0.3099 	 0.2662
+							-0.3348 	 0.9408 	 0.0528
+							-0.234 	 -0.1373 	 0.9625
+							-2.1894 	 -0.7514 	 1.3902
+						}
+					}
+				}
+				{bone revolute "part4"
+					{parameters "id=gun;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						7.1955 	 0 	 13.68
+					}
+					{LODView
+						{poly "part4"}
+						{poly "part4_lod1"}
+						{poly "part4_lod2"}
+						{poly "part4_lod3"}
+					}
+				}
+			}
+		}
+	}
+}
+{obstacle "obstacle1"
+	{obb2
+		{center 0.876637 0.201777}
+		{extent 12.7931 13.526}
+		{axis 1 1.51421e-07}
+	}
+	{rotate}
+}
+{volume "body01"
+	{cylinder 8.95669 0.641333}
+	{bone "body"}
+	{Position 4.8037 	 0 	 1.8835}
+}
+{volume "body02"
+	{polyhedron}
+	{bone "body"}
+	{Position 3.6244 	 0.0957 	 -2.8927}
+}
+{volume "part4_01"
+	{cylinder 8.62079 16.636}
+	{bone "part4"}
+	{matrix34
+		0 	 0 	 1
+		0 	 1 	 0
+		-1 	 0 	 0
+		-0.9779 	 0.0252 	 0.0488
+	}
+}
+{volume "part4_02"
+	{box 9.23564 5.249 1.012}
+	{bone "part4"}
+	{matrix34
+		1 	 0 	 0
+		0 	 -0.7071 	 -0.7071
+		0 	 0.7071 	 -0.7071
+		-1.8787 	 6.1592 	 -6.0507
+	}
+}
+{volume "part4_03"
+	{box 10.3771 5.04217 1.53334}
+	{bone "part4"}
+	{matrix34
+		1 	 0 	 0
+		0 	 0 	 -1
+		0 	 1 	 0
+		-1.5253 	 9.1688 	 0
+	}
+}

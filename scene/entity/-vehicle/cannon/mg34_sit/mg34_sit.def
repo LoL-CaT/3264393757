@@ -1,0 +1,93 @@
+{actor
+	(include "/properties/cannon_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{props "vision_lev01_can" "cannon_small" "round_sandbag" "level01" "-with_gun""texmod_w" "anm_mgun_lie" "mg_stan_small"}
+	
+	{targetSelector "cannon_bullet"}
+	{targetClass "cannon"}
+	
+	{collider "cannon_small"}
+
+	{Weaponry
+		{place "mgun"
+			{weapon "mg34_stan" filled}
+			{gunner "gunner"}
+		}
+	}
+	{extender "inventory"
+		{box
+			{clear}
+			{item "sandbag_kit2"}
+			{item "dot_kit"}
+			{item "ammo" "mgun" 1000}
+		}	
+	}
+	{armor {health 100}}
+	{mass 31}
+	{Extension "mg34_sit.mdl"}
+	{bone "turret" {speed 0.04}}
+	{bone "gun_rot_vert" 
+		{speed 0.05}
+		{limits -10 10}
+	}
+	{bone "gunner"
+		{bone "gunner_stand"
+			{Position 0 0 -8}
+		}
+	}
+	{bone "commander"
+		{bone "commander_stand"
+			{Position 0 0 -8}
+		}
+	}
+	{extender "cannon"
+		{state move}
+		{animation
+			{reload "" ""}
+		}
+		{move {workers "driver1" "driver2"} {obstacle "close"}}
+		{attack "gunner_stand" {workers "gunner_stand" "commander_stand"} {obstacle "open"}}
+		{selector_gunner {name "gunner"}
+			{if linked and in_fortification "trench" {name "gunner_stand"}}
+		}
+		{rotate_bone "turret"}
+	}
+
+	("crew_human" place(gunner_stand)	bone(gunner_stand)	door(emit1) animation(gunner_stand))
+	("crew_human" place(commander_stand)	bone(commander_stand)	door(emit1) animation(commander))
+	{placer
+		{place "gunner" {UseVision 0}}
+		{place "gunner_stand" {UseVision 0}}
+		{place "commander_stand" {UseVision 0}}
+		{state "gunner_stand" {disable}}
+		{state "commander_stand" {disable}}
+	}
+	{boarder
+		{anm "commander"
+			{forward	{end "artillery_support_l" 10}}
+		}
+		{anm "gunner"
+			{forward	{end "pose_vicers_gunner" 10}}
+		}
+		{anm "gunner_stand"
+			{forward	{end "stan_mgun"}}
+		}
+		{link "driver1" "gunner_stand"}
+		{link "driver2" "commander_stand"}
+	}
+	{Volume "body"
+		{tags "body"}
+		{able{obstacle 0}}
+		{thickness 1}
+		{component "body"}
+	}
+	{Volume "touch"
+		{able clear {touch}}
+	}
+	{extension "sensor.ext"}
+	{Chassis "human_carrier"
+		("arena_mgun_stan_2gunners_carrier")
+	}
+	("round_sandbag2")
+	("round_dot2")
+}

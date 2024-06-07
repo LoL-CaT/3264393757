@@ -1,0 +1,162 @@
+﻿{actor
+	(include "/properties/airborne.ext")
+	{PatherID  "airborne"}
+;	(include "/properties/shadow/construction.inc" sx(1.2) sy(1.7) ofsx(0) ofsy(-5))
+	(include "/properties/shadow/airborn.inc" scale(2.2))
+	(include "/properties/selection/airborne.inc" scale(3.0))
+	(include "/properties/car_crew.ext")
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_plane_left"} {end "driver_airplane"} {base "open1"}}
+			{reverse 	{end	"board_plane_left" -1} {base "open1" -1}}
+		}
+	}
+	("crew_human" place(driver) bone(driver) door(emit1) animation(driver))
+
+	{Placer
+		{place "driver" {turnOff {targetable}}}
+	}
+
+	{fogable never}	
+	
+	{targetSelector "airborne"}
+
+	("vc_body_std" v(body01))
+	("vc_body_std" v(body02))
+	("vc_body_std" v(body03))
+	("vc_body_std" v(body04))
+	("vc_body_std" v(body05))
+
+	("vc_body_back_std" v(body_back01))
+	("vc_body_back_std" v(body_back02))
+	("vc_body_back_std" v(body_back03))
+
+	("vc_cabine_std" n(cabin))
+	
+	("v_part" v(elevator1) c(body_back))
+	("v_part" v(elevator2) c(body_back))
+
+	("v_part" v(propeller01) c(engine))
+	("v_part" v(propeller02) c(engine))
+	("v_part" v(propeller03) c(engine))
+	("v_part" v(propeller04) c(engine))
+
+	("v_part" v(rudder) c(body_back))
+
+	("vc_wheel_base" v(wheell) c(wheelleft))
+	("vc_wheel_base" v(wheelr) c(wheelright))
+	;wheel_back привязан в mdl к компоненту body_back - это ошибка, нужно такое же как его имя
+
+
+	{Chassis "airborne"
+		{Locomotion ("locomotion") 
+			{Maxspeed 150}
+	 	  	{turnRadius 50}
+		}
+		{maxSideSlope 70}	;degree
+		{speed
+			{Slow	120  }	; km/h
+			{Normal	150	}
+			{Fast	150	}
+		}
+		{maxElevationSpeed 20}
+		{elevationAcceleration 15}
+	}
+	{mass 3150}
+
+	{extender "inventory"
+		{box
+			{item "bullet20 fg ger mg151" 300}
+			{item "bullet30 fg ger mk108" 60}
+			{item "ammo hmgun" 600}
+			{item "air_bomb sc50" 1}
+			{item "ammo 210mm_rocket" 2}
+		}
+	}	
+	{Weaponry
+		{place "sc50"
+			{weapon "bomb_dropper_sc50" filled}
+			{barrels 1}
+			{shooter "shooter_b"}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+		{place "rocket"
+			{weapon "wfrgr21" filled}
+			{barrels 2}
+			{shooter "shooter_r"}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+		{place "zenite"
+			{weapon "20mm_mg151" filled}
+			{barrels 2}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+		{place "zenite1"
+			{weapon "30mm_mk108" filled}
+			{foresight "foresight3"}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+		{place "mgun1"
+			{foresight "foresight3"}
+			{weapon "mg131_x2" filled}
+			{barrels 2}
+			{shooter "shooter_m"}
+			{gunner "driver"}
+			{charger "driver"}
+			{basic}
+		}
+	}
+	{Sensor
+		{Visor "main"
+			{bone "pivot_back"}
+		}
+	}
+	("armor" hp(200))
+	
+	{Extension "bf109g.mdl"}
+
+	{bone "rocket_rot"
+		{limits -60 60}
+		{speed 1}
+	}
+	{bone "rocket"
+		{limits -30 30}
+		{speed 1}
+	}
+	{bone "foresight_main"
+		{limits -1 1}
+		{speed 1}
+	}
+
+	{bone "100lb"
+		{limits -90 90}
+		{speed 1}
+	}
+
+	;foresight1
+	{bone "gun_rot"
+		{speed 1}
+	}
+	{bone "gun_vert"
+		{speed 1}
+	}
+
+	;foresight3
+	{bone "zenite1"
+		{limits -25 25}
+		{speed 1}
+	}
+	{bone "foresight3"
+		{limits -25 25}
+		{speed 1}
+	}
+}

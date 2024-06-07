@@ -1,0 +1,221 @@
+;Exported by:	 KobaA
+;Date:			 14.05.2021 14:53:31
+;File:			 G:\_GIT_\gem2\gem2-mdl-soldiers\models\unit\vehicle\leiG_18\leiG_18_xx.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{matrix34
+				1 	 0 	 0.0023
+				0 	 1 	 0
+				-0.0023 	 0 	 1
+				-12.7644 	 0 	 -1.2412
+			}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone "pivot_front"
+				{matrix34
+					1 	 0 	 -0.0023
+					0 	 1 	 0
+					0.0023 	 0 	 1
+					12.7197 	 0 	 8.9557
+				}
+				{bone "wheelr"
+					{parameters "id=wheelright;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						0 	 -14.6318 	 0
+					}
+					{LODView
+						{poly "wheelr"}
+						{poly "wheelr_lod1"}
+						{poly "wheelr_lod2"}
+						{poly "wheelr_lod3"}
+					}
+				}
+				{bone "wheell"
+					{parameters "id=wheelleft;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						0 	 14.6318 	 0
+					}
+					{LODView
+						{poly "wheell"}
+						{poly "wheell_lod1"}
+						{poly "wheell_lod2"}
+						{poly "wheell_lod3"}
+					}
+				}
+			}
+			{bone "turret"
+				{parameters "id=turret;"}
+				{Position 11.0589 	 0 	 15.4285}
+				{LODView
+					{poly "turret"}
+					{poly "turret_lod1"}
+					{poly "turret_lod2"}
+					{poly "turret_lod3"}
+				}
+				{bone "gun_rot"
+					{parameters "id=gun;"}
+					{matrix34
+						1 	 0 	 -0.003
+						-0.003 	 0 	 -1
+						0 	 1 	 0
+						0.2429 	 0 	 -2.6284
+					}
+					{LODView
+						{poly "gun_rot"}
+						{poly "gun_rot_lod1"}
+						{poly "gun_rot_lod2"}
+						{poly "gun_rot_lod3"}
+					}
+					{bone "gun"
+						{parameters "id=gun;"}
+						{matrix34
+							0.0007 	 1 	 0
+							-0.0007 	 0 	 1
+							1 	 -0.0007 	 0.0007
+							5.1401 	 -1.3744 	 0.0036
+						}
+						{LODView
+							{poly "gun"}
+							{poly "gun_lod1"}
+							{poly "gun_lod2"}
+							{poly "gun_lod3"}
+						}
+						{bone "breech"
+							{parameters "id=gun;"}
+							{matrix34
+								1 	 -0.0035 	 0
+								0.0035 	 1 	 -0.0005
+								0 	 0.0005 	 1
+								-0.1202 	 -0.0011 	 7.5681
+							}
+							{LODView
+								{poly "breech"}
+								{poly "breech_lod1"}
+								{poly "breech_lod2"}
+								{poly "breech_lod3"}
+							}
+						}
+					}
+					{bone "shield_002"
+						{parameters "id=turret;"}
+						{matrix34
+							-0.9678 	 -0.2519 	 -0.0007
+							0.0007 	 0 	 -1
+							0.2519 	 -0.9678 	 0.0002
+							10.3878 	 1.4947 	 0.0076
+						}
+						{LODView
+							{poly "shield_002"}
+							{poly "shield_002_lod1"}
+							{poly "shield_002_lod2"}
+							{poly "shield_002_lod3"}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+{obstacle "obstacle"
+	{obb2
+		{center 0.0399399 0.125944}
+		{extent 7.85055 15.995}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{obstacle "obstacle1"
+	{obb2
+		{center -12.7224 0.0839631}
+		{extent 26.0705 5.28967}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{volume "body01"
+	{box 41.3728 7.31726 4.52897}
+	{bone "body"}
+	{matrix34
+		0.9964 	 0 	 0.0849
+		0 	 1 	 0
+		-0.0849 	 0 	 0.9964
+		-5.692 	 0 	 7.4261
+	}
+}
+{volume "body02"
+	{box 0.393701 23.3699 3.68935}
+	{bone "body"}
+	{matrix34
+		0.9964 	 0 	 0.0849
+		0 	 1 	 0
+		-0.0849 	 0 	 0.9964
+		22.4875 	 0.0066 	 10.3509
+	}
+}
+{volume "gun"
+	{box 15.7007 3.66251 2.64417}
+	{bone "gun"}
+	{matrix34
+		-0.0005 	 0 	 1
+		0.0028 	 1 	 0
+		-1 	 0.0028 	 -0.0005
+		-1.2014 	 -0.0684 	 1.5545
+	}
+}
+{volume "wheelleft"
+	{polyhedron}
+	{bone "wheell"}
+	{matrix34
+		0.9852 	 -0.1714 	 0
+		0.1714 	 0.9852 	 0
+		0 	 0 	 1
+		0 	 0 	 -0.7242
+	}
+}
+{volume "wheelright"
+	{polyhedron}
+	{bone "wheelr"}
+	{matrix34
+		0.9852 	 -0.1714 	 0
+		0.1714 	 0.9852 	 0
+		0 	 0 	 1
+		0 	 0 	 0.7709
+	}
+}
+{volume "turret01"
+	{box 0.615803 7.66225 15.1795}
+	{bone "turret"}
+	{matrix34
+		0.7087 	 0 	 0.7055
+		0 	 1 	 0
+		-0.7055 	 0 	 0.7087
+		5.6443 	 7.4379 	 1.9954
+	}
+}
+{volume "turret02"
+	{box 0.615803 7.66225 13.8134}
+	{bone "turret"}
+	{matrix34
+		0.7087 	 0 	 0.7055
+		0 	 1 	 0
+		-0.7055 	 0 	 0.7087
+		6.1262 	 -7.5307 	 1.5113
+	}
+}

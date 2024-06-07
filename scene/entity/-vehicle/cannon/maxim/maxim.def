@@ -1,0 +1,121 @@
+{entity
+	(include "/properties/cannon_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	
+	{targetSelector "cannon_bullet"}
+	{targetClass "cannon"}
+
+	{props "wheeled" "cannon" "cannon_small" "round_sandbag2" "level01" "-with_gun" "texmod_w" "anm_mgun_lie" "mg_stan_small"}
+	{collider "cannon_small"}
+	("round_sandbag2")
+	("round_dot2")
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+	{Weaponry
+
+		{place "mgun"
+			{weapon "maxim_inv" filled}
+			{Rotate}
+			{gunner "gunner"}
+		}
+	}
+	{extender "inventory"
+		{box
+			{clear}
+			{item "ammo" "mgun" 500}
+			{item "dot_kit"}
+		}	
+	}
+	{Extension "maxim.mdl"}
+	{bone "turret"
+		{limits -45 45}
+		{speed 0.03}		
+	}	
+	{bone "basis"
+		{limits}
+		{speed 0.03}
+	}
+	{bone "gunner"
+		{bone "gunner_stand"
+			{Position 9 1 -19}
+		}
+	}
+
+	{extender "cannon"
+		{animation
+			{move "cannon_maxim_move" ""}
+			{reload "" "cannon_kpvt_charger"}
+		}
+		{move {workers "driver"} {obstacle "close"}}
+		{attack {workers "gunner"} {obstacle "open"}}
+		{attack "gunner_stand" {workers "gunner_stand"} {obstacle "open"}}
+		{rotate_ik_Limit 15}
+		{selector_gunner {name "gunner"}
+			{if linked and in_fortification "trench" {name "gunner_stand"}}
+		}
+	}
+	
+
+	("crew_human" place(driver) bone(driver)	door(emit1) animation(driver))
+;	("crew_human" place(gunner)	bone(gunner)	door(emit1) animation(gunner))
+	("crew_human" place(gunner_stand)	bone(gunner_stand)	door(emit1) animation(gunner_stand))
+	{placer
+		{place "gunner" {UseVision 0}}
+		{place "gunner_stand" {UseVision 0}}
+		{place "commander" remove}
+		{place "driver1" remove}
+		{place "driver2" remove}
+		{state "gunner_stand" {disable}}
+	}
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_maxim_gunlaeyr" 10}}
+		}
+		{anm "gunner_stand"
+			{forward	{end "pose_mgun_stan" 10}}
+		}
+		{anm "driver"
+			{forward {end "pose_maxim_driver" -10}}
+		}
+		{link "driver" "gunner"}
+		{link "driver" "gunner_stand"}
+	}
+
+	{Volume "body01"
+		{tags "body"}
+		{able{obstacle 0}{blast 0}}
+		{thickness 1}
+		{component "body"}
+	}
+	{Volume "body02"
+		{tags "body"}
+		{able{obstacle 0}}
+		{thickness 1}
+		{component "body"}
+	}
+	{Volume "turret01"
+		{tags "turret"}
+		{able{obstacle 0}{blast 0}}
+		{thickness 1}
+		{component "turret"}
+	}
+	{Volume "turret02"
+		{tags "turret"}
+		{able{obstacle 0}{blast 0}}
+		{thickness 1}
+		{component "turret"}
+	}
+
+	{component "turret"
+		{RepairTime 15}
+	}
+	{armor {health 75}}
+	{mass 64}
+	{extension "sensor.ext"}
+	{Chassis "human_carrier"
+		("arena_mgun_stan_1gunner_carrier")
+		{locomotion
+			("maxspeed" args 22)
+		}	
+	}		
+}

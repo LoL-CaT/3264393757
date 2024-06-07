@@ -1,0 +1,241 @@
+;Exported by:	 joomb
+;Date:			 30.04.2020 09:04:06
+;File:			 D:\Git\gem2-mdl-soldiers\models\unit\vehicle\pm41\pm41_anim.max
+{skeleton
+	{animation
+		{sequence "recoil" {speed 0.5}}
+		{sequence "close" {speed 0.5}}
+	}
+	{bone revolute "turret"
+		{limits -180 180}
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{matrix34
+				0.9397 	 0 	 -0.342
+				0 	 1 	 0
+				0.342 	 0 	 0.9397
+				-1.7013 	 0.0824 	 -0.3515
+			}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone "gun"
+				{parameters "id=gun;"}
+				{matrix34
+					0.9659 	 0 	 -0.2588
+					0 	 1 	 0
+					0.2588 	 0 	 0.9659
+					-0.0182 	 -0.0824 	 2.1573
+				}
+				{LODView
+					{poly "gun"}
+					{poly "gun_lod1"}
+					{poly "gun_lod2"}
+					{poly "gun_lod3"}
+				}
+				{bone revolute "foresight"
+					{limits -20 25}
+					{matrix34
+						0 	 0 	 1
+						-1 	 0 	 0
+						0 	 -1 	 0
+						-0.112 	 0 	 36.1859
+					}
+				}
+				{bone "rod"
+					{parameters "id=gun;"}
+					{matrix34
+						0.5884 	 0 	 0.8086
+						0 	 1 	 0
+						-0.8086 	 0 	 0.5884
+						2.2512 	 0.0401 	 29.4294
+					}
+					{poly "rod"}
+					{bone "stand"
+						{parameters "id=gun;"}
+						{Position 1.5343 	 -0.0003 	 -14.6345}
+						{LODView
+							{poly "stand"}
+							{poly "stand_lod1"}
+							{poly "stand_lod2"}
+							{poly "stand_lod3"}
+						}
+						{bone "standr"
+							{parameters "id=gun;"}
+							{matrix34
+								1 	 0 	 0
+								0 	 0.9962 	 0.0872
+								0 	 -0.0872 	 0.9962
+								-0.0018 	 0 	 5.9348
+							}
+							{LODView
+								{poly "standr"}
+								{poly "standr_lod1"}
+								{poly "standr_lod2"}
+								{poly "standr_lod3"}
+							}
+						}
+						{bone "lock"
+							{parameters "id=gun;"}
+							{matrix34
+								1 	 0 	 0
+								0 	 0.9778 	 0.2097
+								0 	 -0.2097 	 0.9778
+								-0.0018 	 -1.4666 	 -2.9786
+							}
+							{LODView
+								{poly "lock"}
+								{poly "lock_lod1"}
+								{poly "lock_lod2"}
+								{poly "lock_lod3"}
+							}
+						}
+						{bone "standl"
+							{parameters "id=gun;"}
+							{matrix34
+								1 	 0 	 0
+								0 	 0.9962 	 -0.0872
+								0 	 0.0872 	 0.9962
+								-0.0018 	 0 	 5.9348
+							}
+							{LODView
+								{poly "standl"}
+								{poly "standl_lod1"}
+								{poly "standl_lod2"}
+								{poly "standl_lod3"}
+							}
+						}
+						{bone "lever"
+							{parameters "id=gun;"}
+							{Position 1.6425 	 -0.0317 	 7.4963}
+							{LODView
+								{poly "lever"}
+								{poly "lever_lod1"}
+								{poly "lever_lod2"}
+								{poly "lever_lod3"}
+							}
+						}
+					}
+				}
+			}
+			{bone "handle2"
+				{matrix34
+					0.9397 	 0 	 0.342
+					-0.342 	 0 	 0.9397
+					0 	 -1 	 0
+					21.0453 	 -0.0824 	 27.7835
+				}
+			}
+			{bone "handle1"
+				{matrix34
+					0.9397 	 0 	 0.342
+					-0.342 	 0 	 0.9397
+					0 	 -1 	 0
+					-10.365 	 -0.0824 	 15.3985
+				}
+			}
+		}
+		{bone "visor1"
+			{matrix34
+				1 	 0 	 0
+				0 	 0 	 1
+				0 	 -1 	 0
+				22.7747 	 9.8064 	 22.4371
+			}
+		}
+		{bone "visor"
+			{matrix34
+				1 	 0 	 0
+				0 	 0 	 1
+				0 	 -1 	 0
+				22.7747 	 -8.8474 	 22.4371
+			}
+		}
+		{bone "commander"
+			{matrix34
+				0.9988 	 -0.0485 	 0
+				0.0485 	 0.9988 	 0
+				0 	 0 	 1
+				2.378 	 -17.0548 	 0.2335
+			}
+		}
+		{bone "driver1"
+			{Position 27.3968 	 -2.5601 	 0}
+		}
+		{bone "driver2"
+			{Position -5.169 	 0 	 0}
+		}
+		{bone "emit1"
+			{Position 3.8719 	 -12.006 	 0}
+		}
+		{bone "emit2"
+			{Position 3.8719 	 10.0625 	 0}
+		}
+		{bone "gunner"
+			{matrix34
+				0.9397 	 -0.342 	 0
+				0.342 	 0.9397 	 0
+				0 	 0 	 1
+				5.98 	 12.3365 	 0
+			}
+		}
+		{bone "support1"
+			{Position -2.9528 	 0 	 0}
+		}
+		{bone "support2"
+			{Position 27.874 	 -12.7165 	 0}
+		}
+		{bone "support3"
+			{Position 27.8767 	 12.7246 	 0}
+		}
+	}
+}
+{volume "body"
+	{cylinder 9.22296 2.24193}
+	{bone "body"}
+	{Position -0.9907 	 0 	 4.5242}
+}
+{volume "gun"
+	{cylinder 1.90813 31.9985}
+	{bone "gun"}
+	{Position -0.0745 	 -0.0228 	 19.2919}
+}
+{volume "rod"
+	{cylinder 0.823906 21.5312}
+	{bone "rod"}
+	{matrix34
+		0.3136 	 -0.9495 	 0.0021
+		-0.9495 	 -0.3136 	 0.0029
+		-0.0021 	 -0.0029 	 -1
+		1.5962 	 0.0569 	 -12.5474
+	}
+}
+{volume "standl"
+	{cylinder 0.473906 19.8298}
+	{bone "standl"}
+	{matrix34
+		0.1336 	 -0.7815 	 -0.6095
+		-0.991 	 -0.1086 	 -0.078
+		-0.0053 	 0.6144 	 -0.789
+		-0.0956 	 7.9272 	 -8.1759
+	}
+}
+{volume "standr"
+	{cylinder 0.473906 19.8298}
+	{bone "standr"}
+	{matrix34
+		0.6705 	 0.5831 	 -0.4587
+		-0.7419 	 0.5271 	 -0.4143
+		0.0002 	 0.6181 	 0.7861
+		-0.0669 	 -8.0169 	 -8.0842
+	}
+}

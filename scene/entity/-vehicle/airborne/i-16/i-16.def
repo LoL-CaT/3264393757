@@ -1,0 +1,105 @@
+{actor
+	(include "/properties/airborne.ext")
+	{PatherID  "airborne"}
+	(include "/properties/shadow/airborn.inc" scale(2.2))
+	(include "/properties/selection/airborne.inc" scale(3.0))
+	(include "/properties/car_crew.ext")
+
+	{targetClass "airborne"}
+	{targetSelector "airborne"}
+	{fogable never}
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_plane_left"} {end "driver_airplane"} {base "open1"}}
+			{reverse 	{end	"board_plane_left" -1} {base "open1" -1}}
+		}
+	}
+	("crew_human" place(driver) bone(driver) door(emit1) animation(driver))
+
+	{Placer
+		{place "driver" {turnOff {targetable}}}
+	}
+
+	("v_body"	 v(body01)	c(body))
+	("v_body"	 v(body02)	c(body))
+	("v_body"	 v(body03)	c(body))
+	("v_body"	 v(body04)	c(body))
+	("v_body"	 v(body05)	c(body))
+
+	("v_body_back"	 v(body_back01)	c(body_back))
+	("v_body_back"	 v(body_back02)	c(body_back))
+	("v_body_back"	 v(body_back03)	c(body_back))
+	("v_body_back"	 v(body_back04)	c(body_back))
+	("v_part" v(propeller01) c(engine))
+	("v_part" v(propeller02) c(engine))
+	("v_part" v(propeller03) c(engine))
+
+	("v_part" v(aileron1) c(wingleft))
+	("v_part" v(aileron2) c(wingright))
+	("v_part" v(elevator1) c(body_back))
+	("v_part" v(elevator2) c(body_back))
+	("v_part" v(rudder) c(body_back))
+
+	("vc_wheel_base" v(wheell) c(wheelleft))
+	("vc_wheel_base" v(wheelr) c(wheelright))
+	;wheel_back привязан в mdl к компоненту body_back - это ошибка, нужно такое же как его имя
+
+	{Chassis "airborne"
+		{Locomotion ("locomotion") 
+			{Maxspeed 150}
+	 	  	{turnRadius 50}
+		}
+		{maxSideSlope 70}	;degree
+		{speed
+			{Slow	120  }	; km/h
+			{Normal	150	}
+			{Fast	150	}
+		}
+		{maxElevationSpeed 20}
+		{elevationAcceleration 15}
+	}
+	{mass 1354}
+
+	{extender "inventory"
+		{box
+			{item "ammo mgun" 1000}
+			{item "ammo rs82" 6}
+		}
+	}	
+	{Weaponry
+		{place "rocket"
+			{weapon "arl_i16" filled}
+			{foresight "foresight_main"}
+			{barrels 6}
+			{shooter "shooter_r"}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+		{place "zenite"
+			{weapon "shkas_x4" filled}
+			{foresight "foresight_main"}
+			{barrels 3}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+	}
+
+	{Sensor
+		{Visor "main"
+			{bone "pivot_back"}
+		}
+	}
+
+	("armor" hp(150))
+
+	{Extension "i-16.mdl"}
+	{bone "wingl1"
+		{parameters "id=wingleft;"}
+	}
+	{bone "wingr1"
+		{parameters "id=wingright;"}
+	}
+}

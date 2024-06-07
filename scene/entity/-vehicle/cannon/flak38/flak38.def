@@ -1,0 +1,87 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{Extension "flak38.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	{props "vehicle" "cannon" "flak" "anm_flak" "round_sandbag2" "vision_lev02" "texmod_w_cw_cf_c2f_cd" }
+    {targetSelector "cannon_autocannon_aa"}	
+	("armor_light")
+    ("round_sandbag3")
+	("round_dot2")
+	{volume "body"
+		{tags "body"}
+	}
+	(define "v_shields"
+		("v_body" name(shield) s(l) n(%n))
+		("v_body" name(shield) s(r) n(%n))
+	)
+	("v_shields" n(01))
+	("v_shields" n(02))
+	("v_gun" n(01))
+	("v_gun" n(02))
+	("v_gun" n(03))
+	("v_gun" n(04))
+	("v_gun" n(_rot_01))
+	("v_gun" n(_rot_02))
+	("armor_light_hp" hp(200))
+	("crew_2_human")
+	("crew_human" place(charger)	bone(charger)	door(emit3) animation(charger))
+	("crew_human" place(charger2)	bone(charger2)	door(emit2) animation(charger2))
+	("crew_human" place(gunner)	bone(gunner)	door(emit1) animation(gunner))
+	
+	{placer
+		{place "charger" {group "crew"}}
+		{place "charger2" {group "crew"}}
+		{place "gunner" {group "crew"}}
+	}
+	{boarder
+		{anm "gunner"
+			{forward	{end "zenit_pointer_right" 10}}
+		}
+		{anm "charger"
+			{forward	{end "zenit_pointer_right" 10}}
+		}
+		{anm "charger2"
+			{forward	{end "zenit_pointer_right" 10}}
+		}
+	}
+	{extender "cannon"
+		{animation
+			{aim "" "" ""}
+			{reload  "" "Cannon_aa_gunlayer_recharge_r" "Cannon_aa_gunlayer_recharge_r"}
+		}
+		{move {workers clear} {obstacle "close"}}
+		{attack {workers "gunner" "charger" "charger2"} {obstacle "open"}}
+	}
+	{extender "inventory"
+		{box
+			{item "bullet20 ap ger flak" 500}
+			{item "bullet20 fg ger flak" 500}			
+			{item "sandbag_kit2"}	
+			{item "repair_kit"}	
+		}
+	}	
+	{Weaponry
+		{place "gun"
+			{weapon "20mm_flak38_x4_stan" filled}
+			{Barrels 4}
+			("abm_zenite")
+		}
+	}
+	
+	{mass 1514}
+	{bone "gun_rot"
+		{limits -65 15}
+	}
+	{bone "turret"
+		{speed 0.035}
+	}
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator4" {bone "gun_rotator3"} {on}}
+	}	
+    {extension "sensor.ext"}
+	{extension "camouflage.ext"}		
+}

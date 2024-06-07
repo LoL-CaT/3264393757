@@ -1,0 +1,174 @@
+;Exported by	: KobaA
+;Date			: 06.03.2024 15:27:23
+;File			: d:\git\gem2-mdl-soldiers\models\unit\vehicle\sgrw_34\sgrw_34_anim.max
+{skeleton
+	{animation
+		{sequence "recoil"}
+		{sequence "close"}
+	}
+	{bone revolute "turret"
+		{limits -180 180}
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "visor"
+			{matrix34
+				0.9996 	 0 	 -0.0296
+				0 	 1 	 0
+				0.0296 	 0 	 0.9996
+				9.888 	 -2.6399 	 16.8285
+			}
+		}
+		{bone "visor2"
+			{matrix34
+				0.9996 	 0 	 -0.0296
+				0 	 1 	 0
+				0.0296 	 0 	 0.9996
+				8.0892 	 2.3174 	 16.8285
+			}
+		}
+		{bone "support3"
+			{Position 12.5546 	 6.533 	 0}
+		}
+		{bone "support2"
+			{Position 12.5232 	 -6.5315 	 0}
+		}
+		{bone "support1"
+			{Position 0.8545 	 0.1193 	 0}
+		}
+		{bone "gunner"
+			{Position 1.7195 	 5.6953 	 0}
+		}
+		{bone "emit2"
+			{parameters "group=crew;"}
+			{Position 6.3031 	 7.6428 	 0.4289}
+			{visibility 0}
+		}
+		{bone "emit1"
+			{parameters "group=crew;"}
+			{Position -0.7203 	 -10.7629 	 0}
+			{visibility 0}
+		}
+		{bone "driver2"
+			{Position -3.2631 	 -0.0735 	 0}
+		}
+		{bone "driver1"
+			{Position 12.1719 	 -2.2172 	 0}
+		}
+		{bone "commander"
+			{Position 6.9656 	 -10.7521 	 0}
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0.0196 	 0 	 0.6222}
+			{poly "body" {lod 0}}
+			{poly "body_lod1" {lod 1}}
+			{poly "body_lod2" {lod 2 {last}}}
+			{bone "handle1"
+				{matrix34
+					0 	 -1 	 0
+					1 	 0 	 0
+					0 	 0 	 1
+					11.9374 	 0.1193 	 11.8033
+				}
+			}
+			{bone "handle2"
+				{matrix34
+					0 	 1 	 0
+					-1 	 0 	 0
+					0 	 0 	 1
+					-5.8288 	 0.1193 	 7.733
+				}
+			}
+			{bone "gun"
+				{parameters "id=gun;"}
+				{matrix34
+					0.8938 	 0.0015 	 -0.4484
+					-0.0014 	 1 	 0.0007
+					0.4484 	 0 	 0.8938
+					-0.0236 	 0 	 0.0043
+				}
+				{poly "gun" {lod 0}}
+				{poly "gun_lod1" {lod 1}}
+				{poly "gun_lod2" {lod 2 {last}}}
+				{bone revolute "foresight"
+					{limits -20 15}
+					{matrix34
+						0.0124 	 0 	 0.9999
+						-0.9999 	 0.0015 	 0.0124
+						-0.0015 	 -1 	 0
+						0.0903 	 -0.0283 	 24.2506
+					}
+				}
+				{bone "stan_base"
+					{parameters "id=body;"}
+					{matrix34
+						0.5286 	 -0.0008 	 0.8489
+						-0.8489 	 0.0013 	 0.5286
+						-0.0015 	 -1 	 0
+						2.3262 	 -0.0036 	 16.3901
+					}
+					{poly "stan_base" {lod 0}}
+					{poly "stan_base_lod1" {lod 1}}
+					{poly "stan_base_lod2" {lod 2 {last}}}
+					{bone "stan_r"
+						{parameters "id=body;"}
+						{matrix34
+							0.9999 	 -0.0117 	 0.0012
+							0.0072 	 0.5262 	 -0.8504
+							0.0093 	 0.8503 	 0.5262
+							-0.0051 	 -4.8239 	 -1.3259
+						}
+						{poly "stan_r" {lod 0}}
+						{poly "stan_r_lod1" {lod 1}}
+						{poly "stan_r_lod2" {lod 2 {last}}}
+					}
+					{bone "stan_l"
+						{parameters "id=body;"}
+						{matrix34
+							0.9991 	 -0.0293 	 -0.0319
+							-0.042 	 -0.4742 	 -0.8794
+							0.0106 	 0.8799 	 -0.475
+							-0.0051 	 -4.8239 	 1.3259
+						}
+						{poly "stan_l" {lod 0}}
+						{poly "stan_l_lod1" {lod 1}}
+						{poly "stan_l_lod2" {lod 2 {last}}}
+					}
+					{bone "stan_chest"
+						{parameters "id=body;"}
+						{Position 0 	 -4.6962 	 0}
+						{poly "stan_chest" {lod 0}}
+						{poly "stan_chest_lod1" {lod 1}}
+						{poly "stan_chest_lod2" {lod 2 {last}}}
+					}
+				}
+			}
+		}
+	}
+}
+{"volumes"
+	{"body"
+		{box 7.65591 10.4423 1.92237}
+		{bone "body"}
+		{matrix34
+			-1 	 0 	 0
+			0 	 1 	 0
+			0 	 0 	 -1
+			-0.0196 	 0 	 0.3022
+		}
+	}
+	{"gun"
+		{cylinder 1.03806 21.3766}
+		{bone "gun"}
+		{matrix34
+			0.9996 	 -0.0015 	 0.0286
+			0.0015 	 1 	 0
+			-0.0286 	 0 	 0.9996
+			0.133 	 0.0493 	 10.3152
+		}
+	}
+}

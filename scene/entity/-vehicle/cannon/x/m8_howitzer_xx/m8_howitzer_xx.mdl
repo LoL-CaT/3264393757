@@ -1,0 +1,212 @@
+;Exported by:	 KobaA
+;Date:			 21.09.2021 17:01:45
+;File:			 G:\_GIT_\gem2\gem2-mdl-soldiers\models\unit\vehicle\75mm_Pack_Howitzer_M1\m8_howitzer_xx.max
+{skeleton
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "part3"
+			{parameters "id=body;"}
+			{Position 0 	 0 	 6.0835}
+			{LODView
+				{poly "part3"}
+				{poly "part3_lod1"}
+				{poly "part3_lod2"}
+				{poly "part3_lod3"}
+			}
+			{bone "pivot_front"
+				{bone revolute "part1"
+					{parameters "id=wheelleft;support=1;radius=0.32;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						0 	 10.5364 	 0
+					}
+					{LODView
+						{poly "part1"}
+						{poly "part1_lod1"}
+						{poly "part1_lod2"}
+						{poly "part1_lod3"}
+					}
+				}
+				{bone revolute "part2"
+					{parameters "id=wheelright;support=1;radius=0.32;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						0 	 -10.2519 	 0
+					}
+					{LODView
+						{poly "part2"}
+						{poly "part2_lod1"}
+						{poly "part2_lod2"}
+						{poly "part2_lod3"}
+					}
+				}
+			}
+			{bone "pivot_back"
+				{Position -36.7843 	 0 	 0}
+			}
+		}
+		{bone revolute "turret"
+			{parameters "id=gun;"}
+			{limits -3 3}
+			{speed 0.08}
+			{Position -6.6698 	 0.1422 	 10.3393}
+			{bone revolute "part5"
+				{parameters "id=gun;"}
+				{limits -45 5}
+				{speed 0.08}
+				{matrix34
+					1 	 0 	 0
+					0 	 0 	 1
+					0 	 -1 	 0
+					0 	 0 	 0
+				}
+				{LODView
+					{poly "part5"}
+					{poly "part5_lod1"}
+					{poly "part5_lod2"}
+					{poly "part5_lod3"}
+				}
+			}
+			{bone "part4"
+				{parameters "id=gun;"}
+				{Position 1.4267 	 0.0012 	 -0.1106}
+				{LODView
+					{poly "part4"}
+					{poly "part4_lod1"}
+					{poly "part4_lod2"}
+					{poly "part4_lod3"}
+				}
+			}
+		}
+	}
+}
+{obstacle "obstacle"
+	{obb2
+		{center -0.286767 -0.111595}
+		{extent 7.21619 12.5012}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{obstacle "obstacle1"
+	{obb2
+		{center -17.9434 -0.568258}
+		{extent 29.5276 5.48946}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{volume "part1"
+	{cylinder 4.42913 2.95276}
+	{bone "part1"}
+	{matrix34
+		0.9994 	 0 	 0.0349
+		-0.0012 	 -0.9994 	 0.0349
+		0.0349 	 -0.0349 	 -0.9988
+		0.0515 	 0.2792 	 0.0018
+	}
+}
+{volume "part2"
+	{cylinder 4.42913 2.95276}
+	{bone "part2"}
+	{matrix34
+		0.9848 	 -0.017 	 0.1729
+		0.0018 	 0.9962 	 0.0875
+		-0.1737 	 -0.0859 	 0.981
+		0.4815 	 0.2657 	 -0.0074
+	}
+}
+{volume "part3_01"
+	{cylinder 2.0909 20.8643}
+	{bone "part3"}
+	{matrix34
+		1 	 0 	 0
+		0 	 0 	 1
+		0 	 -1 	 0
+		-0.0033 	 0.1613 	 -0.1474
+	}
+}
+{volume "part3_02"
+	{box 23.1076 1.72157 3.34646}
+	{bone "part3"}
+	{matrix34
+		0.9997 	 -0.0174 	 0.0175
+		0.0175 	 0.9998 	 0
+		-0.0174 	 0.0003 	 0.9998
+		-11.0258 	 3.4908 	 -0.1566
+	}
+}
+{volume "part3_03"
+	{box 23.1076 1.72157 3.34646}
+	{bone "part3"}
+	{matrix34
+		0.9997 	 -0.0174 	 0.0175
+		0.0175 	 0.9998 	 0
+		-0.0174 	 0.0003 	 0.9998
+		-11.0258 	 -3.1469 	 -0.1566
+	}
+}
+{volume "part3_04"
+	{box 23.1076 1.72157 2.55906}
+	{bone "part3"}
+	{matrix34
+		0.9875 	 -0.0172 	 0.1564
+		0.0175 	 0.9998 	 0
+		-0.1564 	 0.0027 	 0.9877
+		-34.5089 	 4.5238 	 -1.9927
+	}
+}
+{volume "part3_05"
+	{box 23.1076 1.72157 2.55906}
+	{bone "part3"}
+	{matrix34
+		0.9875 	 -0.0172 	 0.1564
+		0.0175 	 0.9998 	 0
+		-0.1564 	 0.0027 	 0.9877
+		-34.5089 	 -2.1139 	 -1.9927
+	}
+}
+{volume "part4_01"
+	{box 24.076 3.9358 2.71881}
+	{bone "part4"}
+	{Position 10.1253 	 0.0967 	 -0.1368}
+}
+{volume "part4_02"
+	{cylinder 1.28839 27.3455}
+	{bone "part4"}
+	{matrix34
+		0 	 0 	 -1
+		0 	 1 	 0
+		1 	 0 	 0
+		11.4205 	 0.0021 	 2.0313
+	}
+}
+{volume "part4_03"
+	{cylinder 1.37795 17.0634}
+	{bone "part4"}
+	{matrix34
+		-0.0872 	 0 	 -0.9962
+		0 	 1 	 0
+		0.9962 	 0 	 -0.0872
+		10.5065 	 0.0021 	 3.75
+	}
+}
+{volume "part5"
+	{box 8.6175 8.16819 2.95276}
+	{bone "part5"}
+	{matrix34
+		1 	 0 	 0
+		0 	 0 	 -1
+		0 	 1 	 0
+		3.6825 	 -1.8487 	 0.0117
+	}
+}

@@ -1,0 +1,99 @@
+{game_entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/construction.inc" sx(0.3) sy(0.5) ofsx(0) ofsy(0))
+	{Extension "searchlight2_wheeled.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.6))
+	{props "vehicle" "cannon" "medium" "searchlight" "wheeled" "anm_searchlight"}
+	{collider "cannon_small"}
+	
+	("v_body" name(body) s() n(01))
+	("v_body" name(body) s() n(02))
+	("v_body" name(body) s() n(03))
+ 	("v_body" name(gun) s() n(01))
+	("v_body" name(gun) s() n(02))
+	("v_body" name(gun) s() n(03))
+
+	("armor_light" args 0.7)
+
+	{bone "turret"
+		{limits -20 20}
+	{speed 0.002}
+	}
+	{bone "gun"
+		{limits -15 45}
+	}
+	{bone "basis"
+		{speed 0.001}
+	}
+
+	{targetSelector "searchlight"}
+	{sensor
+		{Visor "main"
+			{vision "searchlight"}
+		}
+	}
+	{Volume "lamp"
+		{thickness 0.1}
+		{able {obstacle 0}}
+	}
+	("crew_wheeled_gun")
+	("crew_2_supporter")
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_flak38-1_gunlayer" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "pose_flak38-1_gunlayer" 10}}
+		}
+		{anm "seat2"
+			{forward {end "cannon_crew" 10}}
+		}
+	}
+	{extender "inventory"
+		{weapon "gun"
+			{mask "weapon searchlight"}
+		}
+		{box
+			{size 8 6}
+		}
+	}
+	{Weaponry
+		{place "light"
+			{weapon "searchlight"}
+		}
+	}
+	{extender "light"
+		{lamp "1"}
+		{lightfx "light_search"}
+		{breakfx "glass_hit"}
+		{check_operatable}
+	}
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mgun_browning_driver_r" "mgun_browning_driver_l"}
+			{aim "cannon_flak38-1_gunlayer" "" "" ""}	
+			{reload "" "cannon_lg40_charger" "" ""}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"} {workers "driver1" "driver2"}}
+		{attack {obstacle "open"} {workers "gunner" "commander" "support1" "support2"}}
+		{trailing {workers "seat1" "seat2"}}
+	}
+	{extender "bone_rotator"
+		{"watch.gun"}
+	}
+	{Chassis "human_carrier"
+		("arena_flak_stan_4gunners_carrier")
+	}
+}

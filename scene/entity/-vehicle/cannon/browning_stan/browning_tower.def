@@ -1,0 +1,80 @@
+{actor
+	(include "/properties/cannon_mgun_1.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{props "vision_lev01_can" "cannon_small" "place_mg_stan" "level02" "-with_gun" "anm_mgun_stan" "icon_for_linked"}
+	{collider "cannon_small"}
+	
+	{targetSelector "cannon_hmgun"}
+	{targetClass "cannon_tower"}	
+	{Weaponry
+		{place "mgun"
+			{weapon "browning_m19" filled}
+		}
+	}  	
+	{Extension "browning_stan.mdl"}
+
+	{Volume "body"
+		{tags "body"}
+		{able{obstacle 0}} ;{blast 0}
+		{thickness 1}
+		{component "body"}
+	}
+	{Volume "magazine"
+		{tags "body"}
+		{able{obstacle 0}} ;{blast 0}
+		{thickness 1}
+		{component "body"}
+	}
+	{volume "shank1"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "shank2"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "shank3"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "support1"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "support2"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "support3"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "turret"
+		{tags "turret"}
+		{component "turret"}
+	}
+
+	{extender "inventory"
+		{box
+			{clear}					
+			{item "mgun" 900}			
+		}
+	}	
+	{armor {health 100}}
+	{mass 55}	
+	{extension "sensor.ext"}	
+	{extender "cannon"
+	{rotate_ik_Limit 0}
+	}
+	{bone "basis"
+		{speed 0.04}
+	}
+	{bone "turret"
+	      {limits -50 50}
+		  {speed 0.08}
+	}
+	{bone "gun_rot"
+		{limits -15 55}
+		{speed 0.08}
+	}	
+}

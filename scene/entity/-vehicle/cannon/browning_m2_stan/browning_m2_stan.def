@@ -1,0 +1,115 @@
+{actor
+	(include "/properties/cannon_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{props "vision_lev01_can" "cannon" "round_sandbag" "cannon_small" "-with_gun" "texmod_w" "anm_mgun_lie"}
+	{collider "cannon_small"}
+	("round_sandbag2")
+	("round_dot2")
+	
+	{targetSelector "cannon_hmgun"}
+	
+	{Weaponry
+		{place "mgun"
+			{weapon "browning_stan" filled}
+		}
+	}  	
+	{Extension "browning_m2_stan.mdl"}
+
+	{Volume "body"
+		{tags "body"}
+		{able{obstacle 0}} ;{blast 0}
+		{thickness 1}
+		{component "body"}
+	}
+	{volume "stand"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "support1"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "support2"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "turret"
+		{tags "turret"}
+		{component "turret"}
+	}
+
+	{bone "gunner"
+		{bone "gunner_stand"
+			{Position -5 0 -18}
+		}
+	}
+	{bone "commander"
+		{bone "commander_stand"
+			{Position -10 0 -25}
+		}
+	}
+	{extender "cannon"
+		{state move}
+		{animation
+			{switch "close"}
+			{move "mgun_browning_driver_r" "mgun_browning_driver_l"}
+			{aim "" ""}
+			{fire  "" ""}
+			{reload  "" "mgun_stan_down"}
+		}
+		{move {workers "driver1" "driver2"} {obstacle "close"}}
+		{attack {workers "gunner" "commander"}}
+		{attack "gunner_stand" {workers "gunner_stand" "commander_stand"} {obstacle "open"}}
+		{selector_gunner {name "gunner"}
+			{if linked and in_fortification "trench" {name "gunner_stand"}}
+		}
+	}
+
+	("crew_human" place(commander_stand)	bone(commander_stand)	door(emit1) animation(commander))
+	("crew_human" place(gunner_stand)	bone(gunner_stand)	door(emit2) animation(gunner_stand))
+	{placer
+		{place "gunner_stand" {UseVision 0}}
+		{state "gunner_stand" {disable}}
+		{place "commander_stand" {UseVision 0}}
+		{state "commander_stand" {disable}}
+	}
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_vicers_gunner" 10}}
+		}
+		{anm "gunner_stand"
+			{forward	{end "seat_m7_mgunner" 10}}
+		}
+		{anm "commander"
+			{forward	{end "pose_recharge_middle_mortar" 10 }}
+		}
+		{link "driver1" "gunner_stand"}
+		{link "driver2" "commander_stand"}
+	}
+
+	{extender "inventory"
+		{box
+			{clear}		
+;			{item "sandbag_kit2"}
+			{item "dot_kit"}				
+			{item "ammo hmgun" 900}			
+		}
+	}	
+	{armor {health 100}}
+	{mass 55}	
+	{extension "sensor.ext"}
+	{Chassis "human_carrier"
+		("arena_mgun_stan_2gunners_carrier")
+	}	
+	{bone "basis"
+		{speed 0.04}
+	}
+	{bone "gun_rot"
+		{limits -15 55}
+		{speed 0.08}
+	}
+	{bone "turret"
+		{limits -15 15}
+		{speed 0.01}
+	}
+}

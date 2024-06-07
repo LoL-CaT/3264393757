@@ -1,0 +1,109 @@
+{actor
+	(include "/properties/trailer.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{Extension "kp42.mdl"}
+	(include "/properties/selection/vehicle.inc"  scale(0.7))
+	{props "vehicle" "cannon" "wheeled" "steel" "unarmed" "texmod_w_cf_cd"}
+
+	{Volume "body01"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{Volume "body02"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{Volume "body03"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{Volume "body04"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{Volume "body05"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{Volume "body06"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{Volume "body07"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{Volume "body08"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{Volume "body09"
+		{tags  "body"}
+		{component  "body"}
+	}
+	{volume "rezerv"
+		{tags  "body"}
+		{component  "body"}
+	}
+	("armor_light_hp" hp(175))
+
+	("wheel" args "wheelr")
+	("wheel" args "wheell")
+
+	("crew_wheeled_gun")
+	("crew_2_supporter_custom"
+		door3(emit1) anm_seat3(seat1)
+		door4(emit2) anm_seat4(seat2)
+	)
+	{boarder
+		{anm "gunner"
+			{forward	
+				;{end "pose_m8_gunlayer" 10}
+				{end "cannon_small_commander" 10}
+			}
+		}
+		{anm "commander"
+			{forward	
+				;{end "pose_m8_charger" 10}
+				{end "cannon_small_charger" 10}
+			}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "cannon_crew" 10}}
+		}
+		{anm "seat2"
+			{forward {end "cannon_crew" 10}}
+		}
+
+	}
+
+	{mass 400}
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right" "mgun_browning_driver_r" "mgun_browning_driver_l"}
+		}
+		{driver {workers "driver1" "driver2"}}
+		{move {obstacle "close"} {workers "driver1" "driver2" "supportmove1" "supportmove2"}}
+		{attack {obstacle "open"}{workers "gunner" "commander" "support1" "support2"}}
+		{trailing {workers "seat1" "seat2" "seat3" "seat4"}}
+	}
+	{extension "sensor.ext"}
+	;{extension "camouflage.ext"}
+	{Chassis "human_carrier"
+		("arena_cannon_light_4gunners_carrier")
+	}
+	{extender "inventory"
+		{box
+			{size 8 6}
+			{item "dry_ration" 10}
+		}
+	}
+}

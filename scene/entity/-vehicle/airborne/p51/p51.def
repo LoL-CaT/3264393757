@@ -1,0 +1,125 @@
+{actor
+	(include "/properties/airborne.ext")
+	{PatherID  "airborne"}
+	(include "/properties/shadow/airborn.inc" scale(2.2))
+	(include "/properties/selection/airborne.inc" scale(3.0))
+	(include "/properties/car_crew.ext")
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+	("v_body" v(body01)	c(body))
+	("v_body" v(body02)	c(body))
+	("v_body" v(body03)	c(body))
+	("v_body" v(body04)	c(body))
+	("v_body" v(body05)	c(body))
+
+	("v_body_back" v(body_back01)	c(body_back))
+	("v_body_back" v(body_back02)	c(body_back))
+	("v_body_back" v(body_back03)	c(body_back))
+
+	("v_part" v(elevator1)	c(body_back))
+	("v_part" v(elevator2)	c(body_back))
+
+	("v_part" v(propeller01) c(engine))
+	("v_part" v(propeller02) c(engine))
+	("v_part" v(propeller03) c(engine))
+	("v_part" v(propeller04) c(engine))
+	("v_part" v(propeller05) c(engine))
+
+	("v_part" v(rudder)	c(body_back))
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_plane_left"} {end "driver_airplane"} {base "open"}}
+			{reverse 	{end	"board_plane_left" -1} {base "open" -1}}
+		}
+	}
+	("crew_human" place(driver) bone(driver) door(emit1) animation(driver))
+
+	{Placer
+		{place "driver" {turnOff {targetable}}}
+	}
+
+	{fogable never}
+	
+	{targetSelector "airborne"}	
+	
+	{Chassis "airborne"
+		{Locomotion ("locomotion") 
+			{Maxspeed 150}
+			{turnRadius 50}
+		}
+		{maxSideSlope 70}	;degree
+		{speed
+			{Slow	120  }	; km/h
+			{Normal	150	}
+			{Fast	150	}
+		}
+		{maxElevationSpeed 20}		;m/s
+		{elevationAcceleration 15}	;m/s^2
+	}
+
+	("v_part" v(propeller01) c(engine))
+	("v_part" v(propeller02) c(engine))
+	("v_part" v(propeller03) c(engine))
+	("v_part" v(propeller04) c(engine))
+	("v_part" v(propeller05) c(engine))
+
+	("v_part" v(aileron1) c(wingleft))
+	("v_part" v(aileron2) c(wingright))
+	("v_part" v(flap1) c(body))
+	("v_part" v(flap2) c(body))
+	("vc_wheel_base" v(wheelr) c(wheelright))
+	("vc_wheel_base" v(wheell) c(wheelleft))
+	;wheel_back привязан в mdl к компоненту body_back - это ошибка, нужно такое же как его имя
+
+	("v_cabine" v(cabin) c(body))
+
+	("armor" hp(200))
+
+	{mass 4812}
+
+	{extender "inventory"
+		{box
+			{item "ammo hmgun" 320}
+			{item "air_bomb 100lb" 4}
+		}
+	}	
+	{Weaponry
+		{place "100lb"
+			{weapon "bomb_dropper_4x_100lb" filled}
+			{barrels 2}
+			{shooter "shooter_b"}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+		{place "zenite"
+			{weapon "browning_x6" filled}
+			{foresight "foresight1"}
+			{barrels 6}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+	}
+	{Sensor
+		{Visor "main"
+			{bone "pivot_back"}
+		}
+	}
+	{Extension "p51.mdl"}
+	{bone "100lb"
+		{limits -90 90}
+		{speed 1}
+	}
+	{bone "foresight_main"
+		{limits -30 30}
+		{speed 1}
+	}
+	{bone "gun_rot"
+		{limits -30 30}
+	}
+}

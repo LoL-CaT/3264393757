@@ -1,0 +1,108 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{Extension "lg_40.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	{props "vehicle" "cannon" "cannon_small" "wheeled" "medium" "round_sandbag2" "art_sup" "level02" "texmod_w_cf_cd"}
+	{collider "cannon_small"}
+	("trench_cannon")	
+	("armor_light_hp" hp(100))
+	("round_sandbag2")
+	("round_dot2")
+
+	{Volume "body01"
+		{tags "body"}
+		{component "body"}
+	}
+	{Volume "body02"
+		{tags "body"}
+		{component "body"}
+	}
+	("v_gun")
+	{Volume "turret01"
+		{tags "turret"}
+		{component "turret"}
+	}
+	{Volume "turret02"
+		{tags "turret"}
+		{component "turret"}
+	}
+	{Volume "turret03"
+		{tags "turret"}
+		{component "turret"}
+	}
+
+	{component "turret"
+		{RepairTime 15}
+	}
+
+	("wheel" args "wheelright")
+	("wheel" args "wheelleft")
+
+	("crew_wheeled_gun")
+	{boarder
+		{anm "gunner"
+			{forward	{end "cannon_small_gunner" 10}}
+		}
+		{anm "commander"
+			{forward	{end "cannon_small_commander" 10}}
+		}
+		{anm "driver1"
+			{forward {end "cannon_pak40_pusher_left" 10}}
+		}
+		{anm "driver2"
+			{forward {end "cannon_pak40_pusher_right" 10}}
+		}
+		{anm "seat1"
+			{forward {end "pose_seat_cannon_left" 10}}
+		}
+		{anm "seat2"
+			{forward {end "pose_seat_cannon_right" 10}}
+		}
+	}
+	{extender "inventory"
+		{box
+			{item "bullet105 fg ger lg40" 10}
+			{item "sandbag_kit2"}
+			{item "dot_kit"}
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "105mm_lg40" filled}
+			("abm_field_gun")
+		}
+	}
+
+	{mass 388}
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{switch "close"}
+			{move "cannon_pak40_pusher_left" "cannon_pak40_pusher_right"}
+			{aim "cannon_small_commander_aim" ""}
+			{fire  "cannon_small_commander_reaction" "cannon_small_charger_reaction"}
+			{reload  "cannon_small_commander_charge" "cannon_small_charger_charge"}
+		}
+		{move {obstacle "close"}}
+		{attack {obstacle "open"}}
+;		{rotate_ik_Limit 0}
+	}
+	{Chassis "track"
+		("car_trace" fx("tracewheel01a") step(0.08) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("loco_small")
+	}
+
+	{bone "turret"
+		{limits -20 20}	
+		{speed 0.01}
+	}
+	{bone "gun"
+		{limits -15 40}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{Chassis "human_carrier"
+		("arena_cannon_light_2gunners_carrier")
+	}	
+}

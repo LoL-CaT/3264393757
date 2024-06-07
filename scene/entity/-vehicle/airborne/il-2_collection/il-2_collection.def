@@ -1,0 +1,158 @@
+{actor
+	(include "/properties/airborne.ext")
+	{PatherID  "airborne"}
+	(include "/properties/shadow/airborn.inc" scale(2.2))
+	(include "/properties/selection/airborne.inc" scale(3.0))
+	(include "/properties/car_crew.ext")
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_plane_left"} {end "driver_airplane"} {base "open"}}
+			{reverse 	{end	"board_plane_left" -1} {base "open1" -1}}
+		}
+		{anm "gunner"
+			{forward	{begin	"board_plane_right"} {end "passenger_car_small"} {base "open"}}
+			{reverse 	{end	"board_plane_right" -1} {base "open2" -1}}
+		}
+	}
+	("crew_human" place(driver) bone(driver) door(emit1) animation(driver))
+	("crew_human" place(gunner) bone(gunner) door(emit2) animation(gunner))
+
+	{Placer
+		{place "driver" {group "crew"}{turnOff {targetable}}}
+		{place "gunner" {group "crew"}{turnOff {targetable}}}
+	}
+
+	{fogable never}		
+	
+	{targetSelector "airborne"}	
+	
+	("part" args "elevator1")
+	("part" args "elevator2")
+	("part" args "rudder")
+	("part" args "aileron1")
+	("part" args "aileron2")
+	("part" args "wheelr")
+	("part" args "wheell")
+	("part" args "wheelback")
+	("part" args "body_back")
+	
+	("v_body" v(body01)	c(body))
+	("v_body" v(body02)	c(body))
+	("v_body" v(body03)	c(body))
+
+
+    ("v_body_back" v(body_back01)	c(body_back))
+	("v_body_back" v(body_back02)	c(body_back))
+	("v_body_back" v(body_back03)	c(body_back))
+
+	("v_part" v(elevator1) c(body_back))
+	("v_part" v(elevator2) c(body_back))
+
+	("v_part" v(propeller01) c(engine))
+	("v_part" v(propeller02) c(engine))
+	("v_part" v(propeller03) c(engine))
+	("v_part" v(propeller04) c(engine))
+	
+	("v_cabine"	v(cabin01)	c(cabin))
+	("v_cabine"	v(cabin02)	c(cabin))
+	("v_cabine"	v(cabin03)	c(cabin))
+	("v_cabine"	v(cabin04)	c(cabin))
+
+	("v_part" v(rudder) c(body_back))
+
+	("vc_wheel_base" v(wheell) c(wheelleft))
+	("vc_wheel_base" v(wheelr) c(wheelright))
+
+
+	("part" args "propeller1")
+	("part" args "propeller2")
+	("armor" hp(300))
+
+	{Chassis "airborne"
+		{Locomotion ("locomotion") 
+			{Maxspeed 120}
+	 	  	{turnRadius 50}
+		}
+		{maxElevationSpeed 20}		;m/s
+		{elevationAcceleration 12}	;m/s^2
+		{maxSideSlope 70}	;degree
+		{speed
+			{Slow	15  }	; km/h
+			{Normal	65	}
+			{Fast	90	}
+		}
+		;{sideSlopeSpeed 120}
+	}
+	{mass 5340}
+
+	{extender "inventory"
+	    {weapon "mgun"
+			{mask "weapon mgun"}
+		}
+		{box
+			{item "ammo rs82" 8}
+			{item "bullet37 ap rus ns" 24}
+			{item "bullet37 fg rus ns" 24}
+			{item "ammo air_bomb flame" 2}
+			{item "ammo mgun" 600}
+			{item "ubt" filled {user "mgun"}}
+		}
+	}	
+	{Weaponry
+		{place "bomb"
+			{weapon "bomb_dropper_il2_flame" filled}
+			{barrels 2}
+			{shooter "shooter_b"}
+			{gunner "driver"}
+			{charger "driver"}
+			{basic}
+		}
+		{place "rocket"
+			{weapon "arl_il2" filled}
+			{barrels 8}
+			{foresight "foresight_main"}
+			{shooter "shooter_r"}
+			{gunner "driver"}
+			{charger "driver"}
+			{basic}
+		}		
+		{place "zenite1"
+			{weapon "37mm_ns37" filled}
+			{barrels 2}
+			{shooter "shooter_m"}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}		
+		{place "zenite"
+			{weapon "shkas_x2" filled}
+			{foresight "foresight_main"}
+			{barrels 2}
+			{charger "driver"}
+			{gunner "driver"}
+			{basic}
+		}
+        {place "mgun"
+			{type "aa"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			{basic}			
+		}		
+	}
+	{Sensor
+		{Visor "main"
+			{bone "pivot_back"}
+		}
+	}	
+	{Extension "il-2_collection.mdl"}
+	{bone "gun_vert"
+		{speed 0.025}
+		{limits -5 45}
+	}
+	{bone "turret"
+		{speed 0.025}
+		{limits -15 15}
+	}	
+}

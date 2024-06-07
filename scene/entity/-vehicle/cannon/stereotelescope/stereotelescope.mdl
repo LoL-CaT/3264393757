@@ -1,0 +1,182 @@
+;Exported by	: joomb
+;Date			: 03.07.2023 15:41:35
+;File			: H:\git\gem2-mdl-soldiers\models\unit\vehicle\stereotelescope\stereotelescope.max
+{skeleton
+	{animation
+		{sequence "close" {speed 0.5}}
+	}
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0 	 0 	 22.4261}
+			{poly "body" {lod 0}}
+			{poly "body_lod1" {lod 1 {last}}}
+			{bone "stand2"
+				{parameters "id=body;"}
+				{matrix34
+					0.5 	 0.866 	 0
+					-0.866 	 0.5 	 0
+					0 	 0 	 1
+					0.4266 	 1.0705 	 -0.6993
+				}
+				{poly "stand2" {lod 0}}
+				{poly "stand2_lod1" {lod 1 {last}}}
+			}
+			{bone "stand1"
+				{parameters "id=body;"}
+				{Position -1.0907 	 -0.0079 	 -0.6993}
+				{poly "stand1" {lod 0}}
+				{poly "stand1_lod1" {lod 1 {last}}}
+			}
+			{bone "stand3"
+				{parameters "id=body;"}
+				{matrix34
+					0.5 	 -0.866 	 0
+					0.866 	 0.5 	 0
+					0 	 0 	 1
+					0.6019 	 -0.985 	 -0.6993
+				}
+				{poly "stand3" {lod 0}}
+				{poly "stand3_lod1" {lod 1 {last}}}
+			}
+			{bone revolute "turret"
+				{parameters "id=turret;"}
+				{limits -15 15}
+				{speed 0.01}
+				{Position 0 	 0 	 1.2689}
+				{poly "turret" {lod 0}}
+				{poly "turret_lod1" {lod 1 {last}}}
+				{bone revolute "gun_rot"
+					{parameters "id=turret;"}
+					{limits -45 5}
+					{speed 0.08}
+					{Position 0 	 0 	 2.0863}
+					{poly "gun_rot" {lod 0}}
+					{poly "gun_rot_lod1" {lod 1 {last}}}
+					{bone "tube_r"
+						{parameters "id=turret;"}
+						{Position 1.0791 	 0 	 1.1325}
+						{poly "tube_r" {lod 0}}
+						{poly "tube_r_lod1" {lod 1 {last}}}
+					}
+					{bone "tube_l"
+						{parameters "id=turret;"}
+						{Position 1.0791 	 0 	 1.1325}
+						{poly "tube_l" {lod 0}}
+						{poly "tube_l_lod1" {lod 1 {last}}}
+					}
+					{bone "gun"
+						{matrix34
+							-1 	 0 	 0
+							0 	 -1 	 0
+							0 	 0 	 1
+							1.0791 	 0 	 7.6236
+						}
+					}
+					{bone "visor"
+						{Position 4.7438 	 0 	 11.0061}
+					}
+					{bone "foresight3"
+						{Position 1.5403 	 0 	 11.0061}
+					}
+				}
+				{bone "gunner"
+					{matrix34
+						0.9659 	 0.2588 	 0
+						-0.2588 	 0.9659 	 0
+						0 	 0 	 1
+						-7.2092 	 -0.7073 	 -23.695
+					}
+				}
+				{bone "commander"
+					{Position -20.4567 	 -8.1474 	 -23.695}
+				}
+			}
+		}
+		{bone "driver1"
+			{Position -3.4944 	 9.1241 	 0}
+		}
+		{bone "driver2"
+			{Position 8.7757 	 -7.7017 	 0}
+		}
+		{bone "emit1"
+			{Position -20.4567 	 -8.1474 	 0}
+		}
+		{bone "emit2"
+			{matrix34
+				0.9659 	 0.2588 	 0
+				-0.2588 	 0.9659 	 0
+				0 	 0 	 1
+				-7.2092 	 -0.7073 	 0
+			}
+		}
+	}
+}
+{"volumes"
+	{"body01"
+		{polyhedron}
+		{bone "body"}
+		{Position -0.0641 	 0.1684 	 -1.1028}
+	}
+	{"body02"
+		{cylinder 0.703498 9.88786}
+		{bone "tube_l"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0.9659 	 -0.2588
+			0 	 0.2588 	 0.9659
+			-1.0791 	 2.1935 	 4.8184
+		}
+	}
+	{"body03"
+		{cylinder 0.703498 9.88786}
+		{bone "tube_r"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0.9659 	 0.2588
+			0 	 -0.2588 	 0.9659
+			-1.0791 	 -2.1935 	 4.8184
+		}
+	}
+	{"stand1"
+		{box 1.02139 1.84495 22.828}
+		{bone "stand1"}
+		{matrix34
+			0.9397 	 0 	 -0.342
+			0 	 1 	 0
+			0.342 	 0 	 0.9397
+			-3.9195 	 0 	 -10.8133
+		}
+	}
+	{"stand2"
+		{box 1.02139 1.84495 22.828}
+		{bone "stand2"}
+		{matrix34
+			0.9397 	 0 	 0.342
+			0 	 1 	 0
+			-0.342 	 0 	 0.9397
+			3.9195 	 -0.2022 	 -10.8132
+		}
+	}
+	{"stand3"
+		{box 1.02139 1.84495 22.828}
+		{bone "stand3"}
+		{matrix34
+			-0.9397 	 0 	 -0.342
+			0 	 -1 	 0
+			-0.342 	 0 	 0.9397
+			3.9195 	 0 	 -10.8133
+		}
+	}
+	{"turret"
+		{cylinder 0.890504 4.64219}
+		{bone "turret"}
+		{Position -0.03 	 0 	 1.296}
+	}
+}

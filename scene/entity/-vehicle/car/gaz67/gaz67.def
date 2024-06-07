@@ -1,0 +1,110 @@
+{game_entity
+	(include "/properties/car.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.9))
+	(include "/properties/selection/vehicle.inc"  scale(1.1))
+	{mass 1320}
+	{props "vehicle" "car" "wheeled" "turn_over" "unarmed" "texmod_w_cf_cd"}
+	{able "-emit_passangers_on_enemy"}
+	{PatherId "vehicle.small"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	("v_body" n(10) t())
+	("v_body" n(11) t())
+	("v_body" n(12) t())
+	("v_body" n(13) t())
+	("v_body" n(14) t())
+	("v_body" n(15) t())
+	("v_body" n(16) t())
+	("v_body" n(17) t())
+	("v_engine" n(01) t())
+	("v_engine" n(02) t())
+	("v_engine" n(03) t())
+
+	("arena_armor_car" engine(5) body(5) cabin(4) shield(1) hp(215))
+	{armor
+		("module_other" 		t(5))
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+
+	("crew_2_human")
+
+	("board_animation"
+		place(driver)
+		board_begin(board_willis_driver)
+		board_end(driver_car_small)
+		base(doorleft)
+	)
+
+	("board_animation"
+		place(commander)
+		board_begin(board_willis)
+		board_end(passenger_car_small)
+		base(doorright)
+	)
+	
+	("board_animation"
+		place(passenger1)
+		board_begin(board_willis)
+		board_end(passenger_car_small)
+		base(doorleft)
+	)
+
+	("crew_human" place(seat1)	bone(seat01)	door(emit2)	animation(passenger1))
+	
+	{placer
+		{place "driver"		{group "crew"} {visor "main"}}
+		{place "commander"	{group "crew"} {visor "main"}}
+	}
+
+	{extender "inventory"
+		{Box
+		{clear}
+		{item "repair_kit"}
+		{item "can" filling "fuel" 60}
+		{item "sapper_shovel" 2}		
+		}
+	}
+	{Chassis
+		{Locomotion ("locomotion")
+				{MaxSpeed	40}
+				{StartTime	2}		
+				{maxSpeedAtMaxTurn 25}
+				{BrakeTime	1}		
+				{StopTime	1}
+					{TurnRadius	4}
+				{Gears		0.1 0.5 0.8 1.0}
+				{RearGears	0.5}
+				{SteerOn	20}
+				{SteerOff	40}
+				{SplineRadius 1}
+			}
+		("fuelbag"
+			volume(406)
+			rate(50)
+			remain(406)
+		)			
+		{MaxTrailerMass 1350}				
+	}	
+	("chassis_add" speed(90))
+	{Extension "gaz67.mdl"}
+    ("animation_resume")
+	{extension "sensor.ext"}
+	("components_car" 
+		repair_body(20)
+		repair_engine(10)
+		repair_wheel(5)
+	)
+
+}

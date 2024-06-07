@@ -1,0 +1,58 @@
+{actor
+	(include "/properties/cannon_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{props "vision_lev01_can" "cannon_small" "round_sandbag" "place_mg_stan" "level01" "-with_gun" "texmod_w" "anm_mgun_lie"}
+	
+	{targetSelector "cannon_bullet"}
+	{targetClass "cannon"}
+	
+	{collider "cannon_small"}
+
+	{Weaponry
+		{place "mgun"
+			{weapon "mg34_stan" filled}
+		}
+	}
+	{extender "inventory"
+		{box
+			{clear}
+			{item "sandbag_kit2"}
+			{item "dot_kit"}
+			{item "ammo" "mgun" 1000}
+		}	
+	}
+	{armor {health 100}}
+	{mass 31}
+
+	{Extension "mg34_stan.mdl"}
+	{bone "turret" {speed 0.04}}
+	{bone "gun_rot_vert" 
+		{speed 0.05}
+		{limits -10 10}
+	}
+
+	{boarder
+		{anm "commander"
+			{forward	{end "artillery_support_l" 10}}
+		}
+	}
+
+	{Volume "body"
+		{tags "body"}
+		{able{obstacle 0}}
+		{thickness 1}
+		{component "body"}
+	}
+	{Volume "touch"
+		{able clear {touch}}
+	}
+	{extension "sensor.ext"}
+	{Chassis "human_carrier"
+		("arena_mgun_stan_2gunners_carrier")
+	}
+	{extender "cannon"
+		{rotate_bone "turret"}
+	}
+	("round_sandbag")
+	("round_dot")
+}

@@ -1,0 +1,35 @@
+{entity
+	(include "/properties/mortar.inc")
+	{extension "bm37.mdl"}
+	(include "/properties/mortar-post.inc")
+	{props "level02" "anm_mortar"}	
+	("weapon" name(82mm_bm37))
+	("inventory" name(mortar82))
+	("trench_cannon_med")	
+	{bone "foresight"
+		{limits 14 -35}
+	}
+
+	{boarder
+		{anm "gunner"
+			{forward	{end "cannon_small_commander" 10}}
+	}
+		{anm "commander"
+			{forward	{end "cannon_small_charger" 10 }}
+		}
+		
+	}
+	{mass 62}
+	{extender "cannon"
+		{animation
+			{fire  "artillery_reaction_l1 1" ""}
+			{reload  "" "recharge_middle_mortar"}
+		}
+	}
+
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}	
+	{Chassis "human_carrier"
+		("arena_mortar_medium_2gunners_carrier")
+	}	
+}

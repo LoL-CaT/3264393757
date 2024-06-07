@@ -1,0 +1,76 @@
+{game_entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{Extension "stereotelescope.mdl"}
+	{props "cannon" "cannon_small" "spotter_plus" "icon_for_linked" "anm_stereoscope" "ignore_uplink_fogged"}
+	{collider "cannon_small"}
+	{targetSelector "cannon_rocket"}
+	{targetClass "cannon_tower"}	
+	{patherId "cannon.carried"}
+
+	("armor_mortar")
+
+	("crew_inside")
+	("crew_human" place(driver) bone(driver1)	door(emit1) animation(driver))
+	("crew_human" place(gunner)	bone(gunner)	door(emit1) animation(gunner))
+
+	{placer
+		{place "gunner" {UseVision 0}}
+		{place "commander" remove}
+		{place "driver1" remove}
+		{place "driver2" remove}
+	}
+
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_mgun_dot"}}
+		}
+		{anm "driver1"
+			{forward {end "mgun_browning_driver_l"}}
+		}
+		{link "driver1" "gunner"}
+	}
+(include "/properties/selection/cannon.inc"  scale(0.4))
+
+{##extender "cannon"
+		{animation
+			{switch "close"}
+			{move "walk_1hand" ""}
+			{aim "" ""}
+			{fire  "binovisor" ""}
+			{reload "lie_take_small end lie_take_item_end end lie_fire_pistol" ""}
+		}
+		{move {workers "driver"} {obstacle "close"}}
+		{attack {workers "gunner"} {obstacle "open"}}
+		{rotate_ik_Limit 0}
+}
+
+	;{Chassis "human_carrier"
+	;	{carrierPlace "driver1" "driver2"}
+	;	{carrierBone  "handle1" "handle2"}
+	;	("loco_carrier")
+	;}
+
+	{Weaponry
+		{place "light"
+			{weapon "searchlight" filled}
+			{foresight "foresight3"}
+			{gunner "gunner"}
+		}
+	}
+	{extender "inventory"
+		{weapon "gun"
+			{mask "weapon searchlight"}
+		}
+		{box
+			{size 0 0}
+		}
+	}
+	{extension "sensor.ext"}
+	{bone "basis"
+		{limits -10 10}
+	}
+	{bone "gun_rot"
+		{limits -20 20}
+	}	
+}

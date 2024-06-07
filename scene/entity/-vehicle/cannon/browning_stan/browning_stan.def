@@ -1,0 +1,84 @@
+{actor
+	(include "/properties/cannon_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{props "vision_lev01_can" "cannon" "round_sandbag" "cannon_small" "-with_gun" "anm_mgun_stan"}
+	{collider "cannon_small"}
+	("round_sandbag")
+	("round_dot")
+	
+	{targetSelector "cannon_hmgun"}
+	
+	{Weaponry
+		{place "mgun"
+			{weapon "browning_m19" filled}
+		}
+	}  	
+	{Extension "browning_stan.mdl"}
+
+	{Volume "body"
+		{tags "body"}
+		{able{obstacle 0}} ;{blast 0}
+		{thickness 1}
+		{component "body"}
+	}
+	{Volume "magazine"
+		{tags "body"}
+		{able{obstacle 0}} ;{blast 0}
+		{thickness 1}
+		{component "body"}
+	}
+	{volume "shank1"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "shank2"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "shank3"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "support1"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "support2"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "support3"
+		{tags "body"}
+		{component "body"}
+	}
+	{volume "turret"
+		{tags "turret"}
+		{component "turret"}
+	}
+
+	{extender "inventory"
+		{box
+			{clear}		
+			{item "sandbag_kit2"}
+			{item "dot_kit"}				
+			{item "mgun" 900}			
+		}
+	}	
+	{armor {health 100}}
+	{mass 55}	
+	{extension "sensor.ext"}
+	{Chassis "human_carrier"
+		("arena_mgun_stan_2gunners_carrier")
+	}	
+	{bone "basis"
+		{speed 0.04}
+	}
+	{bone "gun_rot"
+		{limits -15 55}
+		{speed 0.08}
+	}
+	{bone "turret"
+		{limits -15 15}
+		{speed 0.01}
+	}
+}

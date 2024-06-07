@@ -1,0 +1,112 @@
+{Car
+	(include "/properties/car.ext")
+	(include "/properties/shadow/moto.inc"  scX(0.5) scY(0.6) psfX(-7) psfY(0))
+	(include "/properties/selection/vehicle.inc"  scale(0.7))
+	(include "/properties/car_crew.ext")
+	{props "explosion_throw_crew" "turn_over" "vision_lev01" "unarmed" "anm_moto"}
+	{able "-emit_passangers_on_enemy" "-emit_on_attack"}
+	{patherId "moto"}
+	{extender "inventory"
+		{Box
+			{clear}
+			{item "repair_kit"}
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}		
+		}
+	}
+	{sensor
+		{Visor "crew"
+			{vision "moto_driver"}
+			{bone "fxlight"}
+		}
+		{visor "view-around"
+			{vision "moto_around"}
+			{bone "basis"}
+		}
+	}
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+
+	("v_engine" n(01) t())
+
+	{Volume "fuel"
+		{thickness 1}
+	}
+	{armor
+		{health 227}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		("module_body_light"	body(8) n())
+		("module_engine_car"	engine(5) n())
+		("module_track_light"	track(10))
+	}
+
+	{Placer
+		{place "driver" {Group "driver"} {LinkBone "driver"} {visor "main"} {turnoff {sensor}{shadow}}}
+		{place "passenger1" {Group "driver"} {LinkBone "passenger1"}	{visor "crew"} {turnoff {sensor}{shadow}}}
+		{place "passenger" {Group "driver"} {LinkBone "passenger"} {turnoff {sensor}{shadow}}}
+	}
+	{boarder
+		{door "emit1"}
+		{door "emit2"}
+		{door "emit3"}
+
+		{anm "driver" {forward {begin"board_lowArmor"} {end "driver_car_small_idle"}}}
+		{anm "passenger1" {forward {begin"board_lowArmor"} {end "passenger_car_small"}}}
+		{anm "passenger" {forward {begin"board_lowArmor"} {end "passenger_car_small"}}}
+
+		{link "emit1" "driver"    {anm "driver"} {forward putoff} {reverse puton}}
+		{link "emit2" "passenger" {anm "passenger"} {forward putoff} {reverse puton}}
+		{link "emit3" "passenger1" {anm "passenger1"} {forward putoff} {reverse puton}}
+	}
+
+	("wheel" args "Wheel1")
+	("tracks")
+
+	("components_car" 
+		repair_body(20)
+		repair_engine(10)
+		repair_wheel(5)
+	)
+
+	{mass 1235}
+
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.2) len(0.278) boneleft("FXtraceL2") boneright("FXtraceR2"))
+		{Locomotion ("locomotion")
+			{MaxSpeed	61}
+			{Gears		0.35 0.5 0.7 1.0}
+			{RearGears	0.33 0.5}
+			{SteerOn	30}
+			{SteerOff	40}
+			{SplineRadius 2}
+			{StartTime	2}
+			{BrakeTime	2}
+			{StopTime	1}
+			{TurnRadius	4}
+		}
+		("fuelbag"
+			volume(219)
+			rate(50)
+			remain(219)
+		)
+		{MaxTrailerMass 1800}			
+	}
+	{Extension "kettenkrad.mdl"}
+    ("animation_resume")
+	("chassis_add" speed(61.5))
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+    ("support_bones_std" n(1) r(0.21))
+    ("support_bones_std" n(2) r(0.27))
+    ("support_bones_std" n(3) r(0.27))
+	("support_bones_std" n(4) r(0.27))
+	("support_bones_std" n(5) r(0.27))
+	("support_bones_std" n(6) r(0.24))
+}

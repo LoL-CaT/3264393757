@@ -1,0 +1,172 @@
+{game_entity
+	(include "/properties/car.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.9))
+	(include "/properties/selection/vehicle.inc"  scale(1.1))
+	{mass 2500}
+	{props "vehicle" "car" "with_gun" "turret" "turret_rotator" "spawn_shell" "wheeled" "turn_over" "vision_lev02" "spotter" "texmod_w_cw_c2w_cf_c2f_cd_c2d"}
+	{able "-emit_passangers_on_enemy"}
+	{PatherId "vehicle.small"}
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{component "sticky_body"}
+
+;	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_engine" n(01) t())
+
+	("v_window" n(01))
+	("v_window" n(02))
+
+	("v_cabin" n(01))
+	("v_cabin" n(02))
+	("v_cabin" n(03))
+	
+	("v_gun" n() t())
+	("v_gun" n(_rot) t())
+
+	("arena_armor_car" engine(5) body(5) cabin(4) shield(1) hp(265))
+	{armor
+		("module_gun_light"	n()		gun(10))
+		("module_other" 		t(5))
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+
+	("crew_2_human")
+
+	("board_animation"
+		place(driver)
+		board_begin(board_willis_driver)
+		board_end(driver_car_small)
+		base(doorleft)
+	)
+
+	("board_animation"
+		place(commander)
+		board_begin(board_willis)
+		board_end(passenger_car_small)
+		base(doorright)
+	)
+	
+	("board_animation"
+		place(passenger1)
+		board_begin(board_willis)
+		board_end(passenger_car_small)
+		base(doorleft)
+	)
+	{boarder
+		{anm "gunner"
+			{forward	{begin	"board_LowTank_stand"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold" 1}}
+		}
+		{anm "gunner1"
+			{forward	{begin	"board_LowTank_stand"} {end "pose_cannon_small_charger"}}
+			{reverse 	{end	"emit_tank_1_hold" 1}}
+		}
+		{anm "charger"
+			{forward	{begin	"board_SdKfz251-1"} {end "pose_cannon_small_commander"}}
+			{reverse 	{end	"emit_body" 1}}
+		}
+	}
+
+	("crew_human" place(gunner)	bone(gunner)	door(emit2)	animation(gunner))
+	("crew_human" place(gunner1)	bone(gunner1)	door(emit4)	animation(gunner1))
+	("crew_human" place(charger)	door(emit3) bone(charger) animation(charger))
+	
+	
+	{placer
+		{place "driver"		{group "crew"} {visor "main"}}
+		{place "gunner1"	{group "crew"} {visor "main"}}
+		{place "gunner"		{group "crew"} {turnoff {targetable 0}}}
+		{place "charger" 	{group "crew"} {visor "main"}}
+	}
+
+	{extender "inventory"
+		{weapon "mgun"
+			{mask "weapon mgun"}
+		}
+		{Box
+			{clear}
+			{item "repair_kit" {cell 0 0}}
+			{item "can" filling "fuel" 60}
+			{item  "ammo mgun" 1200}
+			{item "bullet37 ap usa std" 25}
+			{item "bullet37 fg usa std" 60}
+			{item "browning_m19_vh_car" filled {user "mgun"}}
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "37mm_m6" filled}
+			{gunner "gunner1"}
+			{charger "gunner1"}
+			("abm_gun")
+			{basic}
+		}
+		{place "mgun"
+			{LinkBone "mgun1"}
+			{LinkAnimation "off"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("abm_mgun")
+			{basic}
+		}
+	}
+	{Chassis
+		{Locomotion ("locomotion")
+				{MaxSpeed	40}
+				{StartTime	2}
+				{maxSpeedAtMaxTurn 25}
+				{BrakeTime	1}
+				{StopTime	1}
+				{TurnRadius	4}
+				{Gears		0.1 0.5 0.8 1.0}
+				{RearGears	0.5}
+				{SteerOn	20}
+				{SteerOff	40}
+				{SplineRadius 1}
+			}
+		("fuelbag"
+			volume(288)
+			rate(50)
+			remain(288)
+		)			
+		{MaxTrailerMass 1975}
+	}	
+	("chassis_add" speed(87))
+	{Extension "dodgewc51_m6.mdl"}
+    ("animation_resume")
+	{extension "sensor.ext"}
+	("components_car" 
+		repair_body(20)
+		repair_engine(10)
+		repair_wheel(5)
+	)
+	{bone "turret"
+		("turret_speed" args 0.0243)
+		{limits}		
+	}
+	{bone "gun_rot"
+		("turret_speed" args 0.0143)
+	}
+	{bone "mgun_vert"
+		{limits -15 10}
+	}
+	{bone "mgun_rot"
+		{limits -20 45}
+	}
+}

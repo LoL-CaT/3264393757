@@ -1,0 +1,44 @@
+{entity
+	(include "/properties/mortar.inc")
+	{extension "m2mortar107mm.mdl"}
+	(include "/properties/mortar-post.inc")
+	{props "level03" "anm_mortar"}
+	("weapon" name(107mm_m2))
+	("inventory" name(mortar107))
+	("trench_cannon_med")	
+	{bone "foresight"
+		{limits 35 -35}
+	}
+	{boarder
+		{anm "gunner"
+			{forward	{end "cannon_small_commander" 10}}
+	}
+		{anm "commander"
+			{forward	{end "cannon_small_charger" 10 }}
+		}
+		
+	}
+	{mass 280}
+	{extender "cannon"
+		{animation
+			{fire  "artillery_reaction_l1 1" ""}
+			{reload  "" "recharge_big_mortar"}
+		}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{Chassis "human_carrier"
+		("arena_mortar_heavy_2gunners_carrier")
+		{locomotion
+			("maxspeed" args 7)
+		}
+	}
+	("armor_mortar_hp" hp(150))
+	{extender "inventory"
+		{box
+			{item "ammo mortar107" 20}
+			{item "ammo mortar107 sk" 3}
+			{item "sandbag_kit2"}
+		}
+	}	
+}

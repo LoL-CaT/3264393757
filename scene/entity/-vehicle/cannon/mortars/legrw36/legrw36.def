@@ -1,0 +1,52 @@
+{entity
+	(include "/properties/mortar.inc")
+	{extension "legrw36.mdl"}
+	(include "/properties/mortar-post.inc")
+	{props "level01" "anm_mortar_empty"}	
+	("weapon" name(50mm_legrw36))
+	{placer
+		{place "gunner" {UseVision 0}}
+		{place "commander" remove}
+		{place "driver2" remove}
+	}
+	
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_lie_mortar" 10}}
+		}
+		{anm "driver1"
+			{forward    {end "pose_walk_mortar" 10}}
+		}
+	}
+	{mass 14}	
+	{extender "cannon"
+		{animation
+			{switch "close"}
+			{move "walk_mini_mortar"}
+			{aim "lie_mortar"}
+			{fire  "lie_mortar_recoil"}
+			{reload  "lie_mortar_recharge"}
+		}
+		{move {workers "driver1"} {obstacle "close"}}
+		{attack {workers "gunner"} {obstacle "open"}}
+		{rotate_ik_Limit -1}
+	}
+	{extender "inventory"
+		{box
+			{item "ammo mortar" 13}
+			{item "sandbag_kit2"}
+		}
+	}	
+	{Chassis "human_carrier"
+		("arena_mortar_light_1gunner_carrier")
+		{locomotion
+			("maxspeed" args 22)
+		}		
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}		
+	{bone "foresight"
+		{limits 24.8 -25}
+	}
+	("armor_mortar_hp" hp(50))	
+}

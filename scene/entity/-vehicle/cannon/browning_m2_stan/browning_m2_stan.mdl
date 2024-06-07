@@ -1,0 +1,159 @@
+;Exported by	: KobaA
+;Date			: 14.05.2024 09:43:36
+;File			: d:\git\gem2-mdl-soldiers\models\unit\vehicle\browning_stan\brovning_stan.max
+{skeleton
+	{animation
+		{sequence "close" {speed 0.5}}
+	}
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0 	 0 	 12.1336}
+			{poly "body"}
+			{bone "stand"
+				{parameters "id=body;"}
+				{Position 1.7409 	 0 	 -1.6069}
+				{poly "stand" {lod 0}}
+				{poly "stand_lod1" {lod 1}}
+				{poly "stand_lod2" {lod 2}}
+				{poly "stand_lod3" {lod 3 {last}}}
+			}
+			{bone "support1"
+				{parameters "id=body;"}
+				{matrix34
+					0.8138 	 -0.5 	 0.2962
+					0.4698 	 0.866 	 0.171
+					-0.342 	 0 	 0.9397
+					-1.1873 	 0.1815 	 -1.3237
+				}
+				{poly "support1" {lod 0}}
+				{poly "support1_lod1" {lod 1}}
+				{poly "support1_lod2" {lod 2}}
+				{poly "support1_lod3" {lod 3 {last}}}
+			}
+			{bone "support2"
+				{parameters "id=body;"}
+				{matrix34
+					0.8138 	 0.5 	 0.2962
+					-0.4698 	 0.866 	 -0.171
+					-0.342 	 0 	 0.9397
+					-1.1879 	 -0.1839 	 -1.3238
+				}
+				{poly "support2" {lod 0}}
+				{poly "support2_lod1" {lod 1}}
+				{poly "support2_lod2" {lod 2}}
+				{poly "support2_lod3" {lod 3 {last}}}
+				{bone "crank"
+					{parameters "id=body;"}
+					{matrix34
+						0.866 	 -0.5 	 0
+						0.5 	 0.866 	 0
+						0 	 0 	 1
+						-6.9862 	 0.5396 	 0.0639
+					}
+					{poly "crank" {lod 0}}
+					{poly "crank_lod1" {lod 1}}
+					{poly "crank_lod2" {lod 2}}
+					{poly "crank_lod3" {lod 3 {last}}}
+				}
+			}
+			{bone revolute "turret"
+				{parameters "id=turret;"}
+				{limits -15 15}
+				{speed 0.01}
+				{Position 0 	 0 	 0}
+				{poly "turret" {lod 0}}
+				{poly "turret_lod1" {lod 1}}
+				{poly "turret_lod2" {lod 2}}
+				{poly "turret_lod3" {lod 3 {last}}}
+				{bone revolute "gun_rot"
+					{parameters "id=gun;"}
+					{limits -15 5}
+					{speed 0.08}
+					{orientation
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+					}
+					{bone "mgun"
+						{Position -6.715 	 -1.2101 	 0}
+					}
+				}
+				{bone "visor"
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						0 	 0 	 11.0695
+					}
+				}
+			}
+		}
+		{bone "driver1"
+			{Position -11.5638 	 5.2378 	 0}
+		}
+		{bone "driver2"
+			{Position -11.7263 	 -5.5817 	 0}
+		}
+		{bone "emit1"
+			{Position -1.9671 	 12.0996 	 0}
+		}
+		{bone "emit2"
+			{Position -1.9671 	 -12.6368 	 0}
+		}
+		{bone "commander"
+			{Position -12.9815 	 16.4851 	 0}
+		}
+		{bone "gunner"
+			{Position -17.2011 	 0 	 0}
+		}
+	}
+}
+{"volumes"
+	{"body"
+		{polyhedron}
+		{bone "body"}
+		{Position -0.1279 	 0 	 -2.2735}
+	}
+	{"stand"
+		{cylinder 0.380573 14.3992}
+		{bone "stand"}
+		{matrix34
+			0.7009 	 0 	 0.7133
+			0 	 1 	 0
+			-0.7133 	 0 	 0.7009
+			6.0732 	 0.0047 	 -5.6073
+		}
+	}
+	{"support1"
+		{cylinder 0.380573 34.2837}
+		{bone "support1"}
+		{matrix34
+			-0.0082 	 -0.0082 	 0.9999
+			0.0171 	 0.9998 	 0.0083
+			-0.9998 	 0.0172 	 -0.008
+			-16.9521 	 0.1788 	 -0.1355
+		}
+	}
+	{"support2"
+		{cylinder 0.380573 34.2837}
+		{bone "support2"}
+		{matrix34
+			-0.0094 	 0 	 1
+			-0.014 	 0.9999 	 0
+			-0.9999 	 -0.014 	 -0.0094
+			-17.1398 	 -0.2361 	 -0.1299
+		}
+	}
+	{"turret"
+		{cylinder 0.667367 1.25258}
+		{bone "turret"}
+		{Position 0 	 0 	 -0.1443}
+	}
+}

@@ -1,0 +1,106 @@
+;Exported by:	 stentsel
+;Date:			 15.11.2016 14:26:09
+;File:			 G:\_GIT_\gem2\gem2-mdl-soldiers\models\unit\vehicle\5cm_leGrW_36\5cm_leGrW_36_anim.max
+{skeleton
+	{animation
+		{sequence "recoil"}
+		{sequence "close"}
+		{sequence "close1"}
+	}
+	{bone revolute "turret"
+		{limits -180 180}
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+			}
+			{bone "gun"
+				{parameters "id=gun;"}
+				{Position 0 	 0 	 1.1485}
+				{LODView
+					{poly "gun"}
+					{poly "gun_lod1"}
+				}
+				{bone revolute "foresight"
+					{limits -10 15}
+					{matrix34
+						0.4195 	 0 	 0.9077
+						-0.9077 	 0 	 0.4195
+						0 	 -1 	 0
+						4.4613 	 -0.0083 	 10.7364
+					}
+				}
+			}
+			{bone "handle1"
+				{matrix34
+					0 	 -0.9999 	 0.0114
+					0.9379 	 0.004 	 0.3469
+					-0.347 	 0.0107 	 0.9378
+					5.6403 	 0.281 	 9.3552
+				}
+			}
+			{bone "handle2"
+				{matrix34
+					0 	 0.9999 	 -0.0114
+					-0.9379 	 -0.004 	 -0.3469
+					-0.347 	 0.0107 	 0.9378
+					0.0474 	 0.1135 	 8.4099
+				}
+			}
+		}
+		{bone "emit1"
+			{parameters "group=crew;"}
+			{Position -1.8862 	 -5.4062 	 0.1412}
+			{visibility 0}
+		}
+		{bone "emit2"
+			{parameters "group=crew;"}
+			{Position 0.1871 	 5.7404 	 0.5701}
+			{visibility 0}
+		}
+		{bone "support1"
+			{Position 0.9215 	 0.032 	 0.1412}
+		}
+		{bone "visor"
+			{matrix34
+				0.9996 	 0 	 -0.0296
+				0 	 1 	 0
+				0.0296 	 0 	 0.9996
+				3.2148 	 -1.831 	 9.6412
+			}
+		}
+		{bone "driver1"
+			{Position 0.1871 	 5.7404 	 0.5701}
+		}
+		{bone "driver2"
+		}
+		{bone "gunner"
+			{Position -15.8944 	 -0.5168 	 0}
+		}
+		{bone "commander"
+			{Position -3.7896 	 -8.4166 	 0}
+		}
+	}
+}
+{volume "body"
+	{box 9.82888 5.94086 2.13782}
+	{bone "body"}
+	{Position -0.4347 	 0 	 1.0689}
+}
+{volume "gun"
+	{cylinder 0.692287 8.74549}
+	{bone "gun"}
+	{matrix34
+		0.9244 	 0 	 -0.3815
+		0 	 1 	 0
+		0.3815 	 0 	 0.9244
+		1.617 	 0 	 4.0421
+	}
+}

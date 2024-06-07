@@ -1,0 +1,115 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{Extension "flak18_stan.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+	{props "vehicle" "cannon" "heavy" "turret_rotator" "wheeled" "vision_lev04_can" "level04" "art_spec" "texmod_w_cf_cd" "anm_flak18"}
+	{PatherID "cannon.large"}
+	("round_sandbag_flak")
+	{targetSelector "cannon_shell_aa"}
+	
+	{placer	
+		{place "gunner" {visor "main"} {useVision 0}}
+		{place "commander" {visor "main"} {useVision 0}}
+	}	
+	("v_gun" n(_rot01))
+	("v_gun" n(_rot02))
+	{Volume "body*"
+		{tags "body"}
+		{component "body"}
+	}
+	{##Volume "turret"
+		{thickness 10}
+	}
+	{##volume "shield_front"
+		{thickness 30}
+	}
+	{##Volume "gun"
+		{thickness 10}
+	}
+
+	{component "shield_front"
+		{RepairTime 20}
+	}
+	{extender "shield"
+			{on}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelleft2")
+
+	("crew_wheeled_gun")
+	("crew_4_supporter_any_set"
+		place_l1(charger_l1)
+		place_r1(charger_r1)
+		place_l2(charger_l2)
+		place_r2(charger_r2)
+	)
+	{boarder
+		{anm "gunner"
+			{forward	{end "zenit_pointer_right" 10}}
+		}
+		{anm "commander"
+			{forward	{end "zenit_pointer_right" 10}}
+		}
+		{anm "charger_r1"
+			{forward	{end "cannon_big_commander" 10}}
+		}
+		{anm "charger_l1"
+			{forward	{end "cannon_big_gunner" 10}}
+		}
+		{anm "charger_r2"
+			{forward {end "artillery_support_r" 10}}
+		}
+		{anm "charger_l2"
+			{forward {end "artillery_support_l" 10}}
+		}
+	}
+	
+	{extender "inventory"
+		{box
+			{item "bullet88 ap ger std" 50}
+			{item "bullet88 fg ger std" 50}
+			{item "repair_kit"}
+			{item "sandbag_kit2"}			
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "88mm_flak18" filled}
+			("abm_field_gun")
+		}
+	}
+
+	{extender "cannon"
+		("attach_time")
+		{animation
+			{aim "Cannon_flak41_gunlayer" "" "" "" "" ""}
+			{fire	"cannon_aa_gunlayer_reaction_r" "cannon_aa_gunlayer_reaction_r" "cannon_big_commander_reaction" "cannon_big_charger_reaction" "cannon_big_support_l_reaction" "cannon_big_support_r_reaction"}
+			{move "" "" "" "" "" ""}
+			{reload  "" "" "cannon_big_commander_charge" "cannon_big_charger_charge" "" ""}
+			{switch "close"}
+		}
+		{driver {workers "" ""}}
+		{move {workers clear} {obstacle "close"}}
+		{attack {obstacle "open"} {workers "gunner" "commander" "charger_l1" "charger_r1" "charger_l2" "charger_r2"}}
+	}
+	
+	{bone "turret"
+		{speed 0.035}
+	}
+	{bone "gun_rot"
+		{limits -2.5 82}
+		{speed 0.025}
+	}	
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{mass 7800}
+	("armor_medium_hp" k(1.1) hp(250))
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+	}
+}

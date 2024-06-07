@@ -1,0 +1,73 @@
+{actor;test
+	(include "/properties/airborne.ext")
+	{PatherID  "airborne"}
+	(include "/properties/shadow/airborn.inc" scale(2.5))
+	(include "/properties/selection/airborne.inc" scale(2.0))
+	(include "/properties/car_crew.ext")
+	(include "crew.ext")
+	{props "bomber" "steel"}
+	{lodclass "vehicle_large"}
+	{tag "need_promotion"}
+	{props "open_without_land" "-bomber" "paratroopers_carrier" "kill_pass" "glider"}
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+	{targetClass "airborne"}
+	{targetSelector "unarmed"}
+
+	("v_body" v(body01)	c(body))
+	("v_body" v(body02)	c(body))
+
+	("v_body_back" v(body_back01)	c(body_back))
+	("v_body_back" v(body_back02)	c(body_back))
+	("v_body_back" v(body_back03)	c(body_back))
+	("v_body_back" v(body_back04)	c(body_back))
+	("v_body_back" v(body_back05)	c(body_back))
+
+	("v_part" v(elevator1)	c(body_back))
+	("v_part" v(elevator2)	c(body_back))
+	("v_part" v(rudder01)	c(body_back))
+	("v_part" v(rudder02)	c(body_back))
+
+	("vc_wheel_base" v(wheell) c(wheelleft))
+	("vc_wheel_base" v(wheelr) c(wheelright))
+	("v_wing"	v(wingr2) c(wingright))
+	("v_wing"	v(wingl2) c(wingleft))
+
+	{fogable auto}
+	("armor" hp(935))
+
+	{Chassis
+		{Locomotion ("locomotion") 
+			{Maxspeed 50}
+			{turnRadius 25}
+		}
+		{speed
+			{Slow	15  }	; km/h
+			{Normal	65	}
+			{Fast	90	}
+		}
+	}
+	{mass 1000}
+
+	{extender "inventory"
+		{Box
+			{clear}
+			{item  "ammo hmgun" 10000}
+			{item  "ammo mgun" 10000}
+			{item  "ammo pistol" 2000}
+			{item  "ammo rifle" 5000}
+			{item  "ammo ptr" 300}
+		}
+	}
+
+
+	{Sensor
+		{Visor "main"
+			{bone	 "pivot_back"}
+		}
+	}
+	{Extension "cg-4a.mdl"}
+}

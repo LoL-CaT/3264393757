@@ -1,0 +1,201 @@
+;Exported by:	 KobaA
+;Date:			 06.04.2020 14:58:55
+;File:			 G:\_GIT_\gem2\gem2-mdl-soldiers\models\unit\vehicle\Pak_38\Pak38_LP_X.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{animation
+				{sequence "break" {file "body_b"}{speed 0.7}}
+			}
+			{matrix34
+				0.9998 	 0 	 -0.0185
+				0 	 1 	 0
+				0.0185 	 0 	 0.9998
+				15.9344 	 -0.0127 	 6.6442
+			}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone "pivot_front"
+				{parameters "id=body;"}
+				{Position -0.1344 	 0 	 -0.0025}
+				{LODView
+					{poly "pivot_front"}
+					{poly "pivot_front_lod1"}
+					{poly "pivot_front_lod2"}
+					{poly "pivot_front_lod3"}
+				}
+				{bone "wheell"
+					{parameters "id=wheelleft;"}
+					{matrix34
+						0.9998 	 0 	 0.0185
+						0.0185 	 0 	 -0.9998
+						0 	 1 	 0
+						-0.0368 	 13.9445 	 -0.0008
+					}
+					{LODView
+						{poly "wheell"}
+						{poly "wheell_lod1"}
+						{poly "wheell_lod2"}
+						{poly "wheell_lod3"}
+					}
+				}
+				{bone "wheelr"
+					{parameters "id=wheelright;"}
+					{matrix34
+						0.9998 	 0 	 0.0185
+						0.0185 	 0 	 -0.9998
+						0 	 1 	 0
+						0 	 -13.9445 	 -0.0025
+					}
+					{LODView
+						{poly "wheelr"}
+						{poly "wheelr_lod1"}
+						{poly "wheelr_lod2"}
+					}
+				}
+			}
+			{bone "standr"
+				{parameters "id=body;"}
+				{matrix34
+					0.3678 	 -0.9297 	 0.0188
+					0.9285 	 0.3683 	 0.0477
+					-0.0513 	 0 	 0.9987
+					-7.4797 	 -7.039 	 1.3289
+				}
+				{LODView
+					{poly "standr"}
+					{poly "standr_lod1"}
+					{poly "standr_lod2"}
+					{poly "standr_lod3"}
+				}
+				{bone "valve"
+					{parameters "id=body;"}
+					{matrix34
+						0.9815 	 0.0612 	 -0.1815
+						-0.054 	 0.9976 	 0.0441
+						0.1838 	 -0.0335 	 0.9824
+						-1.1314 	 -7.7751 	 -0.0683
+					}
+					{LODView
+						{poly "valve"}
+						{poly "valve_lod1"}
+						{poly "valve_lod2"}
+						{poly "valve_lod3"}
+					}
+				}
+			}
+			{bone "standl"
+				{parameters "id=body;"}
+				{matrix34
+					0.867 	 -0.4961 	 0.0475
+					0.4972 	 0.8675 	 -0.0158
+					-0.0334 	 0.0373 	 0.9987
+					-7.5295 	 7.1682 	 1.5965
+				}
+				{LODView
+					{poly "standl"}
+					{poly "standl_lod1"}
+					{poly "standl_lod2"}
+					{poly "standl_lod3"}
+				}
+			}
+			{bone "shield"
+				{parameters "id=body;"}
+				{Position 6.2092 	 0 	 -3.2265}
+				{LODView
+					{poly "shield"}
+					{poly "shield_lod1"}
+					{poly "shield_lod2"}
+					{poly "shield_lod3"}
+				}
+			}
+		}
+	}
+}
+{obstacle "obstacle"
+	{polygon2
+		{radius 0}
+		{vertex 22.9962 15.0719}
+		{vertex 15.0119 15.0719}
+		{vertex 15.0119 -15}
+		{vertex 22.9962 -15}
+	}
+	{rotate}
+}
+{obstacle "openl"
+	{polygon2
+		{radius 0}
+		{vertex 8.23843 -5.29094}
+		{vertex -28.0729 -22.2261}
+		{vertex -26.8873 -24.7689}
+		{vertex 9.42399 -7.83382}
+	}
+	{Tags "open"}
+	{rotate}
+}
+{obstacle "openr"
+	{polygon2
+		{radius 0}
+		{vertex 9.28013 8.05037}
+		{vertex -27.0312 24.9855}
+		{vertex -28.2168 22.4426}
+		{vertex 8.09457 5.50749}
+	}
+	{Tags "open"}
+	{rotate}
+}
+{volume "body"
+	{box 17.1789 27.7795 8.20938}
+	{bone "body"}
+	{matrix34
+		0.9998 	 0 	 0.0185
+		0 	 1 	 0
+		-0.0185 	 0 	 0.9998
+		-2.4188 	 0 	 -2.5846
+	}
+}
+{volume "standl"
+	{box 42.6349 3.01485 2.45207}
+	{bone "standl"}
+	{matrix34
+		0.9955 	 0.0835 	 0.0458
+		-0.0819 	 0.996 	 -0.0355
+		-0.0486 	 0.0316 	 0.9983
+		-18.4998 	 -2.1133 	 -0.9825
+	}
+}
+{volume "standr"
+	{box 42.6349 3.01485 2.45207}
+	{bone "standr"}
+	{matrix34
+		-0.067 	 0.9965 	 0.0499
+		-0.9977 	 -0.0675 	 0.0083
+		0.0116 	 -0.0492 	 0.9987
+		0.8157 	 -18.6686 	 -0.8051
+	}
+}
+{volume "wheelleft"
+	{cylinder 7.41086 1.88033}
+	{bone "wheell"}
+	{matrix34
+		1 	 0 	 0
+		0 	 0.9876 	 0.1568
+		0 	 -0.1568 	 0.9876
+		-0.145 	 0.2604 	 0.1277
+	}
+}
+{volume "wheelright"
+	{cylinder 7.41086 1.88033}
+	{bone "wheelr"}
+	{Position -0.1819 	 0.2737 	 -0.0736}
+}

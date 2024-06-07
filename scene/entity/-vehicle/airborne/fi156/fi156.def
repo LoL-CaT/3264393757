@@ -1,0 +1,130 @@
+{actor
+	(include "/properties/airborne.ext")
+	{PatherID  "airborne"}
+	(include "/properties/shadow/airborn.inc" scale(1.1))
+	(include "/properties/selection/airborne.inc" scale(3.0))
+	(include "/properties/car_crew.ext")
+	{props "can_destroyed_one_shot" "spotter"};need tag can_destroyed_one_shot
+
+	{extender "enumerator"}
+
+	{targetClass "airborne"}
+	{targetSelector "unarmed"}
+
+	("v_body" v(body01)	c(body))
+	("v_body" v(body02)	c(body))
+
+	("v_body_back" v(body_back01)	c(body_back))
+	("v_body_back" v(body_back02)	c(body_back))
+	("v_body_back" v(body_back03)	c(body_back))
+	("v_body_back" v(body_back04)	c(body_back))
+
+	("vc_cabine_std" n(cabin))
+	("v_part" v(elevator1_01) c(body_back))
+	("v_part" v(elevator1_02) c(body_back))
+	("v_part" v(elevator2_01) c(body_back))
+	("v_part" v(elevator2_02) c(body_back))
+
+	("v_part" v(propeller) c(engine))
+	("v_part" v(rudder01) c(body_back))
+	("v_part" v(rudder02) c(body_back))
+
+	("v_wing" v(wingl2) c(wingleft))
+	("v_wing" v(wingr2) c(wingright))
+
+	("v_part" v(aileron1) c(wingleft))
+	("v_part" v(aileron2) c(wingright))
+	("v_part" v(flap1) c(wingleft))
+	("v_part" v(flap2) c(wingright))
+
+	("vc_wheel_base" v(wheell) c(wheelleft))
+	("vc_wheel_base" v(wheelr) c(wheelright))
+
+	
+	{fogable never}
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_plane_left"} {end "driver_airplane"} {base "open"}}
+			{reverse 	{end	"board_plane_left" -1} {base "open" -1}}
+		}
+		{anm "gunner"
+			{forward	{begin	"board_plane_right"} {end "passenger_car_small"} {base "open"}}
+			{reverse 	{end	"board_plane_right" -1} {base "open" -1}}
+		}
+	}
+	("crew_human" place(driver) 	bone(driver) 		door(emit1) animation(driver))
+	("crew_human" place(gunner) 	bone(gunner) 		door(emit1) animation(gunner))
+
+	{Placer
+		{place "driver" {group "crew"}{turnOff {targetable}}}
+		{place "gunner" {group "crew"}{turnOff {targetable}}}
+	}
+
+	("armor" hp(340))
+	{Chassis
+		{Locomotion ("locomotion") 
+			{Maxspeed 95}
+			{turnRadius 20}
+		}
+		{maxSideSlope 70}	;degree
+		{speed
+			{Slow	15  }	; km/h
+			{Normal	65	}
+			{Fast	90	}
+		}
+	}
+	{Chassis "airborne"
+		{Locomotion ("locomotion")
+			{Maxspeed 95}
+			{turnRadius 20}
+		}
+		{maxSideSlope 70}	;degree
+		{speed
+			{Slow	15  }	; km/h
+			{Normal	65	}
+			{Fast	90	}
+		}
+		{sideSlopeSpeed 120}
+		{maxElevationSpeed 20}
+		{elevationAcceleration 15}
+	}	
+	{mass 3000}
+
+	{extender "inventory"
+		{weapon "mgun"
+			{mask "weapon mgun"}
+		}
+		{box
+			{clear}
+			{item  "ammo mgun" 4350}
+			{item "mg15" filled {user "mgun"}}
+		}
+	}
+	{Weaponry
+		{place "mgun"
+			{type "aa"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			{basic}
+		}
+	}	
+
+	{Sensor
+		{Visor "main"
+			{vision "airborne_recon"}
+			{bone "visor"}
+		}
+	}
+	{Extension "fi156.mdl"}
+	{bone "mgun_rot"
+		{speed 0.025}
+		{limits -15 15}		
+	}
+	{bone "mgun_vert"
+		{speed 0.025}
+		{limits -10 10}			
+	}	
+}

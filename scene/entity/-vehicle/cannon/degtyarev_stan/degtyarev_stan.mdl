@@ -1,0 +1,212 @@
+;Exported by	: joomb
+;Date			: 08.03.2023 12:34:55
+;File			: H:\git\gem2-mdl-soldiers\models\unit\vehicle\ds_39\DS_39_stan.max
+{skeleton
+	{animation
+		{sequence "close" {speed 0.5}}
+	}
+	{bone revolute "basis"
+		{speed 0.01}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "gunner"
+			{Position -15.2937 	 0.2059 	 -0.194}
+		}
+		{bone "emit2"
+			{Position -5.1788 	 -9.8425 	 0}
+		}
+		{bone "emit1"
+			{Position -5.1788 	 9.8425 	 0}
+		}
+		{bone "driver2"
+			{matrix34
+				0.9976 	 0.0698 	 0
+				-0.0698 	 0.9976 	 0
+				0 	 0 	 1
+				-0.1294 	 -4.8449 	 0
+			}
+		}
+		{bone "driver1"
+			{matrix34
+				0.9976 	 -0.0698 	 0
+				0.0698 	 0.9976 	 0
+				0 	 0 	 1
+				-0.2344 	 5.1549 	 0
+			}
+		}
+		{bone "commander"
+			{matrix34
+				0.9903 	 0.1392 	 0
+				-0.1392 	 0.9903 	 0
+				0 	 0 	 1
+				-5.2645 	 -12.7963 	 0
+			}
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0 	 0 	 15.4248}
+			{poly "body" {lod 0}}
+			{poly "body_lod1" {lod 1}}
+			{poly "body_lod2" {lod 2}}
+			{poly "body_lod3" {lod 3 {last}}}
+			{bone "stand"
+				{parameters "id=body;"}
+				{matrix34
+					0.6293 	 0 	 0.7771
+					0 	 1 	 0
+					-0.7771 	 0 	 0.6293
+					-1.0102 	 0 	 6.1622
+				}
+				{poly "stand" {lod 0}}
+				{poly "stand_lod1" {lod 1}}
+				{poly "stand_lod2" {lod 2}}
+				{poly "stand_lod3" {lod 3 {last}}}
+			}
+			{bone "support1"
+				{parameters "id=body;"}
+				{matrix34
+					0.7736 	 -0.6317 	 0.0492
+					0.3942 	 0.4191 	 -0.8179
+					0.4961 	 0.6522 	 0.5732
+					0.3813 	 0.9786 	 6.1728
+				}
+				{poly "support1" {lod 0}}
+				{poly "support1_lod1" {lod 1}}
+				{poly "support1_lod2" {lod 2}}
+				{poly "support1_lod3" {lod 3 {last}}}
+			}
+			{bone "support2"
+				{parameters "id=body;"}
+				{matrix34
+					0.3422 	 -0.4603 	 -0.8192
+					0.8026 	 0.5965 	 0
+					0.4887 	 -0.6574 	 0.5736
+					0.3729 	 -0.984 	 6.1818
+				}
+				{poly "support2" {lod 0}}
+				{poly "support2_lod1" {lod 1}}
+				{poly "support2_lod2" {lod 2}}
+				{poly "support2_lod3" {lod 3 {last}}}
+			}
+			{bone revolute "turret"
+				{parameters "id=turret;"}
+				{limits -15 15}
+				{speed 0.01}
+				{Position 0 	 0 	 7.3103}
+				{poly "turret" {lod 0}}
+				{poly "turret_lod1" {lod 1}}
+				{poly "turret_lod2" {lod 2}}
+				{poly "turret_lod3" {lod 3 {last}}}
+				{bone revolute "gun_rot"
+					{parameters "id=gun;"}
+					{limits -45 5}
+					{speed 0.08}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						0 	 0 	 3.1178
+					}
+					{poly "gun_rot" {lod 0}}
+					{poly "gun_rot_lod1" {lod 1}}
+					{poly "gun_rot_lod2" {lod 2}}
+					{poly "gun_rot_lod3" {lod 3 {last}}}
+					{bone "mgun"
+						{Position -5.4751 	 -0.6803 	 0}
+					}
+				}
+				{bone "shield"
+					{parameters "id=turret;"}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 -1
+						0 	 1 	 0
+						0.3131 	 1.2784 	 7.0718
+					}
+					{poly "shield" {lod 0}}
+					{poly "shield_lod1" {lod 1}}
+					{poly "shield_lod2" {lod 2}}
+					{poly "shield_lod3" {lod 3 {last}}}
+				}
+				{bone "visor"
+					{Position 0.4358 	 0 	 6.375}
+				}
+			}
+		}
+	}
+}
+{"volumes"
+	{"body"
+		{polyhedron}
+		{bone "body"}
+		{Position -0.0026 	 0 	 6.1932}
+	}
+	{"gun_rot01"
+		{polyhedron}
+		{bone "gun_rot"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0 	 -1
+			0 	 1 	 0
+			-2.0088 	 -0.9056 	 0
+		}
+	}
+	{"gun_rot02"
+		{polyhedron}
+		{bone "gun_rot"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0 	 -1
+			0 	 1 	 0
+			-1.8446 	 -4.2349 	 4.3705
+		}
+	}
+	{"shield"
+		{polyhedron}
+		{bone "shield"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0 	 1
+			0 	 -1 	 0
+			0.2398 	 -2.4369 	 -0.8538
+		}
+	}
+	{"stand"
+		{cylinder 0.492126 20.6693}
+		{bone "stand"}
+		{matrix34
+			0.3827 	 0 	 -0.9239
+			0 	 1 	 0
+			0.9239 	 0 	 0.3827
+			-10.7796 	 0.0337 	 -4.4694
+		}
+	}
+	{"support1"
+		{cylinder 0.492126 21.2598}
+		{bone "support1"}
+		{matrix34
+			0.7847 	 0.2604 	 0.5625
+			-0.6185 	 0.2688 	 0.7384
+			0.0411 	 -0.9273 	 0.372
+			-0.5013 	 10.3831 	 -4.0826
+		}
+	}
+	{"support2"
+		{cylinder 0.492126 21.2598}
+		{bone "support2"}
+		{matrix34
+			0.2123 	 0.8023 	 0.5579
+			-0.307 	 0.5968 	 -0.7414
+			-0.9277 	 -0.0138 	 0.373
+			10.4433 	 -0.0644 	 -4.1179
+		}
+	}
+	{"turret"
+		{polyhedron}
+		{bone "turret"}
+		{Position 0.4358 	 -0.0988 	 0.0218}
+	}
+}
