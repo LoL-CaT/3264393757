@@ -1,0 +1,28 @@
+{actor
+;	(include "/properties/cannon.ext")
+	{obstacleID "tank"}
+	{Simulation {Able 1}}
+	{props "vehicle" "cannon" "with_gun"}
+	{autoOperatable 1}
+	{brain "vehicle"
+		{state "vehicle"}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "20mm_flak38" filled}
+		}
+	}  	
+	{extender "inventory"
+		{box
+			{Size 6 10}
+			{weight 10000}
+			{item "bullet20 zenite" 1000}
+		}
+	}	
+	{Extension "test_gun.mdl"}
+	{Volume "body"
+		{Box 5.0103 7.93826 3.46675}
+		{Bone "body"}
+		{Position 0	0 0}
+	}
+}

@@ -1,0 +1,76 @@
+;Exported by: klimenko
+;Date:        Fri Dec 01 15:51:18 2006
+;File:        D:\-Project-\-3DWork-\trench\trench14_1_sm4.max
+{Skeleton
+	{bone "trench_ground_exit2_1_5"
+		{parameters "CommonMesh;Ground;Land;"}
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{VolumeView "trench_ground_exit2_1_5.ply" {Ground} {DecalTarget}}
+		{bone "trench_wood_exit2"
+			{parameters "Ground;Land;"}
+			{Matrix34
+				0	1	0
+				-1	0	0
+				0	0	1
+				5.42887	0.687031	-0.713731
+			}
+			{VolumeView "trench_wood_exit2.ply" {Ground}}
+		}
+		{bone "point"
+			{Matrix34
+				0	1	0
+				-1	0	0
+				0	0	1
+				20.7305	0.27388	-13.786
+			}
+		}
+		{bone "point1"
+			{Matrix34
+				0	1	0
+				-1	0	0
+				0	0	1
+				-11.1996	0.273878	-13.786
+			}
+		}
+	}
+}
+{Obstacle "body"
+	{Obb2
+		{Center 20.7305 -0.27388}
+		{Extent 2.96435 24.3867}
+		{Axis 1 0}
+	}
+	{Rotate}
+}
+{Obstacle "body1"
+	{Obb2
+		{Center -11.1996 -0.273878}
+		{Extent 2.96435 24.3867}
+		{Axis 1 0}
+	}
+	{Rotate}
+}
+{Area "cut"
+	{Polygon2
+		{Radius 0}
+		{Vertex 24.4544 -45.3067}
+		{Vertex 24.4545 18.2555}
+		{Vertex -17.3601 18.2555}
+		{Vertex -17.3601 -45.3067}
+	}
+	{Rotate}
+}
+{Volume "body"
+	{Box 48.7735 5.92871 23.622}
+	{Bone "point"}
+	{Position 0	0	11.811}
+}
+{Volume "body1"
+	{Box 48.7735 5.92871 23.622}
+	{Bone "point1"}
+	{Position 0	0	11.811}
+}

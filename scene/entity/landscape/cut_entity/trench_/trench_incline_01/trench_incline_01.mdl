@@ -1,0 +1,118 @@
+;Exported by: gals
+;Date:        Mon Feb 27 18:02:18 2006
+;File:        D:\-Projects1_5-\-3DWork-\trench\trench12_12.max
+{Skeleton
+	{bone "trench_incline"
+		{parameters "CommonMesh;Ground;Land;"}
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{VolumeView "trench_incline.ply" {Ground} {DecalTarget}}
+		{bone "trench_wood"
+			{parameters "Ground;Land;"}		
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				32.0572	0.360171	0
+			}
+			{VolumeView "trench_wood.ply"}
+		}
+		{bone "point1"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				21.6367	-26.2914	-13.7598
+			}
+		}
+		{bone "point2"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				-16.1812	26.8946	-13.7598
+			}
+		}
+		{bone "point3"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				-15.7533	-26.2914	-13.7598
+			}
+		}
+		{bone "point4"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				21.3661	26.8946	-13.7598
+			}
+		}
+	}
+}
+{Obstacle "body1"
+	{Obb2
+		{Center 21.6367 26.2914}
+		{Extent 18.7008 7.87402}
+		{Axis 1 0}
+	}
+	{Rotate}
+}
+{Obstacle "body2"
+	{Obb2
+		{Center -16.1812 -26.8946}
+		{Extent 18.7008 7.87402}
+		{Axis 1 0}
+	}
+	{Rotate}
+}
+{Obstacle "body3"
+	{Obb2
+		{Center -15.7533 26.2914}
+		{Extent 18.7008 7.87402}
+		{Axis 1 0}
+	}
+	{Rotate}
+}
+{Obstacle "body4"
+	{Obb2
+		{Center 21.3661 -26.8946}
+		{Extent 18.7008 7.87402}
+		{Axis 1 0}
+	}
+	{Rotate}
+}
+{Area "cut"
+	{Polygon2
+		{Radius 0}
+		{Vertex -38.9241 -24.0379}
+		{Vertex 50.8421 -24.0379}
+		{Vertex 50.8421 23.15}
+		{Vertex -38.9241 23.1501}
+	}
+	{Rotate}
+}
+{Volume "body1"
+	{Box 37.4016 15.748 31.4961}
+	{Bone "point1"}
+	{Position 0	0	15.748}
+}
+{Volume "body2"
+	{Box 37.4016 15.748 31.4961}
+	{Bone "point2"}
+	{Position 0	0	15.7568}
+}
+{Volume "body3"
+	{Box 37.4016 15.748 31.4961}
+	{Bone "point3"}
+	{Position 0	0	15.7568}
+}
+{Volume "body4"
+	{Box 37.4016 15.748 31.4961}
+	{Bone "point4"}
+	{Position 0	0	15.7568}
+}

@@ -1,0 +1,148 @@
+;Exported by: gals
+;Date:        Mon Feb 27 18:02:56 2006
+;File:        D:\-Projects1_5-\-3DWork-\trench\trench17_1.max
+{Skeleton
+	{bone "trench_ground"
+		{parameters "CommonMesh;Ground;Land;"}
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{VolumeView "trench_ground.ply" {Ground} {DecalTarget}}
+		{bone "trench_wood"
+			{parameters "Ground;Land;"}
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				0	0	0
+			}
+			{VolumeView "trench_wood.ply" {Ground}}
+		}
+		{bone "point2"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				53.4166	22.1228	-13.8034
+			}
+		}
+		{bone "point3"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				-53.5833	23.1728	-13.8034
+			}
+		}
+		{bone "point"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				53.4166	-22.4622	-13.8034
+			}
+		}
+		{bone "point1"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				-53.5833	-22.9872	-13.8034
+			}
+		}
+	}
+}
+{Obstacle "body"
+	{Obb2
+		{Center 53.4166 22.4622}
+		{Extent 2.93079 13.4003}
+		{Axis 0.139892 0.990167}
+	}
+	{Rotate}
+}
+{Obstacle "body1"
+	{Obb2
+		{Center -53.5833 22.9872}
+		{Extent 13.403 2.94342}
+		{Axis 0.984823 0.173561}
+	}
+	{Rotate}
+}
+{Obstacle "body2"
+	{Obb2
+		{Center 53.4166 -22.1228}
+		{Extent 13.4165 3.0069}
+		{Axis 0.994527 0.104476}
+	}
+	{Rotate}
+}
+{Obstacle "body3"
+	{Obb2
+		{Center -53.5833 -23.1728}
+		{Extent 2.99664 13.4143}
+		{Axis 0.105268 0.994444}
+	}
+	{Rotate}
+}
+{Area "cut"
+	{Polygon2
+		{Radius 0}
+		{Vertex 74.8031 23.622}
+		{Vertex 59.3461 30.2028}
+		{Vertex 29.5276 41.3386}
+		{Vertex 7.13366e-006 47.2441}
+		{Vertex -29.5276 41.3386}
+		{Vertex -59.0027 30.3782}
+		{Vertex -74.8031 23.6221}
+		{Vertex -74.8031 -23.622}
+		{Vertex -59.1781 -30.6981}
+		{Vertex -29.5276 -42.2078}
+		{Vertex -7.4309e-006 -49.2126}
+		{Vertex 29.5276 -42.0227}
+		{Vertex 59.1707 -31.4279}
+		{Vertex 74.8031 -23.6221}
+	}
+	{Rotate}
+}
+{Volume "body"
+	{Box 26.7907 5.81599 23.622}
+	{Bone "point"}
+	{Matrix34
+		0.989927	0.141577	0
+		-0.141577	0.989927	0
+		0	0	1
+		0	0	11.811
+	}
+}
+{Volume "body1"
+	{Box 26.7907 5.81599 23.622}
+	{Bone "point1"}
+	{Matrix34
+		0.984361	-0.176166	0
+		0.176166	0.984361	0
+		0	0	1
+		0	0	11.811
+	}
+}
+{Volume "body2"
+	{Box 26.7907 5.81599 23.622}
+	{Bone "point2"}
+	{Matrix34
+		0.995272	-0.0971243	0
+		0.0971243	0.995272	0
+		0	0	1
+		0	0	11.811
+	}
+}
+{Volume "body3"
+	{Box 26.7907 5.81599 23.622}
+	{Bone "point3"}
+	{Matrix34
+		0.995119	0.0986792	0
+		-0.0986792	0.995119	0
+		0	0	1
+		0	0	11.811
+	}
+}

@@ -1,0 +1,306 @@
+;SDL
+; Displayed icons of the unit status with the highest priority.
+; The priority icons are set in descending file (icon defined earlier has a higher priority).
+; Conditions have a hierarchical structure. If basic condition truthfully then checked sub-conditions.
+; Sub-condition specified in the beginning of the list has a higher priority.
+; All condition possible inverse by added word "not" before "condition"
+;
+; Condition expression format: 
+; {if [not] <term0> [and|or [not] term1 .. [and|or [not] termN]]  
+; 	{<settings>}
+; }
+;
+; Basic settings for the conditions
+;	icon - <string>
+;	background - <string> 
+;	duration - <float>
+;	cursor - <string>
+;	action - <string>
+;	action_executor - <string> (possible values: "self", "active_entity", "first_from_selection", "nearest_from_selection")
+;
+; If in condition is not specified background, it is taken from the parent and so on.
+; If action is valid, the cursor sprite is taken from him.
+;
+; Available terms:
+;	breed_mask - is breed tag correspond mask, additional parameter: "mask" <string>
+;	ammo_tag - is ammo stuff for active weapon contain tag, additional parameter: "tag" <string>
+;	need_weapon - entity has not active weapon
+;	reloading - active weapon is recharges
+;	need_ammo - active weapon hasn't ammo
+;	human - is entity human
+;	vehicle - is entity vehicle
+;	abandoned - is entity abandoned
+;	active_human - human is sensible, not inactive and not linked
+;	current_user - entity owner is current user
+;	dead - entity is dead
+;	dying - entity is dying 
+;	in_fog - entity in fog
+;	fire_mode - check fire mode, additional parameter: "mode" <string> ("hold", "return", "open")
+;	move_mode - check move mode, additional parameter: "mode" <string> ("hold", "zone", "free")
+;	heal - check that entity is healing
+;	props - check tags exist in entity props, additional parameter: "tag" <string>. Possible set several tags {"tag" "tag1"} {"tag" "tag2"}
+;	tags - check tags exist in entity tags. additional parameter: "tag" <string>. Possible set several tags {"tag" "tag1"} {"tag" "tag2"}
+;	install - check is entity installs something
+;	component_state - check component state, additional parameter: "component" <string>, "component_state" <string> ("work", "broken", "destroyed")
+;	need_fuel - entity has fuel tank but it is empty
+;	need_repair - entity is vehicle and necessary repair
+;	relation - check relation of current user for entity, additional parameter: "type" <string> ("neutral", "enemy", "ally")
+;	crew_count - check count of crew, additional parameter: "type" <string> ("all", "worker", "other"), "count" <int>, "operator" <string>:
+;		"equ" - equal
+;		"neq" - not equal
+;		"lss" - less than
+;		"leq" - less than or equal
+;		"gtr" - greater than
+;		"geq" - greater than or equal
+;	crew_full - vehicle is fully staffed crew, additional parameter: "type" <string> ("all", "worker", "other")
+;	is_mouse_focused - entity is focused by mouse
+;	weapon - check active weapon, additional parameter: "tag" <string>, "mask" <string>. Possible set several tags {"tag" "tag1"} {"tag" "tag2"} or masks
+;	"weapon_skill" - check level skill for current weapon
+;	{if weapon_skill "none"
+;		{background "background/infantry_base_level1"}
+;		("icons_by_weapon")
+;	}
+;	{if weapon_skill "basic"
+;		{background "background/infantry_base_level2"}
+;		("icons_by_weapon")
+;	}
+;	{if weapon_skill "expert"
+;		{background "background/infantry_base_level3"}
+;		("icons_by_weapon")
+;	}
+;	manual_control - check is entity in manual control
+;	can_board - 
+; note: only in multiplayer
+;	mp_game - mp game is active
+; note: only in branch "soldiers-dev"
+;	house - is entity house
+;	house_is_assaulted - 
+;	house_is_empty - 
+;	is_vehicle_mined - vehicle is mined
+;	suppressed - is actor suppressed
+;	available_places - check is exist available places in entity
+;	in_house - is human linked to house
+;	in_assault - is human assault house
+;	fortificated - is house is fortificated
+;	has_fortifications - is house has any fortification
+;	fortifications_processing - house fortificating work in progress
+; note: only in branch "soldiers-dev" + in multiplayer
+;	territory_type - check which team is owner of territory, where entity is located, additional parameter: "type" <string> ("friendly", "enemy")
+;	dying_cant_hospitalize - 
+;	dying_on_friendly_territory - 
+;	dying_on_enemy_territory - 
+;	evacuating - entity is evacuating by paramedic
+;	can_spawn_paramedic - 
+;
+; "state" is modifier for unit state icon. For example: add text or progress bar, change color or location of icon
+; Basic settings for state "text"
+;	location - <Point2> - location of text
+;	offset - <Point2> - offset of text relative to icon. Possible use negative numbers
+;	align - <string> <string> - align of text. Possible values: "begin", "center", "end". Note: no quotes in block {align ..}
+;	color - array of {"<key>" "<color>"}. Default value set by {"normal" "<color>"}
+;	font_style - <string> - support all gem2 font modifiers, except s(..), because font size calculated in run-time
+; Basic settings for state "progress bar"
+;	size - size of progress bar
+;	location - location of progress bar
+;	offset - offset of progress bar relative to icon. Possible use negative numbers
+;
+; Available states:
+;	"progress_bar:recharge" - progress bar of recharge weapon
+;	"progress_bar:human_vitality" - progress bar of human hp
+;	"text:ammo_count" - count of ammo. Text format:
+;		if capacity of holder > 1 - text is "<in_holder>/<in_inventory>"
+;		if capacity of holder equal 1 - text is "<in_inventory>"
+;	"text:crew_info" - count of crew in vehicle, additional parameter for color {"lss:<float>" "<color>"} 
+;		if occupancy of vehicle is less than coefficient ("lss:<float>") change default color
+; note: only in branch "soldiers-dev"
+;	"progress_bar:house_fortification" - progress bar of house fortification
+;	"position:in_house_default" - relocate icons for human in house
+;	"position:human_assault" - relocate icons during house assault
+;	"color:human_damaged" - change color of icons during house assault
+;	"text:cp_for_capture" - count of cp for capture. Text format:
+;		if(cp_cost == 0) text is empty
+;		else if(cp_cost > 0 && player_cp >= cp_cost) text is <cp_cost>
+;		else if(cp_cost > 0 && player_cp < cp_cost) text is <player_cp>/<cp_cost>
+;		Special block for color: {"not_enough_cp" "red"}
+;	"text:free_place_count" - count of free place in house
+;	"count:house_empty_place" - generate icons for each empty place in house
+;	"text:vehicle_mine_time_left" - display of time before the explosion
+;
+; Possible use state or action only if embedded conditions are satisfied.
+; For example, add progress bar only if entity reloading at the same time
+;	{if ..
+;		{icon "shell_type/ap"}
+;		{if reloading
+;			{state "progress_bar:recharge"}
+;		}
+;	}
+;
+; Count of icons displayed  at the same time can be controlled by groups.
+; All icons by default consist in group with name "default".
+; If necessary show several icons at the same time, increment count in block "groups" or add special group for this type of icon 
+; For example add block {group "ammo_tag"} to condition and then add block {ammo_tag 1} to block "groups"
+;
+(define "state_ammo_count"
+	{state "text:ammo_count"
+		{offset -4 -4}
+		{align end end}
+		{font_style "f(hud2)e(shadow)"}
+		{color
+			{"normal" "white"}
+			{"no_ammo" "red"}
+		}
+	}
+)
+(define "state_crew_info"
+	{state "text:crew_info"
+		{offset -4 -4}
+		{align end end}
+		{font_style "e(shadow)f(hud2)"}
+		{color
+			{"normal" "white"}
+			{"lss:1.0" "red"}
+		}
+	}
+)
+(define "condition_ammo_tag"
+	{if ammo_tag "%0"
+		{if reloading
+			{state "progress_bar:recharge"
+				{size 29 4}
+				{location 8 0}
+				{offset 0 -4}
+			}
+		}
+		{icon "shell_type/%1"}
+		{group "ammo_tag"}
+		("state_ammo_count")
+	}
+)
+(define "condition_crew_count"
+	{if "props" "%tag"
+		{icon "unit_type/crew"}
+		("state_crew_info")
+		{if not "crew_full"
+			{type "worker"}
+			{action "board"}
+			{action_executor "first_from_selection"}
+		}
+	}
+)
+{##select_icon
+	{if current_user and not condition dead and human
+		{background "infantry_base"}
+		{if active_human
+			{if reloading {icon "recharge"}}
+			{if install {icon "install"}}
+			{if heal {icon "heal"}}
+			{if props "repairing" {icon "repair"}}
+			{if props "obtain_supply"
+				{icon "obtain_supply"}
+				{duration 1.0}
+			}
+			{if need_weapon {icon "need_weapon"}}
+			{if need_ammo {icon "need_ammo"}}
+			{if fire_mode "hold_fire" {icon "hold_fire"}}
+			{if move_mode "hold_position" {icon "hold_position"}}
+			
+			{if breed_mask "*/antipersonel_miner" {icon "unit_type/rifle"}}
+			{if breed_mask "*/antitank_miner" {icon "unit_type/rifle"}}
+			{if breed_mask "*/universal_miner" {icon "unit_type/sapper"}}
+			{if breed_mask "*/artilleryman*" {icon "unit_type/rifle"}}
+			{if breed_mask "*/at_rifle" {icon "unit_type/rifle"}}
+			{if breed_mask "*/bazooker" {icon "unit_type/bazooka"}}
+			{if breed_mask "*/edelweiss" {icon "unit_type/rifle"}}
+			{if breed_mask "*/edelweiss_mgun" {icon "unit_type/mgun"}}
+			{if breed_mask "*/engineer" {icon "unit_type/rifle"}}
+			{if breed_mask "*/flamer" {icon "unit_type/flamer"}}
+			{if breed_mask "*/mgun" {icon "unit_type/mgun"}}					
+			{if breed_mask "*/officer" {icon "unit_type/pistol"}}
+			{if breed_mask "*/paratrooper" {icon "unit_type/smg"}}
+			{if breed_mask "*/paratrooper_mgun" {icon "unit_type/mgun"}}
+			{if breed_mask "*/rifle" {icon "unit_type/rifle"}}
+			{if breed_mask "*/saboteur" {icon "unit_type/pistol"}}
+			{if breed_mask "*/scout" {icon "unit_type/smg"}}
+			{if breed_mask "*/saper" {icon "unit_type/rifle"}}
+			{if breed_mask "*/smg" {icon "unit_type/smg"}}
+			{if breed_mask "*/sniper" {icon "unit_type/sniper"}};
+			{if breed_mask "*/sniper_elite" {icon "unit_type/elite_sniper"}}
+			{if breed_mask "*/ss" {icon "unit_type/smg"}}
+			{if breed_mask "*/ss_faust" {icon "unit_type/bazooka"}}
+			{if breed_mask "*/ss_mgun" {icon "unit_type/mgun"}}
+			{if breed_mask "*/tankman" {icon "unit_type/pistol"}}
+		}
+	}
+	{if vehicle
+		{background "vehicle_base"}
+		{if reloading {icon "recharge"}}
+		{if props "obtain_supply"
+			{icon "obtain_supply"}
+			{duration 1.0}
+		}
+		{if component_state "gun" "destroyed"
+			{icon "gun_destroyed"}
+		}
+		{if need_repair {icon "need_repair"}}
+		{if need_weapon {icon "need_weapon"}}
+		{if need_ammo {icon "need_ammo"}}
+		{if fire_mode "hold_fire" {icon "hold_fire"}}
+		{if need_fuel {icon "need_fuel"}}
+		{if move_mode "hold_position" {icon "hold_position"}}
+		{if props "cannon" and available_places
+			{action "board"}
+			{action_executor "active_entity"}
+			{icon "need_crew"}
+		}
+
+		("condition_ammo_tag" args fg shell_he)
+		("condition_ammo_tag" args ap shell_ap)
+		("condition_ammo_tag" args zenite shell_zenite)
+		("condition_ammo_tag" args mgun shell_mg)
+		("condition_ammo_tag" args hmgun shell_mg)
+	}
+}
+
+{groups
+;	{<group_name> <number of active icons>}
+	{default 1}
+	{ammo_tag 1}
+}
+{offset 4}
+{distance_scale ; distance in meter -> hud scale
+	10 1.2
+	20 1.0
+	50 0.85
+	80 0.75
+	100 0.7
+	120 0.65
+	150 0.5
+}
+{font_scale ; hud scale -> font size
+	0.6	8
+	0.8 9
+	1.0 10
+	1.2 12
+}
+{links
+	{prop "human"
+		{bone "head"}
+		{offset 0.0 0.0 20.0} 
+	}
+	{prop "tank"
+;		{bone "visor1"}
+		{offset 0.0 0.0 40.0} 
+	}
+	{prop "car"
+;		{bone "visor1"}
+		{offset 0.0 0.0 40.0} 
+	}
+	{prop "cannon"
+;		{bone "visor"}
+		{offset 0.0 0.0 20.0} 
+	}
+	{prop "house"
+		{bone "icon"}
+       		{offset 0.0 0.0 -30.0} 
+	}
+}

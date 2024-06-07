@@ -1,0 +1,27 @@
+{game_entity
+	(include "/properties/railway_part.inc")
+	{props "steel"}
+	{DecalView  "working"
+		{Sprite "tram_rail2.mtl"}
+		{orientation normal}
+		{layer grounddecal }
+		{UseDirection }
+	}
+	{DecalView "broken"
+		{Sprite "tram_rail2#1_x.mtl"}
+		{orientation normal}
+		{layer grounddecal }
+		{UseDirection }
+	}
+	{volume "body"
+		{Box 280 50 2}
+		{bone "root"}
+		{position 0 0 0}
+		{able clear {blast}}
+		}
+	{extender "railway"
+		{LinkPoint 130 64}
+		{LinkPoint 380 64}
+		{path 0 1}
+	}
+}

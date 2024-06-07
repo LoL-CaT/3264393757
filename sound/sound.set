@@ -1,0 +1,26 @@
+{sound
+	{percent "effects" 45}
+	{percent "emotions" 15 2}
+	{percent "speech" 10 1}
+	{percent "environment" 20}
+	{percent "main_environment" 10}
+
+	; ћодели затухани€
+	; gem2 - нелинейное затухание уход€щее в ноль к max range
+	; table - таблична€ функци€ "дистанци€-громкость"; должна иметь минимум 2 значени€: слышима€ дистанци€ и дистанци€ где затухает в ноль
+	{loudness "default" 		{volume_attenuation gem2 20 80}}
+	{loudness "local environment"	{volume_attenuation gem2 15 30}}
+	{loudness "footstep"		{volume_attenuation gem2 7 30}}
+	{loudness "shoot muted"		{volume_attenuation gem2 7 30}}
+	{loudness "shoot normal"	{volume_attenuation gem2 15 100}}
+	{loudness "shoot loud"		{volume_attenuation gem2 35 150}}
+	{loudness "reload"		{volume_attenuation gem2 5 50}}
+	{loudness "whizz"		{volume_attenuation gem2 10 30}}
+	{loudness "hit"			{volume_attenuation gem2 15 50}}
+	{loudness "blast small"		{volume_attenuation gem2 20 150}}
+	{loudness "blast big"		{volume_attenuation gem2 40 150}}
+	{loudness "turret"		{volume_attenuation gem2 10 80}}
+	{loudness "talk"		{volume_attenuation gem2 20 45}}
+   	{loudness "canonade"		{volume_attenuation gem2 400 1000}}
+   	{loudness "air attack"		{volume_attenuation gem2 400 1000}}
+}

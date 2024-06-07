@@ -1,0 +1,49 @@
+;Exported by: kolesnikov
+;Date:        Thu Jan 19 11:45:04 2006
+;File:        D:\-Project-\-3DWork-\Constructions\sewer_man.max
+{Skeleton
+	{animation
+		{sequence "open" {speed 0.3}}
+	}
+	{bone "sewer"
+		{parameters "CommonMesh;Ground;"}
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{VolumeView "sewer.ply" {Ground}}
+		{bone "seat1"
+			{Matrix34
+				-1	0	0
+				0	-1	0
+				0	0	1
+				-0.0535545	-0.457028	-23.3524
+			}
+		}
+		{bone "emit1"
+			{Position 15.6072	-0.225774	0.385811}
+		}
+	}
+}
+{Area "cut"
+	{Polygon2
+		{Radius 0}
+		{Vertex 6.40225 4.64399}
+		{Vertex 2.44703 7.51763}
+		{Vertex -2.44188 7.51763}
+		{Vertex -6.3971 4.64399}
+		{Vertex -7.90786 -0.00564172}
+		{Vertex -6.3971 -4.65528}
+		{Vertex -2.44188 -7.52891}
+		{Vertex 2.44703 -7.52891}
+		{Vertex 6.40225 -4.65528}
+		{Vertex 7.91301 -0.00564241}
+	}
+	{Rotate}
+}
+{Volume "attach1"
+	{Box 19.2152 17.8437 1.792}
+	{Bone "sewer"}
+	{Position 0.313522	-0.0972128	1.04048}
+}

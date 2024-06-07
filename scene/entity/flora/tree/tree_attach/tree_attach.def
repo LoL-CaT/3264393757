@@ -1,0 +1,38 @@
+{game_entity
+	(include "/properties/tree.inc")
+	(include "/properties/shadow/tree.inc"  scale(1.2))
+	(include "/properties/shadow/tree_fall.inc"  sx(3.3) sy(2.0) x(60))
+	{props  "normal_light" "invisible_crown"}
+	{Extension "tree_attach.mdl"}
+	{Volume "attach01"
+		{Tags  "attach" "1"}
+		{able clear {touch 1}}
+		{density 0}
+	}
+	{Volume "bole"
+	}
+	{Volume "crown"
+		{able {visible 0}}
+	}
+	{placer
+		{place "1" {attach squat_lie} {linkbone "1"} {stealth}}
+	}	
+	{boarder
+		{door "door01" {queue 0}}
+		{node "node_ladder_bottom"}
+		{node "node_ladder_top"}
+
+		{anm "ladder_bind"
+			{forward	{begin	"stand_climb_stairs"}}
+			{reverse	{end	"stand_climb_stairs" -1}}
+		}
+		{anm "ladder"
+			{forward {speed 1.2} {loop "stand_upstairs"} {fix_orientation}}
+			{reverse {speed 1.2} {loop "stand_upstairs" -1} {fix_orientation}}
+		}
+
+		{link "door01" "node_ladder_bottom"	{anm "ladder"}}
+		{link "node_ladder_bottom" "node_ladder_top" {anm "ladder"}}
+		{link "node_ladder_top" "1" {anm "ladder"}}
+	}
+}

@@ -1,0 +1,65 @@
+{game_entity
+	(include "/properties/construction.inc")
+	{Extension "pointer.mdl"}
+	{props "pointer"}
+	{".pointer"}
+	{TexMods
+		{"1" "1"}
+		{"2" "2"}
+		{"3" "3"}
+	}
+	{NoGetShadows}
+	{SpriteView
+		{Sprite "pointer.ebm"
+			{Visibility
+				{Peak
+					{min 0}
+					{max 1}
+				}
+			}
+;			{Highlight 0x00FF0000}
+			{scale
+				{Linear
+					{min 1.6}
+					{max 0.4}
+				}
+			}
+			{Timer
+				{Mode play loop}
+				{Duration 1}
+			}
+		}
+		{ground }
+;		{layer debug}
+;		{layer alphasort}
+		{layer grounddynamic}
+		{Offset 0 0 1}
+	}
+	{SpriteView
+		{Sprite "pointer_light.ebm"
+			{Light
+				{Peak
+					{min 0}
+					{max 0.8}
+				}
+			}
+			{Highlight 0x00FF0000}
+			{scale
+				{Linear
+					{min 1.6}
+					{max 0.4}
+				}
+			}
+			{Timer
+				{Mode play loop}
+				{Duration 1}
+			}
+		}
+		{ground }
+;		{layer debug}
+;		{layer alphasort}
+		{layer grounddynamic}
+		{Offset 0 0 1}
+	}
+	("armor_medium")
+}
