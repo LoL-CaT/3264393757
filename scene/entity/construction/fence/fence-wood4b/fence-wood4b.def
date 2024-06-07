@@ -1,0 +1,20 @@
+{game_entity
+	(include "/properties/construction.inc")
+;	(include "/properties/shadow/fence.inc" sx(1.4) sy(0.9) ofsx(0) ofsy(0))
+  {DecalView
+	{ownershadow  64 64}
+	{name "shadow"}
+  }
+
+	("armor_fence_wood")
+  	("armor_use_volume_thickness")
+	
+	{Extension "fence-wood4b.mdl"}
+	{props "parts" "small" "wood" "construction" "no_destroyed_stamp" "disable_area" "burning" "break_on_burn"}
+	{volume	"body"
+		{tags "climb" "body" "fire"}
+		{thickness	3} 
+		{able {bullet 0} {visible 0} {touch}}
+	}
+	{lodclass "decor_medium"}
+}
