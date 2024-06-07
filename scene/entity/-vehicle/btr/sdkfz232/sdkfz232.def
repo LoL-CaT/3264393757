@@ -1,0 +1,123 @@
+{game_entity
+	(include "/properties/armoredcar.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	("bone_rotator")
+	{props "vehicle" "armored_car" "tank" "zenite" "turret" "wheeled" "with_gun" "vision_lev03" "spotter_plus" "turret_rotator" "ram_lvl2" "texmod_w_ow_cf_ocf_cd_ocd_c_oc"}
+	{targetClass "armoredcar" "ap fg bullet"}
+	{targetSelector "armoredcar_autocannon"}
+	
+	{extension "crew.ext"}
+	{extension "sensor.ext"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t(3))
+	("v_gun" n() t())
+
+	{volume "crew"
+		{able {contact_ground 0}}
+	}
+	{component "turret"
+		{RepairTime 20}
+	}
+	{component "Gun"
+		{RepairTime 10}
+	}
+	("arena_armor_mantlet" t(15))
+	("arena_armor_btr" turret(15 8 8 6) gun(10) engine(15 8 8 6) body(15 8 8 6) hp(337))
+	{armor
+		("module_body_light" n(3) body(8))
+		("module_detail_shield" vol("body08" "body09") t(18))
+		("module_other" t(4))
+	}
+	{extender "inventory"
+		{weapon "mgun1"
+			{mask "weapon mgun"}
+		}
+		{box
+			{item "ammo mgun" 2000}
+			{item "bullet20 ap ger flak" 100}
+			{item "bullet20 fg ger flak" 100}
+			{item "mg34_vh" filled {user "mgun1"}}
+			{item "repair_kit" 2 }
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}
+		}
+	}
+	
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "20mm_kwk30" filled}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("abm_auto_cannon")
+			{basic}
+		}
+		{place "mgun1"
+			{type "coaxial"}
+			{foresight "foresight4"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("sequential_aim")
+			("abm_mgun")
+			{basic}
+		}
+	}
+	
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+	("wheel" args "wheelright3")
+	("wheel" args "wheelleft3")
+	("wheel" args "wheelright4")
+	("wheel" args "wheelleft4")
+
+	("components_btr" 
+		repair_body(20)
+		repair_engine(21)
+		repair_turret(22)
+		repair_gun(14)
+		repair_track(9)
+		repair_wheel(9)
+	)
+
+	{mass 8300}
+	{Chassis
+		("car_trace" fx("tracewheel02") step(0.09) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("car_trace" fx("tracewheel02") step(0.09) wheell("wlr") wheelr("wrr") bonel("FXtraceL3") boner("FXtraceR3"))
+		{Locomotion ("locomotion")
+			{MaxSpeed	85}	
+	  		{maxSpeedAtMaxTurn 40}
+			{StartTime	2}
+			{BrakeTime	1}	
+			{StopTime	 2}
+			{TurnRadius	4}
+			{TurnTime	1.5}
+			{RearGears 0.35 0.55 0.75 1}
+		}
+		("fuelbag"
+			volume(213)
+			rate(50)
+			remain(213)
+		)
+		{MaxTrailerMass 3750}
+	}
+	{Extension "sdkfz232.mdl"}
+    ("animation_resume")
+	("chassis_add" speed(85))
+	
+	{bone "turret"
+		("arena_turret_speed" args 0.0208)
+	}
+	{bone "gun_rot"
+		{limits -10 25}
+		("arena_turret_speed" args 0.0208)
+	}
+	{extender "detail"
+		{linked "8" "9"}
+	}	
+}

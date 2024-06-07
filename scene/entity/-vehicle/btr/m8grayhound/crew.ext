@@ -1,0 +1,55 @@
+;SDL
+
+{boarder
+	{anm "driver"
+		{forward	{begin	"board_tank_left"} {end "seat_driver_car"}}
+		{reverse 	{end	"emit_tank_1_hold"}}
+	}
+	{anm "commander"
+		{forward	{begin	"board_tank_right"} {end "seat_driver_car"}}
+		{reverse 	{end	"emit_tank_1_hold"}}
+	}
+	{anm "gunner"
+			{forward	{begin	"board_tank_left"} {end "seat_driver_car"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+	{anm "gunner1"
+			{forward	{begin	"board_tank_right"} {end "seat_m7_mgunner"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+	}
+}
+(define "crew_human"
+		{placer
+			{place "%place" {group "crew"} {linkbone "%place"} {turnoff {sensor} {shadow}}}
+		}
+		{boarder
+			{door "%door1"}
+			{door "%door2"}
+			{link "%door1" "%place" {anm "%place"} {forward putoff} {reverse puton}}
+			{link "%door2" "%place" {anm "%place"} {forward putoff} {reverse puton}}
+		}
+)
+    {placer
+		{place "driver" {group "crew"} {visor "driver"}}
+	}
+
+	{placer
+		{place "gunner" {visor "main"}}
+	}
+	{placer
+		{place "gunner1" {visor "main"}}
+	}
+	{placer
+		{place "commander" {group "crew"} {visor "driver"}}
+	}
+    {boarder
+		{door "emit1"}
+		{door "emit2"}
+		{link "emit1" "driver" {anm "driver"} {forward putoff} {reverse puton}}
+		{link "emit2" "commander" {anm "driver"} {forward putoff} {reverse puton}}
+	}
+
+	("crew_human" place(gunner)	    door1(emit1))
+	("crew_human" place(gunner1)	    door1(emit2))
+
+

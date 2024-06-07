@@ -1,0 +1,156 @@
+{game_entity
+	(include "/properties/tank_unarmed.ext")
+	(include "/properties/shadow/tank.inc" scale(0.9))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+
+	{collider "tank.light"}
+	{props "vehicle" "armored_car" "tractor" "tank" "explosion_throw_crew" "vision_lev02" "windowed" "unarmed" "ram_lvl2" "texmod_w_cf_cd"}
+	{targetClass "armoredcar"}
+	{targetSelector "unarmed"}
+	{patherId "tank.light"}
+
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_big-highcar_driver"} {end "driver_car_small"} {base "doorleft"}}
+			{reverse 	{end	"board_big-highcar_driver" -1} {base "doorleft" -1}}
+		}
+		{anm "right"
+			{forward	{begin	"board_big-highcar"} {end "passenger_car_small"} {base "doorright"}}
+			{reverse 	{end	"board_big-highcar" -1} {base "doorright" -1}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_HighArmor"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_body"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_body"}}
+		}
+	}
+
+	("crew_human_visible_anm" place(driver) door1(emit1) door2(emit1) visor(main) anm_left(left) anm_right(left)) 
+	("crew_human_visible_anm" place(commander) door1(emit2) door2(emit2) visor(main) anm_left(right) anm_right(right))
+	
+	("seat_human" place(seat1) bone(seat01) door(emit4) animation(armor1))
+	("seat_human" place(seat2) bone(seat02) door(emit3) animation(armor))
+	("seat_human" place(seat3) bone(seat03) door(emit4) animation(armor))
+	("seat_human" place(seat4) bone(seat04) door(emit3) animation(armor1))
+	("seat_human" place(seat5) bone(seat05) door(emit4) animation(armor1))
+	("seat_human" place(seat6) bone(seat06) door(emit3) animation(armor))
+	("seat_human" place(seat7) bone(seat07) door(emit4) animation(armor))
+	("seat_human" place(seat8) bone(seat08) door(emit3) animation(armor1))
+	
+
+	{extender "inventory"
+		{box
+			{clear}
+			{size 8 8}
+			{item "barrel" filling "fuel" 200} 
+			{item "repair_kit" 2 }
+			{item "sapper_shovel" 2}
+			{item "dot_kit" 2}	
+			{item "sandbag_kit2" 2}
+			{item "plant" 2}
+		}
+	}
+
+
+	{mass 3000}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.4))
+		{Locomotion ("locomotion")
+			{MaxSpeed			35}
+			{maxSpeedAtMaxTurn	13.125}
+			{StartTime			2}
+			{TurnTime			3}
+			{TurnStart			0.5} 
+			{BrakeTime			0.5}
+			{StopTime			0.5} 
+			{TurnRadius			5} 
+			{TurnStop			0.1} 
+   			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.5}	
+		}
+		("fuelbag"
+			volume(300)
+			rate(50)
+			remain(300)
+		)		
+		{MaxTrailerMass 7000}
+	}	
+	("chassis_add_medium" speed(35))
+
+	{extension "steyr_rso.mdl"}
+    ("animation_resume")
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+
+	{volume "board_back"
+		{component "body"}
+		{tags "body" "body_armor"}
+	}
+
+	(define "v_cabin"
+	{volume "cabin%0"
+		{component "cabin"}
+		{tags "body" "body_armor"}
+	}
+	)
+	("v_cabin" args 01)
+	{volume "cabin02"
+		{able clear {holed}}
+		{component "cabin"}
+		{tags "body" "body_armor"}
+	}
+	("v_cabin" args 03)
+	("v_cabin" args 04)
+	{volume "doorl"
+		{component "cabin"}
+		{tags "body" "body_armor"}
+		{able {holed}}
+	}
+	{volume "doorr"
+		{component "cabin"}
+		{tags "body" "body_armor"}
+		{able {holed}}
+	}
+	{Volume "fuel"
+		{tags "body" "body_armor"}
+		{component "body"}
+	}
+	(define "v_window"
+	{volume "window%0"
+		{Thickness 0.2}
+		{able {visible 0}{window}{obstacle 0}}
+	}
+	)
+	("v_window" args 1)
+	("v_window" args 2)
+	("v_window" args 3)
+	("v_window" args 4)
+
+	
+	{component "cabin"}
+	{component "bodyback"}
+
+	{armor
+		{health 320}
+		("module_track_light"	track(15))
+		("module_body_light"	body(5) n())
+		("module_engine_light"	engine(5) n())
+	}
+
+	("components_tank" 
+		repair_body(20)
+		repair_engine(15)
+		repair_turret(16)
+		repair_gun(8)
+		repair_track(5)
+	)
+
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+}

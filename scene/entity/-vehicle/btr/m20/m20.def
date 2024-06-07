@@ -1,0 +1,135 @@
+{game_entity
+	(include "/properties/armoredcar.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	("bone_rotator")
+	{props "vehicle" "armored_car" "tank" "turret" "wheeled" "vision_lev03" "open_wheelhouse" "ram_lvl2" "spotter_plus" "texmod_cw_cf_cd" "anm_ac_2hand_mgun"}
+	{targetclass "armoredcar" "bullet"}
+	{targetSelector "armoredcar_hmgun"}	
+	(include "/properties/tank_crew.ext")
+	(include "crew.ext")
+	{extension "sensor.ext"}
+	{extender "enumerator"
+		{group "usa"}
+	}
+		
+	("v_body" n(01) t())
+	("v_body" n(02) t(2))
+	("v_body" n(03) t(3))
+	("v_body" n(04) t(4))
+	("v_body" n(05) t(5))
+	("v_body" n(06) t(6))
+	("v_body" n(07) t(7))
+	("v_body" n(08) t(8))
+	("v_body" n(09) t(9))
+;	("v_turret" n(01) t())
+	("v_engine" n(01) t())
+	("v_engine" n(02) t(2))
+	("v_engine" n(03) t(3))
+	("v_engine" n(04) t(4))
+	("v_engine" n(05) t(5))
+	{volume "crew"
+		{able {contact_ground 0}}
+	}
+	{component "turret"	{RepairTime 20}}
+	{component "gun"	{RepairTime 20}}
+
+	("arena_armor_btr" turret(0 19.1 0 0) gun(10) engine(6.5 9.5 5 6.5) body(12.7) hp(285))
+	{armor
+		("module_body_light"	n(2) body(15.9))
+		("module_body_light"	n(3) body(6.35))
+		("module_body_light"	n(4) body(12.7 9.5 9.5 6.35))
+		("module_body_light"	n(5) body(6.35 9.5 9.5 6.35))
+		("module_body_light"	n(6) body(19.1 9.5 9.5 6.35))
+		("module_body_light"	n(7) body(9.5))
+		("module_body_light"	n(8) body(9.5))
+		("module_body_light"	n(9) body(9.5 9.5 9.5 6.35))
+		("module_engine_light"	n(2) engine(5))
+		("module_engine_light"	n(3) engine(5))
+		("module_engine_light"	n(4) engine(5))
+		("module_engine_light"	n(5) engine(5))
+		("set_open_roof"	name(turret))
+	}		
+
+    ("shield" args 5)
+	{extender "shield"
+		{on}
+	}
+	{component "shieldl1" {tags "shield"}}
+	{component "shieldl2" {tags "shield"}}
+	{component "shieldr1" {tags "shield"}}
+	{component "shieldr2" {tags "shield"}}	
+	{extender "inventory"
+		{weapon "mgun"
+			{mask "weapon mgun"}
+		}
+		{box
+			{clear}		
+			{item "ammo hmgun" 1000}
+			{item "browning" filled {user "mgun"}}
+			{item "repair_kit" 2 }
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}
+			{item "weapon bazooka" filled}
+			{item "bazooka" "ammo" 5}
+		}
+	}
+
+	{Weaponry
+		{place "mgun"
+			{type "aa"}
+			{LinkBone "mgun"}		
+			{gunner "gunner"}
+			{charger "gunner"}
+			{LinkAnimation "off"}
+			("abm_mgun_heavy_plus")
+			{basic}
+		}
+
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+	("wheel" args "wheelright3")
+	("wheel" args "wheelleft3")
+
+	{mass 7100}
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed	89}
+			{maxSpeedAtMaxTurn 44.5}
+			{StartTime	       2}
+			{TurnStart        0.5}
+			{BrakeTime        0.5}
+			{StopTime         0.5}
+			{TurnRadius         5}
+			{TurnStop         0.3}
+			{TurnTime	1}
+			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.7}
+		}
+		("fuelbag"
+			volume(556)
+			rate(50)
+			remain(556)
+		)
+		{MaxTrailerMass 2750}
+		("car_trace" fx("tracewheel01") step(0.09) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("car_trace" fx("tracewheel01") step(0.09) wheell("wlr") wheelr("wrr") bonel("FXtraceL3") boner("FXtraceR3"))
+	}
+	("chassis_add" speed(89))
+	{Extension "m20.mdl"}
+	("animation_resume")
+	{bone "mgun_rot"
+	    {speed 0.04}
+		{limits}
+	}
+	{bone "mgun_hor"
+		{limits -10 10}
+	}
+	{bone "mgun_vert"
+		{limits -35 10}
+	}
+}

@@ -1,0 +1,166 @@
+{game_entity
+	(include "/properties/tank_unarmed.ext")
+	(include "/properties/shadow/tank.inc" scale(0.9))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+	{props "vehicle" "armored_car" "tractor" "tank" "explosion_throw_crew" "vision_lev02" "windowed" "unarmed" "ram_lvl2" "texmod_w_cf_cd"}
+
+	{targetClass "armoredcar"}
+	{targetSelector "unarmed"}
+	{patherId "tank.light"}
+
+	("v_body" n() t())
+	(define "v_bodyback"
+	{volume "bodyback%0"
+		{component "bodyback"}
+		{tags "body" "body_armor"}
+	}
+	)
+	("v_bodyback" args 01)
+	("v_bodyback" args 02)
+	("v_bodyback" args 03)
+	("v_bodyback" args 04)
+	("v_bodyback" args 05)
+
+	(define "v_cabin"
+	{volume "cabin%0"
+		{component "cabin"}
+		{tags "body" "body_armor"}
+	}
+	)
+	("v_cabin" args 01)
+	{volume "cabin02"
+		{able clear {holed}}
+		{component "cabin"}
+		{tags "body" "body_armor"}
+	}
+	("v_cabin" args 03)
+	("v_cabin" args 03)
+	("v_cabin" args 04)
+	("v_cabin" args 05)
+	("v_cabin" args 06)
+	("v_cabin" args 07)
+	{volume "cabin08"
+		{able clear {holed}}
+		{component "cabin"}
+		{tags "body" "body_armor"}
+	}
+	("v_cabin" args 09)
+	("v_cabin" args 10)
+	("v_cabin" args 11)
+	{volume "doorl"
+		{component "cabin"}
+		{tags "body" "body_armor"}
+		{able {holed}}
+	}
+	{volume "doorr"
+		{component "cabin"}
+		{tags "body" "body_armor"}
+		{able {holed}}
+	}
+	("v_engine" n(01) t())
+	("v_engine" n(02) t())
+	(define "v_window"
+	{volume "window%0"
+		{Thickness 0.2}
+		{able {visible 0}{window}{obstacle 0}}
+	}
+	)
+;	("v_window" args 1)
+;	("v_window" args 2)
+;	("v_window" args 3)
+;	("v_window" args 4)
+	(define "v_hole"
+	{volume "hole%n"
+		{able clear {hole%t}}
+	}
+	)
+	("v_hole" n(01) t())
+	("v_hole" n(02) t())
+	("v_hole" n(03) t(d))
+	("v_hole" n(04) t(d))
+
+	("arena_armor_spa_light" gun(0) engine(5) body(5) track(15) hp(320))
+	
+	{component "cabin"}
+	{component "bodyback"}
+	{component "trackright"}
+	{component "trackleft"}
+	
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_big-highcar_driver"} {end "driver_car_small"} {base "doorleft"}}
+			{reverse 	{end	"board_big-highcar_driver" -1} {base "doorleft" -1}}
+		}
+		{anm "right"
+			{forward	{begin	"board_big-highcar"} {end "passenger_car_small"} {base "doorright"}}
+			{reverse 	{end	"board_big-highcar" -1} {base "doorright" -1}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_HighArmor"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_body"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_body"}}
+		}
+	}
+
+	("crew_human_visible_anm" place(driver) door1(emit1) door2(emit1) visor(main) anm_left(left) anm_right(left)) 
+	("crew_human_visible_anm" place(commander) door1(emit2) door2(emit2) visor(main) anm_left(right) anm_right(right))
+	
+	("seat_human" place(seat1) bone(seat01) door(emit4) animation(armor))
+	("seat_human" place(seat2) bone(seat02) door(emit4) animation(armor1))
+	("seat_human" place(seat3) bone(seat03) door(emit4) animation(armor))
+	("seat_human" place(seat4) bone(seat04) door(emit4) animation(armor1))
+
+	("components_tank" 
+		repair_body(20)
+		repair_engine(15)
+		repair_turret(16)
+		repair_gun(8)
+		repair_track(5)
+	)
+	
+	{extension "stz5.mdl"}
+    ("animation_resume")
+	{extender "enumerator"}
+
+	{extender "inventory"
+		{box
+			{clear}
+			{size 8 8}
+			{item "barrel" filling "fuel" 200} 
+			{item "repair_kit" 2 }
+			{item "sapper_shovel" 2}
+			{item "dot_kit" 2}	
+			{item "sandbag_kit2" 2}
+			{item "plant" 2}			
+		}
+	}
+	{mass 5840}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.40))
+		{Locomotion ("locomotion")
+			{MaxSpeed			35}
+			{maxSpeedAtMaxTurn	13.125}
+			{StartTime			2}
+			{TurnTime			3}
+			{TurnStart			0.5} 
+			{BrakeTime			0.5}
+			{StopTime			0.5} 
+			{TurnRadius			5} 
+			{TurnStop			0.1} 
+   			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.5}
+		}
+		("fuelbag"
+			volume(144)
+			rate(50)
+			remain(144)
+		)
+		{MaxTrailerMass 5600}			
+	}	
+	("chassis_add_medium" speed(35))
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+}

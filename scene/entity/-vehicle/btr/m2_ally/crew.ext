@@ -1,0 +1,56 @@
+;SDL
+
+{boarder
+	{anm "passengers"
+		{forward	{begin	"board_SdKfz251-1"} {end "passenger_car_small"}}
+		{reverse 	{end	"emit_tank_1"}}
+	}
+	{anm "passengers1"
+		{forward	{begin	"board_SdKfz251-1"} {end "passenger_car_small"}}
+		{reverse 	{end	"emit_body"}}
+	}
+	{anm "passengers2"
+		{forward	{begin	"board_big-midcar"} {end "passenger_car_small"} {base "doorright"}}
+		{reverse 	{end	"board_big-midcar" -1} {base "doorright"}}
+	}
+	{anm "driver"
+		{forward	{begin	"board_big-midcar_driver"} {end "driver_car_small"} {base "doorleft"}}
+		{reverse 	{end	"board_big-midcar_driver" -1} {base "doorleft"}}
+	}
+	{anm "gunner"
+		{forward	{begin	"board_big-midcar"} {end "vehicle_mgun_2hand"} {base "doorright"}}
+		{reverse 	{end	"board_big-midcar" -1} {base "doorright"}}
+	}
+	{anm "gunner1"
+		{forward	{begin	"board_SdKfz251-1"} {end "vehicle_mgun_1hand"}}
+		{reverse 	{end	"emit_body" 1}} 
+	}
+}
+
+(define "crew_human"
+	{placer
+		{place "%place" {group "%group"} {linkbone "%bone"} {turnoff {sensor} {shadow}}}
+	}
+	{boarder
+		{door "%door"}
+		{link "%door" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+	}
+)
+
+("crew_human" place(driver)		door(emit1) bone(driver) animation(driver)		group(crew))
+("crew_human" place(gunner)		door(emit2) bone(gunner) animation(gunner)		group(crew))
+("crew_human" place(gunner1)	door(emit3) bone(gunner1) animation(gunner1)		group(crew))
+("crew_human" place(gunner4)	door(emit4) bone(gunner4) animation(gunner1)		group(crew))
+("crew_human" place(seat1)		door(emit7) bone(seat01) animation(passengers)	group(passengers))
+("crew_human" place(seat2)		door(emit5) bone(seat02) animation(passengers)	group(passengers))
+("crew_human" place(seat3)		door(emit6) bone(seat03) animation(passengers)	group(passengers))
+("crew_human" place(seat4)		door(emit2) bone(seat04) animation(passengers2)	group(passengers))
+("crew_human" place(seat5)		door(emit8) bone(seat05) animation(passengers1)	group(passengers))
+
+{placer
+	{place "driver" {visor "driver"}}
+	{place "gunner" {visor "main"}}
+	{place "gunner1" {visor "gunner1"}}
+	{place "gunner4" {visor "gunner4"}}
+
+}

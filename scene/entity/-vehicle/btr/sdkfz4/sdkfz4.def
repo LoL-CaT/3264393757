@@ -1,0 +1,150 @@
+{ArmoredCar
+	(include "/properties/armoredcar.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	("bone_rotator")
+	{Extension "sdkfz4.mdl"}
+    ("animation_resume")
+	{props "vehicle" "armored_car" "tank" "with_gun" "turret" "wheeled" "nebelwerfer" "vision_lev07" "reactive_artyllery" "ram_lvl2" "texmod_w_cw_cf_c2f_cd"}
+	{targetClass "armoredcar" "fg"}
+	{targetSelector "cannon_rocket"}
+	{extension "crew.ext"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_gun" n() t())
+	
+	("arena_armor_btr_with_track" turret(10) gun(8) engine(8) body(8) track(8) hp(332))
+	{armor
+		("module_other" t(4))
+	}
+
+
+	{component "turret"
+		{RepairTime 20}
+	}
+	{component "gun"
+		{RepairTime 15}
+	}
+
+	{extender "inventory"
+		{box
+			{clear}
+			{item "ammo 150mm_rocket" 30}
+			{item "repair_kit" 2 }
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}
+			{item "ammo mgun" 1000}
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "weapon panzerwerfer42" filled}
+			{charger "driver"}
+			{gunner "driver"}
+			{Barrels 10}
+;			{StationaryFiring}
+			("abm_reactive1")
+		}
+		{place "mgun"
+		    {type "aa"}
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			{weapon "mg42" filled}
+			{gunner "gunner2"}
+			{charger "gunner2"}
+			{foresight "foresight3"}
+			("abm_mgun")
+			{basic}
+		}
+	}
+
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("tracks")
+
+	("components_btr" 
+		repair_body(20)
+		repair_engine(30)
+		repair_turret(30)
+		repair_gun(23)
+		repair_track(15)
+		repair_wheel(15)
+	)
+
+	{mass 8450}
+
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed	40}
+			{maxSpeedAtMaxTurn 15}
+			{StartTime	2}
+			{BrakeTime	1.5}
+			{StopTime	2.5}
+			{TurnRadius	6}
+			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.6}
+		}
+		("fuelbag"
+			volume(131)
+			rate(50)
+			remain(131)
+		)
+		; left track must be first
+		("tank_trace" fx("tracks_mid") step(0.52) len(0.308) boneleft("FXtraceL2") boneright("FXtraceR2"))
+		("car_trace" fx("tracewheel02") step(0.09) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		{DisableMoveWhileFiring}
+		{MaxTrailerMass 3750}
+	}	
+	("chassis_add" speed(40))
+	{bone "gun"		{limits 2.0000 42.0000}}
+	{bone "turret"
+		("arena_turret_speed" args 0.008)
+	}
+	{brain
+		{properties
+			{fire_mode hold}
+		}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{Skeleton
+		(define "supports"
+		{bone "support1_%n"
+			{position 17.6376 %y 10.1309}
+			{parameters "Radius=0.26;"}
+		}
+		{bone "support2_%n"
+			{position -41.3372 %y 9.4396}
+			{parameters "Radius=0.26;"}
+		}
+		{bone "support3_%n"
+			{position 6.69254 %y 5.22453}
+			{parameters "Radius=0.26;"}
+		}
+		{bone "support4_%n"
+			{position -29.83 %y 5.22453}
+			{parameters "Radius=0.26;"}
+		}
+		)
+		("supports" n(r) y(19))
+		("supports" n(l) y(-19))
+	}
+	{bone "wheell1"
+		{parameters "ID=wheelleft1;Support=1;Radius=0.46;"}
+	}
+	{bone "wheelr1"
+		{parameters "ID=wheelright1;Support=1;Radius=0.46;"}
+	}
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator4" {bone "gun_rotator3"} {on}}
+		{"look_at.gun_rotator5" {bone "gun_rotator6"} {on}}
+		{"look_at.gun_rotator6" {bone "gun_rotator5"} {on}}
+	}
+}

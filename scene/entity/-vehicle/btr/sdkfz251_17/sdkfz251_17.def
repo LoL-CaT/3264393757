@@ -1,0 +1,161 @@
+{ArmoredCar
+	(include "/properties/armoredcar.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	{extension "sdkfz251_17.mdl"}
+    ("animation_resume")
+	{extension "crew.ext"}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{targetSelector "armoredcar_autocannon_aa"}
+	{targetClass "armoredcar" "ap fg bullet"}		
+	
+	{props "vehicle" "armored_car" "tank" "turret" "turret_rotator" "with_gun" "wheeled" "explosion_throw_crew" "flak" "barrel1" "open_wheelhouse" "toss_aside_the_sides" "ram_lvl2" "art_spec" "texmod_w_cw_cf_c2f_cd" "anm_251_17"}
+	
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{component "sticky_body"}
+	(define "v_body"
+	{volume "%n"
+		{tags "body" "body_armor%t"}
+		{component "body"}
+	}
+	)
+	("v_body" n(body1) t())
+	("v_body" n(body2) t())
+	("v_body" n(body3) t(2))
+	("v_body" n(body4) t(2))
+	("v_body" n(body5) t(2))
+	("v_body" n(body6) t(2))
+	("v_body" n(body7) t(2))
+	("v_body" n(body8) t(2))
+	("v_body" n(body9) t(2))
+	("v_body" n(body10) t(2))
+	("v_body" n(body11) t(2))
+	("v_body" n(body12) t(2))
+	("v_body" n(body13) t(2))
+	("v_body" n(body14) t(2))
+	("v_body" n(boardl_01) t(2))
+	("v_body" n(boardl_02) t(2))
+	("v_body" n(boardl_03) t(2))
+	("v_body" n(boardl_04) t(2))
+	("v_body" n(boardl_05) t(2))
+	("v_body" n(boardr_01) t(2))
+	("v_body" n(boardr_02) t(2))
+	("v_body" n(boardr_03) t(2))
+	("v_body" n(boardr_04) t(2))
+	("v_body" n(boardr_05) t(2))
+	("v_body" n(doorl_01) t(2))
+	("v_body" n(doorl_02) t(2))
+	("v_body" n(doorr_01) t(2))
+	("v_body" n(doorr_02) t(2))
+	("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(_rot01) t())
+	("v_gun" n(_rot02) t())
+	(define "v_turret"
+	{volume "%n"
+		{tags "turret" "turret_armor"}
+	}
+	)
+	("v_turret" n(turret01))
+	("v_turret" n(turret02))
+	("v_turret" n(turret03))
+	("v_turret" n(shieldl01))
+	("v_turret" n(shieldl02))
+	("v_turret" n(shieldr01))
+	("v_turret" n(shieldr02))
+
+	{component "gun"
+		{RepairTime 15}
+	}
+	("arena_armor_btr_with_track" turret(8) gun(10) engine(15 14.5 14.5 6) body(15 14.5 14.5 6) track(15) hp(300))
+	{armor
+		("set_open_roof" name(turret))
+		("module_body_light" n(2) body(14.5))
+		("module_other" t(4))
+	}
+
+
+	{extender "inventory"
+		{Box
+			{clear}
+			{item "bullet20 ap ger flak" 300}
+			{item "bullet20 fg ger flak" 300}
+			{item "ammo mgun" 1000}
+			{item "repair_kit" 2 }
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}
+			{item "sandbag_kit2"}			
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "20mm_flak38" filled}
+			{RestoreIKAfterAim}
+			{charger "commander"}
+			("abm_zenite")			
+		}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("tracks")
+
+	("components_btr" 
+		repair_body(20)
+		repair_engine(18)
+		repair_turret(19)
+		repair_gun(11)
+		repair_track(7)
+		repair_wheel(7)
+	)
+
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed	53}
+	  		{maxSpeedAtMaxTurn 19.875}	
+			{StartTime	3}
+			{BrakeTime	1}	
+			{StopTime	2.5}
+			{TurnRadius	5}
+   			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.6}
+		}
+		("fuelbag"
+			volume(281)
+			rate(50)
+			remain(281)
+		)
+		{MaxTrailerMass 5000}
+		; left track must be first
+		("tank_trace" fx("tracks_mid") step(0.5) len(0.285) boneleft("FXtraceL2") boneright("FXtraceR2"))
+		("car_trace" fx("tracewheel02") step(0.09) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+	}
+	{mass 10000}
+	("chassis_add" speed(53))
+	
+	{bone "turret"
+		("arena_turret_speed" args 0.0208)
+		{limits}
+	}
+	{bone "gun_rot"
+		{limits -8 40}
+	}
+
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(wheell) rname(wheelr))
+	)
+	("support_bones_std" n(3) r(0.36))
+	("support_bones_std" n(6) r(0.36))
+	
+	{extender "bodykit"
+		{"round_sandbag"
+			{delay 10}
+			{"sandbags_flaktruck" "basis"}		
+		}	
+	}	
+}

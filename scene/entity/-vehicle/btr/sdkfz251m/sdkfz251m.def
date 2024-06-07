@@ -1,0 +1,123 @@
+{ArmoredCar
+	(include "/properties/armoredcar.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	{extension "sdkfz251m.mdl"}
+    ("animation_resume")
+	{extension "crew.ext"}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	
+	{targetSelector "armoredcar_mortar"}
+	{targetClass "armoredcar" "fg bullet"}		
+	{props "vehicle" "armored_car" "tank" "turret" "wheeled" "explosion_throw_crew" "mortar_launch_sound" "vision_lev03" "open_wheelhouse" "ram_lvl2" "texmod_w_cw_cf_cd" "anm_ac_mortair"}
+
+	{extender "shield"
+			{on}
+	}
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{component "sticky_body"}
+
+	("v_body" n(1) t())
+	("v_body" n(2) t(2))
+	("v_body" n(3) t(2))
+	("v_body" n(4) t(2))
+	("v_body" n(5) t())
+	("v_gun" n() t())
+
+	{Volume "fuel"
+		{thickness 1}
+	}
+
+	("arena_armor_btr_with_track" turret(10) gun(10) engine(15 14.5 14.5 6) body(15 14.5 14.5 6) track(15) hp(300))
+	{armor
+		("set_open_roof" name(turret))
+		("module_body_light" n(2) body(14.5)); fix
+		("module_other" t(4))
+	}
+
+	
+	{extender "enumerator"}
+
+	{extender "inventory"
+		{Box
+			{clear}
+			{item "ammo mortar80" 66}
+			{item "ammo mgun" 100}
+			;{item "mg34_vh" filled {user "mgun"}}
+			{item "repair_kit" 2 }
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}
+			{item "signal" "grenade" 5}			
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{Barrels 1}
+			{weapon "80mm_sgrw34" filled}
+			{gunner "gunner"}
+			{charger "gunner2"}
+			{foresight "foresight1"}
+			("abm_mortar")
+		}
+		{place "mgun1"
+			{foresight "foresight4"}
+			{LinkBone "mgun1"}
+			{LinkAnimation "off"}
+			{weapon "mg34_vh" filled}
+			{gunner "gunner1"}
+			{charger "gunner1"}
+			{basic}
+		}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("tracks")
+
+	("components_btr" 
+		repair_body(20)
+		repair_engine(18)
+		repair_turret(19)
+		repair_gun(11)
+		repair_track(7)
+		repair_wheel(7)
+	)
+
+	{Chassis
+		; left track must be first
+		("tank_trace" fx("tracks_mid") step(0.48) len(0.285) boneleft("FXtraceL2") boneright("FXtraceR2"))
+		("car_trace" fx("tracewheel02") step(0.09) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		{Locomotion ("locomotion")
+			{MaxSpeed	53}
+	  		{maxSpeedAtMaxTurn 19.875}	
+			{StartTime	3}
+			{BrakeTime	1}	
+			{StopTime	2.5}
+			{TurnRadius	5}
+   			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.6}
+		}
+		("fuelbag"
+			volume(300)
+			rate(50)
+			remain(300)
+		)
+		{MaxTrailerMass 5000}
+	}
+	{mass 9140}
+	("chassis_add" speed(53))
+	{bone "turret1"
+		{limits -60 60}
+		{speed 0.05}
+	}
+	{bone "foresight1"
+		{limits -10 10}
+	}	
+}

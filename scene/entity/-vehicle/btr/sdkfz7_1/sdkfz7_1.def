@@ -1,0 +1,228 @@
+{Car
+	(include "/properties/armoredcar.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	(include "/properties/car_crew.ext")
+	("bone_rotator")
+	{props "vehicle" "armored_car" "tank" "with_gun" "turret" "turret_rotator" "wheeled" "flak" "vision_lev03" "open_wheelhouse" "art_spec" "ram_lvl2" "toss_aside_the_sides" "anm_ac_zenit"}
+	
+	
+	{targetClass "armoredcar" "ap fg bullet"}
+	{targetSelector "armoredcar_autocannon_aa"}		
+
+	("crew_2_human")
+	("board_animation"
+		place(driver)
+		board_begin(board_bigcar)
+		board_end(driver_car_small)
+		base(doorleft)
+	)
+	("board_animation"
+		place(commander)
+		board_begin(board_bigcar)
+		board_end(passenger_car_small)
+		base(doorright)
+	)
+
+	{boarder
+		{anm "gunner"
+			{forward	{begin	"board_LowTank_stand"} {end "driver_car_small"} {base "doors"}}
+			{reverse 	{end	"emit_tank_1"} {base "doors"}}
+	    	}
+		{anm "charger"
+			{forward	{begin	"board_LowTank_stand"} {end "passenger_car_small"} {base "doors"}}
+			{reverse 	{end	"emit_tank_1"} {base "doors"}}
+    		}
+		{anm "gunner2"
+			{forward	{begin	"board_LowTank_stand"} {end "passenger_car_small"} {base "doors"}}
+			{reverse 	{end	"emit_tank_1"} {base "doors"}}
+	    	}
+	    {anm "passenger"
+			{forward	{begin	"board_LowTank_stand"} {end "passenger_car_small"} {base "doors"}}
+			{reverse 	{end	"emit_body" 1} {base "doors"}}
+		}
+	}
+
+	("crew_human" place(gunner)		bone(gunner)	door(emit3) animation(gunner))
+	("crew_human" place(charger)	bone(charger)	door(emit4) animation(gunner))
+	("crew_human" place(gunner2)	bone(gunner2)	door(emit4) animation(gunner))
+	;("crew_human" place(seat1)	bone(seat01)	door(emit3) animation(passenger))
+	;("crew_human" place(seat2)	bone(seat02)	door(emit4)	animation(passenger))
+
+	{placer
+		{place "driver" 	{visor "driver"}{group "crew"}}
+		{place "commander"	{visor "driver"}{group "crew"}}
+		{place "gunner"		{visor "main"}	{group "crew"} {openForCrush}}
+		{place "charger"	{visor "main"}	{group "crew"} {openForCrush}}
+		{place "gunner2" 	{visor "main"}	{group "crew"} {openForCrush}}
+	}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	;("v_body" n(07) t())
+	;("v_body" n(08) t())
+	;("v_body" n(09) t())
+	("v_body" n(10) t())
+	("v_body" n(11) t())
+	("v_body" n(12) t())
+	("v_body" n(13) t())
+	("v_body" n(14) t())
+	("v_body" n(15) t())
+
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	("v_turret" n(03) t())
+	("v_turret" n(04) t())
+
+	{Volume "shield_front"
+		{tags "detail"}
+	}
+	{component "shield_front"	
+		{RepairTime 10}
+	}
+	{Volume "body2"
+		{tags "cabine" "body" "body_armor"}
+		{component "body"}
+	}
+	{component "turret"
+		{RepairTime 20}
+	}
+	{volume "shield_right"	
+		{tags "turret" "turret_armor"}
+		{component "turret"}
+	}
+	{component "shield_right"	
+		{RepairTime 10}
+	}
+	{volume "shield_left"	
+		{tags "turret" "turret_armor"}
+		{component "turret"}
+	}
+	{component "shield_left"	
+		{RepairTime 10}
+	}
+	("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(03) t())
+	("v_gun" n(04) t())
+	("v_gun" n(_rot01) t(1))
+	("v_gun" n(_rot02) t(1))
+	{component "gun"
+		{RepairTime 15}
+	}
+	{Volume "wheelleft1"
+		{component "wheelleft1"}
+	}
+	{Volume "wheelright1"
+		{component "wheelright1"}
+	}
+	{Volume "trackright"
+		{component "trackright"}
+	}
+	{Volume "trackleft"
+		{component "trackleft"}
+	}
+
+	("arena_armor_btr_with_track" turret(16) gun(10) engine(5) body(5) track(15) hp(372))
+	{armor
+		("set_open_roof"	name(turret))
+		("module_gun_light"	n(1) gun(16))
+		("module_detail"	n(2) t(5) vol("body07" "body08" "body09"))
+		("module_other"		t(4))
+
+	}
+	{extender "inventory"
+		{box
+			{clear}
+			{item "bullet20 bzt ger flak" 250}
+			{item "bullet20 fg ger flak" 250}			
+			{item "repair_kit" 2 }
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}
+			{item "sandbag_kit2"}			
+		}
+	}	
+	{Weaponry
+		{place "gun"
+			{weapon "20mm_flak38_x4" filling "ammo bullet20 bzt ger flak" 80}
+;			{RestoreIKAfterAim}
+			{Barrels 4}
+			("abm_zenite")
+		}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("tracks")
+
+	("components_btr" 
+		repair_body(20)
+		repair_engine(21)
+		repair_turret(22)
+		repair_gun(14)
+		repair_track(9)
+		repair_wheel(9)
+	)
+
+	{mass 9750}
+
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed	50}
+	  		{maxSpeedAtMaxTurn 18.75}	
+			{StartTime	5}
+			{BrakeTime	1.5}	
+			{StopTime	2.5}
+			{TurnRadius	6}
+   			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.6}
+		}
+		("fuelbag"
+			volume(138)
+			rate(50)
+			remain(138)
+		)
+		; left track must be first
+		("tank_trace" fx("tracks_mid") step(0.52) len(0.285) boneleft("FXtraceL2") boneright("FXtraceR2"))
+		("car_trace" fx("tracewheel02") step(0.09) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		{MaxTrailerMass 7000}			
+	}	
+	("chassis_add" speed(50))
+	{extension "sensor.ext"}
+	{Extension "sdkfz7_1.mdl"}
+    ("animation_resume")
+	{extension "camouflage.ext"}
+
+	{bone "turret"
+		("arena_turret_speed" args 0.0357)
+		{limits -150 150}
+	}
+	{bone "gun_rot"
+		{limits -55 5}
+	}
+	{extender "bodykit"
+		{"round_sandbag"
+			{delay 10}
+			{"sandbags_flaktruck" "basis"}		
+		}	
+	}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(wheell) rname(wheelr))
+	)
+	("support_bones_std" n(1) r(0.51))
+	("support_bones_std" n(2) r(0.33))
+	("support_bones_std" n(3) r(0.4))
+	("support_bones_std" n(6) r(0.4))
+	("support_bones_std" n(9) r(0.4))
+
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator4" {bone "gun_rotator3"} {on}}
+	}
+}

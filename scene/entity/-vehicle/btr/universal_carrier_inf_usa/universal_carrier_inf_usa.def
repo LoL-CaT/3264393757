@@ -1,0 +1,154 @@
+{entity
+	(include "/properties/tank_unarmed.ext")
+	(include "/properties/shadow/tank.inc" scale(1.3))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+	{props "light" "-turret" "opened" "tractor" "mover" "vision_lev03" "open_wheelhouse" "ram_lvl3" "texmod_w_cw_cf_cd" "anm_ac_2hand_mgun_com" "armored_car"}
+
+	{targetClass "armoredcar" "bullet"}
+	{targetSelector "armoredcar_bullet"}
+	{patherId "tank.light"}
+	
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	("v_body" n(01) t(1))
+	("v_body" n(02) t(2))
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t(5))
+	("v_body" n(06) t(6))
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	("v_body" n(12) t())
+	("v_body" n(13) t())
+	("v_body" n(14) t(5))
+	("v_body" n(15) t())
+	("v_body" n(16) t())
+	("v_body" n(19) t(5))
+	("v_body" n(20) t())
+	("v_body" n(21) t(5))
+	("v_body" n(22) t(22))
+
+	{volume "inventory"
+		{thickness 2}
+	}
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+	("arena_armor_spa_light" gun(10) engine(10 7 7 4) body(10 7 7 4) track(15) hp(308))
+	{armor
+		("module_body_light" n(1) body(7 7 5 4))
+		("module_body_light" n(2) body(5 7 7 5))
+		("module_body_light" n(5) body(4))
+		("module_body_light" n(6) body(10 7 5 4))
+		("module_body_light" n(22) body(7 7 7 4))
+		("set_open_roof" name(body))
+		("module_other" t(4))
+	}
+
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_tank_left"} {end "driver_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "commander"
+			{forward	{begin	"board_tank_left"} {end "vehicle_mgun_2hand"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_tank_left"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_tank_right"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+	}
+	("crew_human_visible_anm" place(driver)		door1(emit1) door2(emit2) anm_left(driver) anm_right(driver) visor(driver))
+	("crew_human_visible_anm" place(commander)	door1(emit1) door2(emit2) anm_left(commander) anm_right(commander) visor(main))
+	
+	("seat_human" place(seat1) bone(seat01) door(emit3) animation(armor1))
+	("seat_human" place(seat2) bone(seat02) door(emit4) animation(armor))
+	("seat_human" place(seat3) bone(seat03) door(emit5) animation(armor))
+	("seat_human" place(seat4) bone(seat04) door(emit6) animation(armor1))
+	("seat_human" place(seat5) bone(seat05) door(emit7) animation(armor))
+
+	{placer 
+		{place "driver" 	{openForCrush 0}}
+		{place "commander"	{openForCrush 0}}
+	}	
+	{boarder
+		{door "emit1"}
+		{door "emit2"}
+		{link "emit1" "driver" {anm "driver"} {forward putoff} {reverse puton}}
+	}
+
+
+	{extender "inventory"
+		{box
+		{clear}
+			{item "barrel" filling "fuel" 200}
+			{item "ammo hmgun" 500}
+			{item "repair_kit" 2 }
+			{item "sapper_shovel" 2}
+			{item "dot_wood_kit" 1}	
+			{item "barbwire_kit" 20}
+			{item "hedgehog_kit" 10}
+			{item "mine antipersonnel" 12}
+			{item "mine antitank" 6}			
+			{item "remote mine" 1}
+			{item "ammo ptr" 25}
+			{item "boyes" filled}			
+		}
+	}
+	{Weaponry
+		{place "mgun"
+			{LinkBone "mgun"}
+			{type "hull"}
+			{weapon "browning" filled}
+			{foresight "foresight3"}
+			{gunner "commander"}
+			{charger "commander"}
+			("abm_mgun")
+			{basic}
+		}
+	}
+
+	{mass 4000}
+	{Chassis
+		("tank_trace" fx("tracks_mid") step(0.56) len(0.27))
+		{Locomotion ("locomotion")
+			{MaxSpeed	50}
+			{maxSpeedAtMaxTurn 15}
+			{StartTime	       5}
+			{TurnTime	        4}
+			{TurnStart        1.5}
+			{BrakeTime        1}
+			{StopTime         2}
+			{TurnRadius         4}
+			{TurnStop         0.7}
+			{Gears     0.2 0.5 1.0}
+			{RearGears       0.3 0.5}
+		}
+		("fuelbag"
+			volume(250)
+			rate(50)
+			remain(250)
+		)
+		{MaxTrailerMass 5000}
+	}
+	("chassis_add_light" speed(50))
+	
+	{Extension "universal_carrier_inf_usa.mdl"}
+    ("animation_resume")
+
+	("chassis_add_light" speed(40))
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+}

@@ -1,0 +1,47 @@
+;SDL
+
+{boarder
+		{anm "driver"
+			{forward	{begin	"board_tank_left"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "commander"
+			{forward	{begin	"board_tank_left"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_tank_left"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_tank_right"} {end "passenger_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "gunner"
+			{forward	{begin	"board_tank_right"} {end "vehicle_mgun_2hand"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+	}
+
+(define "crew_human"
+	{placer
+		{place "%place" {group "%group"} {linkbone "%bone"} {turnoff {sensor} {shadow}}}
+	}
+	{boarder
+		{door "%door"}
+		{link "%door" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+	}
+)
+
+("crew_human" place(driver)		door(emit1) bone(driver) animation(driver)		group(crew))
+("crew_human" place(gunner)		door(emit2) bone(gunner) animation(gunner)		group(crew))
+("crew_human" place(commander)		door(emit2) bone(commander) animation(commander)		group(crew))
+("crew_human" place(seat1)		door(emit4) bone(seat01) animation(armor1)	group(passengers))
+("crew_human" place(seat2)		door(emit4) bone(seat02) animation(armor1)	group(passengers))
+("crew_human" place(seat3)		door(emit3) bone(seat03) animation(armor)	group(passengers))
+("crew_human" place(seat4)		door(emit3) bone(seat04) animation(armor)	group(passengers))
+
+{placer
+	{place "driver" {visor "driver"}}
+	{place "gunner" {visor "main"}}
+}

@@ -1,0 +1,167 @@
+{game_entity
+	(include "/properties/armoredcar.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	("bone_rotator")
+	{props "vehicle" "armored_car" "tank" "turret" "wheeled" "with_gun" "vision_lev03" "turret_rotator" "open_wheelhouse" "ram_lvl2" "texmod_cw_cf_cd" "anm_m8grayhound"}
+	{targetClass "armoredcar" "ap fg bullet"}
+	{targetSelector "armoredcar_shell"}
+	(include "/properties/tank_crew.ext")
+	{extender "enumerator"
+		{group "usa"}
+	}
+	(include "crew.ext")
+	{extension "sensor.ext"}
+		
+	("v_body" n(01) t())
+	("v_body" n(02) t(2))
+	("v_body" n(04) t(4))
+	("v_body" n(05) t(5))
+	("v_body" n(06) t(6))
+	("v_body" n(07) t(7))
+	("v_body" n(08) t(8))
+	("v_body" n(09) t(9))
+	("v_turret" n(01) t())
+	("v_turret" n(02) t(2))
+;	("v_turret" n(03) t(3))
+	("v_engine" n(01) t())
+	("v_engine" n(02) t(2))
+	("v_engine" n(03) t(3))
+	("v_engine" n(04) t(4))
+	("v_engine" n(05) t(5))
+	("v_gun"	n(_rot01) t(_rot01))
+	("v_gun"	n(_rot02) t(_rot02))
+	("v_gun" n() t())
+	{volume "crew"
+		{able {contact_ground 0}}
+	}
+	{component "turret"	{RepairTime 20}}
+	{component "gun"	{RepairTime 20}}
+
+	("arena_armor_btr" turret(0 19.1 0 0) gun(10) engine(6.5 9.5 5 6.5) body(12.7) hp(335))
+	{armor
+		("module_body_light"	n(2) body(15.9))
+		("module_body_light"	n(4) body(12.7 9.5 9.5 6.35))
+		("module_body_light"	n(5) body(6.35 9.5 9.5 6.35))
+		("module_body_light"	n(6) body(19.1 9.5 9.5 6.35))
+		("module_body_light"	n(7) body(9.5))
+		("module_body_light"	n(8) body(9.5))
+		("module_body_light"	n(9) body(9.5 9.5 9.5 6.35))
+		("module_turret_light"	n(2) turret(19.1) hp_k(1))
+;		("module_turret_light"	n(3) turret(5 0 0 0) hp_k(1))
+		("module_detail" 	n(1)	vol("turret03")	t(5 0 0 0))
+		("module_engine_light"	n(2) engine(5))
+		("module_engine_light"	n(3) engine(5))
+		("module_engine_light"	n(4) engine(5))
+		("module_engine_light"	n(5) engine(5))
+	    ("module_gun_medium"	n(_rot01)		gun(16))
+		("module_gun_medium"	n(_rot02)		gun(25.4))
+		("set_open_roof"	name(turret))
+	}		
+
+    ("shield" args 5)
+	{extender "shield"
+		{on}
+	}
+	{component "shieldl1" {tags "shield"}}
+	{component "shieldl2" {tags "shield"}}
+	{component "shieldr1" {tags "shield"}}
+	{component "shieldr2" {tags "shield"}}	
+	{extender "inventory"
+		{weapon "mgun"
+			{mask "weapon mgun"}
+		}
+		{box
+			{clear}
+			{item "ammo hmgun" 400}
+			{item "ammo mgun" 1500}
+			{item "ammo bullet37 ap usa std" 40}
+			{item "ammo bullet37 fg usa std" 40}
+			{item "browning" filled {user "mgun"}}
+			{item "repair_kit" 2 }
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}
+		}
+	}
+
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "37mm_m6" filled}
+			{charger "gunner"}
+			("abm_gun_plus")
+			{basic}
+		}
+		{place "mgun"
+			{type "aa"}		
+			{gunner "gunner1"}
+			{charger "gunner1"}
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			("sequential_aim")
+			("abm_mgun_heavy")
+			{basic}
+		}
+		{place "mgun1"
+			{foresight "foresight4"}
+			{weapon "browning_m19" filled}
+			{LinkBone "mgun1"}
+			{LinkAnimation "off"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("sequential_aim")
+			("abm_mgun_heavy")
+			{basic}
+		}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+	("wheel" args "wheelright3")
+	("wheel" args "wheelleft3")
+
+	{mass 7800}
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed  88}
+	  		{maxSpeedAtMaxTurn 44}	
+			{StartTime	1}
+			{BrakeTime	1.0}	
+			{StopTime	1}
+			{TurnRadius	3}
+			{TurnTime	1}
+   			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.7}			
+		}
+		("fuelbag"
+			volume(556)
+			rate(50)
+			remain(556)
+		)
+		{MaxTrailerMass 2750}		
+		("car_trace" fx("tracewheel01") step(0.09) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))
+		("car_trace" fx("tracewheel01") step(0.09) wheell("wlr") wheelr("wrr") bonel("FXtraceL3") boner("FXtraceR3"))
+	}
+	("chassis_add" speed(88))
+	{Extension "m8grayhound.mdl"}
+	("animation_resume")
+	{bone "turret"
+		("arena_turret_speed" args 0.0208)
+	}
+	{bone "mgun_rot"
+	    {speed 0.04}
+		{limits}
+	}
+	{bone "mgun_hor"
+		{limits -10 10}
+	}
+	{bone "mgun_vert"
+		{limits -35 10}
+	}
+	{bone "gun_rot"
+	    {speed 0.04}
+	}	
+}

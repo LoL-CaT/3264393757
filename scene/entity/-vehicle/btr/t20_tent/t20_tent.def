@@ -1,0 +1,111 @@
+{entity
+	(include "/properties/tank_unarmed.ext")
+	(include "/properties/shadow/tank.inc" scale(0.9))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+
+	{collider "tank.light"}
+;	{props "light" "tractor"}
+	{props "vehicle" "armored_car" "-turret" "tractor" "tank" "explosion_throw_crew" "vision_lev02" "ram_lvl2" "texmod_w_cf_cd"}
+	{targetClass "armoredcar" "bullet"}
+	{targetSelector "armoredcar_bullet"}
+	{patherId "tank.light"}
+	
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	("v_body" n(10) t())
+	("v_body" n(11) t())
+	("v_body" n(12) t())
+	("v_body" n(13) t())
+
+
+	("arena_armor_spa_light" gun(10) engine(10 7 7 7) body(10 7 7 7) track(15) hp(331))
+	{armor
+		("module_other" 		t(1))
+	}
+	
+	("crew_2_human")
+
+
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_LowTank_left"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_LowTank_left"}}
+			{reverse 	{end	"emit_tank_1"}}
+		}
+	}
+
+
+	{extender "inventory"
+		{Box
+			{clear}
+			{item "barrel" filling "fuel" 200}
+			{item "repair_kit" 2 }
+			{item "sapper_shovel" 2}
+			{item "ammo mgun" 500}
+		}
+	}
+	{Weaponry
+		{place "mgun1"
+			{type "hull"}
+			{weapon "dt" filled}
+			{foresight "foresight4"}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_mgun")
+		}
+	}
+
+	{mass 3500}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.27))
+			{Locomotion ("locomotion")
+				{MaxSpeed	50}
+				{maxSpeedAtMaxTurn 15}
+				{StartTime	       5}
+				{TurnTime	        4}
+				{TurnStart        1.5}
+				{BrakeTime        1}
+				{StopTime         2}
+				{TurnRadius         4}
+				{TurnStop         0.7}
+				{Gears     0.2 0.5 1.0}
+				{RearGears       0.3 0.5}
+			}
+		("fuelbag"
+			volume(250)
+			rate(50)
+			remain(250)
+		)	
+		{MaxTrailerMass 5000}
+	}	
+	("chassis_add_light" speed(50))
+	{Extension "t20_tent.mdl"}
+    ("animation_resume")
+    
+     	{bone "turret_mgun"
+		{limits 15}		
+	}   
+
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.28))
+	("support_bones_std" n(2) r(0.2))
+	("support_bones_std" n(3) r(0.2))
+	("support_bones_std" n(4) r(0.2))
+	("support_bones_std" n(5) r(0.2))
+	("support_bones_std" n(6) r(0.22))
+}

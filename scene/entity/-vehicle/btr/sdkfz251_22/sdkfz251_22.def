@@ -1,0 +1,156 @@
+{ArmoredCar
+	(include "/properties/armoredcar.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	{Extension "sdkfz251_22.mdl"}
+    ("animation_resume")
+	{extension "sdkfz251_22_crew.ext"}
+	{extension "sdkfz251_22_sensor.ext"}
+	{extension "camouflage.ext"}
+	{props "vehicle" "armored_car" "tank" "with_gun" "turret" "wheeled" "explosion_throw_crew" "vision_lev03" "open_wheelhouse" "ram_lvl2" "texmod_w_cw_cf_c2f_cd" "muzzle_brake" "anm_cannon_big"}
+	{targetSelector "armoredcar_shell"}
+	{targetClass "armoredcar" "ap fg bullet"}		
+	
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{component "sticky_body"}
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t(2))
+	("v_body" n(04) t(2))
+	("v_body" n(05) t(2))
+	("v_body" n(06) t(2))
+	("v_body" n(07) t(2))
+	("v_body" n(08) t(2))
+	("v_body" n(09) t(2))
+	("v_body" n(10) t(2))
+	("v_body" n(11) t(2))
+	(define "v_door"
+	{volume "door%n"
+		{tags "body" "body_armor%t"}
+		{component "body"}
+	}
+	)
+	("v_door" n(l) t(2))
+	("v_door" n(r) t(2))
+	("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(_rot01) t())
+	("v_gun" n(_rot02) t())
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	("v_turret" n(03) t())
+
+	("v_gun" n() t())
+	("v_gun" n(_rot01) t(_rot))
+	("v_gun" n(_rot02) t(_rot))
+
+	{Volume "fuel"
+		{thickness 1}
+	}
+		
+	{component "turret"
+		{RepairTime 20}
+	}
+	{component "Gun"
+		{RepairTime 20}
+	}
+
+	("arena_armor_btr_with_track" turret(10) gun(10) engine(15 14.5 14.5 8) body(15 14.5 14.5 8) track(15) hp(300))
+	{armor
+		("set_open_roof" name(turret))
+		("module_gun_medium"	n(_rot) 	gun(10))
+		("module_body_light" n(2) body(14.5))
+		("module_other" t(4))
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("tracks")
+
+	("components_btr" 
+		repair_body(20)
+		repair_engine(18)
+		repair_turret(19)
+		repair_gun(11)
+		repair_track(7)
+		repair_wheel(7)
+	)
+
+	{extender "enumerator"}
+
+	{extender "inventory"
+		{box
+			{clear}		
+			{item "bullet75 ap ger std" 11}
+			{item "bullet75 fg ger std" 11}
+			{item "ammo mgun" 1500}
+			{item "repair_kit" 2 }
+			{item "can" filling "fuel" 60}
+			{item "sapper_shovel" 2}			
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "75mm_pak40_3_l46" filled}
+			{RestoreIKAfterAim}
+			{charger "gunner"}
+			("abm_tank_hunt")
+		}
+		{place "mgun"
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			{weapon "mg34_vh" filled}
+			{gunner "gunner1"}
+			{charger "gunner1"}
+			{foresight "foresight3"}
+			("abm_mgun")
+			{basic}			
+		}
+	}  	
+
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed	53}
+	  		{maxSpeedAtMaxTurn 19.875}	
+			{StartTime	3}
+			{BrakeTime	1}	
+			{StopTime	2.5}
+			{TurnRadius	5}
+   			{Gears  0.4 0.7 1}
+			{RearGears  0.4 0.6}
+		}
+		("fuelbag"
+			volume(263)
+			rate(50)
+			remain(263)
+		)
+		{MaxTrailerMass 5000}
+		; left track must be first
+		("tank_trace" fx("tracks_mid") step(0.52) len(0.276) boneleft("FXtraceL2") boneright("FXtraceR2"))
+		("car_trace" fx("tracewheel02") step(0.09) wheell("wlf") wheelr("wrf") bonel("FXtraceL1") boner("FXtraceR1"))		
+	}
+	{mass 10000}
+;	{texmod "d"}
+	("chassis_add" speed(53))
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(wheell) rname(wheelr))
+	)
+	("support_bones_std" n(1) r(0.46))
+	("support_bones_std" n(2) r(0.36))
+	("support_bones_std" n(3) r(0.36))
+	("support_bones_std" n(6) r(0.36))
+	("support_bones_std" n(9) r(0.36))
+	{bone "turret"
+		("arena_turret_speed" args 0.0071)
+	}	
+	{bone "gun_rot"
+		("arena_turret_speed" args 0.0071)
+		{limits -5 22}		
+	}
+}

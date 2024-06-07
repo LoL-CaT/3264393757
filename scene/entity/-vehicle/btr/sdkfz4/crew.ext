@@ -1,0 +1,53 @@
+;SDL
+
+{boarder
+	{anm "driver"
+		{forward	{begin	"board_SdKfz251-1"} {end "seat_driver_car"} {base "open"}}
+		{reverse 	{end	"emit_body" 1}}
+	}
+	{anm "commander"
+		{forward	{begin	"board_SdKfz251-1"} {end "seat_driver_car"} {base "open"}}
+		{reverse 	{end	"emit_body" 1}}
+	}
+	{anm "gunner2"
+		{forward	{begin	"board_SdKfz251-1"} {end "vehicle_mgun_1hand"} {base "open"}}
+		{reverse 	{end	"emit_body" 1} {base "gunner_cover"}}
+	}
+	{anm "charger"
+		{forward	{begin	"board_sdkfz251-1"}  {end "pose_m42_gunlayer" 10} {base "open"}}
+		{reverse	{end	"emit_body"}}
+	}
+}
+(define "crew_human"
+	{placer
+		{place "%place" {visor "%visor"} {group "%group"}}
+	}
+	{boarder
+		{door "%door1"}
+		{door "%door2"}
+		{link "%door1" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+		{link "%door2" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+	}
+)
+(define "crew_human_visible_anm"
+	{placer
+		{place "%place"
+			{group "%group"}
+			{linkbone "%place"}
+			{turnoff {sensor} {shadow}}
+			{visor "%visor"}
+			{openForCrush}
+		}
+	}
+	{boarder
+		{door "%door1"}
+		{door "%door2"}
+		{link "%door1" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+		{link "%door2" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+	}
+)
+
+("crew_human" 			place(driver)		door1(emit1) door2(emit2) animation(driver) visor(driver) group(crew))
+("crew_human" 			place(commander)	door1(emit1) door2(emit2) animation(commander) visor(view-around) group(crew))
+("crew_human" 			place(charger)		door1(emit1) door2(emit2) animation(commander) visor(view-around) group(crew))
+("crew_human_visible_anm"	place(gunner2)		door1(emit1) door2(emit2) animation(gunner2) visor(main) group(crew))
