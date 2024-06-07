@@ -1,0 +1,80 @@
+;SDL
+
+;	Mission '<game>.info' file content
+;--------------------------------------------------------------------------
+;	{info
+;		{settings
+;			{options <editedParamList>}
+;			{fogOfWar}
+;			{floraRespawn}
+;			{difficulty 		<N>}
+;			{gameDuration 		<min>}
+;			{impregnableTimeout <sec>}
+;		}
+;		{unitPresets
+;			{"<presetId>"	<- don't forget to localize it in "mp/unitPresets/<presetId>"
+;				{unitset 	  "<filter>"}
+;				{commandPoints <N>}
+;			}
+;		}
+;	}
+;----------------------------------------------------------------------------------------------------------
+;	F - кол-во зон захвата (флагов)
+;	Установить флаги i=1..<F>:
+;		flag_point{name="f<i>";team="";order="<i>";allow.release="a b";allow.capture="a b"}
+;
+;	Далее следуй инструкциям из combat.set (без установки dm map_point-ов).
+;----------------------------------------------------------------------------------------------------------
+;
+; flag_capture_factor в параметрах игры: коэффициент, указывающий на каком расстоянии от края флага будет 
+; уменьшаться вес захватывающих его юнитов.
+; Вес уменьшается линейно от х0 на краю до х1 на расстоянии flag_capture_factor*радиус флага. 
+; Т.е. 0 - не будет уменьшаться вообще. 1 - будет уменьшаться сразу с центра флага.
+;----------------------------------------------------------------------------------------------------------
+{game
+	{teammatch}
+	{class "battlezones"}	
+	{parameters
+		{points_table {0 0} {0.1 1.0} {0.14 1.7} {0.2 1.7} {0.27 2.5} {0.4 3.0} {0.5 4.0} {0.6 5.0} {0.8 20} {1 40}}			
+		{flag_capture_time 30}
+		{flag_release_time 15}
+		{flag_capture_factor 1}	
+		{unit_score_ratio 0}
+		{mission_layers
+			"/pvp_inc/flag_points"
+			"/pvp_inc/loot_generator_pvp_combat"
+			"civilian"
+			"fauna"
+			"local"
+			"/pvp_inc/bots_ai"
+			"/pvp_inc/groundcontrol_music"
+			"/pvp_inc/groundcontrol_music_gameover"				
+			"/pvp_inc/paratrooper_message"
+			"local_environment"
+			"pvemi/players_cp_balance_fl"
+			"/pvp_inc/unfog_neutral_vehicles"			
+		}
+		{wks
+			{art 1}
+			{tnk 1}
+			{inf 1}
+		}		
+	}
+	{settings
+		{options 			gameDuration scoreFinal}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_simple}
+		{difficulty 		normal}
+		{gameDuration		30} ; min	
+		{scoreFinal			2500}
+		{impregnableTimeout	0}	; sec
+		{floraRespawn 0}
+;		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+		(include "settings_mod.inc")		
+	}
+	{bots_play_profiles "ger_art*;rus_art*;usa_art*;ger_tank*;rus_tank*;usa_tank*;ger_inf*;rus_inf*;usa_inf*"}	
+	{play_profile_filter "statserver/*"}
+	(include "presets_vehicles.inc")
+}

@@ -1,0 +1,312 @@
+;SDL
+{"background_color:color" "4 16 32 102"}
+{"text_color_secondary:color" "214 225 240 255"} ; white blue
+{"round_menu:palette"; default settings
+	{"center_radius" 38}
+	{"default_color" "0xffffffff"}
+	{"center_camera" 0}
+	{"max_icon_size" 40 40}
+	{"shadow_text_size" 2}
+	{"shadow_icon_size" 2}
+	{"disable_control" 1}
+}
+{"quick_user_guide:palette;from:scene/hud2/round_menu"
+	{"hotkey_distance" 95}
+	{"icon_distance" 152}
+	{"title_distance" 247}
+	{"hotkey_scale" 0.8}
+	{"title_scale" 0.8}
+	{"focused_color" "0xff9d1eff"}
+	{"background_color" "0x0000007f"}
+	{"background_with_fill" 1}
+	{"background_by_screen_size" 1}
+	{"hotkey_for_close" "multiplayer/show_quick_user_guide"}
+}
+{"quick_user_guide_minimap:palette;from:scene/hud2/round_menu"
+	{"scale" 0.5}
+	{"use_title" 0}
+	{"max_icon_size" 20 20}
+	{"center_radius" 20}
+	{"hotkey_distance" 15}
+	{"icon_distance" 60}
+	{"title_distance" 120}
+	{"hotkey_scale" 0.4}
+	{"title_scale" 0.2}
+	{"focused_color" "0xff9d1eff"}
+	{"background_color" "0x0000007f"}
+	{"background_with_fill" 1}
+	{"background_by_screen_size" 0}
+	{"hotkey_for_close" "multiplayer/show_quick_user_guide"}
+	{"in_center" 0}
+}
+{"quick_user_message:palette;from:scene/hud2/round_menu"
+	{"hotkey_distance" 95}
+	{"icon_distance" 102}
+	{"title_distance" 187}
+	{"hotkey_scale" 0.8}
+	{"title_scale" 0.8}
+	{"focused_color" "0xff9d1eff"}
+	{"background_color" "0x0000007f"}
+	{"background_with_fill" 1}
+	{"background_by_screen_size" 1}
+	{"hotkey_for_close" "multiplayer/show_quick_user_message"}
+}
+{"menu_actions:palette;from:scene/hud2/round_menu"
+	{"hotkey_distance" 55}
+	{"icon_distance" 92}
+	{"title_distance" 187}
+	{"hotkey_scale" 0.5}
+	{"title_scale" 0.5}
+	{"focused_color" "0xff9d1eff"}
+	{"background_color" "0xffffffff"}
+	{"in_center" 0}
+	{"use_title" 1}
+	{"use_background" 0}
+	{"background_with_fill" 0}
+	{"disable_unit_state_icons" 1}
+	{"min_sector_count" 2}
+	{"max_sector_count" 12}
+}
+{"button:hud2_button"
+	{icon_color_default "white"}
+	{icon_color_selected "white"}
+	{icon_color_deny "red"}
+	{icon_opacity_disabled 0.8}
+	{icon_opacity_not_focused 0.95}
+	{label_color_default "white"}
+	{label_color_selected "white"}
+	{label_color_deny "red"}
+	{label_opacity_disabled 0.7}
+	{label_opacity_not_focused 0.9}
+	{background_opacity_default 0.4}
+	{background_opacity_disabled 0.8}
+	{background_opacity_focused 2.5}
+	{frame_highlight_default "85 85 85 0"}
+	{frame_highlight_selected "193 42 42 255"}
+	{frame_highlight_disabled "204 204 204 0"}
+	{frame_highlight_focused "200 200 200 200"}
+	{reset_default_title_time 0.3}
+	{amount_use_label_color 0}
+}
+{"unit_state_icon"
+	{"palette:hud2_button;from:scene/hud2/button"
+		{icon_opacity_disabled 0.8}
+		{icon_opacity_not_focused 0.85}
+		{background_opacity_default 0.6}
+		{background_opacity_disabled 0.8}
+		{background_opacity_focused 2.5}
+	}
+	{"icon_cursor_offset:point2" -35 0}
+	{"shadow_text_size:int" 2}
+}
+{"unit_state_icon_unit_button"
+	{"palette:hud2_button;from:scene/hud2/button"
+		{icon_opacity_disabled 1}
+		{icon_opacity_not_focused 1}
+		{background_opacity_default 1}
+		{background_opacity_disabled 1}
+		{background_opacity_focused 1}
+	}
+}
+{"weapon_bar"
+	{"max_button_count:int" 5}
+	{"margin:int" 4}
+	{"hotkey_scale:float" 0.2}
+	{"button_size:point2" 200 70}
+	{"grenade_button_size:point2" 200 70}
+	{"ammo_count_font_style:string" "f(not)b"}
+	{"text_offset:int" 9}
+}
+{"damage_marker"
+	{"damage_text_scale:float" 0.7}
+	{"desc_text_scale:float" 0.5}
+	{"shadow_text_size:int" 2}
+	{"pierced_color:color" "red"}
+	{"not_break_color:color" "yellow"}
+	{"visibility:piece-linear-function" 0 0 0.15 1.0 1.5 1.0 4.0 0.0}
+}
+{"interactive_hints"
+	{"background_color:color" "0x0000004f"}
+;	{location 200 363}
+	{"margin:int" 10}
+	{"row_height:int" 32}
+	{"text_scale:float" 0.7}
+	{"location:point2" 200 363}
+}
+{"bar"
+	{"margin:int" 20}
+}
+{"chat"
+	{"message_count:int"		10}
+	{"show_time:float"			15}
+	{"hide_time:float"			0.3}
+	{"scroll_time:float"		0.15}
+	{"text_scale:float"			0.6}
+	{"shadow_text_size:int"		2}
+	{"player_name_width:int"	120}
+}
+{"damagelog"
+	{"player_name_limit:int"	25}
+	{"message_count:int"		5}
+	{"show_time:float"			30}
+	{"hide_time:float"			0.3}
+	{"scroll_time:float"		0.15}
+	{"text_scale:float"			0.5}
+	{"shadow_text_size:int"		2}
+}
+{"spawn_prepare_button"
+	{"palette:hud2_button;from:scene/hud2/button"
+		{icon_opacity_disabled 0.7}
+		{icon_opacity_not_focused 1.0}
+		{background_opacity_default 0.4}
+		{background_opacity_disabled 1.0}
+		{background_opacity_focused 1.0}
+	}
+}
+{"unit_button"
+	{"palette:hud2_button;from:scene/hud2/button"
+		{icon_color_default "255 255 255 200"}
+		{icon_color_selected "255 255 255 255"}
+		{icon_color_deny "black"}
+		{icon_opacity_disabled 0.8}
+		{icon_opacity_not_focused 1.0}
+		{label_color_default "white"}
+		{label_color_selected "255 180 80"}
+		{label_color_deny "red"}
+		{label_opacity_disabled 0.7}
+		{label_opacity_not_focused 0.9}
+		{background_opacity_default 0.6}
+		{background_opacity_selected 1.2}
+		{background_opacity_disabled 1.0}
+		{background_opacity_focused 1.0}
+;		{frame_highlight_default "204 204 204"}
+;		{frame_highlight_disabled "204 204 204"}
+;		{frame_highlight_focused "255 255 255"}
+		{reset_default_title_time 0.3}
+		{amount_use_label_color 0}
+	}
+}
+{"echelon_button"
+	{"palette:hud2_button;from:scene/hud2/button"
+		{icon_color_default "255 255 255 255"}
+		{icon_color_selected "255 255 255 255"}
+		{icon_color_deny "black"}
+		{icon_opacity_disabled 1.0}
+		{icon_opacity_not_focused 1.0}
+		{background_opacity_default 0.4}
+		{background_opacity_selected 1.0}
+		{background_opacity_disabled 1.0}
+		{background_opacity_focused 1.0}
+		{frame_highlight_default "23 32 44 255"}
+		{frame_highlight_disabled "23 32 44 255"}
+		{frame_highlight_focused "255 255 255"}
+	}
+}
+{"unit_spawn_button"
+	{"palette:hud2_button;from:scene/hud2/button"
+		{icon_color_default "255 255 255 255"}
+		{icon_color_selected "255 255 255 255"}
+		{icon_color_disabled "104 112 121 255"}
+		{icon_color_deny "black"}
+		{icon_opacity_disabled 1.0}
+		{icon_opacity_not_focused 1.0}
+		{background_opacity_default 1.0}
+		{background_opacity_selected 1.0}
+		{background_opacity_disabled 1.0}
+		{background_opacity_focused 1.0}
+		{frame_highlight_default "23 32 44 255"}
+		{frame_highlight_disabled "23 32 44 255"}
+		{frame_highlight_focused "255 255 255"}
+	}
+	{"background_default_color:color" "23 32 44 255"}
+	{"background_disabled_color:color" "4 16 32 255"}
+}
+{"action_button"
+	{"palette:hud2_button;from:scene/hud2/button"
+		{icon_color_default "255 255 255 255"}
+		{icon_color_selected "255 255 255 255"}
+		{icon_color_deny "193 42 42 255"}
+		{icon_opacity_disabled 0.8}
+		{icon_opacity_not_focused 1.0}
+		{background_opacity_default 0.4}
+		{background_opacity_selected 1}
+		{background_opacity_disabled 1}
+		{background_opacity_focused 1}
+		{frame_highlight_default "23 32 44 0"}
+		{frame_highlight_disabled "23 32 44 0"}
+		{frame_highlight_focused "255 255 255"}
+	}
+}
+
+{"unit_bar"
+	{"button_size:point2" 126 50}
+	{"button_count:int" 14}
+	{"button_interval:int" 3}
+	{"icon_offset_y:int" 4}
+	{"crew_size:int" 8}
+}
+{selection
+	{panel
+		{"size:point2" 148 230}
+		{"vertical_offset_ratio:float" 0.05}	;distance between icons vertical (value relative to height of icon)
+		{"horizontal_offset_ratio:float" 0.1}	;distance between icons horizontal (value relative to width of icon)
+		{"max_height:float" 0.2}				;max height of selection panel (relative to entire height of screen)
+		{"face_color_default:color" "200 200 200"}
+		{"face_color_selected:color" "white"}
+		{"frame_color_default:color" "0 0 0 0"}
+		{"frame_color_selected:color" "255 255 255 200"}
+		{"opacity_not_focused:float" 0.85}
+		{"opacity_not_selected:float" 0.6}
+		{"background_opacity_default:float" 0.4}
+		{"background_opacity_inactive:float" 0.2}
+		{"background_opacity_focused:float" 2.5}
+	}
+}
+{hotbar
+	{"key_scale:float" 0.4}
+	{"key_font_style:string" "f(trip)"}
+}
+{##gamebar
+	{"score_scale:float" 		0.55}
+	{"score_offset:float" 		55.0}  ; from center
+	{"timer_scale:float"		0.92}
+	{"timer_style:string"		"c(white)f(mon)b+"}
+	{"capture_text_scale:float"	0.55}
+	{"shadow_text_size:int"		1}
+	{"score_panel_size:point2"	350 26}
+	{"capture_progress_size:point2"	350 20}
+	{"capture_progress_frame_color:color" "64 64 64 127"}
+	{"capture_progress_fill_color:color" "0 0 0 102"}
+}
+{minimap
+	{"lettering_scale:float" 	0.5}
+	{"lettering_shadow_size:int"	2}
+	{"lettering_style:string"	"c(white)b+"}
+}
+{team_stats
+	{"font_style:string"			"f(trip)"}
+	{"my_color:color"				"0x2adefa"}
+	{"enemy_color:color"			"0xf59393"}
+	{"lost_color:color"				"193 42 42 255"}
+	{"text_color:color"			"white"}
+	{"background_color:color"		"5 15 32 102"}
+	{"text_scale:float"				0.6}
+	{"title_text_scale:float"		0.6}
+	{"row_width:string"				"28 3 20 156 24 24 18 18 24 25 22"} ; ROW_ARMY_TYPE, ROW_COLOR, ROW_PORTRAIT, ROW_NAME, ROW_INF_KILL, ROW_INF_LOST, ROW_VEH_KILL, ROW_VEH_LOST, ROW_SCORE, ROW_LAG, ROW_PERF
+	{"row_title_icon_size:point2"	28 28}
+	{"shadow_icon_size:int" 		1}
+}
+{objectives
+	{"title_color:color"			"0xffffff"}
+	{"title_scale:float"			0.8}
+	{"item_color_primary:color"		"0xf0f0f0"}
+	{"item_color_secondary:color"		"0xf0f0f0"}
+	{"item_scale:float"			0.6}
+	{"shadow_text_size:int"			1}
+	{"background_color:color"		"0x0000004f"}
+	{"margin:int"					10}
+}
+{hint_view
+	{"title_font_style:string" "f(trip)"}
+	{"title_scale:float" 1.8}
+}

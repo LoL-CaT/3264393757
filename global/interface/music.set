@@ -1,0 +1,55 @@
+; {"state_name"
+;	{tracks 				- list of tracks 
+;		{"track_name_1"}                - track resource name
+;		{"track_name_N"}                
+;	}
+; 	{loop} 					- track or tracks loop
+;	{single}				- play only single track from tracklist
+;       {shuffle}				- shuffle tracklist each game start
+;	{enter_fade time}			- track fade in when enter state; 2 sec by default
+;	{leave_fade time}			- track fade out when leave state; 2 sec by default
+;	{enter_delay time}			- track delay when enter state; 0 sec by default
+;	{start_fade time}			- track fade in when next track in tracklist start; 2 sec by default
+;	{start_delay time}                      - track delay when next track in tracklist start; 2 sec by default
+;	{block "state_name_1" "state_name_N"} 	- list of states current state block (except specified in next parameter)
+;	{next "state_name"} 			- next state after this complete (after all tracks played)
+; }
+ 
+{"start"
+	{tracks
+		{"/music/main_theme"}
+	}
+	{enter_delay 0}
+	{enter_fade 0}
+	{block "meta"}
+	{next "meta"}
+}
+{"meta"
+	{tracks 
+		{"/music/metagame_theme"}
+	}
+	{start_delay 4}
+	{loop}
+}
+{"mm"
+	{tracks 
+		{"/music/metagame_match_wait_theme"}
+	}
+}
+{"match_found"
+	{tracks 
+		{"/music/theme_match_found"}
+	}
+}
+{"authors"
+	{tracks 
+		{"/music/gentle_wings"}
+	}
+}
+{"loading"
+	{tracks
+		{"/music/loading_theme"}
+	}
+	{start_delay 4}
+	{loop}
+}

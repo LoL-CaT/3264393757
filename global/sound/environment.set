@@ -1,0 +1,174 @@
+; name - name of sound
+; props - single property of entity; conditional expressions can be used;
+; environment - mask for environment preset name; conditional expressions can be used;
+; cycle_time - time period for a new sound start
+; distance_threshold - dont start a sound if location near than threshold to another already played sounds
+; play_distance - distance from listener to sound center or sound area border where sounds can start;
+; stop_distance - distance from listener to sound center or sound area border far sounds stops;
+; limit - maximum played sounds
+; no_avoid_silence - disable immediate speaker restarting after sound moved out by distance
+; area - sound with area; multiple areas with same tag merged; all merged areas use single sound for playback;
+; loop - loop playback of a sound
+; radius - area sound circle radius
+{speaker
+	{name "world/birds"}
+	{props tree}
+	{environment 
+				day	and not winter and not rain
+		or morning and not winter and not rain
+		or evening and not winter and not rain
+	}
+	{cycle_time 2.5 2}
+	{distance_threshold 15}
+	{play_distance 40}
+	{stop_distance 80}
+	{limit 4}
+}
+{speaker
+	{name "world/birds"}
+	{props tree}
+	{environment rain}
+	{cycle_time 20 10}
+	{distance_threshold 15}
+	{play_distance 40}
+	{stop_distance 80}
+	{no_avoid_silence 1}
+	{limit 1}
+}
+{speaker
+	{name "world/rain/local"}
+	{props tree}
+	{environment rain}
+	{cycle_time 2.5 2}
+	{distance_threshold 60}
+	{play_distance 60}
+	{stop_distance 120}
+	{limit 3}
+}
+{speaker
+	{name "world/night"}
+	{props bush}
+	{environment night and not winter and not rain}
+	{cycle_time 2.5 2}
+	{distance_threshold 15}
+	{play_distance 40}
+	{stop_distance 80}
+	{limit 4}
+}
+{speaker
+	{name "world/village"}
+	{props shed_village_g2 
+		or barn_ru_001 
+		or build_vil_001 
+		or build_vil_002 
+		or build_vil_003 
+		or build_vil_004 
+		or house_uk_001 
+		or build_ua_01 
+		or build_ua_02 
+		or build_ua_03 
+		or build_ua_04 
+		or build_ua_05 
+		or build_ua_06 
+		or build_ua_07 
+		or build_ua_08
+	}
+	{environment
+				day and not winter
+		or morning and not winter
+		or evening and not winter
+	}
+	{cycle_time 12.5 2}
+	{distance_threshold 15}
+	{play_distance 40}
+	{stop_distance 80}
+	{limit 1}
+}
+{speaker
+	{name "world/flies"}
+	{props reeds_01a 
+		or reeds_01b 
+		or wooden_toilet_02 
+	}
+	{environment
+				day and not winter and not rain
+		or morning and not winter and not rain
+		or evening and not winter and not rain
+	}
+	{cycle_time 5.5 2}
+	{distance_threshold 15}
+	{play_distance 40}
+	{stop_distance 80}
+	{limit 2}
+}
+{speaker
+	{name "world/lake"}
+	{props swamp_flora_1a}
+	{environment
+				day and not winter
+		or morning and not winter
+		or evening and not winter
+	}
+	{cycle_time 2.5 2}
+	{distance_threshold 15}
+	{play_distance 40}
+	{stop_distance 80}
+	{limit 2}
+}
+{speaker
+	{name "world/winter"}
+	{props bush}
+	{environment winter}
+	{cycle_time 2.5 2}
+	{distance_threshold 15}
+	{play_distance 40}
+	{stop_distance 80}
+	{limit 1}
+}
+{speaker
+	{name "world/sea/am"}
+	{environment not evening and not night}
+	{tags sea}
+	{play_distance 160}
+	{stop_distance 160}
+	{radius 50}
+	{loop}
+	{area}
+}
+{speaker
+	{name "world/sea/pm"}
+	{environment evening or night}
+	{tags sea}
+	{play_distance 160}
+	{stop_distance 160}
+	{radius 50}
+	{loop}
+	{area}
+}
+{speaker
+	{name "world/water/river"}
+	{tags river}
+	{play_distance 80}
+	{stop_distance 80}
+	{radius 25}
+	{loop}
+	{area}
+}
+{speaker
+	{name "world/water/river_fast"}
+	{tags river_fast}
+	{play_distance 80}
+	{stop_distance 80}
+	{radius 25}
+	{loop}
+	{area}
+}
+{speaker
+	{name "world/water/lake"}
+	{tags lake}
+	{play_distance 80}
+	{stop_distance 80}
+	{radius 25}
+	{loop}
+	{area}
+}

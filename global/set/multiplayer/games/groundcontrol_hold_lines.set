@@ -1,0 +1,54 @@
+;SDL
+
+{game
+	{class "groundcontrol"}
+	{teammatch}
+	{only_pve}		
+	{parameters
+		{freezeTime 0}
+		{flag_capture_time 2.0}
+		{island_melt_time 0.75}
+		{points_table 0 0 1 0}
+		{grid_step 5}
+		{area_surround_percent 4}
+		{time_table 0.25 0.25}			
+		{wks
+			{art 2}
+			{tnk 2}
+			{inf 2}
+		}
+		{capture_threshold 1}
+		{weight_table 0 0.1 0.2 0.5 0.4 1.5 0.6 3 0.8 5 1 10}
+		{weight_in_surround 0.05}
+		{total_grid_score 2500}
+		{unit_score_ratio 0}		
+		{mission_layers
+			"/pvp_inc/bots_ai"		
+			"/pvp_inc/groundcontrol_music"
+			"/pvp_inc/paratrooper_message"
+			"local_environment"
+			"local_obstacles"
+			"/pvemi/groundcontrol_hold_lines"				
+			"/pvemi/players_cp_balance_fl"
+			"/pvp_inc/unfog_neutral_vehicles"			
+		}				
+	}
+	{settings
+		{options 			gameDuration}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_simple}
+		{difficulty 		normal}
+		{gameDurations		"30"}
+;		{impregnableTimeout	5}	; sec
+		{scoreFinal			2500}
+		{floraRespawn 		0}
+;		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+		(include "settings_mod.inc")		
+	}
+	{with_bots}		
+	{bots_play_profiles "ger_art*;rus_art*;usa_art*;ger_tank*;rus_tank*;usa_tank*;ger_inf*;rus_inf*;usa_inf*"}	
+	{play_profile_filter "statserver/*"}
+	(include "presets_vehicles.inc")
+}

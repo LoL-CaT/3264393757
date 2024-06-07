@@ -1,0 +1,709 @@
+(define "hdr_default"
+	{loudness 60}
+	{loudness_envelope 0 0}
+	{loudness_attenuation table 0 0 60 0 120 -60}
+	{hdr "default"}
+)
+
+(define "hdr_none"
+	{loudness 0}
+	{loudness_envelope 0 0}
+	{loudness_attenuation table 0 0}
+	{hdr disabled}
+)
+
+(include "listener.inc")
+
+{sound
+	; Channels are presented in the sound options in the game and have their own limits on the maximum number of channels that can be played
+	; the first argument is the limit in percentage relative to the total playable
+	; second argument - limit expressed as a number
+	; * the minimum of two arguments is selected
+	{percent "effects" 100}
+	{percent "emotions" 10 6}
+	{percent "speech" 10 1}
+	{percent "environment" 20}
+	{percent "other" 10}
+
+	; Attenuation models
+	; 	gem2 - nonlinear attenuation going to zero at max range
+	; 	table - table function "distance-loudness"; must have at least 2 values: audible distance and distance where it attenuates to zero
+
+	; Sample options (are specified internally loudness preset, folder.set, composite.set):
+	;	volume_attenuation - volume attenuation
+	;       priority - distance priority table (determining what should be played when the maximum number of played sounds is reached);
+	;		if the priority is the same, then it is calculated using volume/loudness;
+	;	volume - sound volume
+	;	loudness - Hdr level (â dB)
+	; 	loudness_envelope - loudness change by time (x - passed time in seconds, y - loudness value in dB);
+	; 	loudness_attenuation - loudness attenuation table (x - distance in meters, y - loudness in dB);
+	;	max_played - number of similar (1) sounds that are not pushed out by new ones
+	;	max_played_per_channel - the number of sounds that are not pushed out within one sound source. applied after max_played
+	;	start_offset - time for which the sound start is delayed
+	;	fade_in - fade time from zero volume level to the actual sound at the beginning of playback, start_offset is not taken into account. May be covered by a fade from scripts.
+	;	tag - which channel does the sample fall into (for the list of channels, see the percent parameters above)
+	;	signal - signal (some gameplay systems worked with signals)
+	;	signalperiod - signal period
+	;	playback_limit - play limit, controls the number of sounds played from the same folder
+	;		max_count - maximum allowed number of sounds to be played
+	;		discard_type - what to do if the limit is exceeded:
+	;			dont_play - do not play startup sound
+	;			stop_oldest - stop the oldest sound
+	;	playback_limit_per_source - the same as playback_limit, but only a group of sounds is formed for each sound source
+	;	ambient - allows you to override parameters if the sound was launched as ambient (2D)
+	;		volume - volume override
+	;		tag - channel override
+	;	hdr - interaction with HDR windows (samples can be laid out in 3 windows: with id = 0, id = 1 and id = 2)
+	;  		id - which window is used to suppress the volume of the sample (only one window can be specified); default id = 0;
+	;		mask - which windows the sample moves (you can specify several windows or more than one); by default mask = 0;
+	;	audibility - muffles sounds in the fog of war, set in the range 0-1: 0 - the sound is not audible, 1 - the sound is fully audible;
+	;		
+	;
+	; 1) similar - 2 sounds are considered if they have a common folder and if the difference in angles to the listener and volumes does not exceed the culling parameters (see the culling block);
+
+	{limit_group "voice"
+		{angle 180}
+		{volume 1}
+		{timeout 3 6}
+	}
+
+	{limit_group "scream"
+		{angle 33}
+		{volume 0.2}
+		{timeout 0.5 1}
+	}
+
+	 
+	{loudness "default"
+		{volume_attenuation gem2 20 80}
+		("hdr_default")
+		{audibility 1}
+	}
+
+	(include "sound_environment.inc")
+	(include "sound_rifle_smg.inc")
+	(include "sound_rifle_auto.inc")
+	(include "sound_gun.inc")
+	(include "sound_hit.inc")
+	(include "sound_hit_huge.inc")
+	(include "sound_tank.inc")
+	(include "sound_vehicle.inc")
+	(include "sound_airborne.inc")
+	(include "sound_howitzer.inc")
+	(include "sound_reactive.inc")
+	(include "sound_flamer.inc")
+	(include "sound_fight.inc")
+
+	{loudness "footstep"
+		{group "footstep"}
+		{playback_limit
+			{max_count 5}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1
+			30	0.25
+			70	0.2
+			100 0.01
+			150 0.005
+			200 0
+		}
+		{loudness 66}	
+		{loudness_attenuation table
+			0 	0
+			50 -66
+		}
+		{audibility 0}
+		{hdr "footstep"}
+	}
+	{loudness "human_actions"
+		{group "human_actions"}
+		{playback_limit
+			{max_count 5}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1
+			30	0.25
+			70	0.2
+			100 0.01
+			150 0.005
+			200 0
+		}
+		{loudness 66}
+		{loudness_attenuation table
+			0 	0
+			50 -66
+		}
+		{audibility 0}
+		{hdr "footstep"}
+	}
+	{loudness "animal_scream"
+		{playback_limit
+			{max_count 5}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1
+			30	0.5
+			70	0.1
+			100 	0.04
+			150 	0.02
+			200 	0
+		}
+		{loudness 60}
+		{loudness_attenuation table
+			0 	0
+			25	0
+			25 	0
+			40	0
+			50 -66
+		}
+		{hdr "footstep"}
+	}
+	{loudness "shoot muted"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 7 30}
+		("hdr_default")
+	}
+	{loudness "shoot normal"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 15 100}
+		("hdr_default")
+	}
+	{loudness "shoot loud"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 35 150}
+		{loudness 66}
+		{loudness_envelope 
+			0 	0
+			0.25    0
+			0.5	-66
+		}
+		{loudness_attenuation table
+			0	0
+			25	0
+			35	-6
+			45	-6
+			55	-66
+		}
+		{hdr "default" {output "environment" "footstep"}}
+	}
+	{loudness "shoot megaloud"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 120 500}
+		{loudness 66}
+		{loudness_envelope 
+			0 	0
+			0.25    0
+			0.5	-66
+		}
+		{loudness_attenuation table
+			0	0
+			25	0
+			35	-6
+			65	-6
+			85	-66
+		}
+		{hdr "default" {output "environment" "footstep"}}
+	}	
+	
+	{loudness "shoot small"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 30 75}
+		("hdr_default")
+	}
+	{loudness "shoot ptr"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 50 200}
+		{loudness 60}		
+		("hdr_default")
+	}	
+	{loudness "shoot mgun"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 50 200}
+		{loudness 60}
+		{loudness_envelope
+			0.0 	0
+			0.5 	0
+			0.6 	-60
+		}
+		{loudness_attenuation table
+			0 0
+			30 	0
+			40 	-60
+		}
+		{hdr "default" {output "environment" "footstep"}}
+	}
+	{loudness "shoot gun"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 75 200}
+		{loudness 72}
+		{loudness_envelope 
+			0 	0
+			0.75   	0
+			1	-72
+		}
+		{loudness_attenuation table
+			0	0
+			20	0
+			30	-12
+			40	-72
+		}
+		{hdr "default" {output "environment" "footstep"}}
+	}
+	{loudness "shoot auto gun"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 150 200}
+		{loudness 66}
+		{loudness_envelope 
+			0 	0
+			0.25    0
+			0.5	-66
+		}
+		{loudness_attenuation table
+			0	0
+			25	0
+			35	-6
+			45	-6
+			55	-66
+		}
+		{hdr "default" {output "environment" "footstep"}}
+	}
+	{loudness "reload"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation gem2 15 40}
+		("hdr_default")
+	}
+	{loudness "push"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1
+			15	0.25
+			35	0.05
+			100 0.01
+			150 0.005
+			200 0
+		}
+		{loudness 66}
+		{loudness_attenuation table
+			0 	0
+			25	0
+			35 0
+			45	-6
+			55 -66
+		}
+		{hdr "footstep"}
+	}	
+	{loudness "whizz"
+		{playback_limit
+			{max_count 1}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 10 30}
+		("hdr_default")
+	}
+	{loudness "hit"
+		{group "hit"}
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			50	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "hit_big"
+		{group "damage"}
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			100	0.1
+			120	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "hit_ground"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			45	0.1
+			85	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "blast small"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 25 150}
+		{loudness 60}
+		{loudness_envelope
+			0.0 	0
+			0.75 	0
+			1 	-60
+		}
+		{loudness_attenuation table
+			0 	0
+			25 	0
+			55 	-60
+		}
+		{hdr "default" {output "environment" "footstep"}}
+	}
+	{loudness "blast big"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation gem2 50 250}
+		{loudness 72}
+		{loudness_envelope 
+			0 	0
+			1.5   	0
+			2	-72
+		}
+		{loudness_attenuation table
+			0	0
+			15	-12
+			35	-24
+			55	-72
+		}
+		{hdr "default" {output "environment" "footstep"}}
+	}
+	{loudness "turret"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation gem2 10 80}
+		{group "turret"}
+		("hdr_default")
+	}
+	{loudness "talk"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation gem2 10 100}
+		{audibility 0}
+		("hdr_default")
+	}
+	{loudness "engine"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		;{volume_attenuation gem2 65 200}
+		{volume_attenuation table 
+			0 	1.0
+			50	0.8
+			100 0.3
+			200	0.0
+		}
+		{loudness 66}
+		{loudness_attenuation table
+			0 	0
+			15 	-6
+			35	-6
+			45 	-66
+		}
+		{group "engine"}
+		{hdr {output "footstep"}}
+	}
+	{loudness "tracks"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation gem2 35 100}
+		{group "track"}
+		("hdr_default")
+	}
+	{loudness "wheels"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation gem2 35 100}
+		{group "track"}
+		("hdr_default")
+	}		
+	{loudness "shell_scream"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation gem2 25 250}
+		("hdr_default")
+	}
+	{loudness "canonade"
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation gem2 400 1000}
+		("hdr_default")
+	}
+	{loudness "handgun_reload"			
+		{playback_limit
+			{max_count 2}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			10	0.5
+			30  0.0		
+		}
+		("hdr_default")
+	}		
+	{loudness "voice"
+		{playback_limit
+			{group "voice"}
+			{max_count 1}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			50	1.0
+			100	0.0
+		}
+		{priority 
+			0 	100 
+			100 	0 
+		}
+		{audibility 0}
+		("hdr_default")
+	}
+	{loudness "scream"
+		{playback_limit
+			{group "scream"}
+			{max_count 3}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			50	1.0
+			100	0.0
+		}
+		{priority 
+			0 		100 
+			100 	0 
+		}
+		{audibility 0}
+		("hdr_default")
+	}
+	{loudness "motions"
+		{playback_limit
+			{max_count 4}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			25	0.8
+			35	0.7
+			50	0.4
+			80	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "trees_destruction_close"
+		{playback_limit
+			{max_count 4}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			45	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "trees_destruction_distant"
+		{playback_limit
+			{max_count 4}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	0.0
+			40	0.4
+			180	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "house_destruction_close"
+		{playback_limit
+			{max_count 4}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			45	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "house_destruction_medium"
+		{playback_limit
+			{max_count 4}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	0.0
+			45	2.0
+			95	0.0
+		}
+		("hdr_default")
+	}	
+	{loudness "house_destruction_distant"
+		{playback_limit
+			{max_count 4}
+			{discard_type dont_play}
+		}
+		{volume_attenuation table 
+			0 	0.0
+			50	1.0
+			200	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "big_crush_close"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			25	0.1
+			35	0.0
+		}
+		("hdr_default")
+	}	
+	{loudness "big_crush_medium"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	1.0
+			25	0.8
+			60	0.4
+			80	0.0
+		}
+		("hdr_default")	
+	}
+	{loudness "big_crush_far"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	0.0
+			35	0.5
+			60	1.0
+			120	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "big_crush_distant"
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{volume_attenuation table 
+			0 	0.0
+			35	0.0
+			60	0.5
+			100 1.0
+			200	0.1
+			220	0.0
+		}
+		("hdr_default")
+	}
+	{loudness "fire"
+		{playback_limit
+			{max_count 1}
+			{discard_type stop_oldest}
+		}
+		("hdr_default")
+	}
+	{loudness "fire_limited"
+		{playback_limit
+			{max_count 3}
+			{discard_type stop_oldest}
+		}
+		("hdr_default")
+	}
+	{loudness "user_control"
+		{play_as_ambient}
+		{playback_limit
+			{max_count 2}
+			{discard_type stop_oldest}
+		}
+		{tag effects}
+	}
+	{loudness "stun"
+		{play_as_ambient}
+		{playback_limit
+			{max_count 1}
+			{discard_type stop_oldest}
+		}
+		{tag effects}
+		{loudness 90}
+		{loudness_envelope 0 0 8 0 10 -30 15 -90}
+		{loudness_attenuation table 0 0}
+		{hdr {output "default" "footstep" "environment"}}
+	}
+	{loudness "attn"
+		{play_as_ambient}
+		{playback_limit
+			{max_count 1}
+			{discard_type stop_oldest}
+		}
+		{tag effects}
+		{loudness 90}
+		{loudness_envelope 0 0 0.33 0 0.66 -90}
+		{loudness_attenuation table 0 0}
+		{hdr {output "default" "footstep" "environment"}}
+	}
+}
+}

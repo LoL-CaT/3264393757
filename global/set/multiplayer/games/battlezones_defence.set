@@ -1,0 +1,77 @@
+;SDL
+
+;	Mission '<game>.info' file content
+;--------------------------------------------------------------------------
+;	{info
+;		{settings
+;			{options <editedParamList>}
+;			{fogOfWar}
+;			{floraRespawn}
+;			{difficulty 		<N>}
+;			{gameDuration 		<min>}
+;			{impregnableTimeout <sec>}
+;		}
+;		{unitPresets
+;			{"<presetId>"	<- don't forget to localize it in "mp/unitPresets/<presetId>"
+;				{unitset 	  "<filter>"}
+;				{commandPoints <N>}
+;			}
+;		}
+;	}
+;----------------------------------------------------------------------------------------------------------
+;	F - кол-во зон захвата (флагов)
+;	Установить флаги i=1..<F>:
+;		flag_point{name="f<i>";team="";order="<i>";allow.release="a b";allow.capture="a b"}
+;
+;	Далее следуй инструкциям из combat.set (без установки dm map_point-ов).
+;----------------------------------------------------------------------------------------------------------
+;
+; flag_capture_factor в параметрах игры: коэффициент, указывающий на каком расстоянии от края флага будет 
+; уменьшаться вес захватывающих его юнитов.
+; Вес уменьшается линейно от х0 на краю до х1 на расстоянии flag_capture_factor*радиус флага. 
+; Т.е. 0 - не будет уменьшаться вообще. 1 - будет уменьшаться сразу с центра флага.
+;----------------------------------------------------------------------------------------------------------
+{game
+	{class "battlezones"}
+	{teammatch}
+	{parameters
+		{freezeTime 300}
+		{points_table {0 0} {1 0}}
+		{flag_capture_time 60}
+		{flag_release_time 30}
+		{flag_capture_factor 0.5}
+		{unit_score_ratio 0}
+		{mission_layers
+			"/pvp_inc/bots_ai"
+			"/pvemi/battlezones_defence"			
+			"/pvp_inc/groundcontrol_music"
+			"/pvp_inc/paratrooper_message"
+			"local_environment"
+			"local_obstacles"
+			"civilian"
+			"fauna"
+			"local"
+			"map_arrow"	
+			"/pvp_inc/unfog_neutral_vehicles"			
+		}		
+	}
+	{settings
+		{options 			gameDuration scoreFinal}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_simple}
+		{difficulty 		normal}
+		{gameDuration		0} ; min
+		{scoreFinal			2500}
+		{impregnableTimeout	0}	; sec
+		{floraRespawn 0}
+;		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+		(include "settings_mod.inc")		
+	}
+	{only_pve}
+	{with_bots}	
+	{bots_play_profiles "gdc_*"}	
+;	{play_profile_filter "gdc_*"}
+	(include "presets_vehicles.inc")
+}

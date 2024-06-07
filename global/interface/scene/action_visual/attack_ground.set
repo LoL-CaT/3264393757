@@ -1,0 +1,85 @@
+{mode "aiming_actor"
+	{sprite "spread_pointed_actor"}
+	{cross_line "spread_empty"}
+	{size 16 32}
+	{compact "spread_compact"}
+	{compact_radius 5 10}
+	{color 0xaaff0000}
+}
+{mode "aiming_ground"
+	{sprite "spread_aiming_ground"}
+	{cross_line "spread_empty"}
+	{compact "spread_compact"}
+	{compact_radius 5 10}
+	{size 8 8}
+	{color 0xaaff0000}
+}
+{mode "pointed_actor"
+	{sprite "spread_pointed_actor"}
+	{cross_line "spread_pointed_ground_line"}
+	{compact "spread_compact"}
+	{compact_radius 5 10}
+	{size 16 32}
+	{color 0xaaff9c00}
+}
+{mode "pointed_ground"
+	{sprite "spread_pointed_ground"}
+	{cross_line "spread_pointed_ground_line"}
+	{compact "spread_compact"}
+	{compact_radius 5 10}
+	{size 32 32}
+	{color 0xaaffcc00}
+}
+{mode "manual"
+	{sprite "spread_manual"}
+	{cross_line "spread_manual"}
+	{color 0x71aaaa00}
+}
+{pointer_entity "aim_point"}
+{pointer_minimized "aim_point_howitzer" "howitzer"}
+{pointer_minimized "aim_point_cannon" "cannon"}
+{pointer_minimized "aim_point"}
+
+; Блок targets определяет необходимость рисования круга разброса и маркера цели в зависимости от цели;
+; Описание параметров:
+;{actor/position 		- тип цели, актёр или позиция
+;	{attacker "vehicle"} 	- необходимый пропс атакующего
+;	{target "house"} 	- необходимый пропс цели
+;	{cover "trench"} 	- необходимый пропс укрытия
+;	{volume} 		- необходимо прицеливание в волюм
+;	{ammo "fg"} 		- необходимый тип снаряда
+;}
+
+{targets
+	{actor
+		{attacker "vehicle"}
+		{ammo "fg"}
+	}
+	{actor
+		{attacker "vehicle"}
+		{ammo "fg"}
+		{target "house"}
+	}
+	{actor
+		{attacker "vehicle"}
+		{ammo "fg"}
+		{target "house"}
+		{volume}
+	}
+	{actor
+		{attacker "vehicle"}
+		{ammo "fg"}
+		{cover "trench"}
+		{volume}
+	}
+	{actor
+		{attacker "vehicle"}
+		{ammo "fg"}
+		{cover "crater"}
+		{volume}
+	}
+	{position
+		{ammo "fg"}
+		{attacker "vehicle"}
+	}
+}

@@ -1,0 +1,40 @@
+;SDL
+                                                                                                           
+{game
+	{class "groundcontrol"}
+	{only_pve}
+	{teammatch}
+	{parameters
+		{freezeTime 0}
+		{flag_capture_time 0.5}
+		{island_melt_time 1.0}
+		{points_table 0.0 0 0.0 0 0.0 0 0.0 0}
+		{grid_step 5}
+		{area_surround_percent 4}
+		{time_table 0 0.2 0.3 0.5 0.6 1.0}
+		{wks
+			{art 0.75}
+			{tnk 0.5}
+			{inf 1.0}
+		}
+		{capture_threshold 3}
+		{no_gamebar}		
+	}
+	{without_bots}
+	{play_profile_filter "statserver/*"}	
+	{settings
+;		{options 			gameDuration}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_off}
+		{difficulty 		normal}
+;		{fogOfWar 			fog_realistic}
+		{gameDuration		60} ; min ; 90
+		{impregnableTimeout	0}	; sec
+		{floraRespawn		0}
+		{scoreFinal			0}		
+		{showPiercing}
+		{showDamageReports}
+		(include "settings_mod.inc")		
+	}
+	(include "presets_vehicles.inc")	
+}

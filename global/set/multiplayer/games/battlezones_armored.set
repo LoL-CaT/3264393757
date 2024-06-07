@@ -1,0 +1,77 @@
+;SDL
+
+;	Mission '<game>.info' file content
+;--------------------------------------------------------------------------
+;	{info
+;		{settings
+;			{options <editedParamList>}
+;			{fogOfWar}
+;			{floraRespawn}
+;			{difficulty 		<N>}
+;			{gameDuration 		<min>}
+;			{impregnableTimeout <sec>}
+;		}
+;		{unitPresets
+;			{"<presetId>"	<- don't forget to localize it in "mp/unitPresets/<presetId>"
+;				{unitset 	  "<filter>"}
+;				{commandPoints <N>}
+;			}
+;		}
+;	}
+;----------------------------------------------------------------------------------------------------------
+;	F - кол-во зон захвата (флагов)
+;	Установить флаги i=1..<F>:
+;		flag_point{name="f<i>";team="";order="<i>";allow.release="a b";allow.capture="a b"}
+;
+;	Далее следуй инструкциям из combat.set (без установки dm map_point-ов).
+;----------------------------------------------------------------------------------------------------------
+;
+; flag_capture_factor в параметрах игры: коэффициент, указывающий на каком расстоянии от края флага будет 
+; уменьшаться вес захватывающих его юнитов.
+; Вес уменьшается линейно от х0 на краю до х1 на расстоянии flag_capture_factor*радиус флага. 
+; Т.е. 0 - не будет уменьшаться вообще. 1 - будет уменьшаться сразу с центра флага.
+;----------------------------------------------------------------------------------------------------------
+{game
+	{class "battlezones"}
+	{teammatch}
+	{parameters
+		{points_table {0 0} {0.1 2.625} {0.4 4.5} {0.5 6.475} {0.6 7.5} {0.8 12.5} {1 25}}
+		{flag_capture_time 30}
+		{flag_release_time 15}
+		{flag_capture_factor 0}
+		{unit_score_ratio 0}
+		{mission_layers
+			"/pvp_inc/groundcontrol_music"
+			"/pvp_inc/groundcontrol_music_gameover"				
+			"/pvp_inc/flag_points_armored"
+			"/pvp_inc/flag_points_armored_knockout"			
+			"/pvp_inc/loot_generator_pvp_combat"
+			"/pvemi/players_cp_balance_armored"			
+			"local_environment"			
+			"civilian"
+			"fauna"
+			"local"
+			"/pvp_inc/bots_ai_armored"			
+		}		
+	}
+	{settings
+		{options 			gameDuration scoreFinal}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_simple}
+		{difficulty 		normal}
+		{gameDuration		20} ; min
+		{scoreFinal			2500}
+		{impregnableTimeout	3}	; sec	
+		{floraRespawn 0}
+;		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+		{allowUnitTransferPvP}
+		{commanderTypeIcons	0}		
+		(include "settings_mod.inc")		
+	}
+	{maxPlayers 16}
+	{play_profile_filter "tanks_only*"}
+	{bots_play_profiles "bot_tanks_only*"}		
+	(include "presets_vehicles.inc")
+}

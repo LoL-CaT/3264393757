@@ -1,0 +1,90 @@
+;SDL
+
+;	Mission '<game>.info' file content
+;--------------------------------------------------------------------------
+;	{info
+;		{settings
+;			{options <editedParamList>}
+;			{fogOfWar}
+;			{floraRespawn}
+;			{difficulty 		<N>}
+;			{gameDuration 		<min>}
+;			{impregnableTimeout <sec>}
+;		}
+;		{unitPresets
+;			{"<presetId>"	<- don't forget to localize it in "mp/unitPresets/<presetId>"
+;				{unitset 	  "<filter>"}
+;				{commandPoints <N>}
+;			}
+;		}
+;	}
+;----------------------------------------------------------------------------------------------------------
+; 	Общие настройки спавм-поинтов
+;----------------------------------------------------------------------------------------------------------
+;	K - максимальное кол-во игроков в одной команде.
+;	N - общее число игроков N=K+K
+;	Для каждого игрока <i>=1..<K> установить:
+;		map_point{name="a<i>";team="a";order="<i>"}
+;		любое кол-во spawn_point{map_point="a<i>";pos="0"}  - для спавна будет выбираться ближайший к юнитам игрока
+;		map_point{name="b<i>";team="b";order="<i>"}
+;		любое кол-во spawn_point{map_point="b<i>";pos="0"}  - для спавна будет выбираться ближайший к юнитам игрока
+;
+;	Для проверки используйте консольную команду mp_checkSpawnPoints
+;----------------------------------------------------------------------------------------------------------
+;	Специфические настройки Комбата
+;----------------------------------------------------------------------------------------------------------
+;	Для каждого игрока <i>=1..<N> установить (для режима deathmatch):	
+;		map_point{name="dm<i>";team="dm";order="<i>"}
+;		любое кол-во spawn_point{map_point="dm<i>";pos="0"}  - для спавна будет выбираться ближайший к юнитам игрока
+;
+;	Для проаерки используйте консольную команду mp_checkCombat
+;----------------------------------------------------------------------------------------------------------
+{game
+	{class "combat"}	
+	{player_army on}
+	{parameters		
+		{spawn_min_distance_to_enemy_edge_ratio 0.25} ; 0 - наш край, 1 - вражеский
+		{unit_mass_score_ratio 1.8}
+		{unit_score_ratio 4.725}
+		{mission_layers
+			"/pvp_inc/bots_ai"
+			"/pvp_inc/groundcontrol_music"	
+			"/pvp_inc/groundcontrol_music_gameover"				
+			"/pvp_inc/paratrooper_message"			
+			"/pvp_inc/loot_generator_pvp_combat"
+			"local_environment"	
+			"local_obstacles"				
+			"civilian"
+			"fauna"
+			"local"	
+            "/pvp_inc/manpower_script"
+			"/pvp_inc/unfog_neutral_vehicles"			
+		}
+		{wks 
+			{def 0.7}
+		}
+		{wait_all_players}		
+	}
+	{teammatch}		
+	
+	{settings
+		{options 			gameDuration}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_simple}
+		{difficulty 		normal}
+		{gameDuration		60} ; min
+		{impregnableTimeout	0}	; sec
+		{scoreFinal			2500}		
+		{floraRespawn 0}
+		{showPiercing}
+		{showDamageReports}
+		{allowUnitTransferPvP}
+		{commanderTypeIcons	0}		
+		(include "settings_mod.inc")		
+	}
+	{bots_play_profiles
+	"bot_manpower_ger_6;bot_manpower_rus_6;bot_manpower_usa_6"}	
+;	{play_profile_filter "groundctontrol_manpower*"}
+	{without_play_profile}
+	(include "presets_vehicles_manpower.inc")	
+}

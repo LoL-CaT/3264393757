@@ -1,0 +1,64 @@
+;SDL
+
+{game
+	{class "groundcontrol"}	
+	{teammatch}
+	{player_army on}
+	{parameters
+		{freezeTime 0}
+		{flag_capture_time 5.0}
+		{island_melt_time 0.75}
+		{points_table 0 0 0.01 1 0.5 22.5 0.8 31.5 1 45}
+		{grid_step 5}
+		{area_surround_percent 4}
+		{time_table 0 0.25}
+		{unit_score_ratio 1.5}	
+		{mission_layers
+			"civilian"
+			"fauna"
+			"local"	
+			"/pvp_inc/groundcontrol_music"
+			"/pvp_inc/groundcontrol_music_gameover"				
+			"/pvp_inc/break_line_event_manpower"
+			"/pvp_inc/paratrooper_message"
+			"local_environment"	
+			"/pvp_inc/bots_ai"
+            "/pvp_inc/manpower_script"	
+			"/pvp_inc/unfog_neutral_vehicles"
+			"/pvp_inc/loot_generator"			
+		}
+		{wks 
+			{def 1.3}
+		}
+		{capture_threshold 1}
+		{weight_table 0 0.1 0.2 0.5 0.4 1.5 0.6 3 0.8 5 1 10}
+		{weight_in_surround 0.05}
+		{total_grid_score 2000}
+		{frontline_break_width 25}
+		{frontline_break_depth 50}
+		{wait_all_players}		
+	}
+	{settings
+		{options 			gameDuration}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports commanderTypeIcons}
+		{fogOfWar 			fog_simple}
+		{difficulty 		normal}
+		{gameDuration		60} ; min
+;		{gameDuration		15} ; min
+;		{impregnableTimeout	5}	; sec
+		{scoreFinal			2500}
+		{floraRespawn 		0}
+;		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+		{commanderTypeIcons	0}
+		{allowUnitTransferPvP}
+		{commanderTypeIcons	0}		
+		(include "settings_mod.inc")		
+	}
+	{bots_play_profiles
+	"bot_manpower_ger_6;bot_manpower_rus_6;bot_manpower_usa_6"}	
+;	{play_profile_filter "groundctontrol_manpower*"}
+	{without_play_profile}
+	(include "presets_vehicles_manpower.inc")
+}

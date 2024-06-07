@@ -1,0 +1,346 @@
+;
+; User Control Sounds parameters description:
+; 1. Control of Sounds Groups:
+;
+; {group (name condition terms)							- and/or/not condition term with names of the groups;
+;														- group can be assigned to sounds from folder.set, loudness preset or composite file;
+;
+;	{dynamic (0 or 1)}									- if true (1) check output conditions continiously all the time sound playing; 
+;														- if false (0) calculate output only when sound start;
+;														- false (0) by default
+;
+;	{includes 											- not specified includes parameters pass the sound to the group;
+;														- specified includes parameters pass or block sound to the group;
+;
+;		{effector 										- sound included to the group if effector entity match conditions inside the block;
+;			{relation (user enemy team)} 				- space divided relation of entity vs user player;
+;		}
+;		{impacted 										- sound included to the group if impacted entity match conditions inside the block; parameters description same as for effector;
+;			...
+;		}
+;		{props (and/or/not condition terms)}			- props of entity cause sound
+;	}
+;
+;	{output												- group can has multiple outputs with different conditions;
+;
+;		{includes										- not specified includes parameters pass the sound to the output;
+;
+;														- specified includes parameters pass or block sound to the output;
+;			{selection									- selection block contain selection based include terms;
+;				{mode (single multiple manual)}			- space divided "or"-terms
+;				{unit (effector impacted other)}		- space divided "or"-terms; effector - who shot, or default sound owner; impacted - where sound hit;
+;			}
+;
+;			{camera										- current camera state; you must add a new parameters to the camera parameter configs;
+;				{params (param)}						- camera param tag specified in camera parameters configs;
+;				{range (min max)}						- camera param value range specified in camera parameters configs;
+;			}
+;		}
+;
+;		{operation
+;			{(operand)											- operand: volume, lpf, loudness, priority;
+;				{(parameter) (operation) [{min max}] (value)}	- parameter: level, attenuation, envelope
+;																- operation: set mul add min max
+;																- {min max}: optional range to clip value after operation were applied
+;																- value: float for level parameter, attenuation table for attenuation parameter, envelope table for envelope parameter (see sound.set for loading format);
+;			}
+;		}
+;		{start (name)									- starts a sound with specified name
+;			{ambient (0 1)}								- start sound as ambient
+;			{suppress (0 1)}							- start sound with suppression of another sounds
+;		}
+;	}
+; }
+; 
+; 2. Control of Listener:
+;
+; {listener											- control of listener parameters like HDR or Low pass filter
+;	{includes										- not specified includes parameters pass the modification of listener parameters;
+;
+;													- specified includes parameters pass or block listener parameters modification;
+;		{selection									- selection block contain selection based include terms;
+;			{mode (single multiple manual)}			- space divided "or"-terms
+;			{unit (effector impacted other)}		- space divided "or"-terms; effector - who shot, or default sound owner; impacted - where sound hit;
+;		}
+;
+;		{camera										- current camera state; you must add a new parameters to the camera parameter configs;
+;			{params (param)}						- camera param tag specified in camera parameters configs;
+;			{range (min max)}						- camera param value range specified in camera parameters configs;
+;		}
+;	}
+; 	{operations
+; 		{lpf
+; 			{maximize_hf_occlusion (value)}			- maximize occlusion between listener and sounds; higher value mean less high frequency part of sound will be listened; 
+; 		}
+; 		{hdr
+; 			{name (hdr channel)}					- HDR channel to modify
+; 			{maximize_loudness (value)}				- this loudness value increase HDR channel window, like it can do loud sound; but not required to play any sound to do it;
+; 		}
+; 	}
+; }
+
+{group hit or damage
+	{includes
+		{effector
+			{relation user}
+		}
+	}
+	{output
+		{includes
+			{selection
+				{mode manual}
+				{unit effector}
+			}
+			{camera
+				{params "listener_fps"}
+				{range 0.5 1}
+			}
+		}
+		{operation
+			{lpf
+				{level set 8}
+			}
+		}
+	}
+	{output
+		{includes
+			{selection
+				{mode manual}
+				{unit effector}
+			}
+		}
+		{operation
+			{volume
+				{attenuation set table 0 1}
+				{level set 0.5}
+			}
+			{loudness
+				{level set 90}
+				{envelope set 0 0}
+				{attenuation set table 0 0}
+			}	
+		}
+	}
+}
+
+{group hit or damage
+	{includes
+		{effector
+			{relation enemy}
+		}
+		{impacted
+			{relation user}
+		}
+	}
+	{output
+		{includes
+			{selection
+				{mode manual}
+				{unit impacted}
+			}
+			{camera
+				{params "listener_fps"}
+				{range 0.5 1}
+			}
+		}
+		{operation
+			{volume
+				{attenuation set table 0 1}
+				{level set 1}
+			}
+			{lpf
+				{level set 8}
+			}
+			{loudness
+				{level set 90}
+				{envelope set 0 0}
+				{attenuation set table 0 0}
+			}	
+		}
+	}
+}
+
+{group damage
+	{includes
+		{effector
+			{relation enemy}
+		}
+		{impacted
+			{relation user}
+			{props vehicle}
+		}
+	}
+	{output
+		{includes
+			{selection
+				{mode manual}
+				{unit impacted}
+			}
+			{camera
+				{params "listener_fps"}
+				{range 0.5 1}
+			}
+		}
+		{operation
+			{volume
+				{attenuation set table 0 1}
+				{level set 1}
+			}
+			{loudness
+				{level set 90}
+				{envelope set 0 0}
+				{attenuation set table 0 0}
+			}
+		}
+		{start "user_control/stun"}
+	}
+	{output
+		{includes
+			{selection
+				{mode manual}
+				{unit impacted}
+			}
+			{camera
+				{params "listener_fps"}
+				{range 0 0.5}
+			}
+		}
+		{operation
+			{volume
+				{attenuation set table 0 1}
+				{level set 1}
+			}
+			{loudness
+				{level set 90}
+				{envelope set 0 0}
+				{attenuation set table 0 0}
+			}
+		}
+		{start "user_control/attn"}
+	}
+}
+
+{group track or engine or turret or shot
+	{dynamic 1}
+	{includes
+		{effector
+			{relation user}
+		}
+	}
+	{output
+		{includes
+			{selection
+				{mode manual}
+				{unit effector}
+			}
+			{camera
+				{params "listener_fps"}
+				{range 0.5 1}
+			}
+		}
+		{operation
+			{lpf
+				{level set 8}
+			}
+		}
+	}
+}
+
+; used for feedback about player selected units movement
+{group footstep
+	{output
+		{includes
+			{selection
+				{unit effector}
+			}
+		}
+		{operation
+			{volume
+				{attenuation max table 0 0.5 50 0.125 100 0.125 180 0.125 200 0}
+			}
+			{loudness
+				{level set 90}
+				{envelope set 0 0}
+				{attenuation set table 0 0}
+			}	
+		}
+	}
+}
+
+; used for feedback about player selected units actions
+{group human_actions
+	{output
+		{includes
+			{selection
+				{unit effector}
+			}
+		}
+		{operation
+			{volume
+				{attenuation max table 0 1 50 0.25 100 0.125 180 0.125 200 0}
+			}
+			{loudness
+				{level set 90}
+				{envelope set 0 0}
+				{attenuation set table 0 0}
+			}	
+		}
+	}
+}
+
+
+{listener
+	{includes
+		{selection
+			{mode manual}
+			{props tank and not open_wheelhouse}
+		}
+		{camera
+			{params "listener_fps"}
+			{range 0.5 1}
+		}
+	}
+	{operations
+		{lpf
+			{maximize_hf_occlusion 8}
+		}
+		{hdr
+			{name "environment"}
+			{maximize_loudness 72}
+		}
+		{hdr
+			{name "storm"}
+			{maximize_loudness 72}
+		}
+		{hdr
+			{name "footstep"}
+			{maximize_loudness 72}
+		}
+	}
+}
+
+{listener
+	{includes
+		{selection
+			{mode manual}
+			{props tank and open_wheelhouse}
+		}
+		{camera
+			{params "listener_fps"}
+			{range 0.5 1}
+		}
+	}
+	{operations
+		{lpf
+			{maximize_hf_occlusion 2}
+		}
+		{hdr
+			{name "environment"}
+			{maximize_loudness 72}
+		}
+		{hdr
+			{name "footstep"}
+			{maximize_loudness 72}
+		}
+	}
+}

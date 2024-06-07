@@ -1,0 +1,81 @@
+;SDL
+
+;	Mission '<game>.info' file content
+;--------------------------------------------------------------------------
+;	{info
+;		{settings
+;			{options <editedParamList>}
+;			{fogOfWar}
+;			{floraRespawn}
+;			{difficulty 		<N>}
+;			{gameDuration 		<min>}
+;			{impregnableTimeout <sec>}
+;		}
+;		{unitPresets
+;			{"<presetId>"	<- don't forget to localize it in "mp/unitPresets/<presetId>"
+;				{unitset 	  "<filter>"}
+;				{commandPoints <N>}
+;			}
+;		}
+;	}
+;----------------------------------------------------------------------------------------------------------
+; 	Общие настройки спавм-поинтов
+;----------------------------------------------------------------------------------------------------------
+;	K - максимальное кол-во игроков в одной команде.
+;	N - общее число игроков N=K+K
+;	Для каждого игрока <i>=1..<K> установить:
+;		map_point{name="a<i>";team="a";order="<i>"}
+;		любое кол-во spawn_point{map_point="a<i>";pos="0"}  - для спавна будет выбираться ближайший к юнитам игрока
+;		map_point{name="b<i>";team="b";order="<i>"}
+;		любое кол-во spawn_point{map_point="b<i>";pos="0"}  - для спавна будет выбираться ближайший к юнитам игрока
+;
+;	Для проверки используйте консольную команду mp_checkSpawnPoints
+;----------------------------------------------------------------------------------------------------------
+;	Специфические настройки Комбата
+;----------------------------------------------------------------------------------------------------------
+;	Для каждого игрока <i>=1..<N> установить (для режима deathmatch):	
+;		map_point{name="dm<i>";team="dm";order="<i>"}
+;		любое кол-во spawn_point{map_point="dm<i>";pos="0"}  - для спавна будет выбираться ближайший к юнитам игрока
+;
+;	Для проаерки используйте консольную команду mp_checkCombat
+;----------------------------------------------------------------------------------------------------------
+{game
+	{only_pve}	
+	{class "combat"}
+	{parameters		
+		{spawn_min_distance_to_enemy_edge_ratio 0.25} ; 0 - наш край, 1 - вражеский
+		{unit_mass_score_ratio 0}
+		{unit_score_ratio 0}
+		{mission_layers
+			"/pvp_inc/bots_ai"
+			"/pvemi/combat_attack"			
+			"/pvp_inc/groundcontrol_music"			
+			"/pvp_inc/paratrooper_message"
+			"local_environment"
+			"local_obstacles"
+			"civilian"
+			"fauna"
+			"local"
+			"/pvp_inc/unfog_neutral_vehicles"			
+		}		
+	}
+	{teammatch}		
+	
+	{settings
+		{options 			gameDuration}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_simple}
+		{difficulty 		normal}
+		{gameDuration		0} ; min
+		{impregnableTimeout	0}	; sec
+		{scoreFinal			2500}		
+		{floraRespawn 0}
+		{showPiercing}
+		{showDamageReports}
+		(include "settings_mod.inc")		
+	}
+	(include "presets_vehicles.inc")
+	{bots_play_profiles "gdc_*"}
+	{play_profile_filter "statserver/*"}
+	{with_bots}		
+}

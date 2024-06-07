@@ -1,0 +1,59 @@
+{position_check
+	{forbidden_zones "spawn_forbidden*"}
+	{distance
+		; расстояния считаются до окружности, описывающей юнита!
+		{enemy 50		; default settings
+					; condition 'not dead' hardcoded				
+			{if props "map_point" 0}
+			{if game "combat" 20
+			;	{if house 60}
+				{if props "tank" 70}
+			}
+			{if game "battlezones" 20
+				{if props "tank" 70}
+				{if props "flag_point" 120}
+			}			
+			{if house 60}
+			{if props "tank" 70}
+			{if tags "paratrooper" or props "car" "armoredcar" "cannon" 60}	
+			{if not observed 50}
+			{if props "human" 60
+				{if breed_mask "*/tankman" 40}
+				{if breed_mask "*/artilleryman" 50}
+				{if breed_mask "*/scout" 0}
+				{if breed_mask "*/apc_m3scout_scout" 0}					
+				{if breed_mask "*/saboteur*" 0}	
+				{if breed_mask "*/sniper_elite" 0}
+				{if breed_mask "*/brandenburger*" 0}				
+			}
+		}
+		{ally 0
+			{if house 10}
+			{if props "flag_point" 120}
+		}	
+		{neutral 0
+			{if house 10}
+			{if props "flag_point" 120}
+		}	
+	}
+}
+(define "crew_units"
+	{"tankmans(%side)" "arena_mp/%side/tankman"}      ; mp unit name - breeds
+	{"artman(%side)" "arena_mp/%side/artilleryman"}
+	{"arena_mp/%side/pilot" "arena_mp/%side/pilot"}
+)
+
+{withdraw
+	{spawn_forbidden_condition ; условие запрета вызова отозванных юнитов
+		{if props "airborne" 1
+			{if use_budget and not withdrawn_recovering 0
+				{if props "paratroopers_carrier" 1}	
+			}
+		}	
+	}
+	{crew_groups	; складывать экипаж без техники в указанные юниты
+		("crew_units" side(rus))
+		("crew_units" side(ger))
+		("crew_units" side(usa))
+	}
+}

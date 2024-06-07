@@ -1,0 +1,51 @@
+; possible conditions - biom, breed, entity, rnd
+
+{if biom "snow"
+	{if breed "*"
+		{breed_mod "win*"}
+	else
+		{if entity "pz5a_po"
+			{tex_mod "zem*win"}
+		else
+			{tex_mod "*win"}
+		}
+	}
+}
+{if biom "forest"
+	{if breed "*"
+		{if breed "arena_mp/usa/corpsman"
+			{if rnd 0.5 
+				{breed_mod "forest"}
+			}
+		else
+			{breed_mod "forest*"}
+		}
+	else
+		{if entity "pz5a_po"
+			{tex_mod "zem*forest"}
+		else
+			{tex_mod "*forest"}
+		}
+	}
+}
+{if biom "desert"
+	{if breed "*"
+		{breed_mod "desert*"}
+	else
+		{if entity "pz5a_po"
+			{tex_mod "zem*desert"}
+		else
+			{tex_mod "*desert"}
+		}
+	}
+}
+
+{if biom "city"
+	{if not breed "*"
+		{if entity "pz5a_po"
+				{tex_mod "zem*city"}
+		else
+			{tex_mod "*city"}
+		}
+	}
+}

@@ -1,0 +1,32 @@
+;SDL
+
+;	Mission '<game>.info' file content
+;--------------------------------------------------------------------------
+;	{info
+;		{settings
+;			{options <editedParamList>}
+;			{fogOfWar}
+;			{tactics}
+;		;	{floraRespawn}
+;		;	{assaultTimeout 	<sec>}
+;		;	{difficulty 		<N>}
+;		;	{gameDuration 		<min>}
+;		;	{impregnableTimeout <sec>}
+;		}
+;	}
+
+{game	
+	{maxPlayers 5}
+	{settings
+		{options fogOfWar difficulty}
+		{fogOfWar fog_off}
+		{difficulty 		normal}
+		{floraRespawn 0}
+		{friendlyFire 0}
+		{gameDurations		"0"}
+		{commanderTypeIcons	0}		
+		(include "settings_mod.inc")		
+	}
+	{without_bots}
+	{without_play_profile}	
+}

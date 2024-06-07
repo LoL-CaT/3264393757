@@ -1,0 +1,35 @@
+{colors
+	{normal 0xff83ceff}
+	{attacked 0xffff0000}
+}
+{sprites
+	{"human" ; "<actor props>"
+		; "<movement modes>:<movement types>" "<sprite_name>" [sprite params]
+		; порядок задания строк имеет значение
+		; спрайты должны задаваться от частных случаев к общим
+		{"normal,fast:crawl" "crawl_human" {scale {const {value 0.4}}}}
+		{"normal" "normal_human" {scale {const {value 0.2}}}} 
+		{"fast" "sprint_human" {scale {const {value 0.085}}}}
+		{end_point "endpoint_human" {scale {const {value 0.1}}}}; end point sprite
+	}
+	{"moto"
+		{"normal" "normal_car" {scale {const {value 0.275}}}}
+		{"fast" "sprint_car" {scale {const {value 0.23}}}}
+		{end_point "endpoint_car" {scale {const {value 0.15}}}}
+	}	
+	{"car"
+		{"normal" "normal_car" {scale {const {value 0.275}}}}
+		{"fast" "sprint_car" {scale {const {value 0.23}}}}
+		{end_point "endpoint_car" {scale {const {value 0.15}}}}
+	}
+	{"vehicle"
+		{"normal" "normal_vehicle" {scale {const {value 0.35}}}}
+		{"fast" "sprint_vehicle" {scale {const {value 0.35}}}}
+		{end_point "endpoint_vehicle" {scale {const {value 0.2}}}}
+	}
+	{"horse"
+		{"normal" "normal_human" {scale {const {value 0.2}}}} 
+		{"fast" "sprint_human" {scale {const {value 0.085}}}}
+		{end_point "endpoint_human" {scale {const {value 0.1}}}}
+	}
+}
