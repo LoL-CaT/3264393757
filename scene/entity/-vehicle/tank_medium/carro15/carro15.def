@@ -1,0 +1,102 @@
+{entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc" scale(1.0))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+
+	{collider "tank.light"}
+	{props "light" "turret_rotator" "vision_lev03"}
+	
+	{extender "enumerator"}
+	{Volume "Body1"
+		{tags "body"}
+		{component "body"}
+	}
+	
+	("armor_medium" turret(42) body(42 30 30 30))
+	
+	("crew_2_human")
+
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_tank_left"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_tank_right"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_LowArmor"} 	{end "seat_armor"}}
+			{reverse 	{end	"emit_tank_1"}}
+		}
+	}
+
+	("seat_human" place(seat1) bone(seat01) door(emit3)  animation(armor))
+	("seat_human" place(seat2) bone(seat02) door(emit4)  animation(armor))
+	("seat_human" place(seat3) bone(seat03) door(emit5)  animation(armor))
+	("seat_human" place(seat4) bone(seat04) door(emit6)  animation(armor))
+	
+	{extender "inventory"
+		{box
+			{item "ammo mgun" 945}
+			{item "bullet47 ap" 30}
+			{item "bullet47 fg" 30}
+			{item "mg34" filled {user "mgun"}}
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "47mm_40" filling "bullet47 ap" 1}
+			{charger "gunner"}
+			("abm_14")
+		}
+		{place "mgun"
+			{type "coaxial"}
+			{gunner "driver"}
+			{charger "driver"}
+			{basic}
+		}
+		{place "mgun1"
+			{type "hull"}
+			{weapon "mg34" filled}
+			{foresight "foresight4"}
+			{Barrels 2}
+			{gunner "driver"}
+			{charger "driver"}
+		}
+	}	
+	{mass 15500}
+		{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.6))
+			{Locomotion ("locomotion")
+			{Maxspeed   27}
+				(mod "mp"
+					{maxspeed   24}
+				)
+			{maxSpeedAtMaxTurn 12}
+			{StartTime  14}
+			{TurnTime   9}
+			{TurnStart  1.6}			
+			{TurnRadius 9} 
+    		{TurnStop   0.8}
+			{BrakeTime  1}
+			{StopTime   2}
+			{Gears   0.2 0.5 1}
+			{RearGears  0.41}
+
+			}
+		}
+	{Extension "carro15.mdl"}
+
+	{bone "turret"
+		{speed 0.02}
+	}
+	{bone "gun"
+		{limits -10 10}
+	}
+	{bone "foresight3"
+		{speed 0.02}
+	}
+}

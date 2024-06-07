@@ -1,0 +1,30 @@
+{actor
+	(include "/properties/cannon_mgun_1.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{props "vision_lev01_can" "cannon_small"}
+
+	("armor_light" args 0.9)
+
+	{Volume "touch"
+		{able clear {touch}}
+	}
+
+	{Weaponry
+		{place "mgun"
+			{weapon "mg34" filled}
+		}
+	}
+	{placer	{place "gunner" {visor "main"}}}
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_mgun_dot"}}
+		}
+	}
+	{Extension "mg34_dot2.mdl"}
+	{bone "turret"
+	      {limits -50 50}
+	}
+	{bone "gun_rot"
+	      {limits -25 25}
+	}
+}

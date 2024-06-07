@@ -1,0 +1,68 @@
+;SDL
+
+{Placer
+	{place "front"
+		{entity "flak38_platform"}
+		{Linkbone "attach_gun1"}
+		{handlebone "basis"}
+		{obstacle disable}
+	}
+	{place "rear"
+		{entity "flak41_platform"}
+		{Linkbone "attach_gun2"}
+		{handlebone "basis"}
+		{obstacle disable}
+	}
+
+}	
+{boarder
+	{door "emit1"}
+	{door "emit2"}
+	{door "emit3"}
+	{door "emit4"}
+
+
+	{node "node1"}
+	{node "node2"}
+	{node "node3"}
+	{node "node4"}
+
+
+	(define "climb"
+		{anm "climb%0"
+			{forward	{begin	"board_tank_right"} {end "seat_driver_car"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+	)
+	("climb" args 1)
+	("climb" args 2)
+	("climb" args 3)
+	("climb" args 4)
+	{anm "seat" {forward {end "seat_passenger"}}}
+
+	{link "emit1"	"node1"		{anm "climb1"} {forward putoff} {reverse puton}}
+	{link "emit1"	"node2"		{anm "climb1"} {forward putoff} {reverse puton}}
+
+	{link "emit2"	"node1"		{anm "climb1"} {forward putoff} {reverse puton}}
+	{link "emit2"	"node2"		{anm "climb1"} {forward putoff} {reverse puton}}
+	                                          
+	{link "emit3"	"node3"		{anm "climb1"} {forward putoff} {reverse puton}}
+	{link "emit3"	"node4"		{anm "climb1"} {forward putoff} {reverse puton}}
+
+	{link "emit4"	"node3"		{anm "climb1"} {forward putoff} {reverse puton}}
+	{link "emit4"	"node4"		{anm "climb1"} {forward putoff} {reverse puton}}
+
+	{link "node1"	"front"		} ;{anm "walk"}
+	{link "node2"	"front"		} ;{anm "walk"}
+	{link "node3"	"front"		} ;{anm "walk"}
+	{link "node4"	"front"		} ;{anm "walk"}
+
+	{link "node1"	"rear"		} ;{anm "walk"}
+	{link "node2"	"rear"		} ;{anm "walk"}
+	{link "node3"	"rear"		} ;{anm "walk"}
+	{link "node4"	"rear"		} ;{anm "walk"}
+
+}
+
+
+

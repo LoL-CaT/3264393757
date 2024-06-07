@@ -1,0 +1,81 @@
+;SDL
+actor
+
+(include "vehicle.ext")
+(include "cannon_crew.ext")
+(include "cannon_armor.ext")
+;(include "shadow/tank.inc"  scale(0.7))
+(include "selection/vehicle.inc"  scale(0.7))
+{PatherID "cannon.small"}
+{simulation {able 1} {disableLinked 1}}
+
+{collider "stuff"}
+{obstacleid "stuff"}
+{constrain ground}
+{props "mg_stan" "vehicle" "steel" "cannon"}
+{able "emit_crew_on_injure"}
+{targetClass "cannon" "bullet"}
+{targetSelector "cannon_bullet"}
+
+{brain "vehicle" 
+	{state "vehicle"}
+}
+
+("crew_stan_gunner")
+{sensor {visor "main" {bone "visor"} {vision "human"}}}
+
+{placer
+	{crew}
+	{place "gunner" {visor "main"}}
+}
+
+{extender "inventory"
+	{Box
+		{Size 6 10}
+		{weight 1000}
+		{item "ammo" "mgun" 500}
+	}
+}
+
+{Weaponry
+	{place "mgun"
+		{charger "gunner"}
+		{LinkBone "mgun"}
+		{LinkAnimation "off"}
+	}
+}  	
+
+{extender "cannon"
+	{animation
+		{aim ""}
+		{reload "mgun_stan_charger2"}
+	}
+	{move {workers clear} {obstacle "close"}}
+	{attack {workers "gunner"} {obstacle "open"}}
+}
+
+
+{mass 50}
+
+{volume "body"
+	{thickness 5}
+	{able clear {visible} {bullet} {select} {contact_ground} {touch} {contact} {blast}}
+}
+{volume "select"
+	{able clear {select}}
+	{density 0}
+}
+{component "body"
+	{RepairTime 15}
+}
+
+{extender "talk"
+	{talker "cannon"}
+}
+
+{armor
+	{setting "shield"
+		{volumes "*shield*"}
+		{thickness 10}
+	}
+}

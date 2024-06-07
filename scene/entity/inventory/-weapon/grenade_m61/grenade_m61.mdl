@@ -1,0 +1,91 @@
+;Exported by: sergienko
+;Date:        Wed Jan 18 17:14:49 2006
+;File:        D:\tmp\grenade_m61\M61.max
+{Skeleton
+	{bone "m61"
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{LODView
+			{VolumeView "m61.ply"}
+			{VolumeView "m61_lod1.ply"}
+			{VolumeView "m61_lod2.ply"}
+		}
+		{bone "handle"
+			{Matrix34
+				1	0	0
+				0	-1	0
+				0	0	-1
+				-1.44102	0.111389	-0.580575
+			}
+		}
+	}
+}
+{Volume "body"
+	{Sphere 0.952648}
+	{Bone "m61"}
+	{Matrix34
+		0	0	-1
+		1	0	0
+		0	-1	0
+		0.00738903	0.166587	-0.065384
+	}
+}
+{Volume "select"
+	{Sphere 5.31954}
+	{Bone "m61"}
+	{Matrix34
+		0	1	0
+		1	0	0
+		0	0	-1
+		0.0265584	0.192373	0
+	}
+}
+{Extender "preview"
+	{"Stuff"
+		{camera
+			{origin 1.38244	0.535601	-2.05011}
+			{lookat -0.0131369	0.062685	-0.035784}
+			{fov 50.471}
+			{horizon -120}
+		}
+		{lights
+			{"0"
+				{type directional}
+				{direction -0.221147	-0.349202	0.28134}
+			}
+			{"1"
+				{type point}
+				{position -0.170066	-0.209424	1.86832}
+			}
+			{"2"
+				{type point}
+				{position 1.08656	-1.13893	-1.39388}
+			}
+		}
+	}
+	{"Stuff_secondary"
+		{camera
+			{origin 2.06847	0.749523	-3.03573}
+			{lookat -0.00911808	0.0454977	-0.0370338}
+			{fov 50.471}
+			{horizon -120}
+		}
+		{lights
+			{"0"
+				{type directional}
+				{direction -0.221147	-0.349202	0.28134}
+			}
+			{"1"
+				{type point}
+				{position -0.170066	-0.209424	1.86832}
+			}
+			{"2"
+				{type point}
+				{position 1.08656	-1.13893	-1.39388}
+			}
+		}
+	}
+}

@@ -1,0 +1,65 @@
+;SDL
+{panel_control
+	{gc_cp_state_fire
+		{position 0 0}
+	}
+	{gc_cp_state_move
+		{position 1 0}
+	}
+	{gc_cp_state_pose
+		{position 2 0}
+		{condition "human"}
+		{priority 0}
+	}
+	{gc_cp_state_cannon
+		{position 2 0}
+		{condition "cannon"}
+		{priority 1}
+	}
+	{gc_cp_state_attach
+		{position 2 0}
+		{condition "tractor"}
+		{priority 2}
+	}
+;	{gc_cp_state_speed
+;		{position 3 0}
+;		{condition "single"}
+;	}
+	{gc_cp_squad_control
+		{position 3 0}
+		{condition "multiple"}
+	}
+	{gc_cp_browse_attack
+		{position 0 1}
+	}
+	{gc_cp_browse_useitem
+		{position 1 1}
+;		{condition "human"}
+	}
+	{rotate
+		{position 2 1}
+	}
+	{emit
+		{position 3 1}
+		{condition "vehicle"}
+	}
+	{examine
+;		{position 0 2}
+		{condition "human"}
+	}
+	{repair
+		{position 1 2}
+		{condition "single vehicle"}
+	}
+	{repair
+		{position 1 2}
+		{condition "human"}
+	}
+;	{call_ally
+;		{position 2 2}
+;		{condition "commander human"}
+;	}
+	{gc_cp_command_cancel
+		{position 3 2}
+	}
+}

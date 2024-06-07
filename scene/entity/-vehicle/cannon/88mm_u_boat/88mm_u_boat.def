@@ -1,0 +1,25 @@
+{game_entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+	{props "vehicle" "cannon" "medium" "turret" "turret_rotator"}
+	("armor_medium")
+
+	("crew_2_human")
+
+	{extender "inventory"
+		{box
+			{size 8 6}
+			{item "ammo bullet88 fg" 27}
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "88mm_flak41" filling "ammo bullet88 fg"}
+			("abm_field_gun")
+		}
+	}
+
+	{mass 2000}
+	{Extension "88mm_u_boat.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+}

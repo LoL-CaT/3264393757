@@ -1,0 +1,32 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.9))
+;	(include "/properties/selection/vehicle_elongate.inc" scalex(0.9) scaley(0.6))
+	(include "/properties/selection/vehicle.inc" scale(0.8))
+	{mass 2000}
+	{chassis
+		{waterline -0.1}
+		{Locomotion ("locomotion")
+			{TurnRadius	30}
+			{MaxSpeed	2}
+			{StartTime	5}	
+		}
+	}
+	{patherid "shallow_water"}
+	{props "vehicle" "marine" "flag"}
+	{Volume "ballast"
+		{tags "float"}
+		{Able clear {float}}
+		{thickness 0.001}
+	}
+	{volume "body"
+		{tags "body"}
+		{thickness 0.1}
+	}
+	{component "body"}
+	{extension "crew.ext"}
+	{Extension "torpedomine.mdl"}
+	{volume "ballast"
+		{thickness 10}
+	}
+}

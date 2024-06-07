@@ -1,0 +1,23 @@
+{actor
+	(include "/properties/railway.ext")
+	(include "/properties/shadow/marine.inc"  scaleX(2.1) scaleY(1.0))
+    {mass 10000}
+    {props  "train_part" "steel" "platform" "armored_locomotive" "no_minimap_view"}	
+	{extension "crew.ext"}
+	{Extension "platform_gun.mdl"}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+
+	{Volume "body"
+		{tags "body"}
+		{thickness 100}
+		{component "body"}
+	}
+	{component "body"
+	}
+;	{autooperatable 1}
+;	{placer {crew 0}}
+}

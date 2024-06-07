@@ -1,0 +1,100 @@
+;Exported by: Micha
+;Date:        Fri Jul 04 20:24:57 2008
+;File:        \\192.168.0.150\meshes\soldiers_meshes\japan\cannon\AAA\t96_25mm\exporter_T96_25_x.max
+{Skeleton
+	{bone revolute "basis"
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{bone "body"
+			{parameters "ID=body;"}
+			{animation
+				{sequence "break" {file "body_b"}{speed 0.7}}
+			}
+			{Position 7.79062	0	6.25383}
+			{poly "body"}
+			{bone revolute "standl"
+				{parameters "ID=standr;"}
+				{Matrix34
+					0.984808	0	0.173648
+					0	1	0
+					-0.173648	0	0.984808
+					0.0667968	8.828	0.0696058
+				}
+				{poly "standl"}
+			}
+			{bone revolute "standr"
+				{parameters "ID=standr;"}
+				{Matrix34
+					0.984808	0	0.173648
+					0	-1	0
+					-0.173648	0	0.984808
+					0.0487833	-8.79207	0.0696058
+				}
+				{poly "standr"}
+			}
+			{bone revolute "turret"
+				{parameters "ID=turret;"}
+				{animation
+					{sequence "break" {file "turret_b"}{speed 0.7}}
+				}
+				{limits -55 55}
+				{speed 0.01}
+				{Position 0.0359068	0	6.10169}
+				{poly "turret"}
+				{bone revolute "gun_rot"
+					{parameters "ID=turret;"}
+					{limits -15 85}
+					{speed 0.01}
+					{Matrix34
+						1	0	0
+						0	0	1
+						0	-1	0
+						0.0524564	0	9.56821
+					}
+					{poly "gun_rot"}
+					{bone "gun"
+						{parameters "ID=gun;"}
+						{Matrix34
+							1	0	0
+							0	0	-1
+							0	1	0
+							12.0697	-1.45488	0
+						}
+						{poly "gun"}
+					}
+				}
+			}
+		}
+		{bone "pivot_front"
+			{Matrix34
+				1	0	0
+				0	0	1
+				0	-1	0
+				7.86061	0	1.68014
+			}
+			{bone revolute "wheell"
+				{parameters "ID=wheelleft;"}
+				{Matrix34
+					-1	0	0
+					0	1	0
+					0	0	-1
+					-0.0347371	4.9789	-14.583
+				}
+				{poly "wheell"}
+			}
+			{bone revolute "wheelr"
+				{parameters "ID=wheelright;"}
+				{Matrix34
+					-1	0	0
+					0	1	0
+					0	0	-1
+					-0.03474	4.9789	14.583
+				}
+				{poly "wheelr"}
+			}
+		}
+	}
+}

@@ -1,0 +1,50 @@
+{entity
+	(include "/properties/cannon_mgun_1.ext")
+	(include "/properties/shadow/tank.inc"	scale(0.45))
+	{props "cannon" "flak"}
+
+	("armor_light" args 1.3)
+
+	{volume "body"
+		{thickness 25}
+		{tags "body"}
+	}
+	{component "turret"
+		{RepairTime 20}
+	}
+	{Volume "turret"
+		{thickness 10}
+	}
+
+	{component "gun"
+		{RepairTime 15}
+	}
+    
+    {component "body"
+		{RepairTime 5}
+	}
+
+
+	{extender "inventory"
+		{box
+			{clear}
+			{item "ammo mgun" 1000}
+		}
+	}
+	{Weaponry
+
+		{place "gun"
+			{weapon "maxim" filled}
+			{foresight "foresight1"}
+			{charger "gunner"}
+			{Barrels 4}
+		}
+	}
+
+	{mass 500}
+	{Extension "maxim_quad.mdl"}
+	(include "/properties/selection/cannon.inc"	scale(0.7))
+	{bone "turret"
+		{limits}
+	}
+}

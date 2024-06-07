@@ -1,0 +1,29 @@
+{bullet
+	{tag "big shell fg bomb"}
+	{inventory
+		{size 5 1}
+		{weight 100}
+	}	
+	{entity "nebel_ammo"}
+	{mass 36.05}
+	{view "nebel_ammo"
+		{tail "rocket_smoke" "tail"}
+	}
+	{detonationThickness 1}
+	{applyProjectile}
+	{damage blastwave
+		{energy 20}
+		{area 0.9 1.8}
+		(mod not "mp"
+			{area 0.4 1.8}
+		)
+	}	
+	{damage add blastwave
+		{energy 4}
+		{area 4 8}
+	}
+	{damage add blastwave
+		{energy 2.5}
+		{area 8 16}
+	}		
+}

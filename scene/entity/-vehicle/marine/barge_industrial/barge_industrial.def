@@ -1,0 +1,145 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/marine.inc"  scaleX(4.0) scaleY(2.0))
+	(include "/properties/selection/vehicle.inc" scale(3.5))
+	{lodclass "vehicle_large"}
+	{mass 100000}
+	{props "vehicle" "marine" "emit_on_sink" "armor_barge" "explosion_throw_crew"}
+ 	{targetSelector "tank_bullet"}
+
+	("armor_heavy" args 0.5)
+
+	{extension "crew.ext"}
+	{patherid "deep_water"}
+	{Extension "barge_industrial.mdl"}
+	{Volume "ballast1"
+		{tags "float"}
+		{Able clear {float}}
+	}
+	{Volume "ballast2"
+		{tags "float"}
+		{Able clear {float}}
+	}
+	{Volume "ballast3"
+		{tags "float"}
+		{Able clear {float}}
+	}
+	{Volume "ballast4"
+		{tags "float"}
+		{Able clear {float}}
+	}
+	{Volume "body_10"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_10"}
+		{thickness 20}
+	}
+	{Volume "body_11_1"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_11"}
+		{thickness 20}
+	}
+	{Volume "body_11_2"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_11"}
+		{thickness 20}
+	}
+	{Volume "body_1"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_1"}
+		{thickness 20}
+	}
+	{Volume "body_2"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_2"}
+		{thickness 20}
+	}
+	{Volume "body_3"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_3"}
+		{thickness 20}
+	}
+	{Volume "body_4"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_4"}
+		{thickness 20}
+	}
+	{Volume "body_5"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_5"}
+		{thickness 20}
+	}
+	{Volume "body_6"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_6"}
+		{thickness 20}
+	}
+	{Volume "body_7"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_7"}
+		{thickness 20}
+	}
+	{Volume "body_8"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_8"}
+		{thickness 20}
+	}
+	{Volume "body_9"
+		{tags "body"}
+		{able {touch 1}}
+    	{component "body_9"}
+		{thickness 20}
+	}
+	{Volume "body"
+		{tags "body"}
+		{able {touch 1}}
+		{thickness 20}
+	}
+	{Volume "cabin_1"
+		{thickness hollow 4}
+		{tags "body"}
+    	{component "cabin"}
+		{able {touch 1}}
+		{thickness 20}
+	}
+	{Volume "cabin_2"
+		{thickness hollow 4}
+		{tags "body"}
+    	{component "cabin"}
+		{able {touch 1}}
+		{thickness 20}
+	}
+
+
+	{component "body_1"}
+	{component "body_2"}
+	{component "body_3"}
+	{component "body_4"}
+	{component "body_5"}
+	{component "body_6"}
+	{component "body_7"}
+	{component "body_8"}
+	{component "body_9"}
+	{component "body_10"}
+	{component "body_11"}
+	{component "body"}
+	{component "cabin"}
+	
+	{chassis
+		{Locomotion ("locomotion")
+			{TurnRadius	11}
+			{MaxSpeed	10}
+			{StartTime	5 }	
+		}
+	}
+}

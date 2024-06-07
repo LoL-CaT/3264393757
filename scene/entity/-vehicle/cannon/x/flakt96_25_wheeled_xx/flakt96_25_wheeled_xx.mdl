@@ -1,0 +1,193 @@
+;Exported by: ubrashaev
+;Date:        Thu Oct 09 15:34:34 2008
+;File:        D:\-Projects1_5-\-work-\3d\-Model-\japan\exporter_T96_25a_xx.max
+{Skeleton
+	{bone revolute "basis"
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{bone "body"
+			{parameters "ID=body;"}
+			{Matrix34
+				0.996377	0.0462711	-0.0713583
+				-0.044914	0.99878	0.0205076
+				0.0722202	-0.0172283	0.99724
+				7.79062	0	6.25383
+			}
+			{poly "body"}
+			{bone revolute "part2"
+				{parameters "ID=standr;"}
+				{Matrix34
+					0.984808	0	0.173648
+					0	1	0
+					-0.173648	0	0.984808
+					0.0667973	8.828	0.0696054
+				}
+				{poly "part2"}
+			}
+			{bone revolute "part1"
+				{parameters "ID=standr;"}
+				{Matrix34
+					0.984808	0	0.173648
+					0	-1	0
+					-0.173648	0	0.984808
+					0.0487838	-8.79207	0.0696058
+				}
+				{poly "part1"}
+			}
+			{bone revolute "turret"
+				{parameters "ID=turret;"}
+				{limits -55 55}
+				{speed 0.01}
+				{Matrix34
+					0.96965	0.0335911	-0.242179
+					0.000185025	0.990416	0.138115
+					0.244497	-0.133968	0.960351
+					0.0359073	0	6.10169
+				}
+				{poly "turret"}
+				{bone revolute "gun_rot"
+					{parameters "ID=turret;"}
+					{limits -15 85}
+					{speed 0.01}
+					{Matrix34
+						1	0	0
+						0	0	1
+						0	-1	0
+						0.0524552	0	9.56821
+					}
+					{poly "gun_rot"}
+					{bone "gun"
+						{parameters "ID=gun;"}
+						{Matrix34
+							1	0	0
+							0	0	-1
+							0	1	0
+							12.0697	-1.45488	0
+						}
+						{poly "gun"}
+					}
+				}
+				{bone "part5"
+					{Position -10.1318	6.26019	2.1088}
+					{poly "part5"}
+				}
+				{bone "part4"
+					{parameters "ID=shieldleft;"}
+					{Matrix34
+						0.987365	0.145423	-0.0629504
+						-0.153372	0.976889	-0.148881
+						0.0398448	0.156654	0.98685
+						-3.29023	8.81193	6.00822
+					}
+					{poly "part4"}
+				}
+				{bone "part3"
+					{parameters "ID=shieldright;"}
+					{Matrix34
+						0.96957	-0.0131152	-0.244462
+						0.0630792	0.978231	0.1977
+						0.236548	-0.207104	0.949291
+						-3.29023	-8.81193	6.00823
+					}
+					{poly "part3"}
+				}
+			}
+		}
+		{bone "pivot_front"
+			{Matrix34
+				1	0	0
+				0	0	1
+				0	-1	0
+				7.86061	0	1.68014
+			}
+		}
+	}
+}
+{Volume "body"
+	{Box 11.0964 2.81431 26.0521}
+	{Bone "body"}
+	{Matrix34
+		1	0	0
+		0	0	1
+		0	-1	0
+		-3.29803	-0.0214224	-0.470892
+	}
+}
+{Volume "gun_rot1"
+	{Box 10.5336 2.57308 2.81431}
+	{Bone "gun_rot"}
+	{Position 16.6756	-2.5115	0.0566519}
+}
+{Volume "gun_rot"
+	{Box 31.2625 7.15638 7.88006}
+	{Bone "gun_rot"}
+	{Position -3.72119	-3.20604	0.659689}
+}
+{Volume "gun"
+	{Cylinder 1.07461 36.6318}
+	{Bone "gun"}
+	{Matrix34
+		0	-1	0
+		0	0	1
+		-1	0	0
+		-0.0322151	-0.00214382	-0.0111719
+	}
+}
+{Volume "part1"
+	{Box 40.7673 3.29676 3.77921}
+	{Bone "part1"}
+	{Matrix34
+		0.939693	-0.34202	0
+		0	0	1
+		0.34202	0.939693	0
+		-17.0641	5.81593	-0.362305
+	}
+}
+{Volume "part2"
+	{Box 41.0546 4.7855 3.02242}
+	{Bone "part2"}
+	{Matrix34
+		0.939693	-0.34202	0
+		0.34202	0.939693	0
+		0	0	1
+		-16.957	5.6855	-0.432011
+	}
+}
+{Volume "part3"
+	{polyhedron}
+	{Bone "part3"}
+	{Position -2.16586	-3.11652	0.559153}
+}
+{Volume "part4"
+	{polyhedron}
+	{Bone "part4"}
+	{Position 3.6405	-1.20656	-0.0950279}
+}
+{Volume "part5"
+	{Box 25.972 18.486 3.5178}
+	{Bone "part5"}
+	{Position -1.36284	-6.03518	0.85271}
+}
+{Volume "shieldl1"
+	{polyhedron}
+	{Bone "part4"}
+	{Position -2.16586	2.99055	0.559153}
+}
+{Volume "shieldr"
+	{polyhedron}
+	{Bone "part3"}
+	{Position 3.6405	1.28262	-0.0950317}
+}
+{Volume "turret"
+	{Box 4.5833 18.4136 12.6242}
+	{Bone "turret"}
+	{Matrix34
+		1	0	0
+		0	0	1
+		0	-1	0
+		0.0834386	-0.0945845	1.62912
+	}
+}

@@ -1,0 +1,50 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.45))
+	{props "vehicle" "cannon" "flak" "barrel1"}
+
+	("armor_light")
+
+	("crew_2_human")
+
+	{Boarder
+		{place "gunner"}
+		{place "commander"}
+		{door "emit1"}
+		{door "emit2"}
+		{link "emit1" "gunner"}
+		{link "emit2" "commander"}
+		{anm "gunner"
+			{forward	{end "pose_flak38-1_gunlayer" 10}}
+		}
+		{anm "commander"
+			{forward	{end "pose_flak38-1_charger" 10}}
+		}
+	}
+	
+	{extender "cannon"
+		{animation
+			{aim	"cannon_flak38-1_gunlayer" ""}
+			{reload	"" "cannon_flak38-1_charger"}
+		}
+		{move {workers clear} {obstacle "close"}}
+		{attack {workers "gunner" "commander"} {obstacle "open"}}
+	}
+
+	{extender "inventory"
+		{box
+			{item "bullet20 zenite" 180}
+			(mod "mp" {item "bullet20 zenite" 180} )
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "20mm_flak38" filled}
+			("abm_zenite")
+		}
+	}  	
+
+	{mass 1000}
+	{Extension "flak-38-1.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(0.7))
+}

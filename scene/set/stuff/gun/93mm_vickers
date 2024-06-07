@@ -1,0 +1,19 @@
+{from "pattern gun"    ; "vickers", "tortez" ; 94mm Q.F. 3.7 Inch Mk.II L / 50
+	{filling "bullet93"}
+	{fireSound "gun/85to100_cal/93mm_vickers"}	
+	{reloadSound "tankgun_r02"}
+	{rechargeTime 7}
+	("range_100+")
+	("speed" s(1161))
+	("85-93caliber")
+	{range 130 150}	
+	(mod "mp" {range 130 150})
+	{projectileDamage 151}
+	(mod not "mp"		; <--- single
+		("damage3" a(151) b(134) c(115))
+	)
+	(mod "mp"
+		("damage3" a(217) b(185) c(158) d(143) e(132))
+	)                   
+	("accuracy_is2")
+}

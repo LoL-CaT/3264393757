@@ -1,0 +1,32 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.9))
+;	(include "/properties/selection/vehicle_elongate.inc" scalex(0.9) scaley(0.6))
+	(include "/properties/selection/vehicle.inc" scale(1.0))
+	{mass 100}
+	(define "armor_light" arg 0.01)
+	{chassis
+		{waterline -0.1}
+	}
+	{patherid "shallow_water"}
+;	{props "vehicle" "marine" "flag"}
+	{props "vehicle" "marine"}
+	{Volume "ballast"
+		{tags "float"}
+		{Able clear {float}}
+	}
+	{Volume "bady"
+		{tags "body"}
+		{component "body"}
+		{thickness 1}
+	}
+	{Volume "engine"
+		{tags "body"}
+		{component "body"}
+		{thickness 1}
+	}
+	{component "body"}
+	{extension "crew.ext"}
+	{Extension "air-bag.mdl"}
+
+}

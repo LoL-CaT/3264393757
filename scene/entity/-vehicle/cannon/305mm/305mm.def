@@ -1,0 +1,63 @@
+{entity
+	(include "/properties/cannon.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.6))
+
+	{props "vehicle" "cannon" "flak" "mortar"}
+
+	("armor_heavy")
+	{obstacleId "unbreakable"}
+	{collider "tank.heavy"}
+	{simulation {able 0}}
+
+	{Volume "turret"
+		{component "turret"}
+	}
+	{Volume "gun1"
+		{component "gun"}
+	}
+
+	{Volume "gun2"
+		{component "gun"}
+	}
+	{Volume "gun3"
+		{component "gun"}
+	}
+
+	{extender "inventory"
+		{box
+			{item "bullet305" 50}
+		}
+	}	
+	{Weaponry
+		{place "gun"
+			{weapon "305mm_gun" filled}
+			{Barrels 3}
+		}
+	}
+
+	{autooperatable 1}
+	{placer
+		{crew 0}
+		{place "gunner" remove}
+		{place "commander" remove}
+	}
+
+	{mass 150000}
+	{Extension "305mm.mdl"}
+	(include "/properties/selection/cannon.inc"  scale(3.0))
+
+	{bone "basis"
+	      {limits}
+	}
+	{extender "cannon"
+		{## animation
+			{switch "close"}
+			{move "" ""}
+			{aim "" ""}
+			{fire  "" ""}
+			{reload  "" ""}
+		}
+		{move {workers clear} {obstacle "close"}}
+		{attack {workers clear} {obstacle "open"}}
+	}
+}

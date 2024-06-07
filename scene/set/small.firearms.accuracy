@@ -1,0 +1,103 @@
+;SDL
+(define "accuracy_3" 
+	{spreading 
+		{radiusTable {0 0} {30 %r1} {60 %r2} {90 %r3}}
+	}		
+)
+(define "accuracy_4" 
+	{spreading 
+		{radiusTable {0 0} {15 %r1} {40 %r2} {80 %r3}}
+	}		
+)
+
+(define "accuracy_5" 
+	{spreading 
+		{radiusTable {0 0} {10 %r1} {25 %r2} {60 %r3}}
+	}		
+)
+
+
+(define "accuracy_pistol"
+	("accuracy_3" r1(1.2) r2(4) r3(8))
+)
+
+(define "accuracy_smg"
+	("accuracy_5" r1(0.4) r2(1.2) r3(3.6))
+)
+
+(define "accuracy_rifle"
+	("accuracy_5" r1(0.5) r2(1.1) r3(1.28))
+)
+
+(define "accuracy_automatic_rifle"
+	("accuracy_5" r1(0.6) r2(1.15) r3(1.38))
+)
+
+(define "accuracy_carabine"
+	("accuracy_5" r1(0.6) r2(1.23) r3(1.43))
+)
+
+(define "accuracy_sniper_rifle"
+	("accuracy_3" r1(0.6) r2(1.1) r3(2))
+)
+
+(define "accuracy_mgun"
+	("accuracy_4" r1(1) r2(1.5) r3(4.5))
+)
+
+(define "accuracy_ptr"
+	("accuracy_4" r1(0.5) r2(1.4) r3(3))
+)
+
+(define "accuracy_dshk"
+	("accuracy_3" r1(2) r2(4) r3(6))
+)
+
+(define "accuracy_uberbrowning"
+	("accuracy_3" r1(1) r2(2) r3(4))
+)
+
+(mod not "mp"
+	(define "accuracy_3" 
+		{spreading 
+			{radiusTable {0 0} {30 %r1} {60 %r2} {90 %r3}}
+		}		
+	)
+	(define "accuracy_4" 
+		{spreading 
+			{radiusTable {0 0} {30 %r1} {40 %r2} {65 %r3}}
+		}		
+	)
+
+	(define "accuracy_pistol"
+		("accuracy_3" r1(1.5) r2(5) r3(8))
+	)
+
+	(define "accuracy_smg"
+		("accuracy_3" r1(2.3) r2(4) r3(8))
+	)
+
+	(define "accuracy_rifle"
+		("accuracy_3" r1(1) r2(2.7) r3(3.5))
+	)
+
+	(define "accuracy_automatic_rifle"
+		("accuracy_3" r1(1.0) r2(2.5) r3(4))
+	)
+
+	(define "accuracy_sniper_rifle"
+		("accuracy_3" r1(0.5) r2(1.6) r3(2))
+	)
+
+	(define "accuracy_mgun"
+		("accuracy_3" r1(2) r2(4) r3(6))
+	)
+
+	(define "accuracy_ptr"
+		("accuracy_4" r1(0.5) r2(1.4) r3(2.5))
+	)
+
+	(define "accuracy_dshk"
+		("accuracy_3" r1(3) r2(6) r3(10))
+	)
+)

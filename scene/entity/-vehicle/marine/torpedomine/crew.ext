@@ -1,0 +1,21 @@
+;SDL
+
+{boarder
+	{anm "passenger"
+		{forward	{begin	"board_rubber_boat"} {end "seat_torpedo"}}
+		{reverse 	{end	"board_rubber_boat" -1}}
+	}
+}
+
+
+(define "crew_human"
+	{placer
+		{place "%place" {group "crew"} {linkbone "%bone"} {turnoff {sensor} {shadow}}}
+	}
+	{boarder
+		{door "%door"}
+		{link "%door" "%place" {anm "%animation"} {forward putoff}{reverse puton}}
+	}
+)
+
+("crew_human" place(driver)	bone(driver)	 door(emit1)	animation(passenger))

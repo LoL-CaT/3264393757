@@ -1,0 +1,71 @@
+;Exported by: sergienko
+;Date:        Wed Jan 18 16:36:37 2006
+;File:        D:\tmp\molotov_coctail\molotov.max
+{Skeleton
+	{bone "buttle"
+		{Orientation
+			1	0	0
+			0	-1	0
+			0	0	1
+		}
+		{LODView
+			{VolumeView "buttle.ply"}
+			{VolumeView "buttle_lod1.ply"}
+		}
+		{bone "handle"
+			{Position -1.54902	-0.564543	0.425807}
+		}
+		{bone "wick"
+			{Matrix34
+				0	1	0
+				0	0	1
+				1	0	0
+				0.106585	3.98265	-0.0484249
+			}
+		}
+	}
+}
+{Volume "body"
+	{Cylinder 1.0531 7.24675}
+	{Bone "buttle"}
+	{Matrix34
+		0	0	-1
+		1	0	0
+		0	-1	0
+		-0.00770142	0.985023	-0.0274792
+	}
+}
+{Volume "select"
+	{Cylinder 6.05448 14.2825}
+	{Bone "buttle"}
+	{Matrix34
+		0	0	1
+		1	0	0
+		0	1	0
+		0.0263149	-0.190633	-0.0184172
+	}
+}
+{Extender "preview"
+	{"Stuff"
+		{camera
+			{origin 4.65055	-0.948771	8.32394}
+			{lookat -0.768746	-0.709321	-1.58392}
+			{fov 33.3985}
+			{horizon 23.8836}
+		}
+		{lights
+			{"0"
+				{type directional}
+				{direction -0.1436	0.15288	-0.45388}
+			}
+			{"1"
+				{type point}
+				{position -2.31338	0.321556	1.70049}
+			}
+			{"2"
+				{type point}
+				{position 1.59924	2.26642	2.86426}
+			}
+		}
+	}
+}

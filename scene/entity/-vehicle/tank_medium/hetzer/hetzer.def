@@ -1,0 +1,125 @@
+{entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc" scale(1.3))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+	{props "medium" "-turret" "vision_lev04"}
+	
+	{extender "enumerator"}
+
+	{volume "body1"
+		{component "body"}
+		{tags "body"}
+		{thickness 60}
+	}
+	{volume "body2"
+		{component "body"}
+		{tags "body"}
+		{thickness 60}
+	}
+
+	("armor_spa_light"  armor(60 20 20 20))
+	("armor_spa_mantlet" t(60))
+	("shield" args 10)
+	
+	{Volume "mantlet"
+		{tags "gun"}
+		{component "gun"}
+		{thickness 60}
+	}
+	
+	("crew_3_human")
+
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_hetzer"} {end "seat_armor"}}
+			{reverse 	{end	"emit_tank_1"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_hetzer"} {end "seat_gunner_stand"}}
+			{reverse 	{end	"emit_tank_2_hold"}}
+		}
+	}
+     
+;	("gunner_visible")
+	("crew_human" place(gunner3) door1(emit1) door2(emit2) visor(top))
+	{sensor
+		{visor "top"
+			{vision "vehicle_top_turret"}
+			{bone "foresight3"}
+		}
+	}
+
+	{extender "inventory"
+		{weapon "mgun"
+			{mask "weapon mgun"}
+		}		
+		{box
+			{item "ammo mgun" 2925}
+            {item "ammo bullet75 ap" 29}
+            {item "ammo bullet75 fg" 25}
+			{item "mg34" filled {user "mgun"}}
+		}
+	}
+
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "75mm_pak39" filling "ammo bullet75 ap" 1}
+			("abm_18")
+		}
+		{place "mgun"
+;			{weapon "mg34" filled}
+			{gunner "gunner3"}
+			{charger "gunner3"}
+			{LinkBone "mgun2"}
+			{LinkAnimation "off"}
+			("abm_mgun")
+			{basic}
+		}
+	}
+
+	{mass 15750}
+	{Chassis
+		("tank_trace" fx("tracks_mid") step(0.52) len(1.44))
+		{Locomotion ("locomotion")
+			{MaxSpeed   31}
+			{maxSpeedAtMaxTurn 14}
+			{StartTime  11}
+			{TurnStart  1.1}			
+			{TurnTime   6}
+			{TurnRadius 8} 
+    		{TurnStop   0.6}
+			{BrakeTime  1}
+			{StopTime   2}
+			{Gears 0.2 0.4 1}
+			{RearGears  0.37}		
+    	}
+		(mod "mp"
+			{FuelBag
+				{volume 385}	
+				{rate	115}   
+				{remain 380}
+				{fuel "fuel"}
+			}
+		    {speed
+        		{Normal  10}
+    		}
+		)
+	}
+
+	{Extension "hetzer.mdl"}
+
+	{bone "mantlet"
+		{limits -12 6}
+		{speed 0.004}
+	}
+	{bone "gun_rot"
+		{speed 0.004}
+                {limits -11 8}
+	}
+	
+	(mod "mp"
+		{texmod "2"}	
+	)
+}

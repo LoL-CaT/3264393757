@@ -1,0 +1,34 @@
+;SDL
+{Placer
+	{place "driver"
+		{Group "crew"}
+		{LinkBone "driver"}
+		{turnoff {sensor} {shadow}}
+	}
+}
+
+{boarder
+	{door "emit1"}
+	{door "emit2"}
+	{node "node_r1"}
+	{node "node_r2"}
+	{node "node_r3"}
+	(define "climb"
+		{anm "climb%0"
+			{forward	{begin	"board_torpedo_boat"} {base "rope%0"}}
+			{reverse 	{begin	"emit_Bk1124"}} ;emit_torpedo_boat
+		}
+	)
+	("climb" args 1)
+	("climb" args 2)
+	("climb" args 3)
+	("climb" args 4)
+	{anm "seat" {forward {end "seat_passenger"}}}
+
+	{link "emit1"	"node_r1"	{anm "climb1"} {forward putoff} {reverse puton}}
+	{link "emit2"	"node_r3"	{anm "climb1"} {forward putoff} {reverse puton}}
+
+	{link "node_r1" "driver" {anm "seat"}}
+
+}
+
