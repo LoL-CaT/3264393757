@@ -1,0 +1,168 @@
+{entity
+	(include "/properties/tank_without_mgun_flame.ext")
+	(include "/properties/shadow/tank.inc" scale(1.0))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+	("bone_rotator")	
+	{collider "tank.light"}
+	{props "light" "turret_rotator" "vision_lev03" "tank_light" "level02" "ss-d" "ram_lvl3" "xmas_present_tank" "texmod_w_cw_cf" "anm_tank"}
+	{targetClass "light_tank"}
+	{patherId "tank.light"}
+
+	("v_body" n(01) t(01))
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	("v_turret" n(03) t())
+	("v_engine" n(01) t())
+
+	(define "v_addtags"	{volume "%n"	{tags "%t"}})
+	("v_addtags" n(body03) t(detail1))
+	("v_addtags" n(body04) t(detail1))
+	("v_addtags" n(body05) t(detail1))
+	("v_addtags" n(body06) t(detail1))
+	("v_addtags" n(body07) t(detail1))
+	("v_addtags" n(engine02) t(detail1))
+	("v_addtags" n(engine03) t(detail1))
+	("v_addtags" n(engine04) t(detail1))
+	("v_addtags" n(flamer1) t(detail1))
+
+	("arena_armor_light" turret(13 13 13 10) gun(13) engine(13 13 13 6) body(13 13 13 7) track(13) hp(384))
+	{armor
+		("module_body_light" n(01) body(13 13 13 10))
+		("module_detail" 	vol("detail1") t(6) n(1))
+	}
+	
+	
+	("crew_human" place(commander)	door1(emit1)	visor(main))
+	("crew_human" place(driver)	animation(driver)	door1(emit2)	visor(main))
+	
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_t34_driver"} {end "seat_gunner_stand"} {base "open_driver"}}
+			{reverse 	{end	"emit_t34_hold"} {base "close_driver"}}
+		}
+		{anm "left"
+			{forward	{begin	"board_tank_left"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_tank_right"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_LowArmor"} 	{end "idle_onboard_l"}}
+			{reverse 	{end	"emit_tank_1"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_LowArmor"} 	{end "idle_onboard_r"}}
+			{reverse 	{end	"emit_tank_1"}}
+		}
+	}
+
+	("seat_human" place(seat_l1) bone(seat01) door(emit3)  animation(armor))
+	("seat_human" place(seat_l2) bone(seat02) door(emit4)  animation(armor))
+	("seat_human" place(seat_r1) bone(seat03) door(emit5)  animation(armor1))
+	("seat_human" place(seat_r2) bone(seat04) door(emit6)  animation(armor1))
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(21)
+		repair_turret(21)
+		repair_gun(12)
+		repair_track(8)
+	)
+	
+	{extender "inventory"
+		{box
+			{item "ammo mgun" 1890}
+			{item "tank_balloon" filled}		
+		}
+	}
+	
+	{Weaponry
+		{place "flamer1"
+			{basic}
+			{weapon "flame_thrower_ks24" filled}
+			{foresight "foresight9"}
+			{gunner "commander"}
+			{charger "commander"}		
+		}
+		{place "mgun"
+			{type "coaxial"}
+			{weapon "dt_vh" filled}
+			{foresight "foresight3"}
+			{gunner "commander"}
+			{charger "commander"}
+			("sequential_aim")
+			("abm_mgun")
+            {basic}			
+		}
+	}
+		
+	{mass 9800}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.5))
+		{Locomotion ("locomotion")
+			{MaxSpeed	30}			
+			{maxSpeedAtMaxTurn 12}
+			{StartTime	       5}
+			{TurnTime	        4}
+			{TurnStart        1.5} 
+			{BrakeTime        1}
+			{StopTime         2} 
+			{TurnRadius         4} 
+			{TurnStop         0.7} 
+			{Gears     0.2 0.5 1.0}
+			{RearGears       0.3 0.5}
+		}
+		("fuelbag"
+			volume(225)
+			rate(50)
+			remain(225)
+		)
+	}
+		
+	{extension "ht26.mdl"}
+    ("animation_resume")
+	
+	{mass 8000}
+	("chassis_add_light" speed(30))
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+
+	{bone "turret"
+		("arena_turret_speed" args 0.0263)
+	}
+	{bone "gun_rot"
+		("arena_turret_speed" args 0.0263)
+		{limits -20 30}
+	}
+	{bone "flamer1"
+		{limits -10 10}
+		("arena_turret_speed" args 0.0263)
+	}
+	{bone "mgun"
+		{limits 10}
+	}
+	{bone "trackr"
+		{parameters "ID=trackright;"}
+	}
+	{bone "trackl"
+		{parameters "ID=trackleft;"}
+	}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.35))
+	("support_bones_std" n(2) r(0.18))
+	("support_bones_std" n(3) r(0.18))
+	("support_bones_std" n(4) r(0.18))
+	("support_bones_std" n(5) r(0.18))
+	("support_bones_std" n(6) r(0.18))
+	("support_bones_std" n(7) r(0.18))
+	("support_bones_std" n(8) r(0.18))
+	("support_bones_std" n(9) r(0.18))
+	("support_bones_std" n(10) r(0.33))
+}

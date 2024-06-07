@@ -1,0 +1,45 @@
+;SDL
+
+{boarder
+	{anm "driver"
+		{forward	{begin	"board_LowTank_stand_1"} {end "passenger_car_small"}}
+		{reverse 	{end	"emit_tank_1"}}
+	}
+	{anm "gunner"
+		{forward	{begin	"board_LowTank_stand_1"} {end "passenger_car_small" 10}}
+		{reverse 	{end	"emit_tank_1"}}
+	}
+	{anm "charger"
+		{forward	{begin	"board_LowTank_stand"} {end "cannon_small_charger" 10}}
+		{reverse 	{end	"emit_tank_1"}}
+	}
+}
+
+(define "crew_human"
+	{placer
+		{place "%place" {group "crew"} {visor "driver"}}
+	}
+	{boarder
+		{door "%door"}
+		{link "%door" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+	}
+)
+(define "crew_human_visible"
+	{placer
+		{place "%place"
+			{group "crew"}
+			{linkbone "%place"}
+			{turnoff {sensor} {shadow}}
+			{visor "main"}
+			{openForCrush}
+		}
+	}
+	{boarder
+		{door "%door"}
+		{link "%door" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+	}
+)
+
+("crew_human_visible"	place(driver)	door(emit1) animation(driver))
+("crew_human_visible"	place(gunner)	door(emit2) animation(gunner))
+("crew_human_visible"	place(charger)	door(emit3) animation(charger))

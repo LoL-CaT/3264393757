@@ -1,0 +1,327 @@
+{game_entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.4))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+	("bone_rotator")
+	{props "heavy" "turret_rotator" "turret1" "turret2" "turret3" "turret4" "vision_lev06" "tank_heavy" "level02" "tnk_heavy" "ram_lvl5" "texmod_w_cf_cd"  "anm_tank"}
+	{props "with_gun2" "with_gun3"}
+
+	("v_body" n(01) t(01))
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+;	("v_body" n(04) t())
+;	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_engine" n(1) t())
+	{volume "turret1"
+		{component "turret1"}
+		{tags "turret1" "turret_armorset1"}
+	}
+	{volume "turret2_01"
+		{component "turret2"}
+		{tags "turret2" "turret_armorset2"}
+	}
+	{volume "turret2_02"
+		{component "turret2"}
+		{tags "turret2" "turret_armorset3"}
+	}
+	{volume "turret3_01"
+		{component "turret3"}
+		{tags "turret3" "turret_armorset2"}
+	}
+	{volume "turret3_02"
+		{component "turret3"}
+		{tags "turret3" "turret_armorset3"}
+	}
+	{volume "turret4"
+		{component "turret4"}
+		{tags "turret4" "turret_armorset1"}
+	}
+	{volume "gun2"
+		{component "gun2"}
+		{tags "gun2" "gun_armor_rot"}
+	}
+	{volume "gun3"
+		{component "gun3"}
+		{tags "gun3" "gun_armor_rot"}
+	}
+	(define "c_turret"
+	    {component "turret%0"
+    	    {RepairTime 12}
+	    }
+	)
+	("c_turret" args 1)
+	("c_turret" args 2)
+	("c_turret" args 3)
+	("c_turret" args 4)
+
+	("arena_armor_mantlet" t(20))
+	("shield" args 11)
+	("arena_armor_heavy" turret(20 20 21 15) gun(25) engine(30 23 20 10) body(30 23 20 10) track(20) hp(883))
+	{armor
+		("module_body_heavy"	n(01) body(30 23 20 24))
+
+		("module_turret_heavy"	n(set1) turret(22 23 10 10) hp_k(1))
+		("module_turret_heavy"	n(set2) turret(25 25 15 10) hp_k(1))
+		("module_turret_heavy"	n(set3) turret(15 15 15 15) hp_k(1))
+
+		("module_other" t(10))
+	}
+	{extender "shield"	{on}}
+	(define "v_shield"
+		{volume "shield%0"
+			{component "shield%0"}
+		}
+	)
+	("v_shield" args L1)
+	("v_shield" args L2)
+	("v_shield" args L3)
+	("v_shield" args L4)
+	("v_shield" args L5)
+	("v_shield" args L6)
+	("v_shield" args R1)
+	("v_shield" args R2)
+	("v_shield" args R3)
+	("v_shield" args R4)
+	("v_shield" args R5)
+	("v_shield" args R6)
+	{component "shieldL1" {tags "shield"}}
+	{component "shieldL2" {tags "shield"}}
+	{component "shieldL3" {tags "shield"}}
+	{component "shieldL4" {tags "shield"}}
+	{component "shieldL5" {tags "shield"}}
+	{component "shieldL6" {tags "shield"}}
+	{component "shieldR1" {tags "shield"}}
+	{component "shieldR2" {tags "shield"}}
+	{component "shieldR3" {tags "shield"}}
+	{component "shieldR4" {tags "shield"}}
+	{component "shieldR5" {tags "shield"}}
+	{component "shieldR6" {tags "shield"}}
+	{component "gun2" {tags "gun2"}}
+	{component "gun3" {tags "gun3"}}
+
+	
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_t34_driver"} {end "seat_gunner_stand_ferd"} {base "open_driver"}}
+			{reverse 	{end	"emit_t34_hold"} {base "close_driver"}}
+		}
+		{anm "left"
+			{forward	{begin	"board_t34_85"} {end "seat_gunner_stand_ferd"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_t34_85"} {end "seat_gunner_stand_ferd"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_HighArmor"} 	{end "idle_onboard_l"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_HighArmor"} 	{end "idle_onboard_r"}}
+			{reverse 	{end	"emit_body"}}
+		}
+	}
+
+	("crew_human" place(driver)		door1(emit1) door2(emit2) visor(driver))
+	("crew_human" place(charger)	door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(charger1)	door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(charger2)	door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(commander)	door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(commander1)	door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(commander2)	door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(gunner)		door1(emit1) door2(emit2) visor(main))	
+	("crew_human" place(gunner4)	door1(emit1) door2(emit2) visor(secondary_front))
+	("crew_human" place(gunner3)	door1(emit1) door2(emit2) visor(secondary_back))
+
+	("seat_human" place(seat_l1) bone(seat01) door(emit3)  animation(armor))
+	("seat_human" place(seat_l2) bone(seat02) door(emit4)  animation(armor))
+	("seat_human" place(seat_l3) bone(seat03) door(emit5)  animation(armor))
+	("seat_human" place(seat_r1) bone(seat04) door(emit6)  animation(armor1))
+	("seat_human" place(seat_r2) bone(seat05) door(emit7)  animation(armor1))
+	("seat_human" place(seat_r3) bone(seat06) door(emit8)  animation(armor1))	
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(33)
+		repair_turret(33)
+		repair_gun(21)
+		repair_track(16)
+	)
+
+	{extender "inventory"
+		{box
+			{item  "ammo mgun" 5000}
+			{item "ammo bullet76 fg rus how" 66}
+       	    		{item "ammo bullet76 sr rus how" 30}			
+			{item "ammo bullet45 fg rus std" 100}
+			{item "ammo bullet45 ap rus std" 100}
+		}
+	}
+	
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "76mm_kt28" filling "ammo bullet76 fg rus how" 1}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("abm_art_tank") 
+			{basic}
+		}
+		{place "gun2"
+			{weapon "45mm_20k_t35" filled}
+			{foresight "foresight20"}
+			{gunner "gunner3"}
+			{charger "gunner3"}
+			("abm_art_tank")
+			{basic}
+		}
+		{place "gun3"
+			{weapon "45mm_20k_t35" filled}
+			{foresight "foresight21"}
+			{gunner "gunner3"}
+			{charger "gunner3"}
+			("abm_art_tank")
+			{basic}
+		}			
+		{place "mgun"
+			{type "coaxial"}
+			{weapon "dt_vh" filled}
+			{foresight "foresight3"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("sequential_aim")
+			("abm_mgun")
+			{basic}			
+		}
+		{place "mgun1"
+			{type "coaxial"}
+			{weapon "dt_vh" filled}
+			{foresight "foresight4"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("abm_mgun")
+                        {basic}	
+		}
+		{place "mgun2"
+			{type "coaxial"}
+			{weapon "dt_vh" filled}
+			{foresight "foresight5"}
+			{gunner "driver"}
+			{charger "driver"}
+			("sequential_aim")
+			("abm_mgun")
+                        {basic}	
+		}
+		{place "mgun3"
+			{type "coaxial"}
+			{weapon "dt_vh" filled}
+			{foresight "foresight6"}
+			{gunner "driver"}
+			{charger "driver"}
+			("sequential_aim")
+			("abm_mgun")
+			{basic}
+		}
+		{place "mgun4"
+			{type "coaxial"}
+			{weapon "dt_vh" filled}
+			{foresight "foresight7"}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_mgun")
+			{basic}
+		}
+	}
+
+	{mass 52000}
+	{Chassis
+		("tank_trace" fx("tracks_mid") step(0.52) len(0.45))
+		{Locomotion ("locomotion")
+			{MaxSpeed	      38}
+			{maxSpeedAtMaxTurn 10.5}
+			{StartTime	       10}
+			{TurnTime	        15}
+			{TurnStart        2.1} 
+	    		{BrakeTime        0.5}
+     			{StopTime         1.5} 
+	    		{TurnRadius         9} 
+    			{TurnStop         0.7} 
+	    		{Gears      0.1 0.3 0.5 1.0}
+    			{RearGears       0.2 0.3}
+		}
+		("fuelbag"
+			volume(100)
+			rate(50)
+			remain(100)
+		)
+	}
+	("chassis_add_heavy" speed(28))
+	    {extension "t35.mdl"}
+    ("animation_resume")
+
+	{bone "turret"
+		("arena_turret_speed" args 0.0134)
+	}	
+	{bone "gun_rot"
+		{limits -10 35}
+		("arena_turret_speed" args 0.0134)
+	}
+	{bone "mgun"
+			{limits 10}
+	}
+	{bone "turret2"	
+			("arena_turret_speed" args 0.0134)	
+			{limits -120 53}
+	}		
+	{bone "gun_rot2"
+			{limits -10 35}
+			("arena_turret_speed" args 0.0134)
+	}
+	{bone "mgun2"
+			{limits 10}
+	}
+	{bone "turret3"	
+			{limits -120 53}
+			("arena_turret_speed" args 0.0134)			
+	}
+	{bone "gun_rot3"
+			{limits -5 35}
+			{speed 0.01}
+	}
+	{bone "mgun3"
+			{limits 10}
+	}
+	{bone "turret1"	
+		("arena_turret_speed" args 0.0134)	
+		{limits 0 120}
+	}
+	{bone "mgun1"
+			{limits 10}
+	}
+	{bone "turret4"	
+		("arena_turret_speed" args 0.0134)	
+		{limits 0 120}
+	}
+	{bone "mgun4"
+			{limits 10}
+	}	
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.42))
+	("support_bones_std" n(16) r(0.3))
+	("support_bones_std" n(17) r(0.5))
+	("support_bones_std" n(2) r(0.4))
+	("support_bones_std" n(3) r(0.4))
+	("support_bones_std" n(4) r(0.4))
+	("support_bones_std" n(5) r(0.4))
+	("support_bones_std" n(6) r(0.4))
+	("support_bones_std" n(7) r(0.4))
+	("support_bones_std" n(8) r(0.4))
+	("support_bones_std" n(9) r(0.4))
+}

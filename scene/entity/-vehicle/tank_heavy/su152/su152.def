@@ -1,0 +1,138 @@
+{Entity
+	(include "/properties/tank_without_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.2))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+
+	{extender "enumerator"}
+	{collider "tank.heavy"}
+	{props "heavy" "-turret" "vision_lev06" "tank_hunt" "howitzer" "level06" "bkg_sound" "ram_lvl9" "texmod_w_cf_cd" "muzzle_brake" "anm_tank_2h" "level05" "spg"}
+
+	("sandbags_isu122")	
+	("trench_cannon_big2")
+
+	("v_body" n(01) t())
+	("v_body" n(02) t(02))
+	("v_body" n(03) t(03))
+	("v_body" n(04) t(04))
+	("v_body" n(07) t(07))
+	("v_engine" n(01) t())
+	("v_engine" n(02) t(02))
+	("v_gun" n(_rot_01) t(_rot))
+	("v_gun" n(_rot_02) t(_rot))
+
+	(define "v_addtags"	{volume "%n"	{tags "%t"}})
+	("v_addtags" n(body03) t(detail1))
+
+	("arena_armor_spa_heavy" gun(40) engine(30 60 60 30) body(75 60 60 20) track(30) hp(965))
+	{armor
+		("module_body_heavy" n(02) body(60 90 60 60))
+		("module_body_heavy" n(03) body(75))
+		("module_body_heavy" n(04) body(60))
+		("module_body_heavy" n(07) body(75))
+		("module_engine_heavy" n(02) engine(30 60 60 20))
+		("module_gun_heavy" n(_rot) gun(65))
+		("module_detail_shield"	vol("detail1") t(65) n(1))
+		("module_other" t(4))
+	}
+	
+
+	("crew_human" place(gunner)		door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(driver)		door1(emit1) door2(emit2) visor(driver))
+	("crew_human" place(charger)	door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(charger2)	door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(commander)	door1(emit1) door2(emit2) visor(main))
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_kv"} {base "open_driver"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "left"
+			{forward	{begin	"board_kv"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_kv"} {end "vehicle_mgun_2hand"}}
+			{reverse 	{end	"emit_tank_2_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_body"} 	{end "idle_onboard_m"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+	}
+
+
+	("seat_human" place(seat_m1) bone(seat01) door(emit3)  animation(armor))
+	("seat_human" place(seat_m2) bone(seat02) door(emit4)  animation(armor))
+	("seat_human" place(seat_m3) bone(seat03) door(emit5)  animation(armor))
+	("seat_human" place(seat_m4) bone(seat04) door(emit6)  animation(armor))
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(45)
+		repair_turret(45)
+		repair_gun(33)
+		repair_track(24)
+	)
+	
+	{extender "inventory"
+		{box
+			{item "ammo bullet152 fg rus std" 20}
+			{item "sandbag_kit2"}			
+		}
+	}
+	{Weaponry
+		{ManualAccuracy 1}
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "152mm_ml20a_su152" filling "ammo bullet152 fg rus std" 1}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_howitzer")
+			{basic}
+		}
+	}
+
+	{mass 45500}
+	{Chassis
+		("tank_trace" fx("tracks_big") step(0.47) len(0.51))
+		{Locomotion ("locomotion")
+			{MaxSpeed	      43}
+			{maxSpeedAtMaxTurn 12.45}
+			{StartTime	       10}
+			{TurnTime	        15}
+			{TurnStart        2.1} 
+			{BrakeTime        0.5}
+			{StopTime         1.5} 
+			{TurnRadius         7} 
+			{TurnStop         0.7} 
+			{Gears      0.1 0.3 0.5 1.0}
+			{RearGears       0.2 0.3}
+		}
+		("fuelbag"
+			volume(206)
+			rate(50)
+			remain(206)
+		)
+	}
+	("chassis_add_heavy" speed(43))	
+	{Extension "su152.mdl"}
+    ("animation_resume")
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	
+
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.37))
+	("support_bones_std" n(8) r(0.43))
+
+	{bone "cap"
+		{limits 0 50}
+	}
+	{extender "bone_rotator"
+		{"look_at.cap" {bone "cap_rotator"} {on}}
+	}
+}

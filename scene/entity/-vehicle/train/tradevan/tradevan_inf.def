@@ -1,0 +1,56 @@
+{actor
+	(include "/properties/railway.ext")
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+    {mass 10000}
+    {props "vehicle" "steel" "carriage" "platform" "train_part" "anm_tank" "tradevan"}
+    {extension "crew.ext"}
+    {extension "sensor.ext"}	
+	{targetClass "armoredcar"}		
+	{Extension "tradevan.mdl"}
+	{extender "enumerator"
+		{group "usa"}
+	}
+    {placer
+	    {place "seat_m1" {group "passanger"} {linkbone "seat01"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m2" {group "passanger"} {linkbone "seat02"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m3" {group "passanger"} {linkbone "seat03"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m4" {group "passanger"} {linkbone "seat04"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m5" {group "passanger"} {linkbone "seat05"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m6" {group "passanger"} {linkbone "seat06"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m7" {group "passanger"} {linkbone "seat07"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m8" {group "passanger"} {linkbone "seat08"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m9" {group "passanger"} {linkbone "seat09"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m10" {group "passanger"} {linkbone "seat10"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m11" {group "passanger"} {linkbone "seat11"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m12" {group "passanger"} {linkbone "seat12"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m13" {group "passanger"} {linkbone "seat13"} {turnoff {sensor} {shadow}}}
+	    {place "seat_m14" {group "passanger"} {linkbone "seat14"} {turnoff {sensor} {shadow}}}
+	}
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	{volume "doorl"
+		{tags "body"}
+		{thickness 1}
+		{tags "body" "body_armor"}	
+	}
+	{volume "doorr"
+		{tags "body"}
+		{thickness 1}
+		{tags "body" "body_armor"}
+	}
+	("arena_armor_train" body(10) wheel(50) hp(1000))
+	{extender "inventory"
+		{box
+			{size 8 6}
+			{Weight 25000}
+		}
+	}
+}

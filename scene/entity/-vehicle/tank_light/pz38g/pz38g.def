@@ -1,0 +1,144 @@
+{entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc" scale(1.0))
+	(include "/properties/selection/vehicle.inc" scale(1.1))
+	("bone_rotator")
+	{collider "tank.light"}
+	{props "light" "turret_rotator" "vision_lev03" "tank_light" "level02" "ram_lvl4" "texmod_w_cf_cd" "anm_tank"}
+	{targetClass "light_tank"}
+	{patherId "tank.light"}
+	
+	{extender "enumerator"}
+	("trench_cannon_big")	
+	("v_body" n(01) t())
+	("v_body" n(02) t(02))
+	("v_gun" n(_rot) t(_rot))
+	("v_turret" n(01) t())
+	("v_turret" n(02) t(2))
+	("v_engine" n(01) t())
+	("v_engine" n(02) t())
+
+	("arena_armor_light" turret(50 30 22 8) gun(17) engine(15 30 15 15) body(50 30 30 15) track(15) hp(475))
+	{armor
+		("module_turret_light" n(2) turret(15 15 15 8) hp_k(0.95))
+		("module_body_light" n(02) body(50 30))
+		("module_gun_light" n(_rot) gun(25))
+		("module_other" t(5))
+	}
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(21)
+		repair_turret(21)
+		repair_gun(12)
+		repair_track(8)
+	)
+	
+	{extender "inventory"
+		{box
+            {item "ammo bullet37 ap ger cz" 45}
+		    {item "ammo bullet37 fg ger cz" 45}
+            {item  "ammo mgun" 5500}
+			{item "mg34_vh" filled {user "mgun"}}		
+		}
+	}
+
+("crew_2_human")
+    ("crew_human" place(commander)  door1(emit1) door2(emit2) visor(main))
+
+    {boarder
+        {anm "left"
+            {forward    {begin  "board_kv"}}
+            {reverse    {end    "emit_tank_1_hold"}}
+        }
+        {anm "right"
+            {forward    {begin  "board_tank_right"}}
+            {reverse    {end    "emit_tank_1_hold"}}
+        }
+        {anm "armor"
+            {forward    {begin  "board_MiddleArmor"}    {end "idle_onboard_l"}}
+            {reverse    {end    "emit_tank_1"}}
+        }
+        {anm "armor1"
+            {forward    {begin  "board_MiddleArmor"}    {end "idle_onboard_r"}}
+            {reverse    {end    "emit_body"}}
+        }
+    }
+
+	("seat_human" place(seat_l1) bone(seat01) door(emit3)  animation(armor))
+	("seat_human" place(seat_r1) bone(seat02) door(emit4)  animation(armor1))
+
+
+	
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+            {weapon "37mm_kwk38(l47)" filled}
+			{gunner "gunner"}
+			{charger "gunner"}        
+			("abm_tank_cannon")
+			{basic}			
+		}
+		{place "mgun"
+			{type "coaxial"}
+			{foresight "foresight3"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("abm_mgun")
+			{basic}
+		}
+		{place "mgun1"
+			{type "hull"}
+			{weapon "mg34_vh" filled}
+			{foresight "foresight4"}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_mgun")	
+			{basic}	
+		}
+	}
+
+	{extension "sensor.ext"}	
+	{mass 9700}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.50))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       42}
+			{maxSpeedAtMaxTurn 15.75}
+			{StartTime	       6}
+			{TurnTime	        4}
+			{TurnStart        1.5} 
+			{BrakeTime        1.5}
+			{StopTime         2.5} 
+			{TurnRadius         4} 
+			{TurnStop         0.7} 
+			{Gears     0.2 0.5 1.0}
+			{RearGears       0.3 0.5}
+		}
+		("fuelbag"
+			volume(200)
+			rate(50)
+			remain(200)
+		)
+	}
+	("chassis_add_light" speed(42))	
+	
+	{Extension "pz38g.mdl"}
+    ("animation_resume")
+	{extension "camouflage.ext"}
+
+	{bone "gun_rot"
+		("arena_turret_speed" args 0.01)
+		{limits -30 10}
+	}
+	{bone "turret"
+		("arena_turret_speed" args 0.01)
+	}
+	{bone "mgun"
+    	{limits 10}
+	}
+	{bone "mgun1"
+    	{limits 15}
+	}		
+}

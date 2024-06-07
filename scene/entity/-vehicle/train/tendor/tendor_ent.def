@@ -1,0 +1,32 @@
+{game_entity
+	(include "/properties/armor_arena.ext")
+	{collider "train"}
+	{obstacleID "unbreakable"}
+	{props "railway"}
+	{fogable never}
+
+	{mass 30000}
+	{Extension "tendor.mdl"}
+	{props "vehicle" "steel" "carriage" "train_part" "platform" "no_minimap_view"}
+
+	(define "v_body"
+		{volume "body%n"
+			{component "body"}
+			{tags "body" "body_armor%tag"}
+		}
+	)
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	("arena_armor_train" body(30) wheel(50) hp(1250))
+	{armor
+		("module_other" t(10))
+	}
+}

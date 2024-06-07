@@ -1,0 +1,69 @@
+;SDL
+
+
+(define "define_place"
+	{placer
+		{place "%place"
+			{Group "crew"}
+			{LinkBone "%place"}
+			{turnoff {sensor} {shadow}}
+		}
+	}
+)
+
+("define_place" place(place01))
+("define_place" place(place02))
+("define_place" place(place03))
+("define_place" place(place04))
+("define_place" place(place05))
+("define_place" place(place06))
+("define_place" place(place07))
+("define_place" place(place08))
+("define_place" place(place09))
+("define_place" place(place10))
+("define_place" place(place11))
+("define_place" place(place12))
+("define_place" place(place13))
+("define_place" place(place14))
+
+{boarder
+	{anm "doorright"
+		{forward	{begin	"board_HighArmor"} {end "idle_onboard_m"} {base "doorright"}}
+		{reverse 	{end	"emit_tank_1"} {base "doorright"}}
+	}
+	{anm "doorleft"
+		{forward	{begin	"board_HighArmor"} {end "idle_onboard_m"} {base "doorleft"}}
+		{reverse 	{end	"emit_tank_1"} {base "doorleft"}}
+	}
+}
+)
+
+(define "link"
+	{link "%door"	"%place"	{anm "%animation"} {forward putoff} {reverse puton}}
+)
+
+
+
+{boarder
+	{door "emit1"}
+	{door "emit2"}
+	{door "emit3"}
+	{door "emit4"}
+
+	("link" door(emit1) place(seat_m1) animation(doorleft))
+	("link" door(emit2) place(seat_m2) animation(doorright))
+	("link" door(emit3) place(seat_m3) animation(doorleft))
+	("link" door(emit4) place(seat_m4) animation(doorright))
+	("link" door(emit1) place(seat_m5) animation(doorleft))
+	("link" door(emit2) place(seat_m6) animation(doorright))
+	("link" door(emit3) place(seat_m7) animation(doorleft))
+	("link" door(emit4) place(seat_m8) animation(doorright))
+	("link" door(emit1) place(seat_m9) animation(doorleft))
+	("link" door(emit2) place(seat_m10) animation(doorright))
+	("link" door(emit3) place(seat_m11) animation(doorleft))
+	("link" door(emit4) place(seat_m12) animation(doorright))
+	("link" door(emit1) place(seat_m13) animation(doorleft))
+	("link" door(emit2) place(seat_m14) animation(doorright))
+}	
+
+

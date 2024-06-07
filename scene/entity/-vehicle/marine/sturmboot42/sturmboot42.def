@@ -1,0 +1,75 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/marine.inc"  scaleX(2.0) scaleY(1.0))
+ 	{targetSelector "tank_bullet"}
+	{Extension "sturmboot42.mdl"}
+	{mass 1500}
+	{patherid "shallow_water"}
+	{props "vehicle" "marine" "flag" "emit_on_sink" "explosion_throw_crew" "car"}
+
+	{extension "crew.ext"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_engine" n() t())
+    {volume "sticky01"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{volume "sticky02"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+    {volume "window01"
+        {tags "glass"}
+    }
+	{volume "window02"
+        {tags "glass"}
+    }
+	{volume "window03"
+        {tags "glass"}
+    }
+	
+	("arena_armor_marine_light" engine(5) body(10) hp(500))
+	{armor
+		("module_other"			t(4))
+	}
+
+	{extender "inventory"
+		{weapon "mgun"
+			{mask "weapon mgun"}
+		}
+		{Box
+			{size 5 6}
+			{item  "ammo mgun" 3600}
+			{item "mg34_vh" filled {user "mgun"}}
+		}
+	}	
+	{Weaponry
+		{place "mgun"
+			{LinkBone "mgun_aa"}
+			{LinkAnimation "off"}
+			{charger "gunner"}
+		}             
+	}
+	{chassis
+		(define "locomotion"
+			{MaxSpeed	25	}		; максимальная скорость, kmph
+			{StartTime	5	}		; время разгона до макс. скорости с 0, seconds
+			{BrakeTime	2	}		; время торможения с макс. скорости до 0, seconds
+			{StopTime 	2	}		; время остановки после отключения двигателя с макс. скорости до 0, seconds
+			{TurnRadius	3	}		; мин. радиус разворота, meter
+			{SplineRadius 3	}		; ограничение радиуса поворота на сплайнах, метров
+
+			{SteerOn	20	}
+			{SteerOff	40	}
+			{Gears 0.5 0.7 1.0} ; передаточные коэф-ты коробки передач
+			{RearGears 0.15 0.3} ; передаточные коэф-ты коробки передач
+		)
+	}
+	{extension "sensor.ext"}	
+}

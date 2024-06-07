@@ -1,0 +1,69 @@
+{game_entity
+	(include "/properties/tank_without_mgun.ext")
+	(include "/properties/shadow/tank.inc" scale(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(0.5))
+	{props "light" "-turret" "vision_lev03" "goliath"}
+
+	{collider "tank.light"}
+	{patherId "tank.light"}
+          
+	("v_body" n(01) t())      
+    ("v_body" n(02) t())  
+    ("v_body" n(03) t())
+    ("v_body" n(04) t()) 	
+	("arena_armor_light" turret(7 7 7 7) gun(10) engine(7 7 7 7) body(7 7 7 7) track(5) hp(100))
+	
+	{autooperatable 1}
+	{placer
+		{crew 0}
+	}
+	{extender "inventory"
+		{box
+			{clear}
+			{Size 1 1}
+			{weight 1}
+		}
+	}
+	{extender "stuff"
+		{item "goliath_stuff"}
+	}
+    {Weaponry
+		{place "gun"
+			{weapon "goliath_weapon" filled}
+			{foresight "foresight1"}
+			{basic}			
+		}
+	}
+	{mass 150}
+	{Chassis
+		("tank_trace" fx("tracks_sm") step(0.3) len(1))
+		{Locomotion ("locomotion")
+			{MaxSpeed	19}
+	  		{maxSpeedAtMaxTurn 5}	
+			{StartTime	1}
+			{BrakeTime	1}	
+			{StopTime	2.5}
+			{TurnRadius	2}
+   			{Gears  1}
+			{RearGears  1}
+		}
+		("fuelbag"
+			volume(25)
+			rate(10)
+			remain(35)
+		)
+	}
+	{Extension "goliath.mdl"}
+	{extension "sensor.ext"}		
+
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.12))
+	("support_bones_std" n(2) r(0.065))
+	("support_bones_std" n(3) r(0.065))
+	("support_bones_std" n(4) r(0.065))
+	("support_bones_std" n(5) r(0.065))
+	("support_bones_std" n(6) r(0.065))
+	("support_bones_std" n(1) r(0.12))
+}

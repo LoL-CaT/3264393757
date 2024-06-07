@@ -1,0 +1,216 @@
+{entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.2))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+	("bone_rotator")
+	{collider "tank.heavy"}
+	{props "heavy" "turret_rotator" "vision_lev06" "tnk_heavy" "ram_lvl9" "xmas_present_tank" "texmod_w_cw_gw_zw_zcw_zgw_cf_zcf_d_cd_zd_zcd_c_gc_zc_zgc" "muzzle_brake" "anm_tank"}
+	
+	{extender "enumerator"
+		{digit_folder "red"}
+	}
+	("trench_cannon_big")
+	("v_body" n(01) t(1))
+	("v_body" n(02) t())
+	("v_engine" n(01) t())
+	("v_engine" n(02) t())
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	("v_turret" n(03) t(1))
+	("v_gun" n(_rot) t(1))
+
+	("arena_armor_mantlet" t(120))
+	("shield" args 5)
+	("arena_armor_heavy" turret(100 82 80 40) gun(20) engine(40 80 80 40) body(150 80 80 40) track(30) hp(1100))
+	{armor
+		("module_body_heavy" n(1) body(150 80 100 80))
+		("module_turret_heavy"	turret(100) n(1) hp_k(0.95))
+		("module_gun_heavy" n(1) gun(50 50 50 300))
+		("module_other"	t(15))
+	}
+
+	{extender "shield"
+		{on}
+	}
+	{component "shieldl1" {tags "shield"}}
+	{component "shieldl2" {tags "shield"}}
+	{component "shieldl3" {tags "shield"}}
+	{component "shieldl4" {tags "shield"}}
+	{component "shieldl5" {tags "shield"}}
+	{component "shieldl6" {tags "shield"}}
+	{component "shieldl7" {tags "shield"}}
+	{component "shieldr1" {tags "shield"}}
+	{component "shieldr2" {tags "shield"}}
+	{component "shieldr3" {tags "shield"}}
+	{component "shieldr4" {tags "shield"}}
+	{component "shieldr5" {tags "shield"}}
+	{component "shieldr6" {tags "shield"}}
+	{component "shieldr7" {tags "shield"}}
+
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_sherman_left"} {end "vehicle_mgun_1hand"} {base "openleft"}}
+			{reverse 	{end	"emit_tank_2_hold"} {base "openleft"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_sherman_right"} {end "vehicle_mgun_1hand"} {base "openright"}}
+			{reverse 	{end	"emit_tank_2_hold"} {base "openright"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_HighArmor"} 	{end "idle_onboard"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_HighArmor"} {end "idle_onboard_l"}}
+			{reverse 	{end	"emit_body"}}
+		}
+		{anm "armor2"
+			{forward	{begin	"board_HighArmor"} {end "idle_onboard_r"}}
+			{reverse 	{end	"emit_body"}}
+		}
+	}
+
+	("crew_4_human")
+	("crew_human_visible"	place(gunner2)	door1(emit1) door2(emit2) visor(top))
+
+	("gunner_visible")
+
+	("seat_human" place(seat_l1) bone(seat01) door(emit3)  animation(armor1))
+	("seat_human" place(seat_r1) bone(seat02) door(emit4)  animation(armor2))
+	("seat_human" place(seat3)   bone(seat03) door(emit5)  animation(armor))
+	("seat_human" place(seat4)   bone(seat04) door(emit6)  animation(armor))
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(45)
+		repair_turret(45)
+		repair_gun(33)
+		repair_track(24)
+	)
+
+	{extender "inventory"
+		{weapon "mgun"
+		    {mask "weapon mgun"}
+	    }
+		{box
+			{clear}
+			("base_inventory")
+			{item "ammo mgun" 3000}
+			{item "ammo bullet88 ap ger pak43" 35}
+			{item "ammo bullet88 fg ger pak43" 35}
+			{item "ammo bullet88 apcr ger pak43" 2}			
+			{item "mg34_vh" filled {user "mgun"}}
+			{item "smoke gr" 6}
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "88mm_kwk43" filling "ammo bullet88 ap ger pak43" 1}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("abm_tank_cannon")
+			{basic}
+		}
+		{place "mgun"
+			{type "aa"}
+			{weapon}
+			{gunner "gunner2"}
+			{charger "gunner2"}
+			{LinkBone "mgun_vert"}
+			{LinkAnimation "off"}
+			("abm_mgun")
+			{basic}
+		}
+		{place "mgun2"
+			{type "coaxial"}
+			{weapon "mg34_vh" filled}
+			{gunner "gunner"}
+			{charger "gunner"}
+			{foresight "foresight5"}
+			("sequential_aim")
+			("abm_mgun")
+			{basic}
+		}
+		{place "mgun1"
+			{type "hull"}
+			{weapon "mg34_vh" filled}
+			{foresight "foresight4"}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_mgun")
+			{basic}
+		}
+		{place "smoke_gun"
+			{weapon "nhgf_smoke" filled}
+			{foresight "foresight_shooter"}
+;			{barrels 6}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("sequential_aim")
+			("abm_mgun")
+			{basic}
+		}
+	}
+
+	{mass 69800}
+	{Chassis
+		("tank_trace" fx("tracks_big") step(0.47) len(0.625))
+		{Locomotion ("locomotion")
+			{MaxSpeed	      38}
+			{maxSpeedAtMaxTurn 14.25}
+			{StartTime	       10}
+			{TurnTime	        15}
+			{TurnStart        2.1} 
+	    		{BrakeTime        0.5}
+     			{StopTime         1.5} 
+	    		{TurnRadius         7} 
+    			{TurnStop         0.7} 
+	    		{Gears      0.1 0.3 0.5 1.0}
+    			{RearGears       0.2 0.3}
+		}
+		("fuelbag"
+			volume(88)
+			rate(50)
+			remain(88)
+		)
+	}
+	("chassis_add_heavy" speed(38))
+	{sensor
+        {visor "main"
+            {vision "tank_heavy_gun"}
+			{bone "visor1"}
+        }
+		{visor "view-around"
+            {vision "tank_heavy_around"}
+			{bone "basis"}
+        }
+		{visor "driver"
+            {vision "tank_heavy_driver"}
+			{bone "visor2"}
+        }
+		{visor "top"
+            {vision "tank_heavy_top_mgun"}
+			{bone "turret_mgun"}
+        }
+    }
+	{Extension "pz6b.mdl"}
+    ("animation_resume")
+	{extension "camouflage.ext"}
+
+	{bone "turret_mgun"
+		("arena_turret_mgun_aa_speed" args 0.025)
+	}
+	{bone "gun_rot"
+		{limits -12 25}
+		{speed 0.007}
+	}
+	{bone "turret"
+		("arena_turret_speed" args 0.0083)
+	}
+	{bone "mgun"
+		{limits 15}
+		{speed2 80}
+	}
+}

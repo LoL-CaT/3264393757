@@ -1,0 +1,59 @@
+{actor
+	(include "/properties/railway.ext")
+	(include "/properties/shadow/marine.inc" scaleX(1.7) scaleY(0.9))
+	{props "vehicle" "steel" "train_part" "no_minimap_view"}
+	{mass 5000}
+	{Extension "cistern.mdl"}
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+	
+	{Volume "fuel"
+		{thickness hollow 4}
+		{tags "body_armor"}
+	}
+	{Volume "body"
+		{tags "body"}
+		{thickness 10}
+		{component "body"}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+
+	{component "fuel"}
+	{component "body"
+	}
+	{component "wheelleft1"
+	}
+	{component "wheelright1"
+	}
+	{component "wheelleft2"
+	}
+	{component "wheelright2"
+	}
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	(define "disable_touch"
+	{volume "%n"
+		{able {touch 0}}
+	}
+	)
+	("disable_touch" n(body01))
+	("disable_touch" n(body02))
+	("disable_touch" n(body03))
+	("disable_touch" n(fuel))
+	("disable_touch" n(cover))
+	("disable_touch" n(wheelleft1))
+	("disable_touch" n(wheelleft2))
+	("disable_touch" n(wheelright1))
+	("disable_touch" n(wheelright2))
+	("arena_armor_train" body(10) wheel(50) hp(1000))
+	{armor
+		("module_other" t(7))
+	}
+}

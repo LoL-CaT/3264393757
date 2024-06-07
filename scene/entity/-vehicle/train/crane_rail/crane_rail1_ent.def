@@ -1,0 +1,142 @@
+{game_entity
+	(include "/properties/armor_arena.ext")
+	{Simulation {Able 1}}
+	{IgnoreSaturation 1}
+	{obstacleID "tank"}
+	{collider "train"}
+
+	{lodclass "vehicle_large"}
+	{Extension "crane_rail.mdl"}
+	{mass 250000}
+	{props "steel" "vehicle" "obstacle_ignore_height" "railway" "turret_rotator" "crane_port" "one" "staged" "construction" "no_destroyed_stamp" "flag" "no_minimap_view"}
+
+	{Volume "body5"
+		{tags "body" "body_armor"}
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body7"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body6"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body8"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body4"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body3"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body2"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body1"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body9"
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body10"
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body11"
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+	{Volume "body12"
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "body" "body_armor"}
+	}
+
+	{Volume "turret4"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "turret" "turret_armor"}
+	
+	}
+	{Volume "turret4"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "turret" "turret_armor"}
+	}
+	{Volume "turret3"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "turret" "turret_armor"}	
+	}
+	{Volume "turret2"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "turret" "turret_armor"}	
+	}
+	{Volume "turret1"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "turret" "turret_armor"}	
+	}
+	{Volume "gun"
+		{Thickness 20}
+		{able {visible 0}}
+		{tags "gun_armor"}
+	}
+	{##component "body"
+		{RepairTime 25}
+	}
+	{##component "turret"
+		{RepairTime 25}
+	}
+	{armor
+		{health 1500}
+		{setting "wheel"
+		    {thickness 50}
+		    ("bullet_pass_default")
+		    {fragment_pass_threshold 1}
+		    {whole_wound}
+		    {volumes "wheel*"}
+		}
+		("module_gun_heavy"	gun(20) n())
+		("module_turret_heavy"	turret(20) n() hp_k(1))
+		("module_body_light"	body(40) n())
+	}
+}

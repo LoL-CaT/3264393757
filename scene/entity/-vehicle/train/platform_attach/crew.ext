@@ -1,0 +1,95 @@
+;SDL
+(define "define_place"
+	{placer
+		{place "%place"
+			{Group "crew"}
+			{LinkBone "%place"}
+			{turnoff {sensor} {shadow}}
+		}
+	}
+)
+
+("define_place" place(place01))
+("define_place" place(place02))
+("define_place" place(place03))
+("define_place" place(place04))
+("define_place" place(place05))
+("define_place" place(place06))
+("define_place" place(place07))
+("define_place" place(place08))
+("define_place" place(place09))
+("define_place" place(place10))
+("define_place" place(place11))
+("define_place" place(place12))
+
+
+{boarder
+		{anm "%name"
+			{forward	{begin	"board_HighArmor"} {end "idle_onboard_m"}}
+			{reverse 	{end	"emit_tank_1"}}
+		}
+	}
+)
+
+(define "link"
+	{link "%door"	"%place"	{forward putoff} {reverse puton}}
+)
+
+{Placer
+	{place "seat_m1" {group "passanger"} {linkbone "seat01"} {turnoff {sensor} {shadow}}}
+	{place "seat_m2" {group "passanger"} {linkbone "seat02"} {turnoff {sensor} {shadow}}}
+	{place "seat_m3" {group "passanger"} {linkbone "seat03"} {turnoff {sensor} {shadow}}}
+	{place "seat_m4" {group "passanger"} {linkbone "seat04"} {turnoff {sensor} {shadow}}}
+	{place "seat_m5" {group "passanger"} {linkbone "seat05"} {turnoff {sensor} {shadow}}}
+	{place "seat_m6" {group "passanger"} {linkbone "seat06"} {turnoff {sensor} {shadow}}}
+	{place "seat_m7" {group "passanger"} {linkbone "seat07"} {turnoff {sensor} {shadow}}}
+	{place "seat_m8" {group "passanger"} {linkbone "seat08"} {turnoff {sensor} {shadow}}}
+	{place "seat_m9" {group "passanger"} {linkbone "seat09"} {turnoff {sensor} {shadow}}}
+	{place "seat_m10" {group "passanger"} {linkbone "seat10"} {turnoff {sensor} {shadow}}}
+	{place "seat_m11" {group "passanger"} {linkbone "seat11"} {turnoff {sensor} {shadow}}}
+	{place "seat_m12" {group "passanger"} {linkbone "seat12"} {turnoff {sensor} {shadow}}}
+	{place "seat_m13" {group "passanger"} {linkbone "seat13"} {turnoff {sensor} {shadow}}}
+	{place "seat_m14" {group "passanger"} {linkbone "seat14"} {turnoff {sensor} {shadow}}}
+}
+
+{boarder
+	{door "emit1"}
+	{door "emit2"}
+	{door "emit3"}
+	{door "emit4"}
+
+	;{link "emit1" "node01" {anm "[fsm]"}}
+	;{link "emit2" "node02" {anm "[fsm]"}}
+	;{link "emit3" "node03" {anm "[fsm]"}}
+	;{link "emit4" "node04" {anm "[fsm]"}}
+
+	{link "emit1" "1"}
+	{link "emit2" "1"}
+	{link "emit3" "1"}
+	{link "emit4" "1"}
+	
+	{link "emit1" "2"}
+	{link "emit2" "2"}
+	{link "emit3" "2"}
+	{link "emit4" "2"}
+	
+	{link "emit1" "3"}
+	{link "emit2" "3"}
+	{link "emit3" "3"}
+	{link "emit4" "3"}
+	
+	("link" door(emit1) place(seat_m1))
+	("link" door(emit2) place(seat_m2))
+	("link" door(emit3) place(seat_m3))
+	("link" door(emit4) place(seat_m4))
+	("link" door(emit1) place(seat_m5))
+	("link" door(emit2) place(seat_m6))
+	("link" door(emit3) place(seat_m7))
+	("link" door(emit4) place(seat_m8))
+	("link" door(emit1) place(seat_m9))
+	("link" door(emit2) place(seat_m10))
+	("link" door(emit3) place(seat_m11))
+	("link" door(emit4) place(seat_m12))
+}	
+
+

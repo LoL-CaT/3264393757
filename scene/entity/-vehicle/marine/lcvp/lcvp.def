@@ -1,0 +1,125 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/marine.inc"  scaleX(2.5) scaleY(2.0))
+;	(include "/properties/selection/vehicle_elongate.inc" scalex(1.6) scaley(1.6))
+	{mass 15000}
+	{props "vehicle" "marine" "emit_on_sink" "open_with_land" "explosion_throw_crew" "car"}
+ 	{targetSelector "tank_bullet"}
+	{patherid "shallow_water_0"}
+
+	{extension "lcvp.mdl"}
+	{extension "crew.ext"}
+	{extension "sensor.ext"}	
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_engine" n() t())
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	("arena_armor_marine_light" engine(10) body(10) hp(750))
+	{armor
+		("module_other"			t(5))
+	}
+
+	{component "body_front"} ;to _x view
+	{component "body_rear"}
+
+	{extender "inventory"
+		{box
+			{size 5 6}
+			{item  "ammo hmgun" 5000}
+		}
+	}
+	{Weaponry
+		{place "mgun"
+			{weapon "browning" filled}
+			{type "aa"}
+			{gunner "gunner1"}
+			{charger "gunner1"}
+			{LinkBone "mgun_aa"}
+			{LinkAnimation "off"}
+			{basic}
+		}
+		{place "mgun1"
+			{weapon "browning" filled}
+			{type "aa"}
+			{gunner "gunner2"}
+			{charger "gunner2"}
+			{LinkBone "mgun_aa2"}
+			{LinkAnimation "off"}
+			{basic}
+		}
+	}
+	
+	{bone "turret_mgun"
+		{speed 0.015}
+	}
+	{bone "turret_mgun_rot"
+		{speed 0.015}
+	}
+	{bone "turret_mgun2"
+		{speed 0.015}
+	}
+	{bone "turret_mgun_rot2"
+		{speed 0.015}
+	}
+	{bone "basis"
+	    {bone "emit2"
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				139.034 	 -15 	 0
+			}
+		}
+		{bone "emit3"
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				139.034 	 15 	 0
+			}
+		}
+	}
+    (define "node"
+    	{bone "place%place"
+    	   {bone "node%place"}
+    	}
+    )
+	("node" place(01))
+	("node" place(02))
+	("node" place(03))
+	("node" place(04))
+	("node" place(05))
+	("node" place(06))
+	("node" place(07))
+	("node" place(08))
+	("node" place(09))
+	("node" place(10))
+	
+	{Extender "land_patch"
+		{on 0}
+		{updateEntities 0}
+		{noNormals}
+	}
+
+	{chassis
+		{Locomotion ("locomotion")
+			{TurnRadius	4}
+			{MaxSpeed	18	}
+			{StartTime	10	}
+			{BrakeTime	6	}
+			{TurnRadius	7}
+			{TurnTime		30}
+		}
+	}
+}

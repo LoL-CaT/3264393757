@@ -1,0 +1,57 @@
+{actor
+	(include "/properties/railway.ext")
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+    {mass 10000}
+    {props "-vehicle" "steel" "carriage" "platform" "train_part" "no_minimap_view" "anm_tank" "tradevan"}
+    {extension "crew.ext"}
+	{able "-select"}
+	{Extension "tradevan.mdl"}
+	{Placer
+	    {place "crate1"
+	    	{entity "wooden_box_06"}
+	    	{Linkbone "attach_crate_1"}
+	    	{obstacle disable}
+	    }
+	    {place "crate2"
+	    	{entity "crate3"}
+	    	{Linkbone "attach_crate_2"}
+	    	{obstacle disable}
+	    }
+	    {place "crate3"
+	    	{entity "crate5"}
+	    	{Linkbone "attach_crate_3"}
+	    	{obstacle disable}
+	    }
+    }
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	{volume "doorl"
+		{tags "body"}
+		{thickness 1}
+		{tags "body" "body_armor"}	
+	}
+	{volume "doorr"
+		{tags "body"}
+		{thickness 1}
+		{tags "body" "body_armor"}
+	}
+	("arena_armor_train" body(10) wheel(50) hp(1000))
+	{extender "inventory"
+		{box
+			{size 8 6}
+			{Weight 25000}
+		}
+	}
+}

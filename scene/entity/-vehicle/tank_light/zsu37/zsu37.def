@@ -1,0 +1,189 @@
+{actor
+	(include "/properties/tank_without_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.9))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	("bone_rotator")
+	{collider "tank.light"}
+	{props "light" "zenite" "turret_rotator" "flak" "vision_lev03" "open_wheelhouse" "art_spec" "ram_lvl3" "xmas_present_tank" "anm_tank_aa"}
+	{patherId "tank.light"}
+	{targetClass "light_tank" "bullet"}
+	{targetSelector "tank_autocannon_aa"}
+;	{extension "crew.ext"}
+	{extender "enumerator"}
+	
+	("v_body" n(01) t())
+	("v_body" n(03) t(1))
+	("v_body" n(04) t(2))
+	("v_engine" n(01) t())
+	("v_engine" n(02) t(1))
+	("v_gun" n(01) t())
+	("v_turret" n(01) t())
+	("v_gun" n(_rot) t())
+
+
+	("arena_armor_mantlet" t(15))
+	
+	("arena_armor_light" turret(15 15 8 0) gun(15) engine(45 15 15 10) body(10 15 10 15) track(15) hp(385))
+	{armor
+	    ("module_engine_light" n(1) engine(35 15 15 10))
+		("module_body_light" n(2) body(10 15 10 10))
+		("module_body_light" n(1) body(15))
+		("module_detail" n(1) t(4) vol("body02" "body03" "body05" "engine03" "engine04" "turret02" "turret03"))
+		("set_open_roof" name(turret))
+	}
+	
+	{component "engine"	
+		{RepairTime 10}
+	}
+	{component "turret"
+		{RepairTime 20}
+	}
+	{component "gun"
+		{RepairTime 15}
+	}
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_t34_driver"} {end "seat_gunner_stand"} {base "open_driver"}}
+			{reverse 	{end	"emit_t34_hold"} {base "close_driver"}}
+		}
+		{anm "charger"
+			{forward	{begin	"board_HighArmor"} {end "zenit_pointer_right"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "gunner"
+			{forward	{begin	"board_HighArmor"} {end "zenit_pointer_right"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "commander"
+			{forward	{begin	"board_HighArmor"} {end "seat_armor"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_lowArmor"} 	{end "idle_onboard_l"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_lowArmor"} 	{end "idle_onboard_r"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+	}
+
+	(define "crew_human"
+		{placer
+			{place "%place"
+				{group "crew"}
+				{linkbone "%place"}
+				{turnoff {sensor} {shadow}}
+				{visor "main"}
+			}
+		}
+		{boarder
+			{door "%door1"}
+			{door "%door2"}
+			{link "%door1" "%place" {anm "%place"} {forward putoff} {reverse puton}}
+			{link "%door2" "%place" {anm "%place"} {forward putoff} {reverse puton}}
+		}
+	)
+
+	{placer
+		{place "driver" {group "crew"} {visor "driver"}}
+	}
+	{boarder
+		{door "emit0"}
+		{door "emit1"}
+		{door "emit2"}
+		{link "emit0" "driver" {anm "driver"} {forward putoff} {reverse puton}}
+		{link "emit1" "commander" {anm "commander"} {forward putoff} {reverse puton}}
+		{link "emit2" "commander" {anm "commander"} {forward putoff} {reverse puton}}
+	}
+
+	{placer
+		{place "commander" {group "crew"} {visor "main"}}
+	}
+
+	("crew_human" place(gunner)	    door1(emit1) door2(emit2))
+	("crew_human" place(charger)	door1(emit2) door2(emit1))
+	("seat_human" place(seat_l1) bone(seat01) door(emit3)  animation(armor))
+	("seat_human" place(seat_r1) bone(seat02) door(emit4)  animation(armor1))
+	("seat_human" place(seat_r2) bone(seat03) door(emit5)  animation(armor1))
+
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(24)
+		repair_turret(24)
+		repair_gun(15)
+		repair_track(10)
+	)
+
+	
+
+	{extender "inventory"
+		{box
+			{item "bullet37 ap rus zenite" 150}
+			{item "bullet37 fg rus zenite" 150}
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "37mm_zsu37" filled}
+			("abm_zenite")
+		}
+	}
+	{mass 10500}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.32))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       44}
+			{maxSpeedAtMaxTurn 16.5}
+			{StartTime	       6}
+			{TurnTime	        4}
+			{TurnStart        1.5} 
+	    		{BrakeTime        1.5}
+     			{StopTime         2.5} 
+	    		{TurnRadius         4} 
+    			{TurnStop         0.7} 
+			{Gears     0.2 0.5 1.0}
+			{RearGears       0.3 0.5}
+		}
+		("fuelbag"
+			volume(238)
+			rate(50)
+			remain(238)
+		)
+	}
+	("chassis_add_light" speed(44))
+	{Extension "zsu37.mdl"}
+    ("animation_resume")
+	
+	{bone "turret"
+		("arena_turret_speed" args 0.0279)
+		{limits}		
+	}
+        {bone "gun_rot"
+		("arena_turret_speed" args 0.0179)
+        }
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.4))
+	("support_bones_std" n(2) r(0.27))
+	("support_bones_std" n(3) r(0.27))
+	("support_bones_std" n(4) r(0.27))
+	("support_bones_std" n(5) r(0.27))
+	("support_bones_std" n(6) r(0.27))
+	("support_bones_std" n(7) r(0.27))
+	("support_bones_std" n(8) r(0.27))
+
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator4" {bone "gun_rotator3"} {on}}
+	}
+}

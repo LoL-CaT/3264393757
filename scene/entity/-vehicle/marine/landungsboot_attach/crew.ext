@@ -1,0 +1,36 @@
+;SDL
+(define "define_place"
+	{placer
+		{place "%place"
+			{Group "crew"}
+			{LinkBone "%place"}
+			{turnoff {sensor} {shadow}}
+		}
+	}
+)
+
+("define_place" place(driver))
+("define_place" place(gunner1))
+("define_place" place(gunner2))
+
+{boarder
+	{door "emit1"}
+	{door "emit2"}
+	{door "emit3"}
+	{door "emit4"}
+
+	{link "emit3"	"driver"	{forward putoff} {reverse puton} {anm "driver"}}
+	{link "emit2"	"gunner1"	{forward putoff} {reverse puton} {anm "gunner"}}
+	{link "emit1"	"gunner2"	{forward putoff} {reverse puton} {anm "gunner"}}
+
+	{anm "driver"
+		{forward 	{begin "board_torpedo_boat"} {end "seat_driver_car"}}
+		{reverse 	{end	"board_torpedo_boat" -1}}
+	}
+	{anm "gunner"
+		{forward 	{begin "board_torpedo_boat"} {end "seat_m7_mgunner"}}
+		{reverse 	{end	"board_torpedo_boat" -1}}
+	}
+}
+
+

@@ -1,0 +1,47 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.9))
+;	(include "/properties/selection/vehicle_elongate.inc" scalex(0.9) scaley(0.6))
+	(include "/properties/selection/vehicle.inc" scale(1.0))
+	{mass 100}
+	(define "armor_light" arg 0.01)
+	{chassis
+		{waterline -0.1}
+		(define "locomotion"
+			{MaxSpeed	25	}		; максимальная скорость, kmph
+			{StartTime	5	}		; время разгона до макс. скорости с 0, seconds
+			{BrakeTime	2	}		; время торможения с макс. скорости до 0, seconds
+			{StopTime 	2	}		; время остановки после отключения двигателя с макс. скорости до 0, seconds
+			{TurnRadius	3	}		; мин. радиус разворота, meter
+			{SplineRadius 3	}		; ограничение радиуса поворота на сплайнах, метров
+
+			{SteerOn	20	}
+			{SteerOff	40	}
+			{Gears 0.5 0.7 1.0} ; передаточные коэф-ты коробки передач
+			{RearGears 0.15 0.3} ; передаточные коэф-ты коробки передач
+		)
+	}
+
+	{patherid "shallow_water"}
+;	{props "vehicle" "marine" "flag"}
+	{props "vehicle" "marine" "flag" "emit_on_sink" "explosion_throw_crew" "air-bag" "-steel"}
+	{Volume "ballast"
+		{tags "float"}
+		{Able clear {float}}
+	}
+	{Volume "body"
+		{tags "body"}
+		{component "body"}
+		{thickness 1}
+	}
+	{Volume "engine"
+		{tags "body"}
+		{component "body"}
+		{thickness 1}
+	}
+	{component "body"}
+	{extension "crew.ext"}
+	{extension "sensor.ext"}	
+	{Extension "flobsack_34.mdl"}
+
+}

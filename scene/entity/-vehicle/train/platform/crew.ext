@@ -1,0 +1,133 @@
+;SDL
+{Placer
+	{place "crate1"
+		{entity "wooden_box_06"}
+		{Linkbone "attach_crate_1"}
+		{obstacle disable}
+	}
+	{place "crate2"
+		{entity "brick_stack_001_g2"}
+		{Linkbone "attach_crate_2"}
+		{obstacle disable}
+	}
+	{place "crate3"
+		{entity "brick_stack_003_g2"}
+		{Linkbone "attach_crate_3"}
+		{obstacle disable}
+	}
+	{place "crate4"
+		{entity "bags_big_01"}
+		{Linkbone "attach_crate_4"}
+		{obstacle disable}
+	}
+	{place "crate5"
+		{entity "wooden_box_05"}
+		{Linkbone "attach_crate_5"}
+		{obstacle disable}
+	}
+	{place "crate6"
+		{entity "wooden_box_05"}
+		{Linkbone "attach_crate_6"}
+		{obstacle disable}
+	}
+	{place "crate7"
+		{entity "wooden_box_05"}
+		{Linkbone "attach_crate_7"}
+		{obstacle disable}
+	}
+	{place "crate8"
+		{entity "crate3"}
+		{Linkbone "attach_crate_8"}
+		{obstacle disable}
+	}
+	{place "crate9"
+		{entity "crate5"}
+		{Linkbone "attach_crate_9"}
+		{obstacle disable}
+	}
+}
+
+(define "define_place"
+	{placer
+		{place "%place"
+			{Group "crew"}
+			{LinkBone "%place"}
+			{turnoff {sensor} {shadow}}
+		}
+	}
+)
+("define_place" place(place01))
+("define_place" place(place02))
+("define_place" place(place03))
+("define_place" place(place04))
+("define_place" place(place05))
+("define_place" place(place06))
+("define_place" place(place07))
+("define_place" place(place08))
+("define_place" place(place09))
+("define_place" place(place10))
+("define_place" place(place11))
+("define_place" place(place12))
+("define_place" place(place13))
+("define_place" place(place14))
+
+;(define "board_animation"
+;	{boarder
+;		{anm "%name"
+;			{forward	{begin	"board_HighArmor"} {end "idle_onboard_m"}}
+;			{reverse 	{end	"emit_tank_1"}}
+;		}
+;	}
+;)
+;
+;(define "link"
+;	{link "%door"	"%place"	{anm "%animation"} {forward putoff} {reverse puton}}
+;)
+;
+;{placer
+;	{place "seat_m1" {group "passanger"} {linkbone "seat01"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m2" {group "passanger"} {linkbone "seat02"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m3" {group "passanger"} {linkbone "seat03"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m4" {group "passanger"} {linkbone "seat04"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m5" {group "passanger"} {linkbone "seat05"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m6" {group "passanger"} {linkbone "seat06"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m7" {group "passanger"} {linkbone "seat07"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m8" {group "passanger"} {linkbone "seat08"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m9" {group "passanger"} {linkbone "seat09"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m10" {group "passanger"} {linkbone "seat10"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m11" {group "passanger"} {linkbone "seat11"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m12" {group "passanger"} {linkbone "seat12"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m13" {group "passanger"} {linkbone "seat13"} {turnoff {sensor} {shadow}}}
+;	{place "seat_m14" {group "passanger"} {linkbone "seat14"} {turnoff {sensor} {shadow}}}
+;}
+;
+;{boarder
+;	{door "emit1"}
+;	{door "emit2"}
+;	{door "emit3"}
+;	{door "emit4"}
+;	{door "emit5"}
+;	{door "emit6"}
+;	{door "emit7"}
+;	{door "emit8"}
+;	{door "emit9"}
+;	{door "emit10"}
+;	{door "emit11"}
+;	{door "emit12"}
+;	{door "emit13"}
+;	{door "emit14"}
+;	("link" door(emit1) place(seat_m1))
+;	("link" door(emit2) place(seat_m2))
+;	("link" door(emit3) place(seat_m3))
+;	("link" door(emit4) place(seat_m4))
+;	("link" door(emit5) place(seat_m5))
+;	("link" door(emit6) place(seat_m6))
+;	("link" door(emit7) place(seat_m7))
+;	("link" door(emit8) place(seat_m8))
+;	("link" door(emit9) place(seat_m9))
+;	("link" door(emit10) place(seat_m10))
+;	("link" door(emit11) place(seat_m11))
+;	("link" door(emit12) place(seat_m12))
+;	("link" door(emit13) place(seat_m13))
+;	("link" door(emit14) place(seat_m14))
+;}	

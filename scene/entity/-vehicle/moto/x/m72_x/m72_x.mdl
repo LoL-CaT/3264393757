@@ -1,0 +1,254 @@
+;Exported by:	 KobaA
+;Date:			 05.10.2022 15:31:09
+;File:			 G:\gem2-mdl-soldiers\models\unit\vehicle\bmw_r75_ussr\bmw_r75_ussr_x.max
+{skeleton
+	{bone "basis"
+		{parameters "wheelradius=0.32;steermax=30;"}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{matrix34
+				0 	 1 	 0
+				-0.8706 	 0 	 -0.492
+				-0.492 	 0 	 0.8706
+				7.66 	 10.31 	 15.6458
+			}
+			{LODView
+				{poly "body"}
+				{poly "body_lod1"}
+				{poly "body_lod2"}
+				{poly "body_lod3"}
+			}
+			{bone "body1"
+				{parameters "id=body;"}
+				{matrix34
+					-1 	 0 	 0
+					0 	 -0.8706 	 -0.492
+					0 	 -0.492 	 0.8706
+					-14.8705 	 13.7274 	 2.6209
+				}
+				{LODView
+					{poly "body1"}
+					{poly "body1_lod1"}
+					{poly "body1_lod2"}
+					{poly "body1_lod3"}
+				}
+				{bone "skin_ressora_l"
+					{matrix34
+						0 	 1 	 0
+						-1 	 0 	 0
+						0 	 0 	 1
+						-6.2354 	 -11.9795 	 -1.6329
+					}
+				}
+				{bone "skin_ressora_r"
+					{matrix34
+						0 	 1 	 0
+						-1 	 0 	 0
+						0 	 0 	 1
+						6.0455 	 -11.9795 	 -1.6329
+					}
+				}
+			}
+			{bone "mass_centre"
+				{matrix34
+					0 	 -0.8706 	 -0.492
+					1 	 0 	 0
+					0 	 -0.492 	 0.8706
+					-20.5467 	 25.5935 	 2.3689
+				}
+			}
+			{bone "wheel_chair_ressora"
+				{parameters "id=wheel_chair;"}
+				{matrix34
+					1 	 0 	 0
+					0 	 0.8706 	 0.492
+					0 	 -0.492 	 0.8706
+					0 	 0 	 0
+				}
+				{LODView
+					{poly "wheel_chair_ressora"}
+					{poly "wheel_chair_ressora_lod1"}
+					{poly "wheel_chair_ressora_lod2"}
+					{poly "wheel_chair_ressora_lod3"}
+				}
+			}
+		}
+		{bone "pivot_back"
+			{parameters "lastpose=undefined;"}
+			{Position -13.0962 	 -3.0767 	 6.1726}
+			{bone revolute "wheel3"
+				{parameters "id=wheel3;"}
+				{matrix34
+					-1 	 0 	 0
+					0 	 0 	 1
+					0 	 1 	 0
+					2.01 	 -10.6817 	 0.2314
+				}
+				{LODView
+					{poly "wheel3"}
+					{poly "wheel3_lod1"}
+					{poly "wheel3_lod2"}
+					{poly "wheel3_lod3"}
+				}
+			}
+			{bone revolute "wheel2"
+				{parameters "id=wheel2;"}
+				{matrix34
+					-1 	 0 	 0
+					0 	 0 	 1
+					0 	 1 	 0
+					-2.2208 	 13.3938 	 0.2314
+				}
+				{LODView
+					{poly "wheel2"}
+					{poly "wheel2_lod1"}
+					{poly "wheel2_lod2"}
+					{poly "wheel2_lod3"}
+				}
+			}
+		}
+		{bone "pivot_front"
+			{Position 15.211 	 9.9698 	 6.1726}
+			{bone revolute "steer"
+				{parameters "id=body;"}
+				{matrix34
+					-0.866 	 0 	 -0.5
+					0 	 1 	 0
+					0.5 	 0 	 -0.866
+					-5.233 	 0.3402 	 8.504
+				}
+				{LODView
+					{poly "steer"}
+					{poly "steer_lod1"}
+					{poly "steer_lod2"}
+					{poly "steer_lod3"}
+				}
+				{bone revolute "wheel1"
+					{parameters "id=wheel1;"}
+					{matrix34
+						0.866 	 0 	 -0.5
+						-0.5 	 0 	 -0.866
+						0 	 1 	 0
+						-0.3496 	 0.0058 	 9.8415
+					}
+					{LODView
+						{poly "wheel1"}
+						{poly "wheel1_lod1"}
+						{poly "wheel1_lod2"}
+						{poly "wheel1_lod3"}
+					}
+				}
+				{bone "ressora"
+					{parameters "id=body;"}
+					{matrix34
+						0.1322 	 0 	 -0.9912
+						0 	 1 	 0
+						0.9912 	 0 	 0.1322
+						-0.3497 	 0.0059 	 9.8415
+					}
+					{LODView
+						{poly "ressora"}
+						{poly "ressora_lod1"}
+						{poly "ressora_lod2"}
+						{poly "ressora_lod3"}
+					}
+				}
+			}
+		}
+	}
+}
+{volume "body01"
+	{polyhedron}
+	{bone "body1"}
+	{matrix34
+		0 	 1 	 0
+		-1 	 0 	 0
+		0 	 0 	 1
+		-0.1485 	 -11.1361 	 -2.5554
+	}
+}
+{volume "body02"
+	{box 10.1875 8.38516 0.657663}
+	{bone "body1"}
+	{matrix34
+		0 	 0.9962 	 -0.0872
+		-1 	 0 	 0
+		0 	 0.0872 	 0.9962
+		-0.1016 	 2.3736 	 -4.1734
+	}
+}
+{volume "body03"
+	{polyhedron}
+	{bone "body1"}
+	{matrix34
+		0 	 1 	 0
+		-1 	 0 	 0
+		0 	 0 	 1
+		-0.896 	 14.2253 	 -4.8614
+	}
+}
+{volume "engine"
+	{box 13.8334 5.40231 6.07388}
+	{bone "body"}
+	{matrix34
+		0 	 -0.8706 	 -0.492
+		1 	 0 	 0
+		0 	 -0.492 	 0.8706
+		0.0085 	 11.1568 	 -3.0512
+	}
+}
+{volume "fuel"
+	{box 4.91422 8.18293 4.4655}
+	{bone "body"}
+	{matrix34
+		1 	 0 	 0
+		0 	 0.9659 	 0.2588
+		0 	 -0.2588 	 0.9659
+		0 	 5.7513 	 1.9942
+	}
+}
+{volume "steer"
+	{box 1.8849 6.94826 15.3694}
+	{bone "steer"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 1 	 0
+		0 	 0 	 -1
+		-0.2492 	 0.0084 	 2.2914
+	}
+}
+{volume "wheel1"
+	{cylinder 6.29921 4.87205}
+	{bone "wheel1"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		0 	 0 	 -0.0583
+	}
+}
+{volume "wheel2"
+	{cylinder 6.48282 4.92126}
+	{bone "wheel2"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		0 	 0 	 -0.088
+	}
+}
+{volume "wheel3"
+	{cylinder 6.48282 4.92126}
+	{bone "wheel3"}
+	{matrix34
+		-1 	 0 	 0
+		0 	 -1 	 0
+		0 	 0 	 1
+		0 	 0 	 -0.0342
+	}
+}

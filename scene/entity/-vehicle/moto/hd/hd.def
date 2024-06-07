@@ -1,0 +1,134 @@
+;SDL
+{
+	(include "/properties/moto.ext")
+	(include "/properties/shadow/moto.inc"  scX(0.5) scY(0.6) psfX(-7) psfY(0))
+	(include "/properties/selection/vehicle.inc"  scale(0.7))
+	{props "explosion_throw_crew" "turn_over" "vision_lev00" "texmod_w_cf_cd" "anm_moto"}
+	{able "-emit_on_attack"}
+	{patherId "moto"}
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+	{volume "engine"
+		{component "body"}
+		{tags "body"}
+	}
+	{volume "body01"
+		{component "body"}
+		{tags "body"}
+	}
+	{volume "body02"
+		{component "body"}
+		{tags "body"}
+	}
+	{volume "body03"
+		{component "body"}
+		{tags "body"}
+	}
+	{volume "steer"
+		{component "body"}
+		{tags "body"}
+	}
+	{volume "spare"
+		{tags "wheel"}
+	}
+	("wheel" args "wheel1")
+	("wheel" args "wheel2")
+	("wheel" args "wheel3")
+
+	{Placer
+		{place "driver" {Group "driver"} {LinkBone "driver"} {visor "crew"} {turnoff {sensor}{shadow}}}
+		{place "gunner" {Group "driver"} {LinkBone "gunner"}	{visor "main"} {turnoff {sensor}{shadow}}}
+		{place "passenger" {Group "driver"} {LinkBone "passenger"} {turnoff {sensor}{shadow}}}
+	}
+	{boarder
+		{door "emit1"}
+		{door "emit2"}
+		{door "emit3"}
+
+		{anm "driver" {forward  {end "moto_driver"}}}
+		{anm "gunner" {forward  {end "moto_gunner"}}}
+		{anm "passenger" {forward  {end "moto_passanger"}}}
+
+		{link "emit1" "driver"    {anm "driver"} {forward putoff} {reverse puton}}
+		{link "emit2" "passenger" {anm "passenger"} {forward putoff} {reverse puton}}
+		{link "emit3" "gunner"	  {anm "gunner"} {forward putoff} {reverse puton}}
+	}
+
+	{extender "inventory"
+		{weapon "mgun"
+			{mask "weapon mgun"}
+		}
+		{Box
+			{clear}
+			{item "mgun" "ammo" 600 {cell 0 0}}
+			{item "repair_kit" {cell 2 0}}
+			{item "browning_m19_vh_car" filled {user "mgun"}}
+		}
+	}
+	{Weaponry
+		{place "mgun"
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			{charger "gunner"}
+			("abm_mgun")
+		}
+	}  	
+	{armor {health 105}}
+	{targetClass "car"}
+	{targetSelector "moto"}
+	{sensor
+		{Visor "main"
+			{vision "moto_main_mgun"}
+			{bone "gun_rot"}
+		}
+		{Visor "crew"
+			{vision "moto_driver"}
+			{bone "headlight"}
+		}
+		{visor "view-around"
+			{vision "moto_around"}
+			{bone "basis"}
+		}
+	}
+	{mass 162}
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed	49	}
+			; максимальная скорость, kmph
+			{maxSpeedAtMaxTurn 60}	
+			{StartTime	3	}		; время разгона до макс. скорости с 0, seconds
+			{BrakeTime	2	}		; время торможения с макс. скорости до 0, seconds
+			{StopTime	2	}		; время остановки после отключения двигателя с макс. скорости до 0, seconds
+			{TurnRadius	5}		; мин. радиус разворота, meter
+			{Gears		0.35 0.5 0.7 1.0} ; передаточные коэф-ты коробки передач
+			{RearGears	0.25}; 0.5}	; передаточные коэф-ты коробки передач
+			{SteerOn	30}			; скорость поворота колес, градусов в секунду
+			{SteerOff	40}         ; скорость возврата колес в исх. состояние, градусов в секунду
+			{SplineRadius 2}		; ограничение радиуса поворота на сплайнах, метров
+		}
+		("fuelbag"
+			volume(200)
+			rate(50)
+			remain(200)
+		)
+		("car_trace" fx("tracewheel04") step(0.08) wheell("wlr") wheelr("wrr") bonel("FXtraceL2") boner("FXtraceR2"))
+		{MaxTrailerMass 2250}
+		{speed
+			{Slow	7	}	; km/h
+		}
+	}
+	("chassis_add" speed(120))
+
+	{Extension "hd.mdl"}
+	{bone "gun_rot"
+		{limits -45 45}
+		{speed 0.05}
+	}
+	{bone "mgun"
+		{limits -18 10}
+		{speed 0.05}
+	}
+}

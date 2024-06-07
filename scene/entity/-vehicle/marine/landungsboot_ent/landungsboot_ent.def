@@ -1,0 +1,100 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/marine.inc"  scaleX(2.5) scaleY(2.0))
+;	(include "/properties/selection/vehicle_elongate.inc" scalex(1.6) scaley(1.6))
+	{mass 15000}
+	{props "vehicle" "marine"  "emit_on_sink" "explosion_throw_crew" "flag" "open_with_land"}
+ 	{targetSelector "cannon_shell_aa"}
+	{patherid "shallow_water_0"}
+
+	{extension "landungsboot_ent.mdl"}
+	{extension "crew.ext"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	("v_body" n(10) t())
+	("v_body" n(11) t())
+	("v_body" n(12) t())
+	("v_body" n(13) t())
+	("v_body" n(14) t())
+	("v_body" n(15) t())
+	("v_body" n(16) t())
+	("v_body" n(17) t())
+	("v_body" n(18) t())
+	("v_body" n(19) t())
+	("v_engine" n() t())
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{Volume "ballast"
+		{tags "float"}
+		{Able clear {float}}
+	}
+	("arena_armor_marine_light" engine(10) body(10) hp(1000))
+	{armor
+		("module_gun_light"		gun(7) n())
+		("module_gun_medium"		gun(7) n(1))
+		("module_other"			t(5))
+	}
+
+	{component "body_front"} ;to _x view
+	{component "body_rear"}
+
+	{extender "inventory"
+		{box
+			{item "sandbag_kit2"}	
+			{item "repair_kit"}
+		}
+	}
+
+	{sensor
+		{Visor "main"
+			{bone "visor1"}
+		}
+	}
+	
+	{bone "basis"
+	    {bone "emit2"
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				139.034 	 -15 	 0
+			}
+		}
+		{bone "emit3"
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				139.034 	 15 	 0
+			}
+		}
+	}
+	
+	{Extender "land_patch"
+		{on 0}
+		{updateEntities 0}
+		{noNormals}
+	}
+
+	{chassis
+		{Locomotion ("locomotion")
+			{TurnRadius	4}
+			{MaxSpeed	18	}
+			{StartTime	10	}
+			{BrakeTime	6	}
+			{TurnRadius	7}
+			{TurnTime		30}
+		}
+	}
+}

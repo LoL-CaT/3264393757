@@ -1,0 +1,218 @@
+;Exported by	: KobaA
+;Date			: 04.04.2023 12:28:20
+;File			: D:\git\gem2-mdl-soldiers\models\unit\vehicle\LCVP\LCVP_x.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "body"
+			{parameters "id=body;"}
+			{Position 0 	 0 	 13.1242}
+			{poly "body" {lod 0}}
+			{poly "body_lod1" {lod 1}}
+			{poly "body_lod2" {lod 2}}
+			{poly "body_lod3" {lod 3 {last}}}
+			{bone revolute "steer"
+				{parameters "id=body;"}
+				{matrix34
+					1 	 0 	 0
+					0 	 -1 	 0
+					0 	 0 	 -1
+					-17.4421 	 18.2741 	 14.3931
+				}
+				{poly "steer" {lod 0}}
+				{poly "steer_lod1" {lod 1}}
+				{poly "steer_lod2" {lod 2}}
+				{poly "steer_lod3" {lod 3 {last}}}
+			}
+			{bone "fx_fire1"
+				{matrix34
+					0 	 0 	 1
+					0 	 1 	 0
+					-1 	 0 	 0
+					-87.6544 	 0 	 6.2188
+				}
+			}
+			{bone "pivot_back"
+				{Position -74.0318 	 0 	 -7.5578}
+			}
+			{bone "pivot_front"
+				{Position 61.2125 	 0 	 -7.5578}
+			}
+			{bone "door"
+				{parameters "id=body;"}
+				{Position 98.4189 	 -0.0539 	 -6.9175}
+				{poly "door" {lod 0}}
+				{poly "door_lod1" {lod 1}}
+				{poly "door_lod2" {lod 2}}
+				{poly "door_lod3" {lod 3 {last}}}
+			}
+			{bone "rope"
+				{parameters "id=body;"}
+				{Position 72.3353 	 0 	 0}
+				{poly "rope" {lod 0}}
+				{poly "rope_lod1" {lod 1}}
+				{poly "rope_lod2" {lod 2}}
+				{poly "rope_lod3" {lod 3 {last}}}
+			}
+			{bone revolute "turret_mgun"
+				{parameters "id=body;"}
+				{speed 0.005}
+				{Position -61.16 	 16.1815 	 14.328}
+				{poly "turret_mgun" {lod 0}}
+				{poly "turret_mgun_lod1" {lod 1}}
+				{poly "turret_mgun_lod2" {lod 2}}
+				{poly "turret_mgun_lod3" {lod 3 {last}}}
+				{bone revolute "turret_mgun_rot"
+					{parameters "id=body;"}
+					{limits -15 40}
+					{speed 0.05}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						7.6177 	 -0.1263 	 8.0535
+					}
+					{poly "turret_mgun_rot"}
+					{bone "mgun_aa"
+						{Position 0.2608 	 -0.846 	 -0.0978}
+					}
+				}
+			}
+			{bone revolute "turret_mgun2"
+				{parameters "id=body;"}
+				{speed 0.005}
+				{Position -61.16 	 -16.4973 	 14.328}
+				{poly "turret_mgun2" {lod 0}}
+				{poly "turret_mgun2_lod1" {lod 1}}
+				{poly "turret_mgun2_lod2" {lod 2}}
+				{poly "turret_mgun2_lod3" {lod 3 {last}}}
+				{bone revolute "turret_mgun_rot2"
+					{parameters "id=body;"}
+					{limits -15 40}
+					{speed 0.03}
+					{matrix34
+						1 	 0 	 0
+						0 	 0 	 1
+						0 	 -1 	 0
+						7.6178 	 -0.1263 	 8.0535
+					}
+					{poly "turret_mgun_rot2"}
+					{bone "mgun_aa2"
+						{Position 0.2608 	 -0.846 	 -0.0608}
+					}
+				}
+			}
+		}
+	}
+}
+{"volumes"
+	{"body01"
+		{polyhedron}
+		{bone "body"}
+		{Position 22.8774 	 0 	 -15.0619}
+	}
+	{"body02"
+		{polyhedron}
+		{bone "body"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0.9848 	 -0.1736
+			0 	 0.1736 	 0.9848
+			-1.3986 	 25.8805 	 -13.1242
+		}
+	}
+	{"body03"
+		{polyhedron}
+		{bone "body"}
+		{Position 19.4435 	 26.1571 	 13.8316}
+	}
+	{"body04"
+		{polyhedron}
+		{bone "body"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0.9848 	 0.1736
+			0 	 -0.1736 	 0.9848
+			-1.3986 	 -24.203 	 -13.1242
+		}
+	}
+	{"body05"
+		{polyhedron}
+		{bone "body"}
+		{Position 19.4435 	 -26.1571 	 13.8316}
+	}
+	{"body06"
+		{box 23.6701 34.8668 16.7698}
+		{bone "body"}
+		{Position -23.6367 	 7.7893 	 4.2516}
+	}
+	{"body07"
+		{box 0.984252 56.3543 44.6739}
+		{bone "door"}
+		{matrix34
+			-0.0698 	 0 	 -0.9976
+			0 	 1 	 0
+			0.9976 	 0 	 -0.0698
+			21.6528 	 0.0191 	 -2.086
+		}
+	}
+	{"body08"
+		{polyhedron}
+		{bone "body"}
+		{matrix34
+			0.9613 	 -0.2756 	 0
+			0.2756 	 0.9613 	 0
+			0 	 0 	 1
+			-71.4619 	 12.9034 	 8.8591
+		}
+	}
+	{"body09"
+		{polyhedron}
+		{bone "body"}
+		{matrix34
+			0.9613 	 -0.2756 	 0
+			0.2756 	 0.9613 	 0
+			0 	 0 	 1
+			-71.5752 	 -12.9033 	 8.8591
+		}
+	}
+	{"engine"
+		{polyhedron}
+		{bone "body"}
+		{Position -79.9738 	 0 	 -19.2263}
+	}
+	{"turret_mgun"
+		{cylinder 8.49094 8.4266}
+		{bone "turret_mgun"}
+		{Position 0.2841 	 -0.0346 	 -0.9775}
+	}
+	{"turret_mgun2"
+		{cylinder 8.49094 8.4266}
+		{bone "turret_mgun2"}
+		{Position 0.2841 	 0.0802 	 -0.9775}
+	}
+	{"turret_mgun_rot"
+		{box 0.590551 15.6048 9.89709}
+		{bone "turret_mgun_rot"}
+		{matrix34
+			0.891 	 0.454 	 0
+			0 	 0 	 -1
+			-0.454 	 0.891 	 0
+			2.3478 	 0.0683 	 -0.0927
+		}
+	}
+	{"turret_mgun_rot2"
+		{box 0.590551 15.6048 9.89709}
+		{bone "turret_mgun_rot2"}
+		{matrix34
+			0.891 	 0.454 	 0
+			0 	 0 	 -1
+			-0.454 	 0.891 	 0
+			2.3478 	 0.0683 	 -0.1284
+		}
+	}
+}

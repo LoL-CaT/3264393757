@@ -1,0 +1,65 @@
+{entity
+	(include "/properties/railway.ext")
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	{lodclass "vehicle_large"}
+	{mass 25000}
+	{props "vehicle" "steel" "turret_rotator" "train_part" "platform" "crane_m" "carriage" "no_minimap_view"}
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	("v_turret" n(03) t())
+	("v_turret" n(04) t())
+	("v_turret" n(05) t())
+	("v_turret" n(06) t())
+	("v_turret" n(07) t())
+	("v_gun" n(_rot_01) t())
+	("v_gun" n(_rot_02) t())
+	{armor
+		{health 1250}
+		{setting "wheel"
+		    {thickness 50}
+		    ("bullet_pass_default")
+		    {fragment_pass_threshold 1}
+		    {whole_wound}
+		    {volumes "wheel*"}
+		}
+		("module_gun_medium"	gun(20) n())
+		("module_turret_medium"	turret(20) n() hp_k(1))
+		("module_body_medium"	body(30) n())
+		("module_other" t(10))
+	}
+	{volume "wheelleft1"
+		{thickness 40}
+	}
+	{volume "wheelleft2"
+		{thickness 40}
+	}
+	{volume "wheelright1"
+		{thickness 40}
+	}
+	{volume "wheelright2"
+		{thickness 40}
+	}
+	{Extension "crane_m.mdl"}
+
+	{bone "turret"
+		{limits}
+		{speed 0.003}
+	}
+	{bone "gun_rot"
+		{limits -5 15}
+		{speed 0.01}
+	}
+	{extender "bone_rotator"
+		{"look_at.hook_rotator1" {bone "hook1"} {on}}
+		{"look_at.hook1" {bone "hook_rotator1"} {on}}
+		{"look_at.hook_rotator2" {bone "hook2"} {on}}
+		{"look_at.hook2" {bone "hook_rotator2"} {on}}
+	}
+}

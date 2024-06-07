@@ -1,0 +1,130 @@
+{actor
+	(include "/properties/tank_unarmed.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.9))
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	("bone_rotator")
+	{collider "tank.light"}
+	{props "light" "with_gun" "turret" "turret_rotator" "zenite" "light_turret" "vision_lev03" "art_spec" "level02" "open_wheelhouse" "art_spec" "ram_lvl3" "texmod_w_cf_d_c_gc" "toss_aside_the_sides" "anm_marder3"}
+	{targetClass "light_tank" "bullet"}
+	{targetSelector "tank_autocannon_aa"}
+	{extension "crew.ext"}
+	{patherId "tank.light"}
+    {extender "enumerator"}
+	("sandbags_pz35t")	
+	
+	("v_body" n(09) t(1))
+	("v_body" n(10) t(2))
+	("v_body" n(11) t(2))
+	("v_body" n(12) t(2))
+	("v_body" n(13) t(2))
+	("v_body" n(14) t(2))
+	("v_body" n(15) t())
+	("v_body" n(16) t(2))
+	("v_body" n(17) t(2))
+	("v_body" n(18) t(2))
+	("v_body" n(19) t(2))
+
+	("v_turret" n(01) t(1))
+	("v_turret" n(02) t(1))
+	("v_turret" n(03) t(1))
+
+    ("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(_rot01) t())
+	("v_gun" n(_rot02) t())
+
+	("v_engine" n(01) t())
+	{Volume "Fuel"
+		{thickness 1}
+	}
+	
+	("arena_armor_light" turret(7 5) gun(10) engine(8 13 13 8) body(13 13 8 8) track(15) hp(377))
+	{armor
+		("module_turret_light" n(1) turret(5) hp_k(0.5))
+		("module_body_light" n(1) body(8))
+		("module_body_light" n(2) body(13))
+		("set_open_roof" name(turret))
+		("module_other" t(4))
+	}
+	
+	("components_tank" 
+		repair_body(45)
+		repair_engine(21)
+		repair_turret(21)
+		repair_gun(12)
+		repair_track(8)
+	)
+
+	{extender "inventory"
+		{box
+			{item "bullet20 ap ger flak" 100}
+			{item "bullet20 fg ger flak" 100}
+			{item "sandbag_kit2"}			
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "20mm_flak38" filled}
+			("abm_auto_cannon")
+		}
+	}	
+
+;	{extender "cannon"
+;		{animation
+;			{aimers "cannon_flak38-1_gunlayer" ""}
+;			{gunners  "" "cannon_flak38-1_charger"}
+;		}
+;		{move {workers clear} {obstacle "close"}}
+;		{attack {workers "gunner" "charger"} {obstacle "open"}}
+;	}
+
+	("tracks")
+
+	{mass 5500}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.22))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       37}
+			{maxSpeedAtMaxTurn 13}
+			{StartTime	       6}
+			{TurnTime	        4}
+			{TurnStart        1.5} 
+	    		{BrakeTime        1}
+     			{StopTime         2} 
+	    		{TurnRadius         4} 
+    			{TurnStop         0.7} 
+			{Gears     0.2 0.5 1.0}
+			{RearGears       0.3 0.5}
+		}
+		("fuelbag"
+			volume(125)
+			rate(50)
+			remain(125)
+		)
+	}
+	("chassis_add_light" speed(37))	
+	
+	{Extension "pz1.mdl"}
+    ("animation_resume")
+	
+	{bone "gun_rot"
+		{limits -10 45}
+		("arena_turret_speed" args 0.0278)		
+	}
+	{bone "turret"
+		("arena_turret_speed" args 0.0278)
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.30))
+	("support_bones_std" n(2) r(0.29))
+	("support_bones_std" n(3) r(0.29))
+	("support_bones_std" n(4) r(0.29))
+	("support_bones_std" n(5) r(0.29))
+	("support_bones_std" n(6) r(0.29))
+
+
+}

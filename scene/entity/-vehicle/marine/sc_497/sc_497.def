@@ -1,0 +1,160 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/marine.inc"  scaleX(2.0) scaleY(1.0))
+ 	{targetSelector "cannon_shell_aa"}
+	{Extension "sc_497.mdl"}
+	{mass 98000}
+	{patherid "shallow_water"}
+	{props "vehicle" "marine" "flag" "emit_on_sink" "explosion_throw_crew" "flak" "barrel1" "turret_rotator" "turret2" "turret3" "turret4" "searchlight" "sc_497_anm" "car"}
+
+	{extension "crew.ext"}
+	{extension "sensor.ext"}	
+
+	("v_body" n(01) t())
+	("v_body" n(02) t(02))
+	("v_body" n(03) t(03))
+	("v_body" n(13) t())
+	("v_body" n(14) t())
+	("v_body" n(17) t())
+	("v_engine" n() t())
+	("v_gun" n() t())
+    ("v_gun" n(1) t())
+	("v_gun" n(2) t())
+	("v_gun" n(3) t())
+	("v_gun" n(4) t())
+	("v_gun" n(5) t())
+	("v_gun" n(6) t())
+	("v_gun" n(_rot_01) t())
+	("v_gun" n(_rot_02) t())
+	("v_gun" n(_rot2) t())
+	("v_gun" n(_rot3) t())
+	("v_gun" n(_rot4) t())
+	("v_gun" n(_rot5) t())
+	("v_gun" n(_rot6) t())
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	("v_turret" n(03) t())
+	("v_turret" n(04) t())
+	("v_turret" n(2) t())
+
+	("arena_armor_marine_heavy" gun(25) engine(30) turret(30) body(30) hp(2500))
+	{armor
+		("module_other"			t(4))
+	}
+	
+	{extender "inventory"
+		{box
+			{item "bullet40 ap ally bofors" 100}
+			{item "bullet40 fg ally bofors" 100}
+			{item "bullet20 ap ally oerlikon" 200}
+			{item "bullet20 fg ally oerlikon" 200}
+			{item "bullet90 ap usa std" 30}
+			{item "bullet90 fg usa std" 30}
+			{item "ammo calliope" 8}
+			{item "ammo calliope" 8}
+			{item "sandbag_kit2"}	
+			{item "repair_kit"}	
+		}
+	}	
+	{Weaponry
+		{place "gun2"
+			{weapon "90mm_m2" filled}
+			{foresight "foresight20"}
+			{gunner "gunner2"}
+			{charger "charger2"}
+			{basic}
+		}	
+		{place "gun"
+			{weapon "40mm_bofors" filled}
+			{gunner "gunner"}
+			{charger "charger"}
+			{basic}
+		}
+		{place "gun3"
+			{weapon "20mm_oerlikon" filled}
+			{foresight "foresight21"}
+			{gunner "gunner3"}
+			{charger "gunner3"}
+			{basic}
+		}
+		{place "gun4"
+			{weapon "20mm_oerlikon" filled}
+			{foresight "foresight22"}
+			{gunner "gunner4"}
+			{charger "gunner4"}
+			{basic}
+		}
+		{place "gun5"
+			{weapon "weapon calliope_16" filling "ammo calliope" 16}
+			{foresight "foresight23"}
+			{barrels 16}
+			{gunner "gunner5"}
+			{charger "gunner5"}
+			{basic}
+		}
+		{place "light"
+			{weapon "searchlight"}
+		}             
+	}
+	{chassis
+		(define "locomotion"
+			{MaxSpeed	12	}		; максимальная скорость, kmph
+			{StartTime	10	}		; время разгона до макс. скорости с 0, seconds
+			{BrakeTime	4	}		; время торможения с макс. скорости до 0, seconds
+			{StopTime 	4	}		; время остановки после отключения двигателя с макс. скорости до 0, seconds
+			{TurnRadius	15	}		; мин. радиус разворота, meter
+			{SplineRadius 3	}		; ограничение радиуса поворота на сплайнах, метров
+
+			{SteerOn	20	}
+			{SteerOff	40	}
+			{Gears 0.5 0.7 1.0} ; передаточные коэф-ты коробки передач
+			{RearGears 0.15 0.3} ; передаточные коэф-ты коробки передач
+		)
+	}
+
+	{bone "foresight1"  {bone "shooter16"}};for flash gun
+
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator4" {bone "gun_rotator3"} {on}}
+	}
+	{extender "light"
+		{lamp "1"}
+		{lightfx "light_search"}
+		{breakfx "glass_hit"}
+		{check_operatable}
+	}
+	{extender "bone_rotator"
+		{"watch.gun"}
+	}
+	{bone "turret"
+		{speed 0.015}
+	}
+	{bone "turret2"
+		{speed 0.015}
+	}
+	{bone "turret3"
+		{speed 0.015}
+	}
+	{bone "turret4"
+		{speed 0.015}
+	}
+	{bone "gun_rot"
+		{limits -20 15}
+		{speed 0.015}
+	}
+	{bone "gun_rot2"
+		{limits -4.5 82}
+		{speed 0.015}
+	}
+	{bone "gun_rot3"
+		{limits -30 15}
+		{speed 0.015}
+	}
+	{bone "gun_rot4"
+		{limits -30 15}
+		{speed 0.015}
+	}	
+}

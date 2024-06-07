@@ -1,0 +1,163 @@
+{entity
+	(include "/properties/tank_without_mgun.ext")
+	(include "/properties/shadow/tank.inc" scale(1.3))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+	{collider "tank.light"}
+	{props "light" "turret" "opened" "vision_lev03" "tank_hunt" "toss_aside_the_sides" "deploy_support" "level03" "open_wheelhouse" "ram_lvl2" "texmod_w_cf_cd" "anm_tank_cannon"}
+	{targetClass "light_tank"}
+	{patherId "tank.light"}
+	
+	
+	("v_body" n(01) t(01))
+	("v_body" n(02) t(02))
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(08) t(08))
+	("v_body" n(12) t(12))
+	("v_body" n(13) t())
+	("v_body" n(14) t(08))
+	("v_gun" n(_rot01) t(_rot))
+	("v_gun" n(_rot02) t(_rot))
+	("v_gun" n(_rot03) t(_rot))
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+
+	("arena_armor_light" turret(5) gun(20) engine(7) body(10 7 7 7) track(15) hp(288))
+	{armor
+		("module_body_light" n(01) body(10 7 7 10))
+		("module_body_light" n(02) body(10 7 7 5))
+		("module_body_light" n(08) body(7))
+		("module_body_light" n(12) body(10))
+		("module_gun_light"	n(_rot)		gun(5))
+		("module_other" t(4))
+		}
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_tank_left"} {base "doorleft"}}
+			{reverse 	{end	"emit_tank_2_hold"} {base "doorleft" -1}}
+		}
+		{anm "left"
+			{forward	{begin	"board_LowTank_stand_1"} {end "cannon_small_charger"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_LowTank_stand_1"} {end "cannon_small_commander"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "gunner2"
+			{forward	{begin	"board_tank_left"} {base "doorright"}}
+			{reverse 	{end	"emit_tank_2_hold"} {base "doorright" -1}}
+		}
+
+	}
+
+	{boarder
+		{door "emit1"}
+		{link "emit1" "driver" {anm "driver"} {forward putoff} {reverse puton}}
+		{door "emit2"}
+		{link "emit2" "gunner2" {anm "gunner2"} {forward putoff} {reverse puton}}
+
+	}
+	{placer 
+		{place "driver" {group "crew"} {visor "driver"}}
+		{place "gunner2" {group "crew"} {visor "main"}}
+	}
+	("crew_human_visible_anm"	place(charger) door1(emit4) visor(main) anm_left(left))
+	("crew_human_visible_anm"	place(gunner) door1(emit3) visor(main)anm_left(left)anm_right(right))
+	{placer 
+		{place "charger" {openForCrush 0}}
+		{place "gunner" {openForCrush 0}}
+	}
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(24)
+		repair_turret(24)
+		repair_gun(15)
+		repair_track(10)
+	)
+
+	{extender "inventory"
+		{box
+			{item "bullet57 ap rus std" 10}
+			{item "bullet57 fg rus std" 10}
+			{item "ammo mgun" 500}
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "57mm_zis30" filled}
+			("abm_tank_hunt")
+			{basic}	
+		}
+		{place "mgun1"
+			{type "hull"}
+			{weapon "dt_vh" filled}
+			{foresight "foresight4"}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_mgun")
+			{basic}
+		}
+	}
+
+	{mass 4000}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.27))
+		{Locomotion ("locomotion")
+			{MaxSpeed	40}
+			{maxSpeedAtMaxTurn 15}
+			{StartTime	       5}
+			{TurnTime	        4}
+			{TurnStart        1.5} 
+			{BrakeTime        1}
+			{StopTime         2} 
+			{TurnRadius         4} 
+			{TurnStop         0.7} 
+			{Gears     0.2 0.5 1.0}
+			{RearGears       0.3 0.5}
+		}
+		("fuelbag"
+			volume(150)
+			rate(50)
+			remain(150)
+		)
+	}
+	("chassis_add_light" speed(40))
+	{extension "zis_30.mdl"}
+    ("animation_resume")
+	{bone "gun_rot"
+		("arena_turret_speed" args 0.0042)
+		{limits -5 35}
+	}
+	{bone "turret"
+		{limits -21 21}
+		("arena_turret_speed" args 0.0042)
+	}
+	{bone "mgun_rot"
+		{limits 15}
+	}	
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.28))
+	("support_bones_std" n(2) r(0.225))
+	("support_bones_std" n(3) r(0.225))
+	("support_bones_std" n(4) r(0.225))
+	("support_bones_std" n(5) r(0.225))
+	("support_bones_std" n(6) r(0.22))
+
+	{extender "bone_rotator"
+		{"watch.turret"}
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator4" {bone "gun_rotator3"} {on}}
+	}
+}

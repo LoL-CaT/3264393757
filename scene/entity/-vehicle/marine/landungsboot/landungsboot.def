@@ -1,0 +1,199 @@
+{game_entity
+	(include "/properties/marine.ext")
+	(include "/properties/shadow/marine.inc"  scaleX(2.5) scaleY(2.0))
+;	(include "/properties/selection/vehicle_elongate.inc" scalex(1.6) scaley(1.6))
+	{mass 15000}
+	{props "vehicle" "marine"  "emit_on_sink" "explosion_throw_crew" "flag" "open_with_land"}
+	{props "with_gun" "with_gun2" "with_gun3" "turret" "turret2" "turret3" "turret_rotator" "car"}
+ 	{targetSelector "cannon_shell_aa"}
+	{patherid "shallow_water_0"}
+
+	{extension "landungsboot.mdl"}
+	{extension "crew.ext"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	("v_body" n(10) t())
+	("v_body" n(11) t())
+	("v_body" n(12) t())
+	("v_body" n(13) t())
+	("v_body" n(14) t())
+	("v_body" n(15) t())
+	("v_body" n(16) t())
+	("v_body" n(17) t())
+	("v_body" n(18) t())
+	("v_body" n(19) t())
+	("v_engine" n() t())
+	("v_gun" n() t(1))
+	("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(03) t())
+	("v_gun" n(04) t())
+	("v_gun" n(05) t())
+	("v_gun" n(06) t())
+	("v_gun" n(07) t())
+	("v_gun" n(08) t())
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{Volume "ballast"
+		{tags "float"}
+		{Able clear {float}}
+	}
+	("arena_armor_marine_light" engine(10) body(10) hp(1000))
+	{armor
+		("module_gun_light"		gun(7) n())
+		("module_gun_medium"		gun(7) n(1))
+		("module_other"			t(5))
+	}
+
+	{component "body_front"} ;to _x view
+	{component "body_rear"}
+
+	{extender "inventory"
+		{box
+			{item "bullet88 ap ger std" 50}
+			{item "bullet88 fg ger std" 50}
+			{item "bullet20 ap ger flak" 500}
+			{item "bullet20 fg ger flak" 500}
+			;{item "mg34_vh" filled {user "mgun"}}
+			{item "ammo mgun" 3000}
+			{item "sandbag_kit2"}	
+			{item "repair_kit"}
+		}
+	}
+
+	{Weaponry
+		{place "gun"
+			{weapon "88mm_flak18" filled}
+			{gunner "gunner"}
+			{charger "charger"}
+			{basic}
+		}
+		{place "gun2"
+			{weapon "20mm_flak38_x4_stan" filled}
+			{foresight "foresight20"}
+			{Barrels 4}
+			{gunner "gunner4"}
+			{charger "charger2"}
+			{basic}
+		}
+		{place "gun3"
+			{weapon "20mm_flak38_x4_stan" filled}
+			{foresight "foresight21"}
+			{Barrels 4}
+			{shooter "shooter2"}
+			{gunner "gunner3"}
+			{charger "charger4"}
+			{basic}
+		}
+		{place "mgun"
+			{type "aa"}
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			{weapon "mg42" filled}
+			{foresight "foresight22"}
+			{gunner "gunner5"}
+			{charger "gunner5"}
+			{basic}
+		}
+		{place "mgun1"
+			{type "aa"}
+			{LinkBone "mgun1"}
+			{LinkAnimation "off"}
+			{weapon "mg42" filled}
+			{foresight "foresight23"}
+			{gunner "gunner2"}
+			{charger "gunner2"}
+			{basic}
+		}
+	}
+	
+	{bone "basis"
+	    {bone "emit2"
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				139.034 	 -15 	 0
+			}
+		}
+		{bone "emit3"
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				139.034 	 15 	 0
+			}
+		}
+	}
+
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+
+		{"look_at.gun_rotator4" {bone "gun_rotator5"} {on}}
+		{"look_at.gun_rotator5" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator6"} {on}}
+		{"look_at.gun_rotator6" {bone "gun_rotator3"} {on}}
+
+		{"look_at.gun_rotator8" {bone "gun_rotator9"} {on}}
+		{"look_at.gun_rotator9" {bone "gun_rotator8"} {on}}
+		{"look_at.gun_rotator7" {bone "gun_rotator10"} {on}}
+		{"look_at.gun_rotator10" {bone "gun_rotator7"} {on}}
+	}
+	
+	{Extender "land_patch"
+		{on 0}
+		{updateEntities 0}
+		{noNormals}
+	}
+
+	{chassis
+		{Locomotion ("locomotion")
+			{TurnRadius	4}
+			{MaxSpeed	18	}
+			{StartTime	10	}
+			{BrakeTime	6	}
+			{TurnRadius	7}
+			{TurnTime		30}
+		}
+	}
+	{bone "turret"
+		{speed 0.015}
+	}
+	{bone "gun_rot"
+		{limits -4.5 82}
+		{speed 0.015}
+	}	
+	{bone "gun_rot2"
+		{limits -65 15}
+		{speed 0.01}
+	}
+	{bone "gun_rot3"
+		{limits -65 15}
+		{speed 0.01}
+	}
+	{bone "turret2"
+		{speed 0.015}
+	}	
+	{bone "turret3"
+		{speed 0.015}
+	}
+	{bone "turret4"
+		{speed 0.015}
+	}	
+	{bone "turret5"
+		{speed 0.015}
+	}
+	{extension "sensor.ext"}	
+}

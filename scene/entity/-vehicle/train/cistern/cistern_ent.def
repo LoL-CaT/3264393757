@@ -1,0 +1,49 @@
+{game_entity
+;	(include "/properties/railway.ext")
+	(include "/properties/armor_arena.ext")
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+    {mass 10000}
+    {props "-vehicle" "steel" "carriage" "platform" "train_part" "no_minimap_view" "cistern"}
+;	{able "select"}
+	{Extension "cistern.mdl"}
+	{obstacleID "tank"}
+	{collider "train"}
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+	
+	{Placer
+		{place "vehicle"
+			{Linkbone "attach_vehicle"}
+			{handlebone "basis"}
+			{attach}
+		}
+	}
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+;	("wheel" args "wheelright1")
+;	("wheel" args "wheelleft1")
+;	("wheel" args "wheelright2")
+;	("wheel" args "wheelleft2")
+
+	{Volume "fuel"
+	    {tags "fuel" "body_armor"}
+		{component "fuel"}
+	}
+	(define "v_body"
+		{volume "body%n"
+			{component "body"}
+			{tags "body" "body_armor%tag"}
+		}
+	)
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("arena_armor_train" body(10) wheel(50) hp(1000)) 	
+	{armor
+		("module_other" t(7))
+	}
+}

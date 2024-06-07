@@ -1,0 +1,145 @@
+{game_entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.2))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+
+	{collider "tank.heavy"}
+	{props "heavy" "-turret" "vision_lev06" "tank_hunt" "level06" "anm_tank_2h"}
+
+	("v_body" n(01) t())
+	("v_body" n(04) t(4))
+	;("v_body" n(05) t(5))
+	;("v_body" n(06) t(5))
+	("v_body" n(07) t(4))
+	("v_body" n(08) t(4))
+	("v_body" n(09) t(6))
+	("v_body" n(12) t(7))
+	("v_body" n(13) t(4))
+	("v_engine" n() t())
+
+	("arena_armor_spa_heavy" gun(35) engine(38.1 50.8 50.8 38.1) body(305 101.6 50.8 38.1) track(40) hp(1005))		
+	("arena_armor_mantlet" t(292.1))
+	{armor
+		("module_body_heavy" n(4) body(305 305 305 38.1))
+		
+		("module_body_heavy" n(6) body(305 50.8 38.1 38.1))
+		("module_body_heavy" n(7) body(133.35 50.8 38.1 38.1))
+		("module_detail_shield" 	n(1)	vol("body02" "body03")	t(101.6))
+		("module_detail_shield" 	n(2)	vol("body10" "body11")	t(25.4))
+		("module_detail_shield" 	n(3)	vol("body14")	t(305.0))
+        ("module_detail" n(4) vol("body05" "body06") t(76.2))
+	}
+	
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_Kv"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_Kv"} {end "seat_m7_mgunner"}}
+			{reverse 	{end	"emit_tank_2_hold"}}
+		}
+		{anm "crew"
+			{forward	{begin	"board_Kv"} {end "vehicle_mgun_2hand"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_Kv"} 	{end "idle_onboard_m"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_body"} 	{end "idle_onboard"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+	}
+	("crew_3_human")
+
+	("crew_human_visible_anm" place(gunner2)	door1(emit1) door2(emit2) anm_left(crew) anm_right(crew) visor(main))
+
+	("gunner_visible")
+
+	("seat_human" place(seat_m1) bone(seat01) door(emit3)  animation(armor))
+	("seat_human" place(seat_m2) bone(seat02) door(emit4)  animation(armor))
+	("seat_human" place(seat1) bone(seat03) door(emit5)  animation(armor1))
+	("seat_human" place(seat4) bone(seat04) door(emit6)  animation(armor1))
+
+
+	{extender "inventory"
+		{box
+			{item "ammo bullet105 ap usa t5e2" 31}
+			{item "ammo bullet105 fg usa t5e2" 31}
+			{item "ammo hmgun" 2200}
+		}
+	}
+	{Weaponry
+		{place "gun"
+			{weapon "105mm_t5e1" filled}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_tank_hunt")
+			{basic}
+		}
+		{place "mgun"
+			{weapon "browning" filled}
+			{type "aa"}
+			{gunner "gunner2"}
+			{charger "gunner2"}
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			("abm_mgun_heavy")
+			{basic}
+		}
+	}
+
+	{mass 86200}
+	{Chassis
+		("tank_trace" fx("tracks_big") step(0.6) len(0.28))
+		{Locomotion ("locomotion")
+			{MaxSpeed	      13}
+			{maxSpeedAtMaxTurn 4.33}
+			{StartTime	       1.625}
+			{TurnTime	        8}
+			{TurnStart        2.1} 
+			{BrakeTime        1.5}
+			{StopTime         2.5}
+			{TurnRadius         7.5} 
+			{TurnStop         0.7}
+			{Gears      0.2 0.5 1.0}
+			{RearGears       0.2 0.33}
+		}
+		("fuelbag"
+			volume(163)
+			rate(50)
+			remain(163)
+		)
+	}
+	("chassis_add_heavy" speed(24))
+
+	{Extension "t95.mdl"}
+    ("animation_resume")
+	{extension "camouflage.ext"}
+	{extension "sensor.ext"}
+
+	{bone "turret_mgun"
+		{speed 0.045}
+	}
+
+	{bone "basis"
+		{parameters "WheelRadius=0.26;"}
+	}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.33))
+	("support_bones_std" n(2) r(0.33))
+	("support_bones_std" n(3) r(0.33))
+	("support_bones_std" n(4) r(0.33))
+	("support_bones_std" n(5) r(0.33))
+	("support_bones_std" n(6) r(0.33))
+	("support_bones_std" n(7) r(0.33))
+	("support_bones_std" n(8) r(0.33))
+}

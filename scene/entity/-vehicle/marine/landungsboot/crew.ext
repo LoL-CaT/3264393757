@@ -1,0 +1,106 @@
+;SDL
+(define "define_place"
+	{placer
+		{place "%place"
+			{Group "crew"}
+			{LinkBone "%place"}
+			{turnoff {sensor} {shadow}}
+		}
+	}
+)
+
+("define_place" place(driver))
+
+("define_place" place(gunner))
+("define_place" place(charger))
+
+("define_place" place(gunner4))
+("define_place" place(charger2))
+("define_place" place(charger3))
+
+("define_place" place(gunner3))
+("define_place" place(charger4))
+("define_place" place(charger5))
+
+("define_place" place(gunner5))
+("define_place" place(gunner2))
+
+("define_place" place(place01))
+("define_place" place(place02))
+("define_place" place(place03))
+("define_place" place(place04))
+("define_place" place(place05))
+("define_place" place(place06))
+("define_place" place(place07))
+("define_place" place(place08))
+("define_place" place(place09))
+("define_place" place(place10))
+
+{boarder
+	{door "emit1"}
+	{door "emit2"}
+	{door "emit3"}
+	{door "emit4"}
+
+	{link "emit3"	"driver"	{forward putoff} {reverse puton} {anm "driver"}}
+
+	{link "emit2"	"gunner"	{forward putoff} {reverse puton} {anm "gunner"}}
+	{link "emit1"	"charger"	{forward putoff} {reverse puton} {anm "charger"}}
+
+	{link "emit3"	"gunner4"	{forward putoff} {reverse puton} {anm "gunner2"}}
+	{link "emit3"	"charger2"	{forward putoff} {reverse puton} {anm "charger2"}}
+	{link "emit3"	"charger3"	{forward putoff} {reverse puton} {anm "charger2"}}
+
+	{link "emit4"	"gunner3"	{forward putoff} {reverse puton} {anm "gunner2"}}
+	{link "emit4"	"charger4"	{forward putoff} {reverse puton} {anm "charger2"}}
+	{link "emit4"	"charger5"	{forward putoff} {reverse puton} {anm "charger2"}}
+
+	{link "emit2"	"gunner5"	{forward putoff} {reverse puton} {anm "gunner3"}}
+	{link "emit1"	"gunner2"	{forward putoff} {reverse puton} {anm "gunner3"}}
+
+	{link "emit3"	"place01"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "emit4"	"place02"	{forward putoff} {reverse puton} {anm "passenger1"}}
+	{link "emit4"	"place03"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "emit3"	"place04"	{forward putoff} {reverse puton} {anm "passenger1"}}
+	{link "emit1"	"place05"	{forward putoff} {reverse puton} {anm "passenger1"}}
+	{link "emit2"	"place06"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "emit1"	"place07"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "emit2"	"place08"	{forward putoff} {reverse puton} {anm "passenger1"}}
+	{link "emit1"	"place09"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "emit2"	"place10"	{forward putoff} {reverse puton} {anm "passenger1"}}
+
+	{anm "passenger"
+		{forward	{begin	"board_torpedo_boat"} {end "seat_isu"}}
+		{reverse 	{begin	"board_torpedo_boat" -1}}
+	}
+	{anm "passenger1"
+		{forward	{begin	"board_torpedo_boat"} {end "seat_isu1"}}
+		{reverse 	{begin	"board_torpedo_boat" -1}}
+	}
+	{anm "driver"
+		{forward 	{begin "board_torpedo_boat"} {end "seat_driver_car"}}
+		{reverse 	{end	"board_torpedo_boat" -1}}
+	}
+	{anm "charger"
+		{forward 	{begin "board_torpedo_boat"} {end "cannon_big_commander"}}
+		{reverse 	{end	"board_torpedo_boat" -1}}
+	}
+	{anm "gunner"
+		{forward 	{begin "board_torpedo_boat"} {end "cannon_big_gunner"}}
+		{reverse 	{end	"board_torpedo_boat" -1}}
+	}
+	{anm "charger2"
+		{forward 	{begin "board_torpedo_boat"} {end "zenit_pointer_right"}}
+		{reverse 	{end	"board_torpedo_boat" -1}}
+	}
+	{anm "gunner2"
+		{forward 	{begin "board_torpedo_boat"} {end "zenit_pointer_right"}}
+		{reverse 	{end	"board_torpedo_boat" -1}}
+	}
+	{anm "gunner3"
+		{forward 	{begin "board_torpedo_boat"} {end "seat_m7_mgunner"}}
+		{reverse 	{end	"board_torpedo_boat" -1}}
+	}
+}
+
+

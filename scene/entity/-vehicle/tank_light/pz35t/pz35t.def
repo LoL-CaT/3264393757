@@ -1,0 +1,170 @@
+{entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc" scale(1.0))
+	(include "/properties/selection/vehicle.inc" scale(1.1))
+	("bone_rotator")
+	{collider "tank.light"}
+	{props "light" "turret_rotator" "vision_lev03" "tank_light" "level02" "ram_lvl4" "xmas_present_tank" "texmod_w_cf_cd" "anm_tank"}
+	{targetClass "light_tank"}
+	{patherId "tank.light"}
+	
+	("sandbags_pz35t")			
+	
+	{extender "enumerator"}
+	
+	("v_body" n(01) t())
+	("v_body" n(02) t(02))
+	("v_gun" n(_rot) t(_rot))
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	("v_turret" n(03) t(_top))
+	{Volume "cover1"
+		{tags "turret" "turret_armor_top"}
+		{component "turret"}
+	}
+	("v_engine" n(01) t(01))
+	("v_engine" n(02) t())
+
+	("arena_armor_mantlet" t(25))
+	("arena_armor_light" turret(25 16 16 8) gun(10) engine(16 16 16 12) body(25 16 16 16) track(15) hp(469))
+	{armor
+		("module_turret_light" n(_top) turret(25) hp_k(0.95))
+		("module_body_light" n(02) body(25 16 16 12))
+		("module_engine_light" n(01) engine(16 16 12 12))
+		("module_gun_light" n(_rot) gun(25))
+		("module_other" t(4))
+	}
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(21)
+		repair_turret(21)
+		repair_gun(12)
+		repair_track(8)
+	)
+	
+	{extender "inventory"
+		{box
+			{item "ammo bullet37 ap ger cz" 45}
+			{item "ammo bullet37 fg ger cz" 45}
+			{item  "ammo mgun" 5500}
+			{item "sandbag_kit2"}				
+;			{item "mg37t" filled {user "mgun"}}
+		}
+	}
+
+	("crew_2_human")
+    	("crew_human" place(commander)  door1(emit1) door2(emit2) visor(main))
+	("crew_human" place(charger)  	door1(emit1) door2(emit2) visor(main))
+
+	{boarder
+    		{anm "left"
+	            {forward    {begin  "board_kv"}}
+        	    {reverse    {end    "emit_tank_1_hold"}}
+	        }
+        	{anm "right"
+	            {forward    {begin  "board_tank_right"}}
+        	    {reverse    {end    "emit_tank_1_hold"}}
+	        }
+	        {anm "armor"
+        	    {forward    {begin  "board_MiddleArmor"} {end "idle_onboard_l"}}
+	            {reverse    {end    "emit_tank_1"}}
+        	}
+	        {anm "armor1"
+        	    {forward    {begin  "board_MiddleArmor"} {end "idle_onboard_r"}}
+	            {reverse    {end    "emit_body"}}
+        	}
+	}
+
+	("seat_human" place(seat_l1) bone(seat01) door(emit4)  animation(armor))
+	("seat_human" place(seat_l2) bone(seat02) door(emit5)  animation(armor))
+	("seat_human" place(seat_r1) bone(seat03) door(emit6)  animation(armor1))
+
+
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+	        {weapon "37mm_kwk34t" filled}
+			{gunner "gunner"}
+			{charger "gunner"}        
+			("abm_tank_cannon")
+			{basic}			
+		}
+		{place "mgun"
+			{type "coaxial"}
+			{weapon "mg37t" filled}
+			{foresight "foresight3"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("abm_mgun")
+			{basic}
+		}
+		{place "mgun1"
+			{type "hull"}
+			{weapon "mg37t" filled}
+			{foresight "foresight4"}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_mgun")	
+			{basic}	
+		}
+	}
+
+	{extension "sensor.ext"}	
+	{mass 9700}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.35))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       34}
+			{maxSpeedAtMaxTurn 12.75}
+			{StartTime	       6}
+			{TurnTime	        4}
+			{TurnStart        1.5} 
+			{BrakeTime        1.5}
+			{StopTime         2.5} 
+			{TurnRadius         4} 
+			{TurnStop         0.7} 
+			{Gears     0.2 0.5 1.0}
+			{RearGears       0.3 0.5}
+		}
+		("fuelbag"
+			volume(188)
+			rate(50)
+			remain(188)
+		)
+	}
+	("chassis_add_light" speed(34))	
+	
+	{Extension "pz35t.mdl"}
+    ("animation_resume")
+	{extension "camouflage.ext"}
+
+	{bone "gun_rot"
+		("arena_turret_speed" args 0.01)
+		{limits -25 10}
+	}
+	{bone "turret"
+		("arena_turret_speed" args 0.01)
+	}
+	{bone "mgun"
+    	{limits 5}
+	}
+	{bone "mgun1"
+    	{limits 15}
+	}		
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.28))
+	("support_bones_std" n(2) r(0.18))
+	("support_bones_std" n(3) r(0.18))
+	("support_bones_std" n(4) r(0.18))
+	("support_bones_std" n(5) r(0.18))
+	("support_bones_std" n(6) r(0.18))
+	("support_bones_std" n(7) r(0.18))
+	("support_bones_std" n(8) r(0.18))
+	("support_bones_std" n(9) r(0.18))
+	("support_bones_std" n(10) r(0.18))
+	("support_bones_std" n(11) r(0.28))
+}

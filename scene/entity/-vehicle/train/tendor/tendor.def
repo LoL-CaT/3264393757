@@ -1,0 +1,49 @@
+{actor
+	(include "/properties/railway.ext")
+	(include "/properties/selection/vehicle.inc"  scale(1.0))
+	{mass 30000}
+	{Extension "tendor.mdl"}
+	{props "vehicle" "steel" "carriage" "train_part" "platform" "no_minimap_view"}
+	{able "-ally_crew"}
+
+	("wheel" args "wheelright1")
+	("wheel" args "wheelleft1")
+	("wheel" args "wheelright2")
+	("wheel" args "wheelleft2")
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	(define "disable_touch"
+	{volume "%n"
+		{able {touch 0}}
+	}
+	)
+	("disable_touch" n(body01))
+	("disable_touch" n(body02))
+	("disable_touch" n(body03))
+	("disable_touch" n(body04))
+	("disable_touch" n(body05))
+	("disable_touch" n(body06))
+	("disable_touch" n(body07))
+	("disable_touch" n(body08))
+	("disable_touch" n(body09))
+	("disable_touch" n(body10))
+	("disable_touch" n(coal))
+
+	("disable_touch" n(wheelleft1))
+	("disable_touch" n(wheelleft2))
+	("disable_touch" n(wheelright1))
+	("disable_touch" n(wheelright2))
+
+	("arena_armor_train" body(30) wheel(50) hp(1250))
+	{armor
+		("module_other" t(10))
+	}
+}

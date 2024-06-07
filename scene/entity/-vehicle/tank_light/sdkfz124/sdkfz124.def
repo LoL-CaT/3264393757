@@ -1,0 +1,162 @@
+{entity
+	(include "/properties/tank_without_mgun.ext")
+	(include "/properties/shadow/tank.inc" scale(1.3))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+	("bone_rotator")
+	{props "light" "-turret" "opened" "vision_lev03" "howitzer" "spg" "level04" "open_wheelhouse" "bkg_sound" "ram_lvl4" "texmod_w_cf_cd" "muzzle_brake" "anm_tank_cannon"}
+	{collider "tank.light"}
+	{targetClass "light_tank"}
+	{targetSelector "cannon_howitzer"}	
+	{patherId "tank.light"}
+	("trench_cannon_big")	
+	{extension "sdkfz124.mdl"}
+    ("animation_resume")
+
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{component "sticky_body"}
+	{extender "enumerator"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+;	("v_body" n(04) t())
+;	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t(_turret))
+	("v_body" n(09) t(_turret))
+	("v_body" n(10) t(_deck))
+	("v_body" n(11) t(_deck))
+	("v_body" n(12) t(_deck))
+	("v_body" n(13) t(_deck))
+	("v_gun" n(_rot01) t())
+	("v_gun" n(_rot02) t())
+	("v_gun" n(_rot03) t())
+	("v_gun" n(_rot04) t())
+
+	(define "v_bturret"
+	{volume "turret%0"
+		{tags "body" "body_armor_turret"}
+		{component "body"}
+	}
+	)
+	("v_bturret" args 01)
+	("v_bturret" args 02)
+	("v_bturret" args 03)
+	{volume "inventory"
+	        {thickness 2}
+	}
+
+	("arena_armor_spa_light" gun(25) engine(14.5) body(30 14.5 14.5 10) track(15) hp(449))
+	{armor
+		("module_body_light"	n(_turret) body(20))
+		("module_body_light"	n(_deck) body(30 14.5 14.5 10))
+		("set_open_roof" name(body_turret))
+		("set_open_roof" name(body_deck))
+		("module_other" t(4))
+	}
+	
+
+	{extension "sensor.ext"}
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_LowTank_stand_1"} {end "cannon_small_charger"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_LowTank_stand"} {end "cannon_small_commander"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_MiddleArmor"} {end "idle_onboard_l"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_MiddleArmor"} {end "idle_onboard_r"}}
+			{reverse 	{end	"emit_body"}}
+		}
+	}
+	
+	("crew_human"			place(driver) door1(emit0) door2(emit0) visor(driver))
+	("crew_human_visible"	place(commander) door1(emit1) door2(emit2) visor(view-around))
+	("crew_human_visible"	place(gunner) door1(emit1) door2(emit2) visor(main))
+	("crew_human"		 	place(charger)	door1(emit1) door2(emit2) visor(main))
+	{placer 
+		{place "commander" {openForCrush 0}}
+		{place "gunner" {openForCrush 0}}
+	}
+
+	("seat_human" place(seat_l1) bone(seat01) door(emit3)  animation(armor))
+	("seat_human" place(seat_r1) bone(seat02) door(emit4)  animation(armor1))
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(24)
+		repair_turret(24)
+		repair_gun(15)
+		repair_track(10)
+	)
+	
+	{extender "inventory"
+		{box
+       		{item "ammo bullet105 fg ger std" 32}
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{ManualAccuracy 1}		
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "105mm_lefh18_wespe" filling "ammo bullet105 fg ger std" 1}
+			{charger "gunner"}
+			("abm_howitzer_medium")
+			{basic}
+		}
+	}
+	{mass 11000}
+	{Chassis
+		("tank_trace" fx("tracks_sm2") step(0.15) len(0.28))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       40}
+			{maxSpeedAtMaxTurn 15}			
+			{StartTime	       6}
+			{TurnTime	        4}
+			{TurnStart        1.5} 
+			{BrakeTime        1.5}
+			{StopTime         2.5} 
+			{TurnRadius         4} 
+			{TurnStop         0.7} 
+			{Gears     0.2 0.5 1.0}
+			{RearGears       0.3 0.5}
+		}
+		("fuelbag"
+			volume(119)
+			rate(50)
+			remain(119)
+		)
+	}
+	("chassis_add_light" speed(40))
+	{extension "camouflage.ext"}
+	{bone "gun_rot"
+		{limits -5 42}
+		("arena_turret_speed" args 0.0036)
+	}
+	{bone "turret"
+		{limits -20 20}
+		("arena_turret_speed" args 0.0036)
+	}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.42))
+	("support_bones_std" n(2) r(0.3))
+	("support_bones_std" n(3) r(0.3))
+	("support_bones_std" n(4) r(0.3))
+	("support_bones_std" n(5) r(0.3))
+	("support_bones_std" n(6) r(0.3))
+	("support_bones_std" n(7) r(0.38))
+}

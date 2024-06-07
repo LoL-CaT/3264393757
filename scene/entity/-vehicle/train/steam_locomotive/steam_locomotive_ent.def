@@ -1,0 +1,77 @@
+{game_entity
+	(include "/properties/shadow/marine.inc"  scaleX(2.3) scaleY(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(1.5))
+	(include "/properties/armor_arena.ext")
+	{collider "train"}
+	{obstacleID "unbreakable"}
+	{props "railway"}
+	{fogable never}
+
+	{mass 200000}
+	{Extension "steam_locomotive.mdl"}
+	{props "vehicle" "steam_locomotive" "steel" "train_part"}
+
+	{extender "enumerator"
+		{group "usa"}
+	}
+
+	{Volume "wheels_left"
+		{thickness 10}
+	}
+	{Volume "wheels_right"
+		{thickness 10}
+	}
+	(define "v_body"
+		{volume "body%n"
+			{component "body"}
+			{tags "body" "body_armor%tag"}
+		}
+	)
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	("v_body" n(10) t())
+	("v_body" n(11) t())
+	("v_body" n(12) t())
+	("v_body" n(13) t())
+	("v_body" n(14) t())
+	("v_body" n(15) t())
+	("v_body" n(16) t())
+	("v_body" n(17) t())
+	("v_body" n(18) t())
+	("v_body" n(19) t())
+	("v_body" n(20) t())
+	("v_body" n(21) t())
+	("v_body" n(22) t())
+	("v_body" n(23) t())
+	("v_body" n(24) t())
+	("v_body" n(25) t())
+	("v_body" n(26) t())
+	("v_body" n(27) t())
+	("v_body" n(28) t())
+	{Volume "body10"
+		{able {holed}}
+	}
+	{Volume "body11"
+		{able {holed}}
+	}
+	{Volume "body12"
+		{able {holed}}
+	}
+	{Volume "body17"
+		{able {holed}}
+	}
+	{Volume "body18"
+		{able {holed}}
+	}
+	("arena_armor_train" body(10) wheel(50) hp(1500))
+	{armor
+		("module_other" t(1))
+	}
+}

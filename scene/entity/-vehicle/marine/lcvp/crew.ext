@@ -1,0 +1,112 @@
+;SDL
+(define "define_place"
+	{placer
+		{place "%place"
+			{Group "crew"}
+			{LinkBone "%place"}
+			{turnoff {sensor} {shadow}}
+		}
+	}
+)
+
+{boarder
+    {door "emit2" {auto_release_time 0.01}}
+	
+	{node "emit2"}
+	{node "node01"}
+	{node "node04"}
+	{node "node07"}
+	{node "node08"}
+	{node "node09"}
+	{node "node10"}
+	
+	{link "emit2" "node01" {anm "[fsm]"}}
+	{link "emit2" "node04" {anm "[fsm]"}}
+	{link "emit2" "node07" {anm "[fsm]"}}
+	{link "emit2" "node08" {anm "[fsm]"}}
+	{link "emit2" "node09" {anm "[fsm]"}}
+	{link "emit2" "node10" {anm "[fsm]"}}
+	
+		
+	{link "node09"	"driver"	{forward putoff} {reverse puton} {anm "driver"}}
+	{link "node09"	"gunner1"	{forward putoff} {reverse puton} {anm "gunner"}}
+	{link "node09"	"gunner2"	{forward putoff} {reverse puton} {anm "gunner"}}
+	
+	{link "node01"	"place01"	{forward putoff} {reverse puton} {anm "passenger1"}}
+	{link "node04"	"place04"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "node07"	"place07"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "node08"	"place08"	{forward putoff} {reverse puton} {anm "passenger1"}}
+	{link "node09"	"place09"	{forward putoff} {reverse puton} {anm "passenger1"}}
+	{link "node10"	"place10"	{forward putoff} {reverse puton} {anm "passenger"}}
+
+
+	{door "emit3" {auto_release_time 0.01}}
+	
+	{node "emit3"}
+	{node "node02"}
+	{node "node03"}
+	{node "node05"}
+	{node "node06"}
+	
+	{link "emit3" "node02" {anm "[fsm]"}}
+	{link "emit3" "node03" {anm "[fsm]"}}
+	{link "emit3" "node05" {anm "[fsm]"}}
+	{link "emit3" "node06" {anm "[fsm]"}}
+	
+	{link "node02"	"place02"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "node03"	"place03"	{forward putoff} {reverse puton} {anm "passenger1"}}
+	{link "node05"	"place05"	{forward putoff} {reverse puton} {anm "passenger"}}
+	{link "node06"	"place06"	{forward putoff} {reverse puton} {anm "passenger1"}}
+
+	{anm "passenger"
+		{forward {end "seat_isu"}}
+		{reverse 	{base "open" 100}}
+	}
+	{anm "passenger1"
+		{forward {end "seat_isu1"}}
+		{reverse 	{base "open" 100}}
+	}
+	{anm "gunner"
+		{forward {end "seat_m7_mgunner"}}
+		{reverse 	{base "open" 100}}
+	}
+	{anm "driver"
+		{forward {end "seat_gunner_stand_ferd"}}
+		{reverse 	{base "open" 100}}
+	}
+}
+
+
+(define "crew_human"
+	{placer
+		{place "%place" {linkbone "%bone"} {turnoff {sensor} {shadow}}}
+	}
+	{boarder
+		{door "%door"}
+		{link "%door" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+	}
+)
+
+("crew_human" place(gunner1)	bone(gunner1)	door()			animation(gunner))
+("crew_human" place(gunner2)	bone(gunner2)	door()			animation(gunner))
+("crew_human" place(driver)		bone(driver)	door()			animation(driver))
+
+{placer
+	{place "driver"		{group "crew"}}
+	{place "gunner1"	{group "crew"}}
+	{place "gunner2"	{group "crew"}}
+}
+
+("define_place" place(driver))
+("define_place" place(gunner1))
+("define_place" place(gunner2))
+("define_place" place(place01))
+("define_place" place(place02))
+("define_place" place(place03))
+("define_place" place(place04))
+("define_place" place(place05))
+("define_place" place(place06))
+("define_place" place(place07))
+("define_place" place(place08))
+("define_place" place(place09))
+("define_place" place(place10))
