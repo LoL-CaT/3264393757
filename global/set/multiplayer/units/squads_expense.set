@@ -1,0 +1,105 @@
+;SDL
+{units
+	(define "squad_with1types_cp"
+		{"%name(%side)"
+			{charge %c}
+			{content "mp/%side/%c1"}
+			{tags "frontline_cp squad infantry %side %t"}
+			{group "%g"}
+			{button "%b"}
+			{cost %cost}
+			{cp %cp}
+			{fore %f}
+		}
+	)
+	(define "squad_with3types"
+		{"%name(%side)"
+			{charge %c}
+			{content "mp/%side/%c1 mp/%side/%c2 mp/%side/%c3"}
+			{tags "frontline_cp squad infantry %side %t"}
+			{group "%g"}
+			{button "%b"}
+			{cost %cost}
+			{fore %f}
+		}
+	)
+	(define "squad_with1types"
+		{"%name(%side)"
+			{charge %c}
+			{content "mp/%side/%c1"}
+			{tags "frontline_cp squad infantry %side %t"}
+			{group "%g"}
+			{button "%b"}
+			{cost %cost}
+			{fore %f}
+		}
+	)
+
+	(define "squad_1"
+		("squad_with1types_cp" side(rus) name(%name) c1(%c1) c(%c) co(%co) cp(%cp) g(%g) b(%b) t(%t) cost(%cost) f(%f))
+		("squad_with1types_cp" side(ger) name(%name) c1(%c1) c(%c) co(%co) cp(%cp) g(%g) b(%b) t(%t) cost(%cost) f(%f))
+		("squad_with1types_cp" side(usa) name(%name) c1(%c1) c(%c) co(%co) cp(%cp) g(%g) b(%b) t(%t) cost(%cost) f(%f))
+		("squad_with1types_cp" side(eng) name(%name) c1(%c1) c(%c) co(%co) cp(%cp) g(%g) b(%b) t(%t) cost(%cost) f(%f))
+		("squad_with1types_cp" side(jap) name(%name) c1(%c1) c(%c) co(%co) cp(%cp) g(%g) b(%b) t(%t) cost(%cost) f(%f))
+	)
+
+	("squad_1" name(snipers) c(120) g(steal_1) c1(sniper:1) b(squad2) t(all infan_squad snipers use_charge) cost(28) f(0))
+	("squad_1" name(scouts)	 c(120) g(steal_2) c1(scout:1) b(squad2) t(all infan_squad scouts use_charge) cost(12) f(0))
+	("squad_1" name(officer) c(120) g(spe_3) c1(oficer:1) b(squad2) t(all infan_squad officer use_charge) cost(16) f(0))
+
+
+	("squad_with1types" side(rus) name(mgs) c(30) g(reg_s) c1(mgun:1) b(squad1) t(all infan_squad mgunners use_charge) cost(8) f(1))
+	("squad_with1types" side(ger) name(mgs) c(30) g(reg_s) c1(mgun:1) b(squad1) t(all infan_squad mgunners use_charge) cost(8) f(1))
+	("squad_with1types" side(usa) name(mgs) c(30) g(reg_s) c1(mgun:2) b(squad1) t(all infan_squad mgunners use_charge) cost(12) f(1))
+	("squad_with1types" side(eng) name(mgs) c(30) g(reg_s) c1(mgun:2) b(squad1) t(all infan_squad mgunners use_charge) cost(12) f(1))
+	("squad_with1types" side(jap) name(mgs) c(30) g(reg_s) c1(mgun:2) b(squad1) t(all infan_squad mgunners use_charge) cost(12) f(1))
+
+;;jap infantry
+	("squad_with3types" side(rus) name(riflemans) c(30) g(reg_2) c1(rifle:3) c2(rifle2:2) c3(rifle3:1) b(squad1) t(all infan_squad riflemans) cost(8) f(1))
+	("squad_with3types" side(ger) name(riflemans) c(30) g(reg_2) c1(rifle:3) c2(rifle2:2) c3(rifle3:1) b(squad1) t(all infan_squad riflemans) cost(8) f(1))
+	("squad_with3types" side(usa) name(riflemans) c(30) g(reg_2) c1(rifle:3) c2(rifle2:2) c3(rifle3:1) b(squad1) t(all infan_squad riflemans) cost(8) f(1))
+	("squad_with3types" side(eng) name(riflemans) c(30) g(reg_2) c1(rifle:3) c2(rifle2:2) c3(rifle3:1) b(squad1) t(all infan_squad riflemans) cost(8) f(1))
+	("squad_with3types" side(jap) name(riflemans) c(30) g(reg_2) c1(rifle:3) c2(rifle2:2) c3(rifle3:1) b(squad1) t(all infan_squad riflemans) cost(8) f(1))
+
+	("squad_with3types" side(rus) name(smgs) c(30) g(reg_1) c1(smg:3) c2(smg2:2) c3(smg3:1) b(squad1) t(all infan_squad smgs) cost(8) f(1))
+	("squad_with3types" side(ger) name(smgs) c(30) g(reg_1) c1(smg:3) c2(smg2:2) c3(smg3:1) b(squad1) t(all infan_squad smgs) cost(8) f(1))
+	("squad_with3types" side(usa) name(smgs) c(30) g(reg_1) c1(smg:3) c2(smg2:2) c3(smg3:1) b(squad1) t(all infan_squad smgs) cost(8) f(1))
+	("squad_with3types" side(eng) name(smgs) c(30) g(reg_1) c1(smg:3) c2(smg2:2) c3(smg3:1) b(squad1) t(all infan_squad smgs) cost(8) f(1))
+	("squad_with3types" side(jap) name(smgs) c(30) g(reg_1) c1(smg:3) c2(smg2:2) c3(smg3:1) b(squad1) t(all infan_squad smgs) cost(8) f(1))
+	
+	("squad_with3types" side(rus) name(elite) c(120) g(spe_1) c1(elite:3) c2(elite2:2) c3(elite3:1) b(squad1) t(all infan_squad stormtroopers) cost(15) f(-1))
+	("squad_with3types" side(ger) name(elite) c(120) g(spe_1) c1(elite:2) c2(elite2:2) c3(elite3:2) b(squad1) t(all infan_squad stormtroopers) cost(15) f(-1))
+	("squad_with3types" side(usa) name(elite) c(120) g(spe_1) c1(elite:3) c2(elite2:2) c3(elite3:1) b(squad1) t(all infan_squad stormtroopers) cost(15) f(-1))
+	("squad_with3types" side(eng) name(elite) c(120) g(spe_1) c1(elite:3) c2(elite2:2) c3(elite3:1) b(squad1) t(all infan_squad stormtroopers) cost(15) f(-1))
+	("squad_with3types" side(jap) name(elite) c(120) g(spe_1) c1(elite:3) c2(elite2:2) c3(elite3:1) b(squad1) t(all infan_squad stormtroopers) cost(15) f(-1))
+
+	("squad_with3types" side(rus) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+	("squad_with3types" side(ger) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+	("squad_with3types" side(usa) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+	("squad_with3types" side(eng) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+	("squad_with3types" side(jap) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+
+	{"degtyarev_stan"	{charge 90} {cp 25} {cost 30} {fore 0}}
+	{"mg34_stan"		{charge 90} {cp 25} {cost 30} {fore 0}}
+	{"browning_stan"	{charge 90} {cp 25} {cost 30} {fore 0}}
+	{"vickers_mgun"		{charge 90} {cp 25} {cost 30} {fore 0}}
+	{"type1hmg_stan"	{charge 90} {cp 25} {cost 30} {fore 0}}
+
+	{"bm37"		{charge 180} {cp 30} {cost 90} {fore 0} {tags "mortar"}}
+	{"sgrw42"	{charge 180} {cp 30} {cost 90} {fore 0} {tags "mortar"}}
+	{"m1mortar"	{charge 180} {cp 30} {cost 90} {fore 0} {tags "mortar"}}
+	{"ml3"		{charge 180} {cp 30} {cost 90} {fore 0} {tags "mortar"}}
+	{"type94"	{charge 180} {cp 30} {cost 90} {fore 0} {tags "mortar"}}
+	
+	{"m37"		{charge 240} {cp 30} {cost 70} {fore 0} {tags "cannon"}}
+	{"pak35"	{charge 240} {cp 30} {cost 70} {fore 0} {tags "cannon"}}
+	{"m3cannon" {charge 240} {cp 30} {cost 60} {fore 0} {tags "cannon"}}
+	{"qf2"		{charge 240} {cp 30} {cost 60} {fore 0} {tags "cannon"}}
+	{"pak47"	{charge 240} {cp 30} {cost 60} {fore 0} {tags "cannon"}}
+
+	{"zis5inf"		{charge 120} {cp 0} {cost 10} {fore 0} {tags "inf"}}
+	{"blitz3_6inf"	{charge 120} {cp 0} {cost 10} {fore 0} {tags "inf"}}
+	{"gmc_inf" 		{charge 120} {cp 0} {cost 10} {fore 0} {tags "inf"}}
+	{"bedford_inf"	{charge 120} {cp 0} {cost 10} {fore 0} {tags "inf"}}
+	{"isuzutx40_inf"{charge 120} {cp 0} {cost 10} {fore 0} {tags "inf"}}
+}

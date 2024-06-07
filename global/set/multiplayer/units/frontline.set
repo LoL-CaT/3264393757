@@ -1,0 +1,264 @@
+;SDL
+{units
+	(include "soldiers.inc")
+	(include "squads.inc")
+	(include "vehicles.inc")
+	
+	(define "sq"
+		{"%name(rus)" {tags "%t"} {cost %cost} {charge %charge} {fore %fore}}
+		{"%name(ger)" {tags "%t"} {cost %cost} {charge %charge} {fore %fore}}
+		{"%name(usa)" {tags "%t"} {cost %cost} {charge %charge} {fore %fore}}
+		{"%name(eng)" {tags "%t"} {cost %cost} {charge %charge} {fore %fore}}
+		{"%name(jap)" {tags "%t"} {cost %cost} {charge %charge} {fore %fore}}
+	)
+	
+	("sq" name(at_rifle) t(def) charge(30) cost(6) fore(1))
+	("sq" name(ap_miners) t(def) charge(30) cost(8) fore(1))
+	("sq" name(at_miners) t(def) charge(30) cost(8) fore(1))
+	("sq" name(snipers) t(def) cost(12) charge(90) fore(1))
+	("sq" name(scouts) t(zero) charge(120) cost(10) fore(1))
+	("sq" name(sappers) t(off) charge(15) cost(3) fore(1))
+	("sq" name(officer) t(def) charge(180) cost(8) fore(1))
+	("sq" name(stormtroopers) t(off) charge(240) cost(20) fore(1))
+	("sq" name(elite) t(off) charge(180) cost(16) fore(1))
+	("sq" name(kamikaze) t(def) charge(100) cost(10) fore(1))
+	("sq" name(bazookers) t(def) charge(30) cost(7) fore(1))
+	("sq" name(flamers) t(zero) charge(30) cost(6) fore(1))
+	("sq" name(tankmans) t(zero) charge(30) cost(1) fore(1))
+
+;	("squad_with3types" side(rus) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:4) c2(sturmovik2:1) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+;	("squad_with3types" side(ger) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+;	("squad_with3types" side(usa) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+;	("squad_with3types" side(eng) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+;	("squad_with3types" side(jap) name(stormtroopers) c(240) g(spe_2) c1(sturmovik:3) c2(sturmovik2:2) c3(sturmovik3:1) b(squad1) t(all infan_squad stormtroopers) cost(20) f(0))
+
+
+
+	{"zis5inf"			{tags "not_used"}}
+	{"blitz3_6inf"		{tags "not_used"}}
+	{"gmc_inf"			{tags "not_used"}}
+	{"bedford_inf"		{tags "not_used"}}
+	
+	{"m37"				{tags "def" "use_charge"}}
+	{"pak35"			{tags "def" "use_charge"}}
+	{"m3cannon"			{tags "def" "use_charge"}}
+	{"m8_howitzer"		{tags "not_used"}}
+	{"qf2"				{tags "def" "use_charge"}}
+
+	{"degtyarev_stan"	{tags "def" "use_charge"} {score 7} {cost 7}}
+	{"mg34_stan"		{tags "def" "use_charge"} {score 7} {cost 7}}
+	{"browning_stan"	{tags "def" "use_charge"} {score 7} {cost 7}}
+	{"type1hmg_stan"	{tags "def" "use_charge"} {score 7} {cost 7}}
+	{"vickers_mgun"		{tags "def" "use_charge"} {score 7} {cost 7}}
+
+	{"kpvt"				{tags "def" "use_charge"} {score 9} {cost 9}}
+	{"flak38_wheeled"		{tags "def" "use_charge"} {score 10} {cost 10}}
+	{"oerlikon"			{tags "def" "use_charge"} {score 9} {cost 9}}
+	{"oerlikon"			{tags "def" "use_charge"} {score 9} {cost 9}}
+
+	{"bm37"				{tags "mortar" "def" "use_charge"} {fore 1} {score 20} {cost 20}}
+	{"sgrw42"			{tags "mortar" "def" "use_charge"} {fore 1} {score 20} {cost 20}}
+	{"m1mortar"			{tags "mortar" "def" "use_charge"} {fore 1} {score 20} {cost 20}}
+	{"ml3"				{tags "mortar" "def" "use_charge"} {fore 1} {score 20} {cost 20}}
+	{"type94"			{tags "mortar" "def" "use_charge"} {fore 1} {score 20} {cost 20}}
+	
+	{"zis3"				{tags "def" "use_charge"} {score 13} {cost 13}}
+	{"zis2"				{tags "def" "use_charge"} {score 11} {cost 11}}
+	{"pak40"			{tags "def" "use_charge"} {score 12} {cost 12}}
+	{"m5"				{tags "def" "use_charge"} {score 12} {cost 12}}
+	{"pdr25"			{tags "def" "use_charge"} {score 16} {cost 16}}
+	{"qf6"				{tags "def" "use_charge"} {score 9} {cost 9}}
+	{"qf17"				{tags "def" "use_charge"} {score 28} {cost 28}}
+
+	{"d1"				{tags "not_used"}}
+	{"sfh18"			{tags "not_used"}}
+	{"hummel"			{tags "not_used"}}
+	{"sturmpz1"			{tags "not_used"}}
+	{"bl6"				{tags "not_used"}}
+	{"m114"				{tags "not_used"}}
+	{"m7"				{tags "not_used"}}
+
+	{"how_a(rus)"		{tags "not_used"}}
+	{"how_a(ger)"		{tags "not_used"}}
+	{"how_a(usa)"		{tags "not_used"}}
+	{"how_a(eng)"		{tags "not_used"}}
+
+	{"m72"				{tags "moto" "not_used"}}
+	{"r12"				{tags "moto" "not_used"}}
+	{"type97"			{tags "moto" "not_used"}}
+	{"r12"				{tags "moto" "not_used"}}
+	{"gaz67b"			{tags "moto"} {score 7} {cost 7}}
+	{"kubel_mgun"		{tags "moto"} {score 6} {cost 6}}
+	{"willysmb"			{tags "moto"} {score 7} {cost 7}}
+	{"willysmb_eng"		{tags "moto"} {score 7} {cost 7}}
+	{"willysat"			{tags "moto" "not_used"} {score 7} {cost 7}}
+	{"dodgewc55"		{tags "moto" "def"} {score 11} {cost 11}} 
+
+	{"zis5"				{tags "not_used" "moto"}}
+	{"blitz3_6"			{tags "not_used" "moto"}}
+	{"gmc"				{tags "not_used" "moto"}}
+	{"bedford"			{tags "not_used" "moto"}}
+
+	{"m3"				{tags "use_charge"}}
+	{"sdkfz251_1"		{tags "use_charge"}}
+	{"m3_ally"			{tags "use_charge"}}
+	{"m3_ally"			{tags "use_charge"}}
+	{"ho-ha3mgun"		{tags "use_charge"}}
+
+	{"zis5eng"			{tags "def" "moto"} {score 12} {cost 12}}
+	{"blitz3_6eng"		{tags "def" "moto"} {score 12} {cost 12}}
+	{"gmc_eng"			{tags "def" "moto"} {score 12} {cost 12}}
+	{"bedford_eng"		{tags "def" "moto"} {score 12} {cost 12}}
+
+	{"zis5art"			{tags "moto"}}
+	{"blitz3_6art"		{tags "moto"}}
+	{"gmc_art"			{tags "moto"}}
+	{"bedford_art"		{tags "moto"}}
+
+	{"t34m"				{tags "off"} {charge 60}}
+	{"pz3m"				{tags "off"} {charge 60}}
+	{"m4a3m"			{tags "off"} {charge 60} {score 15} {cost 15}}
+	{"m4a3m"			{tags "off"} {charge 60} {score 15} {cost 15}}
+
+	{"ba64"				{tags "use_charge"}}
+	{"sdkfz222"			{tags "off" "use_charge"}}
+	{"sdkfz223"			{tags "not_used"}}
+	{"m20" 				{tags "def" "use_charge"} {score 14} {cost 14}}
+
+	{"pz1b"				{tags "use_charge"}}
+	{"pz2l"				{tags "off" "use_charge"}}
+	{"ba11" 			{tags "off" "use_charge"}}
+
+	{"m16"				{tags "off"}}
+	{"sdkfz7_1"			{tags "def"}}
+	{"m8grayhound"		{tags "off"}}
+	{"mk2daimler"		{tags "def"}}
+	{"mk7"				{tags "off"}}
+
+	{"sdkfz234"			{tags "off" "use_charge"}}
+	{"t26" 				{tags "off" "use_charge"}}
+	{"t70" 				{tags "def" "use_charge"}}
+	{"t60" 				{tags "off" "use_charge"} {score 18} {cost 18}}
+	{"bt7a"				{tags "off" "use_charge"} {score 18} {cost 18}}
+	{"m8"				{tags "off" "use_charge"} {score 18} {cost 18}}
+
+	{"welberwind"		{tags "off" "use_charge"} {score 30} {cost 30}}
+	{"crusaderaa2"		{tags "off" "use_charge"} {score 24} {cost 24}}
+	{"m19"				{tags "def" "use_charge"}}	
+	{"zsu37"			{tags "def" "use_charge"}}
+
+	{"t34_0"			{tags "off" "use_charge"} {score 18} {cost 18}}
+	{"t34_1"			{tags "off" "use_charge"}}
+	{"t34_2"			{tags "use_charge"}}
+	{"kv1"				{tags "off"} {score 38} {cost 45}}	
+	{"kv2"				{tags "not_used"}}	
+	{"mk2a"				{tags "not_used"}}	
+	{"mk3"				{tags "off" "use_charge"}}		
+	{"mk4"				{tags "off" "use_charge"}}
+	{"mk6"				{tags "off" "use_charge"}}
+	{"mk8"				{tags "use_charge"}}
+	{"pz3"				{tags "off" "use_charge"}}
+	{"pz4e"				{tags "off" "use_charge"}}
+	{"pz4g"				{tags "use_charge"}}
+	{"pz4h"				{tags "off" "use_charge"} {score 34} {cost 34}}	
+	{"m24"				{tags "off" "use_charge"}}
+	{"m4a2"				{tags "off" "use_charge"} {score 34} {cost 34}}
+	{"m4a1"				{tags "use_charge"}}
+	{"m4a1_eng"			{tags "off" "use_charge"}}
+	{"grant_m3"			{tags "off" "use_charge"} {score 20} {cost 20}}
+	{"m5a1"				{tags "off" "use_charge"}}
+	{"m4a3e2"			{tags "off" "use_charge"} {score 80} {cost 80}}
+	{"m7"				{tags "not_used"}}
+
+	{"t34_3"			{tags "off" "use_charge"} {score 40} {cost 40}}
+	{"kv85"				{tags "off" "use_charge"} {score 50} {cost 50}}
+	{"is1"				{tags "off"} {score 76} {cost 76}}
+	{"pz5g"				{tags "off" "use_charge"} {score 72} {cost 72}}
+	{"pz6e"				{tags "off" "use_charge"} {score 82} {cost 82}}
+	{"m4a3vc"			{tags "off" "use_charge"} {score 48} {cost 48}}
+	{"centurion"		{tags "not_used"} {score 82} {cost 82}}
+	{"m4a2_76w"			{tags "off" "use_charge"} {score 50} {cost 50}}
+	
+	{"is2_44"			{tags "not_used"}}
+	{"is3"				{tags "not_used"}}
+	{"pz6bh"			{tags "not_used"}}
+	{"m26"				{tags "not_used"}}
+
+	{"su100"			{tags "not_used"}}
+	{"su85"				{tags "not_used"}}
+	{"su76"				{tags "not_used"}}
+	{"zis_30"			{tags "not_used"}}
+	{"stug4g"			{tags "not_used"}}
+	{"hetzer"			{tags "not_used"}}
+	{"m36"				{tags "not_used"}}
+	{"m18"				{tags "not_used"}}
+	{"bishop"			{tags "not_used"}}	
+	{"archer"			{tags "not_used"}}
+	{"achilles"			{tags "not_used"}}
+
+	{"su122"			{tags "not_used"}}
+	{"isu152"			{tags "not_used"}}
+	{"jagdtiger"		{tags "not_used"}}
+	{"nashorn"			{tags "not_used"}}	
+	{"jagdpanther"		{tags "not_used"}}	
+	{"elefant"			{tags "not_used"}}	
+	{"tortez"			{tags "not_used"}}
+	{"sturmtiger"		{tags "not_used"}}
+	{"jagdpanzer_iv"	{tags "not_used"}}
+	{"t60"	{tags "not_used"}}
+	{"t29"	{tags "not_used"}}
+
+	{"bm13"				{tags "not_used"}}
+	{"sdkfz4"			{tags "not_used"}}
+	{"m4a3c"			{tags "not_used"}}
+	{"nebelwerfer42"	{tags "not_used"}}
+	{"land_mattress"	{tags "not_used"}}
+	
+;"japan"
+
+	{"isuzutx40_inf"		{tags "not_used"}}
+
+	{"pak47"				{tags "def"}}
+	{"pak57"				{tags "not_used"}}
+
+	{"type1hmg_stan"		{tags "def"}}
+
+	{"type2_20mm"			{tags "def"} {score 10} {cost 10}}
+
+	{"t90_75m"				{tags "def"}}
+
+	{"type4_200mm"			{tags "not_used"}}
+	{"isuzutx40_mort"		{tags "not_used"}}
+
+	{"t91_105m"				{tags "not_used"}}
+
+	{"type97"				{tags "moto" "off"}}
+
+	{"isuzutx40"			{tags "frontline_cp"}}
+	{"isuzutx40art"			{tags "frontline_cp"}}
+	{"isuzutx40_eng"		{tags "def"} {score 12} {cost 12}}
+
+	{"isuzutx40_aa"			{tags "off"} {score 16} {cost 16}}
+	{"ss-d"					{tags "off"} {score 25} {cost 25}}
+	{"type93scout"			{tags "off"}}
+
+	{"chi-he"				{tags "off" "use_charge"}}
+	{"chi-nu"				{tags "use_charge"}}
+	{"chi-to"				{tags "off" "use_charge"} {score 48} {cost 48}}
+	{"ho-i"					{tags "off" "use_charge"}}
+
+	{"chi-ha47"				{tags "off" "use_charge"}}
+	{"chi-ha57"				{tags "use_charge"}}
+	{"chi-ha120"			{tags "not_used"}}
+	{"ho-ni1"				{tags "def" "use_charge"}}
+	{"ho-ni2"				{tags "not_used"}}
+	{"ho-ro"				{tags "not_used"}}
+
+	{"ha-go"				{tags "use_charge" }}
+	{"ke-nu"				{tags "off" "use_charge"}}
+
+	{"chi-ri"				{tags "off" "use_charge"} {score 85} {cost 85}}
+	{"ho-ri"				{tags "not_used"}}
+
+	{"ha-to"				{tags "not_used"}}
+}

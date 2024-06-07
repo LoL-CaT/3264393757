@@ -1,0 +1,53 @@
+;SDL
+
+;	Mission '<game>.info' file content
+;--------------------------------------------------------------------------
+;	{info
+;		{settings
+;			{options <editedParamList>}
+;			{fogOfWar}
+;			{floraRespawn}
+;			{difficulty 		<N>}
+;			{gameDuration 		<min>}
+;			{impregnableTimeout <sec>}
+;		}
+;		{unitPresets
+;			{"<presetId>"	<- don't forget to localize it in "mp/unitPresets/<presetId>"
+;				{unitset 	  "<filter>"}
+;				{commandPoints <N>}
+;			}
+;		}
+;	}
+;----------------------------------------------------------------------------------------------------------
+;	Установить спавн-поинты как в combat.set
+;
+;	Для команд а и b установить зоны с соответствующими именами "а" и "b", куда нужно будет доставлять груз
+;	На каждую зону поставить flag_point, в котором указана команда (а или b)
+;	радиусы и позиция зоны и флагов должны точно совпадать (флаг служит визуальным отображением зоны для игроков)
+;
+;	расставить на карте сущности "trailer" с тегами "hidden" "load", которые будут тягать машинки на базу (в зоны а и b)
+;	на месте одной из этих сущностей будет спавнится груз
+;
+;	Для каждой из команды сделать objective c point'ом на базу, что-то вроде "Надо захватить груз и доставить его на базу"
+;
+;	Для проверки используйте консольную команду mp_checkHeavyLoad
+;----------------------------------------------------------------------------------------------------------
+{game
+	{teammatch}
+	{settings
+		{options 			gameDuration scoreFinal}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_realistic}
+		{difficulty 		multiplayer}
+		{gameDuration		40} ; min
+		{impregnableTimeout	7}	; sec
+		{scoreMin			1}
+		{scoreMax			20}
+		{scoreFinal			3}
+		{floraRespawn 0}
+		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+	}
+	(include "presets_vehicles.inc")
+}

@@ -1,0 +1,107 @@
+;----------------------------------------------------------------------------------------------------------
+;	Установить спавн-поинты как в combat.set
+;
+;	Установить флаг (равноудаленный от обеих команд)
+;		flag_point{name="f";team="";order="0";allow.release="a b";allow.capture="a b"; zoneA = zoneB}
+;
+;	Установить клипперы:
+;		clipper{name="captureflaga"} - начальное ограничение для команды А (n секунд вначале для закупки войск)
+;		clipper{name="captureflagb"} - начальное ограничение для команды B (n секунд вначале для закупки войск)
+;
+;	Для проверки используйте консольную команду mp_checkCaptureFlag
+;----------------------------------------------------------------------------------------------------------
+;
+; flag_capture_factor в параметрах игры: коэффициент, указывающий на каком расстоянии от края флага будет 
+; уменьшаться вес захватывающих его юнитов.
+; Вес уменьшается линейно от х0 на краю до х1 на расстоянии flag_capture_factor*радиус флага. 
+; Т.е. 0 - не будет уменьшаться вообще. 1 - будет уменьшаться сразу с центра флага.
+;----------------------------------------------------------------------------------------------------------
+
+{game
+	{teammatch}
+	{parameters "freezeTime=30;flag_capture_time=420;flag_release_time=60;flag_capture_factor=0.9"}
+	{settings
+		{options 			gameDuration}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+		{fogOfWar 			fog_realistic}
+		{difficulty 		multiplayer}
+		{gameDuration		30} ; min
+		{impregnableTimeout	7}	; sec
+		{floraRespawn 0}
+		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+	}
+	(include "presets.inc")
+	
+	{presets
+		{"p:no_payback_80"	
+			{gameMode "without_payback"}
+			{unitMode "vehicles"}
+			{specMode "platoon_80"}
+			("without_payback_vehicles" start(16) finish(200) growTime(0.7) growTable(0.5 0.6 0.6 0.7 0.7 0.8 0.9 1 1 1 1 1) cp("kv2=15;sturmtiger=15;*=80"))
+		}		
+		{"p:no_payback_100"	
+			{gameMode "without_payback"}
+			{unitMode "vehicles"}
+			{specMode "company_100"}
+			("without_payback_vehicles" start(16) finish(250) growTime(0.7) growTable(0.5 0.6 0.6 0.7 0.7 0.8 0.9 1 1 1 1 1) cp("kv2=15;sturmtiger=15;*=100"))
+		}
+		{"p:no_payback_120"	
+			{gameMode "without_payback"}
+			{unitMode "vehicles"}
+			{specMode "battalion_120"}
+			("without_payback_vehicles" start(16) finish(300) growTime(0.7) growTable(0.5 0.6 0.6 0.7 0.7 0.8 0.9 1 1 1 1 1) cp("kv2=15;sturmtiger=15;*=120"))
+		}
+		{"p:no_payback_140"	
+			{gameMode "without_payback"}
+			{unitMode "vehicles"}
+			{specMode "regiment_140"}
+			("without_payback_vehicles" start(16) finish(300) growTime(0.7) growTable(0.5 0.6 0.6 0.7 0.7 0.8 0.9 1 1 1 1 1) cp("kv2=15;sturmtiger=15;*=140"))
+		}
+		{"p:no_payback_160"	
+			{gameMode "without_payback"}
+			{unitMode "vehicles"}
+			{specMode "division_160"}
+			("without_payback_vehicles" start(16) finish(300) growTime(0.7) growTable(0.5 0.6 0.6 0.7 0.7 0.8 0.9 1 1 1 1 1) cp("kv2=15;sturmtiger=15;*=160"))
+		}
+
+		
+;Tanks only presets -----------------------------------------------------------------------------------------
+;		{"p:no_payback_2"	
+;			{gameMode "without_payback"}
+;			{unitMode "tanks_only"}
+;			{specMode "tankcp_2"}
+;			{apply "tanks_expense"}
+;			("without_payback_tanks" start(5) finish(200) growTime(0.6) growTable(0.6 0.7 0.8 0.9 1 1 1 1 1 1 1) cp(2.1) cp_tankman(0.06))
+;		}		
+;		{"p:no_payback_3"	
+;			{gameMode "without_payback"}
+;			{unitMode "tanks_only"}
+;			{specMode "tankcp_3"}
+;			{apply "tanks_expense"}
+;			("without_payback_tanks" start(5) finish(250) growTime(0.6) growTable(0.6 0.7 0.8 0.9 1 1 1 1 1 1 1) cp(3.1) cp_tankman(0.09))
+;		}
+;		{"p:no_payback_4"	
+;			{gameMode "without_payback"}
+;			{unitMode "tanks_only"}	
+;			{specMode "tankcp_4"}	
+;			{apply "tanks_expense"}
+;			("without_payback_tanks" start(5) finish(300) growTime(0.6) growTable(0.6 0.7 0.8 0.9 1 1 1 1 1 1 1) cp(4.1) cp_tankman(0.12))
+;		}
+;		{"p:no_payback_5"	
+;				{gameMode "without_payback"}
+;			{unitMode "tanks_only"}
+;			{specMode "tankcp_5"}
+;			{apply "tanks_expense"}
+;			("without_payback_tanks" start(5) finish(350) growTime(0.6) growTable(0.6 0.7 0.8 0.9 1 1 1 1 1 1 1) cp(5.1) cp_tankman(0.15))
+;		}
+;		{"p:no_payback_6"	
+;			{gameMode "without_payback"}
+;				{unitMode "tanks_only"}
+;			{specMode "tankcp_6"}
+;			{apply "tanks_expense"}
+;			("without_payback_tanks" start(5) finish(350) growTime(0.6) growTable(0.6 0.7 0.8 0.9 1 1 1 1 1 1 1) cp(6.1) cp_tankman(0.18))
+;		}
+	}
+}

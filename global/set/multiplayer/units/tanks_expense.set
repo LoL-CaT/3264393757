@@ -1,0 +1,114 @@
+;SDL
+;22:24 24.08.2009;by Pheonix
+{units
+;-----------------------------------------------------------------
+;                            TANKMANS                            
+;-----------------------------------------------------------------
+
+(define "tankman2"
+	{tags "tankman %side crew man"}
+	{score 0}
+	{cp 0.2}
+	{order 10}
+	{basic}
+	{breed}
+	{cw 0}
+	{cost 2.5}
+)
+{"mp/rus/tankman2" ("tankman2" side(rus))}
+{"mp/ger/tankman2" ("tankman2" side(ger))}
+{"mp/usa/tankman2" ("tankman2" side(usa))}
+{"mp/eng/tankman2" ("tankman2" side(eng))}
+{"mp/jap/tankman2" ("tankman2" side(jap))}
+
+;-----------------------------------------------------------------
+;                              TANKS                              
+;-----------------------------------------------------------------
+
+(define "generic_v"
+	{charge %c}
+	{score %sc}
+	{icon %i}
+	{tags "%t"}
+	{group "%g"}
+	{button "%b"}
+	{cw %cw}
+	{cp %cp}
+)
+
+; vehicle with tankmans
+(define "v"
+	("generic_v" c(%c) sc(%sc) t(%t %s) g(%g) i(%i) b(%b) cw(%cw) cp(%cp))
+	{content "* ( mp/%s/tankman2:%n )"}
+)
+
+{"ba11"			("v" c(240) t(tanks_only light) s(rus) n(3) g(l1) sc(10) b(lt) i(33) cw(0) cp(0.4)) {cost 10} {fore 1}}
+{"t70"			("v" c(240) t(tanks_only light) s(rus) n(2) g(l3) sc(15) b(lt) i(35) cw(0) cp(0.6)) {cost 15} {fore 0.7}}
+{"sdkfz234"		("v" c(240) t(tanks_only light) s(ger) n(3) g(l4) sc(15) b(lt) i(34) cw(0) cp(0.4)) {cost 15} {fore 0.8}}
+{"m8grayhound"	("v" c(240) t(tanks_only light) s(usa) n(3) g(l2) sc(10) b(lt) i(33) cw(0) cp(0.4)) {cost 10} {fore 1}}	
+{"m5a1"			("v" c(240) t(tanks_only light) s(usa) n(3) g(m0) sc(15) b(lt) i(32) m(2) cw(0) cp(0.4)) {cost 15} {fore 0.7}} 
+{"mk2daimler"	("v" c(240) t(tanks_only light) s(eng) n(3) g(l1) sc(10) b(lt) i(31) cw(0) cp(0.4)) {cost 10} {fore 1}}
+{"mk7"			("v" c(240) t(tanks_only light) s(eng) n(3) g(l2) sc(15) b(lt) i(34) cw(0) cp(0.4)) {cost 15} {fore 0.7}}
+{"ha-go"		("v" c(220) t(tanks_only light) s(jap) n(3) g(l2) sc(10) b(lt) i(1) m(2) cw(0) cp(0.4)) {cost 10} {fore 1}}
+{"chi-ha47"		("v" c(240) t(tanks_only light) s(jap) n(3) g(m0) sc(15) b(lt) i(1) m(4) cw(0) cp(0.4)) {cost 15} {fore 0.7}}
+
+{"t34_2"		("v" c(90) t(all tankm vehicle tanks_only basic) s(rus) n(4) g(m1) sc(15) b(ht) i(3) cw(1) cp(0.2)) {cost 15} {fore 1}}
+{"t34_1"		("v" c(240) t(all tankm vehicle tanks_only) s(rus) n(4) g(m2) sc(30) b(ht) i(2) cw(1) cp(0.2)) {cost 30} {fore -1}}
+{"pz4g"			("v" c(90) t(all tankm vehicle tanks_only basic) s(ger) n(4) g(m2) sc(15) b(ht) i(7) cw(1) cp(0.2)) {cost 15} {fore 1}}
+{"pz4h"			("v" c(120) t(all tankh vehicle tanks_only) s(ger) n(4) g(m3) sc(30) b(ht) i(3) cw(1) cp(0.2)) {cost 30} {fore -3}}
+{"m24"			("v" c(120) t(all tankm vehicle tanks_only) s(usa) n(4) g(m2) sc(20) b(ht) i(13) m(2) cw(1) cp(0.2)) {cost 20} {fore 0}}
+{"m4a1"			("v" c(9) t(all tankm vehicle tanks_only basic) s(usa) n(4) g(m3) sc(15) b(ht) i(11) cw(1) cp(0.2)) {cost 15} {fore 1}}
+{"mk6"	   		("v" c(120) t(all tankm vehicle tanks_only) s(eng) n(4) g(m2)  sc(15) b(ht) i(2) cw(0) cp(0.2)) {cost 15} {fore 1}}
+{"mk8"			("v" c(90) t(all tankm vehicle tanks_only basic) s(eng) n(4) g(m1)  sc(20) b(ht) i(3) cw(1) cp(0.2)) {cost 20} {fore 1}}
+{"m4a1_eng"		("v" c(120) t(all tankm vehicle tanks_only) s(eng) n(4) g(m4) sc(15) b(ht) i(11) cw(1) cp(0.2)) {cost 15} {fore 1}}
+{"m4a2"			("v" c(120) t(all tankm vehicle tanks_only) s(usa) n(4) g(m4) sc(30) b(ht) i(2) cw(1) cp(0.2)) {cost 30} {fore -3}}
+{"kv1"			("v" c(240) t(all tankh vehicle tanks_only) s(rus) n(4) g(h0) sc(35) b(ht) i(10) m(2) cw(1) cp(0.2)) {cost 30} {fore -1}}
+{"kv2"			("v" c(200) t(all tankh vehicle tanks_only heavy_spa) s(rus) n(4) g(hasu2) sc(34) b(ht) i(11) cw(1) cp(0.2)) {cost 40} {fore -2}}
+{"mk4"			("v" c(240) t(all tankh vehicle tanks_only) s(eng) n(4) g(h1) sc(40) b(ht) i(4) m(2) cw(1) cp(0.2)) {cost 35} {fore -1}}
+{"m4a3e2"		("v" c(240) t(all tankh vehicle tanks_only) s(usa) n(4) g(h1) sc(50) b(ht) i(4) m(2) cw(1) cp(0.2)) {cost 50} {fore -3}}
+{"chi-nu"		("v" c(90) t(tankm vehicle tanks_only basic) s(jap) n(4) g(m2)  sc(15) b(ht) i(1) m(4) cw(1) cp(0.2)) {cost 15} {fore 1}}
+
+{"t34_3"		("v" c(200) t(all tankh vehicle tanks_only) s(rus) n(4) g(m4) sc(35) b(ht) i(4) m(2) cw(1) cp(0.2)) {cost 35} {fore -2}}
+{"kv85"			("v" c(200) t(all tankh vehicle tanks_only) s(rus) n(4) g(m5) sc(40) b(ht) i(5) m(2) cw(1) cp(0.2)) {cost 40} {fore -2}}
+{"is1"			("v" c(240) t(all tankh vehicle tanks_only) s(rus) n(4) g(h1) sc(65) b(ht) i(6) m(2) cw(1) cp(0.2)) {cost 65} {fore -3}}
+{"pz5g"			("v" c(240) t(all tankh vehicle tanks_only) s(ger) n(4) g(h0) sc(70) b(ht) i(3) m(2) cw(1) cp(0.2)) {cost 70} {fore -3.5}}
+{"pz6e"			("v" c(240) t(all tankh vehicle tanks_only) s(ger) n(4) g(h1) sc(65) b(ht) i(4) m(4) cw(1) cp(0.2)) {cost 65} {fore -3}}
+{"m4a3vc"		("v" c(200) t(all tankh vehicle tanks_only) s(eng) n(4) g(m5) sc(45) b(ht) i(3) m(2) cw(1) cp(0.2)) {cost 45} {fore -3.2}}
+{"centurion"	("v" c(240) t(all tankh vehicle tanks_only) s(eng) n(4) g(h2) sc(80) b(ht) i(4) m(2) cw(1) cp(0.2)) {cost 80} {fore -3.5}}
+{"m4a2_76w"		("v" c(200) t(all tankh vehicle tanks_only) s(usa) n(4) g(m4) sc(40) b(ht) i(3) m(2) cw(1) cp(0.2)) {cost 45} {fore -3.2}}
+{"chi-to"		("v" c(200) t(tankh vehicle tanks_only inshort) s(jap) n(4) g(m3) sc(55) m(4) b(ht) i(3) cw(1) cp(0.2)) {cost 55} {fore -2}}
+{"chi-ri"		("v" c(240) t(all tankh vehicle tanks_only) s(jap) n(4) g(h2) sc(75) b(ht) i(3) m(6) cw(1) cp(0.2)) {cost 75} {fore -3.5}}
+
+{"is2_44"		("v" c(240) t(all tankh vehicle tanks_only) s(rus) n(4) g(h2) sc(85) b(ht) i(6) m(4) cw(1) cp(0.2)) {cost 85} {fore -4}}
+{"is3"			("v" c(360) t(all tankh vehicle tanks_only) s(rus) n(4) g(h3) sc(115) b(ht) i(7) m(4) cw(1) cp(0.2)) {cost 115} {fore -3}}
+{"pz6bh"		("v" c(360) t(all tankh vehicle tanks_only) s(ger) n(4) g(h2) sc(120) b(ht) i(5) m(4) cw(1) cp(0.2)) {cost 120} {fore -3}}
+{"m26"			("v" c(240) t(all tankh vehicle tanks_only) s(usa) n(4) g(h2) sc(75) b(ht) i(5) m(4) cw(1) cp(0.2)) {cost 75} {fore -4}}
+{"t29"			("v" c(360) t(all tankh vehicle tanks_only) s(usa) n(4) g(h2) sc(120) b(ht) i(16) m(4) cw(1) cp(0.2)) {cost 120} {fore -4}}
+
+{"su76"			("v" c(140) t(all spa vehicle tanks_only) s(rus) n(4) g(asu) sc(30) b(asu) i(1) cw(1) cp(0.2)) {cost 25} {fore -1}}
+{"su85"			("v" c(200) t(all spa vehicle tanks_only) s(rus) n(4) g(asu) sc(30) b(asu) i(2) cw(1) cp(0.2)) {cost 30} {fore -2}}
+{"hetzer"		("v" c(140) t(all spa vehicle tanks_only) s(ger) n(4) g(asu) sc(30) b(asu) i(16) cw(1) cp(0.2)) {cost 25} {fore -2}}
+{"stug4g"		("v" c(200) t(all spa vehicle tanks_only) s(ger) n(4) g(asu) sc(30) b(asu) i(1) cw(1) cp(0.2)) {cost 30} {fore -2}}
+{"archer"		("v" c(140) t(all spa vehicle tanks_only) s(eng) n(4) g(asu) sc(35) b(asu) i(1) cw(1) cp(0.2)) {cost 35} {fore -2}}
+{"achilles"		("v" c(200) t(all spa vehicle tanks_only) s(eng) n(4) g(asu) sc(40) b(asu) i(11) cw(1) cp(0.2)) {cost 40} {fore -3.2}}
+{"m18"			("v" c(150) t(all spa vehicle tanks_only) s(usa) n(4) g(hasu) sc(30) b(asu) i(1) cw(1) cp(0.2)) {cost 30} {fore -2}}
+{"m36"			("v" c(240) t(all spa vehicle tanks_only) s(usa) n(4) g(hasu1) sc(55) b(asu) i(2) cw(1) cp(0.2)) {cost 55} {fore -3}}
+{"ho-ni1"		("v" c(120) t(tankm vehicle tanks_only) s(jap) n(3) g(asu) sc(20) b(asu) i(1) m(2) cw(1) cp(0.4)) {cost 20} {fore 0}}
+
+{"isu152"		("v" c(240) t(all spa vehicle tanks_only heavy_spa) s(rus) n(4) g(hasu2) sc(65) b(asu) i(3) m(4) cw(1) cp(0.2)) {cost 65} {fore -3}}
+{"su100"		("v" c(240) t(all spa vehicle tanks_only) s(rus) n(4) g(hasu) sc(65) b(asu) i(9) cw(1) cp(0.2)) {cost 65} {fore -3.5}}
+{"nashorn"		("v" c(240) t(all spa vehicle tanks_only) s(ger) n(4) g(hasu2) sc(45) b(asu) i(12) m(4) cw(1) cp(0.2)) {cost 45} {fore -3.5}}
+{"jagdpanzer_iv"("v" c(240) t(all spa vehicle tanks_only) s(ger) n(4) g(hasu) sc(50) b(asu) i(14) m(4) cw(1) cp(0.2)) {cost 50} {fore -3}}
+{"jagdpanther"	("v" c(240) t(all spa vehicle tanks_only nash_jagdp) s(ger) n(4) g(hasu) sc(90) b(asu) i(11) m(4) cw(1) cp(0.2)) {cost 90} {fore -4}}
+{"elefant"		("v" c(240) t(all spa vehicle tanks_only elef_jagdt) s(ger) n(4) g(hasu1) sc(100) b(asu) i(13) m(4) cw(1) cp(0.2)) {cost 100} {fore -4}}
+{"jagdtiger"	("v" c(360) t(all spa vehicle tanks_only elef_jagdt) s(ger) n(4) g(hasu2) sc(110) b(asu) i(2) m(4) cw(1) cp(0.2)) {cost 110} {fore -3}}
+{"sturmtiger"	("v" c(360) t(all spa vehicle tanks_only elef_jagdt) s(ger) n(4) g(hasu2) sc(120) b(asu) i(7) m(4) cw(1) cp(0.2)) {cost 130} {fore -3}}
+{"tortez"		("v" c(360) t(all spa vehicle tanks_only) s(eng) n(4) g(hasu1) sc(100) b(asu) i(2) m(4) cw(1) cp(0.2)) {cost 100} {fore -3}}
+{"ho-ri"	  	("v" c(360) t(all spa vehicle tanks_only nash_jagdp) s(jap) n(4) g(hasu)  sc(90) b(asu) i(11) m(7) cw(1) cp(0.2)) {cost 90} {fore -3}}
+
+{"zis5art"		("v" c(60) t(tanks_only supply) s(rus) n(0) g(vh_sup1) sc(5) a(1) b(auto) i(13) cw(0) cp(0.5)) {cost 5} {fore 1}}
+{"blitz3_6art"	("v" c(60) t(tanks_only supply) s(ger) n(0) g(vh_sup1) sc(5) a(1) b(auto) i(14) cw(0) cp(0.5)) {cost 5} {fore 1}}
+{"gmc_art"		("v" c(60) t(tanks_only supply) s(usa) n(0) g(vh_sup1) sc(5) a(1) b(auto) i(14) cw(0) cp(0.5)) {cost 5} {fore 1}}
+{"bedford_art"	("v" c(60) t(tanks_only supply) s(eng) n(0) g(vh_sup1) sc(5) a(1) b(auto) i(14) cw(0) cp(0.5)) {cost 5} {fore 1}}
+{"isuzutx40art"	("v" c(60) t(tanks_only supply) s(jap) n(0) g(vh_sup1) sc(5) a(3) b(auto) i(6) cw(2) cp(0.5)) {cost 5} {fore 1}}
+}

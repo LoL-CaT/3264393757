@@ -1,0 +1,124 @@
+;SDL
+
+;	Mission '<game>.info' file content
+;--------------------------------------------------------------------------
+;	{info
+;		{settings
+;			{options <editedParamList>}
+;			{fogOfWar}
+;		;	{autotransfer}
+;			{floraRespawn}
+;			{difficulty 		<N>}
+;			{gameDuration 		<min>}
+;			{impregnableTimeout <sec>}
+;			{parameters "freezeTime=30;cpb=1.5;limit_spa=3;limit_tankm=4;limit_cannon=6"}
+;			{aChargeFactors "afv=0.5;tankl=0.5;tankm=0.6;tankh=0.7;spa=0.9;*=0.5"}
+;			{bChargeFactors "cannon=0.25"}
+;
+;		}
+;		{unitPresets
+;			{"<presetId>"	<- don't forget to localize it in "mp/unitPresets/<presetId>"
+;				{unitset 	  "<filter>"}
+;				{commandPoints <N>}
+;			}
+;		}
+;	}
+;	parameters
+;		freezeTime=<sec> - время бездействия в начале игры 
+;		score_flag=ххх - количество очков, которые получает команда Атакующих при захвате флага (по умолчанию 250)
+;		score_phase=ххх - score_phase * [количество флагов в линии] = количество очков, которые получает команда Атакующих при захвате целой линии (по умолчанию score_phase=500)
+;		score_time=ххх - бонус за время. Сейчас получает только команда Атакующих. Бонус = score_time * [секунд осталось до конца игры] / [время игры]
+;		flag_time=ххх - время поднятия флага
+;		flag_time_small=ххх - время поднятия промежуточного флага
+;		bonusTime=ххх - бонусное время при чарже юнитов
+	
+;----------------------------------------------------------------------------------------------------------
+;	Команды: 'a' - атакующие, 'b' - защтники
+;	<P> - кол-во рубежей захвата флага.
+;	<N> - максимальное кол-во игроков в одной команде.
+;	Для каждого рубежа (<p>=1..<P>> захвата необходимо расставить:
+;		Для каждого атакующего <n>=1..<N> установить:
+; 			map_point{name="a<p><n>";team="a";phase="<p>";order="<n>"}
+;				spawn_point{map_point="a<p><n>";pos="1"}	- начальная точка спавна
+;				spawn_point{map_point="a<p><n>";pos="2"}	- точка спавна после захода в зону флага
+;		Для каждого защитника <n>=1..<N> установить:
+;			flag_point{name="f<p><n>";team="b";phase="<p>";order="<n>"}
+; 			map_point{team="b";name="b<p><n>";phase="<p>";order="<n>"}
+;				spawm_point(map_point="b<p><n>";pos=1) - на месте укрепления позиций
+;				spawm_point(map_point="b<p><n>";pos=2) - защита флага
+;				spawm_point(map_point="b<p><n>";pos=3) - за зоной флага
+;		clipper{name="frontline<p>a"} - клиппер покрывает текущий рубеж и 2 предыдущих.
+;		clipper{name="frontline<p>b"} - клиппер покрывает предыдущий рубеж(спавн атакующих), текущий(спавн защитников) и следующий рубеж.
+;	Подготовительная фаза включает 2 непересекающихся клипа:
+;		clipper{name="frontline0a"} - покрывает место спавна атакующий.
+;		clipper{name="frontline0b"} - покрывает место спавна защитников.
+;	При настройке клипов пурпурная граница должна совпадать с зелёной, голубая с жёлтой. 
+;	Для защитников <n>=1..<N> на последнем рубеже необходимо добавить 
+;		map_point{team="b";name="b<P+1><n>";phase=<P+1>;order="<n>";unitset="none"}
+;	
+;	Порядок следования игроков(order) на карте для команд из 4 участников, желательно указать следующий - 4 1 2 3
+;
+;	Для проаерки используйте консольную команду mp_checkFrontline
+;----------------------------------------------------------------------------------------------------------
+{game
+	{teammatch}
+	{parameters "freezeTime=2:180,4:180,6:180;bonusTime=1;flag_time=24;flag_time_small=8;score_time=0;score_flag=300;score_phase=250;score_defBonus=1"}
+	{settings
+		{options 			gameDuration}
+		{optionsAdvanced 	floraRespawn friendlyFire fogOfWar showPiercing showDamageReports}
+;		{fogOfWar 			fog_simple}
+		{fogOfWar 			fog_realistic}
+		{difficulty 		multiplayer}
+		{gameDuration		25} ; min
+		{impregnableTimeout	7}	; sec
+		{floraRespawn		0}
+		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+	}
+	{presets
+		{"vehicles"
+			{unitMode "vehicles"}
+			{teama
+				{unitset "^man|alter|def|not_used"}	
+				{commandPoints "*=120"}
+				{chargeFactors "*=0.75;"}
+				{budgets
+					{vehicle
+						{mode "with_update"}
+						{resource
+							{start 		80}
+							{finish 	200}
+							{speed 		50}
+							{limitmin	20}
+							{limitmax	150}
+							{period 	240}
+						} 
+						{buttons "squad1 squad2 auto vh_cn lt ht asu"} 
+					}
+				}
+			}
+
+			{teamb
+				{unitset "^man|alter|off|not_used"}
+				{commandPoints "*=120"}
+				{chargeFactors "infantry=0.5;mortar=1;qf17=2;m4a1=1.5;mk8=1.5;t34_2=1.5;chi-nu=1;*=0.5"}
+				{budgets
+					{vehicle
+						;{mode "frontline"}
+						{resource 
+							{start 60}
+							{finish 120}
+							{growTime 0.5}
+						}
+						{buttons "squad1 squad2 auto vh_cn lt ht asu"}
+					}
+				} 
+			}
+		}
+		{floraRespawn}
+		{friendlyFire}
+		{showPiercing}
+		{showDamageReports}
+	}
+}
