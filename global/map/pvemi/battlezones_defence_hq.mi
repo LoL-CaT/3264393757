@@ -1,0 +1,8335 @@
+{mission
+	{Helpers
+		{event "b_push"}
+		{event "conversations/dialog_event_a"}
+		{event "defence_generation"}
+		{event "echelon1"}
+		{event "echelon2"}
+		{event "echelon3"}
+		{event "loot_gen/ger"}
+		{event "loot_gen/rus"}
+		{event "loot_gen/usa"}
+		{event "start_true"}
+		{zone "poly"
+			{position -3.18054 -5.76923 0}
+			{Name "spawn_forbidden_99"}
+			{Point -7503.15 -4949.25}
+			{Point -7492.98 4950.44}
+			{Point 7512.21 4943.08}
+			{Point 7483.92 -4944.27}
+		}
+		{tasks
+			{"main_a"
+				{desc "$/ground_control/tasks/main"}
+				{primary}
+				{state hidden}
+				{point main_a}
+				{team a}
+			}
+			{"prep"
+				{desc "$/ground_control/tasks/prep"}
+				{primary}
+				{point prep}
+				{team a}
+			}
+		}
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{vars
+			{"b_push_counter"}
+			{"flags/all"}
+			{"flags/a"}
+			{"flags/b"}
+		}
+		{triggers
+			{"unit_behavior/retreat"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+						}
+					}
+				}
+				{actions
+					{"action"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{condition "move_mode \"hold\""
+									}
+								}
+							}
+						}
+						{action withdraw}
+					}
+					{"action"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+									{team
+										{team b}
+									}
+									{state
+										{state inhabited}
+									}
+								}
+								{exclude
+									{state
+										{state broken}
+									}
+									{state
+										{state inactive}
+									}
+									{condition "move_mode \"hold\""
+									}
+								}
+							}
+						}
+						{action withdraw}
+					}
+					{"delay"
+						{time 0.2}
+					}
+					{"trigger"
+						{name "unit_behavior/retreat"}
+					}
+				}
+			}
+			{"map_arrow/defence/left"
+				{condition
+					{terms
+						{"1.see_actors"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+									}
+								}
+							}
+							{enemy
+								{ignore_captured_by_user 0}
+								{tag arrow_left}
+							}
+							{distance
+								{mode in_range}
+								{min 0}
+								{max 70}
+							}
+							{detection located}
+							{tag
+								{"tag pair"}
+								{"for enemy" arrow_left_selected}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag map_arrow_left}
+									}
+								}
+							}
+							{amount 1
+							}
+							{sort
+								{type entity}
+								{entity
+									{tag arrow_left_selected}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"delay"
+						{time 10}
+					}
+					{"entity_state"
+						{selector
+							{tag arrow_left_selected}
+						}
+						{tag_remove arrow_left_selected}
+					}
+					{"entity_state"
+						{selector
+							{tag map_arrow_left}
+						}
+						{inactive on}
+					}
+					{"trigger"
+						{name "map_arrow/defence/left"}
+					}
+				}
+			}
+			{"map_arrow/defence/right"
+				{condition
+					{terms
+						{"1.see_actors"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+									}
+								}
+							}
+							{enemy
+								{ignore_captured_by_user 0}
+								{tag arrow_right}
+							}
+							{distance
+								{mode in_range}
+								{min 0}
+								{max 70}
+							}
+							{detection located}
+							{tag
+								{"tag pair"}
+								{"for enemy" arrow_right_selected}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag map_arrow_right}
+									}
+								}
+							}
+							{amount 1
+							}
+							{sort
+								{type entity}
+								{entity
+									{tag arrow_right_selected}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"delay"
+						{time 10}
+					}
+					{"entity_state"
+						{selector
+							{tag arrow_right_selected}
+						}
+						{tag_remove arrow_right_selected}
+					}
+					{"entity_state"
+						{selector
+							{tag map_arrow_right}
+						}
+						{inactive on}
+					}
+					{"trigger"
+						{name "map_arrow/defence/right"}
+					}
+				}
+			}
+			{"defence_generator/inf/world"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level novice}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+											{tag
+												{tag radio_b}
+											}
+										}
+									}
+									{amount 75
+									}
+								}
+								{tag_add def_world}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{tag
+												{tag def_world}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+										}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+											{tag
+												{tag radio_b}
+											}
+										}
+									}
+									{amount 60
+									}
+								}
+								{tag_add def_world}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{tag
+												{tag def_world}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+										}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+											{tag
+												{tag radio_b}
+											}
+										}
+									}
+									{amount 45
+									}
+								}
+								{tag_add def_world}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{tag
+												{tag def_world}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+										}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+											{tag
+												{tag radio_b}
+											}
+										}
+									}
+									{amount 30
+									}
+								}
+								{tag_add def_world}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{tag
+												{tag def_world}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+										}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+											{tag
+												{tag radio_b}
+											}
+										}
+									}
+									{amount 15
+									}
+								}
+								{tag_add def_world}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{all}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{tag
+												{tag def_world}
+											}
+											{zone
+												{zone "f1"}
+											}
+											{zone
+												{zone "f2"}
+											}
+											{zone
+												{zone "f3"}
+											}
+											{zone
+												{zone "f4"}
+											}
+											{zone
+												{zone "f5"}
+											}
+											{zone
+												{zone "f6"}
+											}
+											{zone
+												{zone "f7"}
+											}
+											{zone
+												{zone "f8"}
+											}
+											{zone
+												{zone "f9"}
+											}
+											{zone
+												{zone "f10"}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/points/counters/all"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"set_entity_count"
+						{var "flags/all$"}
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop flag_point}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+					}
+					{"trigger"
+						{name "core/points/counters/all"}
+					}
+				}
+			}
+			{"core/points/counters/a"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"set_entity_count"
+						{var "flags/a$"}
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop flag_point}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+					}
+					{"trigger"
+						{name "core/points/counters/a"}
+					}
+				}
+			}
+			{"core/points/counters/b"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"set_entity_count"
+						{var "flags/b$"}
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop flag_point}
+									}
+									{team
+										{team b}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+					}
+					{"trigger"
+						{name "core/points/counters/b"}
+					}
+				}
+			}
+			{"core/points/inc/a"
+				{condition
+					{expression "1 & 2 & !3 & 4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+						{"2.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"3.task"
+							{name "main_a"}
+						}
+						{"4.cmp_i"
+							{var "game:score_b@"}
+							{op "<<"}
+							{value 2500}
+						}
+						{"5.cmp_i"
+							{var "game:score_a@"}
+							{op "<<"}
+							{value 2500}
+						}
+						{"6.task"
+							{name "main_a"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 1}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 2}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 3}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 3}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.35}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 4}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 4}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 3}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.35}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.4}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 5}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 5}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 4}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 3}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.35}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.4}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.45}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 6}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 6}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 5}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 4}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.35}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 3}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.4}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.45}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team a}
+									}
+									{"delay"
+										{time 0.5}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/a$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/a"}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/points/inc/b"
+				{condition
+					{expression "1 & 2 & !3 & 4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+						{"2.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"3.task"
+							{name "main_a"}
+						}
+						{"4.cmp_i"
+							{var "game:score_b@"}
+							{op "<<"}
+							{value 2500}
+						}
+						{"5.cmp_i"
+							{var "game:score_a@"}
+							{op "<<"}
+							{value 2500}
+						}
+						{"6.task"
+							{name "main_a"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 1}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 2}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 3}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 3}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.35}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 4}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 4}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 3}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.35}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.4}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 5}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 5}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 4}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 3}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.35}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.4}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.45}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "flags/all$"}
+								{op "=="}
+								{value 6}
+							}
+							{"switch"
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 6}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 5}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.3}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 4}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.35}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 3}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.4}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 2}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.45}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 1}
+									}
+									{"mp_score"
+										{amount 1}
+										{team b}
+									}
+									{"delay"
+										{time 0.5}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+								{"case"
+									{condition
+										{type cmp_i}
+										{var "flags/b$"}
+										{op "=="}
+										{value 0}
+									}
+									{"delay"
+										{time 0.25}
+									}
+									{"trigger"
+										{name "core/points/inc/b"}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"help_generator/veh/gen"
+				{condition
+					{terms
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+										{tag
+											{tag help_veh_point}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{amount 1
+							}
+							{tag help_veh_point}
+						}
+						{tag_add help_veh_spawn}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{tag
+										{tag help_veh}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag help_veh_spawn}
+						}
+						{clone}
+						{rotate}
+					}
+					{"delete"
+						{selector
+							{tag help_veh_spawn}
+						}
+					}
+					{"trigger"
+						{name "help_generator/veh/gen"}
+					}
+				}
+			}
+			{"core/tasks/main/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 2}
+					}
+					{"task"
+						{name "main_a"}
+					}
+					{"sound"
+						{name "ui/task_new"}
+					}
+					{"autosave"}
+					{"task"
+						{name "prep"}
+						{state hide}
+					}
+				}
+			}
+			{"core/tasks/main/pointer/a"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 1}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag main_a}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{include
+									{prop
+										{prop flag_point}
+									}
+								}
+								{exclude
+									{team
+										{team b}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type entity}
+								{entity
+									{tag main_a}
+								}
+							}
+						}
+					}
+					{"trigger"
+						{name "core/tasks/main/pointer/a"}
+					}
+				}
+			}
+			{"core/event/start_true"
+				{condition
+					{expression "!1"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "start_true"}
+						{mode set}
+						{delay 0}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"event"
+						{event "defence_generation"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{## "conversations/talks/radio_a/echelon1"
+				{disabled}
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.event"
+							{id "echelon1"}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/echelon1"}
+						{sound "mission/multi/groundcontrol/arena_bazerville/ground_control/talks/radio/echelon1"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{## "conversations/talks/radio_a/echelon2"
+				{disabled}
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.event"
+							{id "echelon2"}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/echelon2"}
+						{sound "mission/multi/groundcontrol/arena_bazerville/ground_control/talks/radio/echelon2"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{## "conversations/talks/radio_a/echelon3"
+				{disabled}
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.event"
+							{id "echelon3"}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/echelon3"}
+						{sound "mission/multi/groundcontrol/arena_bazerville/ground_control/talks/radio/echelon3"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"tiers"
+				{condition
+				}
+				{actions
+					{"if"
+						{condition
+							{type cmp_i}
+							{var "users:team_a@"}
+							{op "=="}
+							{value 1}
+						}
+						{"if"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"mp_command_points"
+								{amount 10}
+								{team b}
+							}
+						}
+						{"if"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"mp_command_points"
+								{amount 25}
+								{team b}
+							}
+						}
+						{"if"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"mp_command_points"
+								{amount 50}
+								{team b}
+							}
+						}
+					}
+					{"mp_echelon" 1
+					}
+					{"mp_echelon" 2
+					}
+					{"mp_echelon" 3
+					}
+					{"mp_command_points"
+						{amount 5}
+					}
+					{"delay"
+						{time 60}
+					}
+					{"mp_command_points"
+						{amount 5}
+					}
+					{"delay"
+						{time 60}
+					}
+					{"mp_command_points"
+						{amount 5}
+					}
+					{"delay"
+						{time 60}
+					}
+					{"mp_command_points"
+						{amount 5}
+					}
+					{"delay"
+						{time 60}
+					}
+					{"mp_command_points"
+						{amount 5}
+					}
+					{"delay"
+						{time 60}
+					}
+					{"mp_command_points"
+						{amount 5}
+					}
+					{## "delay"
+						{time 60}
+					}
+					{## "mp_command_points"
+						{amount 5}
+					}
+					{## "delay"
+						{time 60}
+					}
+					{## "mp_command_points"
+						{amount 5}
+					}
+					{## "delay"
+						{time 60}
+					}
+					{## "mp_command_points"
+						{amount 5}
+					}
+					{## "delay"
+						{time 60}
+					}
+					{## "mp_command_points"
+						{amount 5}
+					}
+					{## "delay"
+						{time 60}
+					}
+					{## "mp_command_points"
+						{amount 5}
+					}
+				}
+			}
+			{"flag_manager/delete/select"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+						{tag_add flag_selected}
+					}
+				}
+			}
+			{## "flag_manager/delete/f1"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f1}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f1}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f1}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f1}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f2"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f2}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f2}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f2}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f2}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f3"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f3}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f3}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f3}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f3}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f4"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f4}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f4}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f4}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f4}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f5"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f5}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f5}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f5}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f5}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f6"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f6}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f6}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f6}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f6}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f7"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f7}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f7}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f7}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f7}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f8"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f8}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f8}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f8}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f8}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f9"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f9}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f9}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f9}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f9}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{## "flag_manager/delete/f10"
+				{disabled}
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{tag
+											{tag f10}
+										}
+										{prop
+											{prop flag_point}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag f10}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f10}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag f10}
+									}
+								}
+								{exclude
+									{prop
+										{prop flag_point}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/main/fail"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5 & 6 & 7"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.cmp_i"
+							{var "game:score_a@"}
+							{op "<<"}
+							{value 2500}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop flag_point}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"6.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop flag_point}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"7.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop flag_point}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{team
+											{team a}
+										}
+										{team
+											{team b}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"task"
+						{name "main_a"}
+						{state fail}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"mp_score"
+						{amount 2500}
+						{team b}
+					}
+					{"music"
+						{start "/music/defeat_theme_1st.ogg"}
+						{stop_all}
+						{volume game}
+					}
+				}
+			}
+			{"core/tasks/main/complete"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.cmp_i"
+							{var "game:score_a@"}
+							{op ">="}
+							{value 2500}
+						}
+					}
+				}
+				{actions
+					{"sound"
+						{name "ui/task_complete"}
+					}
+					{"task"
+						{name "main_a"}
+						{state complete}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"talk"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{say jubilation}
+						{text ""}
+					}
+					{"music"
+						{start "/music/victory_theme_1st.ogg"}
+						{stop_all}
+						{volume game}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f1"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f1}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f1}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f1}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f1}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f2"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f2}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f2}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f2}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f2}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f3"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f3}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f3}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f3}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f3}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f4"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f4}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f4}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f4}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f4}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f5"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f5}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f5}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f5}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f5}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f6"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f6}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f6}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f6}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f6}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f7"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f7}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f7}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f7}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f7}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f8"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f8}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f8}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f8}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f8}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f9"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f9}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f9}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f9}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f9}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"defence_generator/inf/del/f10"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f10}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 2
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f10}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 5
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f10}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 8
+									}
+								}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"delete"
+								{selector
+									{source advanced}
+									{ignore_captured_by_user 0}
+									{group
+										{select
+											{tag
+												{tag f10}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{state
+												{state linked}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+							}
+						}
+						{"default"}
+					}
+				}
+			}
+			{"tex_refresh"
+				{condition
+				}
+				{actions
+					{## "delay"
+						{time 12}
+					}
+					{## "effect"
+						{selector
+							{tag at}
+						}
+						{effect tex_refresh}
+					}
+					{## "effect"
+						{selector
+							{tag arty}
+						}
+						{effect tex_refresh}
+					}
+					{## "effect"
+						{selector
+							{tag mgun}
+						}
+						{effect tex_refresh}
+					}
+					{"effect"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+								}
+							}
+						}
+						{effect tex_refresh}
+					}
+				}
+			}
+			{"loot_generator/a/rus/gen"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/rus"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop inventory_transfer}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+										{prop
+											{prop human}
+										}
+										{prop
+											{prop vehicle}
+										}
+										{prop
+											{prop creature}
+										}
+										{tag
+											{tag loot_generated}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop inventory_transfer}
+									}
+								}
+								{exclude
+									{prop
+										{prop vehicle}
+									}
+									{prop
+										{prop human}
+									}
+									{prop
+										{prop creature}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bazooka" "weapon"}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bazooka" "ammo"}
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.111}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pps43"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 600}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.125}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "svt40"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "molotov_coctail" "grenade"}
+								{amount 20}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rpg40" "grenade"}
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "f1" "grenade"}
+								{amount 15}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 50}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 1000}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "dp"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "ptr" "ammo"}
+								{amount 75}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "ptrs"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 100}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mosin_s"}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate}
+						}
+						{tag_add loot_generated}
+						{tag_remove loot_generate}
+					}
+					{"trigger"
+						{name "loot_generator/a/rus/gen"}
+					}
+				}
+			}
+			{"loot_generator/a/ger/gen"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/ger"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop inventory_transfer}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+										{prop
+											{prop human}
+										}
+										{prop
+											{prop vehicle}
+										}
+										{prop
+											{prop creature}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop inventory_transfer}
+									}
+								}
+								{exclude
+									{prop
+										{prop vehicle}
+									}
+									{prop
+										{prop human}
+									}
+									{prop
+										{prop creature}
+									}
+									{tag
+										{tag loot_generated}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "panzershreck" "weapon"}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "panzershreck" "ammo"}
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.111}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "sg44"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 600}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.125}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "g43"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "molotov_coctail" "grenade"}
+								{amount 20}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "m24x7" "grenade"}
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "m24" "grenade"}
+								{amount 15}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 50}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 1000}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mg34"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "ptr" "ammo"}
+								{amount 75}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pzb39"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 100}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "g41"}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate}
+						}
+						{tag_add loot_generated}
+						{tag_remove loot_generate}
+					}
+					{"trigger"
+						{name "loot_generator/a/ger/gen"}
+					}
+				}
+			}
+			{"loot_generator/a/usa/gen"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/usa"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop inventory_transfer}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+										{prop
+											{prop human}
+										}
+										{prop
+											{prop vehicle}
+										}
+										{prop
+											{prop creature}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop inventory_transfer}
+									}
+								}
+								{exclude
+									{prop
+										{prop vehicle}
+									}
+									{prop
+										{prop human}
+									}
+									{prop
+										{prop creature}
+									}
+									{tag
+										{tag loot_generated}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bazooka" "weapon"}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bazooka" "ammo"}
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.111}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "thompson"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 600}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.125}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "garand"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "signal" "heavy" "grenade"}
+								{amount 20}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "n73at" "grenade"}
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "m61" "grenade"}
+								{amount 15}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 50}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 1000}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bar"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "ptr" "ammo"}
+								{amount 75}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "boyes"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 100}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "m1903a4"}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate}
+						}
+						{tag_add loot_generated}
+						{tag_remove loot_generate}
+					}
+					{"trigger"
+						{name "loot_generator/a/usa/gen"}
+					}
+				}
+			}
+			{"loot_generator/a/ger/gen_inf"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/ger"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 1}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{tag
+											{tag loot_generated_inf}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{tag
+										{tag loot_generated_inf}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate_inf}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "m24x7" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "smoke" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "valter"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "matchbox"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "m24" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "knife_ger"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 5}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate_inf}
+						}
+						{tag_add loot_generated_inf}
+						{tag_remove loot_generate_inf}
+					}
+					{"trigger"
+						{name "loot_generator/a/ger/gen_inf"}
+					}
+				}
+			}
+			{"loot_generator/a/rus/gen_inf"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/rus"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 1}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{tag
+											{tag loot_generated_inf}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{tag
+										{tag loot_generated_inf}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate_inf}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "rpg40" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "smoke" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "tt"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "matchbox"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "f1" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "knife_rus"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 5}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate_inf}
+						}
+						{tag_add loot_generated_inf}
+						{tag_remove loot_generate_inf}
+					}
+					{"trigger"
+						{name "loot_generator/a/rus/gen_inf"}
+					}
+				}
+			}
+			{"loot_generator/a/usa/gen_inf"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/usa"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 1}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{tag
+											{tag loot_generated_inf}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{tag
+										{tag loot_generated_inf}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate_inf}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "n73at" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "smoke" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "colt"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "matchbox"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "m61" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "knife_union"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 5}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate_inf}
+						}
+						{tag_add loot_generated_inf}
+						{tag_remove loot_generate_inf}
+					}
+					{"trigger"
+						{name "loot_generator/a/usa/gen_inf"}
+					}
+				}
+			}
+			{"flag_manager/ables"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 2}
+					}
+					{"ables"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop flag_point}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{remove select}
+					}
+				}
+			}
+			{## "attack_generator/inf/var"
+				{disabled}
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:max_level@"}
+								{op ">="}
+								{value 6}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 30}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:max_level@"}
+								{op "=="}
+								{value 5}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 25}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:max_level@"}
+								{op "=="}
+								{value 4}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 20}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:max_level@"}
+								{op "=="}
+								{value 3}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 15}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:max_level@"}
+								{op "=="}
+								{value 2}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 10}
+							}
+						}
+						{"default"
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 5}
+							}
+						}
+					}
+				}
+			}
+			{"attack_generator/inf/ini"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"actor_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{move_mode zone}
+						{movement
+							{speed fast}
+						}
+					}
+				}
+			}
+			{"core/event/prep_time"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 2}
+					}
+					{"event"
+						{event "b_push"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"loot_generator/a/ger/event"
+				{condition
+					{terms
+						{"1.side"
+							{side ger}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "loot_gen/ger"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"bot_ai+/fallback"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+						{"2.event"
+							{id "b_push"}
+						}
+					}
+				}
+				{actions
+					{"action"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+								}
+								{exclude
+									{player
+										{player 2}
+									}
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{state
+										{state linked}
+									}
+								}
+							}
+						}
+						{action withdraw}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "bot_ai+/fallback"}
+					}
+				}
+			}
+			{"loot_generator/a/rus/event"
+				{condition
+					{terms
+						{"1.side"
+							{side rus}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "loot_gen/rus"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"loot_generator/a/usa/event"
+				{condition
+					{terms
+						{"1.side"
+							{side usa}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "loot_gen/usa"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"world/open"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"effect"
+						{selector
+							{tag open}
+						}
+						{effect open}
+					}
+				}
+			}
+			{"help_generator/mgun/gen"
+				{condition
+					{terms
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+										{tag
+											{tag help_mgun_point}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{amount 1
+							}
+							{tag help_mgun_point}
+						}
+						{tag_add help_mgun_spawn}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{tag
+										{tag help_mgun}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag help_mgun_spawn}
+						}
+						{clone}
+						{rotate}
+					}
+					{"delete"
+						{selector
+							{tag help_mgun_spawn}
+						}
+					}
+					{"trigger"
+						{name "help_generator/mgun/gen"}
+					}
+				}
+			}
+			{"help_generator/at/gen"
+				{condition
+					{terms
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+										{tag
+											{tag help_at_point}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{amount 1
+							}
+							{tag help_at_point}
+						}
+						{tag_add help_at_spawn}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{tag
+										{tag help_at}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag help_at_spawn}
+						}
+						{clone}
+						{rotate}
+					}
+					{"delete"
+						{selector
+							{tag help_at_spawn}
+						}
+					}
+					{"trigger"
+						{name "help_generator/at/gen"}
+					}
+				}
+			}
+			{"scenario/intro"
+				{condition
+				}
+				{actions
+					{"fade"
+						{time 2}
+						{color 0xff000000}
+					}
+					{## "scenario"
+						{message
+							{text ""}
+						}
+						{camera
+							{name "intro"}
+							{smooth_begin 0}
+							{smooth_end 0}
+						}
+						{do_not_restore_camera}
+						{force_auto_complete}
+					}
+				}
+			}
+			{"bot_ai+/spawn_randomiser"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{tag spawner_b}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag spawner_b_pos}
+									}
+								}
+							}
+							{amount 1
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+					}
+					{"trigger"
+						{name "bot_ai+/spawn_randomiser"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen_f1"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{tag
+											{tag f1}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<"}
+								{value 5}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f1}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 5
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen_f1"}
+					}
+				}
+			}
+			{"attack_generator/inf/push_f1"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f1}
+										}
+									}
+									{exclude
+										{tag
+											{tag have_order}
+										}
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f1}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+										{tag
+											{tag have_order}
+										}
+									}
+								}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "1"}
+							{make_squad}
+						}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f1}
+									}
+								}
+								{exclude
+									{tag
+										{tag have_order}
+									}
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{tag_add have_order}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/push_f1"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen_f2"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{tag
+											{tag f2}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<"}
+								{value 5}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f2}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 5
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen_f2"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen_f3"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{tag
+											{tag f3}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<"}
+								{value 5}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f3}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 5
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen_f3"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen_f4"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{tag
+											{tag f4}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<"}
+								{value 5}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f4}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 5
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen_f4"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen_f5"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{tag
+											{tag f5}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<"}
+								{value 5}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f5}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 5
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen_f5"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen_f6"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{tag
+											{tag f6}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<"}
+								{value 5}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f6}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 5
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen_f6"}
+					}
+				}
+			}
+			{"attack_generator/inf/push_f2"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f2}
+										}
+									}
+									{exclude
+										{tag
+											{tag have_order}
+										}
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f2}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+										{tag
+											{tag have_order}
+										}
+									}
+								}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "2"}
+							{make_squad}
+						}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f2}
+									}
+								}
+								{exclude
+									{tag
+										{tag have_order}
+									}
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{tag_add have_order}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/push_f2"}
+					}
+				}
+			}
+			{"attack_generator/inf/push_f3"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f3}
+										}
+									}
+									{exclude
+										{tag
+											{tag have_order}
+										}
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f3}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+										{tag
+											{tag have_order}
+										}
+									}
+								}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "3"}
+							{make_squad}
+						}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f3}
+									}
+								}
+								{exclude
+									{tag
+										{tag have_order}
+									}
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{tag_add have_order}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/push_f3"}
+					}
+				}
+			}
+			{"attack_generator/inf/push_f4"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f4}
+										}
+									}
+									{exclude
+										{tag
+											{tag have_order}
+										}
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f4}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+										{tag
+											{tag have_order}
+										}
+									}
+								}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "4"}
+							{make_squad}
+						}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f4}
+									}
+								}
+								{exclude
+									{tag
+										{tag have_order}
+									}
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{tag_add have_order}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/push_f4"}
+					}
+				}
+			}
+			{"attack_generator/inf/push_f5"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f5}
+										}
+									}
+									{exclude
+										{tag
+											{tag have_order}
+										}
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f5}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+										{tag
+											{tag have_order}
+										}
+									}
+								}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "5"}
+							{make_squad}
+						}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f5}
+									}
+								}
+								{exclude
+									{tag
+										{tag have_order}
+									}
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{tag_add have_order}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/push_f5"}
+					}
+				}
+			}
+			{"attack_generator/inf/push_f6"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f6}
+										}
+									}
+									{exclude
+										{tag
+											{tag have_order}
+										}
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{tag
+											{tag f6}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+										{tag
+											{tag have_order}
+										}
+									}
+								}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "6"}
+							{make_squad}
+						}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag b_push}
+									}
+								}
+								{include
+									{tag
+										{tag f6}
+									}
+								}
+								{exclude
+									{tag
+										{tag have_order}
+									}
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{tag_add have_order}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"trigger"
+						{name "attack_generator/inf/push_f6"}
+					}
+				}
+			}
+			{"music"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 0.2}
+					}
+					{"music"
+						{playlist battle}
+						{volume game}
+					}
+				}
+			}
+			{"unit_behavior/patol"
+				{condition
+				}
+				{actions
+					{"ables"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{condition "move_mode \"zone\""
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state user_control}
+									}
+								}
+							}
+						}
+						{add activity_behaviour}
+					}
+				}
+			}
+		}
+		{modifiers
+			{"file"
+				{name "battlezones_attack.mod"}
+			}
+		}
+	}
+	{Players
+		{mp_team_relation 0 0 0 0}
+		{mp_team_relation 1 2 1}
+		{mp_team_relation 2 1 2}
+	}
+}

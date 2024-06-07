@@ -1,0 +1,986 @@
+{mission
+	{Helpers
+		{event "a_b"}
+		{event "b_a"}
+		{event "cp_ini_event"}
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{vars
+			{"cp_base_eshelon1"}
+			{"cp_base_eshelon2"}
+			{"cp_base_eshelon3"}
+			{"player_a"}
+			{"player_b"}
+			{"palyer_diff"}
+		}
+		{triggers
+			{"local/players_cp_balance/tiers/tier_a"
+				{condition
+					{terms
+						{"2.event"
+							{id "b_a"}
+						}
+						{"1.cmp_i"
+							{var "players:team_b@"}
+							{op ">"}
+							{value "players:team_a@"}
+						}
+						{"3.cmp_i"
+							{var "cp_base_eshelon1$"}
+							{op ">"}
+							{value 0}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 0.1}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 4}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 5}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 7}
+							}
+							{"mp_command_points"
+								{amount 8}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 10}
+							}
+							{"mp_command_points"
+								{amount 10}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 15}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 22}
+							}
+							{"mp_command_points"
+								{amount 22}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 30}
+							}
+							{"mp_command_points"
+								{amount 30}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 45}
+							}
+							{"mp_command_points"
+								{amount 45}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 60}
+							}
+							{"mp_command_points"
+								{amount 60}
+								{team a}
+							}
+						}
+					}
+					{"delay"
+						{time 280}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 1}
+							}
+							{"mp_command_points"
+								{amount 1}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 2}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 3}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 5}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 6}
+							}
+							{"mp_command_points"
+								{amount 6}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 7}
+							}
+							{"mp_command_points"
+								{amount 7}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 10}
+							}
+							{"mp_command_points"
+								{amount 10}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 15}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 30}
+							}
+							{"mp_command_points"
+								{amount 30}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 40}
+							}
+							{"mp_command_points"
+								{amount 40}
+								{team a}
+							}
+						}
+					}
+					{"delay"
+						{time 360}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 2}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 3}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 5}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 6}
+							}
+							{"mp_command_points"
+								{amount 7}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 10}
+							}
+							{"mp_command_points"
+								{amount 10}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 15}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 20}
+							}
+							{"mp_command_points"
+								{amount 20}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 30}
+							}
+							{"mp_command_points"
+								{amount 30}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 40}
+							}
+							{"mp_command_points"
+								{amount 40}
+								{team a}
+							}
+						}
+					}
+				}
+			}
+			{"local/players_cp_balance/tiers/tier_b"
+				{condition
+					{terms
+						{"2.event"
+							{id "a_b"}
+						}
+						{"1.cmp_i"
+							{var "players:team_a@"}
+							{op ">"}
+							{value "players:team_b@"}
+						}
+						{"3.cmp_i"
+							{var "cp_base_eshelon1$"}
+							{op ">"}
+							{value 0}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 0.1}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 4}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 5}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 7}
+							}
+							{"mp_command_points"
+								{amount 8}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 10}
+							}
+							{"mp_command_points"
+								{amount 10}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 15}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 22}
+							}
+							{"mp_command_points"
+								{amount 22}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 30}
+							}
+							{"mp_command_points"
+								{amount 30}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 45}
+							}
+							{"mp_command_points"
+								{amount 45}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon1$"}
+								{op "<<="}
+								{value 60}
+							}
+							{"mp_command_points"
+								{amount 60}
+								{team b}
+							}
+						}
+					}
+					{"delay"
+						{time 280}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 1}
+							}
+							{"mp_command_points"
+								{amount 1}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 2}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 3}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 5}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 6}
+							}
+							{"mp_command_points"
+								{amount 6}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 7}
+							}
+							{"mp_command_points"
+								{amount 7}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 10}
+							}
+							{"mp_command_points"
+								{amount 10}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 15}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 30}
+							}
+							{"mp_command_points"
+								{amount 30}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon2$"}
+								{op "<<="}
+								{value 40}
+							}
+							{"mp_command_points"
+								{amount 40}
+								{team b}
+							}
+						}
+					}
+					{"delay"
+						{time 360}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 2}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 3}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 5}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 6}
+							}
+							{"mp_command_points"
+								{amount 7}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 10}
+							}
+							{"mp_command_points"
+								{amount 10}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 15}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 20}
+							}
+							{"mp_command_points"
+								{amount 20}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 30}
+							}
+							{"mp_command_points"
+								{amount 30}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "cp_base_eshelon3$"}
+								{op "<<="}
+								{value 40}
+							}
+							{"mp_command_points"
+								{amount 40}
+								{team b}
+							}
+						}
+					}
+				}
+			}
+			{"local/players_cp_balance/a_b"
+				{condition
+					{expression "1 & 2 & !3 & 4 & 5 & 6"}
+					{terms
+						{"2.cmp_i"
+							{var "player_a$"}
+							{op ">"}
+							{value "player_b$"}
+						}
+						{"3.cmp_i"
+							{var "player_b$"}
+							{op ">"}
+							{value "player_a$"}
+						}
+						{"1.event"
+							{id "start_true"}
+						}
+						{"4.cmp_i"
+							{var "player_a$"}
+							{op ">"}
+							{value 0}
+						}
+						{"5.cmp_i"
+							{var "player_b$"}
+							{op ">"}
+							{value 0}
+						}
+						{"6.event"
+							{id "cp_ini_event"}
+						}
+					}
+				}
+				{actions
+					{"set_i"
+						{var "cp_base_eshelon1$"}
+						{op "="}
+						{value 15}
+					}
+					{"set_i"
+						{var "cp_base_eshelon2$"}
+						{op "="}
+						{value 5}
+					}
+					{"set_i"
+						{var "cp_base_eshelon3$"}
+						{op "="}
+						{value 10}
+					}
+					{"set_i"
+						{var "player_a$"}
+						{op "-"}
+						{value "player_b$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon1$"}
+						{op "*"}
+						{value "player_a$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon2$"}
+						{op "*"}
+						{value "player_a$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon3$"}
+						{op "*"}
+						{value "player_a$"}
+					}
+					{"set_i"
+						{var "palyer_diff$"}
+						{op "="}
+						{value "player_a$"}
+					}
+					{"set_i"
+						{var "player_a$"}
+						{op "="}
+						{value "players:team_a@"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon1$"}
+						{op "/"}
+						{value "player_b$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon2$"}
+						{op "/"}
+						{value "player_b$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon3$"}
+						{op "/"}
+						{value "player_b$"}
+					}
+					{"event"
+						{event "a_b"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"local/players_cp_balance/b_a"
+				{condition
+					{expression "1 & !2 & 3 & 4 & 5 & 6"}
+					{terms
+						{"2.cmp_i"
+							{var "player_a$"}
+							{op ">"}
+							{value "player_b$"}
+						}
+						{"3.cmp_i"
+							{var "player_b$"}
+							{op ">"}
+							{value "player_a$"}
+						}
+						{"1.event"
+							{id "start_true"}
+						}
+						{"4.cmp_i"
+							{var "player_a$"}
+							{op ">"}
+							{value 0}
+						}
+						{"5.cmp_i"
+							{var "player_b$"}
+							{op ">"}
+							{value 0}
+						}
+						{"6.event"
+							{id "cp_ini_event"}
+						}
+					}
+				}
+				{actions
+					{"set_i"
+						{var "cp_base_eshelon1$"}
+						{op "="}
+						{value 15}
+					}
+					{"set_i"
+						{var "cp_base_eshelon2$"}
+						{op "="}
+						{value 5}
+					}
+					{"set_i"
+						{var "cp_base_eshelon3$"}
+						{op "="}
+						{value 10}
+					}
+					{"set_i"
+						{var "player_b$"}
+						{op "-"}
+						{value "player_a$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon1$"}
+						{op "*"}
+						{value "player_b$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon2$"}
+						{op "*"}
+						{value "player_b$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon3$"}
+						{op "*"}
+						{value "player_b$"}
+					}
+					{"set_i"
+						{var "palyer_diff$"}
+						{op "="}
+						{value "player_b$"}
+					}
+					{"set_i"
+						{var "player_b$"}
+						{op "="}
+						{value "players:team_b@"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon1$"}
+						{op "/"}
+						{value "player_a$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon2$"}
+						{op "/"}
+						{value "player_a$"}
+					}
+					{"set_i"
+						{var "cp_base_eshelon3$"}
+						{op "/"}
+						{value "player_a$"}
+					}
+					{"event"
+						{event "b_a"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"local/players_cp_balance/ini"
+				{condition
+				}
+				{actions
+					{"set_i"
+						{var "player_a$"}
+						{op "="}
+						{value "players:team_a@"}
+					}
+					{"set_i"
+						{var "player_b$"}
+						{op "="}
+						{value "players:team_b@"}
+					}
+					{"event"
+						{event "cp_ini_event"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+		}
+	}
+}

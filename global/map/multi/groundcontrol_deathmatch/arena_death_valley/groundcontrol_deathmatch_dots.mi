@@ -1,0 +1,2025 @@
+{mission
+	{Clips
+		{"[auto]"
+			{world -6510 -6520 6530 6570}
+			{camera -6510 -6520 6530 6570}
+			{pather -6510 -6520 6530 6570}
+			{haze -7010 -7020 7030 7070}
+		}
+	}
+	{Entity "flag_point" 0x8000
+		{Position 4048.05 12.19}
+		{Saturation 0}
+		{Fogable never}
+		{VolumeAble 0}
+		{Extender "map_point"
+			{zoneA dot1}
+			{zoneB dot1}
+			{phase 0}
+			{order 1}
+			{allow
+				{capture "a" "b"}
+				{release "a" "b"}
+			}
+		}
+		{Player 0}
+		{MID 1}
+	}
+	{Entity "flag_point" 0x8001
+		{Position -3726.69 1.79}
+		{Saturation 0}
+		{Fogable never}
+		{VolumeAble 0}
+		{Extender "map_point"
+			{zoneA dot2}
+			{zoneB dot2}
+			{phase 0}
+			{order 1}
+			{allow
+				{capture "a" "b"}
+				{release "a" "b"}
+			}
+		}
+		{Player 0}
+		{MID 2}
+	}
+	{Entity "flag_point" 0x8002
+		{Position 692.6 2885.88}
+		{Saturation 0}
+		{Fogable never}
+		{VolumeAble 0}
+		{Extender "map_point"
+			{zoneA dot3}
+			{zoneB dot3}
+			{phase 0}
+			{order 1}
+			{allow
+				{capture "a" "b"}
+				{release "a" "b"}
+			}
+		}
+		{Player 2}
+		{MID 3}
+	}
+	{Entity "flag_point" 0x8003
+		{Position -1427.64 3467.17}
+		{Saturation 0}
+		{Fogable never}
+		{VolumeAble 0}
+		{Extender "map_point"
+			{zoneA dot4}
+			{zoneB dot4}
+			{phase 0}
+			{order 1}
+			{allow
+				{capture "a" "b"}
+				{release "a" "b"}
+			}
+		}
+		{Player 2}
+		{MID 4}
+	}
+	{Entity "flag_point" 0x8004
+		{Position 947.23 -2850.68}
+		{Saturation 0}
+		{Fogable never}
+		{VolumeAble 0}
+		{Extender "map_point"
+			{zoneA dot5}
+			{zoneB dot5}
+			{phase 0}
+			{order 1}
+			{allow
+				{capture "a" "b"}
+				{release "a" "b"}
+			}
+		}
+		{Player 1}
+		{MID 5}
+	}
+	{Entity "flag_point" 0x8005
+		{Position -1657.5 -3398.32}
+		{Saturation 0}
+		{Fogable never}
+		{VolumeAble 0}
+		{Extender "map_point"
+			{zoneA dot6}
+			{zoneB dot6}
+			{phase 0}
+			{order 1}
+			{allow
+				{capture "a" "b"}
+				{release "a" "b"}
+			}
+		}
+		{Player 1}
+		{MID 6}
+	}
+	{Tags "destroyed" 0x4441}
+	{Tags "destroyed" 0x4c0c}
+	{Tags "destroyed" 0x500a}
+	{Tags "destroyed" 0x5a98}
+	{Tags "destroyed" 0x282e}
+	{Tags "destroyed" 0x2c3e}
+	{Tags "destroyed" 0x2d05}
+	{Tags "destroyed" 0x74ca}
+	{Tags "destroyed" 0x5aba}
+	{Tags "destroyed" 0x7c06}
+	{Tags "wire_square" 0x316f}
+	{Tags "sandbag" 0x4582}
+	{Tags "sandbag" 0x645a}
+	{Tags "sandbag" 0x647d}
+	{Tags "sandbag" 0x31d8}
+	{Tags "sandbag" 0x31d9}
+	{Tags "sandbag" 0x31da}
+	{Tags "sandbag" 0x31db}
+	{Tags "sandbag" 0x31dc}
+	{Tags "sandbag" 0x31dd}
+	{Tags "sandbag" 0x31de}
+	{Tags "sandbag" 0x31df}
+	{Tags "sandbag" 0x31e0}
+	{Tags "sandbag" 0x31e3}
+	{Tags "sandbag" 0x31e4}
+	{Tags "sandbag" 0x31e5}
+	{Tags "sandbag" 0x3309}
+	{Tags "sandbag" 0x330b}
+	{Tags "sandbag" 0x330c}
+	{Tags "disputed_zone_hide" "dot1" "hidden" "flag_target" "pve_point" 0x8000}
+	{Tags "disputed_zone_hide" "dot2" "hidden" "flag_target" "pve_point" 0x8001}
+	{Tags "disputed_zone_hide" "dot3" "hidden" "flag_target" "pve_point" 0x8002}
+	{Tags "disputed_zone_hide" "dot4" "hidden" "flag_target" "pve_point" 0x8003}
+	{Tags "dot5" "disputed_zone_hide" "hidden" "flag_target" "pve_point" 0x8004}
+	{Tags "dot6" "disputed_zone_hide" "hidden" "flag_target" "pve_point" 0x8005}
+	{Helpers
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{triggers
+			{"core/tasks/second/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 43}
+					}
+					{"event"
+						{event "start_dot"}
+						{mode set}
+						{delay 0}
+					}
+					{"task"
+						{name "second_a"}
+					}
+					{"task"
+						{name "second_b"}
+					}
+					{"sound"
+						{name "ui/task_new"}
+					}
+					{## "placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot1_pointer}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot1}
+									}
+								}
+							}
+						}
+					}
+					{## "placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot2_pointer}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot2}
+									}
+								}
+							}
+						}
+					}
+					{## "placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot3_pointer}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot3}
+									}
+								}
+							}
+						}
+					}
+					{## "placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot4_pointer}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot4}
+									}
+								}
+							}
+						}
+					}
+					{## "placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot5_pointer}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot5}
+									}
+								}
+							}
+						}
+					}
+					{## "placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot6_pointer}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot6}
+									}
+								}
+							}
+						}
+					}
+					{## "effect"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag disputed_zone_hide}
+									}
+								}
+							}
+						}
+						{effect call_spawn_pointer_force}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag disputed_zone_hide}
+									}
+								}
+							}
+						}
+						{tag_remove hidden}
+						{inactive off}
+					}
+					{"delay"
+						{time 3}
+					}
+					{## "entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag disputed_zone_hide}
+									}
+								}
+							}
+						}
+						{tag_remove pointer}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot_pointer}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"dots/start"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_dot"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "dot5_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot6_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_n"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_n"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot3_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot4_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot3}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot4}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot5}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot6}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"delay"
+						{time 0.5}
+					}
+					{"event"
+						{event "start_dot2"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"dots/dot1/cap_a"
+				{condition
+					{expression "1 & 2 & !3 & 4 & !5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot1"}
+							{team a}
+						}
+						{"3.mp_zone_team"
+							{zone "dot1"}
+							{team b}
+						}
+						{"4.event"
+							{id "dot1_n"}
+						}
+						{"5.event"
+							{id "dot1_b"}
+						}
+						{"6.event"
+							{id "dot1_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount 200}
+						{team a}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot1}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"event"
+						{event "dot1_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"dots/dot1/cap_b"
+				{condition
+					{expression "1 & 2 & !3 & 4 & !5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot1"}
+							{team b}
+						}
+						{"3.mp_zone_team"
+							{zone "dot1"}
+							{team a}
+						}
+						{"4.event"
+							{id "dot1_n"}
+						}
+						{"5.event"
+							{id "dot1_a"}
+						}
+						{"6.event"
+							{id "dot1_b"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount 200}
+						{team b}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot1}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"event"
+						{event "dot1_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"dots/dot1/cap_b1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot1"}
+							{team b}
+						}
+						{"3.mp_zone_team"
+							{zone "dot1"}
+							{team a}
+						}
+						{"4.event"
+							{id "dot1_n"}
+						}
+						{"5.event"
+							{id "dot1_a"}
+						}
+						{"6.event"
+							{id "dot1_b"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team a}
+					}
+					{"mp_score"
+						{amount 200}
+						{team b}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot1}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot1_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot1/cap_b1"}
+					}
+				}
+			}
+			{"dots/dot1/cap_a1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot1"}
+							{team a}
+						}
+						{"3.mp_zone_team"
+							{zone "dot1"}
+							{team b}
+						}
+						{"4.event"
+							{id "dot1_n"}
+						}
+						{"5.event"
+							{id "dot1_b"}
+						}
+						{"6.event"
+							{id "dot1_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team b}
+					}
+					{"mp_score"
+						{amount 200}
+						{team a}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot1}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot1_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot1_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot1/cap_a1"}
+					}
+				}
+			}
+			{"dots/dot2/cap_a"
+				{condition
+					{expression "1 & 2 & !3 & 4 & !5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot2"}
+							{team a}
+						}
+						{"3.mp_zone_team"
+							{zone "dot2"}
+							{team b}
+						}
+						{"4.event"
+							{id "dot2_n"}
+						}
+						{"5.event"
+							{id "dot2_b"}
+						}
+						{"6.event"
+							{id "dot2_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount 200}
+						{team a}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot2}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"event"
+						{event "dot2_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"dots/dot2/cap_b"
+				{condition
+					{expression "1 & 2 & !3 & 4 & !5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot2"}
+							{team b}
+						}
+						{"3.mp_zone_team"
+							{zone "dot2"}
+							{team a}
+						}
+						{"4.event"
+							{id "dot2_n"}
+						}
+						{"5.event"
+							{id "dot2_a"}
+						}
+						{"6.event"
+							{id "dot2_b"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount 200}
+						{team b}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot2}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"event"
+						{event "dot2_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"dots/dot2/cap_a1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot2"}
+							{team a}
+						}
+						{"3.mp_zone_team"
+							{zone "dot2"}
+							{team b}
+						}
+						{"4.event"
+							{id "dot2_n"}
+						}
+						{"5.event"
+							{id "dot2_b"}
+						}
+						{"6.event"
+							{id "dot2_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team b}
+					}
+					{"mp_score"
+						{amount 200}
+						{team a}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot2}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot2_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot2/cap_a1"}
+					}
+				}
+			}
+			{"dots/dot2/cap_b1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot2"}
+							{team b}
+						}
+						{"3.mp_zone_team"
+							{zone "dot2"}
+							{team a}
+						}
+						{"4.event"
+							{id "dot2_n"}
+						}
+						{"5.event"
+							{id "dot2_a"}
+						}
+						{"6.event"
+							{id "dot2_b"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team a}
+					}
+					{"mp_score"
+						{amount 200}
+						{team b}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot2}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot2_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot2_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot2/cap_b1"}
+					}
+				}
+			}
+			{"dots/dot3/cap_a1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot3"}
+							{team a}
+						}
+						{"3.mp_zone_team"
+							{zone "dot3"}
+							{team b}
+						}
+						{"4.event"
+							{id "dot3_n"}
+						}
+						{"5.event"
+							{id "dot3_b"}
+						}
+						{"6.event"
+							{id "dot3_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team b}
+					}
+					{"mp_score"
+						{amount 200}
+						{team a}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot3}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot3_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot3_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot3_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot3/cap_a1"}
+					}
+				}
+			}
+			{"dots/dot3/cap_b1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot3"}
+							{team b}
+						}
+						{"3.mp_zone_team"
+							{zone "dot3"}
+							{team a}
+						}
+						{"4.event"
+							{id "dot3_n"}
+						}
+						{"5.event"
+							{id "dot3_a"}
+						}
+						{"6.event"
+							{id "dot3_b"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team a}
+					}
+					{"mp_score"
+						{amount 200}
+						{team b}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot3}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot3_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot3_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot3_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot3/cap_b1"}
+					}
+				}
+			}
+			{"dots/dot4/cap_a1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot4"}
+							{team a}
+						}
+						{"3.mp_zone_team"
+							{zone "dot4"}
+							{team b}
+						}
+						{"4.event"
+							{id "dot4_n"}
+						}
+						{"5.event"
+							{id "dot4_b"}
+						}
+						{"6.event"
+							{id "dot4_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team b}
+					}
+					{"mp_score"
+						{amount 200}
+						{team a}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot4}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot4_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot4_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot4_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot4/cap_a1"}
+					}
+				}
+			}
+			{"dots/dot4/cap_b1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot4"}
+							{team b}
+						}
+						{"3.mp_zone_team"
+							{zone "dot4"}
+							{team a}
+						}
+						{"4.event"
+							{id "dot4_n"}
+						}
+						{"5.event"
+							{id "dot4_a"}
+						}
+						{"6.event"
+							{id "dot4_b"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team a}
+					}
+					{"mp_score"
+						{amount 200}
+						{team b}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot4}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot4_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot4_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot4_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot4/cap_b1"}
+					}
+				}
+			}
+			{"dots/dot5/cap_a1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot5"}
+							{team a}
+						}
+						{"3.mp_zone_team"
+							{zone "dot5"}
+							{team b}
+						}
+						{"4.event"
+							{id "dot5_n"}
+						}
+						{"5.event"
+							{id "dot5_b"}
+						}
+						{"6.event"
+							{id "dot5_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team b}
+					}
+					{"mp_score"
+						{amount 200}
+						{team a}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot5}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot5_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot5_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot5_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot5/cap_a1"}
+					}
+				}
+			}
+			{"dots/dot5/cap_b1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot5"}
+							{team b}
+						}
+						{"3.mp_zone_team"
+							{zone "dot5"}
+							{team a}
+						}
+						{"4.event"
+							{id "dot5_n"}
+						}
+						{"5.event"
+							{id "dot5_a"}
+						}
+						{"6.event"
+							{id "dot5_b"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team a}
+					}
+					{"mp_score"
+						{amount 200}
+						{team b}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot5}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot5_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot5_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot5_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot5/cap_b1"}
+					}
+				}
+			}
+			{"dots/dot6/cap_a1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot6"}
+							{team a}
+						}
+						{"3.mp_zone_team"
+							{zone "dot6"}
+							{team b}
+						}
+						{"4.event"
+							{id "dot6_n"}
+						}
+						{"5.event"
+							{id "dot6_b"}
+						}
+						{"6.event"
+							{id "dot6_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team b}
+					}
+					{"mp_score"
+						{amount 200}
+						{team a}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot6}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 1}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot6_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot6_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot6_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot6/cap_a1"}
+					}
+				}
+			}
+			{"dots/dot6/cap_b1"
+				{condition
+					{expression "1 & 2 & !3 & !4 & 5 & !6"}
+					{terms
+						{"1.event"
+							{id "start_dot2"}
+						}
+						{"2.mp_zone_team"
+							{zone "dot6"}
+							{team b}
+						}
+						{"3.mp_zone_team"
+							{zone "dot6"}
+							{team a}
+						}
+						{"4.event"
+							{id "dot6_n"}
+						}
+						{"5.event"
+							{id "dot6_a"}
+						}
+						{"6.event"
+							{id "dot6_b"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_score"
+						{amount -200}
+						{team a}
+					}
+					{"mp_score"
+						{amount 200}
+						{team b}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag dot6}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 2}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_b}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_b}
+						{text "$/ground_control/talks/radio/dot_cap"}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/dot_acap"}
+					}
+					{"event"
+						{event "dot6_b"}
+						{mode set}
+						{delay 0}
+					}
+					{"event"
+						{event "dot6_a"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "dot6_n"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "conversations/dialog_event_b"}
+						{mode reset}
+						{delay 0}
+					}
+					{"trigger"
+						{name "dots/dot6/cap_b1"}
+					}
+				}
+			}
+		}
+	}
+}

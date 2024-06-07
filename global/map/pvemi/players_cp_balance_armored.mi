@@ -1,0 +1,134 @@
+{mission
+	{Helpers
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{triggers
+			{"local/players_cp_balance/ini_a"
+				{condition
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op ">="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 4}
+							}
+							{"mp_command_points"
+								{amount 22.5}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 35}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 60}
+								{team a}
+							}
+						}
+						{"default"
+							{"mp_command_points"
+								{amount 135}
+								{team a}
+							}
+						}
+					}
+				}
+			}
+			{"local/players_cp_balance/ini_b"
+				{condition
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_b@"}
+								{op ">="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_b@"}
+								{op "=="}
+								{value 4}
+							}
+							{"mp_command_points"
+								{amount 22.5}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_b@"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 35}
+								{team b}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_b@"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 60}
+								{team b}
+							}
+						}
+						{"default"
+							{"mp_command_points"
+								{amount 135}
+								{team b}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,441 @@
+{mission
+	{Clips
+		{"[auto]"
+			{world -6530 -6530 6530 6540}
+			{camera -6530 -6530 6530 6540}
+			{pather -6530 -6530 6530 6540}
+			{haze -7030 -7030 7030 7040}
+		}
+	}
+	{Entity "fog_open_point_big" 0x8000
+		{Position 0 0 357.96}
+		{Player 1}
+		{MID 1}
+	}
+	{Entity "fog_open_point_big" 0x8001
+		{Position 0 0 350.53}
+		{Player 2}
+		{MID 2}
+	}
+	{Tags "fort_sandbag" 0x64a5}
+	{Tags "sandbag" 0x31e5}
+	{Tags "sandbag" 0x31e4}
+	{Tags "sandbag" 0x31e3}
+	{Tags "sandbag" 0x281c}
+	{Tags "sandbag" 0x281d}
+	{Tags "fop_a" "hidden" 0x8000}
+	{Tags "fop_b" "hidden" 0x8001}
+	{Helpers
+		{zone "circle"
+			{position -7.09898 -0.693703 357.98}
+			{Name "local_fop_zone"}
+			{Radius 420}
+		}
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{triggers
+			{"local/fop/a/on"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{state
+											{state inhabited}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+										{prop
+											{prop airborne}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop creature}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag fop_a}
+						}
+						{inactive off}
+					}
+					{"trigger"
+						{name "local/fop/a/off"}
+					}
+				}
+			}
+			{"local/fop/a/off"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{state
+											{state inhabited}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+										{prop
+											{prop airborne}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop creature}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag fop_a}
+						}
+						{inactive on}
+					}
+					{"trigger"
+						{name "local/fop/a/on"}
+					}
+				}
+			}
+			{"local/fop/b/off"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{state
+											{state inhabited}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+										{prop
+											{prop airborne}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop creature}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag fop_b}
+						}
+						{inactive on}
+					}
+					{"trigger"
+						{name "local/fop/b/on"}
+					}
+				}
+			}
+			{"local/fop/b/on"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{state
+											{state inhabited}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+										{prop
+											{prop airborne}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop creature}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag fop_b}
+						}
+						{inactive off}
+					}
+					{"trigger"
+						{name "local/fop/b/off"}
+					}
+				}
+			}
+		}
+	}
+}

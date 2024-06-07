@@ -1,0 +1,454 @@
+{mission
+	{Entity "fog_open_point_big" 0x8000
+		{Position 3986.92 0}
+		{Player 1}
+		{MID 1}
+	}
+	{Entity "fog_open_point_big" 0x8001
+		{Position 3986.92 0}
+		{Player 2}
+		{MID 2}
+	}
+	{Tags "sandbag" 0x281d}
+	{Tags "fort_sandbag" 0x64a5}
+	{Tags "wire_square" 0x316f}
+	{Tags "sandbag" 0x4582}
+	{Tags "sandbag" 0x645a}
+	{Tags "sandbag" 0x647d}
+	{Tags "sandbag" 0x31d8}
+	{Tags "sandbag" 0x31d9}
+	{Tags "sandbag" 0x31da}
+	{Tags "sandbag" 0x31db}
+	{Tags "sandbag" 0x31dc}
+	{Tags "sandbag" 0x31dd}
+	{Tags "sandbag" 0x31de}
+	{Tags "sandbag" 0x31df}
+	{Tags "sandbag" 0x31e0}
+	{Tags "sandbag" 0x31e3}
+	{Tags "sandbag" 0x31e4}
+	{Tags "sandbag" 0x31e5}
+	{Tags "sandbag" 0x3309}
+	{Tags "sandbag" 0x330b}
+	{Tags "sandbag" 0x330c}
+	{Tags "sandbag" 0x281c}
+	{Tags "fop_a" "hidden" 0x8000}
+	{Tags "fop_b" "hidden" 0x8001}
+	{Helpers
+		{zone "poly"
+			{position 4041.7 -3.70116 291}
+			{Name "local_fog_zone"}
+			{Point -21.3528 -89.537}
+			{Point -73.4939 -45.0197}
+			{Point -70.7167 38.3531}
+			{Point -22.511 88.4346}
+			{Point 93.5999 87.1378}
+			{Point 94.4746 -79.3689}
+		}
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{triggers
+			{"local/fop/a/on"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{state
+											{state inhabited}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+										{prop
+											{prop airborne}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop creature}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag fop_a}
+						}
+						{inactive off}
+					}
+					{"trigger"
+						{name "local/fop/a/off"}
+					}
+				}
+			}
+			{"local/fop/a/off"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{state
+											{state inhabited}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+										{prop
+											{prop airborne}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop creature}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag fop_a}
+						}
+						{inactive on}
+					}
+					{"trigger"
+						{name "local/fop/a/on"}
+					}
+				}
+			}
+			{"local/fop/b/off"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{state
+											{state inhabited}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+										{prop
+											{prop airborne}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop creature}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag fop_b}
+						}
+						{inactive on}
+					}
+					{"trigger"
+						{name "local/fop/b/on"}
+					}
+				}
+			}
+			{"local/fop/b/on"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{state
+											{state inhabited}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+										{prop
+											{prop airborne}
+										}
+									}
+								}
+								{group
+									{select
+										{zone
+											{zone "local_fop_zone"}
+										}
+									}
+									{include
+										{prop
+											{prop creature}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag fop_b}
+						}
+						{inactive off}
+					}
+					{"trigger"
+						{name "local/fop/b/off"}
+					}
+				}
+			}
+		}
+	}
+}

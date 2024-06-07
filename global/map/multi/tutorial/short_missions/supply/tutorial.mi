@@ -1,0 +1,4666 @@
+{mission
+	{Clips
+		{"[auto]"
+			{world -3473.24 -4010 3400 2994.76}
+			{camera -3484 -1846.81 1626.31 2994.83}
+			{pather -2972.58 -1333.51 1123.11 2493.4}
+			{haze -3472.58 -1833.51 1623.11 2993.4}
+		}
+		{"01"
+			{world -2222.95 -1828.93 651.488 1546.41}
+			{camera -1722.77 -1325.83 149.207 1044.52}
+			{pather -1722.77 -1327.97 150.139 1045.8}
+			{haze -2222.77 -1827.97 650.139 1545.8}
+		}
+		{"02"
+			{world -3473.24 -1804.31 639.045 1415.39}
+			{camera -2974.24 -1313.5 139.131 912.769}
+			{pather -2972.58 -1310.82 139.11 911.894}
+			{haze -3472.58 -1810.82 639.11 1411.89}
+		}
+		{"03"
+			{world -3468.6 -4010 3400 2300.17}
+			{camera -2970.43 -1332.62 127.66 1800.6}
+			{pather -2969.32 -1325.12 127.181 1800.3}
+			{haze -3469.32 -1825.12 627.181 2300.3}
+		}
+		{"04"
+			{world -3472.75 -1833.2 1629.86 2994.76}
+			{camera -3484 -1846.81 1626.31 2994.83}
+			{pather -2972.2 -1333.51 1123.11 2493.4}
+			{haze -3472.2 -1833.51 1623.11 2993.4}
+		}
+	}
+	{Human "arena_mp/rus/apc_gaz_aa_commander" 0x8000
+		{Position -286.33 -1219.37}
+		{xform zl -130.39}
+		{TexMod "1"}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 1}
+		{NameId 118 84}
+	}
+	{Human "arena_mp/rus/rifle" 0xc00a
+		{Position -555.04 3.54}
+		{xform zl -139.3}
+		{TexMod "2"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 8}
+		{NameId 90 208}
+		{Cover
+			{sector -555.04 3.54029 {type "look_right"}
+				{wall -596.002 61.9061 -533.088 -11.2503}
+				{row 0}
+				{link 0x801}
+			}
+		}
+	}
+	{Human "arena_mp/rus/bottle_thrower" 0xc00c
+		{Position -593.75 48.56}
+		{xform zl -139.33}
+		{TexMod "3"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 9}
+		{Able "-select"}
+		{NameId 73 228}
+		{LastItem "ppsh"}
+	}
+	{Human "arena_mp/rus/mgun_late" 0xc010
+		{Position -770 120}
+		{xform zl -68.87 y 21.68 zw -83.63}
+		{TexMod "2"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "lie"}
+		{MID 11}
+		{Able "-select"}
+		{NameId 8 105}
+		{Cover
+			{sector -770 120 {type "terrain_lie"}
+			}
+		}
+	}
+	{Human "arena_mp/rus/mgun_supporter_late" 0xa000
+		{Position -609.46 116.09}
+		{xform zl -114.33}
+		{TexMod "2"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 10}
+		{Able "-select"}
+		{NameId 62 159}
+	}
+	{Human "arena_mp/rus/mgun_commander" 0xa002
+		{Position -683.89 101.56}
+		{xform zl 75.57}
+		{TexMod "3"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 12}
+		{Able "-select"}
+		{NameId 62 200}
+	}
+	{Human "arena_mp/rus/bazooker" 0xa004
+		{Position -681.22 252.94}
+		{xform zl -87.79}
+		{TexMod "4"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 13}
+		{Able "-select"}
+		{NameId 81 103}
+	}
+	{Human "arena_mp/rus/smg" 0xa006
+		{Position -725.02 580.83}
+		{xform zl -164.38}
+		{TexMod "2"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 14}
+		{Able "-select"}
+		{NameId 49 259}
+	}
+	{Human "arena_mp/rus/rifle_veteran" 0xa008
+		{Position -673.65 388.15}
+		{xform zl 54.76}
+		{TexMod "4"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 15}
+		{NameId 105 183}
+		{Cover
+			{sector -673.653 388.15 {type "squat_lie"}
+				{wall -673.699 396.753 -641.817 374.233}
+				{row 0}
+				{link 0x2294}
+			}
+		}
+	}
+	{Entity "pm41" 0xc003
+		{Position -2258.09 232.04}
+		{xform zl -0.82}
+		{Placer
+			{State "driver1" {Disable}}
+			{State "driver2" {Disable}}
+		}
+		{Impregnability full}
+		{Extender "cannon"
+			{state fire}
+		}
+		{Player 2}
+		{MID 17}
+		{Able "-select"}
+		{Weaponry
+			{State
+				{Weapon "120mm_pm41" "weapon"}
+			}
+		}
+	}
+	{Entity "pm41" 0xc005
+		{Position -2253.98 -13.1}
+		{xform zl -16.88}
+		{Placer
+			{State "driver1" {Disable}}
+			{State "driver2" {Disable}}
+		}
+		{Impregnability full}
+		{Extender "cannon"
+			{state fire}
+		}
+		{Player 2}
+		{MID 18}
+		{Able "-select"}
+		{Weaponry
+			{State
+				{Weapon "120mm_pm41" "weapon"}
+			}
+		}
+	}
+	{Human "arena_mp/rus/artilleryman" 0xc00e
+		{Position -2252.29 219.62}
+		{xform zl 19.18}
+		{TexMod "4"}
+		{Impregnability full}
+		{Player 2}
+		{MID 19}
+		{NameId 82 302}
+		{LastItem "mosin"}
+	}
+	{Human "arena_mp/rus/artilleryman" 0xc012
+		{Position -2255.47 249.06}
+		{xform zl 1.96}
+		{TexMod "3"}
+		{Impregnability full}
+		{Player 2}
+		{MID 20}
+		{NameId 52 167}
+		{LastItem "mosin"}
+	}
+	{Human "arena_mp/rus/artilleryman" 0xc01a
+		{Position -2246.75 2.53}
+		{xform zl -14.1}
+		{TexMod "1"}
+		{Impregnability full}
+		{Player 2}
+		{MID 24}
+		{NameId 114 101}
+		{LastItem "mosin"}
+	}
+	{Human "arena_mp/rus/artilleryman" 0xc01c
+		{Position -2251.84 -26.64}
+		{xform zl 3.12}
+		{TexMod "3"}
+		{Impregnability full}
+		{Player 2}
+		{MID 25}
+		{NameId 75 244}
+		{LastItem "mosin"}
+	}
+	{Entity "scout" 0x8005
+		{Position -742.51 206.08}
+	}
+	{Entity "scout" 0xc014
+		{Position -2555.6 -42.61}
+	}
+	{Entity "scout" 0xa00c
+		{Position -2355.01 100.25}
+	}
+	{Human "arena_mp/rus/apc_gaz_aa_commander" 0x8014
+		{Position -2068.13 254.9}
+		{xform zl 1.35}
+		{TexMod "2"}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 21}
+		{NameId 107 49}
+		{Cover
+			{sector -2068.13 254.902 {type "squat_lie"}
+				{wall -2061.3 262.093 -2060.93 246.349}
+				{row 0}
+				{link 0x505a}
+			}
+		}
+	}
+	{Human "arena_mp/rus/bottle_thrower" 0xc009
+		{Position -837.37 824.31}
+		{xform zl 51.71}
+		{Player 2}
+		{FsmState "snipe"}
+		{MID 23}
+		{Able "-select"}
+		{NameId 120 38}
+		{LastItem "mosin_rifle_m1891"}
+		{Cover
+			{sector -837.373 824.314 {type "snipe_cover"}
+				{wall -836.96 832.906 -807.556 809.691}
+				{row 0}
+				{link 0x2003}
+			}
+		}
+	}
+	{Human "arena_mp/rus/mgun" 0xc00d
+		{Position -780.03 742.4}
+		{xform zl 20.21}
+		{TexMod "2"}
+		{Player 2}
+		{FsmState "snipe"}
+		{MID 26}
+		{NameId 54 75}
+		{Cover
+			{sector -780.033 742.404 {type "snipe_cover"}
+				{wall -775.191 749.514 -763.767 718.479}
+				{row 0}
+				{link 0x45ac}
+			}
+		}
+	}
+	{Entity "scout" 0xd000
+		{Position -877.01 664.07}
+	}
+	{Entity "text_link" 0x8004
+		{Position -742.51 206.08 112.42}
+	}
+	{Entity "text_link" 0x8007
+		{Position -877.01 664.07 112.42}
+	}
+	{Entity "raven" 0x8017
+		{Position -373.19 -1091.53}
+		{xform zl 85.66}
+		{TexMod "gray"}
+		{Fogable never}
+		{Player 0}
+		{MID 27}
+		{Chassis "wing"
+			{Altitude 20}
+		}
+	}
+	{Entity "dog" 0x8018
+		{Position -2705.85 -142.71}
+		{xform zl 9.77}
+		{TexMod "2"}
+		{Player 0}
+		{FsmState "stand"}
+		{MID 28}
+	}
+	{Human "special/radio" 0x8021
+		{Position -325.4 -1213.68}
+		{xform zl -91.73}
+		{MaterialParams
+			{"material1"
+				{diffuse "/entity/inventory/-equipment/head/winterhat/winter hat"}
+			}
+		}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 2}
+	}
+	{Human "arena_mp/rus/bottle_thrower" 0x8022
+		{Position -758.9 685}
+		{xform zl -159.82}
+		{TexMod "1"}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 29}
+		{Able "-select"}
+		{NameId 13 228}
+	}
+	{Entity "text_link" 0x8024
+		{Position -2555.6 -42.61 244.51}
+	}
+	{Entity "text_link" 0x8025
+		{Position -2355.01 100.25 235.37}
+	}
+	{Entity "scout" 0x8026
+		{Position -1881.32 1350.04}
+		{xform zl 14.9}
+	}
+	{Entity "text_link" 0x8027
+		{Position -1881.32 1350.04 137.26}
+	}
+	{Entity "scout" 0xc001
+		{Position -1881.29 1349.65}
+		{xform zl 14.9}
+	}
+	{Entity "text_link" 0xc007
+		{Position -1881.32 1350.04 123.31}
+	}
+	{Human "arena_mp/rus/tankman" 0x801a
+		{Position -2156.67 1087.57}
+		{xform zl -102.37 y 5.61 zw 12.31}
+		{TexMod "2"}
+		{Impregnability full}
+		{Player 2}
+		{MID 22}
+		{NameId 101 52}
+		{LastItem "tt"}
+	}
+	{Human "arena_mp/rus/tankman" 0x801b
+		{Position -2156.67 995.77}
+		{xform zl 77.63 y 5.61 zw 12.31}
+		{TexMod "2"}
+		{Impregnability full}
+		{Player 2}
+		{MID 30}
+		{NameId 77 153}
+		{LastItem "tt"}
+	}
+	{Human "arena_mp/rus/tankman" 0x801d
+		{Position -2156.67 1087.57}
+		{xform zl -102.37 y 5.61 zw 12.31}
+		{TexMod "1"}
+		{Player 2}
+		{MID 32}
+		{NameId 100 154}
+		{LastItem "tt"}
+	}
+	{Human "arena_mp/rus/tankman" 0x801f
+		{Position -2095.87 1034.99}
+		{xform zl 167.63 y 5.61 zw 12.31}
+		{TexMod "4"}
+		{Player 2}
+		{MID 33}
+		{NameId 63 128}
+		{LastItem "tt"}
+	}
+	{Entity "t34_76_41" 0xc00b
+		{Position -1104.99 1286.74}
+		{xform zl -47.94 y 0.18 zw 92.41}
+		{TexMod "camo_forest"}
+		{Volume "ram"
+			{able clear}
+		}
+		{Player 2}
+		{MID 34}
+	}
+	{Human "arena_mp/rus/bottle_thrower" 0xe001
+		{Position -829.78 935.64}
+		{xform zl 45.76}
+		{TexMod "2"}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 31}
+		{NameId 42 140}
+		{LastItem "mosin_rifle_m1891"}
+	}
+	{Human "arena_mp/rus/mgun" 0xe003
+		{Position -706.63 919.4}
+		{xform zl 34.18}
+		{TexMod "4"}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 35}
+		{NameId 9 290}
+	}
+	{Human "arena_mp/rus/bottle_thrower" 0xe005
+		{Position -709.82 791.75}
+		{xform zl 40.51}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 36}
+		{NameId 42 99}
+	}
+	{Human "arena_mp/rus/smg" 0xe007
+		{Position -598.35 745.42}
+		{xform zl 36.76}
+		{TexMod "3"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 37}
+		{NameId 30 188}
+	}
+	{Human "arena_mp/rus/rifle_veteran" 0xe009
+		{Position -612.47 568.9}
+		{xform zl 52.69}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 38}
+		{NameId 59 276}
+	}
+	{Human "arena_mp/rus/bazooker" 0xe00b
+		{Position -506.78 582.25}
+		{xform zl 22.05}
+		{TexMod "4"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "squat"}
+		{MID 39}
+		{NameId 70 304}
+	}
+	{Human "arena_mp/rus/mgun_commander" 0xe00d
+		{Position -659.83 631.99}
+		{xform zl 14.5}
+		{TexMod "2"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 40}
+		{NameId 128 65}
+	}
+	{Human "arena_mp/rus/mgun_late" 0xe00f
+		{Position -907.41 1054.38}
+		{xform zl -0.16}
+		{TexMod "1"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 41}
+		{NameId 55 224}
+	}
+	{Human "arena_mp/rus/mgun_supporter_late" 0xe011
+		{Position -744.77 840.65}
+		{xform zl 29.23}
+		{TexMod "4"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 42}
+		{NameId 24 119}
+	}
+	{Human "arena_mp/rus/smg_rookie" 0xe013
+		{Position -514.54 409.87}
+		{xform zl 18.05}
+		{TexMod "3"}
+		{Impregnability full}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 43}
+		{NameId 41 276}
+	}
+	{Entity "t34_76_41" 0x802d
+		{Position -1889.57 1348.32}
+		{xform zl -67.95 y 3.15 zw 63.04}
+		{TexMod "camo_forest"}
+		{Volume "ram"
+			{able clear}
+		}
+		{Armor
+			{wounds
+				{damage_decal "engine" 2.57284 0
+					{matrix
+						{pos 2.488 16.491 -1.51}
+						{nxform 0.873 1.544 1.571}
+					}
+				}
+				{wound "engine" -2.64648 0 7.62
+					{matrix
+						{pos 2.488 16.491 -1.51}
+						{nxform 0.873 1.544 1.571}
+					}
+				}
+				{wound "engine" 0.749368 0 7.62
+					{matrix
+						{pos 2.487 16.488 -1.507}
+						{nxform 0.873 1.544 1.571}
+					}
+				}
+			}
+		}
+		{Player 2}
+		{MID 3}
+		{Able "-select" "-manual"}
+		{Weaponry
+			{Current "mgun2"}
+			{State "gun"
+				{Weapon "76mm_f34"}
+			}
+			{State "mgun2"
+				{Weapon "dt_vh"}
+			}
+			{State "mgun1"
+				{Weapon "dt_vh"}
+			}
+		}
+		{Chassis
+			{FuelBag
+				{Remain 0}
+			}
+		}
+	}
+	{Human "arena_mp/rus/tankman" 0x802e
+		{Position -1816.76 1271.61}
+		{xform zl -128.94}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 4}
+		{Able "-select"}
+		{NameId 63 112}
+	}
+	{Human "arena_mp/rus/tankman" 0x8030
+		{Position -1824.77 1336.14}
+		{xform zl 112.05 y 3.15 zw 63.04}
+		{Player 2}
+		{MID 5}
+		{NameId 46 288}
+	}
+	{Human "arena_mp/rus/tankman" 0x802f
+		{Position -1829.94 1234.55}
+		{xform zl 59.39}
+		{TexMod "3"}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 6}
+		{Able "-select"}
+		{NameId 81 73}
+	}
+	{Human "arena_mp/rus/tankman" 0x8032
+		{Position -1547.33 1415.42}
+		{xform zl 112.83}
+		{Player 2}
+		{FsmState "stand"}
+		{MID 7}
+		{Able "-select"}
+		{NameId 15 143}
+		{Cover
+			{sector -1547.33 1415.42 {type "look_left"}
+				{wall -1540 1410.91 -1721.34 1334.58}
+				{row 0}
+				{link 0x551}
+			}
+		}
+	}
+	{Entity "map_point" 0x80ee
+		{Position -508.3 -270.69}
+		{Extender "map_point"
+			{name a31}
+			{team a}
+			{phase 3}
+			{order 1}
+		}
+		{Player 0}
+		{MID 167}
+	}
+	{Entity "map_point" 0x80ef
+		{Position -508.85 -233.01}
+		{Extender "map_point"
+			{name a32}
+			{team a}
+			{phase 3}
+			{order 2}
+		}
+		{Player 0}
+		{MID 168}
+	}
+	{Entity "map_point" 0x80f0
+		{Position -511.99 -198.33}
+		{Extender "map_point"
+			{name a33}
+			{team a}
+			{phase 3}
+			{order 3}
+		}
+		{Player 0}
+		{MID 169}
+	}
+	{Entity "map_point" 0x80f1
+		{Position -513.84 -160.36}
+		{Extender "map_point"
+			{name a34}
+			{team a}
+			{phase 3}
+			{order 4}
+		}
+		{Player 0}
+		{MID 170}
+	}
+	{Entity "map_point" 0x8043
+		{Position -472.05 -639.94}
+		{Extender "map_point"
+			{name a14}
+			{team a}
+			{phase 1}
+			{order 4}
+		}
+		{Player 0}
+		{MID 65}
+	}
+	{Entity "map_point" 0x8044
+		{Position -469.77 -679.54}
+		{Extender "map_point"
+			{name a13}
+			{team a}
+			{phase 1}
+			{order 3}
+		}
+		{Player 0}
+		{MID 68}
+	}
+	{Entity "map_point" 0xb001
+		{Position -466.56 -705.38}
+		{Extender "map_point"
+			{name a12}
+			{team a}
+			{phase 1}
+			{order 2}
+		}
+		{Player 0}
+		{MID 82}
+	}
+	{Entity "map_point" 0xb002
+		{Position -464.39 -738.09}
+		{Extender "map_point"
+			{name a11}
+			{team a}
+			{phase 1}
+			{order 1}
+		}
+		{Player 0}
+		{MID 83}
+	}
+	{Entity "map_point" 0x8045
+		{Position -611.08 -768}
+		{Extender "map_point"
+			{name b11}
+			{team b}
+			{phase 1}
+			{order 1}
+		}
+		{Player 0}
+		{MID 84}
+	}
+	{Entity "map_point" 0x8047
+		{Position -613.01 -732.09}
+		{Extender "map_point"
+			{name b12}
+			{team b}
+			{phase 1}
+			{order 2}
+		}
+		{Player 0}
+		{MID 125}
+	}
+	{Entity "map_point" 0x80b5
+		{Position -625.3 -546.93}
+		{Extender "map_point"
+			{name b21}
+			{team b}
+			{phase 2}
+			{order 1}
+		}
+		{Player 0}
+		{MID 131}
+	}
+	{Entity "map_point" 0x80b6
+		{Position -626.53 -516.07}
+		{Extender "map_point"
+			{name b22}
+			{team b}
+			{phase 2}
+			{order 2}
+		}
+		{Player 0}
+		{MID 132}
+	}
+	{Entity "map_point" 0x80e6
+		{Position -616.05 -699.13}
+		{Extender "map_point"
+			{name b13}
+			{team b}
+			{phase 1}
+			{order 3}
+		}
+		{Player 0}
+		{MID 161}
+	}
+	{Entity "map_point" 0x80e7
+		{Position -612.64 -659.61}
+		{Extender "map_point"
+			{name b14}
+			{team b}
+			{phase 1}
+			{order 4}
+		}
+		{Player 0}
+		{MID 162}
+	}
+	{Entity "map_point" 0x80e8
+		{Position -615.7 -622.14}
+		{Extender "map_point"
+			{name b15}
+			{team b}
+			{phase 1}
+			{order 5}
+		}
+		{Player 0}
+		{MID 163}
+	}
+	{Entity "map_point" 0x80e9
+		{Position -630.12 -476.14}
+		{Extender "map_point"
+			{name b23}
+			{team b}
+			{phase 2}
+			{order 3}
+		}
+		{Player 0}
+		{MID 164}
+	}
+	{Entity "map_point" 0x80ea
+		{Position -627.98 -435.08}
+		{Extender "map_point"
+			{name b24}
+			{team b}
+			{phase 2}
+			{order 4}
+		}
+		{Player 0}
+		{MID 165}
+	}
+	{Entity "map_point" 0x80eb
+		{Position -625.32 -395.41}
+		{Extender "map_point"
+			{name b25}
+			{team b}
+			{phase 2}
+			{order 5}
+		}
+		{Player 0}
+		{MID 166}
+	}
+	{Entity "map_point" 0x80b1
+		{Position -485.38 -522.95}
+		{Extender "map_point"
+			{name a21}
+			{team a}
+			{phase 2}
+			{order 1}
+		}
+		{Player 0}
+		{MID 127}
+	}
+	{Entity "map_point" 0x80b3
+		{Position -490.98 -457.39}
+		{Extender "map_point"
+			{name a23}
+			{team a}
+			{phase 2}
+			{order 3}
+		}
+		{Player 0}
+		{MID 129}
+	}
+	{Entity "map_point" 0x80b2
+		{Position -488.72 -489.86}
+		{Extender "map_point"
+			{name a22}
+			{team a}
+			{phase 2}
+			{order 2}
+		}
+		{Player 0}
+		{MID 128}
+	}
+	{Entity "map_point" 0x80b4
+		{Position -490.14 -413.37}
+		{Extender "map_point"
+			{name a24}
+			{team a}
+			{phase 2}
+			{order 4}
+		}
+		{Player 0}
+		{MID 130}
+	}
+	{Link 0xc00e {0xc003 "gunner"}}
+	{Link 0xc012 {0xc003 "commander"}}
+	{Link 0xc01c {0xc005 "gunner"}}
+	{Link 0xc01a {0xc005 "commander"}}
+	{Link 0x801f {0xc00b "driver"}}
+	{Link 0x801b {0xc00b "gunner"}}
+	{Link 0x801d {0xc00b "charger"}}
+	{Link 0x801a {0xc00b "commander"}}
+	{Link 0x8030 {0x802d "driver"}}
+	{Tags "hidden" "talk_commander" 0x8000}
+	{Tags "ally_inf" "no_inventory_autorestore" 0xc00a}
+	{Tags "ally_inf" "ally_inf_reaction" "no_inventory_autorestore" "ally_inf_player3" "check_inv_inf_01" 0xc00c}
+	{Tags "ally_inf" "no_inventory_autorestore" "ally_inf_player3" "check_inv_inf_03" 0xc010}
+	{Tags "ally_inf" "ally_inf_reaction" "no_inventory_autorestore" "ally_inf_player3" "check_inv_inf_02" 0xa000}
+	{Tags "ally_inf" "no_inventory_autorestore" "ally_inf_player3" "check_inv_inf_04" 0xa002}
+	{Tags "ally_inf" "ally_inf_reaction" "no_inventory_autorestore" "ally_inf_player3" "check_inv_inf_05" 0xa004}
+	{Tags "ally_inf" "ally_inf_reaction" "no_inventory_autorestore" "ally_inf_player3" "check_inv_inf_06" 0xa006}
+	{Tags "ally_inf" "no_inventory_autorestore" 0xa008}
+	{Tags "art_fire_02" "no_inventory_autorestore" "ally_art_player_3" 0xc003}
+	{Tags "art_fire_01" "no_inventory_autorestore" "ally_art_player_3" 0xc005}
+	{Tags "pointer" "visible_point_01_task" "visible_point_01_task_a" "hidden" 0x8005}
+	{Tags "pointer" "point_02_task" "hidden" 0xc014}
+	{Tags "pointer" "point_03_task" "hidden" 0xa00c}
+	{Tags "art_commander" 0x8014}
+	{Tags "ally_inf" "no_inventory_autorestore" "ally_inf_player3" "check_inv_inf_08" 0xc009}
+	{Tags "ally_inf" "no_inventory_autorestore" 0xc00d}
+	{Tags "pointer" "visible_point_01_task" "visible_point_01_task_b" "hidden" 0xd000}
+	{Tags "text_01_task" "text_01_task_a" "hidden" 0x8004}
+	{Tags "text_01_task" "text_01_task_b" "hidden" 0x8007}
+	{Tags "hidden" "hint" 0x8021}
+	{Tags "ally_inf" "ally_inf_reaction" "no_inventory_autorestore" "ally_inf_player3" "check_inv_inf_07" 0x8022}
+	{Tags "text_02_task" "hidden" 0x8024}
+	{Tags "text_03_task" "hidden" 0x8025}
+	{Tags "pointer" "point_04_task" "hidden" 0x8026}
+	{Tags "text_04_task" "hidden" 0x8027}
+	{Tags "pointer" "point_05_task" "hidden" 0xc001}
+	{Tags "text_05_task" "hidden" 0xc007}
+	{Tags "hidden" "outro_actors" "outro_actor_tank" 0xc00b}
+	{Tags "outro_actor_01" "outro_actors" "hidden" 0xe001}
+	{Tags "outro_actor_02" "outro_actors" "hidden" 0xe003}
+	{Tags "outro_actor_03" "outro_actors" "hidden" 0xe005}
+	{Tags "outro_actor_04" "outro_actors" "hidden" 0xe007}
+	{Tags "outro_actor_05" "outro_actors" "hidden" 0xe009}
+	{Tags "outro_actor_06" "outro_actors" "hidden" 0xe00b}
+	{Tags "outro_actor_07" "outro_actors" "hidden" 0xe00d}
+	{Tags "outro_actor_08" "outro_actors" "hidden" 0xe00f}
+	{Tags "outro_actor_09" "outro_actors" "hidden" 0xe011}
+	{Tags "outro_actor_10" "outro_actors" "hidden" 0xe013}
+	{Tags "no_inventory_autorestore" "ally_tnk_player3" "hidden" "ally_tnk" 0x802d}
+	{Tags "ally_tankmans_player3" "hidden" 0x802e}
+	{Tags "ally_tankmans_player3" 0x8030}
+	{Tags "ally_tankmans_player3" "ally_tankman_run" "hidden" 0x802f}
+	{Tags "ally_tankmans_player3" "hidden" 0x8032}
+	{Inventory 0x8000
+		{box
+			{clear}
+			{item "ppsh" filled {cell 0 0}{user "hand_right"}}
+			{item "pistol" "ammo" 250 {cell 4 0}}
+			{item "bandage" 2 {cell 4 1}}
+			{item "f1" "grenade" {cell 0 2}}
+			{item "f1" "grenade" {cell 1 2}}
+			{item "rus-cap_1" {cell 2 2}{user "head"}}
+		}
+	}
+	{Inventory 0xc00a
+		{box
+			{clear}
+			{item "mosin" filled {cell 0 0}{user "hand_right"}}
+			{item "rifle" "ammo" 50 {cell 5 0}}
+			{item "rifle" "ammo" 20 {cell 5 1}}
+			{item "bandage" 2 {cell 0 2}}
+			{item "f1" "grenade" {cell 2 2}}
+			{item "f1" "grenade" {cell 3 2}}
+			{item "rpg40" "grenade" {cell 4 2}}
+			{item "sandbag_kit" {cell 0 3}}
+			{item "sandbag_kit" {cell 2 3}}
+			{item "sapper_shovel" {cell 0 5}}
+			{item "rus-cap_2" {cell 4 3}{user "head"}}
+		}
+	}
+	{Inventory 0xc00c
+		{box
+			{clear}
+			{item "mosin_rifle_m1891" {cell 0 0}{user "hand_right"}}
+			{item "rus-cap_2" {cell 4 2}{user "head"}}
+		}
+	}
+	{Inventory 0xc010
+		{box
+			{clear}
+			{item "dt_inf" {cell 0 0}{user "hand_right"}}
+			{item "sapper_shovel" {cell 0 5}}
+			{item "rus-helmet_1" {cell 4 4}{user "head"}}
+		}
+	}
+	{Inventory 0xa000
+		{box
+			{clear}
+			{item "mosin_rifle_m1891" {cell 0 0}{user "hand_right"}}
+			{item "rus-helmet_1" {cell 3 5}{user "head"}}
+		}
+	}
+	{Inventory 0xa002
+		{box
+			{clear}
+			{item "ppsh" {cell 0 0}}
+			{item "rus-cap_1" {cell 2 2}{user "head"}}
+		}
+	}
+	{Inventory 0xa004
+		{box
+			{clear}
+			{item "bazooka" "weapon" {cell 0 0}{user "hand_right"}}
+			{item "rus-helmet_1" {cell 0 4}{user "head"}}
+		}
+	}
+	{Inventory 0xa006
+		{box
+			{clear}
+			{item "ppsh" {cell 0 0}{user "hand_right"}}
+			{item "sapper_shovel" {cell 0 4}}
+			{item "rus-helmet_1" {cell 4 3}{user "head"}}
+		}
+	}
+	{Inventory 0xa008
+		{box
+			{clear}
+			{item "mosin" filled {cell 0 0}{user "hand_right"}}
+			{item "bandage" 2 {cell 0 2}}
+			{item "f1" "grenade" {cell 5 0}}
+			{item "f1" "grenade" {cell 5 1}}
+			{item "rpg40" "grenade" {cell 2 2}}
+			{item "sandbag_kit" {cell 4 2}}
+			{item "sandbag_kit" {cell 0 3}}
+			{item "sapper_shovel" {cell 2 4}}
+			{item "rus-helmet_1" {cell 0 5}{user "head"}}
+		}
+	}
+	{Inventory 0xc003
+		{box
+			{clear}
+		}
+	}
+	{Inventory 0xc005
+		{box
+			{clear}
+		}
+	}
+	{Inventory 0xc00e
+		{box
+			{clear}
+			{item "mosin" filled {cell 0 0}}
+			{item "rifle" "ammo" 40 {cell 5 0}}
+			{item "rus-cap_2" {cell 0 2}{user "head"}}
+		}
+	}
+	{Inventory 0xc012
+		{box
+			{clear}
+			{item "mosin" filled {cell 0 0}}
+			{item "rifle" "ammo" 40 {cell 5 0}}
+			{item "rus-cap_2" {cell 0 2}{user "head"}}
+		}
+	}
+	{Inventory 0xc01a
+		{box
+			{clear}
+			{item "mosin" filled {cell 0 0}}
+			{item "rifle" "ammo" 40 {cell 5 0}}
+			{item "rus-cap_2" {cell 0 2}{user "head"}}
+		}
+	}
+	{Inventory 0xc01c
+		{box
+			{clear}
+			{item "mosin" filled {cell 0 0}}
+			{item "rifle" "ammo" 40 {cell 5 0}}
+			{item "rus-cap_2" {cell 0 2}{user "head"}}
+		}
+	}
+	{Inventory 0x8014
+		{box
+			{clear}
+			{item "ppsh" filled {cell 0 0}}
+			{item "pistol" "ammo" 250 {cell 4 0}}
+			{item "bandage" 2 {cell 4 1}}
+			{item "f1" "grenade" {cell 0 2}}
+			{item "f1" "grenade" {cell 1 2}}
+			{item "rus-cap_1" {cell 2 2}{user "head"}}
+			{item "binocular" {cell 4 2}{user "hand_right"}}
+		}
+	}
+	{Inventory 0xc009
+		{box
+			{clear}
+			{item "mosin_rifle_m1891" {cell 0 0}{user "hand_right"}}
+			{item "rus-cap_2" {cell 4 2}{user "head"}}
+		}
+	}
+	{Inventory 0xc00d
+		{box
+			{clear}
+			{item "dp" filled {cell 0 0}{user "hand_right"}}
+			{item "rus-helmet_1" {cell 4 4}{user "head"}}
+		}
+	}
+	{Inventory 0x8021
+		{box
+			{clear}
+			{item "b33r" {cell 0 0}}
+			{item "winterhat" {cell 2 0}{user "head"}}
+		}
+	}
+	{Inventory 0x8022
+		{box
+			{clear}
+			{item "mosin_rifle_m1891" {cell 0 0}{user "hand_right"}}
+			{item "rus-cap_2" {cell 4 2}{user "head"}}
+		}
+	}
+	{Inventory 0x801a
+		{box
+			{clear}
+			{item "tt" filled {cell 0 0}}
+			{item "pistol" "ammo" 20 {cell 2 0}}
+			{item "rus-tank_helmet" {cell 4 0}{user "head"}}
+		}
+	}
+	{Inventory 0x801b
+		{box
+			{clear}
+			{item "tt" filled {cell 0 0}}
+			{item "pistol" "ammo" 20 {cell 2 0}}
+			{item "rus-tank_helmet" {cell 4 0}{user "head"}}
+		}
+	}
+	{Inventory 0x801d
+		{box
+			{clear}
+			{item "tt" filled {cell 0 0}}
+			{item "pistol" "ammo" 20 {cell 2 0}}
+			{item "rus-tank_helmet" {cell 4 0}{user "head"}}
+		}
+	}
+	{Inventory 0x801f
+		{box
+			{clear}
+			{item "tt" filled {cell 0 0}}
+			{item "pistol" "ammo" 20 {cell 2 0}}
+			{item "rus-tank_helmet" {cell 4 0}{user "head"}}
+		}
+	}
+	{Inventory 0xe001
+		{box
+			{clear}
+			{item "mosin_rifle_m1891" filled {cell 0 0}{user "hand_right"}}
+			{item "rifle" "ammo" 40 {cell 0 2}}
+			{item "molotov_coctail" "grenade" {cell 1 2}}
+			{item "molotov_coctail" "grenade" {cell 3 2}}
+			{item "molotov_coctail" "grenade" {cell 0 3}}
+			{item "rus-cap_2" {cell 2 3}{user "head"}}
+		}
+	}
+	{Inventory 0xe003
+		{box
+			{clear}
+			{item "dp" filled {cell 0 0}{user "hand_right"}}
+			{item "rus-helmet_1" {cell 4 4}{user "head"}}
+		}
+	}
+	{Inventory 0xe005
+		{box
+			{clear}
+			{item "mosin_rifle_m1891" filled {cell 0 0}{user "hand_right"}}
+			{item "rus-cap_2" {cell 4 2}{user "head"}}
+		}
+	}
+	{Inventory 0xe007
+		{box
+			{clear}
+			{item "ppsh" filled {cell 0 0}{user "hand_right"}}
+			{item "sapper_shovel" {cell 0 4}}
+			{item "rus-helmet_1" {cell 4 3}{user "head"}}
+		}
+	}
+	{Inventory 0xe009
+		{box
+			{clear}
+			{item "mosin" filled {cell 0 0}{user "hand_right"}}
+			{item "bandage" 2 {cell 0 2}}
+			{item "f1" "grenade" {cell 5 0}}
+			{item "f1" "grenade" {cell 5 1}}
+			{item "rpg40" "grenade" {cell 2 2}}
+			{item "sandbag_kit" {cell 4 2}}
+			{item "sandbag_kit" {cell 0 3}}
+			{item "sapper_shovel" {cell 2 4}}
+			{item "rus-helmet_1" {cell 0 5}{user "head"}}
+		}
+	}
+	{Inventory 0xe00b
+		{box
+			{clear}
+			{item "bazooka" "weapon" filled {cell 0 0}{user "hand_right"}}
+			{item "rus-helmet_1" {cell 0 4}{user "head"}}
+		}
+	}
+	{Inventory 0xe00d
+		{box
+			{clear}
+			{item "ppsh" filled {cell 0 0}{user "hand_right"}}
+			{item "rus-cap_1" {cell 2 2}{user "head"}}
+		}
+	}
+	{Inventory 0xe00f
+		{box
+			{clear}
+			{item "dt" filled {cell 0 0}{user "hand_right"}}
+			{item "sapper_shovel" {cell 0 5}}
+			{item "rus-helmet_1" {cell 4 4}{user "head"}}
+		}
+	}
+	{Inventory 0xe011
+		{box
+			{clear}
+			{item "mosin_rifle_m1891" filled {cell 0 0}{user "hand_right"}}
+			{item "rus-helmet_1" {cell 3 5}{user "head"}}
+		}
+	}
+	{Inventory 0xe013
+		{box
+			{clear}
+			{item "ppsh" filled {cell 0 0}{user "hand_right"}}
+			{item "pistol" "ammo" 100 {cell 4 0}}
+			{item "sapper_shovel" {cell 0 2}}
+			{item "f1" "grenade" {cell 4 1}}
+			{item "f1" "grenade" {cell 5 1}}
+			{item "rpg40" "grenade" {cell 3 2}}
+			{item "smoke" "grenade" {cell 3 3}}
+			{item "bandage" 2 {cell 0 4}}
+			{item "rus-helmet_1" {cell 2 4}{user "head"}}
+		}
+	}
+	{Inventory 0x802d
+		{box
+			{clear}
+			{item "repair_kit" {cell 0 0}}
+			{item "repair_kit" {cell 2 0}}
+			{item "sandbag_kit2" {cell 4 4}}
+			{item "mgun" "ammo" 15 {cell 4 0}}
+		}
+	}
+	{Inventory 0x802e
+		{box
+			{clear}
+			{item "tt" filled {cell 0 0}}
+			{item "pistol" "ammo" 20 {cell 2 0}}
+			{item "rus-tank_helmet" {cell 4 0}{user "head"}}
+		}
+	}
+	{Inventory 0x8030
+		{box
+			{clear}
+			{item "tt" filling "pistol" "ammo" 6 {cell 0 0}}
+			{item "pistol" "ammo" 20 {cell 2 0}}
+			{item "rus-tank_helmet" {cell 4 0}{user "head"}}
+		}
+	}
+	{Inventory 0x802f
+		{box
+			{clear}
+			{item "tt" filled {cell 0 0}}
+			{item "pistol" "ammo" 20 {cell 2 0}}
+			{item "rus-tank_helmet" {cell 4 0}{user "head"}}
+		}
+	}
+	{Inventory 0x8032
+		{box
+			{clear}
+			{item "tt" filled {cell 0 0}{user "hand_right"}}
+			{item "pistol" "ammo" 20 {cell 2 0}}
+			{item "rus-tank_helmet" {cell 4 0}{user "head"}}
+		}
+	}
+	{Brain 0xc00a
+		{Properties
+			{control user}
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xc00c
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xc010
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xa000
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xa002
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+		{LookAt -664.062 178.594 31.1054}
+	}
+	{Brain 0xa004
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xa006
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xa008
+		{Properties
+			{control user}
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xc003
+		{Properties
+			{control user}
+			{move_mode hold}
+		}
+	}
+	{Brain 0xc005
+		{Properties
+			{control user}
+			{move_mode hold}
+		}
+	}
+	{Brain 0xc00e
+		{Properties
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xc012
+		{Properties
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xc01a
+		{Properties
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xc01c
+		{Properties
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0x8014
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+		}
+	}
+	{Brain 0xc009
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+		{LookAt -555.638 1130.93 -18.863}
+	}
+	{Brain 0xc00d
+		{Properties
+			{control user}
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0x8017
+		{Properties
+			{fire_mode hold}
+			{move_mode zone}
+			{move_radius 50}
+		}
+		{ZonePosition -373.192 -1091.53}
+	}
+	{Brain 0x8018
+		{Properties
+			{fire_mode hold}
+			{move_mode zone}
+			{move_radius 10}
+		}
+		{ZonePosition -2705.85 -142.712}
+	}
+	{Brain 0x8022
+		{Properties
+			{control user}
+			{move_mode hold}
+		}
+	}
+	{Brain 0x801a
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0x801b
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xc00b
+		{Properties
+			{move_mode hold}
+			{look_around 0}
+		}
+	}
+	{Brain 0xe001
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xe003
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xe005
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+		}
+	}
+	{Brain 0xe007
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+		{LookAt -525.704 799.688 -0.108521}
+	}
+	{Brain 0xe009
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xe00b
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xe00d
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xe00f
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xe011
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0xe013
+		{Properties
+			{move_mode hold}
+			{ai_move
+				{mode disable}
+			}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0x802d
+		{Properties
+			{control user}
+			{fire_mode hold}
+			{move_mode hold}
+			{look_around 0}
+		}
+	}
+	{Brain 0x802e
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0x8030
+		{Properties
+			{control user}
+			{move_mode hold}
+			{no_retreat}
+			{retreat_ratio 0}
+		}
+	}
+	{Brain 0x802f
+		{LookAt -1769.41 1336.88 12.9814}
+	}
+	{Environment "arena_mp/day3"}
+	{Helpers
+		{event "echelons/02"}
+		{event "echelons/03"}
+		{event "hints/01/complete"}
+		{event "hints/01/start"}
+		{event "hints/fuel_truck/01"}
+		{event "hints/fuel_truck/02"}
+		{event "hints/supply_truck/01"}
+		{event "hints/supply_truck/02"}
+		{event "hints/supply_truck/03"}
+		{event "hints/supply_truck/04"}
+		{event "mp_spawn/tank"}
+		{event "music"}
+		{event "pointers/task_01/del_a"}
+		{event "pointers/task_01/del_b"}
+		{event "scenario/clip_2"}
+		{event "scenario/clip_3"}
+		{event "scenario/final/actors"}
+		{event "scenario/final/camera"}
+		{event "talks/01"}
+		{event "talks/02"}
+		{event "talks/03"}
+		{event "talks/06"}
+		{event "talks/talk"}
+		{event "tasks/01/show"}
+		{event "tasks/02/show"}
+		{event "tasks/03/show"}
+		{event "tasks/04/complete"}
+		{event "tasks/04/show"}
+		{event "tasks/05/complete"}
+		{event "tasks/05/show"}
+		{event "tasks/fail"}
+		{event "tasks/win"}
+		{event "true"}
+		{zone "circle"
+			{position -2553.41 -39.5835 108.855}
+			{Name "02_task_a"}
+			{Radius 116.647}
+		}
+		{zone "circle"
+			{position -2141.39 242.191 118.54}
+			{Name "05_task"}
+			{Radius 140.267}
+		}
+		{zone "poly"
+			{position -1404.53 -204.689 14.8698}
+			{Name "all_map"}
+			{Point -2012.6 -1603.67}
+			{Point -2051.23 1586.21}
+			{Point 2024.51 1607.44}
+			{Point 2039.31 -1589.97}
+		}
+		{zone "circle"
+			{position -1878.46 1333.89 20.1028}
+			{Name "ally_tank"}
+			{Radius 386.918}
+		}
+		{zone "poly"
+			{position -4866.25 74.5033 49.3151}
+			{Name "ground_control_team_a"}
+			{Point -5007.56 -6632.72}
+			{Point -4024.45 6564.9}
+			{Point 3835.02 6809.83}
+			{Point 5196.98 -6742}
+		}
+		{zone "poly"
+			{position 3210.53 64.0304 169.949}
+			{Name "ground_control_team_b"}
+			{Point -2869.79 -6736.51}
+			{Point -4222.8 6819.26}
+			{Point 3642.73 6615.61}
+			{Point 3449.86 -6698.35}
+		}
+		{tasks
+			{"01"
+				{desc "$/tasks/01_task"}
+				{primary}
+				{state hidden}
+				{point text_01_task}
+				{team a}
+			}
+			{"02"
+				{desc "$/tasks/02_task"}
+				{primary}
+				{state hidden}
+				{point text_02_task}
+				{team a}
+			}
+			{"03"
+				{desc "$/tasks/03_task"}
+				{primary}
+				{state hidden}
+				{point text_03_task}
+				{team a}
+			}
+			{"04"
+				{desc "$/tasks/04_task"}
+				{primary}
+				{state hidden}
+				{point text_04_task}
+				{team a}
+			}
+			{"05"
+				{desc "$/tasks/05_task"}
+				{primary}
+				{state hidden}
+				{point text_05_task}
+				{team a}
+			}
+		}
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{cameras
+			{"clip_1"
+				{"key000"
+					{time 0}
+					{position -1272.91 88.956 478.81}
+					{look_at -895.62 300.419 62.9526}
+					{fov 57.1}
+					{horizon 0}
+				}
+				{"key001"
+					{time 2}
+					{position -1901.12 -51.9265 658.269}
+					{look_at -1238.22 129.874 77.3149}
+					{fov 70}
+					{horizon 0}
+				}
+			}
+			{"clip_2"
+				{"key000"
+					{time 0}
+					{position -2661.68 -104.622 613.241}
+					{look_at -2217.18 74.3622 102.962}
+					{fov 58.8}
+					{horizon 0}
+				}
+				{"key001"
+					{time 5}
+					{position -2729.83 419.507 569.536}
+					{look_at -2262.7 186.905 102.962}
+					{fov 58.8}
+					{horizon 0}
+				}
+			}
+			{"clip_3"
+				{"key000"
+					{time 0}
+					{position -1813.38 876.452 273.632}
+					{look_at -1864.13 1334.76 0}
+					{fov 51.3}
+					{horizon 0}
+				}
+				{"key001"
+					{time 5}
+					{position -2199.01 1031.26 288.507}
+					{look_at -1864.13 1334.76 0}
+					{fov 51.3}
+					{horizon 0}
+				}
+			}
+			{"final"
+				{"key000"
+					{time 0}
+					{position -755.747 2292.58 326.183}
+					{look_at -949.423 1645.59 0}
+					{fov 60.6}
+					{horizon 0}
+				}
+				{"key001"
+					{time 3}
+					{position 173.881 1696.41 346.461}
+					{look_at -285.946 1215.77 0}
+					{fov 60.6}
+					{horizon 0}
+				}
+				{"key002"
+					{time 6}
+					{position 485.533 1009.07 307.994}
+					{look_at -195.564 947.868 0}
+					{fov 60.6}
+					{horizon 0}
+				}
+			}
+		}
+		{triggers
+			{"tasks/01/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/01/show"}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "01"}
+					}
+					{"sound"
+						{name "ui/task_new"}
+					}
+				}
+			}
+			{"tasks/02/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/02/show"}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "02"}
+					}
+					{"sound"
+						{name "ui/task_new"}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"event"
+						{event "echelons/02"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/03/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/03/show"}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "03"}
+					}
+					{"sound"
+						{name "ui/task_new"}
+					}
+				}
+			}
+			{"tasks/04/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/04/show"}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "04"}
+					}
+					{"sound"
+						{name "ui/task_new"}
+					}
+					{"delay"
+						{time 15}
+					}
+					{"event"
+						{event "hints/supply_truck/03"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/05/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/05/show"}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "05"}
+					}
+					{"sound"
+						{name "ui/task_new"}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"event"
+						{event "echelons/03"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/01/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/01/show"}
+						}
+						{"2.event"
+							{id "pointers/task_01/del_a"}
+						}
+						{"3.event"
+							{id "pointers/task_01/del_b"}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "01"}
+						{state complete}
+					}
+					{"sound"
+						{name "ui/task_complete"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "hints/01/complete"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/02/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/02/show"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{zone
+											{zone "02_task_a"}
+										}
+									}
+									{include
+										{prop
+											{prop car}
+										}
+										{state
+											{state user_control}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "02"}
+						{state complete}
+					}
+					{"sound"
+						{name "ui/task_complete"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "hints/supply_truck/02"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/03/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/03/show"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop supp_point}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "03"}
+						{state complete}
+					}
+					{"sound"
+						{name "ui/task_complete"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "hints/supply_truck/04"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/04/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/04/show"}
+						}
+						{"2.inventory"
+							{selector
+								{tag ally_tnk}
+							}
+							{item "bullet76" "fr" "rus" "std" "ammo"}
+							{amount 4}
+						}
+						{"3.inventory"
+							{selector
+								{tag ally_tnk}
+							}
+							{item "bullet76" "fg" "rus" "std" "ammo"}
+							{amount 36}
+						}
+						{"4.inventory"
+							{selector
+								{tag ally_tnk}
+							}
+							{item "bullet76" "ap" "rus" "std" "ammo"}
+							{amount 39}
+						}
+						{"5.inventory"
+							{selector
+								{tag ally_tnk}
+							}
+							{item "mgun" "ammo"}
+							{amount 1799}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "04"}
+						{state complete}
+					}
+					{"sound"
+						{name "ui/task_complete"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "scenario/final/camera"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/05/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/05/show"}
+						}
+						{"2.inventory"
+							{selector
+								{tag ally_tnk}
+							}
+							{where fuel}
+							{amount 280}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "05"}
+						{state complete}
+					}
+					{"sound"
+						{name "ui/task_complete"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "hints/fuel_truck/02"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"true"
+				{condition
+					{expression "!1"}
+					{terms
+						{"1.event"
+							{id "true"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "true"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"scenario/clip_1"
+				{condition
+					{terms
+						{"1.event"
+							{id "true"}
+						}
+					}
+				}
+				{actions
+					{"fade"
+						{on}
+						{time 0.01}
+						{color 0xff000000}
+					}
+					{"environment"
+						{name "arena_mp/day3"}
+					}
+					{"set_clip"
+						{name "01"}
+					}
+					{"scenario"
+						{message
+							{text ""}
+						}
+						{camera
+							{name "clip_1"}
+							{smooth_begin 0}
+							{smooth_end 0}
+						}
+						{do_not_restore_camera}
+						{force_auto_complete}
+					}
+					{"event"
+						{event "music"}
+						{mode set}
+						{delay 0}
+					}
+					{"fade"
+						{time 1}
+						{color 0xff000000}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"event"
+						{event "talks/01"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"talks/01"
+				{condition
+					{expression "!1 & 2"}
+					{terms
+						{"1.event"
+							{id "talks/talk"}
+						}
+						{"2.event"
+							{id "talks/01"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "talks/talk"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{tag talk_commander}
+						}
+						{text "$/talks/start/01_commander"}
+					}
+					{"delay"
+						{time 19}
+					}
+					{"event"
+						{event "talks/talk"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "hints/01/start"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"hints/01/start"
+				{condition
+					{terms
+						{"1.event"
+							{id "hints/01/start"}
+						}
+					}
+				}
+				{actions
+					{"tutorial"
+						{title "$/hints/text"}
+						{text "$/hints/supply_crate/01"}
+						{event_on_continue "tasks/01/show"}
+					}
+				}
+			}
+			{"pointers/task_01/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/01/show"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag visible_point_01_task}
+									}
+									{tag
+										{tag text_01_task}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"text"
+						{selector
+							{tag text_01_task_a}
+						}
+						{text "$/text_pointer/01"}
+						{duration 0}
+					}
+					{"text"
+						{selector
+							{tag text_01_task_b}
+						}
+						{text "$/text_pointer/01"}
+						{duration 0}
+					}
+				}
+			}
+			{"pointers/task_01/del_a"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/01/show"}
+						}
+						{"2.inventory"
+							{selector
+								{tag check_inv_inf_01}
+							}
+							{item "rifle" "ammo"}
+							{amount 27}
+						}
+						{"3.inventory"
+							{selector
+								{tag check_inv_inf_02}
+							}
+							{item "rifle" "ammo"}
+							{amount 37}
+						}
+						{"4.inventory"
+							{selector
+								{tag check_inv_inf_03}
+							}
+							{item "mgun" "ammo"}
+							{amount 200}
+						}
+						{"5.inventory"
+							{selector
+								{tag check_inv_inf_04}
+							}
+							{item "pistol" "ammo"}
+							{amount 170}
+						}
+						{"6.inventory"
+							{selector
+								{tag check_inv_inf_05}
+							}
+							{item "bazooka" "ammo"}
+							{amount 2}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag text_01_task_a}
+									}
+									{tag
+										{tag visible_point_01_task_a}
+									}
+								}
+							}
+						}
+					}
+					{"event"
+						{event "pointers/task_01/del_a"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"pointers/task_01/del_b"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/01/show"}
+						}
+						{"2.inventory"
+							{selector
+								{tag check_inv_inf_06}
+							}
+							{item "pistol" "ammo"}
+							{amount 150}
+						}
+						{"3.inventory"
+							{selector
+								{tag check_inv_inf_07}
+							}
+							{item "rifle" "ammo"}
+							{amount 30}
+						}
+						{"4.inventory"
+							{selector
+								{tag check_inv_inf_08}
+							}
+							{item "rifle" "ammo"}
+							{amount 30}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag text_01_task_b}
+									}
+									{tag
+										{tag visible_point_01_task_b}
+									}
+								}
+							}
+						}
+					}
+					{"event"
+						{event "pointers/task_01/del_b"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"music"
+				{condition
+					{terms
+						{"1.event"
+							{id "music"}
+						}
+					}
+				}
+				{actions
+					{"music"
+						{playlist preparing_or_waiting_battle}
+						{volume game}
+						{fade 3}
+						{loop}
+						{shuffle}
+					}
+				}
+			}
+			{"hints/01/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "hints/01/complete"}
+						}
+					}
+				}
+				{actions
+					{"tutorial"
+						{title "$/hints/text"}
+						{text "$/hints/supply_crate/02"}
+						{event_on_continue "scenario/clip_2"}
+					}
+				}
+			}
+			{"scenario/clip_2"
+				{condition
+					{terms
+						{"1.event"
+							{id "scenario/clip_2"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 2}
+					}
+					{"fade"
+						{on}
+						{time 0.01}
+						{color 0xff000000}
+					}
+					{"set_clip"
+						{name "02"}
+					}
+					{"scenario"
+						{message
+							{text ""}
+						}
+						{camera
+							{name "clip_2"}
+							{smooth_begin 0}
+							{smooth_end 0}
+						}
+						{do_not_restore_camera}
+						{force_auto_complete}
+					}
+					{"fade"
+						{time 1}
+						{color 0xff000000}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"event"
+						{event "talks/02"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"talks/02"
+				{condition
+					{expression "!1 & 2"}
+					{terms
+						{"1.event"
+							{id "talks/talk"}
+						}
+						{"2.event"
+							{id "talks/02"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "talks/talk"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{tag talk_commander}
+						}
+						{text "$/talks/artillery_support/01_commander"}
+					}
+					{"delay"
+						{time 17}
+					}
+					{"event"
+						{event "talks/talk"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "hints/supply_truck/01"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"talks/03"
+				{condition
+					{expression "!1 & 2"}
+					{terms
+						{"1.event"
+							{id "talks/talk"}
+						}
+						{"2.event"
+							{id "talks/03"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "talks/talk"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{tag talk_commander}
+						}
+						{text "$/talks/tank/01_commander"}
+					}
+					{"delay"
+						{time 15}
+					}
+					{"event"
+						{event "talks/talk"}
+						{mode reset}
+						{delay 0}
+					}
+					{## "event"
+						{event "hints/supply_truck/03"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"hints/supply_truck/01"
+				{condition
+					{terms
+						{"1.event"
+							{id "hints/supply_truck/01"}
+						}
+					}
+				}
+				{actions
+					{"tutorial"
+						{title "$/hints/text"}
+						{text "$/hints/supply_truck/01"}
+						{event_on_continue "tasks/02/show"}
+					}
+				}
+			}
+			{"echelons/02"
+				{condition
+					{terms
+						{"1.event"
+							{id "echelons/02"}
+						}
+					}
+				}
+				{actions
+					{"talk"
+						{selector
+							{tag hint}
+						}
+						{text "$/echelons/02"}
+					}
+					{"mp_echelon" 2
+					}
+				}
+			}
+			{"echelons/03"
+				{condition
+					{terms
+						{"1.event"
+							{id "echelons/03"}
+						}
+					}
+				}
+				{actions
+					{"talk"
+						{selector
+							{tag hint}
+						}
+						{text "$/echelons/03"}
+					}
+					{"mp_echelon" 3
+					}
+				}
+			}
+			{"hints/supply_truck/02"
+				{condition
+					{terms
+						{"1.event"
+							{id "hints/supply_truck/02"}
+						}
+					}
+				}
+				{actions
+					{"tutorial"
+						{title "$/hints/text"}
+						{text "$/hints/supply_truck/02"}
+						{event_on_continue "tasks/03/show"}
+					}
+				}
+			}
+			{"hints/supply_truck/03"
+				{condition
+					{terms
+						{"1.event"
+							{id "hints/supply_truck/03"}
+						}
+					}
+				}
+				{actions
+					{"tutorial"
+						{title "$/hints/text"}
+						{text "$/hints/supply_truck/03"}
+						{event_on_continue "tasks/04/show"}
+					}
+				}
+			}
+			{"pointers/task_02/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/02/show"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag point_02_task}
+									}
+									{tag
+										{tag text_02_task}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"text"
+						{selector
+							{tag text_02_task}
+						}
+						{text "$/text_pointer/02"}
+						{duration 0}
+					}
+				}
+			}
+			{"pointers/task_02/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/02/show"}
+						}
+						{"2.task"
+							{name "02"}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag point_02_task}
+									}
+									{tag
+										{tag text_02_task}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"pointers/task_03/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/03/show"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag point_03_task}
+									}
+									{tag
+										{tag text_03_task}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"text"
+						{selector
+							{tag text_03_task}
+						}
+						{text "$/text_pointer/03"}
+						{duration 0}
+					}
+				}
+			}
+			{"pointers/task_03/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/03/show"}
+						}
+						{"2.task"
+							{name "03"}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag point_03_task}
+									}
+									{tag
+										{tag text_03_task}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"pointers/task_04/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/04/show"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag point_04_task}
+									}
+									{tag
+										{tag text_04_task}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"text"
+						{selector
+							{tag text_04_task}
+						}
+						{text "$/text_pointer/04"}
+						{duration 0}
+					}
+				}
+			}
+			{"pointers/task_04/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/04/show"}
+						}
+						{"2.task"
+							{name "04"}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag point_04_task}
+									}
+									{tag
+										{tag text_04_task}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"pointers/task_05/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/05/show"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag point_05_task}
+									}
+									{tag
+										{tag text_05_task}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"text"
+						{selector
+							{tag text_05_task}
+						}
+						{text "$/text_pointer/05"}
+						{duration 0}
+					}
+				}
+			}
+			{"pointers/task_05/complete"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/05/show"}
+						}
+						{"2.task"
+							{name "05"}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag point_05_task}
+									}
+									{tag
+										{tag text_05_task}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"scenario/clip_3"
+				{condition
+					{terms
+						{"1.event"
+							{id "scenario/clip_3"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 1}
+					}
+					{"fade"
+						{on}
+						{time 0.01}
+						{color 0xff000000}
+					}
+					{"set_clip"
+						{name "03"}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag ally_tankmans_player3}
+									}
+									{tag
+										{tag ally_tnk_player3}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"scenario"
+						{message
+							{text ""}
+						}
+						{camera
+							{name "clip_3"}
+							{smooth_begin 0}
+							{smooth_end 0}
+						}
+						{event_on_next "tasks/04/show"}
+						{event_on_cancel "tasks/04/show"}
+						{do_not_restore_camera}
+						{force_auto_complete}
+					}
+					{"fade"
+						{time 1}
+						{color 0xff000000}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag ally_tnk_player3}
+									}
+									{tag
+										{tag ally_tankmans_player3}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 3}
+					}
+					{"event"
+						{event "talks/03"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"talks/04"
+				{condition
+					{expression "!1 & 2 & 3"}
+					{terms
+						{"1.event"
+							{id "talks/talk"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{zone
+											{zone "05_task"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 2}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{zone
+											{zone "05_task"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 3}
+										}
+										{with_item
+											{type amount}
+											{item "tt"}
+											{min 1}
+										}
+									}
+									{exclude
+										{state
+											{state inactive}
+										}
+										{state
+											{state dead}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "talks/talk"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{tag talk_commander}
+						}
+						{text "$/talks/tank/02_commander"}
+					}
+					{"delay"
+						{time 15}
+					}
+					{"event"
+						{event "talks/talk"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "hints/fuel_truck/01"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"hints/fuel_truck/01"
+				{condition
+					{terms
+						{"1.event"
+							{id "hints/fuel_truck/01"}
+						}
+					}
+				}
+				{actions
+					{"tutorial"
+						{title "$/hints/text"}
+						{text "$/hints/fuel_truck/01"}
+						{event_on_continue "tasks/05/show"}
+					}
+				}
+			}
+			{"hints/fuel_truck/02"
+				{condition
+					{terms
+						{"1.event"
+							{id "hints/fuel_truck/02"}
+						}
+					}
+				}
+				{actions
+					{"tutorial"
+						{title "$/hints/text"}
+						{text "$/hints/fuel_truck/02"}
+						{event_on_continue "tasks/05/complete"}
+					}
+				}
+			}
+			{"tasks/win"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/win"}
+						}
+					}
+				}
+				{actions
+					{"music"
+						{playlist victory}
+						{volume game}
+						{shuffle}
+					}
+					{"mp_event"
+						{event gameover}
+						{team a}
+					}
+				}
+			}
+			{"talks/05"
+				{condition
+					{expression "!1 & 2 & 3"}
+					{terms
+						{"1.event"
+							{id "talks/talk"}
+						}
+						{"2.event"
+							{id "tasks/04/complete"}
+						}
+						{"3.event"
+							{id "tasks/05/complete"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "talks/talk"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{tag talk_commander}
+						}
+						{text "$/talks/complete/01_commander"}
+					}
+					{"delay"
+						{time 5}
+					}
+					{"event"
+						{event "talks/talk"}
+						{mode reset}
+						{delay 0}
+					}
+					{"event"
+						{event "scenario/final/camera"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"scenario/clip_4_final/camera"
+				{condition
+					{type 1}
+					{terms
+						{"1.event"
+							{id "scenario/final/camera"}
+						}
+					}
+				}
+				{actions
+					{"fade"
+						{on}
+						{time 0.01}
+						{color 0xff000000}
+					}
+					{"set_clip"
+						{name "04"}
+					}
+					{"scenario"
+						{message
+							{text ""}
+						}
+						{camera
+							{name "final"}
+							{smooth_begin 0}
+							{smooth_end 0}
+						}
+						{event_on_next "tasks/win"}
+						{event_on_cancel "tasks/win"}
+						{do_not_restore_camera}
+						{force_auto_complete}
+					}
+					{"environment"
+						{name "single/tutorial/supply/day3_dof"}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag outro_actors}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"event"
+						{event "scenario/final/actors"}
+						{mode set}
+						{delay 0}
+					}
+					{"fade"
+						{time 1}
+						{color 0xff000000}
+					}
+					{"delay"
+						{time 1}
+					}
+					{"event"
+						{event "talks/06"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"talks/06"
+				{condition
+					{terms
+						{"1.event"
+							{id "talks/06"}
+						}
+					}
+				}
+				{actions
+					{"talk"
+						{selector
+							{tag talk_commander}
+						}
+						{text "$/talks/complete/02_commander"}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"talk"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+									{state
+										{state dead}
+									}
+								}
+							}
+						}
+						{say attack}
+						{text ""}
+					}
+				}
+			}
+			{"scenario/clip_4_final/actors"
+				{condition
+					{terms
+						{"1.event"
+							{id "scenario/final/actors"}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag ally_inf}
+									}
+									{tag
+										{tag ally_tnk}
+									}
+								}
+							}
+						}
+					}
+					{"actor_state"
+						{selector
+							{tag outro_actors}
+							{type human}
+						}
+						{movement
+							{speed assault}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_tank}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "20"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_01}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "0"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_02}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "2"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_03}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "4"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_04}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "6"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_05}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "8"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_06}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "10"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_07}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "12"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_08}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "16"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_09}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "14"}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag outro_actor_10}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "18"}
+						}
+					}
+				}
+			}
+			{"unit_action/art_fire/art_fire_01"
+				{condition
+					{terms
+						{"1.task"
+							{name "02"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 7.5 2.5}
+					}
+					{"actor_fire"
+						{selector
+							{tag art_fire_01}
+						}
+						{attack position}
+						{waypoint "34"}
+					}
+					{"delay"
+						{time 8 2}
+					}
+					{"actor_fire"
+						{selector
+							{tag art_fire_01}
+						}
+						{attack position}
+						{waypoint "35"}
+					}
+					{"delay"
+						{time 8.5 1.5}
+					}
+					{"actor_fire"
+						{selector
+							{tag art_fire_01}
+						}
+						{attack position}
+						{waypoint "38"}
+					}
+					{"trigger"
+						{name "unit_action/art_fire/art_fire_01"}
+					}
+				}
+			}
+			{"unit_action/art_fire/art_commander"
+				{condition
+					{terms
+						{"1.task"
+							{name "03"}
+						}
+					}
+				}
+				{actions
+					{"animation"
+						{selector
+							{tag art_commander}
+						}
+						{collage pose_watch_binocular}
+						{cicledelay 0}
+						{delay 0}
+						{flags loop}
+					}
+				}
+			}
+			{"unit_action/art_fire/art_fire_02"
+				{condition
+					{terms
+						{"1.task"
+							{name "02"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 7.5 2.5}
+					}
+					{"actor_fire"
+						{selector
+							{tag art_fire_02}
+						}
+						{attack position}
+						{waypoint "36"}
+					}
+					{"delay"
+						{time 8 2}
+					}
+					{"actor_fire"
+						{selector
+							{tag art_fire_02}
+						}
+						{attack position}
+						{waypoint "37"}
+					}
+					{"delay"
+						{time 8.5 1.5}
+					}
+					{"actor_fire"
+						{selector
+							{tag art_fire_02}
+						}
+						{attack position}
+						{waypoint "39"}
+					}
+					{"trigger"
+						{name "unit_action/art_fire/art_fire_02"}
+					}
+				}
+			}
+			{"unit_action/tank_board"
+				{condition
+					{type 1}
+					{terms
+						{"1.task"
+							{name "04"}
+						}
+						{"2.task"
+							{name "05"}
+						}
+					}
+				}
+				{actions
+					{"actor_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag ally_tankmans_player3}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+								{exclude
+									{state
+										{state linked}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{movement
+							{speed fast}
+						}
+					}
+					{"board"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag ally_tankmans_player3}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+								}
+								{exclude
+									{state
+										{state linked}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{vehicle
+							{tag ally_tnk}
+						}
+					}
+				}
+			}
+			{"mp_player/inf"
+				{condition
+					{terms
+						{"1.event"
+							{id "true"}
+						}
+					}
+				}
+				{actions
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag ally_art_player_3}
+									}
+									{tag
+										{tag ally_inf_player3}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 3}
+					}
+				}
+			}
+			{"hints/supply_truck/04"
+				{condition
+					{terms
+						{"1.event"
+							{id "hints/supply_truck/04"}
+						}
+					}
+				}
+				{actions
+					{"tutorial"
+						{title "$/hints/text"}
+						{text "$/hints/supply_truck/04"}
+						{event_on_continue "scenario/clip_3"}
+					}
+				}
+			}
+			{"mp_player/tnk"
+				{condition
+					{terms
+						{"1.event"
+							{id "true"}
+						}
+					}
+				}
+				{actions
+					{"player"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag ally_tnk_player3}
+									}
+									{tag
+										{tag ally_tankmans_player3}
+									}
+								}
+							}
+						}
+						{operation set}
+						{player 3}
+					}
+				}
+			}
+			{"unit_action/tankman"
+				{condition
+					{terms
+						{"1.task"
+							{name "04"}
+							{state shown}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 3.5 0.5}
+					}
+					{"animation"
+						{selector
+							{tag ally_tankman_run}
+						}
+						{collage dialog_stand_salute}
+						{cicledelay 0}
+						{delay 0}
+					}
+					{"delay"
+						{time 1.5}
+					}
+					{"actor_state"
+						{selector
+							{tag ally_tankman_run}
+						}
+						{movement
+							{speed fast}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+							{actors
+								{tag ally_tankman_run}
+							}
+						}
+						{action
+							{type start}
+							{waypoint "45"}
+						}
+					}
+				}
+			}
+			{"add_ammo/01"
+				{condition
+					{expression "1 & 2 & !3"}
+					{terms
+						{"1.task"
+							{name "04"}
+							{state shown}
+						}
+						{"2.inventory"
+							{selector
+								{tag ally_tnk_player3}
+							}
+							{item "mgun" "ammo"}
+							{compare equal}
+							{amount 1800}
+						}
+						{"3.task"
+							{name "05"}
+						}
+					}
+				}
+				{actions
+					{"inventory"
+						{selector
+							{tag ally_tnk}
+						}
+						{action add}
+						{item "bullet76" "fr" "rus" "std" "ammo"}
+						{amount 5}
+						{filling
+							{stuff "bullet76" "fr" "rus" "std" "ammo"}
+							{amount 5}
+						}
+					}
+					{"delay"
+						{time 5 1}
+					}
+					{"inventory"
+						{selector
+							{tag ally_tnk}
+						}
+						{action add}
+						{item "bullet76" "fg" "rus" "std" "ammo"}
+						{amount 37}
+						{filling
+							{stuff "bullet76" "fg" "rus" "std" "ammo"}
+							{amount 37}
+						}
+					}
+					{"delay"
+						{time 5 1}
+					}
+					{"inventory"
+						{selector
+							{tag ally_tnk}
+						}
+						{action add}
+						{item "bullet76" "ap" "rus" "std" "ammo"}
+						{amount 40}
+						{filling
+							{stuff "bullet76" "ap" "rus" "std" "ammo"}
+							{amount 40}
+						}
+					}
+				}
+			}
+			{"add_ammo/02"
+				{condition
+					{expression "1 & !2 & 3 & (4 | 5 | 6)"}
+					{terms
+						{"1.task"
+							{name "05"}
+						}
+						{"2.inventory"
+							{selector
+								{tag ally_tnk_player3}
+							}
+							{item "mgun" "ammo"}
+							{compare equal}
+							{amount 1800}
+						}
+						{"3.task"
+							{name "04"}
+							{state shown}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{zone
+											{zone "ally_tank"}
+										}
+									}
+									{include
+										{state
+											{state user_control}
+										}
+										{prop
+											{prop inventory_crate_rus}
+										}
+									}
+								}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{zone
+											{zone "ally_tank"}
+										}
+									}
+									{include
+										{state
+											{state user_control}
+										}
+										{prop
+											{prop gaz_aa_supp}
+										}
+									}
+								}
+							}
+						}
+						{"6.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{zone
+											{zone "ally_tank"}
+										}
+									}
+									{include
+										{prop
+											{prop supp_point}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 7.5 2.5}
+					}
+					{"inventory"
+						{selector
+							{tag ally_tnk}
+						}
+						{action add}
+						{item "bullet76" "fr" "rus" "std" "ammo"}
+						{amount 5}
+						{filling
+							{stuff "bullet76" "fr" "rus" "std" "ammo"}
+							{amount 5}
+						}
+					}
+					{"delay"
+						{time 3.5 1.5}
+					}
+					{"inventory"
+						{selector
+							{tag ally_tnk}
+						}
+						{action add}
+						{item "bullet76" "fg" "rus" "std" "ammo"}
+						{amount 37}
+						{filling
+							{stuff "bullet76" "fg" "rus" "std" "ammo"}
+							{amount 37}
+						}
+					}
+					{"delay"
+						{time 3.5 1.5}
+					}
+					{"inventory"
+						{selector
+							{tag ally_tnk}
+						}
+						{action add}
+						{item "bullet76" "ap" "rus" "std" "ammo"}
+						{amount 40}
+						{filling
+							{stuff "bullet76" "ap" "rus" "std" "ammo"}
+							{amount 40}
+						}
+					}
+					{"delay"
+						{time 3.5 1.5}
+					}
+					{"inventory"
+						{selector
+							{tag ally_tnk}
+						}
+						{action add}
+						{item "mgun" "ammo"}
+						{amount 1800}
+						{filling
+							{stuff "mgun" "ammo"}
+							{amount 1800}
+						}
+					}
+				}
+			}
+			{"tasks/fail"
+				{condition
+					{terms
+						{"1.event"
+							{id "tasks/fail"}
+						}
+					}
+				}
+				{actions
+					{"music"
+						{playlist defeat}
+						{volume game}
+						{shuffle}
+					}
+					{"mp_event"
+						{event gameover}
+						{team b}
+					}
+				}
+			}
+			{"tasks/02/fail"
+				{condition
+					{expression "1 & !2 & (3 | 4)"}
+					{terms
+						{"1.task"
+							{name "02"}
+							{state shown}
+						}
+						{"2.task"
+							{name "02"}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop car}
+										}
+										{state
+											{state user_control}
+										}
+										{tag
+											{tag destroyed}
+										}
+									}
+								}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{state
+											{state user_control}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{tag
+											{tag ally_inf}
+										}
+										{tag
+											{tag ally_tankmans_player3}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "02"}
+						{state fail}
+					}
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"delay"
+						{time 2.5}
+					}
+					{"event"
+						{event "tasks/fail"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/03/fail"
+				{condition
+					{expression "1 & !2 & (3 | 4)"}
+					{terms
+						{"1.task"
+							{name "03"}
+							{state shown}
+						}
+						{"2.task"
+							{name "03"}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop car}
+										}
+										{state
+											{state user_control}
+										}
+										{tag
+											{tag destroyed}
+										}
+									}
+								}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{state
+											{state user_control}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{tag
+											{tag ally_inf}
+										}
+										{tag
+											{tag ally_tankmans_player3}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "03"}
+						{state fail}
+					}
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"delay"
+						{time 2.5}
+					}
+					{"event"
+						{event "tasks/fail"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/04/fail"
+				{condition
+					{expression "1 & !2 & (3 | 4 | 5)"}
+					{terms
+						{"1.task"
+							{name "04"}
+							{state shown}
+						}
+						{"2.task"
+							{name "04"}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop car}
+										}
+										{state
+											{state user_control}
+										}
+										{tag
+											{tag destroyed}
+										}
+									}
+								}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{state
+											{state user_control}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{tag
+											{tag ally_inf}
+										}
+										{tag
+											{tag ally_tankmans_player3}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag ally_tnk}
+										}
+									}
+									{include
+										{tag
+											{tag destroyed}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "04"}
+						{state fail}
+					}
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"delay"
+						{time 2.5}
+					}
+					{"event"
+						{event "tasks/fail"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/05/fail"
+				{condition
+					{expression "1 & !2 & (3 | 4 | 5)"}
+					{terms
+						{"1.task"
+							{name "05"}
+							{state shown}
+						}
+						{"2.task"
+							{name "05"}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop car}
+										}
+										{state
+											{state user_control}
+										}
+										{tag
+											{tag destroyed}
+										}
+									}
+								}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{state
+											{state user_control}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{tag
+											{tag ally_inf}
+										}
+										{tag
+											{tag ally_tankmans_player3}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag ally_tnk}
+										}
+									}
+									{include
+										{tag
+											{tag destroyed}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "05"}
+						{state fail}
+					}
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"delay"
+						{time 2.5}
+					}
+					{"event"
+						{event "tasks/fail"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"tasks/01/fail"
+				{condition
+					{expression "1 & !2 & 3"}
+					{terms
+						{"1.task"
+							{name "01"}
+							{state shown}
+						}
+						{"2.task"
+							{name "01"}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "all_map"}
+										}
+									}
+									{include
+										{tag
+											{tag abandoned}
+										}
+									}
+								}
+							}
+							{count
+								{op ">="}
+								{value 2}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "01"}
+						{state fail}
+					}
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"delay"
+						{time 2.5}
+					}
+					{"event"
+						{event "tasks/fail"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+		}
+		{waypoints "scene_final"
+			{"0"
+				{position -806.224 953.694 14.9166}
+				{transition "1"}
+			}
+			{"1"
+				{position -302.52 1356.51 3.5712}
+				{transition "24"}
+			}
+			{"10"
+				{position -448.598 619.604 2.13825}
+				{transition "11"}
+			}
+			{"11"
+				{position 40.8857 1018.77 0.848966}
+				{transition "29"}
+			}
+			{"12"
+				{position -621.766 660.367 11.9015}
+				{transition "13"}
+			}
+			{"13"
+				{position -74.0636 1091.9 2.03083}
+				{transition "30"}
+			}
+			{"14"
+				{position -692.938 879.225 14.9821}
+				{transition "15"}
+			}
+			{"15"
+				{position -317.563 1140.8 -15.405}
+				{transition "32"}
+			}
+			{"16"
+				{position -861.001 1086.02 12.1055}
+				{transition "17"}
+			}
+			{"17"
+				{position -476.015 1409.8 -0.911684}
+				{transition "31"}
+			}
+			{"18"
+				{position -477.54 448.252 4.10041}
+				{transition "19"}
+			}
+			{"19"
+				{position -318.569 684.806 -18.2876}
+				{transition "33"}
+			}
+			{"2"
+				{position -678.932 942.359 8.04783}
+				{transition "3"}
+			}
+			{"20"
+				{position -988.312 1397.81 -19.303}
+				{transition "21"}
+			}
+			{"21"
+				{position -713.631 1685 -16.5353}
+				{transition "22"}
+			}
+			{"22"
+				{position -301.578 2056.06 -33.4602}
+				{transition "23"}
+			}
+			{"23"
+				{position -2.13873 2289.84 -73.0367}
+			}
+			{"24"
+				{position 536.089 2019.79 -68.5733}
+			}
+			{"25"
+				{position 772.56 2054.5 -64.0975}
+			}
+			{"26"
+				{position 896.288 1995.13 -48.6474}
+			}
+			{"27"
+				{position 857.438 1847.03 -39.9385}
+			}
+			{"28"
+				{position 922.232 1802.42 -33.2911}
+			}
+			{"29"
+				{position 964.48 1746.55 -32.0031}
+			}
+			{"3"
+				{position -194.005 1293.89 7.61713}
+				{transition "25"}
+			}
+			{"30"
+				{position 842.021 1787.46 -36.162}
+			}
+			{"31"
+				{position 474.675 2079 -71}
+			}
+			{"32"
+				{position 789.575 1990.7 -58.6385}
+			}
+			{"33"
+				{position 1009.58 1702.05 -30.2673}
+			}
+			{"4"
+				{position -675.19 818.515 14.1951}
+				{transition "5"}
+			}
+			{"5"
+				{position -117.584 1227.66 8.6498}
+				{transition "26"}
+			}
+			{"6"
+				{position -593.621 752.333 10.1907}
+				{transition "7"}
+			}
+			{"7"
+				{position -38.4494 1172.35 8.88902}
+				{transition "27"}
+			}
+			{"8"
+				{position -582.456 598.101 12.4178}
+				{transition "9"}
+			}
+			{"9"
+				{position 7.59148 1095.54 4.5312}
+				{transition "28"}
+			}
+		}
+		{waypoints "art_fire"
+			{"34"
+				{position 1180.87 -1326 6.64277}
+			}
+			{"35"
+				{position 1663.28 -1148.72 -20.9834}
+			}
+			{"36"
+				{position 1415.12 101.77 6.19573}
+			}
+			{"37"
+				{position 1586.21 601.416 -14.2621}
+			}
+			{"38"
+				{position 1383.71 -678.243 -8.05373}
+			}
+			{"39"
+				{position 1082.97 666.973 20.7679}
+			}
+		}
+		{waypoints "tankman"
+			{"45"
+				{position -1856.15 1240.22 12.7115}
+				{transition "46"}
+			}
+			{"46"
+				{position -1915.13 1200.17 7.76124}
+				{transition "47"}
+			}
+			{"47"
+				{position -1991.92 1154.63 6.87276}
+				{transition "48"}
+			}
+			{"48"
+				{position -2191.53 1056.56 20.8233}
+				{transition "49"}
+			}
+			{"49"
+				{position -2473.56 849.369 82.6184}
+				{transition "50"}
+			}
+			{"50"
+				{position -2601.46 678.793 118.294}
+				{transition "51"}
+			}
+			{"51"
+				{position -2728.32 436.309 136.174}
+				{transition "52"}
+			}
+			{"52"
+				{position -2723.85 382.238 132.368}
+				{transition "53"}
+			}
+			{"53"
+				{position -2534.22 375.002 131.453}
+				{transition "54"}
+			}
+			{"54"
+				{position -2382.9 370.557 127.288}
+				{transition "55"}
+			}
+			{"55"
+				{position -2227.48 370.744 123.716}
+				{transition "58"}
+			}
+			{"57"
+				{position 281.934 2225.93 -69.7476}
+			}
+			{"58"
+				{position -2098.02 289.426 119.545}
+				{commands
+					{"actor_state"
+						{selector
+							{source standart}
+							{tag art_commander}
+						}
+						{drop "orders sensor senseless"}
+						{movement
+							{type normal}
+						}
+					}
+					{"delay"
+						{time 0.1}
+					}
+					{"action"
+						{selector
+							{source standart}
+							{tag art_commander}
+						}
+						{action rotate}
+						{waypoint "58"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"actor_state"
+						{movement
+							{speed fast}
+						}
+					}
+					{"waypoint"
+						{who
+							{type actor}
+						}
+						{action
+							{type start}
+							{waypoint "59"}
+						}
+					}
+				}
+			}
+			{"59"
+				{position -2201.86 364.293 123.786}
+				{transition "60"}
+			}
+			{"60"
+				{position -2453.24 372.255 131.082}
+				{transition "61"}
+			}
+			{"61"
+				{position -2577.02 372.507 135.453}
+				{transition "62"}
+			}
+			{"62"
+				{position -2633.11 372.496 137.392}
+				{transition "63"}
+			}
+			{"63"
+				{position -2755.46 381.884 131.425}
+				{transition "64"}
+			}
+			{"64"
+				{position -2753.04 609.51 133.852}
+				{transition "65"}
+			}
+			{"65"
+				{position -2586.2 790.957 101.829}
+				{transition "66"}
+			}
+			{"66"
+				{position -2356.47 969.304 48.4212}
+				{transition "67"}
+			}
+			{"67"
+				{position -2143.87 1100.88 16.6717}
+				{transition "68"}
+			}
+			{"68"
+				{position -1973.3 1137.52 6.12312}
+				{transition "69"}
+			}
+			{"69"
+				{position -1843.69 1235.44 11.9051}
+			}
+		}
+	}
+	{Players
+		{mp_team_relation 0 0 0 0}
+		{mp_team_relation 2 2 1}
+	}
+}

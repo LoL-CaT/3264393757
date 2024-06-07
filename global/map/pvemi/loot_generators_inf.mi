@@ -1,0 +1,614 @@
+{mission
+	{Helpers
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{triggers
+			{"random_loot_generated/ger"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag inv_box}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag inv_box}
+									}
+								}
+								{exclude
+									{tag
+										{tag loot_generated}
+									}
+								}
+							}
+							{amount 1
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{tag_add generate_loot}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "signal" "grenade"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 500}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "mp40"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 500}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "mg34"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "m24" "grenade"}
+								{amount 5}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "mauzer"}
+								{amount 3}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "m24x7" "grenade"}
+								{amount 2}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag generate_loot}
+						}
+						{tag_add loot_generated}
+						{tag_remove generate_loot}
+					}
+					{"trigger"
+						{name "random_loot_generated/ger"}
+					}
+				}
+			}
+			{"random_loot_generated/rus"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag inv_box}
+										}
+									}
+									{include
+										{tag
+											{tag rus}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag inv_box}
+									}
+								}
+								{include
+									{tag
+										{tag rus}
+									}
+								}
+								{exclude
+									{tag
+										{tag loot_generated}
+									}
+								}
+							}
+							{amount 1
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{tag_add generate_loot}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1125}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "dynamite"}
+								{amount 2}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "f1" "grenade"}
+								{amount 3}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "antipersonnel" "mine"}
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "antitank" "mine"}
+								{amount 3}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "molotov_coctail" "grenade"}
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 500}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "ppsh"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 500}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "dp"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "f1" "grenade"}
+								{amount 2}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "svt40"}
+								{amount 3}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "rpg40" "grenade"}
+								{amount 4}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag generate_loot}
+						}
+						{tag_add loot_generated}
+						{tag_remove generate_loot}
+					}
+					{"trigger"
+						{name "random_loot_generated/rus"}
+					}
+				}
+			}
+			{"random_loot_generated/usa"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag inv_box}
+										}
+									}
+									{include
+										{tag
+											{tag usa}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag inv_box}
+									}
+								}
+								{include
+									{tag
+										{tag usa}
+									}
+								}
+								{exclude
+									{tag
+										{tag loot_generated}
+									}
+								}
+							}
+							{amount 1
+							}
+							{sort
+								{type shuffle}
+							}
+						}
+						{tag_add generate_loot}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1125}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "dynamite"}
+								{amount 2}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "m61" "grenade"}
+								{amount 3}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "antipersonnel" "mine"}
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "antitank" "mine"}
+								{amount 3}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "molotov_coctail" "grenade"}
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 500}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "thompson"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 500}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "bar"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "m61" "grenade"}
+								{amount 2}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "m1903"}
+								{amount 3}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag generate_loot}
+								}
+								{action add}
+								{item "n73at" "grenade"}
+								{amount 4}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag generate_loot}
+						}
+						{tag_add loot_generated}
+						{tag_remove generate_loot}
+					}
+					{"trigger"
+						{name "random_loot_generated/usa"}
+					}
+				}
+			}
+		}
+	}
+}

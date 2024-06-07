@@ -1,0 +1,9230 @@
+{mission
+	{Entity "text_link" 0x8000
+		{Position 168.92 129.02}
+	}
+	{Entity "text_link" 0x8001
+		{Position -1868.66 1210.48}
+	}
+	{Entity "text_link" 0x8002
+		{Position 5.49 1561.35}
+	}
+	{Entity "text_link" 0x8003
+		{Position 1499.32 1446.86}
+	}
+	{Entity "defence" 0x8004
+		{Position 439.8 2980.29}
+	}
+	{Entity "defence" 0x8005
+		{Position 247.29 2994.04}
+	}
+	{Entity "defence" 0x8006
+		{Position 74.63 2991.77}
+	}
+	{Entity "defence" 0x8007
+		{Position -101.54 2979.86}
+	}
+	{Entity "text_link" 0x8008
+		{Position -9.35 2037.18}
+	}
+	{Entity "defence" 0x8009
+		{Position -251.66 2978.36}
+	}
+	{Tags "poi_home" "pointer_blue" "minimap" 0x8000}
+	{Tags "poi_right" "pointer_blue_small" "minimap" 0x8001}
+	{Tags "poi_center" "pointer_blue_small" "minimap" 0x8002}
+	{Tags "poi_left" "pointer_blue_small" "minimap" 0x8003}
+	{Tags "pointer" "main_a" 0x8004}
+	{Tags "pointer" "secondary_left" 0x8005}
+	{Tags "pointer" "secondary_center" 0x8006}
+	{Tags "pointer" "secondary_right" 0x8007}
+	{Tags "poi_forward" "pointer_blue_small" "minimap" 0x8008}
+	{Tags "pointer" "secondary_forward" 0x8009}
+	{Helpers
+		{event "conversations/dialog_event_a"}
+		{event "echelon1"}
+		{event "echelon2"}
+		{event "echelon3"}
+		{event "loot_gen/ger"}
+		{event "loot_gen/rus"}
+		{event "loot_gen/usa"}
+		{event "poi_clear_message"}
+		{event "poi_count_variants/2"}
+		{event "poi_count_variants/3"}
+		{event "poi_count_variants/4"}
+		{event "poi_count_variants/5"}
+		{event "poi_selected"}
+		{event "prep_time"}
+		{event "start_true"}
+		{zone "poly"
+			{position 51.7405 -5225.01 0}
+			{Name "intro_fog"}
+			{Point -7742.57 -3132.55}
+			{Point -7775.04 3250.37}
+			{Point 7485.56 3273.39}
+			{Point 8032.05 -3391.21}
+		}
+		{zone "poly"
+			{position -3.18054 -5.76923 0}
+			{Name "spawn_forbidden_99"}
+			{Point -7503.15 -4949.25}
+			{Point -7492.98 4950.44}
+			{Point 7512.21 4943.08}
+			{Point 7483.92 -4944.27}
+		}
+		{tasks
+			{"main_a"
+				{desc "$/ground_control/tasks/main"}
+				{primary}
+				{state hidden}
+				{point main_a}
+				{team a}
+			}
+			{"poi_left"
+				{desc "$/ground_control/tasks/secondary_left"}
+				{point secondary_left}
+				{team a}
+			}
+			{"poi_center"
+				{desc "$/ground_control/tasks/secondary_center"}
+				{point secondary_center}
+				{team a}
+			}
+			{"poi_right"
+				{desc "$/ground_control/tasks/secondary_right"}
+				{point secondary_right}
+				{team a}
+			}
+			{"poi_forward"
+				{desc "$/ground_control/tasks/secondary_forward"}
+				{point secondary_forward}
+				{team a}
+			}
+		}
+		{reinforcements
+			{scoreTotal 0}
+			{scoreCurrent 0}
+		}
+		{vars
+			{"poi_counter"}
+			{"b_push_counter"}
+			{"b_push_counter_max"}
+		}
+		{triggers
+			{"unit_behavior/retreat"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+						}
+					}
+				}
+				{actions
+					{"action"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{condition "move_mode \"hold\""
+									}
+								}
+							}
+						}
+						{action withdraw}
+					}
+					{"action"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+									{team
+										{team b}
+									}
+									{state
+										{state inhabited}
+									}
+								}
+								{exclude
+									{state
+										{state broken}
+									}
+									{state
+										{state inactive}
+									}
+									{condition "move_mode \"hold\""
+									}
+								}
+							}
+						}
+						{action withdraw}
+					}
+					{"delay"
+						{time 0.2}
+					}
+					{"trigger"
+						{name "unit_behavior/retreat"}
+					}
+				}
+			}
+			{"loot_generator/a/ger/event"
+				{condition
+					{terms
+						{"1.side"
+							{side ger}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "loot_gen/ger"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"loot_generator/a/rus/event"
+				{condition
+					{terms
+						{"1.side"
+							{side rus}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "loot_gen/rus"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"loot_generator/a/usa/event"
+				{condition
+					{terms
+						{"1.side"
+							{side usa}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "loot_gen/usa"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"loot_generator/a/rus/gen"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/rus"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop inventory_transfer}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+										{prop
+											{prop human}
+										}
+										{prop
+											{prop vehicle}
+										}
+										{prop
+											{prop creature}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop inventory_transfer}
+									}
+								}
+								{exclude
+									{prop
+										{prop vehicle}
+									}
+									{prop
+										{prop human}
+									}
+									{prop
+										{prop creature}
+									}
+									{tag
+										{tag loot_generated}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bazooka" "weapon"}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bazooka" "ammo"}
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.111}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pps43"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 600}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.125}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "svt40"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "molotov_coctail" "grenade"}
+								{amount 20}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rpg40" "grenade"}
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "f1" "grenade"}
+								{amount 15}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 50}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 1000}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "dp"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "ptr" "ammo"}
+								{amount 75}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "ptrs"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 100}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mosin_s"}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate}
+						}
+						{tag_add loot_generated}
+						{tag_remove loot_generate}
+					}
+					{"trigger"
+						{name "loot_generator/a/rus/gen"}
+					}
+				}
+			}
+			{"loot_generator/a/ger/gen"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/ger"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop inventory_transfer}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+										{prop
+											{prop human}
+										}
+										{prop
+											{prop vehicle}
+										}
+										{prop
+											{prop creature}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop inventory_transfer}
+									}
+								}
+								{exclude
+									{prop
+										{prop vehicle}
+									}
+									{prop
+										{prop human}
+									}
+									{prop
+										{prop creature}
+									}
+									{tag
+										{tag loot_generated}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "panzershreck" "weapon"}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "panzershreck" "ammo"}
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.111}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "sg44"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 600}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.125}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "g43"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "molotov_coctail" "grenade"}
+								{amount 20}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "m24x7" "grenade"}
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "m24" "grenade"}
+								{amount 15}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 50}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 1000}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mg34"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "ptr" "ammo"}
+								{amount 75}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pzb39"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 100}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "g41"}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate}
+						}
+						{tag_add loot_generated}
+						{tag_remove loot_generate}
+					}
+					{"trigger"
+						{name "loot_generator/a/ger/gen"}
+					}
+				}
+			}
+			{"loot_generator/a/usa/gen"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/usa"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop inventory_transfer}
+										}
+									}
+									{exclude
+										{tag
+											{tag loot_generated}
+										}
+										{prop
+											{prop human}
+										}
+										{prop
+											{prop vehicle}
+										}
+										{prop
+											{prop creature}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop inventory_transfer}
+									}
+								}
+								{exclude
+									{prop
+										{prop vehicle}
+									}
+									{prop
+										{prop human}
+									}
+									{prop
+										{prop creature}
+									}
+									{tag
+										{tag loot_generated}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bazooka" "weapon"}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bazooka" "ammo"}
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.111}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "thompson"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 600}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.125}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "garand"}
+								{amount 3}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 200}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "signal" "heavy" "grenade"}
+								{amount 20}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "n73at" "grenade"}
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "m61" "grenade"}
+								{amount 15}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 50}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "mgun" "ammo"}
+								{amount 1000}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "bar"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "ptr" "ammo"}
+								{amount 75}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "boyes"}
+								{amount 2}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "rifle" "ammo"}
+								{amount 100}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate}
+								}
+								{action add}
+								{item "m1903a4"}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate}
+						}
+						{tag_add loot_generated}
+						{tag_remove loot_generate}
+					}
+					{"trigger"
+						{name "loot_generator/a/usa/gen"}
+					}
+				}
+			}
+			{"loot_generator/a/ger/gen_inf"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/ger"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 1}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{tag
+											{tag loot_generated_inf}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{tag
+										{tag loot_generated_inf}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate_inf}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "m24x7" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "smoke" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "valter"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "matchbox"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "m24" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "knife_ger"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 5}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate_inf}
+						}
+						{tag_add loot_generated_inf}
+						{tag_remove loot_generate_inf}
+					}
+					{"trigger"
+						{name "loot_generator/a/ger/gen_inf"}
+					}
+				}
+			}
+			{"loot_generator/a/rus/gen_inf"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/rus"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 1}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{tag
+											{tag loot_generated_inf}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{tag
+										{tag loot_generated_inf}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate_inf}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "rpg40" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "smoke" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "tt"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "matchbox"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "f1" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "knife_rus"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 5}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate_inf}
+						}
+						{tag_add loot_generated_inf}
+						{tag_remove loot_generate_inf}
+					}
+					{"trigger"
+						{name "loot_generator/a/rus/gen_inf"}
+					}
+				}
+			}
+			{"loot_generator/a/usa/gen_inf"
+				{condition
+					{terms
+						{"1.event"
+							{id "loot_gen/usa"}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 1}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{tag
+											{tag loot_generated_inf}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+									{tag
+										{tag loot_generated_inf}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{tag_add loot_generate_inf}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1428}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "n73at" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.1666}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "smoke" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.2}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "pistol" "ammo"}
+								{amount 25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "colt"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.25}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "matchbox"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.33}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "m61" "grenade"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 0.5}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "knife_union"}
+							}
+						}
+						{"case"
+							{condition
+								{type rand}
+								{value 1}
+							}
+							{"inventory"
+								{selector
+									{tag loot_generate_inf}
+								}
+								{action add}
+								{item "bandage"}
+								{amount 5}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag loot_generate_inf}
+						}
+						{tag_add loot_generated_inf}
+						{tag_remove loot_generate_inf}
+					}
+					{"trigger"
+						{name "loot_generator/a/usa/gen_inf"}
+					}
+				}
+			}
+			{"map_arrow/defence/left"
+				{condition
+					{terms
+						{"1.see_actors"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+									}
+								}
+							}
+							{enemy
+								{ignore_captured_by_user 0}
+								{tag arrow_left}
+							}
+							{distance
+								{mode in_range}
+								{min 0}
+								{max 70}
+							}
+							{detection located}
+							{tag
+								{"tag pair"}
+								{"for enemy" arrow_left_selected}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag map_arrow_left}
+									}
+								}
+							}
+							{amount 1
+							}
+							{sort
+								{type entity}
+								{entity
+									{tag arrow_left_selected}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"delay"
+						{time 10}
+					}
+					{"entity_state"
+						{selector
+							{tag arrow_left_selected}
+						}
+						{tag_remove arrow_left_selected}
+					}
+					{"entity_state"
+						{selector
+							{tag map_arrow_left}
+						}
+						{inactive on}
+					}
+					{"trigger"
+						{name "map_arrow/defence/left"}
+					}
+				}
+			}
+			{"map_arrow/defence/right"
+				{condition
+					{terms
+						{"1.see_actors"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+									}
+									{include
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{state
+											{state broken}
+										}
+									}
+								}
+							}
+							{enemy
+								{ignore_captured_by_user 0}
+								{tag arrow_right}
+							}
+							{distance
+								{mode in_range}
+								{min 0}
+								{max 70}
+							}
+							{detection located}
+							{tag
+								{"tag pair"}
+								{"for enemy" arrow_right_selected}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag map_arrow_right}
+									}
+								}
+							}
+							{amount 1
+							}
+							{sort
+								{type entity}
+								{entity
+									{tag arrow_right_selected}
+								}
+							}
+						}
+						{inactive off}
+					}
+					{"delay"
+						{time 10}
+					}
+					{"entity_state"
+						{selector
+							{tag arrow_right_selected}
+						}
+						{tag_remove arrow_right_selected}
+					}
+					{"entity_state"
+						{selector
+							{tag map_arrow_right}
+						}
+						{inactive on}
+					}
+					{"trigger"
+						{name "map_arrow/defence/right"}
+					}
+				}
+			}
+			{"core/tasks/main/show"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 4}
+					}
+					{"task"
+						{name "main_a"}
+					}
+					{"sound"
+						{name "ui/task_new"}
+					}
+					{"autosave"}
+				}
+			}
+			{"core/tasks/main/pointer/a"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{tag main_a}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_home}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/event/start_true"
+				{condition
+					{expression "!1"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "start_true"}
+						{mode set}
+						{delay 0}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"event"
+						{event "defence_generation"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"conversations/talks/radio_a/echelon1"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.event"
+							{id "echelon1"}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/echelon1"}
+						{sound "mission/multi/groundcontrol/arena_bazerville/ground_control/talks/radio/echelon1"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"conversations/talks/radio_a/echelon2"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.event"
+							{id "echelon2"}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/echelon2"}
+						{sound "mission/multi/groundcontrol/arena_bazerville/ground_control/talks/radio/echelon2"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"conversations/talks/radio_a/echelon3"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.event"
+							{id "echelon3"}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/ground_control/talks/radio/echelon3"}
+						{sound "mission/multi/groundcontrol/arena_bazerville/ground_control/talks/radio/echelon3"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"tiers"
+				{condition
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op ">="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 5}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 4}
+							}
+							{"mp_command_points"
+								{amount 10}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 15}
+								{team a}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 20}
+								{team a}
+							}
+						}
+						{"default"
+							{"mp_command_points"
+								{amount 25}
+								{team a}
+							}
+						}
+					}
+					{## "mp_command_points"
+						{amount 50}
+						{team a}
+					}
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op ">="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 15}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 4}
+							}
+							{"mp_command_points"
+								{amount 20}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 25}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 30}
+							}
+						}
+						{"default"
+							{"mp_command_points"
+								{amount 35}
+							}
+						}
+					}
+					{"delay"
+						{time 0.1}
+					}
+					{"event"
+						{event "echelon1"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_echelon" 1
+					}
+					{"mp_unit_type_open_time"
+						{unit_type echelon2}
+						{time 360}
+					}
+					{"mp_unit_type_open_time"
+						{unit_type echelon3}
+						{time 880}
+					}
+					{"delay"
+						{time 360}
+					}
+					{"event"
+						{event "echelon2"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_echelon" 2
+					}
+					{## "switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op ">="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 5}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 4}
+							}
+							{"mp_command_points"
+								{amount 6}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 7}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 8}
+							}
+						}
+						{"default"
+							{"mp_command_points"
+								{amount 10}
+							}
+						}
+					}
+					{"delay"
+						{time 520}
+					}
+					{## "switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op ">="}
+								{value 5}
+							}
+							{"mp_command_points"
+								{amount 10}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 4}
+							}
+							{"mp_command_points"
+								{amount 12}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_command_points"
+								{amount 15}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "players:team_a@"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_command_points"
+								{amount 17}
+							}
+						}
+						{"default"
+							{"mp_command_points"
+								{amount 20}
+							}
+						}
+					}
+					{"event"
+						{event "echelon3"}
+						{mode set}
+						{delay 0}
+					}
+					{"mp_echelon" 3
+					}
+				}
+			}
+			{"tex_refresh"
+				{condition
+				}
+				{actions
+					{"delay"
+						{time 12}
+					}
+					{"effect"
+						{selector
+							{tag at}
+						}
+						{effect tex_refresh}
+					}
+					{"effect"
+						{selector
+							{tag arty}
+						}
+						{effect tex_refresh}
+					}
+					{"effect"
+						{selector
+							{tag mgun}
+						}
+						{effect tex_refresh}
+					}
+				}
+			}
+			{"world/open"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"effect"
+						{selector
+							{tag open}
+						}
+						{effect open}
+					}
+				}
+			}
+			{"help_generator/veh/gen"
+				{condition
+					{terms
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+										{tag
+											{tag help_veh_point}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{amount 1
+							}
+							{tag help_veh_point}
+						}
+						{tag_add help_veh_spawn}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{tag
+										{tag help_veh}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag help_veh_spawn}
+						}
+						{clone}
+						{rotate}
+					}
+					{"delete"
+						{selector
+							{tag help_veh_spawn}
+						}
+					}
+					{"trigger"
+						{name "help_generator/veh/gen"}
+					}
+				}
+			}
+			{"intro/fade"
+				{condition
+				}
+				{actions
+					{"fade"
+						{time 2}
+						{color 0xff000000}
+					}
+				}
+			}
+			{"core/tasks/main/complete"
+				{condition
+					{expression "1 & !2 & !3 & 4"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.cmp_i"
+							{var "game:score_a@"}
+							{op ">="}
+							{value 2500}
+						}
+					}
+				}
+				{actions
+					{"sound"
+						{name "ui/task_complete"}
+					}
+					{"task"
+						{name "main_a"}
+						{state complete}
+					}
+					{"music"
+						{start "/music/victory_theme_1st.ogg"}
+						{stop_all}
+						{volume game}
+					}
+					{"talk"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{say jubilation}
+						{text ""}
+					}
+					{"mp_event"
+						{event gameover}
+						{team a}
+					}
+				}
+			}
+			{"help_generator/mgun/gen"
+				{condition
+					{terms
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+										{tag
+											{tag help_mgun_point}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{amount 1
+							}
+							{tag help_mg_point}
+						}
+						{tag_add help_mgun_spawn}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{tag
+										{tag help_mgun}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag help_mgun_spawn}
+						}
+						{clone}
+						{rotate}
+					}
+					{"delete"
+						{selector
+							{tag help_mgun_spawn}
+						}
+					}
+					{"trigger"
+						{name "help_generator/mgun/gen"}
+					}
+				}
+			}
+			{"bot_ai+/combat_line"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 5}
+					}
+					{"entity_state"
+						{selector
+							{tag combat_line}
+						}
+						{tag_remove combat_line}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+									{clip
+										{player 3}
+									}
+								}
+							}
+							{amount 20
+							}
+							{sort
+								{type entity}
+								{entity
+									{tag poi_home}
+								}
+							}
+						}
+						{tag_add combat_line}
+					}
+					{"entity_state"
+						{selector
+							{tag combat_poi_b}
+						}
+						{tag_remove combat_poi_b}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+									{clip
+										{player 3}
+									}
+								}
+							}
+							{amount 20
+							}
+							{sort
+								{type entity}
+								{entity
+									{tag poi_home}
+								}
+							}
+						}
+						{tag_add combat_poi_b}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add outpost_area}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_left"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add outpost_area}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_right"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add outpost_area}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_center"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add outpost_area}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_forward"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add outpost_area}
+					}
+				}
+			}
+			{"bot_ai+/control/slice1/b_poi"
+				{condition
+					{expression "1"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice1"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type entity}
+								{entity
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "combat_slice1"}
+											}
+										}
+										{include
+											{tag
+												{tag boarder}
+											}
+											{clip
+												{player 3}
+											}
+											{zone
+												{zone "side_b"}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+							}
+							{amount 1
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice1"}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+									{state
+										{state inhabited}
+									}
+								}
+								{exclude
+									{state
+										{state broken}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{state
+										{state inhabited}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+									{state
+										{state broken}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag outpost_area}
+									}
+								}
+							}
+						}
+						{tag_add bot_ai_slice1_poi_b}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{tag bot_ai_slice1_poi_b}
+						}
+						{tag_remove bot_ai_slice1_poi_b}
+					}
+					{"trigger"
+						{name "bot_ai+/control/slice1/b_poi"}
+					}
+				}
+			}
+			{"bot_ai+/control/slice2/b_poi"
+				{condition
+					{expression "1"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice2"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type entity}
+								{entity
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "combat_slice2"}
+											}
+										}
+										{include
+											{tag
+												{tag boarder}
+											}
+											{clip
+												{player 3}
+											}
+											{zone
+												{zone "side_b"}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+							}
+							{amount 1
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice2"}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+									{state
+										{state inhabited}
+									}
+								}
+								{exclude
+									{state
+										{state broken}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{state
+										{state inhabited}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+									{state
+										{state broken}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag outpost_area}
+									}
+								}
+							}
+						}
+						{tag_add bot_ai_slice2_poi_b}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{tag bot_ai_slice2_poi_b}
+						}
+						{tag_remove bot_ai_slice2_poi_b}
+					}
+					{"trigger"
+						{name "bot_ai+/control/slice2/b_poi"}
+					}
+				}
+			}
+			{"bot_ai+/control/slice3/b_poi"
+				{condition
+					{expression "1"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice3"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type entity}
+								{entity
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "combat_slice3"}
+											}
+										}
+										{include
+											{tag
+												{tag boarder}
+											}
+											{clip
+												{player 3}
+											}
+											{zone
+												{zone "side_b"}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+							}
+							{amount 1
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice3"}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+									{state
+										{state inhabited}
+									}
+								}
+								{exclude
+									{state
+										{state broken}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{state
+										{state inhabited}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+									{state
+										{state broken}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag outpost_area}
+									}
+								}
+							}
+						}
+						{tag_add bot_ai_slice3_poi_b}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{tag bot_ai_slice3_poi_b}
+						}
+						{tag_remove bot_ai_slice3_poi_b}
+					}
+					{"trigger"
+						{name "bot_ai+/control/slice3/b_poi"}
+					}
+				}
+			}
+			{"bot_ai+/control/slice4/b_poi"
+				{condition
+					{expression "1"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice4"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type entity}
+								{entity
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "combat_slice4"}
+											}
+										}
+										{include
+											{tag
+												{tag boarder}
+											}
+											{clip
+												{player 3}
+											}
+											{zone
+												{zone "side_b"}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+							}
+							{amount 1
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice4"}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+									{state
+										{state inhabited}
+									}
+								}
+								{exclude
+									{state
+										{state broken}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{state
+										{state inhabited}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+									{state
+										{state broken}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag outpost_area}
+									}
+								}
+							}
+						}
+						{tag_add bot_ai_slice4_poi_b}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{tag bot_ai_slice4_poi_b}
+						}
+						{tag_remove bot_ai_slice4_poi_b}
+					}
+					{"trigger"
+						{name "bot_ai+/control/slice4/b_poi"}
+					}
+				}
+			}
+			{"bot_ai+/control/slice5/b_poi"
+				{condition
+					{expression "1"}
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice5"}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{sort
+								{type entity}
+								{entity
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "combat_slice5"}
+											}
+										}
+										{include
+											{tag
+												{tag boarder}
+											}
+											{clip
+												{player 3}
+											}
+											{zone
+												{zone "side_b"}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+							}
+							{amount 1
+							}
+							{group
+								{select
+									{zone
+										{zone "combat_slice5"}
+									}
+								}
+								{include
+									{prop
+										{prop vehicle}
+									}
+									{team
+										{team a}
+									}
+									{state
+										{state observed}
+									}
+									{state
+										{state inhabited}
+									}
+								}
+								{exclude
+									{state
+										{state broken}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{group
+								{select
+									{zone
+										{zone "poi_home"}
+									}
+								}
+								{include
+									{state
+										{state inhabited}
+									}
+									{team
+										{team a}
+									}
+								}
+								{exclude
+									{state
+										{state inactive}
+									}
+									{state
+										{state broken}
+									}
+								}
+							}
+							{group
+								{select
+									{tag
+										{tag outpost_area}
+									}
+								}
+							}
+						}
+						{tag_add bot_ai_slice5_poi_b}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{tag bot_ai_slice5_poi_b}
+						}
+						{tag_remove bot_ai_slice5_poi_b}
+					}
+					{"trigger"
+						{name "bot_ai+/control/slice5/b_poi"}
+					}
+				}
+			}
+			{"poi_manager/pointers"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_home}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add active}
+						{tag_remove pointer_blue}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_center}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add active}
+						{tag_remove pointer_blue_small}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_left}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add active}
+						{tag_remove pointer_blue_small}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_right}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add active}
+						{tag_remove pointer_blue_small}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_forward}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_add active}
+						{tag_remove pointer_blue_small}
+					}
+				}
+			}
+			{"defence_generator/inf/del/poi_home"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level novice}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_home}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 30
+									}
+								}
+								{tag_add poi_home_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_home}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 25
+									}
+								}
+								{tag_add poi_home_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_home}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 20
+									}
+								}
+								{tag_add poi_home_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_home}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 15
+									}
+								}
+								{tag_add poi_home_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_home}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 10
+									}
+								}
+								{tag_add poi_home_human_selected}
+							}
+						}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_home}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{tag
+										{tag poi_home_human_selected}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/main/minimap/poi_home"
+				{condition
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_home}
+									}
+								}
+								{include
+									{prop
+										{prop missionw}
+									}
+								}
+							}
+						}
+						{tag_remove pointer_blue}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag minimap}
+									}
+								}
+								{include
+									{tag
+										{tag poi_home}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_home}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/main/fail"
+				{condition
+					{expression "1 & 2 & 3 & (4 | 5)"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_home"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_home"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team a}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_home"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_home"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team b}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{tag poi_home}
+						}
+						{tag_remove active}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_home}
+									}
+								}
+								{include
+									{tag
+										{tag minimap}
+									}
+								}
+							}
+						}
+					}
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"task"
+						{name "main_a"}
+						{state fail}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"mp_event"
+						{event gameover}
+						{team b}
+					}
+					{"music"
+						{playlist defeat}
+						{volume game}
+					}
+				}
+			}
+			{"unit_behavior/patol"
+				{condition
+				}
+				{actions
+					{"ables"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{condition "move_mode \"zone\""
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+									{state
+										{state user_control}
+									}
+								}
+							}
+						}
+						{add activity_behaviour}
+					}
+				}
+			}
+			{"core/tasks/poi_left/fail"
+				{condition
+					{expression "1 & 2 & 3 & (4 | 5)"}
+					{terms
+						{"1.task"
+							{name "poi_left"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_left"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_left"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team a}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_left"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_left"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team b}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"task"
+						{name "poi_left"}
+						{state fail}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_left}
+									}
+								}
+								{include
+									{tag
+										{tag minimap}
+									}
+								}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag poi_left}
+						}
+						{tag_remove active}
+					}
+				}
+			}
+			{"core/tasks/poi_center/fail"
+				{condition
+					{expression "1 & 2 & 3 & (4 | 5)"}
+					{terms
+						{"1.task"
+							{name "poi_center"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_center"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_center"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team a}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_center"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_center"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team b}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"task"
+						{name "poi_center"}
+						{state fail}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_center}
+									}
+								}
+								{include
+									{tag
+										{tag minimap}
+									}
+								}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag poi_center}
+						}
+						{tag_remove active}
+					}
+				}
+			}
+			{"core/tasks/poi_right/fail"
+				{condition
+					{expression "1 & 2 & 3 & (4 | 5)"}
+					{terms
+						{"1.task"
+							{name "poi_right"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_right"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_right"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team a}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_right"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_right"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team b}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"task"
+						{name "poi_right"}
+						{state fail}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_right}
+									}
+								}
+								{include
+									{tag
+										{tag minimap}
+									}
+								}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag poi_right}
+						}
+						{tag_remove active}
+					}
+				}
+			}
+			{"core/tasks/poi_forward/fail"
+				{condition
+					{expression "1 & 2 & 3 & (4 | 5)"}
+					{terms
+						{"1.task"
+							{name "poi_forward"}
+							{state shown}
+						}
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_forward"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team a}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"3.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_forward"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team a}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_forward"}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{zone
+											{zone "poi_forward"}
+										}
+									}
+									{include
+										{prop
+											{prop vehicle}
+										}
+										{team
+											{team b}
+										}
+										{state
+											{state inhabited}
+										}
+									}
+									{exclude
+										{state
+											{state broken}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"sound"
+						{name "ui/task_failed"}
+					}
+					{"task"
+						{name "poi_forward"}
+						{state fail}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_forward}
+									}
+								}
+								{include
+									{tag
+										{tag minimap}
+									}
+								}
+							}
+						}
+					}
+					{"entity_state"
+						{selector
+							{tag poi_forward}
+						}
+						{tag_remove active}
+					}
+				}
+			}
+			{"core/tasks/poi_left/pointer"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag pointer}
+									}
+								}
+								{include
+									{tag
+										{tag secondary_left}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_left}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_forward/pointer"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag pointer}
+									}
+								}
+								{include
+									{tag
+										{tag secondary_forward}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_forward}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_right/pointer"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag pointer}
+									}
+								}
+								{include
+									{tag
+										{tag secondary_right}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_right}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_center/pointer"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag pointer}
+									}
+								}
+								{include
+									{tag
+										{tag secondary_center}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_center}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_center/minimap/poi_center"
+				{condition
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_center}
+									}
+								}
+								{include
+									{prop
+										{prop missionw}
+									}
+								}
+							}
+						}
+						{tag_remove pointer_blue_small}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag minimap}
+									}
+								}
+								{include
+									{tag
+										{tag poi_center}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_center}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_left/minimap/poi_left"
+				{condition
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_left}
+									}
+								}
+								{include
+									{prop
+										{prop missionw}
+									}
+								}
+							}
+						}
+						{tag_remove pointer_blue_small}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag minimap}
+									}
+								}
+								{include
+									{tag
+										{tag poi_left}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_left}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_right/minimap/poi_right"
+				{condition
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_right}
+									}
+								}
+								{include
+									{prop
+										{prop missionw}
+									}
+								}
+							}
+						}
+						{tag_remove pointer_blue_small}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag minimap}
+									}
+								}
+								{include
+									{tag
+										{tag poi_right}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_right}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/event/prep_time"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 300}
+					}
+					{"event"
+						{event "prep_time"}
+						{mode set}
+						{delay 0}
+					}
+				}
+			}
+			{"core/points/fn/a4"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"3.task"
+							{name "main_a"}
+						}
+						{"4.event"
+							{id "prep_time"}
+						}
+						{"5.event"
+							{id "poi_count_variants/4"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 0}
+							}
+							{"delay"
+								{time 0.66}
+							}
+							{"trigger"
+								{name "core/points/fn/a4"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 1}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.6}
+							}
+							{"trigger"
+								{name "core/points/fn/a4"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.54}
+							}
+							{"trigger"
+								{name "core/points/fn/a4"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.48}
+							}
+							{"trigger"
+								{name "core/points/fn/a4"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 4}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.42}
+							}
+							{"trigger"
+								{name "core/points/fn/a4"}
+							}
+						}
+					}
+				}
+			}
+			{"core/points/var/ini"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"set_i"
+						{var "poi_counter$"}
+						{op "="}
+						{value 1}
+					}
+					{"delay"
+						{time 5}
+					}
+					{"if"
+						{condition
+							{type entities}
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_center}
+										}
+									}
+									{include
+										{prop
+											{prop missionwp}
+										}
+									}
+								}
+							}
+						}
+						{"set_i"
+							{var "poi_counter$"}
+							{op "+"}
+							{value 1}
+						}
+					}
+					{"if"
+						{condition
+							{type entities}
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_forward}
+										}
+									}
+									{include
+										{prop
+											{prop missionwp}
+										}
+									}
+								}
+							}
+						}
+						{"set_i"
+							{var "poi_counter$"}
+							{op "+"}
+							{value 1}
+						}
+					}
+					{"if"
+						{condition
+							{type entities}
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_left}
+										}
+									}
+									{include
+										{prop
+											{prop missionwp}
+										}
+									}
+								}
+							}
+						}
+						{"set_i"
+							{var "poi_counter$"}
+							{op "+"}
+							{value 1}
+						}
+					}
+					{"if"
+						{condition
+							{type entities}
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_right}
+										}
+									}
+									{include
+										{prop
+											{prop missionwp}
+										}
+									}
+								}
+							}
+						}
+						{"set_i"
+							{var "poi_counter$"}
+							{op "+"}
+							{value 1}
+						}
+					}
+					{"delay"
+						{time 5}
+					}
+					{"if"
+						{condition
+							{type cmp_i}
+							{var "poi_counter$"}
+							{op "=="}
+							{value 5}
+						}
+						{"event"
+							{event "poi_count_variants/5"}
+							{mode set}
+							{delay 0}
+						}
+					}
+					{"if"
+						{condition
+							{type cmp_i}
+							{var "poi_counter$"}
+							{op "=="}
+							{value 4}
+						}
+						{"event"
+							{event "poi_count_variants/4"}
+							{mode set}
+							{delay 0}
+						}
+					}
+					{"if"
+						{condition
+							{type cmp_i}
+							{var "poi_counter$"}
+							{op "=="}
+							{value 3}
+						}
+						{"event"
+							{event "poi_count_variants/3"}
+							{mode set}
+							{delay 0}
+						}
+					}
+					{"if"
+						{condition
+							{type cmp_i}
+							{var "poi_counter$"}
+							{op "=="}
+							{value 2}
+						}
+						{"event"
+							{event "poi_count_variants/2"}
+							{mode set}
+							{delay 0}
+						}
+					}
+				}
+			}
+			{"core/points/var/dec_main"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"set_i"
+						{var "poi_counter$"}
+						{op "-"}
+						{value 1}
+					}
+				}
+			}
+			{"core/points/var/dec_left"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_left"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"set_i"
+						{var "poi_counter$"}
+						{op "-"}
+						{value 1}
+					}
+				}
+			}
+			{"core/points/var/dec_right"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_right"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"set_i"
+						{var "poi_counter$"}
+						{op "-"}
+						{value 1}
+					}
+				}
+			}
+			{"core/points/var/dec_center"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_center"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"set_i"
+						{var "poi_counter$"}
+						{op "-"}
+						{value 1}
+					}
+				}
+			}
+			{"core/points/task/b/main"
+				{condition
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 3}
+					}
+					{"mp_score"
+						{amount 1000}
+						{team b}
+					}
+				}
+			}
+			{"core/points/task/b/left"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_left"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 1}
+					}
+					{"mp_score"
+						{amount 500}
+						{team b}
+					}
+				}
+			}
+			{"core/points/task/b/right"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_right"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 1}
+					}
+					{"mp_score"
+						{amount 500}
+						{team b}
+					}
+				}
+			}
+			{"core/points/task/b/center"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_center"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 1}
+					}
+					{"mp_score"
+						{amount 500}
+						{team b}
+					}
+				}
+			}
+			{"help_generator/at/gen"
+				{condition
+					{terms
+						{"2.entities"
+							{selector
+								{source advanced}
+								{ignore_captured_by_user 0}
+								{group
+									{select
+										{all}
+										{tag
+											{tag help_at_point}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{ignore_captured_by_user 0}
+							{amount 1
+							}
+							{tag help_at_point}
+						}
+						{tag_add help_at_spawn}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{ignore_captured_by_user 0}
+							{group
+								{select
+									{tag
+										{tag help_at}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag help_at_spawn}
+						}
+						{clone}
+						{rotate}
+					}
+					{"delete"
+						{selector
+							{tag help_at_spawn}
+						}
+					}
+					{"trigger"
+						{name "help_generator/at/gen"}
+					}
+				}
+			}
+			{"attack_generator/inf/var"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level novice}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 6}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 7}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 8}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 9}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"set_i"
+								{var "b_push_counter$"}
+								{op "="}
+								{value 10}
+							}
+						}
+					}
+					{"delay"
+						{time 2}
+					}
+					{"set_i"
+						{var "b_push_counter_max$"}
+						{op "="}
+						{value "b_push_counter$"}
+					}
+					{"set_i"
+						{var "b_push_counter_max$"}
+						{op "*"}
+						{value 3}
+					}
+					{"delay"
+						{time 10}
+					}
+					{"if"
+						{condition
+							{type event}
+							{id "poi_count_variants/2"}
+						}
+						{"set_i"
+							{var "b_push_counter$"}
+							{op "*"}
+							{value 3}
+						}
+					}
+					{"if"
+						{condition
+							{type event}
+							{id "poi_count_variants/3"}
+						}
+						{"set_i"
+							{var "b_push_counter$"}
+							{op "*"}
+							{value 2}
+						}
+					}
+				}
+			}
+			{"attack_generator/inf/gen/center"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5 & 6"}
+					{terms
+						{"1.event"
+							{id "prep_time"}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_center}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<="}
+								{value "b_push_counter$"}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_center}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 2}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"6.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<="}
+								{value "b_push_counter_max$"}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_center}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag spawner_b}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 0.5}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen/center"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen/forward"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5 & 6"}
+					{terms
+						{"1.event"
+							{id "prep_time"}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_forward}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<="}
+								{value "b_push_counter$"}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_forward}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 2}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"6.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<="}
+								{value "b_push_counter_max$"}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_forward}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag spawner_b}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 0.5}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen/forward"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen/right"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5 & 6"}
+					{terms
+						{"1.event"
+							{id "prep_time"}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_right}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<="}
+								{value "b_push_counter$"}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_right}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 2}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"6.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<="}
+								{value "b_push_counter_max$"}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_right}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag spawner_b}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 0.5}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen/right"}
+					}
+				}
+			}
+			{"attack_generator/inf/gen/left"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5 & 6"}
+					{terms
+						{"1.event"
+							{id "prep_time"}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_left}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<="}
+								{value "b_push_counter$"}
+							}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_left}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{player
+											{player 2}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+						}
+						{"6.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag b_push}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+									}
+								}
+							}
+							{count
+								{op "<<="}
+								{value "b_push_counter_max$"}
+							}
+						}
+					}
+				}
+				{actions
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_left}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+									{state
+										{state inactive}
+									}
+								}
+								{exclude
+									{state
+										{state dead}
+									}
+								}
+							}
+							{amount 1
+							}
+						}
+						{target
+							{tag spawner_b}
+						}
+						{clone}
+					}
+					{"delay"
+						{time 0.5}
+					}
+					{"trigger"
+						{name "attack_generator/inf/gen/left"}
+					}
+				}
+			}
+			{"attack_generator/inf/pusher/center"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.event"
+							{id "prep_time"}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_center}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{state
+											{state linked}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type entities}
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_center}
+											}
+										}
+										{include
+											{tag
+												{tag active}
+											}
+										}
+									}
+								}
+							}
+							{"action"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_center}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{team
+												{team b}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{order emove
+											}
+										}
+									}
+									{amount 5
+									}
+									{sort
+										{type entity}
+										{entity
+											{source advanced}
+											{group
+												{select
+													{tag
+														{tag poi_home}
+													}
+												}
+												{include
+													{prop
+														{prop missionwp}
+													}
+												}
+											}
+										}
+										{mode farthest}
+									}
+								}
+								{action attack}
+								{target
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "poi_center"}
+											}
+										}
+										{include
+											{prop
+												{prop missionwp}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+								{use_target_position}
+							}
+						}
+						{"case"
+							{condition
+								{type task}
+								{name "poi_center"}
+								{state failed}
+							}
+							{"action"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_center}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{team
+												{team b}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{order emove
+											}
+										}
+									}
+									{amount 5
+									}
+									{sort
+										{type entity}
+										{entity
+											{source advanced}
+											{group
+												{select
+													{tag
+														{tag poi_home}
+													}
+												}
+												{include
+													{prop
+														{prop missionwp}
+													}
+												}
+											}
+										}
+										{mode farthest}
+									}
+								}
+								{action attack}
+								{target
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "poi_home"}
+											}
+										}
+										{include
+											{prop
+												{prop missionwp}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+								{use_target_position}
+							}
+						}
+					}
+					{"delay"
+						{time 5}
+					}
+					{"trigger"
+						{name "attack_generator/inf/pusher/center"}
+					}
+				}
+			}
+			{"attack_generator/inf/pusher/forward"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.event"
+							{id "prep_time"}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_forward}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{state
+											{state linked}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type entities}
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_forward}
+											}
+										}
+										{include
+											{tag
+												{tag active}
+											}
+										}
+									}
+								}
+							}
+							{"action"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_forward}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{team
+												{team b}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{order emove
+											}
+										}
+									}
+									{amount 5
+									}
+									{sort
+										{type entity}
+										{entity
+											{source advanced}
+											{group
+												{select
+													{tag
+														{tag poi_home}
+													}
+												}
+												{include
+													{prop
+														{prop missionwp}
+													}
+												}
+											}
+										}
+										{mode farthest}
+									}
+								}
+								{action attack}
+								{target
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "poi_forward"}
+											}
+										}
+										{include
+											{prop
+												{prop missionwp}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+								{use_target_position}
+							}
+						}
+						{"case"
+							{condition
+								{type task}
+								{name "poi_forward"}
+								{state failed}
+							}
+							{"action"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_forward}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{team
+												{team b}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{order emove
+											}
+										}
+									}
+									{amount 5
+									}
+									{sort
+										{type entity}
+										{entity
+											{source advanced}
+											{group
+												{select
+													{tag
+														{tag poi_home}
+													}
+												}
+												{include
+													{prop
+														{prop missionwp}
+													}
+												}
+											}
+										}
+										{mode farthest}
+									}
+								}
+								{action attack}
+								{target
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "poi_home"}
+											}
+										}
+										{include
+											{prop
+												{prop missionwp}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+								{use_target_position}
+							}
+						}
+					}
+					{"delay"
+						{time 5}
+					}
+					{"trigger"
+						{name "attack_generator/inf/pusher/forward"}
+					}
+				}
+			}
+			{"attack_generator/inf/pusher/left"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.event"
+							{id "prep_time"}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_left}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{state
+											{state linked}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type entities}
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_left}
+											}
+										}
+										{include
+											{tag
+												{tag active}
+											}
+										}
+									}
+								}
+							}
+							{"action"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_left}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{team
+												{team b}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{order emove
+											}
+										}
+									}
+									{amount 5
+									}
+									{sort
+										{type entity}
+										{entity
+											{source advanced}
+											{group
+												{select
+													{tag
+														{tag poi_home}
+													}
+												}
+												{include
+													{prop
+														{prop missionwp}
+													}
+												}
+											}
+										}
+										{mode farthest}
+									}
+								}
+								{action attack}
+								{target
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "poi_left"}
+											}
+										}
+										{include
+											{prop
+												{prop missionwp}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+								{use_target_position}
+							}
+						}
+						{"case"
+							{condition
+								{type task}
+								{name "poi_left"}
+								{state failed}
+							}
+							{"action"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_left}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{team
+												{team b}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{order emove
+											}
+										}
+									}
+									{amount 5
+									}
+									{sort
+										{type entity}
+										{entity
+											{source advanced}
+											{group
+												{select
+													{tag
+														{tag poi_home}
+													}
+												}
+												{include
+													{prop
+														{prop missionwp}
+													}
+												}
+											}
+										}
+										{mode farthest}
+									}
+								}
+								{action attack}
+								{target
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "poi_home"}
+											}
+										}
+										{include
+											{prop
+												{prop missionwp}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+								{use_target_position}
+							}
+						}
+					}
+					{"delay"
+						{time 5}
+					}
+					{"trigger"
+						{name "attack_generator/inf/pusher/left"}
+					}
+				}
+			}
+			{"attack_generator/inf/pusher/right"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+						}
+						{"3.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"4.event"
+							{id "prep_time"}
+						}
+						{"5.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_right}
+										}
+									}
+									{include
+										{prop
+											{prop human}
+										}
+										{team
+											{team b}
+										}
+									}
+									{exclude
+										{state
+											{state dead}
+										}
+										{state
+											{state inactive}
+										}
+										{state
+											{state linked}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type entities}
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_right}
+											}
+										}
+										{include
+											{tag
+												{tag active}
+											}
+										}
+									}
+								}
+							}
+							{"action"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_right}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{team
+												{team b}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{order emove
+											}
+										}
+									}
+									{amount 5
+									}
+									{sort
+										{type entity}
+										{entity
+											{source advanced}
+											{group
+												{select
+													{tag
+														{tag poi_home}
+													}
+												}
+												{include
+													{prop
+														{prop missionwp}
+													}
+												}
+											}
+										}
+										{mode farthest}
+									}
+								}
+								{action attack}
+								{target
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "poi_right"}
+											}
+										}
+										{include
+											{prop
+												{prop missionwp}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+								{use_target_position}
+							}
+						}
+						{"case"
+							{condition
+								{type task}
+								{name "poi_right"}
+								{state failed}
+							}
+							{"action"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_right}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{team
+												{team b}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+											{order emove
+											}
+										}
+									}
+									{amount 5
+									}
+									{sort
+										{type entity}
+										{entity
+											{source advanced}
+											{group
+												{select
+													{tag
+														{tag poi_home}
+													}
+												}
+												{include
+													{prop
+														{prop missionwp}
+													}
+												}
+											}
+										}
+										{mode farthest}
+									}
+								}
+								{action attack}
+								{target
+									{source advanced}
+									{group
+										{select
+											{zone
+												{zone "poi_home"}
+											}
+										}
+										{include
+											{prop
+												{prop missionwp}
+											}
+										}
+									}
+									{sort
+										{type shuffle}
+									}
+								}
+								{use_target_position}
+							}
+						}
+					}
+					{"delay"
+						{time 5}
+					}
+					{"trigger"
+						{name "attack_generator/inf/pusher/right"}
+					}
+				}
+			}
+			{"help_generator/diff/normal"
+				{condition
+					{terms
+						{"1.difficulty"
+							{level normal}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{amount 3
+							}
+							{tag help_mg_point}
+						}
+					}
+					{"delete"
+						{selector
+							{amount 3
+							}
+							{tag help_at_point}
+						}
+					}
+				}
+			}
+			{"help_generator/diff/heavy"
+				{condition
+					{type 1}
+					{terms
+						{"1.difficulty"
+							{level hard}
+						}
+						{"2.difficulty"
+							{level nightmare}
+						}
+					}
+				}
+				{actions
+					{"delete"
+						{selector
+							{amount 6
+							}
+							{tag help_mg_point}
+						}
+					}
+					{"delete"
+						{selector
+							{amount 6
+							}
+							{tag help_at_point}
+						}
+					}
+				}
+			}
+			{"attack_generator/inf/actor_state"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"actor_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_right}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+								}
+							}
+						}
+						{move_mode free}
+						{movement
+							{speed fast}
+						}
+					}
+					{"actor_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_left}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+								}
+							}
+						}
+						{move_mode free}
+						{movement
+							{speed fast}
+						}
+					}
+					{"actor_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_center}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+								}
+							}
+						}
+						{move_mode free}
+						{movement
+							{speed fast}
+						}
+					}
+					{"actor_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_forward}
+									}
+								}
+								{include
+									{state
+										{state inactive}
+									}
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+								}
+							}
+						}
+						{move_mode free}
+						{movement
+							{speed fast}
+						}
+					}
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{all}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{team
+										{team b}
+									}
+									{state
+										{state inactive}
+									}
+								}
+							}
+						}
+						{tag_add b_push}
+					}
+				}
+			}
+			{"defence_generator/inf/del/poi_center"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level novice}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_center}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 15
+									}
+								}
+								{tag_add poi_center_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_center}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 13
+									}
+								}
+								{tag_add poi_center_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_center}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 11
+									}
+								}
+								{tag_add poi_center_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_center}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 9
+									}
+								}
+								{tag_add poi_center_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_center}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 7
+									}
+								}
+								{tag_add poi_center_human_selected}
+							}
+						}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_center}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{tag
+										{tag poi_center_human_selected}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"defence_generator/inf/del/poi_forward"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level novice}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_forward}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 15
+									}
+								}
+								{tag_add poi_forward_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_forward}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 13
+									}
+								}
+								{tag_add poi_forward_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_forward}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 11
+									}
+								}
+								{tag_add poi_forward_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_forward}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 9
+									}
+								}
+								{tag_add poi_forward_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_forward}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 7
+									}
+								}
+								{tag_add poi_forward_human_selected}
+							}
+						}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_forward}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{tag
+										{tag poi_forward_human_selected}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"defence_generator/inf/del/poi_left"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level novice}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_left}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 15
+									}
+								}
+								{tag_add poi_left_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_left}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 13
+									}
+								}
+								{tag_add poi_left_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_left}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 11
+									}
+								}
+								{tag_add poi_left_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_left}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 9
+									}
+								}
+								{tag_add poi_left_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_left}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 7
+									}
+								}
+								{tag_add poi_left_human_selected}
+							}
+						}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_left}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{tag
+										{tag poi_left_human_selected}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"defence_generator/inf/del/poi_right"
+				{condition
+					{terms
+						{"1.event"
+							{id "start_true"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type difficulty}
+								{level novice}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_right}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 15
+									}
+								}
+								{tag_add poi_right_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level easy}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_right}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 13
+									}
+								}
+								{tag_add poi_right_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level normal}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_right}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 11
+									}
+								}
+								{tag_add poi_right_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level hard}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_right}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 9
+									}
+								}
+								{tag_add poi_right_human_selected}
+							}
+						}
+						{"case"
+							{condition
+								{type difficulty}
+								{level nightmare}
+							}
+							{"entity_state"
+								{selector
+									{source advanced}
+									{group
+										{select
+											{tag
+												{tag poi_right}
+											}
+										}
+										{include
+											{prop
+												{prop human}
+											}
+											{player
+												{player 1}
+											}
+										}
+										{exclude
+											{state
+												{state dead}
+											}
+											{state
+												{state inactive}
+											}
+										}
+									}
+									{amount 7
+									}
+								}
+								{tag_add poi_right_human_selected}
+							}
+						}
+					}
+					{"delete"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_right}
+									}
+								}
+								{include
+									{prop
+										{prop human}
+									}
+									{player
+										{player 1}
+									}
+								}
+								{exclude
+									{tag
+										{tag poi_right_human_selected}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"bot_ai+/outpost_area/left"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_left"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_left"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_remove outpost_area}
+					}
+				}
+			}
+			{"bot_ai+/outpost_area/right"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_right"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_right"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_remove outpost_area}
+					}
+				}
+			}
+			{"bot_ai+/outpost_area/center"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_center"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_center"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_remove outpost_area}
+					}
+				}
+			}
+			{"bot_ai+/outpost_area/forward"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_forward"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{zone
+										{zone "poi_forward"}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+						{tag_remove outpost_area}
+					}
+				}
+			}
+			{"conversations/talks/radio_a/fail_post"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/fail_hq"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"conversations/talks/radio_a/fail_left"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.task"
+							{name "poi_left"}
+							{state failed}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/fail_left"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"conversations/talks/radio_a/fail_right"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.task"
+							{name "poi_right"}
+							{state failed}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/fail_right"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"conversations/talks/radio_a/fail_center"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.task"
+							{name "poi_center"}
+							{state failed}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/fail_center"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"conversations/talks/radio_a/fail_forward"
+				{condition
+					{expression "1 & !2"}
+					{terms
+						{"1.task"
+							{name "poi_forward"}
+							{state failed}
+						}
+						{"2.event"
+							{id "conversations/dialog_event_a"}
+						}
+					}
+				}
+				{actions
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode set}
+						{delay 0}
+					}
+					{"talk"
+						{selector
+							{amount 1
+							}
+							{tag radio_a}
+							{type human}
+							{state "not dead"}
+						}
+						{text_target team_a}
+						{text "$/fail_forward"}
+					}
+					{"delay"
+						{time 3}
+					}
+					{"event"
+						{event "conversations/dialog_event_a"}
+						{mode reset}
+						{delay 0}
+					}
+				}
+			}
+			{"core/tasks/poi_forward/minimap/poi_forward"
+				{condition
+				}
+				{actions
+					{"entity_state"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_forward}
+									}
+								}
+								{include
+									{prop
+										{prop missionw}
+									}
+								}
+							}
+						}
+						{tag_remove pointer_blue_small}
+					}
+					{"placement"
+						{selector
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag minimap}
+									}
+								}
+								{include
+									{tag
+										{tag poi_forward}
+									}
+								}
+							}
+						}
+						{target
+							{source advanced}
+							{group
+								{select
+									{tag
+										{tag poi_forward}
+									}
+								}
+								{include
+									{prop
+										{prop missionwp}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_center/hide"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_center}
+										}
+									}
+									{include
+										{prop
+											{prop missionwp}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "poi_center"}
+						{state hide}
+					}
+					{"delete"
+						{selector
+							{tag poi_center}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_forward/hide"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_forward}
+										}
+									}
+									{include
+										{prop
+											{prop missionwp}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "poi_forward"}
+						{state hide}
+					}
+					{"delete"
+						{selector
+							{tag poi_forward}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_left/hide"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_left}
+										}
+									}
+									{include
+										{prop
+											{prop missionwp}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "poi_left"}
+						{state hide}
+					}
+					{"delete"
+						{selector
+							{tag poi_left}
+						}
+					}
+				}
+			}
+			{"core/tasks/poi_right/hide"
+				{condition
+					{terms
+						{"1.entities"
+							{selector
+								{source advanced}
+								{group
+									{select
+										{tag
+											{tag poi_right}
+										}
+									}
+									{include
+										{prop
+											{prop missionwp}
+										}
+									}
+								}
+							}
+							{count
+								{op "=="}
+								{value 0}
+							}
+						}
+					}
+				}
+				{actions
+					{"task"
+						{name "poi_right"}
+						{state hide}
+					}
+					{"delete"
+						{selector
+							{tag poi_right}
+						}
+					}
+				}
+			}
+			{"core/points/task/b/forward"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_forward"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"delay"
+						{time 1}
+					}
+					{"mp_score"
+						{amount 500}
+						{team b}
+					}
+				}
+			}
+			{"core/points/fn/a3"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"3.task"
+							{name "main_a"}
+						}
+						{"4.event"
+							{id "prep_time"}
+						}
+						{"5.event"
+							{id "poi_count_variants/3"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 0}
+							}
+							{"delay"
+								{time 0.6}
+							}
+							{"trigger"
+								{name "core/points/fn/a3"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 1}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.54}
+							}
+							{"trigger"
+								{name "core/points/fn/a3"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.48}
+							}
+							{"trigger"
+								{name "core/points/fn/a3"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.42}
+							}
+							{"trigger"
+								{name "core/points/fn/a3"}
+							}
+						}
+					}
+				}
+			}
+			{"core/points/fn/a2"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"3.task"
+							{name "main_a"}
+						}
+						{"4.event"
+							{id "prep_time"}
+						}
+						{"5.event"
+							{id "poi_count_variants/2"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 0}
+							}
+							{"delay"
+								{time 0.48}
+							}
+							{"trigger"
+								{name "core/points/fn/a2"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 1}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.48}
+							}
+							{"trigger"
+								{name "core/points/fn/a2"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.42}
+							}
+							{"trigger"
+								{name "core/points/fn/a2"}
+							}
+						}
+					}
+				}
+			}
+			{"core/points/var/dec_forward"
+				{condition
+					{terms
+						{"1.task"
+							{name "poi_forward"}
+							{state failed}
+						}
+					}
+				}
+				{actions
+					{"set_i"
+						{var "poi_counter$"}
+						{op "-"}
+						{value 1}
+					}
+				}
+			}
+			{"core/points/fn/a5"
+				{condition
+					{expression "1 & !2 & !3 & 4 & 5"}
+					{terms
+						{"1.task"
+							{name "main_a"}
+							{state shown}
+						}
+						{"2.task"
+							{name "main_a"}
+							{state failed}
+						}
+						{"3.task"
+							{name "main_a"}
+						}
+						{"4.event"
+							{id "prep_time"}
+						}
+						{"5.event"
+							{id "poi_count_variants/5"}
+						}
+					}
+				}
+				{actions
+					{"switch"
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 0}
+							}
+							{"delay"
+								{time 0.6}
+							}
+							{"trigger"
+								{name "core/points/fn/a5"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 1}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.66}
+							}
+							{"trigger"
+								{name "core/points/fn/a5"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 2}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.6}
+							}
+							{"trigger"
+								{name "core/points/fn/a5"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 3}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.54}
+							}
+							{"trigger"
+								{name "core/points/fn/a5"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 4}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.48}
+							}
+							{"trigger"
+								{name "core/points/fn/a5"}
+							}
+						}
+						{"case"
+							{condition
+								{type cmp_i}
+								{var "poi_counter$"}
+								{op "=="}
+								{value 5}
+							}
+							{"mp_score"
+								{amount 1}
+								{team a}
+							}
+							{"delay"
+								{time 0.42}
+							}
+							{"trigger"
+								{name "core/points/fn/a5"}
+							}
+						}
+					}
+				}
+			}
+		}
+		{modifiers
+			{"file"
+				{name "battlezones_attack.mod"}
+			}
+		}
+	}
+}
