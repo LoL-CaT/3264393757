@@ -1,0 +1,96 @@
+{texturequality
+
+	; Числа 0, 1, 2 и т.д. означают количество MIP-уровней,
+	; которые необходимо выбросить начиная с наиболее детальных.
+	; Соответственно разрешение текстур уменьшается в 0, 2, 4 и т.д. раза
+
+	; 1. Имя пресета одновременно является ключом локализации в "options/video/texture"
+	; 2. Задается количество MIP'ов, выбрасываемых по-умолчанию.
+	; 3. Далее задается список папок с указанием количества выбрасываемых MIP'ов,
+	;    отличным от общего (в большую или меньшую сторону)
+	; 4. Пресеты будут отображаться в опциях в порядке описания в этом файле
+
+
+	; все текстуры без верхних двух MIP'ов (объем в 8 раз меньше)
+	{detail_low
+		{default 2}	
+		{"/properties/selection" 0}
+		{"/entity/service/selection" 0}
+		{"/entity/service/pointer" 0}
+		{"/texture/common/environment" 0}
+		{"/texture/fx/ico" 0}
+		{"/texture/fx/marker" 0}
+		{"/texture/common/entourage/flag_point" 0}
+	}
+
+
+	; по сравнению с detail_medium уменьшаются размеры текстур: юнитов, домов (кроме крыш),
+	; всех construction'ов, антуража и флоры
+	{detail_above_low
+		{default 2}
+		{"/texture/land" 1}
+		{"/properties/selection" 0}
+		{"/entity/service/selection" 0}
+		{"/entity/service/pointer" 0}
+		{"/texture/common/environment" 0}
+		{"/interface" 1}
+		{"/entity/landscape/stamp" 1}
+		{"/entity/landscape/cut_entity" 1}
+		{"/texture/common/cut_entity" 1}
+		{"/texture/common/inventory" 1}
+		{"/entity/inventory" 1}
+		{"/texture/common/roof" 1}
+		{"/texture/common/construction/dot" 1}
+		{"/entity/-vehicle" 1}
+		{"/texture/common/model" 1}
+		{"/texture/fx/ico" 0}
+		{"/texture/fx/marker" 0}
+		{"/texture/common/entourage/flag_point" 0}
+	}
+
+
+	; все текстуры без одного верхнего MIP'а (объем в 4 раза меньше)
+	{detail_medium
+		{default 1}
+		{memory 40} 		;минимально необходимое количество основной видео-памяти
+		{"/properties/selection" 0}
+		{"/entity/service/selection" 0}
+		{"/entity/service/pointer" 0}
+		{"/texture/common/environment" 0}
+		{"/texture/fx/ico" 0}
+		{"/texture/fx/marker" 0}
+		{"/texture/common/entourage/flag_point" 0}
+	}
+
+
+	; по сравнению с detail_high уменьшаются размеры текстур: юнитов, домов (кроме крыш),
+	; всех construction'ов, антуража и флоры
+	{detail_above_medium
+		{default 1}
+		{memory 100} 		;минимально необходимое количество основной видео-памяти
+		{"/texture/land" 0}
+		{"/properties/selection" 0}
+		{"/entity/service/selection" 0}
+		{"/entity/service/pointer" 0}
+		{"/texture/common/environment" 0}
+		{"/interface" 0}
+		{"/entity/landscape/stamp" 0}
+		{"/entity/landscape/cut_entity" 0}
+		{"/texture/common/cut_entity" 0}
+		{"/texture/common/inventory" 0}
+		{"/entity/inventory" 0}
+		{"/texture/common/roof" 0}
+		{"/texture/common/construction/dot" 0}
+		{"/entity/-vehicle" 0}
+		{"/texture/common/model" 0}
+		{"/texture/fx/ico" 0}
+		{"/texture/fx/marker" 0}
+		{"/texture/common/entourage/flag_point" 0}
+	}
+
+
+	; полная детализация (натуральный размер текстур)
+	{detail_high
+		{memory 180} ;минимально необходимое количество основной видео-памяти
+	}
+}
