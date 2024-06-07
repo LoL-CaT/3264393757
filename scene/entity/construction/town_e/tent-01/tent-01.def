@@ -1,0 +1,36 @@
+{game_entity
+	(include "/properties/construction.inc")
+;	(include "/properties/shadow/construction.inc" sx(1.2) sy(1.9) ofsx(0) ofsy(-5))
+  {DecalView
+	{ownershadow  64 64}
+	{name "shadow"}
+  }
+	{Extension "tent-01.mdl"}
+	{props "construction" "wood" "fence" "animated_crush" "burning"}
+	{TexMods
+		{"burned" "burned"}
+	}
+
+	{Volume "Body4"
+		{Tags  "body" "fire"}
+		{Thickness 2}	
+	}
+	{Volume "Body3"
+		{Tags  "body" "fire"}
+		{Thickness 2}	
+	}
+	{Volume "Body2"
+		{Tags  "body" "fire"}
+		{Thickness 2}	
+	}
+	{Volume "Body1"
+		{Tags  "body" "fire"}
+		{Thickness 2}	
+	}
+	{Volume "Body"
+		{Tags  "body" "fire"}
+		{Thickness 2}
+		{able {visible 0}}	
+	}
+	("armor_medium")
+}

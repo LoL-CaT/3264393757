@@ -1,0 +1,41 @@
+{game_entity
+	(include "/properties/construction.inc")
+	{Extension "house_ru_141_7_2.mdl"}
+	{props "cornered" "concrete" "parts" "construction" "windowed" "wall" "burning"}
+	("armor_medium" args 1.0)
+	{obstacleID "small_building"}
+
+	{placer
+		{place "2" {attach  snipe_cover} 		{linkbone "attach2"}}
+	}
+	{boarder}
+	{mass 5000}
+
+	{Volume "body1"
+		{Tags  "body"}
+		{Thickness 20}
+	}
+	{Volume "body"
+		{Tags  "body"}
+		{Thickness 20}
+		{able {holed}}
+	}
+	{Volume "hole"
+		{Tags  "attach" "2"}
+		{able clear {hole}{touch 1}}
+	}
+	{Volume "roof1"
+		{Tags  "body" "fire"}
+		{Thickness 10}
+		{able {visible 0}{obstacle 0}}
+	}
+	{Volume "roof"
+		{Tags  "body" "fire"}
+		{Thickness 10}
+		{able {visible 0}{obstacle 0}}
+	}
+	{Volume "window5"
+		{Thickness 0.2}
+		{able {visible 0}{window}}
+	}
+}

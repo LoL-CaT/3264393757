@@ -1,0 +1,26 @@
+{construction	
+    (include "/properties/building.inc")
+;	(include "/properties/shadow/construction.inc" sx(1.2) sy(1.9) ofsx(0) ofsy(-5))
+  
+	{Extension "hangar_corner1.mdl"}
+	{props "wall" "cornered" "concrete" "parts" "construction"}
+	("armor_heavy" args 1.5)
+
+	{constrain zero}
+	{mass 15000}
+
+	{Volume "fire1"
+		{able {visible 0}{obstacle 0}}
+	}
+	{Volume "fire0"
+		{able {visible 0}{obstacle 0}}
+	}
+	{Volume "support"
+		{Thickness 50}
+	}
+	{Volume "body"
+		{Tags  "body"}
+		{Thickness 50}
+	}
+	("declare_fire_volumes")
+}
