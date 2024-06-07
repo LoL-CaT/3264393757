@@ -1,0 +1,20 @@
+{action
+	{target ground}
+	{cursor "drop"}
+	{fx "flashred"}
+	{item "telephone"}
+	{item_in_box}
+	{notifyselect}
+	{button}
+	{ShowCountFilling}
+	{instructions
+		{disable_action_restart}
+		{take_item}
+		{reserve_hands}
+		{fsm_request "ground-drop"}
+		{unreserve_hands}
+		{phone_call}
+		{animations nocheck "squat_repair_1 squat_repair_2" random loop totaltime 5}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

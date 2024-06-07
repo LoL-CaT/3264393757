@@ -1,0 +1,50 @@
+{"credits"
+	{on create
+		{navigation enter "credits"}
+		{set "$stage" 0}	
+		{dda "macro" "!:nl,<,lt:credits/big_style,>"}
+		{dda "macro" "%:\n\n<,lt:credits/small_style,>"}
+		{dda "macro" "~:\n<,lt:credits/small_style,>"}
+		{dda "macro" "|:\n <,lt:credits/medium_style,>"}
+	}
+	{on show
+		{call "credit_next"}
+	}
+	{on "back"
+		{navigation exit}
+		{page_back}
+	}
+	{on "credit_next"
+		{if {eq "$stage" 0}
+			{call "credit_start" "credits_main" {add {lt "credits/style"} {lt "credits/medium_style"}} 1 "/interface/pages/main/logo_dev" 400}
+		elif {eq "$stage" 1}
+			{call "credit_start" "credits_other" {add {lt "credits/style"} {lt "credits/medium_style"}} 2 "/interface/pages/main/logo_dev" 580}
+		}
+		{set "$stage" {add "$stage" 1}}
+		{if {eq "$stage" 2}
+			{set "$stage" 0}
+		}
+	}
+	{on key "KEY_SPACE"
+		{call "credit_next"}
+	}
+	{on "credit_start"
+		{scroller "text"
+			{dda "speed" 10}
+			{dda "text_style" "#1"}
+			{if {eq "#2" 1}
+				{dda "interval" 0.87}
+			else
+				{dda "interval" 1.0}
+			}
+		}
+		{picture "logo" "#3"
+			{location_percent 65.0 14.0}
+		}
+		{dda "text_width" "#4"}
+		{dda "locate_text" "#0"}
+	}
+	{on end "text"
+		{call "credit_next"}
+	}
+}
