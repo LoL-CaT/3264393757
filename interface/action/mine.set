@@ -1,0 +1,18 @@
+{action from "install"
+	{cursor "mine"}
+	{fx "flashred"}
+	{item "mine"}
+	{item_in_box}
+	{button}
+	{ShowCount}
+	{abledrag}
+	{free_hands}
+	{instructions
+		{bind}
+		{disable_action_restart}
+		{animations "squat_repair_1 squat_repair_2" random loop totaltime 2}
+		{fsm_request "ground-drop"}
+		{install_mine notify_complete}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}
