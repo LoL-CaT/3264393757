@@ -1,0 +1,122 @@
+{game_entity
+	(include "/properties/construction_generic.inc")
+	{lodclass "decor_medium"}
+	{collider "rock"}
+	{obstacleID "unbreakable"}
+
+	{props "cornered" "wood" "parts" "small" "burning" "construction" "remove_grass_7" "fuel_point"}
+	{extension "fuel_cistern_g2_02.mdl"}
+	("armor_house_wood_heavy")
+
+	{"volumes"
+		{"cistern01"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 1}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern02"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 1}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern03"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 1}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern04"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 1}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern05"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 1}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern06"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 1}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern07"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 0}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern08"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 0}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern09"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 1}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern10"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 1}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern11"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 0}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"cistern12"
+			{Tags  "body" "fire"}
+			{thickness 100}
+			{able {visible 0}{Obstacle 0}}
+			{material "steel"}
+		}
+		{"place1"
+			{Tags  "attach" "1"}
+			{able clear {bullet 0}{touch 1}}
+		}
+		{"place2"
+			{Tags  "attach" "2"}
+			{able clear {bullet 0}{touch 1}}
+		}
+	}
+
+	{Boarder
+		{door "emit" {queue 0}}
+		{node "node_ladder_bottom"}
+		{node "node_ladder_top"}
+		{node "node01"}
+		{anm "ladder_bind"
+			{forward	{begin	"stand_climb_stairs"}}
+			{reverse	{end	"stand_climb_stairs" -1}}
+		}
+		{anm "ladder"
+			{forward	{speed 1.2} {loop "stand_upstairs"}}
+			{reverse	{speed 1.2} {loop "stand_upstairs" -1}}
+		}
+		{link "emit" "node_ladder_bottom" {anm "ladder_bind"} {forward putoff} {reverse puton}}
+		{link "node_ladder_bottom" "node_ladder_top" {anm "ladder"}}
+		{link "node_ladder_top" "node01" {anm "ladder_bind"} {forward putoff} {reverse puton}}
+
+		{link "node01" "1" {anm "[fsm]"}}
+		{link "node01" "2" {anm "[fsm]"}}
+
+		{link "1" "2" {anm "[fsm]"}}
+	}
+
+	{placer
+		{place "1" {attach  snipe_cover} 	    {linkbone "attach1"}}
+		{place "2" {attach  snipe_cover} 		{linkbone "attach2"}}
+	}
+}
+

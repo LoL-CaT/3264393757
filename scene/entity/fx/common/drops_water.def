@@ -1,0 +1,176 @@
+{fx
+	{#+ particleview "ripples "
+		{generator
+			{emissionarea
+				{radius 0.05 0.05}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.1}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.9 0.1}
+			}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 1}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags ground }
+				{sprite "$/water/water_circle01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.35 0.05}
+							{pow 0.4}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffebfff5}
+				}
+			}
+		}
+		{notifyowner}
+		{offset 0 0 0}
+	}
+	{#+ particleview drops
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 0}
+				{alpha1 10}
+				{speed 0.2}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.3 0.025}
+			}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.5}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.25 0.05}
+							{pow 0.4}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 30}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffc8ffe1}
+					{preturn 180 180}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.25 0.05}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+		{offset 0 0 25}
+	}
+	{#+ particleview wash
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 45}
+				{speed 0.5}
+			}
+			{particleinit
+				{speed 1 0.25}
+				{lifetime 0.5 0.1}
+			}
+			{particlesinblock 1}
+			{autoturn}
+		}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value 0.5}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/water/water_wash01"
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.35 0.05}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffe1fff0}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 1 0.2}
+							{pow 0.6}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.25 0.05}
+							{pow 0.3}
+						}
+					}
+					{preturn 90 5}
+				}
+				{flags ground }
+			}
+		}
+		{notifyowner}
+		{offset 0 0 0}
+	}
+}

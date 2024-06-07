@@ -1,0 +1,199 @@
+{fx
+	{#+ particleview smoke
+		{generator
+			{emissionarea
+				{radius 10 10}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 0.75 0.75}
+				{lifetime 2.25 0.25}
+			}
+			{timetolive 0.1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 2}
+		}
+		{mover
+			{gravity
+				{value -0.01}
+			}
+			{damping 0.925}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_black_small02"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.7 0.05}
+							{pow 0.5}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.7 0.1}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 90}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff7d7d7d}
+				}
+				{#+ sprite "$/smoke/smoke_black_small01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.7 0.05}
+							{pow 0.5}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.7 0.1}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 90}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{particleview light_smoke
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 180}
+				{speed 1}
+			}
+			{particleinit
+				{speed 0.5 0.5}
+				{lifetime 1.25 0.5}
+			}
+			{timetolive 0.4}
+			{totalparticles 4}
+			{particlesinblock 1}
+			{axisz}
+		}
+		{mover
+			{damping 0.925}
+			{gravity
+				{value -0.01}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/additional/explosion/add/exp_cry1"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 45}
+							{pow 0.6}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.25 0.05}
+							{pow 1}
+						}
+					}
+					{light 1
+						{npower
+							{min 0.5 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xffff6419}
+				}
+			}
+		}
+	}
+	{#+ particleview fire
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 180}
+				{speed 1}
+			}
+			{particleinit
+				{speed 1 0.5}
+				{lifetime 0.875 0.125}
+			}
+			{timetolive 0.15}
+			{axisz}
+		}
+		{mover
+			{damping 0.925}
+			{gravity
+				{value -0.025}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/additional/fire/add/fire_small_parts2"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 45}
+							{pow 0.5}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.125 0.025}
+							{pow 0.5}
+						}
+					}
+					{light 1
+						{npower
+							{min 0.675 0.175}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xffff9632}
+				}
+			}
+		}
+	}
+}

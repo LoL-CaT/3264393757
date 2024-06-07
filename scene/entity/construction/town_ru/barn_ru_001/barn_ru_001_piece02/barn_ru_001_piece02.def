@@ -1,0 +1,65 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "barn_ru_001_piece02.mdl"}
+	{props  "cornered" "wood" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+	("armor_plank_house")
+	{placer
+		{place "1" {attach   snipe_cover} 		{linkbone "attach1"}}
+		{place "2" {attach   snipe_cover} 		{linkbone "attach2"}}
+		{place "3" {attach   hide_squat} 		{linkbone "attach3"}}
+		{place "4" {attach   hide_squat} 		{linkbone "attach4"}}
+	}
+	{boarder}
+		
+	{volume "body01"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{holed}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{holed}{Obstacle 0}}
+	}
+	{volume "body05"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body06"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body07"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "hole01"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "hole02"
+		{Tags "attach" "2"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "target01"
+		{Tags "target"}
+		{able clear {bullet}}
+	}
+	{volume "target02"
+		{Tags "target"}
+		{able clear {bullet}}
+	}
+}

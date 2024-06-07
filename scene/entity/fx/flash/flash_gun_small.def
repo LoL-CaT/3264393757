@@ -1,0 +1,58 @@
+{fx
+	{particleview fwd
+		{generator
+			{emissionarea
+				{radius 0.125 0.125}
+				{alpha0 0}
+				{alpha1 45}
+			}
+			{particleinit
+				{speed 1.125 0.375}
+				{lifetime 0.25 0.05}
+			}
+			{totalparticles 0}
+			{particlesinblock 2}
+			{timetolive 0}
+		}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value -0.01}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_white01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 45}
+							{pow 0.5}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.15 0.025}
+							{pow 0.35}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 0.025}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff14141e}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

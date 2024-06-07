@@ -1,0 +1,32 @@
+{game_entity
+	(include "/properties/construction_high.inc")
+	{extension "pontoon_bridge.mdl"}
+	{props "cornered" "parts" "construction" "bridge" "wood" "burning" "break_on_burn" "no_destroyed_stamp" "pantoon_bridge"}
+	{obstacleId "unbreakable"}
+
+	{constrain water}
+
+	{volume "body01"	
+		{Tags  "body" "fire"}
+		{Thickness 50}
+		{able clear {blast}{obstacle 0}}
+	}
+	{volume "boat1"	
+		{Tags  "body" "float"}
+		{Thickness 50}
+		{able clear {blast}{obstacle 0}{float}}
+	}
+	{volume "boat2"	
+		{Tags  "body" "float"}
+		{Thickness 50}
+		{able clear {blast}{obstacle 0}{float}}
+	}
+	{volume "anim_stop"	
+		{able clear {overlap}}
+	}
+
+	{extender "land_patch"
+		{TerrainType "road" "bridge_wood"}
+	}
+	("armor_medium")
+}

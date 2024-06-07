@@ -1,0 +1,30 @@
+{game_entity
+	(include "order.inc" 
+		sprite(attention_attack_ebm) 
+		spriteadd(attention_attack)
+	)
+	{Skeleton
+		{animation
+			{sequence "strike" {speed 0.35}}
+		}
+		{bone "basis"
+			{Orientation
+				1	0	0
+				0	-1	0
+				0	0	1
+			}
+			{bone "fx_t"
+				{Matrix34
+					-0.906308	0	0.422618
+					0	-1	0
+					0.422618	0	0.906308
+					-1503.66	-2.81139e-005	628.802
+				}
+			}
+		}
+	}
+	{props "explosion_p"}
+	{extender "stuff"
+		{item "bullet203 fg ammo"}
+	}
+}

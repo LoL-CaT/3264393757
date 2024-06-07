@@ -1,0 +1,59 @@
+{fx
+	{sound "hit/small/water/01"}
+	{particleview drops2
+		{generator
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 20}
+				{speed 4}
+			}
+			{particleinit
+				{speed 5 2.5}
+				{lifetime 0.625 0.125}
+			}
+			{axisz}
+			{timetolive 5}
+		}
+		{mover
+			{gravity
+				{value 0.1}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.3}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smokesmal4cblue"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{turn 1
+						{linear
+							{min 10 10}
+							{max 360 -180}
+						}
+					}
+					{scale 1
+						{linear
+							{min 1}
+							{max 0.25}
+						}
+					}
+					{## highlight 0xffa5a8cc}
+					{visibility 1
+						{linear
+							{min 1}
+							{max 1}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

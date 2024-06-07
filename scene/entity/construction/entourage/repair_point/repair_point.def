@@ -1,0 +1,22 @@
+{actor
+	(include "/properties/house.inc")
+	(include "/properties/selection/vehicle.inc" scale(2))
+	(include "/properties/action_target/build_patrol.inc")	
+	{extension "repair_point.mdl"}
+	{props "remove_grass_7 no_fortification"}
+	{"structure"
+		{place "field_technical_buildings_repair_piece001_point" "repair_point_piece001"}
+	}
+
+	{extender "assault"
+		{holes
+			{place "field_technical_buildings_repair_piece001_point"}
+		}
+	}
+	
+	{"volumes"
+		{"bottom_floor"
+			{able clear {touch 1}}
+		}
+	}
+}

@@ -1,0 +1,67 @@
+{game_entity
+(include "/properties/building.inc")
+	{Extension "sh_vil_piece_007.mdl"}
+{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+		("armor_brick_house")
+	{placer
+		{place "1" {attach  snipe_cover} 		{linkbone "attach1"}}
+		{place "2" {attach  snipe_cover} 		{linkbone "attach2"}}
+	}
+	{boarder}
+	("land_patch_house")
+	{volume "box684"
+		{Tags "body" "fire"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body1"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{holed}{Obstacle 0}}
+	}
+	{volume "body2"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body3"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body4"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "hole1"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof1"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "window1"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{volume "wood1"
+		{Tags "fire"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "wood2"
+		{Tags "fire"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "wood3"
+		{Tags "fire"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{bone "window1_x" {visibility 0}}
+}

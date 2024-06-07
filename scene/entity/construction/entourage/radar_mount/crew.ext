@@ -1,0 +1,16 @@
+;SDL
+	{placer
+		{place "commander" {group "crew"} {linkbone "commander"} {turnoff {sensor} {shadow}} {openForCrush}}
+		{place "gunner" {group "crew"} {linkbone "gunner"} {turnoff {sensor} {shadow}} {openForCrush}}
+
+	}
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_steam_locomotive"} {end "pose_stand_gun_aside"} {base "open"}}
+			{reverse 	{end	"board_steam_locomotive" -1} {base "open" -1}}
+		}
+		{door "emit1"}
+		{link "emit1" "commander" {anm "driver"} {forward putoff} {reverse puton}}
+		{link "emit1" "gunner" {anm "driver"} {forward putoff} {reverse puton}}
+		{link "gunner" "commander"}
+	}

@@ -1,0 +1,280 @@
+{fx
+	{#+ particleview pieces
+		{entitygenerator
+			{totalparticles 2}
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 45}
+			}
+			{particleinit
+				{speed 4 2}
+				{lifetime 5.5 0.5}
+			}
+			{entity "#flotsam2"
+				{fx "spheredust_small"}
+			}
+			{entity "#stone01"
+				{fx "spheredust_small"}
+			}
+			{axisz}
+		}
+	}
+	{#+ particleview dirt
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 0}
+				{alpha1 100}
+			}
+			{particleinit
+				{speed 4 2}
+				{lifetime 1.375 0.375}
+			}
+			{timetolive 0.5}
+			{totalparticles 0}
+			{particlesinblock 6}
+		}
+		{mover
+			{damping 0.965}
+			{gravity
+				{value 0.2}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.35}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/particles/rock01"
+					{timer
+						{mode play }
+						{duration 0.85}
+					}
+					{scale 0.05 0.025}
+					{preturn 180 180}
+					{highlight 0xff8c8782}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.8}
+						}
+					}
+				}
+				{#+ sprite "$/particles/rock02"
+					{timer
+						{mode play }
+						{duration 0.85}
+					}
+					{scale 0.05 0.025}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.8}
+						}
+					}
+				}
+				{#+ sprite "$/particles/rock03"
+					{timer
+						{mode play }
+						{duration 0.85}
+					}
+					{scale 0.05 0.025}
+					{preturn 180 180}
+					{highlight 0xffbeb9b4}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.8}
+						}
+					}
+				}
+			}
+		}
+	}
+	{#+ particleview dust
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 0.75 0.75}
+				{lifetime 1.5 0.25}
+			}
+			{timetolive 1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 2}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.01}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_white01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 0.8}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.75 0.05}
+							{pow 0.35}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff544a2c}
+				}
+				{sprite "$/smoke/smoke_white02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 0.8}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.75 0.05}
+							{pow 0.35}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff716749}
+				}
+				{#+ sprite "$/dust/dust_cloud02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 0.8}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.35 0.05}
+							{pow 0.35}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xffa0a5aa}
+				}
+			}
+		}
+	}
+	{#+ particleview dust1
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 2 1}
+			}
+			{timetolive 1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 1}
+		}
+		{offset 0 0 5}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.01}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/dust_cloud02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 0.8}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.5}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.25 0.025}
+							{pow 0.35}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xffa0a5aa}
+				}
+			}
+		}
+	}
+}

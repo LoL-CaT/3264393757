@@ -1,0 +1,172 @@
+{fx
+	{sound "crush/medium/wood"}
+	{particleview dust
+		{#+ generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 75}
+				{speed 1}
+			}
+			{particleinit
+				{speed 1.375 1.125}
+				{lifetime 1.75 0.25}
+			}
+			{timetolive 0.125}
+			{axisz}
+		}
+		{#+ mover
+			{damping 0.965}
+			{gravity
+				{value 0.025}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.05}
+			}
+		}
+		{visualizer
+			{stage 
+				{##+ sprite "$/smoke/smoke_white02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 0.5}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.2 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.8 0.1}
+							{pow 0.35}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff685d1b}
+				}
+				{#+ sprite "$/smoke/smoke_white01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 0.5}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.2 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.8 0.1}
+							{pow 0.35}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{## highlight 0xff653f00}
+					{redlight 0.4}
+					{greenlight 0.3}
+					{bluelight 0.2}
+				}
+			}
+		}
+	}
+	{particleview shepki
+		{generator
+			{emissionarea
+				{radius 10 10}
+				{alpha0 0}
+				{alpha1 75}
+				{speed 1.5}
+			}
+			{particleinit
+				{speed 3.5 1.5}
+				{lifetime 1.75 0.25}
+			}
+			{axisz}
+			{timetolive 0.125}
+		}
+		{#+ mover
+			{gravity
+				{value 0.15}
+			}
+			{damping 0.965}
+			{collisions
+				{terrain}
+				{restitution 0.25}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge}
+				{#+ sprite "$/particles/wood_plank01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.8}
+					}
+					{scale 0.1 0.04}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/wood_plank02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.8}
+					}
+					{scale 0.1 0.04}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/wood_plank03"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.8}
+					}
+					{scale 0.1 0.04}
+					{preturn 180 180}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

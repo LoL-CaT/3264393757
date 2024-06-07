@@ -1,0 +1,65 @@
+{fx
+	{particleview
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 20}
+				{speed 0.25}
+			}
+			{particleinit
+				{speed 1 0.5}
+				{lifetime 1.1 0.3}
+			}
+		}
+		{mover
+			{gravity
+				{value 0.15}
+			}
+			{damping 0.95}
+			{collisions
+				{terrain}
+				{restitution 0.35}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{sprite "$/particles/dirt01"
+					{scale 0.15 0.05}
+					{preturn 180 180}
+					{## highlight 0xff1e1e1e}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 4}
+						}
+					}
+				}
+				{#+ sprite "$/particles/dirt02"
+					{scale 0.15 0.05}
+					{preturn 180 180}
+					{## highlight 0xff323232}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 7.5}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

@@ -1,0 +1,188 @@
+{fx
+	{#+ particleview smoke_close
+		{generator
+			{emissionarea
+				{radius 0.125 0.125}
+				{alpha1 10}
+				{speed 1.5}
+			}
+			{particleinit
+				{speed 1 0.5}
+				{lifetime 0.35 0.05}
+			}
+			{totalparticles 0}
+			{particlesinblock 0}
+			{timetolive 0}
+		}
+		{mover
+			{gravity
+				{value 0}
+			}
+			{damping 0.95}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_black_small01"
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.075 0.025}
+							{pow 1}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 60}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview smoke_long
+		{generator
+			{emissionarea
+				{radius 0.5 0.5}
+				{alpha1 5}
+				{speed 0.75}
+			}
+			{particleinit
+				{speed 1.5 0.5}
+				{lifetime 1 0.25}
+			}
+			{totalparticles 0}
+			{particlesinblock 0}
+			{timetolive 0}
+		}
+		{mover
+			{gravity
+				{value 0}
+			}
+			{damping 0.95}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_black_small02"
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.15 0.025}
+							{pow 0.625 0.125}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+				{sprite "$/smoke/smoke_g04c"
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.1 0.025}
+							{pow 0.625 0.125}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview smoke_streak
+		{generator
+			{emissionarea
+				{radius 0.125 0.125}
+				{alpha1 0}
+				{speed 0.5}
+			}
+			{particleinit
+				{speed 0.1 0.05}
+				{lifetime 0.25 0.025}
+			}
+			{totalparticles 0}
+			{particlesinblock 0}
+			{timetolive 0}
+		}
+		{mover}
+		{visualizer
+			{stage 
+				{sprite "$/water/oil_flow01"
+					{preturn 90}
+					{visibility 1
+						{npower
+							{min 0.6 0.1}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.125 0.025}
+							{pow 0.75}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.075 0.025}
+							{pow 0.75}
+						}
+					}
+				}
+				{flags trace }
+			}
+		}
+		{notifyowner}
+	}
+}

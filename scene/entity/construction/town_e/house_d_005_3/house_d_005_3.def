@@ -1,0 +1,39 @@
+{actor
+		(include "/properties/selection/vehicle.inc" scale(2.4))
+	{extension "house_d_005_3.mdl"}
+	{placer}
+	{extender "structure"
+		{place "d005_piece18_point" "d005_piece18"}
+		{place "d005_piece19_point" "d005_piece19"}
+		{place "d005_piece20_point" "d005_piece20"}
+		{place "d005_piece21_point" "d005_piece21"}
+		{place "d005_piece22_point" "d005_piece22"}
+		{place "d005_piece23_point" "d005_piece23"}
+	}
+	{extender "land_patch"
+	}
+	{extender "assault"
+	{holes
+		{place "d005_piece19_point"}
+		{place "d005_piece18_point"}
+		{place "d005_piece20_point"}
+		{place "d005_piece21_point"}
+
+	}
+	}
+	{extender "house_fortification"
+		{place "d004_piece18_point" "d004_piece18" "fort_window_00" "fort_window"}
+        {place "d005_piece19_point" "d005_piece19" "fort_window_00" "fort_window"}
+		{place "d005_piece20_point" "d005_piece20" "fort_window_00" "fort_window"}
+		{place "d005_piece19_point" "d005_piece19" "fort_sandbags_002" "fort_wall"}
+		{place "d005_piece18_point" "d005_piece18" "fort_sandbags_002" "fort_wall"}
+		{place "d005_piece20_point" "d005_piece20" "fort_sandbags_002" "fort_wall"}
+		{place "d005_piece21_point" "d005_piece21" "fort_sandbags_002" "fort_wall"}
+
+	}
+	(include "/properties/house.inc")
+	{volume "bottom_floor1"
+		{tags "body"}
+		{able clear {touch 1}}
+	}
+}

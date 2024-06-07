@@ -1,0 +1,268 @@
+{fx
+	{sound "crush/medium/concrete"}
+	{#+ particleview smoke
+		{#+ generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 10}
+				{alpha1 80}
+				{speed 0.5}
+			}
+			{particleinit
+				{speed 1.5 1}
+				{lifetime 1.25 0.25}
+			}
+			{axisz}
+			{timetolive 0.25}
+		}
+		{#+ mover
+			{gravity
+				{value 0.035}
+			}
+			{damping 0.975}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{#+ scale 1
+						{npower
+							{min 0}
+							{max 1}
+							{pow 0.4}
+						}
+					}
+					{#+ visibility 1
+						{npower
+							{min 0.15 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{#+ turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 0.5}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff6e645a}
+				}
+				{#+ sprite "$/smoke/smoke_white01"
+					{#+ scale 1
+						{npower
+							{min 0}
+							{max 1}
+							{pow 0.4}
+						}
+					}
+					{#+ visibility 1
+						{npower
+							{min 0.2 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{#+ turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 0.5}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff413f2a}
+				}
+				{sprite "$/smoke/smoke_white02"
+					{#+ scale 1
+						{npower
+							{min 0}
+							{max 1}
+							{pow 0.4}
+						}
+					}
+					{#+ visibility 1
+						{npower
+							{min 0.2 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{#+ turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 0.5}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff504732}
+				}
+			}
+		}
+	}
+	{particleview stone
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 5}
+				{alpha1 75}
+				{speed 1}
+			}
+			{particleinit
+				{speed 4.25 1.75}
+				{lifetime 5.5 0.5}
+			}
+			{axisz}
+			{timetolive 0.2}
+		}
+		{mover
+			{gravity
+				{value 0.125}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.35}
+			}
+			{damping 0.965}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{#+ sprite "$/particles/rock02"
+					{scale 0.1 0.025}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 720}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 1.5}
+					}
+					{preturn 180 180}
+					{visibility 1
+						{linear
+							{min 1}
+							{max 0}
+						}
+					}
+				}
+				{sprite "$/particles/rock03"
+					{scale 0.1 0.025}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 1.5}
+					}
+					{preturn 180 180}
+					{highlight 0xffc8c8c8}
+					{visibility 1
+						{linear
+							{min 1}
+							{max 0}
+						}
+					}
+				}
+				{sprite "$/particles/rock01"
+					{scale 0.1 0.025}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 1.5}
+					}
+					{preturn 180 180}
+					{highlight 0xff969696}
+					{visibility 1
+						{linear
+							{min 1}
+							{max 0}
+						}
+					}
+				}
+			}
+		}
+	}
+	{#+ particleview dirt
+		{generator
+			{#+ emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 5}
+			}
+			{#+ particleinit
+				{speed 3.5}
+				{lifetime 1.5 0.25}
+			}
+			{timetolive 0.1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 1}
+		}
+		{mover
+			{damping 0.975}
+			{gravity
+				{value 0.15}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/ground01"
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 15}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration 1.8 1}
+					}
+					{#+ scale 0.225 0.125
+						{npower
+							{min 0}
+							{max 0.5}
+							{pow 0.5}
+						}
+					}
+					{preturn 180 180}
+					{#+ visibility 1
+						{npower
+							{min 0.75}
+							{max 0}
+							{pow 2.5}
+						}
+					}
+					{highlight 0xff64676c}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

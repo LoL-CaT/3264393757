@@ -1,0 +1,290 @@
+{fx
+	{sound "hit/big/ground"}
+	{particleview dust
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 0}
+				{alpha1 45}
+				{speed 0.35}
+			}
+			{particleinit
+				{speed 1 0.5}
+				{lifetime 1 0.2}
+			}
+			{axisz}
+			{timetolive 0.15}
+		}
+		{#+ mover
+			{gravity
+				{value 0.065}
+			}
+			{damping 0.95}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white02"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.2 0.025}
+							{pow 0.35}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 0.8}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xffffff9c}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview smoke_puddle
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 80}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 0.75 0.25}
+				{lifetime 0.875 0.375}
+			}
+			{totalparticles 0}
+			{particlesinblock 8}
+			{timetolive 0.1}
+			{axisz}
+		}
+		{mover
+			{damping 0.925}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.25 0.025}
+							{pow 0.75}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 45}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.2 0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffafffe1}
+					{preturn 180 180}
+				}
+			}
+		}
+		{notifyowner}
+		{offset 0 0 3}
+	}
+	{#+ particleview ripples_puddle
+		{generator
+			{emissionarea
+				{radius 1}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.1}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 1 0.2}
+			}
+			{timetolive 0.5}
+		}
+		{mover
+			{gravity
+				{value 5}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/water/water_circle01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.425 0.075}
+							{pow 0.6}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.3}
+						}
+					}
+				}
+				{flags ground }
+			}
+		}
+	}
+	{#+ particleview ripples_start_puddle
+		{generator
+			{emissionarea
+				{radius 1}
+				{alpha0 0}
+				{alpha1 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 1 0.2}
+			}
+			{timetolive 0.5}
+			{totalparticles 0}
+			{particlesinblock 1}
+		}
+		{mover
+			{gravity
+				{value 5}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/water/water_circle01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.4}
+							{pow 0.4}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.65}
+							{max 0}
+							{pow 0.6}
+						}
+					}
+					{preturn 180 180}
+				}
+				{flags ground }
+			}
+		}
+	}
+	{#+ particleview drops_puddle
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 5}
+				{alpha1 30}
+				{speed 4}
+			}
+			{particleinit
+				{speed 3 2}
+				{lifetime 2}
+			}
+			{axisz}
+			{timetolive 0.15}
+		}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value 0.2}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.05}
+			}
+		}
+		{visualizer
+			{stage initial 
+				{sprite "/texture/fx/particles/water_drop01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0.04 0.02}
+							{max 0}
+							{pow 5}
+						}
+					}
+					{highlight 0xffffff}
+					{turn 1}
+					{visibility 0.4 0.1}
+				}
+			}
+			{stage collided dying 
+				{sprite "/texture/fx/water/water_circle01"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.1125 0.0125}
+							{pow 0.5}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.2 0.025}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffc8ffe1}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+				{flags killparticle ground }
+			}
+		}
+	}
+}

@@ -1,0 +1,113 @@
+{game_entity
+(include "/properties/building.inc")
+	{Extension "50_g2_piece_006.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "break_on_burn"}
+	("armor_stone_house")
+	{placer
+	     {place "1" {attach  hide_squat} 		{linkbone "attach1"}}
+		 {place "2" {attach  hide_squat} 		{linkbone "attach2"}}
+		 {place "4" {attach  squat_lie} 		{linkbone "attach4"}}
+    }
+	{boarder}
+	("land_patch_house")
+	{volume "beam1"
+		{Tags "body" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "beam2"
+		{Tags "body" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "beam3"
+		{Tags "body" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body01"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{holed}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body05"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body06"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body07"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body08"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body09"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body10"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body11"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "floor"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "hole"
+		{Tags "attach" "4"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof1_"
+		{Tags "roof" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof2_"
+		{Tags "roof" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof3_"
+		{Tags "roof" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "window1"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{bone "window1_x" {visibility 0}}
+}

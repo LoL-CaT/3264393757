@@ -1,0 +1,277 @@
+{ArmoredCar
+	(include "/properties/armoredcar.ext")
+	(include "/properties/tank_crew.ext")
+	(include "/properties/shadow/tank.inc"  scale(2.0))
+	(include "/properties/selection/vehicle.inc"  scale(2.0))
+	{props  "medium"  "tank" "turret"  "vision_lev03"}
+	{mass 45800}
+	("armor_medium" args 1.1)
+
+	{extension "house_test2016.mdl"}
+
+(define "bone_settings"
+	{bone "%name1"
+		{limits -20 20}
+		{speed 0.05}
+	}
+	{bone "%name2"
+		{limits -35 35}
+		{speed 0.05}
+	}
+)
+	("bone_settings" name1(gun_rot1) name2(mgun1))
+	("bone_settings" name1(gun_rot2) name2(mgun2))
+	("bone_settings" name1(gun_rot3) name2(mgun3))
+	("bone_settings" name1(gun_rot4) name2(mgun4))
+	("bone_settings" name1(gun_rot5) name2(mgun5))
+	("bone_settings" name1(gun_rot6) name2(mgun6))
+
+	{component "turret1"}
+	{component "turret2"}
+	{component "turret3"}
+	{component "turret4"}
+	{component "body"}
+
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_mgun_stan"}}
+		}
+		{anm "commander"
+			{forward	{end "pose_mg_stan_charger"}}
+		}
+	}
+
+(define "crew_human_gunner_house"
+	{sensor
+		{visor "%visorbone"
+			{vision "vehicle_top_mgun"} 
+			{bone "%visorbone"}
+		}
+	}
+	{placer
+		{place "%place"
+			{group "crew"}
+			{linkbone "%place"}
+			{visor "%visorbone"}
+			{turnoff {sensor} {shadow}}
+			{openForCrush}
+		}
+	}
+	{boarder
+		{door "emit1"}
+		{link "emit1" "%place" {anm "gunner"} {forward putoff} {reverse puton}}
+	}
+)
+
+	("crew_human_gunner_house" place(gunner1) visorbone(visor1))
+	("crew_human_gunner_house" place(gunner2) visorbone(visor2))
+	("crew_human_gunner_house" place(gunner3) visorbone(visor3))
+	("crew_human_gunner_house" place(gunner4) visorbone(visor4))
+	("crew_human_gunner_house" place(gunner5) visorbone(visor5))
+	("crew_human_gunner_house" place(gunner6) visorbone(visor6))
+
+	{extender "inventory"
+;		{weapon "mgun" {mask clear}}
+;		{weapon "mgun1" {mask "weapon mgun"}}
+		{box
+            {item "ammo mgun" 2150}
+;			{item "dt" filled {user "mgun1"}}
+		}
+	}
+
+(define "mgun_place"
+		{place "%name"
+			{type "hull"}
+			{weapon "dt" filled}
+;			{foresight "%foresight"}
+			{linkBone "%linkbone"}
+			{gunner "%gunner"}
+			{charger "%gunner"}
+			("abm_mgun")
+;			{basic}
+		}
+)
+	{Weaponry
+		("restore_ik_time")
+		("mgun_place" name(mgun1) linkbone(mgun1) gunner(gunner1))
+		("mgun_place" name(mgun2) linkbone(mgun2) gunner(gunner2))
+		("mgun_place" name(mgun3) linkbone(mgun3) gunner(gunner3))
+		("mgun_place" name(mgun4) linkbone(mgun4) gunner(gunner4))
+		("mgun_place" name(mgun5) linkbone(mgun5) gunner(gunner5))
+		("mgun_place" name(mgun6) linkbone(mgun6) gunner(gunner6))
+	}
+
+
+	{volume "body"
+		{Tags "body"}
+		{thickness 100}
+		{component "body"}
+	}
+	{volume "turret10"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+
+	}
+	{volume "turret11"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+
+	}
+	{volume "turret12"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+	}
+	{volume "turret13"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+	}
+	{volume "turret14"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+	}
+	{volume "turret15"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+	}
+	{volume "turret16"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+	}
+	{volume "turret17"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+	}
+	{volume "turret18"
+		{Tags "turret" " body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret19"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret1"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret1"}
+	}
+	{volume "turret20"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret21"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret22"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret23"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret24"
+		{Tags "turret" " body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret25"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret26"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret27"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret3"}
+	}
+	{volume "turret28"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret4"}
+	}
+	{volume "turret29"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret4"}
+	}
+	{volume "turret2"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret4"}
+	}
+	{volume "turret30"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret4"}
+	}
+	{volume "turret31"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret4"}
+	}
+	{volume "turret32"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret4"}
+	}
+	{volume "turret33"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret4"}
+	}
+	{volume "turret3"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret1"}
+	}
+	{volume "turret4"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret1"}
+	}
+	{volume "turret5"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret1"}
+	}
+	{volume "turret6"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret1"}
+	}
+	{volume "turret7"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret1"}
+	}
+	{volume "turret8"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+	}
+	{volume "turret9"
+		{Tags "turret" "body"}
+		{thickness 100}
+		{component "turret2"}
+	}
+}

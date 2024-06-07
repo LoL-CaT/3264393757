@@ -1,0 +1,120 @@
+{fx
+	{#+ particleview
+		{generator
+			{emissionarea
+				{radius 0.125 0.125}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.025}
+			}
+			{particleinit
+				{speed 0.2 0.1}
+				{lifetime 3.75 0.25}
+			}
+			{autoturn}
+		}
+		{mover
+			{nodependonwind}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "/texture/fx/water/water_stream01a"
+					{scalex 1
+						{npower
+							{min 0.175 0.025}
+							{max 0.5 0.1}
+							{pow 1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.7 0.1}
+							{max 0.35 0.05}
+							{pow 1.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.125 0.075}
+						}
+					}
+					{highlight 0xffc8ffe1}
+					{preturn 0 1}
+					{preshiftx 42.5 42.5}
+				}
+				{flags ground }
+			}
+		}
+		{offset 0 0 -25}
+		{notifyowner}
+	}
+	{storeable 1}
+	{#+ particleview
+		{generator
+			{emissionarea
+				{radius 0.125 0.125}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.025}
+			}
+			{particleinit
+				{speed 0.2 0.1}
+				{lifetime 3.75 0.25}
+			}
+			{autoturn}
+		}
+		{mover
+			{nodependonwind}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/water/water_stream01"
+					{scalex 1
+						{npower
+							{min 0.225 0.025}
+							{max 0.425 0.025}
+							{pow 1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 1.05 0.0500001}
+							{max 0.425 0.025}
+							{pow 1.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.0625 0.0125}
+						}
+					}
+					{highlight 0xffc8ffe1}
+					{preturn 0 1}
+					{preshiftx 42.5 42.5}
+				}
+				{flags ground }
+			}
+		}
+		{offset 0 0 -25}
+		{notifyowner}
+	}
+	{storeable 1}
+}

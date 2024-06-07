@@ -1,0 +1,140 @@
+{fx
+	{particleview dust
+		{generator
+			{emissionarea
+				{radius 0.5 0.5}
+				{alpha0 0}
+				{alpha1 15 15}
+				{speed 0.4}
+			}
+			{particleinit
+				{lifetime 1.4 0.2}
+				{speed 0}
+			}
+			{particlesinblock 0}
+			{timetolive 2.5}
+		}
+		{mover
+			{gravity
+				{value 0.002}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white01"
+					{preturn 180 180}
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.025 0.005}
+							{max 0.15 0.025}
+							{pow 0.75}
+						}
+					}
+					{#+ visibility 1
+						{npower
+							{min 0.5 0.1}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff6f6f52}
+				}
+				{#+ sprite "$/smoke/smoke_white02"
+					{preturn 180 180}
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.025 0.005}
+							{max 0.15 0.025}
+							{pow 0.75}
+						}
+					}
+					{#+ visibility 1
+						{npower
+							{min 0.5 0.1}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffa88d54}
+				}
+				{sprite "$/smoke/smoke_white_small01"
+					{preturn 180 180}
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.025 0.005}
+							{max 0.15 0.025}
+							{pow 0.75}
+						}
+					}
+					{#+ visibility 1
+						{npower
+							{min 0.5 0.1}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff7e6a41}
+				}
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{preturn 180 180}
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.07 -0.03}
+							{max 0.25 0.025}
+							{pow 0.75}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 -0.05}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xfff5cf7e}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

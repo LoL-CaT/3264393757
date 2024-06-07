@@ -1,0 +1,138 @@
+{fx
+	{particleview sand
+		{generator
+			{emissionarea
+				{radius 1.5 1.5}
+				{alpha0 5 5}
+				{alpha1 5 5}
+				{speed 0.1}
+			}
+			{particleinit
+				{lifetime 2 0.5}
+				{speed 0.125 0.125}
+			}
+		}
+		{#+ mover
+			{gravity
+				{value -0.005}
+			}
+		}
+		{#+ visualizer
+			{stage 
+				{#+ sprite "$/dust/dust_cloud01"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffafa583}
+				}
+				{#+ sprite "$/dust/dust_cloud02"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff716b41}
+				}
+				{sprite "$/smoke/smoke_white_small01"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.55 0.05}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.175 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff838383}
+				}
+				{#+ sprite "$/smoke/smoke_g04b"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffcbbc75}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

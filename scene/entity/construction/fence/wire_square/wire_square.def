@@ -1,0 +1,54 @@
+{game_entity
+	(include "/properties/construction.inc")
+	{tag "wire_square"}
+	{props "small" "wood" "barbwire" "parts" "construction" "no_destroyed_stamp" "one" "staged" "disable_area" "fortification"}
+	{Extension "wire_square.mdl"}
+	{ObstacleId "construction"}
+	(define "v_body"
+		{Volume "body_0%0"
+			{Tags  "body" "fire"}
+			{Thickness 5}
+			{able {obstacle 0}{visible 0}}
+		}
+	)
+	("v_body" args 1)
+	("v_body" args 2)
+	("v_body" args 3)
+	("v_body" args 4)
+	("v_body" args 5)
+	("v_body" args 6)
+	("v_body" args 7)
+	{Volume "cut"
+		{cylinder 10 69.095}
+		{bone "body_wire"}
+		{matrix34
+			0.0089 	 0.9996 	 -0.0251
+			-0.0046 	 -0.025 	 -0.9997
+			-0.9999 	 0.009 	 0.0044
+			-1.1455 	 0.116 	 4.1574
+		}
+		{Thickness 5}
+		{able clear {touch}}
+	}
+
+	("armor_barbwire")
+	{extender "fortification"
+		{tag "barbwire"}
+		{path_profile "wire"}
+		{radius_min 1} 					; минимально возможный радиус скругления траншеи
+		{able_replacing}   				; сегмент может быть заменен (см. delete_connected) 
+		{socket "socket0"
+			{accept "wire_square"}
+			{angle 90}
+		}
+		{socket "socket1"
+			{accept "wire_square"}
+			{angle 90}
+		}
+		{socket "socket2"}
+		{socket "socket3"}
+		{install_time 5.625}	                        	; время установки в секундах
+		{install_pose "normal"}	
+;		("crush")
+	}
+}

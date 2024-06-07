@@ -1,0 +1,57 @@
+{fx
+	{particleview smoke
+		{generator
+			{emissionarea
+				{radius 0.1 0.1}
+				{alpha1 2.5 2.5}
+				{speed 0.8}
+			}
+			{particleinit
+				{speed 0.2375 0.1625}
+				{lifetime 1.5 0.25}
+			}
+			{totalparticles 0}
+			{particlesinblock 0}
+			{timetolive 0}
+		}
+		{offset 0 0 1.2}
+		{mover
+			{damping 0.98}
+			{gravity
+				{value -0.0015}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/swirling_smoke01"
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0 90}
+							{max 0}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.115 0.025}
+							{pow 0.75}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.2 0.05}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{highlight 0xff32325a}
+				}
+			}
+		}
+	}
+}

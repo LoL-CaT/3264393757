@@ -1,0 +1,40 @@
+{actor
+		(include "/properties/selection/vehicle.inc" scale(2.4))
+	{extension "build_vil_004.mdl"}
+	{placer}
+	{extender "structure"
+		{place "b4_vil_piece_01_point" "b4_vil_piece_01"}
+		{place "b4_vil_piece_02_point" "b4_vil_piece_02"}
+		{place "b4_vil_piece_03_point" "b4_vil_piece_03"}
+		{place "b4_vil_piece_04_point" "b4_vil_piece_04"}
+		{place "b4_vil_piece_05_point" "b4_vil_piece_05"}
+		{place "b4_vil_piece_06_point" "b4_vil_piece_06"}
+	}
+			{extender "assault"
+	{holes
+		{place "b4_vil_piece_01_point"}
+		{place "b4_vil_piece_02_point"}
+		{place "b4_vil_piece_03_point"}
+		{place "b4_vil_piece_04_point"}
+		{place "b4_vil_piece_05_point"}
+		{place "b4_vil_piece_06_point"}
+
+	}
+	}
+	{extender "house_fortification"
+        {place "b4_vil_piece_01_point" "b4_vil_piece_01" "fort_sandbags_002" "fort_wall"}
+		{place "b4_vil_piece_02_point" "b4_vil_piece_02" "fort_sandbags_002" "fort_wall"}
+		{place "b4_vil_piece_03_point" "b4_vil_piece_03" "fort_sandbags_002" "fort_wall"}
+		{place "b4_vil_piece_04_point" "b4_vil_piece_04" "fort_sandbags_002" "fort_wall"}
+		{place "b4_vil_piece_05_point" "b4_vil_piece_05" "fort_sandbags_002" "fort_wall"}
+        {place "b4_vil_piece_06_point" "b4_vil_piece_06" "fort_sandbags_002" "fort_wall"}		
+
+	}
+			(include "/properties/house.inc")
+	{volume "bottom_floor"
+		{able clear {touch 1}}
+	}
+	{extender "land_patch"
+		{TerrainType "ground" "bridge"}
+	}
+}

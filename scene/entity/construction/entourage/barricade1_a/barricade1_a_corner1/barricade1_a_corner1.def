@@ -1,0 +1,23 @@
+{game_entity
+	(include "/properties/construction.inc")
+;	(include "/properties/shadow/construction.inc" sx(0.25) sy(0.7) ofsx(0) ofsy(0))
+  
+	{props "small" "wood" "construction" "parts" "disable_area" "no_destroyed_stamp" "big_impulse" "break_on_burn" "burning" "fortification"}
+	{Extension "barricade1_a_corner1.mdl"}
+
+	{NoGroupMesh 1}
+
+	{ObstacleId "construction"}
+	{Volume "body1"
+		{thickness 25}
+		{Tags "fire"}
+		{tags "body"}
+	}
+	{Volume "body"
+		{thickness 25}
+		{tags "body"}
+		{Tags "fire"}
+	}
+	("armor_medium")
+	{lodclass "decor_small"}
+}

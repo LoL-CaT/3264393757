@@ -1,0 +1,110 @@
+{fx
+	{#+ particleview "with water"
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 10}
+				{speed 0.25}
+				{theta 10}
+			}
+			{particleinit
+				{speed 0.75 0.75}
+				{lifetime 1 0.2}
+			}
+		}
+		{mover
+			{gravity
+				{value 0.15}
+			}
+			{damping 0.95}
+			{collisions
+				{terrain}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage initial 
+				{#+ sprite "$/particles/dirt02"
+					{scale 0.15 0.025}
+					{preturn 180 180}
+					{## highlight 0xff4b3219}
+				}
+				{sprite "$/particles/dirt01"
+					{scale 0.15 0.025}
+					{preturn 180 180}
+					{## highlight 0xff281e14}
+				}
+				{flags disablesoftedge }
+			}
+			{stage collided dying 
+				{#+ sprite "$/water/water_circle01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.1 0.02}
+							{pow 0.5}
+						}
+					}
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 0.2 0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 1 0.2}
+					}
+					{highlight 0xffe1ffeb}
+				}
+				{flags killparticle ground disablesoftedge }
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview ground_
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 10}
+				{theta 10}
+				{speed 0.2}
+			}
+			{particleinit
+				{speed 0.5 0.25}
+				{lifetime 0.5 0.1}
+			}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.15}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "/texture/fx/particles/dirt01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.15 0.025}
+					{## highlight 0xff141414}
+				}
+				{sprite "/texture/fx/particles/dirt02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.15 0.025}
+					{## highlight 0xff282828}
+				}
+				{flags disablesoftedge }
+			}
+		}
+	}
+}

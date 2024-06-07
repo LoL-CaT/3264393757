@@ -1,0 +1,17 @@
+{actor
+	{Extension "blindage_wood_vis.mdl"}
+	{bone "blindage_wood_vis_land" {parameters "Ground;Land;Align;"}}
+	{props "remove_grass_6_5" "tex_sample_build"}
+	{obstacleid "building"}
+	{NoGetShadows}
+	{DecalOrder 15}
+	{Extender "land_patch"
+		{TerrainType "road" "bridge"}
+		{AlignVolumes 1}
+	}
+	{"volumes"
+		{"bottom_floor"
+			{able clear {touch 1} {obstacle 1} {contact 1}}
+		}
+	}
+}

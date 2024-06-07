@@ -1,0 +1,61 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "ger05_piece09.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "wood_floor_destroyed_stamp"}
+	("armor_brick_house")
+
+{volume "body01"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body05"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body06"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "hole06"
+		{tags "attach" "6"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "window1"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{volume "window2"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{placer
+		 {place "6" {attach  snipe_cover} 	{linkbone "attach6"}}
+		 {place "17" {attach  hide_squat} 	{linkbone "attach17"}}
+    }
+    {extender "structure_bone"	
+		{hold "004"}
+		{hold "043" "042"}
+	}
+	{bone "window1_x" {visibility 0}}
+	{bone "window2_x" {visibility 0}}
+}

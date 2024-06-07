@@ -1,0 +1,171 @@
+{fx
+	{storeable 1}
+	{#+ particleview smoke_short
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 15}
+				{speed 0.175}
+			}
+			{particleinit
+				{speed 0.1375 0.1125}
+				{lifetime 3.5 0.5}
+			}
+			{axisz}
+		}
+		{offset 0 0 -5}
+		{mover
+			{damping 1}
+			{gravity
+				{value -0.001}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_black_small02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 145}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.25 0.05}
+							{pow 0.6}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 4}
+						}
+					}
+					{highlight 0xffb4b4b9}
+				}
+				{#+ sprite "$/smoke/smoke_black_small01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 145}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.25 0.05}
+							{pow 0.6}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 4}
+						}
+					}
+					{highlight 0xffd2d2d7}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{particleview smoke_long
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 0}
+				{alpha1 0 15}
+				{speed 0.085}
+			}
+			{particleinit
+				{speed 0.1375 0.1125}
+				{lifetime 12 1}
+			}
+			{axisz}
+		}
+		{offset 0 0 -5}
+		{mover
+			{damping 1}
+			{gravity
+				{value -0.0006}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_black_small02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 500}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.65 0.05}
+							{pow 0.8}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 8}
+						}
+					}
+					{highlight 0xffafb4b9}
+				}
+				{sprite "$/smoke/smoke_black_small01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 500}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.65 0.05}
+							{pow 0.8}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 8}
+						}
+					}
+					{highlight 0xffdce1e6}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

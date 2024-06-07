@@ -1,0 +1,150 @@
+{fx
+	{sound "hit/small/ground"}
+	{#+ particleview dust
+		{generator
+			{emissionarea
+				{radius 0.05 0.05}
+				{alpha0 0}
+				{alpha1 10}
+			}
+			{particleinit
+				{speed 2 0.75}
+				{lifetime 1}
+			}
+			{axisz}
+			{timetolive 0.1}
+			{totalparticles 0}
+			{particlesinblock 3}
+		}
+		{mover
+			{gravity
+				{value 0.065}
+			}
+			{damping 0.95}
+		}
+		{visualizer
+			{stage 
+				{## flags disablesoftedge }
+				{#+ sprite "$/dust/ground01"
+					{timer
+						{mode play }
+						{duration 2.5 0.5}
+					}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 120}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.125 0.025}
+							{pow 0.5}
+						}
+					}
+					{highlight 0xff8c8278}
+				}
+				{#+ sprite "$/dust/ground01"
+					{timer
+						{mode play }
+						{duration 2.5 0.5}
+					}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 120}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.125 0.025}
+							{pow 0.5}
+						}
+					}
+					{highlight 0xff3c3228}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview "dirt               "
+		{generator
+			{emissionarea
+				{radius 0.005 0.005}
+				{alpha0 0}
+				{alpha1 45}
+			}
+			{particleinit
+				{speed 3 1}
+				{lifetime 2.25 0.25}
+			}
+			{axisz}
+			{timetolive 18 2}
+			{totalparticles 0}
+			{particlesinblock 5}
+		}
+		{mover
+			{gravity
+				{value 0.1}
+			}
+			{damping 0.95}
+			{collisions
+				{terrain}
+				{restitution 0.35}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{#+ sprite "$/particles/dirt01"
+					{timer
+						{mode play }
+						{duration 0.75}
+					}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.5}
+						}
+					}
+					{scale 0.045 0.015}
+					{visibility 1}
+					{highlight 0xff786e64}
+				}
+				{#+ sprite "$/particles/dirt02"
+					{timer
+						{mode play }
+						{duration 0.75}
+					}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.5}
+						}
+					}
+					{scale 0.045 0.015}
+					{visibility 1}
+					{highlight 0xff786e64}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ decalview
+		{sprite "/texture/fx/dust/shellhole_bulet.mtl"
+			{preturn 180 180}
+			{scale 0.2 0.025}
+		}
+	}
+}

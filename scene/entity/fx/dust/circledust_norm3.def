@@ -1,0 +1,276 @@
+{fx
+	{#+ particleview shock
+		{generator
+			{totalparticles 2}
+			{emissionarea
+				{radius 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.35}
+			}
+			{particlesinblock 2}
+			{timetolive 0.01}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/dust_shockwave01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 2.25}
+							{pow 0.45}
+						}
+					}
+					{highlight 0xff968246}
+					{visibility 1
+						{npower
+							{min 0.15}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+				}
+				{flags ground disablesoftedge }
+			}
+		}
+		{notifyowner}
+	}
+	{##+ particleview dust_ground
+		{generator
+			{totalparticles 2}
+			{emissionarea
+				{radius 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 1.2}
+			}
+			{particlesinblock 2}
+			{timetolive 0.01}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/dust_cloud02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.75 0.05}
+							{pow 0.5}
+						}
+					}
+					{highlight 0xff9c9c7d}
+					{visibility 1
+						{npower
+							{min 0.5}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+				}
+				{flags ground }
+			}
+		}
+		{notifyowner}
+	}
+	{##+ particleview dust_ground02
+		{generator
+			{emissionarea
+				{radius 0.5 0.5}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 3.5}
+			}
+			{totalparticles 0}
+			{particlesinblock 2}
+			{timetolive 0.01}
+		}
+		{mover}
+		{visualizer
+			{stage 
+				{sprite "$/dust/dust_cloud02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0.2}
+							{max 0.7 0.1}
+							{pow 0.5}
+						}
+					}
+					{highlight 0xff7c7c5d}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.175 0.025}
+						}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 160}
+						}
+					}
+				}
+				{flags ground disablesoftedge }
+			}
+		}
+		{notifyowner}
+	}
+	{particleview dust
+		{generator
+			{particlesinblock 24}
+			{totalparticles 0}
+			{emissionarea
+				{radius 5 5}
+				{alpha0 84}
+				{alpha1 86}
+			}
+			{particleinit
+				{speed 3 3}
+				{lifetime 1.125 0.375}
+			}
+			{axisz}
+			{timetolive 0.01}
+		}
+		{offset 0 0 10}
+		{mover
+			{gravity
+				{value 0.015}
+			}
+			{damping 0.9}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/dust/dust_cloud02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.5 0.1}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.205 -0.005}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{highlight 0xff4a4a45}
+				}
+				{#+ sprite "$/dust/dust_cloud01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.5 0.1}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.175 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{highlight 0xff727263}
+				}
+				{sprite "$/dust/dust_cloud02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.5 0.1}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.175 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{highlight 0xff626262}
+				}
+				{sprite "$/dust/dust_cloud01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.5 0.1}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.175 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{highlight 0xff8a8a7a}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{sound "fortification/install/sandbag"}
+}

@@ -1,0 +1,47 @@
+{game_entity
+	{tag "pointer"}
+	{".pointer"}
+	{NoGetShadows}
+	{spriteview top
+		{NotifyOwner }
+		{sprite "/texture/fx/ico/spot"
+			{timer
+				{mode play loop }
+				{duration 1.5}
+			}
+			{scale 1
+				{peak
+					{min 0.2}
+					{max 0.25}
+				}
+			}
+			{visibility 1}
+		}
+		{layer debug}
+		{offset 0 0 50}
+	}
+	{##spriteview round
+		{NotifyOwner }
+		{sprite "/texture/fx/ico/attention_marker_ebm"
+			{timer
+				{mode play loop }
+				{duration 3}
+			}
+			{scale 1
+				{peak
+					{min 0.1}
+					{max 0.2}
+				}
+			}
+			{turn 1
+				{linear
+					{min 0}
+					{max 90}
+				}
+			}
+		}
+		{ground}
+		{layer debug}
+		{offset 0 0 5}
+	}	
+}

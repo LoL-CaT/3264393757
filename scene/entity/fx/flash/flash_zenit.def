@@ -1,0 +1,89 @@
+{fx
+	{#+ spriteview halo
+		{sprite "$/flash/halo01"
+			{timer
+				{mode play }
+				{duration 0.1}
+			}
+			{light 1
+				{npower
+					{min 0.25}
+					{max 0}
+					{pow 1}
+				}
+			}
+			{scale 1
+				{npower
+					{min 0.2}
+					{max 0.65}
+					{pow 0.5}
+				}
+			}
+			{highlight 0xffff9632}
+		}
+		{notifyowner}
+		{halo}
+		{autovisible}
+		{offset 0.15 0.15 0}
+	}
+	{#+ particleview sparks
+		{generator
+			{emissionarea
+				{radius 0.5 0.5}
+				{alpha0 2.5 2.5}
+				{alpha1 3 3}
+			}
+			{particleinit
+				{speed 5 3}
+				{lifetime 0.45 0.1}
+			}
+			{timetolive 0.025}
+			{totalparticles 0}
+			{particlesinblock 2}
+		}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value 0.025}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/fire/spark01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0.2 0.025}
+							{max 0.0075 0.0025}
+							{pow 0.3}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.1 0.025}
+							{max 0.025 0.005}
+							{pow 1}
+						}
+					}
+					{highlight 0xffffaf64}
+					{shifty 1
+						{peak
+							{min 0}
+							{max 5 5}
+						}
+					}
+					{shiftz 1
+						{peak
+							{min 0}
+							{max 5 5}
+						}
+					}
+				}
+				{flags trace }
+			}
+		}
+	}
+}

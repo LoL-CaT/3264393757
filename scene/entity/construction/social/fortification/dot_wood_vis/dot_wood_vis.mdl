@@ -1,0 +1,62 @@
+;Exported by	: KobaA
+;Date			: 02.04.2024 15:45:00
+;File			: d:\git\gem2-mdl-soldiers\models\building\dot\dot_wood.max
+{skeleton
+	{bone "dot_wood_build_vis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "dot_wood_vis_land"
+			{parameters "land;ground;align;"}
+			{poly "dot_wood_vis_land" {ground}{NoCastShadows}}
+			{bone "stairs"
+				{parameters "align;"}
+				{matrix34
+					0 	 -1 	 0
+					1 	 0 	 0
+					0 	 0 	 1
+					-4.8878 	 4.6428 	 0
+				}
+				{poly "stairs"}
+			}
+		}
+		{bone "dot_wood_vis"
+			{Position 23.9562 	 0.082 	 -4.7587}
+			{poly "dot_wood_vis"}
+			{bone "outer"
+				{matrix34
+					-1 	 0 	 0
+					0 	 -1 	 0
+					0 	 0 	 1
+					3.9958 	 0.3074 	 0
+				}
+				{poly "outer"}
+			}
+		}
+	}
+}
+{obstacle "obstacle01"
+	{obb2
+		{center 24.3756 -0.317383}
+		{extent 60.1399 52.7026}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{obstacle "obstacle02"
+	{obb2
+		{center -60.8974 -0.445618}
+		{extent 27.4412 19.491}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{"volumes"
+	{"bottom_floor"
+		{box 97.7777 89.9896 19.5821}
+		{bone "dot_wood_build_vis"}
+		{Position 25.1669 	 3.2031 	 -15.1976}
+	}
+}

@@ -1,0 +1,68 @@
+{fx
+	{particleview smoke
+		{generator
+			{emissionarea
+				{radius 1.5 1.5}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 5}
+			}
+			{particleinit
+				{speed 0.05 0.2}
+				{lifetime 1.75 0.25}
+			}
+		}
+		{mover
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{visibility 1
+						{npower
+							{min 0.15 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xffaeaeb8}
+					{scaley 1
+						{npower
+							{min 0.085 0.035}
+							{max 0.1375 -0.0625}
+							{pow 1}
+						}
+					}
+					{scalex 1
+						{npower
+							{min 0.085 0.035}
+							{max 0.1375 -0.0625}
+							{pow 1}
+						}
+					}
+				}
+				{flags trace}
+			}
+		}
+	}
+	{#+ spriteview halo
+		{sprite "/texture/fx/flash/halo02"
+			{timer
+				{mode play loop }
+				{duration 0.15 -0.05}
+			}
+			{scale 1
+				{linear
+					{min 0.18}
+					{max 0.25}
+				}
+			}
+			{visibility 0.75}
+		}
+	}
+}

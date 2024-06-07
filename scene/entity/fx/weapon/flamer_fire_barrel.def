@@ -1,0 +1,62 @@
+{fx
+	{particleview fire
+		{generator
+			{emissionarea
+				{radius 0.005 0.005}
+				{alpha0 0}
+				{alpha1 5}
+				{speed 1}
+			}
+			{particleinit
+				{speed 0.4 0.05}
+				{lifetime 0.2375 0.0375}
+			}
+		}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value -0.01}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/fire/fire01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{light 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 2.5}
+						}
+					}
+					{scalex 1
+						{peak
+							{min 0.05}
+							{max 0.0275 0.0025}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.01125 0.00125}
+							{pow 0.75}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffff9632}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 3}
+						}
+					}
+				}
+				{flags trace }
+			}
+		}
+	}
+}

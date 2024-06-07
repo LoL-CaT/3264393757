@@ -1,0 +1,114 @@
+{fx
+	{##+ particleview drops
+		{generator
+			{totalparticles 10}
+			{emissionarea
+				{radius 2 2}
+				{alpha0 0}
+				{alpha1 5 5}
+				{speed 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.2 0.05}
+			}
+		}
+		{offset 0 0 7}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.7}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.05}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/flash/drops"
+					{scale 1
+						{linear
+							{min 0.3 0.1}
+							{max 0.5 0.1}
+						}
+					}
+					{turn 1
+						{linear
+							{min 10 10}
+							{max 360 -180}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffffffcc}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{particleview wash
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.25}
+			}
+			{particleinit
+				{speed 2.375 0.375}
+				{lifetime 1.2 0.2}
+			}
+			{autoturn}
+		}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value 0.25}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/water/water_wash01"
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffc8ffe1}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.6}
+						}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 2.2 0.2}
+							{pow 0.8}
+						}
+					}
+					{preturn 270 5}
+				}
+				{flags ground disablesoftedge}
+			}
+		}
+		{notifyowner}
+		{offset 0 0 0}
+	}
+}

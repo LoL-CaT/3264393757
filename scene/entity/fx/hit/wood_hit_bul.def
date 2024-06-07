@@ -1,0 +1,84 @@
+{fx
+	{sound "hit/small/wood"}
+	{particleview wood
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 75}
+			}
+			{particleinit
+				{speed 3 2}
+				{lifetime 1.75 0.25}
+			}
+			{timetolive 0.1}
+			{totalparticles 0}
+			{particlesinblock 14}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.1}
+			}
+			{nodependonwind}
+			{collisions
+				{terrain}
+				{restitution 0.35}
+			}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge}
+				{#+ sprite "$/particles/wood_plank01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1080}
+							{pow 0.2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{scalex 0.035 0.015}
+					{scaley 0.035 0.015}
+				}
+				{#+ sprite "$/particles/wood_plank02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1080}
+							{pow 0.2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{scalex 0.035 0.015}
+					{scaley 0.035 0.015}
+				}
+				{#+ sprite "$/particles/wood_plank03"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1080}
+							{pow 0.2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{scalex 0.035 0.015}
+					{scaley 0.035 0.015}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

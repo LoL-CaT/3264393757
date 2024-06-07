@@ -1,0 +1,142 @@
+{fx
+	{storeable 1}
+	{particleview smoke
+		{generator
+			{emissionarea
+				{radius 325 225}
+				{alpha0 60 60}
+				{alpha1 0}
+				{speed 0.1}
+				{distributionlaw disk}
+				{## psi 90}
+				{theta 0}
+			}
+			{particleinit
+				{speed 2.5 12.5}
+				{lifetime 22.5 2.5}
+			}
+			{## axisz}
+		}
+		{mover
+			{damping 0.95}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "/texture/fx/smoke/smoke_white_small01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffcbcbcb}
+					{visibility 0.1 0.025
+						{peak
+							{min 0}
+							{max 0.04 0.01}
+						}
+					}
+					{preturn 180 180}
+					{scale 2.25 0.25
+						{npower
+							{min 3 0.75}
+							{max 3.75 0.75}
+							{pow 1}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 270}
+							{pow 1}
+						}
+					}
+				}
+				{#+ sprite "/texture/fx/smoke/smoke_white01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffd5d5d5}
+					{visibility 0.1 0.025
+						{peak
+							{min 0}
+							{max 0.04 0.01}
+						}
+					}
+					{preturn 180 180}
+					{scale 2.25 0.25
+						{npower
+							{min 3 0.75}
+							{max 3.75 0.75}
+							{pow 1}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 270}
+							{pow 1}
+						}
+					}
+				}
+				{#+ sprite "/texture/fx/smoke/smoke_white02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffc8c8c8}
+					{visibility 0.1 0.025
+						{peak
+							{min 0}
+							{max 0.04 0.01}
+						}
+					}
+					{preturn 180 180}
+					{scale 2.25 0.25
+						{npower
+							{min 3 0.75}
+							{max 3.75 0.75}
+							{pow 1}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 270}
+							{pow 1}
+						}
+					}
+				}
+				{##+ sprite "/texture/fx/flash/flash_muzzle05"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffc8c8c8}
+					{visibility 0.1 0.025
+						{peak
+							{min 0}
+							{max 0.05 0.01}
+						}
+					}
+					{preturn 180 180}
+					{scale 2.25 0.25
+						{npower
+							{min 1}
+							{max 1}
+							{pow 1}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 270}
+							{pow 1}
+						}
+					}
+				}
+			}
+		}
+		{offset 0 0 25}
+	}
+}

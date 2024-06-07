@@ -1,0 +1,143 @@
+{fx
+	{sound "hit/small/ground"}
+	{#+ spriteview mark
+		{sprite "$/flash/sledbulet"
+			{visibility 1
+				{linear
+					{min 1}
+					{max 0}
+				}
+			}
+			{timer
+				{mode play }
+				{duration 2}
+			}
+			{scale 0.4}
+		}
+		{ground}
+		{layer grounddynamic}
+		{notifyowner}
+		{autovisible}
+	}
+	{#+ particleview dust
+		{#+ generator
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 3}
+			}
+			{particleinit
+				{speed 2.5 2.5}
+				{lifetime 3}
+			}
+			{axisz}
+			{timetolive 0.1}
+			{totalparticles 10}
+			{particlesinblock 10}
+		}
+		{mover
+			{gravity
+				{value 0.05}
+			}
+			{damping 0.71}
+			{collisions
+				{terrain}
+				{restitution 0.4}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/ground_exp3"
+					{timer
+						{mode play }
+						{duration 2.5 0.5}
+					}
+					{preturn 20 20}
+					{turn 1
+						{linear
+							{min 90 20}
+							{max 5 10}
+						}
+					}
+					{scale 1
+						{linear
+							{min 0.075 0.025}
+							{max 0.35 0.05}
+						}
+					}
+					{visibility 1
+						{linear
+							{min 0.7}
+							{max 0}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{particleview dirt
+		{generator
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 20}
+			}
+			{particleinit
+				{speed 3 2}
+				{lifetime 3}
+			}
+			{axisz}
+			{timetolive 0.1}
+			{totalparticles 10}
+			{particlesinblock 10}
+		}
+		{mover
+			{gravity
+				{value 0.1}
+			}
+			{damping 0.9}
+			{collisions
+				{terrain}
+				{restitution 0.9}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/particle/grunt2"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 90}
+					{turn 1
+						{linear
+							{min 90 20}
+							{max 5 10}
+						}
+					}
+					{scale 0.075 0.025}
+					{visibility 1}
+				}
+				{sprite "$/particle/rock_4"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 90}
+					{turn 1
+						{linear
+							{min 90 20}
+							{max 5 10}
+						}
+					}
+					{scale 0.04 0.01}
+					{visibility 1}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

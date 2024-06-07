@@ -1,0 +1,38 @@
+{actor
+	{collider "construction"}
+	{obstacleID "construction"}
+	{mass 300}
+	(define "armor_construction"
+		{armor
+			{health -1}
+			{setting "body"
+				{threshold {pierce {calibre %calibre}}}
+				{ray_cast_thickness}
+				{volumes "body*"}
+			}
+			{setting "roof"
+				{threshold {pierce {calibre %calibre}}}
+				{ray_cast_thickness}
+				{volumes "roof*"}
+			}
+		}
+	)
+	(define "armor_light"
+		("armor_construction" calibre(5))   ; rifles+
+	)
+
+	{props "slow_on_crush"}
+
+	{props "cornered" "wood" "construction" "small" "parts" "burning" "break_on_burn" "no_destroyed_stamp"}
+	{extension "gold_box.mdl"}
+	{volume "switch"
+		{thickness 5}
+		{tags "body" "fire" "door_lock"}
+	}
+	{##Volume "body"
+		{thickness 5}
+		{tags "body" "fire"}
+	}
+	("armor_light" args 0.7)
+	{lodclass "decor_medium"}
+}

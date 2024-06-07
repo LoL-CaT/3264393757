@@ -1,0 +1,81 @@
+{actor
+;	(include "/properties/construction.inc")
+	{skeleton
+		{bone "socket0"
+			{Matrix34
+				-1	0	0
+				0	1	0
+				0	0	1
+				-42	0	0
+			}
+			{visibility 0}
+		}
+		{bone "socket1"
+			{Matrix34
+				1	0	0
+				0	1	0
+				0	0	1
+				42	0	0
+			}
+			{visibility 0}
+		}
+		{bone "socket3"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				0 	 32 	 0
+			}
+			{visibility 0}
+		}
+		{bone "socket2"
+			{matrix34
+				0 	 -1 	 0
+				1 	 0 	 0
+				0 	 0 	 1
+				0 	 -52 	 0
+			}
+			{visibility 0}
+		}
+	}
+	{extender "fortification"
+		{tag "dot_small"}
+		{path_profile "dot_small"}
+		{interval_min 4} ; do not install closest than <interval_min> to others fortifications
+		{install_time 5}	                        	; время установки в секундах
+		{install_pose "normal"}	
+		{socket "socket0"}
+		{socket "socket1"}
+		{socket "socket2"}
+		{socket "socket3"}
+	}
+
+;	{props  "sand" "parts" "construction" "small" "no_destroyed_stamp" "fortification" "camo2" "climb"}
+	{props "remove_grass_4"}
+
+	(include "/properties/selection/vehicle.inc" scale(2.4))
+	{extension "dot_small_build.mdl"}
+	{placer}
+	{extender "structure"
+		{place "dot_small_wall_point" "dot_small_wall"}
+		;{place "dot_small_door_point" "dot_small_door"}
+	}
+	{extender "assault"
+		{holes
+			{place "dot_small_wall_point"}
+		}
+	}
+	{extender "house_fortification"
+		{place "dot_small_wall_point" "dot_small_wall" "fort_sandbags_002" "fort_wall_01"}
+	}
+	(include "/properties/house.inc")
+	{"volumes"
+		{"bottom_floor"
+			{able clear {touch 1}}
+		}
+	}
+	{extender "land_patch"
+		{cell_size 4}
+	}
+	{obstacleid "unbreakable"}
+}

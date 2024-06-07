@@ -1,0 +1,59 @@
+{game_entity
+	(include "/properties/building.inc")
+	{Extension "house_001_g2_piece_009.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+	("armor_stone_house")
+	{placer
+		{place "1" {attach  snipe_cover} 		{linkbone "attach1"}}
+	}
+	{boarder}
+	{extender "structure_bone"	
+		{hold "008"}
+		{hold "021" "033"}
+		{hold "022" "034"}
+	}
+	{volume "floor_voll_006"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "floor_voll_014"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "hole_vol_012"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof_vol_001"
+		{Tags "roof" "fire"}
+		{thickness 10}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "vol_020"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "vol_043"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{holed}{Obstacle 0}}
+	}
+	{volume "vol_044"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "vol_045"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "window1"
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{bone "window1_x" {visibility 0}}
+}

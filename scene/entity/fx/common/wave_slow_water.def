@@ -1,0 +1,49 @@
+{fx
+	{particleview circle01
+		{generator
+			{emissionarea
+				{radius 0.005 0.005}
+				{alpha0 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 4 -2}
+			}
+			{timetolive 0.01}
+			{axisz}
+			{totalparticles 1}
+			{particlesinblock 1}
+		}
+		{offset 0 0 0.1}
+		{mover
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/water/water_circle01"
+					{scale 1
+						{npower
+							{min 0.025 0.025}
+							{max 0.28 0.095}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.4 -0.2}
+							{max 0}
+							{pow 1.25}
+						}
+					}
+					{highlight 0xffc8ffe1}
+					{preturn 180 180}
+				}
+				{flags ground }
+			}
+		}
+	}
+}

@@ -1,0 +1,139 @@
+;Exported by	: KobaA
+;Date			: 02.03.2023 14:14:07
+;File			: D:\git\gem2-mdl-soldiers\models\building\hangar_wood\HW2.max
+{skeleton
+	{bone "hangar_piece_04"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{poly "hangar_piece_04"}
+		{bone "exterior"
+			{Position 2.7485 	 -7.0809 	 60.328}
+			{poly "exterior"}
+		}
+		{bone "land"
+			{parameters "land;ground;"}
+			{Position 63.4979 	 7.5923 	 -23.2722}
+			{poly "land" {ground}}
+		}
+		{bone "attach1"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				-21.6305 	 14.1832 	 -16.0647
+			}
+		}
+		{bone "attach2"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				32.1536 	 14.1832 	 -16.0647
+			}
+		}
+	}
+}
+{obstacle "body1"
+	{obb2
+		{center 0.259026 -24.3526}
+		{extent 75.3887 2.95285}
+		{axis 1 0}
+	}
+}
+{obstacle "body2"
+	{obb2
+		{center -61.6531 -40.7157}
+		{extent 5.2937 13.9041}
+		{axis 1 0}
+	}
+}
+{obstacle "body3"
+	{obb2
+		{center 63.4613 -39.0016}
+		{extent 5.2937 15.6183}
+		{axis 1 0}
+	}
+}
+{area "interior"
+	{obb2
+		{center -1.43948 2.52055}
+		{extent 84.0563 26.9946}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body1"
+		{box 150.777 5.90551 84.0382}
+		{bone "hangar_piece_04"}
+		{matrix34
+			-1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+			0.259 	 24.3526 	 12.314
+		}
+	}
+	{"body2"
+		{polyhedron}
+		{bone "hangar_piece_04"}
+		{matrix34
+			0 	 -1 	 0
+			1 	 0 	 0
+			0 	 0 	 1
+			-61.6531 	 30.198 	 -50.932
+		}
+	}
+	{"body3"
+		{polyhedron}
+		{bone "hangar_piece_04"}
+		{matrix34
+			0 	 -1 	 0
+			1 	 0 	 0
+			0 	 0 	 1
+			63.4613 	 30.198 	 -50.932
+		}
+	}
+	{"hole1"
+		{box 37.7077 10.3581 15.1066}
+		{bone "hangar_piece_04"}
+		{Position 31.8698 	 23.9893 	 16.4332}
+	}
+	{"hole2"
+		{box 37.7077 10.3581 15.1066}
+		{bone "hangar_piece_04"}
+		{Position -29.6696 	 23.9893 	 16.4332}
+	}
+	{"roof1"
+		{box 136.99 1.90945 51.7215}
+		{bone "exterior"}
+		{matrix34
+			-1 	 0 	 0
+			0 	 0.1392 	 0.9903
+			0 	 0.9903 	 -0.1392
+			-3.9173 	 16.1293 	 -1.9738
+		}
+	}
+	{"roof2"
+		{box 65.755 1.90945 13.9648}
+		{bone "exterior"}
+		{matrix34
+			-1 	 0 	 0
+			0 	 0.1392 	 0.9903
+			0 	 0.9903 	 -0.1392
+			37.409 	 -15.713 	 2.5014
+		}
+	}
+	{"target1"
+		{box 39.3942 0.91748 19.7765}
+		{bone "hangar_piece_04"}
+		{Position 31.7215 	 24.0658 	 16.9961}
+	}
+	{"target2"
+		{box 39.3942 0.91748 19.7765}
+		{bone "hangar_piece_04"}
+		{Position -29.7352 	 24.0658 	 16.9961}
+	}
+}

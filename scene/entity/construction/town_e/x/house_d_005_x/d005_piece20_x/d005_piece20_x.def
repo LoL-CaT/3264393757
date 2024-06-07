@@ -1,0 +1,48 @@
+{game_entity
+	(include "/properties/building.inc")
+    {extension "d005_piece20_x.mdl"}
+	{bone "debris_land_001" {parameters "Ground;Land;Align;"}}
+	{bone "debris_land_002" {parameters "Ground;Land;Align;"}}
+	{bone "stones_001" {parameters "Align;"}}
+	{placer
+		 {place "3" {attach  snipe_cover} 		{linkbone "attach3"}}
+		 {place "2" {attach  snipe_cover} 		{linkbone "attach2"}}
+    }
+		{boarder}
+	("land_patch_house")
+	{volume "piece01"
+	}
+	{volume "piece02"
+	}
+	{volume "piece03"
+	}
+	{volume "target_vol_001"
+		{Tags "target"}
+		{able clear {bullet}}
+	}
+	{volume "target_vol_002"
+		{Tags "target"}
+		{able clear {bullet}}
+	}
+	{volume "vol_01"
+		{Tags "body"}
+		{thickness 50}
+		{able {Obstacle 0}}
+	}
+	{volume "vol_02"
+		{Tags "body"}
+		{thickness 50}
+		{able {Obstacle 0}}
+	}
+	{volume "vol_03"
+		{Tags "body"}
+		{thickness 50}
+		{able {Obstacle 0}}
+	}
+	{volume "vol_04"
+		{Tags "body"}
+		{thickness 50}
+		{able {Obstacle 0}}
+	}
+	("armor_medium")
+}

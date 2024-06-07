@@ -1,0 +1,18 @@
+{game_entity
+(include "/properties/construction.inc")
+	{extension "fence_h_002.mdl"}
+	{props "concrete" "construction" "parts" "small" "no_destroyed_stamp" "climb"}
+	{volume "wall_br_003"
+		{Tags "body"}
+		{thickness 10}
+	}
+	{volume "wall_br_003a"
+		{Tags "body"}
+		{thickness 10}
+		{able {obstacle 0}}
+		{able {visible 0}{touch}}
+	}
+	("add_climb_bones" args climb1)
+	("add_climb_bones" args climb2)
+	("armor_fence_concrete")
+}

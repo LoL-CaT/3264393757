@@ -1,0 +1,83 @@
+{fx
+	{constrain ground}
+	{sound "weapon/shot/flame/fire"}
+	{#+ particleview flames
+		{generator
+			{totalparticles 10}
+			{emissionarea
+				{radius 25 15}
+				{alpha0 0}
+				{alpha1 20}
+				{#+ distributionlaw sphere}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 1.5 0.5}
+			}
+			{timetolive 0.5}
+		}
+		{mover
+			{damping 0.9975}
+			{gravity
+				{value -0.001}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.2}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/additional/fire/add/flame_hi"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.1
+						{linear
+							{min 0.05 0.01}
+							{max 0.25 0.1}
+						}
+					}
+					{light 1
+						{linear
+							{min 2}
+							{max 0}
+						}
+					}					
+				}			
+				{sprite "$/explosion/flame_hi"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{light 1
+						{peak
+							{min 0}
+							{max 0.2}
+						}
+					}
+					{scalex 0.025 0.01}
+					{scaley 0.035 0.01}
+				}			
+				{sprite "$/explosion/flare"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{light 1
+						{peak
+							{min 0}
+							{max 0.2}
+						}
+					}
+					{scale 0.3 0.1}					
+				}			
+			}
+		}
+		{ground}
+		{layer groundshadow}
+		{notifyowner}
+	}	
+}

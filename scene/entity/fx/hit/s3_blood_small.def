@@ -1,0 +1,59 @@
+{fx
+	{#+ particleview splash
+		{generator
+			{totalparticles 10}
+			{particlesinblock 10}
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 0.5 0.15}
+			}
+			{particleinit
+				{speed 1 5}
+				{lifetime 0.15 0.05}
+			}
+			{timetolive 0.1}
+		}
+		{## mover
+			{gravity
+				{value 0.25}
+			}
+			{damping 0.81}
+			{## collisions
+				{terrain}
+				{restitution 0.4}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/particle/bloodsplash01"
+					{scale 1
+						{## linear
+							{min 0.35 0.05}
+							{max 0.5 0.15}
+						}
+						{npower
+							{min 0.015 -0.015}
+							{max 0.15 0.05}
+							{pow 0.5}
+						}
+					}
+					{visibility 1
+						{linear
+							{min 1}
+							{max 0}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 270}
+				}
+				{flags trace }
+			}
+		}
+		{notifyowner}
+	}
+}

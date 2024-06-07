@@ -1,0 +1,267 @@
+{fx
+	{sound "hit/small/water/01"}
+	{#+ particleview circles
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.25}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 2.25 0.25}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+		}
+		{mover
+			{gravity
+				{value 1}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/water/water_wash01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.2 0.025}
+							{pow 0.4}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff382f00}
+					{visibility 1
+						{npower
+							{min 0.75 0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+				}
+				{sprite "$/water/water_wash01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.2 0.025}
+							{pow 0.4}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff387f66}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+				}
+				{flags ground }
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview drops2
+		{generator
+			{emissionarea
+				{radius 0.375 0.125}
+				{alpha0 15}
+				{alpha1 45}
+				{speed 1}
+			}
+			{particleinit
+				{speed 0.875 0.625}
+				{lifetime 0.75 0.25}
+			}
+			{totalparticles 0}
+			{particlesinblock 16}
+			{axisz}
+		}
+		{mover
+			{gravity
+				{value 0.05}
+			}
+			{nodependonwind}
+			{damping 0.985}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge}
+				{#+ sprite "$/particles/water_drop01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.02 0.005}
+							{max 0}
+							{pow 3}
+						}
+					}
+					{highlight 0xff120f05}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/water_drop01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.02 0.005}
+							{max 0}
+							{pow 3}
+						}
+					}
+					{highlight 0xff242200}
+					{preturn 180 180}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview V_splash
+		{generator
+			{emissionarea
+				{radius 0.5 0.25}
+				{alpha0 15}
+				{alpha1 45}
+				{speed 0.75}
+			}
+			{particleinit
+				{speed 0.1}
+				{lifetime 0.45 0.15}
+			}
+			{totalparticles 0}
+			{particlesinblock 8}
+			{axisz}
+		}
+		{mover
+			{damping 0.875}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/water/water_splash01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.4 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{turn 90}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.13 0.01}
+							{pow 1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.13 0.01}
+							{pow 1}
+						}
+					}
+					{highlight 0xff121205}
+				}
+				{sprite "$/water/water_wash01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.7 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{turn 90}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.07 0.01}
+							{pow 1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.375 0.025}
+							{pow 1}
+						}
+					}
+					{highlight 0xff3c3400}
+				}
+				{#+ sprite "$/water/water_splash01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.7 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{turn 90}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.13 0.01}
+							{pow 1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.13 0.01}
+							{pow 1}
+						}
+					}
+					{highlight 0xff423f16}
+				}
+				{flags trace }
+			}
+		}
+		{notifyowner}
+	}
+}

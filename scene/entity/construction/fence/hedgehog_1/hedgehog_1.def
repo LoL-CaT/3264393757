@@ -1,0 +1,66 @@
+{game_entity
+	(include "/properties/construction.inc")
+	{tag "hedgehog"}
+	{extension "hedgehog_1.mdl"}
+	{props "big" "steel" "parts" "construction" "no_destroyed_stamp" "disable_area" "antitank_hedgehog" "fortification"}
+	{obstacleID "unbreakable"}
+	("armor_hedgehog")
+	("armor_use_volume_thickness")
+	{collider "tank.heavy"}
+
+	{volume "body01"
+		{Tags "body"}
+		{thickness 1}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 1}
+		{able {obstacle 1}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 1}
+	}
+	{volume "body04"
+		{Tags "body"}
+		{thickness 1}
+		{able {obstacle 1}}
+	}
+	{volume "body05"
+		{Tags "body"}
+		{thickness 1}
+	}
+	{volume "body06"
+		{Tags "body"}
+		{thickness 1}
+		{able {obstacle 1}}
+	}
+	{volume "body07"
+		{Tags "body"}
+		{thickness 1}
+	}
+	{volume "body08"
+		{Tags "body"}
+		{thickness 1}
+	}
+	{volume "body09"
+		{Tags "body"}
+		{thickness 1}
+	}
+
+	{lodclass "decor_small"}
+	{extender "fortification"
+		{tag "hedgehog"}
+		{path_profile "wire"}
+		{radius_min 1} 					; минимально возможный радиус скругления траншеи
+		{able_replacing}   				; сегмент может быть заменен (см. delete_connected) 
+		{socket "socket0" {accept "hedgehog_1"} {angle 90}}
+		{socket "socket1" {accept "hedgehog_1"}	{angle 90}}
+		{socket "socket2" {accept "hedgehog_1"} {angle 90}}
+		{socket "socket3" {accept "hedgehog_1"}	{angle 90}}
+		{install_time 5.625}	                        	; время установки в секундах
+		{install_pose "normal"}	
+;		("crush")
+	}
+
+}

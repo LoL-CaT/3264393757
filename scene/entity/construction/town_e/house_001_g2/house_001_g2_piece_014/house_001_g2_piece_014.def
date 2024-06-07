@@ -1,0 +1,50 @@
+{game_entity
+	(include "/properties/building.inc")
+	{Extension "house_001_g2_piece_014.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+	{extender "structure_bone"	
+;		{hold "031" "032"}
+		{hold "007" "049"}
+		{hold "007" "032"}
+		{hold "049" "031"}
+	}
+	{volume "floor_voll_013"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "hole_vol_008"
+		{able clear {hole}}
+	}
+	{volume "roof_vol_008"
+		{Tags "roof" "fire"}
+		{thickness 10}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof_vol_009"
+		{Tags "roof" "fire"}
+		{thickness 10}
+		{able {visible 0}{holed}{Obstacle 0}}
+	}
+	{volume "roof_vol_010"
+		{Tags "roof" "fire"}
+		{thickness 10}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "vol_061"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{holed}{Obstacle 0}}
+	}
+	{volume "vol_062"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{holed}{Obstacle 0}}
+	}
+	{volume "window1"
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{bone "window1_x" {visibility 0}}
+	("armor_stone_house")
+}

@@ -1,0 +1,56 @@
+;Exported by	: KobaA
+;Date			: 12.09.2023 16:06:50
+;File			: D:\git\gem2-mdl-soldiers\models\flora\pine_fir\pine_needles_2_b_test_anim.max
+{skeleton
+	{bone "basis_pine_01_g2"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "pine_01_g2"
+			{poly "pine_01_g2" {lod 0}}
+			{poly "pine_01_g2_lod1" {lod 1}}
+			{poly "pine_01_g2_lod2" {lod 2}}
+			{poly "pine_01_g2_lod3" {lod 3 {last}}}
+		}
+		{bone "rootx"
+			{matrix34
+				-0.6491 	 0.7503 	 0.1251
+				-0.0806 	 0.0957 	 -0.9921
+				-0.7564 	 -0.6541 	 -0.0016
+				-0.2141 	 0.1693 	 -7.657
+			}
+			{poly "rootx"}
+		}
+	}
+}
+{obstacle "bole"
+	{obb2
+		{center 0.732006 1.08039}
+		{extent 4.43608 3.2636}
+		{axis 0.390731 0.920505}
+	}
+}
+{"volumes"
+	{"bole"
+		{cylinder 3.26423 139.416}
+		{bone "basis_pine_01_g2"}
+		{matrix34
+			1 	 -0.0002 	 -0.0067
+			0.0004 	 0.9999 	 0.0158
+			0.0067 	 -0.0158 	 0.9999
+			0.732 	 -1.0804 	 69.698
+		}
+	}
+	{"crown"
+		{cylinder 16.3104 112.311}
+		{bone "basis_pine_01_g2"}
+		{matrix34
+			0.9999 	 -0.0007 	 -0.0109
+			0.0011 	 0.9993 	 0.0369
+			0.0109 	 -0.0369 	 0.9993
+			0.8775 	 -2.4902 	 93.414
+		}
+	}
+}

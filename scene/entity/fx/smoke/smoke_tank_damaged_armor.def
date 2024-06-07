@@ -1,0 +1,118 @@
+{fx
+	{#+ particleview low
+		{generator
+			{emissionarea
+				{radius 0.5 0.5}
+				{alpha0 2.5 2.5}
+				{alpha1 5}
+				{speed 0.1}
+			}
+			{particleinit
+				{speed 0.325 0.025}
+				{lifetime 1.75 0.25}
+			}
+			{## axisz}
+			{timetolive 8}
+		}
+		{## offset 0 0 0}
+		{mover
+			{gravity
+				{value -0.001}
+			}
+			{nodependonwind}
+			{damping 0.99}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_liquid1"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 1}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.6 0.1}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff637b85}
+					{scale 1
+						{npower
+							{min 0.02}
+							{max 0.025 0.005}
+							{pow 1}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+		{## delay 4.8}
+		{delay 1.5}
+	}
+	{#+ particleview big
+		{#+ generator
+			{emissionarea
+				{radius 0.5 0.5}
+				{alpha0 2.5 2.5}
+				{alpha1 5}
+				{speed 0.5}
+			}
+			{particleinit
+				{speed 0.35 0.05}
+				{lifetime 2.1 0.1}
+			}
+			{## axisz}
+			{timetolive 10}
+		}
+		{mover
+			{gravity
+				{value -0.003}
+			}
+			{nodependonwind}
+			{damping 0.992}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_round_low1"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 50}
+							{pow 1}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.15 0.05}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff828282}
+					{scale 1
+						{npower
+							{min 0.02}
+							{max 0.036 0.004}
+							{pow 1}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+		{delay 1.5}
+	}
+}

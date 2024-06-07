@@ -1,0 +1,29 @@
+{game_entity
+	(include "/properties/railway_part.inc")
+	{Extension "railway_switch_001.mdl"}
+	{props "steel" "railway_switch"}
+;	("armor_disable_damage_acc")
+	{Volume "body"
+		{able clear {blast} {touch}}
+	}
+	{Volume "body1"
+		{able clear {blast} {touch}}
+	}
+	{Extender "land_patch"
+		{TerrainType "road" "bridge"}	
+		{AlignEnabled 1}
+		{AlignStacked 0}
+		{AlignVolumes 1}
+	}	
+	{extender "railway"
+		{LinkPoint -122.518 	 8.1621}
+		{LinkPoint 0 0}
+		{LinkPoint 122.465 	 -41.906}
+		{LinkPoint 122.574 	 8.186}
+		
+
+		{path 0 3}
+		{path 0 1 2}
+	}
+	{obstacleID "stuff"}
+}

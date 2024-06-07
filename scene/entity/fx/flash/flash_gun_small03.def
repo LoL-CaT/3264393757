@@ -1,0 +1,308 @@
+{fx
+	{lightview
+		{type point}
+		{animator
+			{scale 1}
+			{visibility 1
+				{npower
+					{min 0.6}
+					{max 0}
+					{pow 1}
+				}
+			}
+			{highlight 0xffffff8c}
+			{timer
+				{duration 0.1}
+			}
+		}
+		{radius 45}
+		{effectonground}
+		{intensity 40}
+	}
+	{#+ particleview muzzle_forward
+		{generator
+			{emissionarea
+				{radius 0}
+			}
+			{particleinit
+				{speed 0.01}
+				{lifetime 0.065}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+			{timetolive 0}
+		}
+		{mover
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/flash/flash_muzzle01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.04 0.01}
+							{pow 0.3}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.0375 0.0125}
+							{pow 0.15}
+						}
+					}
+					{highlight 0xffffe1af}
+					{light 0.35}
+				}
+				{#+ sprite "/texture/fx/flash/flash_muzzle02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.03 0.01}
+							{pow 0.3}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.045 0.015}
+							{pow 0.15}
+						}
+					}
+					{highlight 0xffffe1af}
+					{light 0.35}
+				}
+				{flags trace }
+			}
+		}
+	}
+	{#+ particleview muzzle_round
+		{generator
+			{emissionarea
+				{radius 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.065}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+			{timetolive 0}
+		}
+		{mover
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{#+ sprite "/texture/fx/flash/flash_muzzle03"
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffffe1af}
+					{preturn 0}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.055 0.015}
+							{pow 0.35}
+						}
+					}
+				}
+				{#+ sprite "/texture/fx/flash/flash_muzzle03"
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffffe1af}
+					{preturn 90}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.055 0.015}
+							{pow 0.35}
+						}
+					}
+				}
+				{#+ sprite "/texture/fx/flash/flash_muzzle03"
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffffe1af}
+					{preturn 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.055 0.015}
+							{pow 0.35}
+						}
+					}
+				}
+				{#+ sprite "/texture/fx/flash/flash_muzzle03"
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffffe1af}
+					{preturn 270}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.055 0.015}
+							{pow 0.35}
+						}
+					}
+				}
+			}
+		}
+	}
+	{#+ spriteview halo
+		{sprite "$/flash/halo01"
+			{timer
+				{mode play }
+				{duration 0.1}
+			}
+			{light 1
+				{npower
+					{min 0.3}
+					{max 0}
+					{pow 2}
+				}
+			}
+			{scale 1
+				{npower
+					{min 0}
+					{max 0.12 0.02}
+					{pow 0.25}
+				}
+			}
+			{highlight 0xffffaf32}
+		}
+		{notifyowner}
+		{halo}
+		{autovisible}
+		{offset 0.15 0.15 0}
+	}
+	{#+ spriteview halo_small
+		{sprite "$/flash/halo01"
+			{timer
+				{mode play }
+				{duration 0.1}
+			}
+			{light 1
+				{npower
+					{min 0.6}
+					{max 0}
+					{pow 3}
+				}
+			}
+			{scale 1
+				{npower
+					{min 0}
+					{max 0.045 0.015}
+					{pow 0.25}
+				}
+			}
+			{highlight 0xffffaf32}
+		}
+		{notifyowner}
+		{halo}
+		{autovisible}
+		{offset 0.15 0.15 0}
+	}
+	{#+ particleview smoke
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 10}
+			}
+			{particleinit
+				{speed 0.75 0.5}
+				{lifetime 0.45 0.15}
+			}
+			{totalparticles 0}
+			{particlesinblock 2}
+			{timetolive 0}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value -0.01}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/smoke/smoke_white_small01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.1 0.025}
+							{max 0}
+							{pow 1.25}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.125 0.025}
+							{pow 0.5 0.1}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 120}
+							{pow 0.8}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xff969baa}
+				}
+				{#+ sprite "/texture/fx/smoke/smoke_white01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.1 0.025}
+							{max 0}
+							{pow 1.25}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.125 0.025}
+							{pow 0.5 0.1}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 120}
+							{pow 0.8}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xff6e7082}
+				}
+			}
+		}
+	}
+}

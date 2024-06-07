@@ -1,0 +1,25 @@
+{game_entity
+	(include "/properties/construction.inc")
+	{extension "sandbag5.mdl"}
+	(include "/properties/sandbag_climb.inc" name(sandbag5))
+	{props  "sand" "parts" "construction" "small" "no_destroyed_stamp" "fortification" "camo2"}
+
+	("armor_sandbag")
+
+	{Extender "land_patch"
+		{updateentities 0}
+	}
+
+	{NoGroupMesh 1}
+
+	{volume "body01"
+		{Tags "body" "climb"}
+		{thickness 40}
+		{able {visible 1} {touch 1}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 40}
+		{able {visible 1}}
+	}
+}

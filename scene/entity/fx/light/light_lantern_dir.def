@@ -1,0 +1,132 @@
+{fx
+	{lightview
+		{animator
+			{timer
+				{mode play loop pingpong}
+				{duration 3.125 0.125}
+			}
+			{visibility 1
+				{peak
+					{min 0.6}
+					{max 0.75}
+				}
+			}
+		}
+		{radius 210}
+		{intensity 120}
+		{compression 150}
+		{type spot}
+		{phi 130}
+	}
+	{#+ particleview flies
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 360}
+				{speed 0.25}
+			}
+			{particleinit
+				{speed 0 0.5}
+				{lifetime 1.2 0.2}
+			}
+			{axisz}
+		}
+		{offset 0 0 -5}
+		{mover
+			{gravity
+				{value 0}
+			}
+			{damping 0.95}
+			{collisions
+				{terrain}
+				{restitution 0.4}
+			}
+			{nodependonwind}
+		}
+		{notifyowner}
+		{visualizer
+			{stage 
+				{sprite "$/particles/firefly01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.035 0.01}
+					{light 1
+						{peak
+							{min 0}
+							{max 1}
+						}
+					}
+					{shiftx 1
+						{peak
+							{min 0}
+							{max 1.25 3.75}
+						}
+					}
+					{shifty 1
+						{peak
+							{min 0}
+							{max 1.25 3.75}
+						}
+					}
+					{shiftz 1
+						{peak
+							{min 0}
+							{max 1.25 3.75}
+						}
+					}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 1}
+						}
+					}
+				}
+			}
+		}
+	}
+	{#+ spriteview halo
+		{sprite "$/flash/halo01"
+			{light 1}
+			{timer
+				{mode play loop }
+				{duration 1}
+			}
+			{scale 0.1}
+			{highlight 0xffffc87d}
+		}
+		{halo}
+	}
+	{#+ spriteview halo_hor
+		{sprite "$/flash/halo01"
+			{light 0.175}
+			{timer
+				{mode play loop }
+				{duration 0.5 -0.5}
+			}
+			{highlight 0xffffc87d}
+			{scalex 0.6}
+			{scaley 0.02}
+		}
+		{offset 0 0 -0.05}
+		{halo}
+	}
+	{spriteview cone
+		{sprite "$/flash/light_beam01"
+			{light 0.25}
+			{timer
+				{mode play loop }
+				{duration 2}
+			}
+			{scalex 0.4}
+			{scaley 0.7}
+			{highlight 0xffffc87d}
+		}
+		{orientation trace}
+		{offset 0 0 1}
+	}
+}

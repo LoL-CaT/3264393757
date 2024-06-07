@@ -1,0 +1,137 @@
+{fx
+	{sound "crush/medium/metal"}
+	{lightview
+		{animator
+			{timer
+				{mode play }
+				{duration 1}
+			}
+			{visibility 0
+				{npower
+					{min 0.7}
+					{max 0}
+					{pow 0.4}
+				}
+			}
+			{highlight 0xffff9445}
+		}
+		{radius 80}
+		{intensity 40}
+		{offset 0 0 5}
+		{type point}
+	}
+	{#+ spriteview halo
+		{sprite "/texture/fx/flash/halo01"
+			{timer
+				{mode play }
+				{duration 1}
+			}
+			{scale 1
+				{npower
+					{min 0}
+					{max 1}
+					{pow 0.4}
+				}
+			}
+			{light 1
+				{npower
+					{min 0.7}
+					{max 0}
+					{pow 1}
+				}
+			}
+			{highlight 0xffff964b}
+		}
+		{halo}
+	}
+	{#+ particleview slow
+		{generator
+			{totalparticles 0}
+			{particlesinblock 32}
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 180}
+			}
+			{particleinit
+				{speed 3 1.5}
+				{lifetime 0.375 0.075}
+			}
+			{timetolive 0.1}
+		}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value 0.2}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/fire/spark02"
+					{scale 1
+						{npower
+							{min 0.055 0.025}
+							{max 0}
+							{pow 12}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffff967d}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview 1
+		{generator
+			{totalparticles 0}
+			{particlesinblock 32}
+			{emissionarea
+				{radius 0.05 0.05}
+				{alpha0 0}
+				{alpha1 180}
+			}
+			{particleinit
+				{speed 5 2}
+				{lifetime 0.45 0.15}
+			}
+			{timetolive 0.1}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.05}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/fire/spark01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0.15 0.025}
+							{max 0.0075 0.0025}
+							{pow 0.4}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.1875 0.0375}
+							{max 0.015 0.005}
+							{pow 2.5}
+						}
+					}
+					{highlight 0xffffe196}
+				}
+				{flags trace }
+			}
+		}
+		{notifyowner}
+	}
+}

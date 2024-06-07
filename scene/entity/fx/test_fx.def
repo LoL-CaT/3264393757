@@ -1,0 +1,275 @@
+{fx
+	{## sound "detonation/hit_big/hit_big"}
+	{##+ lightview
+		{type point}
+		{animator
+			{timer
+				{duration 2}
+			}
+			{visibility 1
+				{peak
+					{min 0}
+					{max 1}
+				}
+			}
+			{highlight 0xfffea742}
+		}
+		{intensity 120};0 0.02}
+		{intensity 120};1 1}
+		{radius 180}
+		{effectonground}
+		{offset 0 0 15}
+	}
+	{##+ particleview fire2
+		{generator
+			{emissionarea
+				{radius 15}
+				{speed 5}
+				{alpha0 0}
+				{alpha1 180}
+			}
+			{particleinit
+				{speed 1.5 0.5}
+				{lifetime 1.25 0.25}
+			}
+			{totalparticles 0}
+			{particlesinblock 3}
+			{timetolive 1}
+			{axisz}
+		}
+		{mover
+			{damping 0.9}
+			{gravity
+				{value 1}
+			}
+			{collisions
+				{terrain}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/fire/spark02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0.1375 0.0625}
+							{max 0.025}
+							{pow 0.5}
+						}
+					}
+					{preturn 180 180}
+					{light 1
+						{peak
+							{min 0}
+							{max 1}
+						}
+					}
+					{highlight 0xffffce79}
+				}
+			}
+		}
+		{offset 0 0 150}
+		{delay 0.5}
+	}
+	{##+ particleview fire2
+		{generator
+			{emissionarea
+				{radius 15}
+				{speed 5}
+				{alpha0 0}
+				{alpha1 180}
+			}
+			{particleinit
+				{speed 1.5 0.5}
+				{lifetime 1.25 0.25}
+			}
+			{totalparticles 0}
+			{particlesinblock 3}
+			{timetolive 1}
+			{axisz}
+		}
+		{mover
+			{damping 0.9}
+			{gravity
+				{value 1}
+			}
+			{collisions
+				{terrain}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/fire/spark02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0.1375 0.0625}
+							{max 0.025}
+							{pow 0.5}
+						}
+					}
+					{preturn 180 180}
+					{light 1
+						{peak
+							{min 0}
+							{max 1}
+						}
+					}
+					{highlight 0xffffce79}
+				}
+			}
+		}
+		{offset 0 0 400}
+	}
+	{##+ spriteview halo
+		{sprite "/texture/fx/flash/light_beam01"
+			{timer
+				{mode play }
+				{duration 1.75}
+			}
+			{turn 90}
+			{light 1
+				{peak
+					{min 0}
+					{max 0.5}
+				}
+			}
+			{scaley 0.7}
+			{scalex 1}
+			{highlight 0xfffefc80}
+			{shiftx 0}
+			{shifty -100}
+		}
+		{orientation billboard}
+		{autovisible}
+		{offset 0 0 5}
+	}
+	{##+ spriteview halo
+		{sprite "/texture/fx/flash/light_beam01"
+			{timer
+				{mode play }
+				{duration 1.75}
+			}
+			{turn 90}
+			{light 1
+				{peak
+					{min 0}
+					{max 0.8}
+				}
+			}
+			{scaley 0.25}
+			{scalex 3}
+			{highlight 0xfffefc80}
+			{shiftx 0}
+			{shifty -500}
+		}
+		{orientation billboard}
+		{autovisible}
+		{offset 0 0 5}
+	}
+	{particleview test_sprite
+		{generator
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.1}
+			}
+			{particleinit
+				{speed 2.5 0.5}
+				{lifetime 3.5 0.5}
+			}
+			{totalparticles 1}
+			{particlesinblock 1}
+			{timetolive 6}
+			{axisz}
+		}
+		{mover
+			{damping 0.9}
+			{gravity
+				{value -0.01}
+			}
+			{collisions
+				{terrain}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/additional/explosion/add/fireball_08"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0.03 0.02}
+							{max 0.6 0.1}
+							{pow 0.5}
+						}
+					}
+					{preturn 0}
+					{light 1
+						{peak
+							{min 0}
+							{max 1}
+						}
+					}
+					{highlight 0xffffce79}
+					{## turn 1
+						{linear
+							{min 0}
+							{max 0 60}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{##+ spriteview test_sprite2
+		{sprite "/texture/fx/additional/explosion/blend/anomaly_burn"
+			{timer
+				{mode play }
+				{duration 12}
+			}
+			{turn 90}
+			{light 1
+				{peak
+					{min 0}
+					{max 0.5}
+				}
+			}
+			{highlight 0xfffefc80}
+			{scale 1}
+		}
+		{## orientation billboard}
+		{autovisible}
+		{ground}
+		{layer groundstatic}
+	}
+	{##+ decalview test_sprite3
+		{sprite "/texture/fx/additional/explosion/blend/shellhole_crush"
+			{timer
+				{mode play }
+				{duration 7}
+			}
+			{scale 1}
+			{light 1
+				{linear
+					{min 1}
+					{max 0}
+				}
+			}
+		}
+		{ground}
+		{autovisible}
+		{layer ground}
+	}
+}

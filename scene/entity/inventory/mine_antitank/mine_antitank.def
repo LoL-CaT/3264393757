@@ -1,0 +1,22 @@
+{actor
+	(include "/properties/stuff_mine.ext")
+	{Extension "mine_antitank.mdl"}
+	{extender "stuff"
+		{item "mine antitank"}
+	}
+	{extender "mine"
+		{time 8}
+	}
+	{collider "mine.at"}
+	(include "/properties/shadow/round.inc")
+	{lodclass "vehicle_small"}
+	{Obstacle "body"
+		{Circle2
+			{Radius 7.5}
+		}
+	}
+	{Volume "body"
+		{density 0}
+	}
+	{obstacleID "mine_antitank"}
+}

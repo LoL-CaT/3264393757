@@ -1,0 +1,143 @@
+{fx
+	{particleview drops1
+		{generator
+			{emissionarea
+				{radius 0.025 0.025}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.175}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 2}
+			}
+			{particlesinblock 1}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.075}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.5}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage initial 
+				{flags trace }
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{timer
+						{mode play }
+						{duration 0.65}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.25 0.05}
+						}
+					}
+					{highlight 0xff96ffc8}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.0875 0.0125}
+							{pow 0.4}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.055 0.005}
+							{max 0.0175 0.0025}
+							{pow 0.75}
+						}
+					}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/smoke/smoke_white01"
+					{timer
+						{mode play }
+						{duration 0.65}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.25 0.05}
+						}
+					}
+					{highlight 0xff96ffc8}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.0875 0.0125}
+							{pow 0.4}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.055 0.005}
+							{max 0.0175 0.0025}
+							{pow 0.75}
+						}
+					}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/smoke/smoke_white02"
+					{timer
+						{mode play }
+						{duration 0.65}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.25 0.05}
+						}
+					}
+					{highlight 0xff96ffc8}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.0875 0.0125}
+							{pow 0.4}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.055 0.005}
+							{max 0.0175 0.0025}
+							{pow 0.75}
+						}
+					}
+					{preturn 180 180}
+				}
+			}
+			{stage collided 
+				{sprite "$/water/water_circle01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.06 0.01}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{visibility 1
+						{npower
+							{min 0.175 0.025}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffc8ffe1}
+					{preturn 180 180}
+				}
+				{flags killparticle ground }
+			}
+		}
+		{notifyowner}
+	}
+}

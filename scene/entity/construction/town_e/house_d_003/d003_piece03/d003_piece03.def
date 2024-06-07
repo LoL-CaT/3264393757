@@ -1,0 +1,65 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "d003_piece03.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "break_on_burn"}
+	{placer
+		 {place "3" {attach  snipe_cover} 		{linkbone "attach3"}}
+		 {place "2" {attach  snipe_cover} 		{linkbone "attach2"}}
+    }
+	{boarder}
+	{extender "structure_bone"
+		{hold "04" "07"}
+		{hold "04" "06"}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{holed}{obstacle 0}}
+	}
+	{volume "fl01"
+		{Tags "body" "fire"}
+		{thickness 50}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "fl02"
+		{Tags "body" "fire"}
+		{thickness 50}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "fl03"
+		{Tags "body" "fire"}
+		{thickness 50}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "hole2"
+		{Tags "attach" "2"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "hole3"
+		{Tags "attach" "3"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof2"
+		{Tags "roof" "fire"}
+		{thickness 50}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "window2"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{obstacle 0}}
+	}
+	{volume "window3"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{obstacle 0}}
+	}
+	{bone "window2_x" {visibility 0}}
+	{bone "window3_x" {visibility 0}}
+	("armor_stone_house")
+}

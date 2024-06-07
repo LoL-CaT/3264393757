@@ -1,0 +1,93 @@
+{game_entity
+(include "/properties/building.inc")
+	{Extension "50_g2_piece_005.mdl"}
+		{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "break_on_burn"}
+		("armor_stone_house")
+	{placer
+		 {place "1" {attach  squat_lie} 		{linkbone "attach1"}}
+		 {place "2" {attach  hide_squat} 		{linkbone "attach2"}}
+		 {place "3" {attach  hide_squat} 		{linkbone "attach3"}}
+    }
+	{boarder}
+	("land_patch_house")
+	{volume "beam1"
+		{Tags "body" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "beam2"
+		{Tags "body" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "beam3"
+		{Tags "body" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "beam4"
+		{Tags "body" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body1"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body2"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body3"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body4"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body5"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "body6"
+		{Tags "body"}
+		{thickness 200}
+		{able {visible 0}{holed}{Obstacle 0}}
+	}
+	{volume "floor"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "hole"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof1"
+		{Tags "roof" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof2"
+		{Tags "roof" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof3"
+		{Tags "roof" "fire"}
+		{thickness 200}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "window1"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{bone "window1_x" {visibility 0}}
+}

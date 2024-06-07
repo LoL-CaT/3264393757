@@ -1,0 +1,51 @@
+{fx
+	{particleview smoke
+		{generator
+			{totalparticles 70}
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 -1 1}
+			}
+			{particleinit
+				{speed 0.1}
+				{lifetime 0.75 0.25}
+			}
+		}
+		{mover
+			{damping 0.95}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{sprite "$/flash/flashssp"
+					{visibility 1
+						{linear
+							{min 0.5}
+							{max 0}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn -90}
+					{scalex 1
+						{linear
+							{min 0.575 0.075}
+							{max 0.1}
+						}
+					}
+					{scaley 1
+						{linear
+							{min 0.075 0.025}
+							{max 0.035 0.015}
+						}
+					}
+					{highlight 0xff0a0a0a}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

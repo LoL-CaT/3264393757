@@ -1,0 +1,53 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "station003_piece_001.mdl"}
+		{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp"}
+		{placer
+			{place "1" {attach   snipe_cover} 		{linkbone "attach1"}}
+			{place "2" {attach   hide_squat} 		{linkbone "attach2"}}
+			{place "3" {attach   hide_squat} 		{linkbone "attach3"}}
+		}
+
+			{boarder}
+		("land_patch_house")
+		("armor_brick_house")
+
+	{volume "body01"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}{holed}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body05"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "hole01"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof01"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "window1"
+		{thickness 0.2}
+		{able {visible 0}{window}}
+	}
+}

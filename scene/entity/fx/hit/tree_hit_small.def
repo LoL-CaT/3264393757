@@ -1,0 +1,155 @@
+{fx
+	{sound "crush/medium/wood"}
+	{particleview vetki
+		{generator
+			{totalparticles 4}
+			{emissionarea
+				{radius 3 3}
+				{alpha0 0}
+				{alpha1 90 30}
+			}
+			{particleinit
+				{speed 2 2}
+				{lifetime 7 1}
+			}
+			{particlesinblock 4}
+			{timetolive 1}
+			{axisz}
+		}
+		{#+ mover
+			{damping 0.94}
+			{gravity
+				{value 0.08}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.05}
+			}
+		}
+		{visualizer
+			{stage initial 
+				{flags disablesoftedge }
+				{#+ sprite "$/particle/twig2"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 200}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.3 0.2}
+					{preturn 90 90}
+				}
+				{#+ sprite "$/particle/twig3"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 200}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.3 0.2}
+					{preturn 90 90}
+				}
+			}
+			{stage collided dying 
+				{flags killparticle ground disablesoftedge }
+				{sprite "$/particle/twig3"
+					{scale 0.4 0.1}
+					{preturn 90 90}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview dust
+		{generator
+			{totalparticles 5}
+			{emissionarea
+				{radius 2 2}
+				{alpha0 0}
+				{alpha1 90 20}
+			}
+			{particleinit
+				{speed 1 0.2}
+				{lifetime 1.5 0.5}
+			}
+			{timetolive 1}
+			{axisz}
+			{particlesinblock 5}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.01}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.05}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_desert"
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 100}
+						}
+					}
+					{#+ visibility 1
+						{linear
+							{min 0.7}
+							{max 0}
+						}
+					}
+					{scale 1
+						{linear
+							{min 0.25 0.05}
+							{max 0.5 -0.1}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 90}
+					{highlight 0xffffffce}
+				}
+				{sprite "$/smoke/smoke_desert"
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 100}
+						}
+					}
+					{#+ visibility 1
+						{linear
+							{min 0.7}
+							{max 0}
+						}
+					}
+					{scale 1
+						{linear
+							{min 0.25 0.05}
+							{max 0.5 -0.1}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 90}
+					{highlight 0xff7f7f67}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

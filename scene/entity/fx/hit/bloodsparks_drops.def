@@ -1,0 +1,188 @@
+{fx
+	{particleview drops
+		{#+ generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 15}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 1.125 0.875}
+				{lifetime 7 -5}
+			}
+			{timetolive 0.1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 5}
+		}
+		{#+ mover
+			{damping 0.95}
+			{gravity
+				{value 0.175}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.01}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage initial 
+				{flags disablesoftedge }
+				{#+ sprite "$/blood/blood_splatter02"
+					{#+ visibility 1
+						{npower
+							{min 0.5 -0.3}
+							{max 0}
+							{pow 4}
+						}
+					}
+					{#+ scale 1
+						{npower
+							{min 0.02}
+							{max 0.1 -0.1}
+							{pow 1}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration 1}
+					}
+					{preturn 180 180}
+					{highlight 0xff7d0500}
+				}
+				{#+ sprite "$/blood/blood_splatter01"
+					{visibility 1
+						{npower
+							{min 0.5 -0.3}
+							{max 0}
+							{pow 4}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.01}
+							{max 0.125 -0.025}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{preturn 180 180}
+					{highlight 0xff7d0500}
+				}
+			}
+			{stage collided 
+				{flags killparticle ground disablesoftedge }
+				{#+ sprite "$/blood/blood_n/blood_pool"
+					{visibility 1
+						{npower
+							{min 0.625 0.125}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.01}
+							{max 0.0625 0.0125}
+							{pow 0.1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 68}
+					}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/blood/blood_n/blood_pool"
+					{visibility 1
+						{npower
+							{min 0.95}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.025}
+							{max 0.15 -0.05}
+							{pow 0.1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 68}
+					}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/blood/blood_n/blood_streak2"
+					{visibility 1
+						{npower
+							{min 0.95}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.025}
+							{max 0.25 0.05}
+							{pow 0.1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 66}
+					}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/blood/blood_n/bloodspot02"
+					{visibility 1
+						{npower
+							{min 0.95}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.025}
+							{max 0.25 0.05}
+							{pow 0.1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 64}
+					}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/blood/blood_n/blood_streak2"
+					{visibility 1
+						{npower
+							{min 0.95}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0.01}
+							{max 0.0625 0.0125}
+							{pow 0.1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 66}
+					}
+					{preturn 180 180}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

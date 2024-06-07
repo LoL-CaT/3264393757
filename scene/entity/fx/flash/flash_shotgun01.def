@@ -1,0 +1,298 @@
+{fx
+	{particleview smoke
+		{generator
+			{emissionarea
+				{radius 0.5 0.5}
+				{alpha0 0}
+				{alpha1 0 15}
+			}
+			{particleinit
+				{speed 2.75 2.25}
+				{lifetime 1.2 0.4}
+			}
+			{particlesinblock 8}
+			{totalparticles 0}
+			{timetolive 0}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value -0.015}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.6}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 0.03}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{highlight 0xff7d828c}
+				}
+				{#+ sprite "$/smoke/smoke_white01"
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.6}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 0.03}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{highlight 0xff7d828c}
+				}
+				{#+ sprite "$/smoke/smoke_white02"
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.6}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 0.03}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{highlight 0xff7d828c}
+				}
+			}
+		}
+	}
+	{#+ particleview sparkles
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha1 0}
+				{alpha0 0 17.5}
+			}
+			{particleinit
+				{speed 7.5 4.5}
+				{lifetime 0.4 0.1}
+			}
+			{particlesinblock 32}
+			{totalparticles 0}
+			{timetolive 0}
+		}
+		{mover
+			{gravity
+				{value 0.01}
+			}
+			{damping 0.9}
+			{collisions
+				{terrain}
+				{restitution 0.4}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/fire/spark01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0.25 0.05}
+							{max 0.0075 0.0025}
+							{pow 0.35}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.125 0.025}
+							{max 0.0225 0.0025}
+							{pow 1}
+						}
+					}
+					{highlight 0xffffaf4b}
+				}
+				{flags trace }
+			}
+		}
+	}
+	{#+ spriteview halo01
+		{sprite "$/flash/halo01"
+			{timer
+				{mode play }
+				{duration 0.15}
+			}
+			{light 1
+				{npower
+					{min 0.2}
+					{max 0}
+					{pow 1}
+				}
+			}
+			{scale 1
+				{npower
+					{min 0.2}
+					{max 0.6}
+					{pow 0.35}
+				}
+			}
+			{highlight 0xffffaf64}
+		}
+		{notifyowner}
+		{halo}
+		{autovisible}
+		{offset 0.15 0.15 0}
+	}
+	{#+ spriteview halo01small
+		{sprite "$/flash/halo01"
+			{timer
+				{mode play }
+				{duration 0.15}
+			}
+			{light 1
+				{npower
+					{min 1}
+					{max 0}
+					{pow 1}
+				}
+			}
+			{scale 1
+				{npower
+					{min 0}
+					{max 0.2}
+					{pow 0.35}
+				}
+			}
+			{highlight 0xffffaf32}
+		}
+		{notifyowner}
+		{halo}
+		{autovisible}
+		{offset 0.15 0.15 0}
+	}
+	{#+ particleview muzzle_forward
+		{generator
+			{emissionarea
+				{radius 0}
+			}
+			{particleinit
+				{speed 0.01}
+				{lifetime 0.1}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+			{timetolive 0}
+		}
+		{mover
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{sprite "/texture/fx/flash/flash_muzzle02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.225 0.025}
+							{pow 0.6}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.2 0.025}
+							{pow 0.6}
+						}
+					}
+					{highlight 0xffffe1af}
+				}
+			}
+		}
+	}
+	{#+ particleview muzzle_round
+		{generator
+			{emissionarea
+				{radius 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.1}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+			{timetolive 0}
+		}
+		{mover
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{sprite "/texture/fx/flash/flash_muzzle05"
+					{preturn 0}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.3 0.025}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffffe1af}
+				}
+			}
+		}
+	}
+}

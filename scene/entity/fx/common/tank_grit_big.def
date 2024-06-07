@@ -1,0 +1,130 @@
+{fx
+	{particleview
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 15}
+				{speed 0.3}
+				{theta -15}
+			}
+			{particleinit
+				{speed 2.5 1.5}
+				{lifetime 1.05 0.45}
+			}
+		}
+		{#+ mover
+			{gravity
+				{value 0.15}
+			}
+			{damping 0.95}
+			{collisions
+				{terrain}
+				{restitution 0.5}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{#+ sprite "$/particles/dirt01"
+					{scale 0.075 0.025}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff967d64}
+				}
+				{#+ sprite "$/particles/dirt02"
+					{scale 0.075 0.025}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff967d64}
+				}
+				{#+ sprite "$/particles/rock01"
+					{scale 0.06 0.02}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff3c3228}
+				}
+				{#+ sprite "$/particles/rock02"
+					{scale 0.06 0.02}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff6e645a}
+				}
+				{#+ sprite "$/particles/grass_part01"
+					{scale 0.25 0.05}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 240}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xffe1ffd7}
+				}
+				{#+ sprite "$/particles/grass_part02"
+					{scale 0.25 0.05}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 240}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff96c864}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

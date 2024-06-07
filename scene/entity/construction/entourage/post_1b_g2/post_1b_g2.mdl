@@ -1,0 +1,51 @@
+;Exported by	: KobaA
+;Date			: 02.05.2024 10:48:45
+;File			: d:\git\gem2-mdl-soldiers\models\entourage\post\post.max
+{skeleton
+	{bone "basis_post2"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "post2"
+			{Position 0 	 0 	 0}
+			{poly "post2" {lod 0}}
+			{poly "post2_lod1" {lod 1}}
+			{poly "post2_lod2" {lod 2 {last}}}
+			{bone "detail1"
+				{poly "detail1" {lod 0}}
+				{poly "detail1_lod1" {lod 1}}
+				{poly "detail1_lod2" {lod 2 {last}}}
+			}
+		}
+	}
+}
+{obstacle "body01"
+	{obb2
+		{center 0.137482 0.0208865}
+		{extent 2.12283 2.12283}
+		{axis 0.258819 0.965926}
+	}
+	{rotate}
+}
+{obstacle "body02"
+	{obb2
+		{center -0.0762939 3.35505}
+		{extent 1.70979 1.69291}
+		{axis 1 0}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body01"
+		{cylinder 2.19771 140.551}
+		{bone "post2"}
+		{Position 0.1375 	 -0.0209 	 66.2936}
+	}
+	{"body02"
+		{box 3.41959 3.38583 31.6236}
+		{bone "post2"}
+		{Position -0.0763 	 -3.3551 	 12.2059}
+	}
+}

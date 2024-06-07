@@ -1,0 +1,63 @@
+{fx
+	{storeable 1}
+	{particleview
+		{#+ generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 0 2}
+				{speed 0.1}
+			}
+			{particleinit
+				{speed 0.425 0.325}
+				{lifetime 2 0.25}
+			}
+			{particlesinblock 1}
+			{autoturn}
+		}
+		{mover
+			{damping 0.99}
+			{collisions
+				{terrain}
+				{restitution 0.05}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags ground disablesoftedge}
+				{#+ sprite "$/water/water_wash01"
+					{preturn 90 5}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.625 0.125}
+							{pow 1}
+						}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 1.125 0.125}
+							{pow 1}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.375 0.125}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffe1faff}
+				}
+			}
+		}
+		{notifyowner}
+		{offset 0 0 -10}
+	}
+}

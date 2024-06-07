@@ -1,0 +1,33 @@
+{game_entity
+	(include "/properties/building.inc")
+	{extension "debris_001.mdl"}
+	{props "sand"}
+	{bone "debris_001" {parameters "Ground;Land;Align;"}}
+	{bone "stones" {parameters "Align;"}}
+	{placer
+		{place "1" {attach  snipe_cover} {linkbone "attach1"}}
+	}
+	{boarder}
+	{extender "land_patch"
+		{updateentities 0}
+		{AlignEnabled 1}
+		{AlignStacked 1}
+	}
+	{volume "debris"
+		{tags "body"}
+		{able clear {touch 1}}
+	}
+	{DecalView 
+		{Sprite "debris_stone.mtl" 
+			{Scale 0.31}
+			{preturn 180 180}
+			{Visibility 1 }
+		}
+		{orientation normal}
+		{layer grounddecal }
+		{UseDirection }
+	}
+	{ZClipVisibility 0}
+	{DecalOrder 15}
+	("armor_medium")
+}

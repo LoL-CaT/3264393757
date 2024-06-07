@@ -1,0 +1,33 @@
+{game_entity
+	(include "/properties/bird.ext")
+	{props "animal" "fogged_as_gameentity"}
+
+	{Chassis "wing"
+		{movementSpeed 0.1}
+	}
+	{Chassis "foot"
+		{Run
+			{Slow	5   5	100}
+			{Normal	10   10	200}
+			{Fast	30  30	500}
+		}
+	}
+	{chassisManager
+		{current "wing"}
+	}
+	{mass 6}
+	{collider "nothing"}
+	{fogable never}
+	{extender "animation_sound"
+		{event "croaking"
+			{play "animal/crow/crow_run"}
+		}
+	}
+	{extension "raven.mdl"}
+	{skeleton
+		{animation
+			{sequence "croaking_fly" {event 1 "croaking"}}
+			{sequence "croaking_01" {event 1 "croaking"}}
+		}
+	}
+}

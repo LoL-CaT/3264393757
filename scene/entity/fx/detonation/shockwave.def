@@ -1,0 +1,91 @@
+{fx
+	{particleview black
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.6}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+			{timetolive 0.1}
+		}
+		{mover
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/dust/explosion_decal03"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.5 0.25}
+							{pow 0.35}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.425 0.075}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{highlight 0xff000000}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+				{flags ground }
+			}
+		}
+	}
+	{#+ particleview white
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.6}
+			}
+			{totalparticles 0}
+			{particlesinblock 2}
+			{timetolive 0.1}
+		}
+		{mover
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/dust/explosion_decal03"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.5 0.25}
+							{pow 0.35}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.225 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+				{flags ground }
+			}
+		}
+	}
+}

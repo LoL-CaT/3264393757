@@ -1,0 +1,27 @@
+{actor
+	(include "/properties/selection/vehicle.inc" scale(2.4))
+	{extension "kiur_bunker_001.mdl"}
+	{placer}
+	{extender "structure"
+		{place "kiur_bunker_001_roof_point" "kiur_bunker_001_roof"}
+		{place "kiur_bunker_001_wall_point" "kiur_bunker_001_wall"}
+		{place "kiur_bunker_001_door_point" "kiur_bunker_001_door"}
+	}
+	{extender "assault"
+		{holes
+			{place "kiur_bunker_001_door_point"}
+		}
+	}
+	{extender "house_fortification"
+		{place "kiur_bunker_001_door_point" "kiur_bunker_001_door" "fort_sandbags_002" "fort_wall"}
+	}
+	(include "/properties/house.inc")
+	{volume "bottom_floor"
+		{able clear {touch 1}}
+	}
+	{extender "land_patch"
+		{TerrainType "ground" "bridge"}
+		{cell_size 4}
+	}
+	{obstacleid "unbreakable"}
+}

@@ -1,0 +1,52 @@
+{fx
+	{particleview 1
+		{generator
+			{emissionarea
+				{radius 0}
+				{speed 0.5}
+				{alpha1 0}
+			}
+			{particleinit
+				{speed 1.875 0.625}
+				{lifetime 0.6 0.4}
+			}
+		}
+		{mover
+			{damping 0.98}
+			{gravity
+				{value -0.02}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_white02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.15 0.05}
+							{pow 1}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 1}
+						}
+					}
+				}
+			}
+		}
+	}
+}

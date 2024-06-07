@@ -1,0 +1,43 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "water_tower_001_piece_001.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning"}
+	("armor_brick_house")
+
+	{volume "body01"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body05"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "window3"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+
+	{placer
+		 {place "3" {attach  snipe_cover} 	{linkbone "attach3"}}
+		 {place "10" {attach  hide_squat} 	{linkbone "attach10"}}
+		 {place "15" {attach  hide_squat} 	{linkbone "attach15"}}
+    }
+}

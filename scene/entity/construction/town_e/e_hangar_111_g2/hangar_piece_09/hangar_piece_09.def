@@ -1,0 +1,45 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "hangar_piece_09.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "break_on_burn"}
+		{boarder}
+				{placer
+		  {place "1" {attach  snipe_cover} 		{linkbone "attach1"}}
+	}
+	{volume "body1"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{holed}}
+	}
+	{volume "body2"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}}
+	}
+	{volume "hole"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof1"
+		{Tags "roof" "fire"}
+		{thickness 20}
+		{able {visible 0}}
+	}
+	{volume "roof2"
+		{Tags "roof" "fire"}
+		{thickness 20}
+		{able {visible 0}}
+	}
+	{volume "roof3"
+		{Tags "roof" "fire"}
+		{thickness 20}
+		{able {visible 0}}
+	}
+	{volume "target"
+		{Tags "target"}
+		{able clear {bullet 1}}
+	}
+	{extender "land_patch"
+	}
+	("armor_brick_house")
+}

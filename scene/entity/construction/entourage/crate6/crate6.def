@@ -1,0 +1,55 @@
+{actor
+	(include "/properties/cannon_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(0.3))
+	{Extension "crate6.mdl"}
+
+	{props "inventory_crate_icon" "unarmed" "round_sandbag2" "crate_exp"}
+	
+	("round_sandbag_flak")	
+
+	("crew_2_human")
+	("crew_human" place(driver1) bone(driver1)	door(emit1) animation(driver1))
+	("crew_human" place(driver2) bone(driver2)	door(emit2) animation(driver2))
+	{boarder
+		{anm "gunner"
+			{forward	{end "pose_mgun_stan"}}
+		}
+		{anm "commander"
+			{forward	{end "pose_mg_stan_charger"}}
+		}
+		{anm "driver1"
+			{forward {end "mgun_browning_driver_l"}}
+		}
+		{anm "driver2"
+			{forward {end "mgun_browning_driver_r"}}
+		}
+		{link "driver1" "gunner"}
+		{link "driver2" "commander"}
+	}
+
+	{extender "cannon"
+		{state move}
+		{animation
+			{switch "close"}
+			{move "mgun_browning_driver_l" "mgun_browning_driver_r"}
+			{aim "" ""}
+			{fire  "" ""}
+			{reload  "mgun_stan_charger" ""}
+		}
+		{attack {workers "gunner" "commander"}}
+	}
+	{extender "inventory"
+		{box
+			{weight 5000}
+			{size 8 6}
+			{item "sandbag_kit2"}			
+		}
+	}	
+
+	{Volume "body"
+		;{tags "body"}
+		{able{obstacle 1}}
+		{thickness 1}
+		{component "body"}
+	}
+}

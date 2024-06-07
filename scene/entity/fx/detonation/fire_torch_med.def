@@ -1,0 +1,103 @@
+{fx
+	{sound "detonation/small/bottle"}
+	{#+ particleview start_fire_up
+		{generator
+			{emissionarea
+				{radius 0.005 0.005}
+				{alpha0 3}
+				{alpha1 5}
+				{speed 0.3}
+			}
+			{particleinit
+				{speed 2.25 0.25}
+				{lifetime 0.825 0.075}
+			}
+			{axisz}
+		}
+		{offset 0 0 2.5}
+		{notifyowner}
+		{mover
+			{nodependonwind}
+			{gravity
+				{value 0.005}
+			}
+			{damping 0.975}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/fire/fire02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0.015 0.005}
+							{max 0.4 0.025}
+							{pow 1.75 0.25}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.25}
+						}
+					}
+					{light 1
+						{npower
+							{min 0.625 0.125}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffff6496}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 90}
+							{pow 2}
+						}
+					}
+				}
+				{sprite "$/fire/fire01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0.015 0.005}
+							{max 0.4 0.025}
+							{pow 1.75 0.25}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.25}
+						}
+					}
+					{light 1
+						{npower
+							{min 0.625 0.125}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffff9664}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 90}
+							{pow 2}
+						}
+					}
+				}
+			}
+		}
+	}
+}

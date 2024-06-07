@@ -1,0 +1,53 @@
+{game_entity
+(include "/properties/building.inc")
+			{extension "b_vil_piece_03.mdl"}
+	{props  "wood"  "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+		("armor_log_house")
+	{placer
+		{place "1" {attach  snipe_cover} 		{linkbone "attach1"}}
+		{place "2" {attach  snipe_cover} 		{linkbone "attach2"}}
+	}
+	{boarder}
+	("land_patch_house")
+	{volume "body01"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{holed}}
+	}
+	{volume "body02"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{holed}}
+	}
+	{volume "body03"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}}
+	}
+	{volume "hole01"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "hole02"
+		{Tags "attach" "2"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof01"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof02"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "target04"
+		{Tags "target"}
+		{able clear {bullet}}
+	}
+	{volume "target05"
+		{Tags "target"}
+		{able clear {bullet}}
+	}
+}

@@ -1,0 +1,56 @@
+{fx
+	{particleview dust_aoe_ground
+		{generator
+			{particlesinblock 20}
+			{totalparticles 0}
+			{emissionarea
+				{radius 0.1}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 2.5 0.5}
+				{lifetime 0.65 0.15}
+			}
+			{axisz}
+		}
+		{mover
+			{gravity
+			}
+			{damping 0.9}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_light1"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.125 0.025}
+							{pow 0.125 0.025}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.175 0.025}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xff7d3d0c}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

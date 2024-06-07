@@ -1,0 +1,27 @@
+{actor
+	(include "/properties/house.inc")
+	(include "/properties/selection/vehicle.inc" scale(2))
+	(include "/properties/action_target/build_patrol.inc")	
+	{extension "med_point.mdl"}
+	{props "remove_grass_5 no_fortification"}
+
+	{"structure"
+		{place "field_technical_buildings_med_piece001_point" "med_point_piece001"}
+
+	}
+	{extender "assault"
+		{holes
+			{place "field_technical_buildings_med_piece001_point"}
+		}
+	}
+	{placer}
+	{extender "resuscitation"
+		{radius 80}
+	}
+
+	{"volumes"
+		{"bottom_floor"
+			{able clear {touch 1}}
+		}
+	}
+}

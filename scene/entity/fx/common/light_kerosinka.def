@@ -1,0 +1,147 @@
+{fx
+	{#+ particleview flies
+		{generator
+			{emissionarea
+				{#+ alpha1 0}
+				{theta 180 180}
+				{psi 180 180}
+				{#+ radius 2}
+				{speed 0.3}
+			}
+			{particleinit
+				{speed 0.04 0.02}
+				{lifetime 0.7 0.1}
+			}
+		}
+		{#+ mover
+			{damping 1}
+			{#+ collisions
+				{terrain}
+				{restitution 0.4}
+			}
+			{nodependonwind}
+		}
+		{#+ visualizer
+			{stage initial 
+				{sprite "$/particle/metal_drops3"
+					{scale 0.02 0.004}
+					{highlight 0xfffff7c2}
+					{timer
+						{mode play }
+						{duration 0.8}
+					}
+					{light 1
+						{peak
+							{min 0}
+							{max 1}
+						}
+					}
+					{shiftx 1
+						{peak
+							{min 0}
+							{max 0 0.8}
+						}
+					}
+					{shifty 1
+						{peak
+							{min 0}
+							{max 0 0.8}
+						}
+					}
+					{shiftz 1
+						{peak
+							{min 0}
+							{max 0 0.8}
+						}
+					}
+				}
+			}
+		}
+	}
+	{#+ spriteview halo
+		{sprite "$/flash/flash_g02a"
+			{light 0.6}
+			{scale 0.08}
+			{visibility 1}
+		}
+		{halo}
+	}
+	{##+ particleview flash
+		{generator
+			{emissionarea
+				{radius 0}
+				{speed 0.03}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 4}
+			}
+		}
+		{mover}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/flash/flash_g03"
+					{scale 1
+						{power
+							{min 0.01}
+							{max 0.04 0.01}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 4}
+					}
+					{light 1
+						{peak
+							{min 0}
+							{max 1}
+						}
+					}
+					{highlight 0xfffdb36d}
+					{preturn 180 180}
+				}
+			}
+		}
+	}
+	{#+ spriteview cone
+		{sprite "/texture/fx/flash/light"
+			{timer
+				{mode play loop }
+				{duration 0.1}
+			}
+			{light 1
+				{peak
+					{min 0.19}
+					{max 0.2}
+				}
+			}
+			{highlight 0xffffe7a9}
+			{scalex 0.3}
+			{scaley 0.5}
+		}
+		{orientation trace}
+		{offset 0 0 2}
+		{usedirection}
+	}
+	{lightview
+		{animator
+			{highlight 0xffffcd94}
+		}
+		{radius 150}
+		{type point}
+		{effectonground}
+		{priority 5}
+		{intensity 20}
+	}
+	{spriteview halo
+		{sprite "$/flash/halo01"
+			{light 0.35}
+			{scale 0.25}
+			{visibility 1}
+		}
+		{halo
+			{constantsize}
+		}
+	}
+}

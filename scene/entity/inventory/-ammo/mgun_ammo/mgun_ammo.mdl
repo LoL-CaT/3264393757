@@ -1,0 +1,63 @@
+;Exported by:	 Oleksandr Tsaprylov
+;Date:			 30.12.2021 09:55:44
+;File:			 E:\projects\gem2-mdl-soldiers\models\inventory\ammo\ammo_mgun\ammo_mgun.max
+{skeleton
+	{bone "ammo_mgun"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{LODView
+			{VolumeView "ammo_mgun.ply"}
+			{VolumeView "ammo_mgun_lod1.ply"}
+			{VolumeView "ammo_mgun_lod2.ply"}
+		}
+		{bone "handle"
+			{matrix34
+				0 	 1 	 0
+				1 	 0 	 0
+				0 	 0 	 -1
+				-0.732 	 -2.9638 	 0
+			}
+		}
+	}
+}
+{volume "body"
+	{box 5.59175 5.78371 1.79437}
+	{bone "ammo_mgun"}
+	{Position -0.3124 	 0.2887 	 -0.0026}
+}
+{volume "select"
+	{box 10.0652 11.5096 4.55769}
+	{bone "ammo_mgun"}
+	{Position -0.3124 	 0.2887 	 0.0588}
+}
+{extender "preview"
+	{"stuff"
+		{camera
+			{origin 9.346 	 4.5575 	 7.953}
+			{lookat -0.903 	 -0.5815 	 -0.7255}
+			{fov 29.2417}
+			{horizon -106.831}
+		}
+		{lights
+			{"0"
+				{type directional}
+				{direction -0.0059 	 0.1908 	 -0.4621}
+			}
+			{"1"
+				{type directional}
+				{direction -0.0113 	 0.3693 	 0.3369}
+			}
+			{"2"
+				{type directional}
+				{direction -0.0166 	 -0.4199 	 -0.271}
+			}
+			{"3"
+				{type point}
+				{position 9.4029 	 0.2194 	 0}
+			}
+		}
+	}
+}

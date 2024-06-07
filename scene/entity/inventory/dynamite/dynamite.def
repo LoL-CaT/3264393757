@@ -1,0 +1,17 @@
+{game_entity
+	(include "/properties/stuff_small.ext")	
+	{volume "body" {able {blast}}{material "water"}}
+	{props "dynamite" "no_blast_physics" "detect_throwing"}
+	{body {proper body sensible} {permit body}}
+	{extender "stuff"
+		{item "dynamite"}
+	}
+	(include "/properties/shadow/round.inc")
+	{extension "dynamite.mdl"}
+	{volume "body"
+		{thickness 1}
+		{able {blast 1}}
+	}
+	{simulatorId "grenade"}
+	{collider "grenade"}
+}

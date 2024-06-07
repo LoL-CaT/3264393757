@@ -1,0 +1,39 @@
+{construction
+(include "/properties/post.inc")
+	{Extension "lampa_street_met.mdl"}
+	{props "steel" "disable_area"}
+	("armor_post")
+	("armor_use_volume_thickness")
+	
+	{volume	"body"
+		{thickness 5}
+		{able {visible 0}}
+	}
+
+	{volume	"lamp1"
+		{thickness 1}
+			}
+	{extender "light"
+		{lightfx "light_lantern"}
+		{lamp "1"}
+	}
+	
+;	{DecalView "shadow"
+;		{OwnerShadow sublocal 64 64}
+;		{Sprite "/properties/shadow/round.ebm"
+;			{PreScaleX 	0.8}
+;			{PreScaleY 	0.8}
+;  			{PreshiftX	 0	}
+;  			{PreshiftY	-5	}
+;			{Visibility	0.6	}
+;		}
+;		{layer groundshadow}
+;		{UseDirection}
+;	}
+
+  {DecalView
+	{ownershadow  64 64}
+	{name "shadow"}
+  }
+}
+

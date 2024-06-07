@@ -1,0 +1,1228 @@
+{fx
+	{sound "detonation/hit_small/hit_small"}
+	{lightview
+		{type point}
+		{animator
+			{timer
+				{duration 0.45}
+			}
+			{visibility 1
+				{npower
+					{min 1}
+					{max 0}
+					{pow 1.25}
+				}
+			}
+			{highlight 0xffff922c}
+		}
+		{intensity 40}
+		{radius 200}
+		{effectonground}
+		{offset 0 0 15}
+	}
+	{#+ spriteview halo
+		{sprite "$/flash/halo01"
+			{timer
+				{mode }
+				{duration 0.5}
+			}
+			{scale 4
+				{npower
+					{min 0.5}
+					{max 1.75}
+					{pow 0.5}
+				}
+			}
+			{light 1
+				{linear
+					{min 0.55}
+					{max 0}
+				}
+			}
+			{highlight 0xffff9632}
+		}
+		{halo}
+		{notifyowner}
+		{autovisible}
+		{offset 0 0 4}
+	}
+	{#+ spriteview halo
+		{sprite "$/flash/halo01"
+			{timer
+				{mode }
+				{duration 0.9}
+			}
+			{scale 4
+				{npower
+					{min 0.2}
+					{max 0.5}
+					{pow 0.5}
+				}
+			}
+			{light 1
+				{linear
+					{min 0.75}
+					{max 0}
+				}
+			}
+			{highlight 0xffff9632}
+		}
+		{halo}
+		{notifyowner}
+		{autovisible}
+		{offset 0 0 1}
+	}
+	{#+ particleview V_boom
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 10}
+				{alpha1 45}
+			}
+			{particleinit
+				{speed 2 0.5}
+				{lifetime 0.575 0.075}
+			}
+			{timetolive 0.01}
+			{totalparticles 0}
+			{particlesinblock 3}
+			{axisz}
+		}
+		{offset 0 0 -10}
+		{mover
+			{damping 0.825}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{sprite "$/dust/dust_boom03"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{preturn 90 10}
+					{highlight 0xff745b33}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.4}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.4 0.05}
+							{pow 0.3}
+						}
+					}
+				}
+				{#+ sprite "$/dust/dust_boom01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{preturn 90 10}
+					{highlight 0xffc8b4a0}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.55 0.05}
+							{pow 0.4}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.3 0.05}
+							{pow 0.3}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview V_ground
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 10}
+				{alpha1 40}
+			}
+			{particleinit
+				{speed 2 0.5}
+				{lifetime 0.8 0.1}
+			}
+			{timetolive 0.01}
+			{totalparticles 0}
+			{particlesinblock 2}
+			{axisz}
+		}
+		{offset 0 0 -10}
+		{mover
+			{damping 0.825}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{sprite "$/dust/dust_boom02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 2.5}
+						}
+					}
+					{preturn 90 10}
+					{highlight 0xff32281e}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.35}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.25}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview ground_fast
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 20}
+			}
+			{particleinit
+				{speed 6 4}
+				{lifetime 1.5 0.5}
+			}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 8}
+			{timetolive 0.1}
+		}
+		{offset 0 0 5}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value 0.175}
+			}
+			{nodependonwind}
+			{collisions
+				{restitution 0}
+				{terrain}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/dust/ground01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.9 0.1}
+							{max 0}
+							{pow 2.5}
+						}
+					}
+					{preturn 180 180}
+					{scale 0.35 0.15
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.5}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 45}
+							{pow 0.5}
+						}
+					}
+					{highlight 0xff282828}
+				}
+				{sprite "$/dust/ground01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.9 0.1}
+							{max 0}
+							{pow 2.5}
+						}
+					}
+					{preturn 180 180}
+					{scale 0.35 0.15
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.5}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 45}
+							{pow 0.5}
+						}
+					}
+					{highlight 0xff505050}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview dust
+		{generator
+			{emissionarea
+				{radius 7.5 7.5}
+				{alpha0 0}
+				{alpha1 20}
+			}
+			{particleinit
+				{speed 4.5 2.5}
+				{lifetime 2.75 0.5}
+			}
+			{timetolive 0.1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 6}
+		}
+		{offset 0 0 5}
+		{mover
+			{damping 0.935}
+			{gravity
+				{value 0.025}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/dust_cloud01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.3 0.05}
+							{max 0}
+							{pow 2.5}
+						}
+					}
+					{preturn 180 180}
+					{scale 0.35 0.15
+						{npower
+							{min 0}
+							{max 0.7 0.1}
+							{pow 0.5}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 1}
+						}
+					}
+					{highlight 0xff645a41}
+				}
+				{#+ sprite "$/dust/dust_cloud02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.3 0.05}
+							{max 0}
+							{pow 2.5}
+						}
+					}
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.7 0.1}
+							{pow 0.5}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 1}
+						}
+					}
+					{highlight 0xff5e543b}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview dust_round_radius
+		{generator
+			{emissionarea
+				{radius 75 25}
+				{alpha0 0}
+				{alpha1 0 10}
+				{speed 0.75}
+			}
+			{particleinit
+				{speed 1.5 0.5}
+				{lifetime 1 0.2}
+			}
+			{timetolive 0.2}
+			{axisz}
+		}
+		{offset 0 0 5}
+		{mover
+			{damping 0.925}
+			{gravity
+				{value 0.025}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/dust_cloud01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.7 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 135}
+					{highlight 0xff61573e}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.0625 0.0125}
+							{pow 0.2}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.1375 0.0125}
+							{pow 0.35}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview V_sparks
+		{generator
+			{emissionarea
+				{radius 0.5 0.5}
+				{alpha0 5}
+				{alpha1 60}
+			}
+			{particleinit
+				{speed 0.75 0.25}
+				{lifetime 0.5 -0.1}
+			}
+			{timetolive 0.01}
+			{totalparticles 0}
+			{particlesinblock 3}
+			{axisz}
+		}
+		{offset 0 0 -3}
+		{mover
+			{damping 0.95}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{sprite "$/additional/fire/add/sparks_m2"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 10}
+					{highlight 0xffff7d4b}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.475 0.075}
+							{pow 0.3}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.85 0.05}
+							{pow 0.3}
+						}
+					}
+					{light 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 1}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{particleview explosion
+		{generator
+			{emissionarea
+				{radius 7.5 7.5}
+				{alpha0 15 15}
+				{alpha1 15 15}
+			}
+			{particleinit
+				{speed 0.25 0.15}
+				{lifetime 2.5 0.5}
+			}
+			{axisz}
+			{timetolive 0.1}
+			{totalparticles 4}
+			{particlesinblock 4}
+		}
+		{offset 0 0 10}
+		{mover
+			{gravity
+				{value -0.002}
+			}
+			{damping 0.985}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/additional/explosion/add/exp_a_inst"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 0 180}
+					{scale 1
+						{npower
+							{min 0.6 0.1}
+							{max 1.75 0.25}
+							{pow 0.8}
+						}
+					}
+					{highlight 0xffff6432}
+					{light 1
+						{linear
+							{min 1}
+							{max 0}
+						}
+					}
+				}
+				{#+ sprite "$/additional/explosion/add/exp_s_inst"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 0 180}
+					{scale 1
+						{npower
+							{min 0.6 0.1}
+							{max 1.75 0.25}
+							{pow 0.8}
+						}
+					}
+					{highlight 0xffff6432}
+					{light 1
+						{linear
+							{min 1}
+							{max 0}
+						}
+					}
+				}
+			}
+		}
+	}
+	{#+ particleview dust_after
+		{generator
+			{emissionarea
+				{radius 20 10}
+				{alpha0 80}
+				{alpha1 85}
+				{speed 0.2}
+			}
+			{particleinit
+				{speed 0.5 0.5}
+				{lifetime 3 0.5}
+			}
+			{timetolive 1.25}
+			{axisz}
+		}
+		{offset 0 0 20}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value 0.0035}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/dust_cloud02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.35 0.05}
+						}
+					}
+					{preturn 180 180}
+					{scale 0.35 0.15
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.35}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 1}
+						}
+					}
+					{highlight 0xff746a47}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview smoke
+		{generator
+			{emissionarea
+				{radius 6 6}
+				{alpha0 0}
+				{alpha1 90}
+				{speed 1}
+			}
+			{particleinit
+				{speed 1 1}
+				{lifetime 4.5 0.5}
+			}
+			{axisz}
+			{timetolive 0.1}
+		}
+		{offset 0 0 2.5}
+		{mover
+			{gravity
+				{value -0.01}
+			}
+			{damping 0.925}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 45 45}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.9 0.1}
+							{pow 0.4}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{highlight 0xff000000}
+				}
+				{sprite "$/smoke/smoke_white02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 45 45}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.9 0.1}
+							{pow 0.4}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.35 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{highlight 0xff000000}
+				}
+			}
+		}
+	}
+	{#+ particleview sparkles
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 20}
+				{alpha1 85}
+			}
+			{particleinit
+				{speed 6 2}
+				{lifetime 0.65 -0.15}
+			}
+			{timetolive 0.1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 7}
+		}
+		{mover
+			{damping 0.965}
+			{gravity
+				{value 0.1}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.35}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/fire/spark01"
+					{scaley 1
+						{npower
+							{min 0.3 0.05}
+							{max 0.0175 0.0025}
+							{pow 2}
+						}
+					}
+					{scalex 1
+						{npower
+							{min 0.45 0.05}
+							{max 0.0075 0.0025}
+							{pow 0.3}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xfffa964b}
+				}
+				{flags trace }
+			}
+		}
+	}
+	{#+ particleview shockwave_ground
+		{generator
+			{emissionarea
+				{radius 0.05 0.05}
+				{alpha0 0}
+				{alpha1 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.4}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+			{timetolive 0.1}
+		}
+		{mover}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/dust/explosion_decal03"
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.25}
+							{pow 0.5}
+						}
+					}
+					{highlight 0xffffff}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.4}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+				}
+				{flags ground }
+			}
+		}
+		{offset 0 0 3}
+	}
+	{#+ particleview shockwave_vertical
+		{generator
+			{emissionarea
+				{radius 0.05 0.05}
+				{alpha0 0}
+				{alpha1 0}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.4}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+			{timetolive 0.1}
+		}
+		{mover}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/dust/explosion_decal03"
+					{highlight 0xffffff}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.24}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 1.2}
+							{pow 0.5}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 1.2}
+							{pow 0.5}
+						}
+					}
+				}
+			}
+		}
+	}
+	{#+ particleview dirt_sprite_fast
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 5}
+				{alpha1 60}
+				{speed 6}
+			}
+			{particleinit
+				{speed 6.5 3.5}
+				{lifetime 6 1}
+			}
+			{timetolive 0.1}
+			{axisz}
+		}
+		{mover
+			{gravity
+				{value 0.3}
+			}
+			{damping 0.96}
+			{collisions
+				{restitution 0.25}
+				{terrain}
+			}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{#+ sprite "/texture/fx/particles/dirt01"
+					{scale 0.095 0.065}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1000}
+							{pow 0.4}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xff3c3228}
+				}
+				{#+ sprite "/texture/fx/particles/dirt02"
+					{scale 0.095 0.065}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1000}
+							{pow 0.4}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xff3c3228}
+				}
+				{#+ sprite "/texture/fx/particles/dirt01"
+					{scale 0.095 0.065}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1000}
+							{pow 0.4}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffa0968c}
+				}
+				{#+ sprite "/texture/fx/particles/dirt02"
+					{scale 0.095 0.065}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1000}
+							{pow 0.4}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffdcd2c8}
+				}
+			}
+		}
+	}
+	{#+ particleview dirt_sprite_med
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 15}
+				{alpha1 75}
+				{speed 6}
+			}
+			{particleinit
+				{speed 6 3}
+				{lifetime 7 1}
+			}
+			{timetolive 0.1}
+			{axisz}
+		}
+		{mover
+			{gravity
+				{value 0.25}
+			}
+			{damping 0.965}
+			{collisions
+				{restitution 0.25}
+				{terrain}
+			}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{#+ sprite "/texture/fx/particles/dirt01"
+					{scale 0.095 0.065}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1000}
+							{pow 0.4}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xff3c3228}
+				}
+				{#+ sprite "/texture/fx/particles/dirt02"
+					{scale 0.095 0.065}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1000}
+							{pow 0.4}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xff3c3228}
+				}
+				{#+ sprite "/texture/fx/particles/dirt01"
+					{scale 0.095 0.065}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1000}
+							{pow 0.4}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffa0968c}
+				}
+				{#+ sprite "/texture/fx/particles/dirt02"
+					{scale 0.095 0.065}
+					{timer
+						{mode play }
+						{duration 1}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1000}
+							{pow 0.4}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffdcd2c8}
+				}
+			}
+		}
+	}
+	{#+ particleview dust_round
+		{generator
+			{emissionarea
+				{radius 12.5 12.5}
+				{alpha0 80}
+				{alpha1 85}
+			}
+			{particleinit
+				{speed 2.25 0.75}
+				{lifetime 2.5 0.5}
+			}
+			{timetolive 0.15}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 8}
+		}
+		{offset 0 0 20}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.01}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/dust_cloud02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 1.25}
+						}
+					}
+					{preturn 180 180}
+					{scale 0.35 0.15
+						{npower
+							{min 0}
+							{max 0.55 0.05}
+							{pow 0.3}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 30}
+							{pow 1}
+						}
+					}
+					{highlight 0xff615739}
+				}
+				{sprite "$/dust/dust_cloud01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 1.25}
+						}
+					}
+					{preturn 180 180}
+					{scale 0.35 0.15
+						{npower
+							{min 0}
+							{max 0.55 0.05}
+							{pow 0.3}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 30}
+							{pow 1}
+						}
+					}
+					{highlight 0xff716749}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview smoke_after
+		{delay 0.25}
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 15}
+				{speed 0.5}
+			}
+			{particleinit
+				{speed 0.55 0.45}
+				{lifetime 2.75 0.25}
+			}
+			{axisz}
+			{timetolive 2.5}
+		}
+		{offset 0 0 -5}
+		{mover
+			{gravity
+				{value -0.0075}
+			}
+			{damping 0.975}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_white_small01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 45}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.35 0.05}
+							{pow 1.125 0.125}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.15 0.05}
+						}
+					}
+					{highlight 0xff05050a}
+				}
+				{#+ sprite "$/smoke/smoke_white01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 45}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.35 0.05}
+							{pow 1.125 0.125}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.15 0.05}
+						}
+					}
+					{highlight 0xff05050a}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,195 @@
+{fx
+	{sound "crush/medium/wood"}
+	{#+ particleview dust
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 0}
+				{alpha1 75}
+				{speed 1.5}
+			}
+			{particleinit
+				{speed 1.75 1.75}
+				{lifetime 2.5 0.5}
+			}
+			{timetolive 0.1}
+			{axisz}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.035}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.1}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 75}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.125 0.025}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.1 0.1}
+							{pow 0.4}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff966432}
+				}
+				{#+ sprite "$/smoke/smoke_white01"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 75}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.125 0.025}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.1 0.1}
+							{pow 0.4}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff966432}
+				}
+				{sprite "$/smoke/smoke_white02"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 75}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.125 0.025}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.1 0.1}
+							{pow 0.4}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff966432}
+				}
+			}
+		}
+	}
+	{particleview shepki
+		{generator
+			{emissionarea
+				{radius 15 15}
+				{alpha0 0}
+				{alpha1 60}
+				{speed 6}
+			}
+			{particleinit
+				{speed 5 2}
+				{lifetime 2.75 0.25}
+			}
+			{axisz}
+			{timetolive 0.1}
+		}
+		{mover
+			{gravity
+				{value 0.175}
+			}
+			{damping 0.975}
+			{collisions
+				{terrain}
+				{restitution 0.35}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge}
+				{#+ sprite "$/particles/wood_plank01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.75}
+					}
+					{scale 0.075 0.025}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/wood_plank02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.75}
+					}
+					{scale 0.075 0.025}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/wood_plank03"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.75}
+					}
+					{scale 0.075 0.025}
+					{preturn 180 180}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

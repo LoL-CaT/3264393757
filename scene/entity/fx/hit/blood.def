@@ -1,0 +1,89 @@
+{fx
+	{##+ spriteview blood2
+		{sprite "$/blood/blood_n/flash_medium_parts2"
+			{visibility 1
+				{npower
+					{min 0.85}
+					{max 0}
+					{pow 2}
+				}
+			}
+			{timer
+				{duration 14}
+			}
+			{scale 1
+				{npower
+					{min 0}
+					{max 0.45 0.05}
+					{pow 0.1}
+				}
+			}
+			{preturn 180 180}
+			{highlight 0xff4b0000}
+		}
+		{ground}
+		{layer groundshadow}
+		{notifyowner}
+		{offset 5 0 0}
+	}
+	{##+ spriteview blood3
+		{sprite "$/blood/blood_splatter01"
+			{visibility 1
+				{npower
+					{min 0.9}
+					{max 0}
+					{pow 2}
+				}
+			}
+			{timer
+				{duration 25}
+			}
+			{scale 1
+				{npower
+					{min 0}
+					{max 0.45 0.05}
+					{pow 0.1}
+				}
+			}
+			{preturn 180 180}
+			{highlight 0xff4b0000}
+		}
+		{ground}
+		{layer groundstatic}
+		{notifyowner}
+		{offset 0 5 0}
+		{usedirection}
+		{autovisible}
+	}
+	{decalview
+		{sprite "$/blood/blood_n/flash_medium_parts2"
+			{visibility 1
+				{## npower
+					{min 0.85}
+					{max 0}
+					{pow 2}
+				}
+				{linear
+					{min 0.85}
+					{max 0}
+				}
+			}
+			{timer
+				{mode play }
+				{duration 14}
+			}
+			{scale 1
+				{linear
+					{min 0.45 0.05}
+					{max 0}
+				}
+			}
+			{preturn 180 180
+			}
+			{highlight 0xff4b0000}
+		}
+		{ground}
+		{layer grounddynamic}
+		{notifyowner}
+	}
+}

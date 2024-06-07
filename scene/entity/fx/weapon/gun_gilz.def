@@ -1,0 +1,48 @@
+{fx
+	{particleview
+		{generator
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 15}
+				{speed 0.15}
+			}
+			{particleinit
+				{speed 1 0.2}
+				{lifetime 1.25 0.25}
+			}
+			{totalparticles 50}
+			{particlesinblock 1}
+		}
+		{mover
+			{gravity
+				{value 0.1}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.5}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/particle/gilzal"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 720}
+						}
+					}
+					{scaley 0.25}
+					{scalex 0.125}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+				{flags trace}
+			}
+		}
+		{notifyowner}
+	}
+}

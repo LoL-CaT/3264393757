@@ -1,0 +1,176 @@
+{fx
+	{fire}
+	{lightview light
+		{type point}
+		{animator
+			{visibility 1
+				{npower
+					{min 1}
+					{max 0}
+					{pow 1}
+				}
+			}
+			{highlight 0xffffaf32}
+			{timer
+				{duration 0.25}
+			}
+		}
+		{intensity 30}
+		{radius 150}
+		{effectonground}
+		{offset 0 0 25}
+	}
+	{#+ spriteview halo
+		{sprite "$/flash/halo01"
+			{timer
+				{mode play }
+				{duration 0.25}
+			}
+			{light 1
+				{npower
+					{min 0.25}
+					{max 0}
+					{pow 1}
+				}
+			}
+			{scale 1}
+			{highlight 0xffff964b}
+		}
+		{notifyowner}
+		{halo}
+		{autovisible}
+	}
+	{#+ particleview sparks
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 0}
+				{#+ alpha1 45}
+				{speed 4}
+			}
+			{particleinit
+				{speed 8 4}
+				{lifetime 1.75 0.25}
+			}
+			{timetolive 0.1}
+		}
+		{mover
+			{damping 0.975}
+			{gravity
+				{value 0.15}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.35}
+			}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{sprite "$/fire/spark01"
+					{timer
+						{mode play }
+						{duration 0.5}
+					}
+					{scalex 1
+						{npower
+							{min 0.3 0.05}
+							{max 0.0075 0.0025}
+							{pow 0.35}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.3 0.05}
+							{max 0.025 0.005}
+							{pow 1}
+						}
+					}
+					{highlight 0xffff7d64}
+				}
+			}
+		}
+	}
+	{#+ particleview exp
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 0}
+				{#+ alpha1 30}
+			}
+			{particleinit
+				{speed 5 1}
+				{lifetime 0.25 0.05}
+			}
+			{timetolive 0.1}
+			{totalparticles 0}
+			{particlesinblock 6}
+		}
+		{mover
+			{damping 0.875}
+		}
+		{visualizer
+			{stage 
+				{flags trace }
+				{#+ sprite "$/explosion/explosion03"
+					{timer
+						{mode play }
+						{duration 0.5}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 1.25 0.05}
+							{pow 0.3}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.25 0.05}
+							{pow 0.3}
+						}
+					}
+					{highlight 0xffff644b}
+					{light 1
+						{npower
+							{min 0.2 0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+				}
+				{sprite "$/explosion/explosion02"
+					{timer
+						{mode play }
+						{duration 0.5}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 1.25 0.05}
+							{pow 0.3}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.25 0.05}
+							{pow 0.3}
+						}
+					}
+					{highlight 0xffff9664}
+					{light 1
+						{npower
+							{min 0.2 0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+				}
+			}
+		}
+	}
+}

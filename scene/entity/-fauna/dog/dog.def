@@ -1,0 +1,22 @@
+{game_entity
+	(include "/properties/dog.ext")
+	(include "/properties/shadow/animal.inc")
+	{props "collectable" "physics_damping" "fogged_as_gameentity"}
+	{mass 30}
+
+	{simulation {able 1} {disableLinked 1}}
+	{collider "dog"}
+	
+	{Chassis "foot"
+		{Run
+			{Walk   4   4   200}
+			{Slow	6   7	300}
+			{Normal	12  12	300}
+			{Fast	25  25	500}
+		}
+	}
+
+	("declare_health" args 250)
+
+	{extension "dog.mdl"}
+}

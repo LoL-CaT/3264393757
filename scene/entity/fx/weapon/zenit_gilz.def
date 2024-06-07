@@ -1,0 +1,49 @@
+{fx
+	{#+ particleview shells
+		{generator
+			{emissionarea
+				{radius 0.05 0.05}
+				{alpha0 0}
+				{alpha1 0 5}
+				{speed 0.15}
+				{theta -40}
+			}
+			{particleinit
+				{speed 1.75 0.5}
+				{lifetime 1.75 0.25}
+			}
+		}
+		{mover
+			{gravity
+				{value 0.1}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.5}
+				{objects}
+			}
+			{nodependonwind}
+			{damping 0.95}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/particles/zenit_shell01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 480}
+							{pow 2}
+						}
+					}
+					{scaley 0.075}
+					{scalex 0.05}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

@@ -1,0 +1,164 @@
+{fx
+	{#+ particleview puff
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 15}
+				{speed 0.25}
+				{theta -45}
+			}
+			{particleinit
+				{speed 1.125 0.875}
+				{lifetime 0.9 0.3}
+			}
+		}
+		{mover
+			{gravity
+				{value 0.05}
+			}
+			{damping 0.95}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/smoke/smoke_white01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 0.85}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/smoke/smoke_white02"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 0.85}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/smoke/smoke_white_small01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.45 0.05}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 0.85}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.25 0.05}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+				}
+			}
+		}
+	}
+	{#+ particleview snow1
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 15 10}
+				{speed 0.65}
+				{theta 15}
+			}
+			{particleinit
+				{speed 2.5 0.5}
+				{lifetime 0.4 0.05}
+			}
+		}
+		{mover
+			{nodependonwind}
+			{damping 0.975}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/dust/snow01"
+					{preturn 180 180}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.4 0.05}
+							{pow 0.4}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.125 0.025}
+							{pow 0.25}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 2}
+						}
+					}
+				}
+				{flags trace }
+			}
+		}
+		{offset 0 0 0}
+	}
+}

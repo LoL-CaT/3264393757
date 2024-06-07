@@ -1,0 +1,36 @@
+{fx
+	{lightview light
+		{animator
+			{timer
+				{mode play loop pingpong }
+				{duration 1.2 -0.8}
+			}
+			{visibility 1
+				{linear
+					{min 0.5}
+					{max 0.4}
+				}
+			}
+			{highlight 0xffff6432}
+		}
+		{offset 0 0 20}
+		{intensity 40}
+		{radius 90}
+		{effectonground}
+	}
+	{#+ particleview
+		{generator
+			{emissionarea}
+			{particleinit
+				{speed 1}
+				{lifetime 1}
+			}
+		}
+		{mover}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/flash/halo02"}
+			}
+		}
+	}
+}

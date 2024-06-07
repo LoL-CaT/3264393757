@@ -1,0 +1,25 @@
+{game_entity
+	(include "/properties/stuff_small.ext")
+	{tag "balloon"}
+	{Extension "flame_balloon_roks3.mdl"}
+	{volume "body"
+		{thickness 1}
+	}
+	{props "capacity" "balloon"}
+	{extender "stuff"
+		{item "balloon_g"}
+	}
+	{armor
+		{setting "balloon"
+			{whole_wound}
+			{durability
+				{pierce	{koef 0.99}}
+			}
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{threshold_weakness_calibre 14}
+		}
+	}
+}

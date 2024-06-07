@@ -1,0 +1,39 @@
+{game_entity
+	(include "/properties/animal.ext")
+	(include "/properties/shadow/animal.inc")
+	{props "collectable" "physics_damping" "fogged_as_gameentity"}
+	(define "v_body"
+	{volume "body%n"
+		{able clear {select} {touch} {contact}}
+		{thickness 1}
+	}
+	)
+	{mass 3}
+	{brain
+		{state "chicken"}
+	}
+
+	{simulation {able 1} {disableLinked 1}}
+	{collider "chicken"}
+	
+	{Chassis "foot"
+		{Run
+			{Slow	1   1	100}
+			{Normal	3   3	200}
+			{Fast	18  18	500}
+		}
+	}
+	{extender "stuff"
+		{item "chicken"}
+	}
+	
+	("declare_health" args 30)
+	
+	{extension "chicken.mdl"}
+	
+	{extender "animation_sound"
+		{event "alarm"
+			{play "animal/chicken/chicken_alarm"}
+		}
+	}
+}

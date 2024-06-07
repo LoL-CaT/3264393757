@@ -1,0 +1,33 @@
+{game_entity
+	(include "/properties/building.inc")
+	{extension "house_001_g2_piece_006_x.mdl"}
+	{bone "debris_land_006" {parameters "Ground;Land;Align;"}}
+	{bone "stones_006" {parameters "Align;"}}
+	{placer
+		{place "1" {attach  squat_lie} 		{linkbone "attach1"}}
+	}
+	("land_patch_house")
+	{volume "target_vol_01"
+		{Tags "target"}
+		{able clear {bullet}}
+	}
+	{volume "vol_018"
+	    {Tags "body"}
+		{able {obstacle 0}}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	{volume "vol_019"
+	    {Tags "body"}
+		{able {obstacle 0}}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	{volume "vol_020"
+		{Tags "body"}
+		{able {obstacle 0}}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	("armor_medium")
+}

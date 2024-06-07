@@ -1,0 +1,27 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "h_90_piece04.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp"}
+	{placer
+		 {place "3" {attach  snipe_cover} 		{linkbone "attach3"}}
+		 {place "1" {attach  hide_squat} 		{linkbone "attach1"}}
+    }
+		{boarder}
+	("land_patch_house")
+	("armor_stone_house")
+	{volume "body01"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{holed}{Obstacle 0}}
+	}
+	{volume "hole3"
+		{Tags "attach" "3"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "window3"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{bone "window3_x" {visibility 0}}
+}

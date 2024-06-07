@@ -1,0 +1,161 @@
+{fx
+	{#+ lightview
+		{type spot}
+		{animator
+			{highlight 0xffcccccc}
+		}
+		{falloff 5}
+		{theta 20}
+		{phi 60}
+		{radius 1800}
+		{priority 10}
+		{effectonground}
+		{intensity 15}
+	}
+	{#+ spriteview flash
+		{sprite "$/flash/flash_g02a"
+			{light 1
+				{peak
+					{min 0.5}
+					{max 0.6}
+				}
+			}
+			{timer
+				{mode play loop }
+				{duration 2}
+			}
+			{scale 1}
+			{highlight 0xfee992}
+		}
+		{halo}
+	}
+	{#+ spriteview halo
+		{sprite "$/flash/halo01"
+			{light 1
+				{peak
+					{min 0.5}
+					{max 0.7}
+				}
+			}
+			{timer
+				{mode play loop }
+				{duration 3}
+			}
+			{scale 0.5}
+			{highlight 0xfee992}
+		}
+		{halo}
+	}
+	{#+ particleview flies
+		{generator
+			{totalparticles 20}
+			{emissionarea
+				{radius 82.5 67.5}
+				{alpha0 0}
+				{alpha1 15}
+				{distributionlaw sphere}
+			}
+			{particleinit
+				{speed 7}
+				{lifetime 0.3 0.2}
+			}
+			{particlesinblock 1}
+		}
+		{mover
+			{gravity
+				{value 0}
+			}
+			{damping 0.01}
+			{collisions
+				{restitution 0.4}
+			}
+			{nodependonwind}
+		}
+		{notifyowner}
+		{visualizer
+			{stage 
+				{sprite "$/particle/oskolkim"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.1 0.05}
+					{light 0.6 0.2
+						{peak
+							{min 0}
+							{max 0.6 0.2}
+						}
+					}
+				}
+			}
+		}
+	}
+	{#+ spriteview cone
+		{sprite "$/flash/light"
+			{light 1
+				{peak
+					{min 0.3}
+					{max 0.33}
+				}
+			}
+			{timer
+				{mode play loop pingpong }
+				{duration 3}
+			}
+			{scalex 3}
+			{scaley 0.75
+				{linear
+					{min 0.75}
+					{max 0.65}
+				}
+			}
+			{highlight 0xffffff88}
+		}
+		{orientation trace}
+	}
+	{#+ particleview flies_dir
+		{generator
+			{totalparticles 30}
+			{emissionarea
+				{radius 1.5 1.5}
+				{alpha0 0}
+				{alpha1 7}
+				{theta 0}
+			}
+			{particleinit
+				{speed 76 74}
+				{lifetime 1.125 0.875}
+			}
+			{particlesinblock 1}
+		}
+		{mover
+			{gravity
+				{value 0}
+			}
+			{damping 0.01}
+			{collisions
+				{restitution 0.4}
+			}
+			{nodependonwind}
+		}
+		{notifyowner}
+		{visualizer
+			{stage 
+				{sprite "$/particle/oskolkim"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{power
+							{min 0.04 0.01}
+							{max 0}
+							{pow 0.75}
+						}
+					}
+					{light 0.6 0.2}
+				}
+			}
+		}
+	}
+}

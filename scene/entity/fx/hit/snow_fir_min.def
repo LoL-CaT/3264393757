@@ -1,0 +1,157 @@
+{fx
+	{#+ particleview
+		{generator
+			{totalparticles 15}
+			{emissionarea
+				{radius 25 25}
+				{alpha0 0}
+				{alpha1 180}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 2 0.7}
+			}
+			{axisz}
+		}
+		{offset 0 0 30}
+		{mover
+			{gravity
+				{value 0.005}
+			}
+			{damping 0.99}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smokesmal4b_30"
+					{scale 1
+						{linear
+							{min 1.5 0.5}
+							{max 2 0.5}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.3 -0.2}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 100}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 90}
+				}
+				{sprite "$/smoke/smokesmal4ablue"
+					{scale 1
+						{linear
+							{min 1.5 0.5}
+							{max 2 0.5}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.6}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 100}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 90}
+				}
+				{sprite "$/smoke/smokesmal4b_50"
+					{scale 1
+						{linear
+							{min 1.5 0.5}
+							{max 2 0.5}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.6}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 100}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 90}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{particleview
+		{generator
+			{totalparticles 20}
+			{emissionarea
+				{radius 30 30}
+				{alpha0 0}
+				{alpha1 180}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 2.4 0.6}
+			}
+			{axisz}
+		}
+		{offset 0 0 30}
+		{mover
+			{gravity
+				{value 0.012}
+			}
+			{damping 0.99}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/particle/oskolkim"
+					{scale 1
+						{linear
+							{min 0.225 0.025}
+							{max 0.175 0.025}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 100}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 90 90}
+					{highlight 0xffffffff}
+					{light 1
+						{linear
+							{min 1}
+							{max 0.25 0.05}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

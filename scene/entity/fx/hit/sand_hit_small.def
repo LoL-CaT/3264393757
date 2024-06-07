@@ -1,0 +1,258 @@
+{fx
+	{sound "hit/small/sand"}
+	{particleview stones
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 45}
+				{speed 0.75}
+			}
+			{particleinit
+				{speed 1 1}
+				{lifetime 0.75 0.25}
+			}
+			{timetolive 0.1}
+		}
+		{mover
+			{damping 0.985}
+			{gravity
+				{value 0.075}
+			}
+			{nodependonwind}
+			{collisions
+				{restitution 0.5}
+				{terrain}
+			}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{#+ sprite "$/particles/rock01"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 360}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{highlight 0xffc89664}
+				}
+				{#+ sprite "$/particles/rock03"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 360}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{highlight 0xffaf7d4b}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview flow
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 12.5 7.5}
+				{speed 0.6}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.675 0.075}
+			}
+			{timetolive 0.2}
+		}
+		{offset 0 0 -2.5}
+		{mover
+			{damping 0.85}
+			{gravity
+				{value 0.125}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/dust/dust_cloud01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 0.625 0.125}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{scalex 1
+						{npower
+							{min 0.025 0.005}
+							{max 0.225 0.025}
+							{pow 1 0.1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.025 0.005}
+							{max 0.0075 0.0025}
+							{pow 1.5 0.1}
+						}
+					}
+					{highlight 0xffaf967d}
+				}
+				{flags trace }
+				{#+ sprite "$/dust/dust_cloud02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 0.625 0.125}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{scalex 1
+						{npower
+							{min 0.025 0.005}
+							{max 0.225 0.025}
+							{pow 1 0.1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.025 0.005}
+							{max 0.0075 0.0025}
+							{pow 1.5 0.1}
+						}
+					}
+					{highlight 0xffaf967d}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview V
+		{generator
+			{emissionarea
+				{radius 0.05 0.05}
+				{alpha0 0}
+				{alpha1 5}
+			}
+			{particleinit
+				{speed 0.075 0.025}
+				{lifetime 0.15}
+			}
+			{totalparticles 0}
+			{particlesinblock 1}
+			{timetolive 0.1}
+		}
+		{mover
+			{nodependonwind}
+			{damping 0.95}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/dust/dust_boom01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.05 0.01}
+							{pow 0.5}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.275 0.025}
+							{pow 0.35}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 2.5}
+						}
+					}
+					{highlight 0xffe1c8af}
+					{turn 90}
+				}
+				{flags trace }
+			}
+		}
+	}
+	{#+ particleview dust
+		{generator
+			{emissionarea
+				{radius 1.25 1.25}
+				{alpha0 0}
+				{alpha1 50}
+				{speed 2.5}
+			}
+			{particleinit
+				{speed 1 1}
+				{lifetime 0.5 0.1}
+			}
+			{timetolive 0.15}
+		}
+		{mover
+			{nodependonwind}
+			{damping 0.925}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/dust/dust_cloud01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.45 0.05}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{highlight 0xffe1c8af}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 1}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.055 0.015}
+							{pow 0.75}
+						}
+					}
+					{preturn 180 180}
+				}
+			}
+		}
+	}
+}

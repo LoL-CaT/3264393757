@@ -1,0 +1,80 @@
+{fx
+	{sound "hit/small/ground"}
+	{#+ spriteview mark
+		{sprite "$/flash/sledbulet"
+			{visibility 1
+				{linear
+					{min 1}
+					{max 0}
+				}
+			}
+			{timer
+				{mode play }
+				{duration 2}
+			}
+			{scale 0.4}
+		}
+		{ground}
+		{layer grounddynamic}
+		{notifyowner}
+		{autovisible}
+	}
+	{#+ particleview dust
+		{generator
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 3}
+			}
+			{particleinit
+				{speed 3 3}
+				{lifetime 1}
+			}
+			{axisz}
+			{timetolive 0.1}
+			{totalparticles 10}
+			{particlesinblock 10}
+		}
+		{mover
+			{gravity
+				{value 0.05}
+			}
+			{damping 0.71}
+			{collisions
+				{terrain}
+				{restitution 0.4}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smokesmal4b"
+					{timer
+						{mode play }
+						{duration 0.8 0.2}
+					}
+					{preturn 90 90}
+					{turn 1
+						{linear
+							{min 90 20}
+							{max 5 10}
+						}
+					}
+					{scale 1
+						{linear
+							{min 0.075 0.025}
+							{max 0.35 0.05}
+						}
+					}
+					{visibility 1
+						{linear
+							{min 0.7}
+							{max 0}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

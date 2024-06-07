@@ -1,0 +1,49 @@
+;SDL
+{animation	
+	(define "event"		{event %1 "%0"})
+	(define "event_2"	("event"	args	%0	%1)												("event"	args	%0	%2))
+	(define "event_3"	("event_2"	args	%0	%1	%2)											("event"	args	%0	%3))
+	(define "event_4"	("event_3"	args	%0	%1	%2	%3)										("event"	args	%0	%4))
+	(define "event_5"	("event_4"	args	%0	%1	%2	%3	%4)									("event"	args	%0	%5))
+	(define "event_6"	("event_5"	args	%0	%1	%2	%3	%4	%5)								("event"	args	%0	%6))
+	(define "event_7"	("event_6"	args	%0	%1	%2	%3	%4	%5	%6)							("event"	args	%0	%7))
+	(define "event_8"	("event_7"	args	%0	%1	%2	%3	%4	%5	%6	%7)						("event"	args	%0	%8))
+	(define "event_9"	("event_8"	args	%0	%1	%2	%3	%4	%5	%6	%7	%8)					("event"	args	%0	%9))
+	(define "event_10"	("event_9"	args	%0	%1	%2	%3	%4	%5	%6	%7	%8	%9)				("event"	args	%0	%10))
+	
+	{sequence "idle_0"}
+	{sequence "eat"}
+	{sequence "run_2"					{speed 1.2}}
+	{sequence "run_slow" 				{event 1 "step"}}
+	{sequence "walk" 					{event 1 "step"}}
+	{sequence "idle_2"}
+	{sequence "idle_1"}
+	{sequence "attack"}
+	{sequence "jump"					("event_6" args step 20 50 115 136 156 175)}
+	{sequence "death" 					{event 1 "dying"}}
+	{sequence "death_2" }
+	{sequence "alarm" 					};("event_2" args bark_alarm 70 160)}
+	{sequence "sleep_enter"}
+	{sequence "sleep"}
+	{sequence "sleep_exit"}
+	{sequence "stand_to_sit"}
+	{sequence "idle_sit"}
+	{sequence "sit_to_stand"}
+	{sequence "stand_to_lie"}
+	{sequence "idle_lie"}
+	{sequence "lie_to_stand"}
+	{sequence "sit_to_lie"}
+	{sequence "lie_to_sit"}
+	{sequence "idle_scratch"}
+	{sequence "dig"}
+	{sequence "alarm_bark" 				("event_10" args bark_alarm 28 55 85 129 159 189 214 239 264 289)}
+	{sequence "alarm_bark_friendly"		("event_10" args bark_friendly 28 58 98 162 188 218 248 268 288 308)}
+	{sequence "alarm_tucked_tail"		("event" args whimper_friendly 174)}
+	{sequence "alarm_growl"				("event" args growl 130)}
+	{sequence "alarm_beating_tail"		("event" args whimper_friendly 106)}
+	{sequence "stand_look_arond"}
+	{sequence "fear_back"}
+	{sequence "fear_forward"}
+	{sequence "fear_left"}
+	{sequence "fear_right"}
+}

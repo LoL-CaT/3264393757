@@ -1,0 +1,94 @@
+;Exported by:	 tolokolnikova
+;Date:			 27.06.2017 14:38:44
+;File:			 D:\gem2\gem2-mdl-soldiers\models\building\house_D\D_004_x_fort.max
+{skeleton
+	{bone "d004_piece06_point"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "piece01"
+			{matrix34
+				0.0362 	 0.999 	 -0.0272
+				-0.9664 	 0.028 	 -0.2554
+				-0.2544 	 0.0355 	 0.9664
+				9.5791 	 -0.0059 	 11.3505
+			}
+			{poly "piece01"}
+		}
+		{bone "sub_piece01"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				-11.23 	 -0.0559 	 13.538
+			}
+			{poly "sub_piece01"}
+		}
+		{bone "d004_piece06"
+			{poly "d004_piece06"}
+		}
+		{bone revolute "attach1"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				-16.6109 	 -13.376 	 -18.3096
+			}
+		}
+		{bone "debris_land_001"
+			{parameters "commonmesh;land;ground;"}
+			{matrix34
+				0 	 -1 	 0
+				1 	 0 	 0
+				0 	 0 	 1
+				-21.6929 	 12.8323 	 -20.3175
+			}
+			{poly "debris_land_001" {ground}}
+		}
+		{bone "fort_wall"
+			{Position -13.6847 	 8.882 	 -9.4907}
+		}
+		{bone "stones_001"
+			{parameters "commonmesh;land;ground;"}
+			{matrix34
+				0 	 -1 	 0
+				1 	 0 	 0
+				0 	 0 	 1
+				-21.6929 	 12.819 	 -20.3175
+			}
+			{poly "stones_001" {ground}}
+		}
+	}
+}
+{volume "piece01"
+	{box 5.90551 18.0902 11.4638}
+	{bone "piece01"}
+	{Position 0 	 1.0412 	 4.2023}
+}
+{volume "sub_piece01"
+	{box 5.90551 13.1776 14.5665}
+	{bone "sub_piece01"}
+	{matrix34
+		1 	 0 	 0
+		0 	 0.9848 	 -0.1736
+		0 	 0.1736 	 0.9848
+		0 	 0.2142 	 -0.2819
+	}
+}
+{volume "target_vol_001"
+	{box 9.84252 11.811 15.6501}
+	{bone "d004_piece06_point"}
+	{matrix34
+		0 	 1 	 0
+		-1 	 0 	 0
+		0 	 0 	 1
+		-16.6109 	 -0.209 	 10.7719
+	}
+}
+{volume "vol_01"
+	{polyhedron}
+	{bone "d004_piece06"}
+	{Position -0.328 	 -0.035 	 -17.3647}
+}

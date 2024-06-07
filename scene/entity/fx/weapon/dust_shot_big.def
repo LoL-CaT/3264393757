@@ -1,0 +1,166 @@
+{fx
+	{sound "detonation/hit_small/hit_small"}
+	{lightview
+		{type point}
+		{animator
+			{timer
+				{duration 0.25}
+			}
+			{visibility 1
+				{npower
+					{min 1}
+					{max 0}
+					{pow 1.25}
+				}
+			}
+			{highlight 0xfffea742}
+		}
+		{intensity 40}
+		{radius 200}
+		{effectonground}
+		{offset 0 0 20}
+	}
+	{#+ particleview dust_aoe_edge
+		{generator
+			{particlesinblock 30}
+			{totalparticles 0}
+			{emissionarea
+				{radius 70 30}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 1.5 0.5}
+				{lifetime 7.5 0.5}
+			}
+			{axisz}
+			{timetolive 0.01}
+		}
+		{offset 0 0 0}
+		{mover
+			{gravity
+				{value 0.015}
+			}
+			{damping 0.9}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_light1"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.725 0.125}
+							{pow 0.125 0.025}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 -0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffb28151}
+				}
+				{sprite "$/addon/smoke_round6"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.725 0.125}
+							{pow 0.125 0.025}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 -0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffa28256}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview dust_aoe_cener
+		{generator
+			{particlesinblock 15}
+			{totalparticles 0}
+			{emissionarea
+				{radius 25 25}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 1.5 0.5}
+				{lifetime 7.5 0.5}
+			}
+			{axisz}
+			{timetolive 0.01}
+		}
+		{offset 0 0 8}
+		{mover
+			{gravity
+				{value 0.015}
+			}
+			{damping 0.95}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_round6"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.55 0.05}
+							{pow 0.1}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.15 -0.05}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffffcc88}
+				}
+			}
+		}
+		{notifyowner}
+		{delay 0.05}
+	}
+}

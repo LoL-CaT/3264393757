@@ -1,0 +1,170 @@
+{fx
+	{#+ particleview
+		{generator
+			{emissionarea
+				{radius 150 150}
+				{alpha0 0.5 0.5}
+				{alpha1 1.5 1.5}
+				{speed 0.3}
+			}
+			{particleinit
+				{speed 3.5 1.5}
+				{lifetime 25 -20}
+			}
+		}
+		{mover
+			{damping 10}
+			{gravity
+				{value 0}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.3}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_white01"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 180}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.5 0.5}
+							{pow 0.9 0.3}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.11 0.01}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play loop }
+						{duration 0.875 0.125}
+					}
+					{highlight 0xfff3edff}
+				}
+				{##+ sprite "$/dust/snow01"
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.5 0.5}
+							{pow 0.5 0.3}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.6 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play loop }
+						{duration 0.6 0.2}
+					}
+					{highlight 0xff7b75ff}
+				}
+			}
+		}
+	}
+	{particleview
+		{generator
+			{emissionarea
+				{radius 150 150}
+				{alpha0 0.5 0.5}
+				{alpha1 1.5 1.5}
+				{speed 0.12}
+			}
+			{particleinit
+				{speed 3 2}
+				{lifetime 28.5 -23.5}
+			}
+		}
+		{mover
+			{damping 10}
+			{gravity
+				{value 0}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.3}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_white02"
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{scale 1
+						{npower
+							{min 1.5 0.5}
+							{max 2.5 0.5}
+							{pow 0.9 0.3}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.0425 0.0075}
+							{max 0.0275 0.0125}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play pingpong}
+						{duration 0.875 0.125}
+					}
+					{highlight 0xfff3edff}
+				}
+				{##+ sprite "$/dust/snow01"
+					{#+ turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.5 0.5}
+							{pow 0.5 0.3}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.6 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play loop }
+						{duration 0.6 0.2}
+					}
+					{highlight 0xff7b75ff}
+				}
+			}
+		}
+	}
+}

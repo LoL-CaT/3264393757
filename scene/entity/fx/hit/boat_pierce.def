@@ -1,0 +1,196 @@
+{fx
+	{##+ particleview sprite_pieces_slow
+		{generator
+			{totalparticles 0}
+			{particlesinblock 10}
+			{emissionarea
+				{radius 7.5 7.5}
+				{alpha0 0}
+				{alpha1 70}
+			}
+			{particleinit
+				{speed 3.5 1.5}
+				{lifetime 2.5 0.5}
+			}
+			{axisz}
+			{timetolive 0.1}
+		}
+		{mover
+			{gravity
+				{value 0.15}
+			}
+			{damping 0.965}
+			{collisions
+				{terrain}
+				{restitution 0.25}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/particles/metal_pieces01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1200}
+							{pow 0.6}
+						}
+					}
+					{scale 0.085 0.015}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xffc8c8c8}
+				}
+				{#+ sprite "$/particles/metal_pieces02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1200}
+							{pow 0.6}
+						}
+					}
+					{scale 0.09 0.01}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xffa0a0a0}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{##+ particleview sparkles
+		{generator
+			{emissionarea
+				{radius 7.5 7.5}
+				{alpha0 0}
+				{alpha1 75}
+				{speed 1.5}
+			}
+			{particleinit
+				{speed 4.5 1.5}
+				{lifetime 2 0.5}
+			}
+			{timetolive 0.175}
+			{axisz}
+		}
+		{offset 0 0 2.5}
+		{mover
+			{damping 0.975}
+			{gravity
+				{value 0.15}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.3}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/fire/spark02"
+					{scale 1
+						{npower
+							{min 0.05 0.025}
+							{max 0}
+							{pow 8}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffffaf4b}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{particleview
+		{generator
+			{emissionarea
+				{radius 0}
+				{alpha0 0}
+				{alpha1 12.5 2.5}
+				{speed 3}
+			}
+			{particleinit
+				{speed 2.75 2.25}
+				{lifetime 0.3 0.1}
+			}
+			{timetolive 1}
+			{axisz}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value -0.02}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "/texture/fx/smoke/smoke_g04a"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.05 0.03}
+							{pow 1}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.4 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffffffff}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 90}
+							{pow 0.75}
+						}
+					}
+				}
+				{sprite "/texture/fx/smoke/smoke_turb2"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.05 0.02}
+							{pow 1.25}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 0.375 0.125}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffffffff}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 90}
+							{pow 0.75}
+						}
+					}
+				}
+			}
+		}
+	}
+}

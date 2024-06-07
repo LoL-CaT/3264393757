@@ -1,0 +1,18 @@
+{game_entity
+	{Extension "paratrooper_attach.mdl"}
+	{props "paratrooper" "paratrooper_attach"}
+	{Placer
+		{place "attach"
+			{Linkbone "attach"}
+		}
+	}
+	{boarder
+		{anm "pose"
+			{forward	{end "pose_paratruper_flight"}}
+			{reverse	{begin "paratruper_landing"}}
+		}
+		{door "basis"}
+		{link "basis" "attach" {anm "pose"} {forward putoff} {reverse puton}}
+	}
+	{ForceQuantable}
+}

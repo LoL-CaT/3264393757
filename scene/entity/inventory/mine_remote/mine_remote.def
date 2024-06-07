@@ -1,0 +1,19 @@
+{actor
+	(include "/properties/stuff_actor_small.ext")
+	{props "mine" "remote" "detonate" "no_blast_physics"}
+	{able "-select"}
+	{body {proper body sensible} {permit body}}
+	{extender "stuff"
+		{item "mine remote"}
+	}
+	{extender "mine"
+		{time 8}
+		{fuze "mine_fuze"}
+	}
+	(include "/properties/shadow/round.inc")
+	{extension "mine_remote.mdl"}
+	{volume "body"
+;		{thickness 1}
+		{able {blast 1} {touch 1}}
+	}
+}

@@ -1,0 +1,87 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "b_ua_03_piece01.mdl"}
+		{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+		("armor_saman_house")
+	{placer
+		{place "1" {attach   snipe_cover} 		{linkbone "attach1"}}
+		{place "2" {attach   snipe_cover} 		{linkbone "attach2"}}
+	}
+	{boarder}
+	("land_patch_house")
+	{volume "body01"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{holed}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{holed}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 20}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body"}
+		{thickness 20}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "hole1"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "hole2"
+		{Tags "attach" "2"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof01"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof02"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof03"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof04"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof05"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof06"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof07"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "window1"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{volume "window2"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{bone "window1_x" {visibility 0}}
+	{bone "window2_x" {visibility 0}}
+}

@@ -1,0 +1,83 @@
+{game_entity
+(include "/properties/building.inc")
+				{extension "b1_vil_piece_04.mdl"}
+	{props  "wood"  "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+		("armor_log_house")
+	{placer
+		{place "1" {attach  snipe_cover} 		{linkbone "attach1"}}
+		{place "2" {attach  snipe_cover} 		{linkbone "attach2"}}
+		{place "3" {attach  hide_squat} 		{linkbone "attach3"}}
+	}
+	{boarder}
+	("land_patch_house")
+	{volume "body01"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{holed}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body05"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body06"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body07"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{holed}{Obstacle 0}}
+	}
+	{volume "hole01"
+		{Tags "attach" "2"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "hole02"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "roof01"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}{Obstacle 0}}
+	}
+	{volume "roof02"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}{Obstacle 0}}
+	}
+	{volume "roof03"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}{Obstacle 0}}
+	}
+	{volume "window1"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{volume "window2"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{bone "window1_x" {visibility 0}}
+	{bone "window2_x" {visibility 0}}
+}

@@ -1,0 +1,72 @@
+{fx
+	{#+ particleview
+		{generator
+			{totalparticles 10}
+			{emissionarea
+				{radius 0.2 0.2}
+				{alpha0 0}
+				{alpha1 180}
+				{speed 0.02}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 2}
+			}
+		}
+		{offset 0 0 20}
+		{mover
+			{damping 0.95}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/particle/suspect01"
+					{scalex 1
+						{npower
+							{min 0.2}
+							{max 1}
+							{pow 0.5}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.2}
+							{max 0.5}
+							{pow 0.5}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.5}
+						}
+					}
+					{highlight 0xffffff}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ spriteview
+		{sprite "$/particle/suspect01"
+			{timer
+				{mode play loop }
+				{duration 1}
+			}
+			{scale 1
+				{peak
+					{min 0.3}
+					{max 0.4}
+				}
+			}
+			{highlight 0xffffff}
+		}
+		{offset 0 0 20}
+		{halo}
+		{autovisible}
+	}
+}

@@ -1,0 +1,154 @@
+{fx
+	{#+ particleview sparks
+		{generator
+			{emissionarea
+				{radius 1}
+				{alpha1 5 5}
+				{speed 0.3}
+			}
+			{particleinit
+				{speed 0.15 0.05}
+				{lifetime 0.65 0.15}
+			}
+			{timetolive 2}
+			{axisz}
+		}
+		{mover
+			{## damping 0.99}
+			{gravity
+				{value 0.04}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/fire/spark01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scalex 1
+						{npower
+							{min 0.005 0.005}
+							{max 0.04}
+							{pow 1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.01 0.01}
+							{max 0.07}
+							{pow 1}
+						}
+					}
+					{highlight 0xffffffda}
+				}
+				{flags trace }
+			}
+		}
+	}
+	{#+ spriteview halo_small
+		{sprite "$/flash/halo01"
+			{timer
+				{mode play }
+				{duration 3}
+			}
+			{light 1
+				{npower
+					{min 1}
+					{max 0}
+					{pow 1.5}
+				}
+			}
+			{scale 1.5
+				{npower
+					{min 0.1}
+					{max 0.05}
+					{pow 0.35}
+				}
+			}
+			{highlight 0xfffe4204}
+		}
+		{autovisible}
+		{halo}
+		{orientation normalYZ}
+	}
+	{#+ spriteview halo_small
+		{sprite "$/flash/halo02"
+			{timer
+				{mode play }
+				{duration 0.25}
+			}
+			{light 1
+				{npower
+					{min 1}
+					{max 0}
+					{pow 1.5}
+				}
+			}
+			{scale 1.5
+				{npower
+					{min 0.4}
+					{max 0.2}
+					{pow 0.35}
+				}
+			}
+			{highlight 0xfffe4204}
+		}
+		{autovisible}
+		{halo}
+		{orientation normalYZ}
+	}
+	{#+ spriteview round
+		{sprite "$/addon/muzzle_round1"
+			{timer
+				{mode play }
+				{duration 2}
+			}
+			{light 1
+				{npower
+					{min 0.7}
+					{max 0}
+					{pow 1}
+				}
+			}
+			{scale 1.5
+				{npower
+					{min 0.022}
+					{max 0.022}
+					{## pow 0.351}
+				}
+			}
+			{## highlight 0xfffe4204}
+		}
+		{autovisible}
+		{halo}
+		{orientation normalYZ}
+	}
+	{#+ spriteview edge
+		{sprite "$/addon/fire_hole1"
+			{timer
+				{mode play }
+				{duration 3}
+			}
+			{light 1
+				{npower
+					{min 1}
+					{max 0}
+					{pow 1.5}
+				}
+			}
+			{scale 1.5
+				{npower
+					{min 0.05}
+					{max 0.05}
+					{## pow 0.351}
+				}
+			}
+			{## highlight 0xfffe4204}
+		}
+		{autovisible}
+		{halo}
+		{orientation normalYZ}
+	}
+}

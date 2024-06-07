@@ -1,0 +1,397 @@
+{fx
+	{sound "crush/medium/tree_branches"}
+	{#+ particleview dust
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 0}
+				{alpha1 90}
+				{distributionlaw disk}
+			}
+			{particleinit
+				{speed 2 1}
+				{lifetime 2.5 0.5}
+			}
+			{timetolive 0.1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 4}
+		}
+		{mover
+			{damping 0.965}
+			{gravity
+				{value 0.025}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+		}
+		{#+ visualizer
+			{stage 
+				{sprite "$/smoke/smoke_white01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 90}
+							{pow 0.8}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.1 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.5 0.1}
+							{pow 0.4}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff353e23}
+				}
+				{#+ sprite "$/smoke/smoke_white02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 90}
+							{pow 0.8}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.1 0.025}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.5 0.1}
+							{pow 0.4}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff3c4628}
+				}
+			}
+		}
+	}
+	{#+ particleview leaves
+		{generator
+			{emissionarea
+				{radius 10 10}
+				{alpha0 0}
+				{alpha1 90}
+				{distributionlaw sphere}
+			}
+			{particleinit
+				{speed 7 3}
+				{lifetime 12 -6}
+			}
+			{timetolive 0.1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 10 -6}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.035}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.05}
+			}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{#+ sprite "$/particle/listya2"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 2}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{highlight 0xffc8ffc8}
+				}
+				{#+ sprite "$/particles/leaf02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 2}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/leaf03"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 2}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/leaf04"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 2}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview leaves1
+		{generator
+			{emissionarea
+				{radius 40 10}
+				{alpha0 0}
+				{alpha1 90}
+				{speed 9 3}
+				{distributionlaw sphere}
+			}
+			{particleinit
+				{speed 2.5 -0.5}
+				{lifetime 6 2}
+			}
+			{timetolive 0.1}
+			{axisz}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.055}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.05}
+			}
+		}
+		{visualizer
+			{#+ stage initial 
+				{flags disablesoftedge }
+				{#+ sprite "$/particle/listya2"
+					{#+ turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.25}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{highlight 0xffc8ffc8}
+				}
+				{#+ sprite "$/particles/leaf02"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/leaf03"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+				}
+				{#+ sprite "$/particles/leaf04"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+				}
+			}
+			{stage collided 
+				{flags ground disablesoftedge }
+				{#+ sprite "$/particle/listya2"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{highlight 0xffc8ffc8}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 2}
+						}
+					}
+				}
+				{#+ sprite "$/particles/leaf02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 5}
+						}
+					}
+				}
+				{#+ sprite "$/particles/leaf03"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 5}
+						}
+					}
+				}
+				{#+ sprite "$/particles/leaf04"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 5}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview branches
+		{generator
+			{emissionarea
+				{radius 40}
+				{alpha0 0}
+				{alpha1 90}
+				{speed 1}
+				{distributionlaw sphere}
+			}
+			{particleinit
+				{speed 2 1}
+				{lifetime 7 1}
+			}
+			{timetolive 0.1}
+			{axisz}
+			{totalparticles 0}
+			{particlesinblock 7 -3}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.125}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.5}
+			}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge }
+				{#+ sprite "$/particles/branch01"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1440}
+							{pow 0.6}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 2}
+					}
+					{scale 0.1625 0.0375}
+					{preturn 180 180}
+					{highlight 0xffc8ffc8}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

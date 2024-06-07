@@ -1,0 +1,138 @@
+{fx
+	{## sound "detonation/hit_small/hit_small"}
+	{lightview
+		{type point}
+		{animator
+			{visibility 1
+				{linear
+					{min 1}
+					{max 0}
+				}
+			}
+			{highlight 0xffff9632}
+			{timer
+				{duration 0.12}
+			}
+			{scale 1
+				{linear
+					{min 0}
+					{max 1}
+				}
+			}
+		}
+		{radius 180}
+		{effectonground}
+		{offset 0 0 5}
+		{intensity 30}
+	}
+	{#+ particleview smoke_close
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 360}
+			}
+			{particleinit
+				{speed 0.4 0.1}
+				{lifetime 4 1}
+			}
+			{timetolive 0.1}
+			{totalparticles 2}
+			{particlesinblock 2}
+		}
+		{mover
+			{damping 0.8}
+			{gravity
+				{value -0.005}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_round7a"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 0 40}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 10}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.075 0.025}
+							{pow 0.08}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.9 0.1}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{highlight 0xffeaf7fe}
+				}
+			}
+		}
+	}
+	{#+ particleview v
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 360}
+			}
+			{particleinit
+				{speed 0.1}
+				{lifetime 5 1}
+			}
+			{timetolive 0.1}
+			{totalparticles 1}
+			{particlesinblock 1}
+		}
+		{mover
+			{damping 0.8}
+			{gravity
+				{value -0.005}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_zenith4"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 10}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.145 0.025}
+							{pow 0.08}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{highlight 0xff322f2b}
+				}
+			}
+		}
+	}
+}

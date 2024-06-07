@@ -1,0 +1,23 @@
+{game_entity
+	(include "/properties/selection/vehicle.inc" scale(2.4))
+	{extension "blindage_wood_x.mdl"}
+	{placer}
+
+	{"structure"
+		{place "blindage_wood" "blindage_wood_roof_x"}
+		{place "blindage_wood" "blindage_wood_wall_x"}
+	}
+	
+	{extender "land_patch"}
+
+	{extender "assault"
+		{holes
+			{place "blindage_wood_wall_point"}
+		}
+	}
+	{"volumes"
+		{"bottom_floor"
+			{able clear {touch 1}}
+		}
+	}
+}

@@ -1,0 +1,266 @@
+{fx
+	{#+ particleview fire1
+		{generator
+			{emissionarea
+				{radius 4.5 4.5}
+				{alpha0 5 5}
+				{alpha1 5 5}
+				{speed 1}
+			}
+			{particleinit
+				{speed 1.35 0.15}
+				{lifetime 1 0.2}
+			}
+		}
+		{#+ mover
+			{gravity
+				{value -0.008}
+			}
+			{nodependonwind}
+			{damping 0.995}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/fire_shot5"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 50}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xfffe3200}
+					{scale 1
+						{npower
+							{min 0.025}
+							{max 0.07 0.05}
+							{pow 1}
+						}
+					}
+					{light 1
+						{peak
+							{min 0}
+							{max 0.3 0.1}
+						}
+					}
+				}
+				{#+ sprite "$/addon/fire_shot5"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 50}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xfffe3200}
+					{scale 1
+						{npower
+							{min 0.03 0.01}
+							{max 0.13 0.03}
+							{pow 1}
+						}
+					}
+					{light 1
+						{peak
+							{min 0}
+							{max 0.3 0.1}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview black1
+		{generator
+			{emissionarea
+				{radius 4.5 4.5}
+				{alpha0 2.5 2.5}
+				{alpha1 5}
+				{speed 0.25}
+			}
+			{particleinit
+				{speed 1.4 0.2}
+				{lifetime 2.5 0.5}
+			}
+		}
+		{mover
+			{gravity
+				{value -0.007}
+			}
+			{nodependonwind}
+			{damping 0.995}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/addon/smoke_round10_small"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 75}
+							{pow 2.5}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.45 0.15}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff5b5b5b}
+					{scale 1
+						{npower
+							{min 0.1 0.02}
+							{max 0.325 0.125}
+							{pow 1}
+						}
+					}
+				}
+				{sprite "$/smoke/smoke_white01"
+					{turn 1
+						{linear
+							{min 90 90}
+							{max 90 90}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.2 -0.1}
+						}
+					}
+					{preturn 0 30}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xff000000}
+					{scale 1
+						{npower
+							{min 0.2}
+							{max 0.375 0.125}
+							{pow 1}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+		{## delay 0.5}
+	}
+	{particleview black3
+		{generator
+			{emissionarea
+				{radius 12.5 12.5}
+				{alpha0 2.5 2.5}
+				{alpha1 5}
+				{speed 0.5}
+			}
+			{particleinit
+				{speed 0.1 0.3}
+				{lifetime 1.5 0.5}
+			}
+		}
+		{mover
+			{gravity
+				{value -0.001}
+			}
+			{nodependonwind}
+			{damping 0.995}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_black_small02"
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.325 0.075}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 1
+						{npower
+							{min 0.065 -0.015}
+							{max 0.4375 0.0625}
+							{pow 1}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview fire1
+		{generator
+			{emissionarea
+				{radius 7 7}
+				{alpha0 5 5}
+				{alpha1 5 5}
+				{speed 1}
+			}
+			{particleinit
+				{speed 0.1 0.3}
+				{lifetime 0.75 0.25}
+			}
+		}
+		{mover
+			{gravity
+				{value -0.001}
+			}
+			{nodependonwind}
+			{damping 0.995}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/fire_shot5"
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 50}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xfffe3200}
+					{scale 1
+						{npower
+							{min 0.02}
+							{max 0.08 0.04}
+							{pow 1}
+						}
+					}
+					{light 1
+						{peak
+							{min 0}
+							{max 0.3 0.1}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

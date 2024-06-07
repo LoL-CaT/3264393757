@@ -1,0 +1,41 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "hs_ua_piece_01.mdl"}
+	{props  "cornered" "wood"  "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+		("armor_plank_house")
+	{placer
+		{place "1" {attach  hide_squat} 		{linkbone "attach1"}}
+	}
+	{boarder}
+	("land_patch_house")
+	
+	{volume "body01"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body" "fire"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "roof01"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof02"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "roof03"
+		{Tags "roof" "fire"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "target"
+		{Tags "target"}
+		{able clear {bullet 1}}
+	}
+}

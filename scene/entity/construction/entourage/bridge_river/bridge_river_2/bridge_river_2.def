@@ -1,0 +1,43 @@
+{game_entity
+	(include "/properties/construction_high.inc")
+	("armor_heavy" args 6)
+	{extension "bridge_river_2.mdl"}
+	{props "cornered" "parts" "construction" "bridge" "wood" "burning" "no_destroyed_stamp" "pantoon_bridge"}
+	{obstacleId "unbreakable"}
+	
+	{placer}
+	{extender "structure"
+		{place "bridge_river_2_piece_001_point" "bridge_river_2_piece_001"}
+		{place "bridge_river_2_piece_002_point" "bridge_river_2_piece_002"}
+		{place "bridge_river_2_piece_003_point" "bridge_river_2_piece_003"}
+		{place "bridge_river_2_piece_004_point" "bridge_river_2_piece_004"}
+		{place "bridge_river_2_piece_005_point" "" "bridge_river_2_piece_005"}
+		{place "bridge_river_2_piece_006_point" "" "bridge_river_2_piece_006"}
+		{place "bridge_river_2_piece_007_point" "" "bridge_river_2_piece_007"}
+		{place "bridge_river_2_piece_008_point" "" "bridge_river_2_piece_008"}
+	}
+
+	{volume "body01"
+		{Tags  "body" "fire"}
+		{Thickness 50}
+		{able clear {blast}}
+	}
+	{volume "body02"
+		{Tags  "body" "fire"}
+		{Thickness 50}
+		{able clear {blast}}
+	}
+	{volume "body03"
+		{Tags  "body" "fire"}
+		{Thickness 50}
+		{able clear {blast}}
+	}	
+	{volume "body04"
+		{Tags  "body" "fire"}
+		{Thickness 50}
+		{able clear {blast}}
+	}
+	{Extender "land_patch"
+		{TerrainType "road" "bridge"}
+	}
+}

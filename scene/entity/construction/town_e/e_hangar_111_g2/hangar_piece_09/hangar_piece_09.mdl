@@ -1,0 +1,104 @@
+;Exported by	: KobaA
+;Date			: 02.03.2023 14:14:05
+;File			: D:\git\gem2-mdl-soldiers\models\building\hangar_wood\HW2.max
+{skeleton
+	{bone "hangar_piece_09"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{poly "hangar_piece_09"}
+		{bone "exterior"
+			{Position 0 	 -6.2738 	 41.1221}
+			{poly "exterior"}
+		}
+		{bone "land"
+			{parameters "land;ground;"}
+			{Position -17.4731 	 -15.186 	 -41.6562}
+			{poly "land" {ground}}
+		}
+		{bone "attach1"
+			{matrix34
+				0 	 -1 	 0
+				1 	 0 	 0
+				0 	 0 	 1
+				-15.3245 	 -20.1626 	 -34.4487
+			}
+		}
+	}
+}
+{obstacle "body1"
+	{obb2
+		{center 7.1651 32.5411}
+		{extent 42.3244 2.95275}
+		{axis 1 0}
+	}
+}
+{obstacle "body2"
+	{obb2
+		{center -41.082 32.5411}
+		{extent 6.92142 2.95275}
+		{axis 1 0}
+	}
+}
+{area "inrerior"
+	{obb2
+		{center 2.70651 -3.84175}
+		{extent 51.3101 36.563}
+		{axis -1 0}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body1"
+		{box 84.6487 5.90551 84.0771}
+		{bone "hangar_piece_09"}
+		{Position 7.1651 	 -32.5411 	 -7.0111}
+	}
+	{"body2"
+		{box 13.8428 5.90551 61.3763}
+		{bone "hangar_piece_09"}
+		{Position -41.082 	 -32.5411 	 4.5899}
+	}
+	{"hole"
+		{box 37.7077 10.3581 15.1066}
+		{bone "hangar_piece_09"}
+		{Position -6.9328 	 -32.9973 	 -1.9509}
+	}
+	{"roof1"
+		{box 86.6425 1.90945 43.9553}
+		{bone "exterior"}
+		{matrix34
+			1 	 0 	 0
+			0 	 -0.1392 	 0.9903
+			0 	 -0.9903 	 -0.1392
+			2.5695 	 -25.7504 	 -3.3106
+		}
+	}
+	{"roof2"
+		{box 69.8685 1.90945 29.8896}
+		{bone "exterior"}
+		{matrix34
+			1 	 0 	 0
+			0 	 -0.1392 	 0.9903
+			0 	 -0.9903 	 -0.1392
+			-5.5388 	 12.3658 	 2.0463
+		}
+	}
+	{"roof3"
+		{box 24.8732 1.90945 18.5316}
+		{bone "exterior"}
+		{matrix34
+			1 	 0 	 0
+			0 	 -0.1392 	 0.9903
+			0 	 -0.9903 	 -0.1392
+			-0.7095 	 37.9252 	 5.6385
+		}
+	}
+	{"target"
+		{box 39.3942 0.91748 19.7765}
+		{bone "hangar_piece_09"}
+		{Position -6.7671 	 -33.5241 	 -1.3879}
+	}
+}

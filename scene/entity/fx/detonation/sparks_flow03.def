@@ -1,0 +1,59 @@
+{fx
+	{particleview sparks
+		{generator
+			{emissionarea
+				{radius 1.5 1.5}
+				{alpha0 0}
+				{alpha1 7}
+				{psi 180 180}
+				{theta 35 15}
+			}
+			{particleinit
+				{speed 8 4}
+				{lifetime 1.5 0.25}
+			}
+			{totalparticles 172}
+			{particlesinblock 172}
+			{timetolive 0.1}
+			{axisz}
+		}
+		{offset 0 0 0}
+		{mover
+			{gravity
+				{value 0.15}
+			}
+			{damping 0.98}
+			{collisions
+				{restitution 0.4}
+				{terrain}
+				{objects}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/fire/spark01"
+					{scalex 1
+						{npower
+							{min 0.225 0.025}
+							{max 0.01125 0.00375}
+							{pow 0.65 0.1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0.2 0.025}
+							{max 0.045 0.015}
+							{pow 1.25}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffff6423}
+				}
+				{flags trace }
+			}
+		}
+	}
+}

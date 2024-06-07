@@ -1,0 +1,55 @@
+{fx
+	{particleview drops1
+		{generator
+			{emissionarea
+				{radius 0.25 0.25}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.1}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 1}
+			}
+		}
+		{mover
+			{gravity
+				{value 5}
+			}
+			{collisions
+				{terrain}
+				{restitution 0}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/water/water_circle01"
+					{scale 1
+						{npower
+							{min 0.07}
+							{max 0.14}
+							{pow 0.6}
+						}
+					}
+					{turn 1}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffb2c5ff}
+					{preturn 180 180}
+				}
+				{flags ground }
+			}
+		}
+		{notifyowner}
+	}
+}

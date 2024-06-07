@@ -1,0 +1,33 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "ger08_piece16.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "wood_floor_destroyed_stamp"}
+	("armor_brick_house")
+	{volume "body01"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 1}{Obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "hole15"
+		{tags "attach" "15"}
+		{able clear {hole}{touch 1}}
+	}
+	{placer
+		 {place "15" {attach  snipe_cover} 	{linkbone "attach15"}}
+    }
+}

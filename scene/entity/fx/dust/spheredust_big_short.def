@@ -1,0 +1,150 @@
+{fx
+	{particleview dust
+		{generator
+			{emissionarea
+				{radius 5 5}
+				{alpha0 0}
+				{alpha1 75}
+				{speed 0.25}
+			}
+			{particleinit
+				{speed 2 2}
+				{lifetime 3 0.5}
+			}
+			{axisz}
+			{timetolive 0.2}
+		}
+		{mover
+			{gravity
+				{value 0.005}
+			}
+			{damping 0.925}
+			{collisions
+				{terrain}
+				{restitution 0.4}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/dust/dust_cloud01"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.5 0.1}
+							{pow 0.4}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.1875 0.0375}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff7d7d7d}
+				}
+				{sprite "$/dust/dust_cloud02"
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.5 0.1}
+							{pow 0.4}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.1875 0.0375}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xffecc65c}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview smoke
+		{#+ generator
+			{#+ emissionarea
+				{radius 5 5}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{#+ particleinit
+				{speed 0.75 0.75}
+				{lifetime 1.75 0.25}
+			}
+			{axisz}
+			{timetolive 0.1}
+			{totalparticles 0}
+			{particlesinblock 2}
+		}
+		{#+ mover
+			{gravity
+				{value 0.005}
+			}
+			{damping 0.925}
+			{collisions
+				{terrain}
+				{restitution 0.4}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_white01"
+					{#+ scale 1
+						{npower
+							{min 0}
+							{max 0.9 0.1}
+							{pow 0.35}
+						}
+					}
+					{#+ visibility 1
+						{npower
+							{min 0.3 0.1}
+							{max 0}
+							{pow 1.5}
+						}
+					}
+					{#+ turn 1
+						{npower
+							{min 0}
+							{max 0 60}
+							{pow 0.8}
+						}
+					}
+					{#+ timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{highlight 0xff1e140a}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

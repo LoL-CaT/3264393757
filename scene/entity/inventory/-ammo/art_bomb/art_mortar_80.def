@@ -1,0 +1,18 @@
+{game_entity
+	(include "/properties/stuff_small.ext")
+	{simulation {able 1} {state 1}}
+	{constrain none}
+	{mass 500}
+	{body {proper body sensible}}
+	{lodclass "stuff_small"}
+	{collider "ammo"}
+	{Volume "body"
+		{thickness 4}
+		{able {touch} {bullet} {blast} {obstacle 0} {contact 1}}
+	}
+	{extender "stuff"
+		{item "mortar80 fg ammo"}
+	}
+	{props "steel" "art_bomb"}
+	{Extension "art_bomb.mdl"}
+}

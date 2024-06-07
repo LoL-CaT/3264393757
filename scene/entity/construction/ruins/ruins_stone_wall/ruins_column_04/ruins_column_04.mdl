@@ -1,0 +1,46 @@
+;Exported by	: Oleksandr Tsaprylov
+;Date			: 19.05.2023 16:31:40
+;File			: E:\projects\gem2-mdl-soldiers\models\entourage\ruins_stone_wall\ruins_column.max
+{skeleton
+	{bone "ruins_column_04"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{poly "ruins_column_04" {lod 0}}
+		{poly "ruins_column_04_lod1" {lod 1}}
+		{poly "ruins_column_04_lod2" {lod 2}}
+		{poly "ruins_column_04_lod3" {lod 3 {last}}}
+		{bone "ground"
+			{parameters "land;ground;"}
+			{Position 0.0089 	 0 	 0}
+			{visibility 0}
+			{poly "ground" {ground}}
+		}
+	}
+}
+{obstacle "obstacle01"
+	{circle2
+		{radius 8.62665}
+		{center 0.00891113 0}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body01"
+		{cylinder 6.59629 29.6529}
+		{bone "ruins_column_04"}
+		{Position -0.0105 	 0 	 14.8264}
+	}
+	{"body02"
+		{box 9.15479 4.10561 4.96834}
+		{bone "ruins_column_04"}
+		{matrix34
+			0.9659 	 0.2588 	 0
+			-0.2588 	 0.9659 	 0
+			0 	 0 	 1
+			-0.5993 	 3.4987 	 31.5176
+		}
+	}
+}

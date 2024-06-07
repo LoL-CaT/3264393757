@@ -1,0 +1,137 @@
+{fx
+	{sound "detonation/hit_big/"}
+	{lightview
+		{type point}
+		{animator
+			{timer
+				{duration 0.15}
+			}
+			{visibility 1
+				{npower
+					{min 1}
+					{max 0}
+					{pow 1.25}
+				}
+			}
+			{highlight 0xfffea742}
+		}
+		{intensity 120}
+		{radius 100}
+		{effectonground}
+		{offset 0 0 20}
+	}
+	{#+ particleview dust_aoe_edge
+		{generator
+			{particlesinblock 112}
+			{totalparticles 0}
+			{emissionarea
+				{radius 140 80}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 2.5 0.5}
+				{lifetime 7.5 0.5}
+			}
+			{axisz}
+			{timetolive 0.01}
+		}
+		{offset 0 0 15}
+		{mover
+			{gravity
+				{value 0.015}
+			}
+			{damping 0.9}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_light1"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.9 0.1}
+							{pow 0.125 0.025}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.125 0.025}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffafafaf}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview dust_aoe_cener
+		{generator
+			{particlesinblock 30}
+			{totalparticles 0}
+			{emissionarea
+				{radius 30 30}
+				{alpha0 0}
+				{alpha1 90}
+			}
+			{particleinit
+				{speed 2.5 0.5}
+				{lifetime 7.5 0.5}
+			}
+			{axisz}
+			{timetolive 0.01}
+		}
+		{offset 0 0 8}
+		{mover
+			{gravity
+				{value 0.015}
+			}
+			{damping 0.9}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/addon/smoke_round2"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{preturn 180 180}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.55 0.05}
+							{pow 0.1}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.4 0.1}
+							{max 0}
+							{pow 1}
+						}
+					}
+					{highlight 0xffb2b2b2}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

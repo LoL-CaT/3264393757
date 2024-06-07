@@ -1,0 +1,135 @@
+{actor
+	(include "/properties/vehicle.ext")
+	(include "/properties/armor_arena.ext")
+        ("brain_vehicle")
+
+	(include "/properties/shadow/tank.inc"  scale(4))
+	{Extension "radar_mount.mdl"}
+	(include "/properties/selection/vehicle.inc"  scale(0.7))
+	{props "vehicle" "cannon" "turret_rotator" "windowed" "no_destroyed_stamp" "unarmed" "-inventory_transfer" "stationary"}
+	{targetClass "armoredcar"}		
+	{obstacleID "unbreakable"}
+	
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t())
+	("v_body" n(04) t())
+	("v_body" n(05) t())
+	("v_body" n(06) t())
+	("v_body" n(07) t())
+	("v_body" n(08) t())
+	("v_body" n(09) t())
+	("v_body" n(10) t())
+	("v_body" n(11) t())
+	("v_body" n(12) t())
+
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	("v_turret" n(03) t())
+	("v_turret" n(04) t())
+	("v_turret" n(05) t())
+	("v_turret" n(06) t())
+	("v_turret" n(07) t())
+	("v_turret" n(08) t())
+	("v_turret" n(09) t())
+	
+	("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(03) t())
+	("v_gun" n(04) t())
+	("v_gun" n(05) t())
+	("v_gun" n(06) t())
+	("v_gun" n(07) t())
+	("v_gun" n(08) t())
+	("v_gun" n(09) t())
+	
+	{volume "base01"
+		{component "body"}
+		{tags "body" "body_armor1"}
+	}
+	{volume "base02"
+		{component "body"}
+		{tags "body" "body_armor"}
+	}
+	
+	{volume "window1"
+		{tags "glass"}
+		{Thickness 0.2}
+		{able {visible 0}{window}{obstacle 0}}
+	}
+	{volume "window2"
+		{tags "glass"}
+		{Thickness 0.2}
+		{able {visible 0}{window}{obstacle 0}}
+	}
+	(define "visible_off"
+	{volume "%name"		{able {visible 0}}}
+	)
+	("visible_off" name(gun01))
+	("visible_off" name(gun02))
+	("visible_off" name(gun03))
+	("visible_off" name(gun04))
+	("visible_off" name(gun05))
+	("visible_off" name(gun06))
+	("visible_off" name(gun07))
+	("visible_off" name(gun08))
+	("visible_off" name(gun09))
+	("visible_off" name(turret01))
+	("visible_off" name(turret02))
+	("visible_off" name(turret03))
+	("visible_off" name(turret04))
+	("visible_off" name(turret05))
+	("visible_off" name(turret06))
+	("visible_off" name(turret07))
+	("visible_off" name(turret08))
+	("visible_off" name(turret09))
+	("visible_off" name(body01))
+	("visible_off" name(body02))
+	("visible_off" name(body03))
+	("visible_off" name(body04))
+	("visible_off" name(body05))
+	("visible_off" name(body06))
+	("visible_off" name(body07))
+	("visible_off" name(body08))
+	("visible_off" name(body09))
+	("visible_off" name(body10))
+	("visible_off" name(body11))
+	("visible_off" name(body12))
+	("visible_off" name(base02))
+
+	{armor
+		{health 500}
+		("module_glass")
+		("module_gun_medium"	gun(30) n())
+		("module_turret_medium"	turret(100) n() hp_k(1))
+		("module_body_medium"	body(1) n())
+		("module_body_medium"	body(500) n(1))
+	}
+
+	{extension "crew.ext"}
+
+	{Weaponry
+		{place "aim"
+			{weapon "searchlight"}
+			{foresight "foresight"}
+			{gunner "gunner"}
+		}
+	}
+	{extender "inventory"
+		{box}
+	}
+
+	{mass 70500}
+
+	{bone "turret"
+		{limits}	
+		{speed 0.003}
+	}
+	{bone "gun_rot"
+		{limits -18 25}	
+		{speed 0.003}
+	}
+
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}		
+}

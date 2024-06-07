@@ -1,0 +1,85 @@
+;Exported by:	 koba1
+;Date:			 25.07.2022 12:24:32
+;File:			 G:\_GIT_\gem2\gem2-mdl-soldiers\models\flora\tree10\tree_10b_g2.max
+{skeleton
+	{animation
+		{sequence "stir_vehicle" {speed 0.7}}
+	}
+	{bone "basis_tree_10b_g2"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "branch_bare"
+			{matrix34
+				0.1695 	 0.9855 	 -0.0104
+				0.0615 	 0 	 0.9981
+				0.9836 	 -0.1698 	 -0.0606
+				5.1965 	 3.7419 	 -8.0065
+			}
+			{VolumeView "branch_bare.ply"}
+		}
+		{bone "trunk"
+			{Position 3.3709 	 -0.27 	 0}
+			{VolumeView "trunk.ply"}
+		}
+		{bone "rootx"
+			{matrix34
+				-0.9848 	 0.1736 	 0
+				0 	 0 	 -1
+				-0.1736 	 -0.9848 	 0
+				1.7621 	 2.3691 	 -10.0755
+			}
+			{VolumeView "rootx.ply"}
+		}
+		{bone "tree_10b_g2"
+			{matrix34
+				0.2168 	 0.9762 	 -0.0102
+				-0.9598 	 0.215 	 0.1805
+				0.1784 	 -0.0294 	 0.9835
+				4.4123 	 1.5178 	 107.399
+			}
+			{VolumeView "tree_10b_g2.ply"}
+		}
+		{bone "branch"
+			{Position 7.9829 	 2.6672 	 108.15}
+			{VolumeView "branch.ply"}
+		}
+		{bone "stir1"
+			{Position -0.9438 	 -2.8847 	 22.7798}
+			{bone "stir2"
+				{Position 0 	 -3.8903 	 47.2806}
+				{bone "stir3"
+					{Position 5.6841 	 -4.1959 	 60.6851}
+				}
+				{bone "stir4"
+					{Position 12.576 	 9.4345 	 117.872}
+				}
+			}
+		}
+	}
+}
+{obstacle "bole"
+	{obb2
+		{center 1.78686 3.40551}
+		{extent 9.26236 5.26035}
+		{axis 0.50046 0.86576}
+	}
+	{rotate}
+}
+{volume "bole"
+	{cylinder 5.90551 117.033}
+	{bone "basis_tree_10b_g2"}
+	{matrix34
+		0.9984 	 0.0497 	 -0.0262
+		-0.0483 	 0.9975 	 0.0513
+		0.0287 	 -0.05 	 0.9983
+		1.7869 	 -3.4055 	 56.9765
+	}
+}
+{volume "crown"
+	{sphere 52.5639}
+	{bone "basis_tree_10b_g2"}
+	{Position 4.279 	 -6.8091 	 149.862}
+}

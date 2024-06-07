@@ -1,0 +1,163 @@
+{
+	(include "/properties/animal.ext")
+	(include "/properties/shadow/animal.inc")
+	(include "/properties/selection/vehicle.inc"  scale(0.5))
+
+	{props "horse" "tractor" "big" "riding"}
+	{targetClass "human"}
+	{targetSelector "human"}
+	{hearingBias 4.5} ; in meters
+	{able "emit_on_attack" "select"}
+	{obstacleID "horse"}
+	{PatherID	"horse_double"}
+	{collider   "human"}
+	{lodclass "human"}
+	{NoGroupMesh 1}
+
+	{Chassis "foot"
+		{Quadruped}
+		{Run
+			{Slow	9   9	150}
+			{Normal	9   9	150}
+			{Fast	18  18	250}
+		}
+	}
+	{sensor
+		{visor "main"
+			{vision "car_open_around"}
+			{bone "basis"}
+		}
+	}
+
+	{extender "inventory"
+		{box
+			{Size 6 10}
+			{weight 300}
+		}
+	}
+	
+
+	{extender "vitality"
+		{Health {max 500} {current 500} {inc 1}}
+	}
+
+	{##placer
+		{place "driver"
+			{group "crew"}
+			{linkbone "driver"}
+		}
+		{crew}
+	}
+	{##boarder
+		{anm "driver"
+			{forward	{begin	"board_SdKfz251-1"} {end "seat_driver_moto"} {base "doorleft"}}
+			{reverse 	{end	"board_SdKfz251-1" -1} {base "doorleft" -1}}
+		}
+		{door "emit2"}
+		{door "emit1"}
+		{link "emit2" "driver" {anm "driver"} {forward putoff} {reverse puton}}
+		{link "emit1" "driver" {anm "driver"} {forward putoff} {reverse puton}}
+	}
+
+	{mass 500}
+	{Extension "horse_double.mdl"}
+
+
+	{Volume "body10"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body11"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body1"
+		{thickness 4}
+		{component "body"}
+		{able {obstacle 0}}
+	}
+	{Volume "body2"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body3"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body4"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body5"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body6"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body7"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body8"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body9"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body"
+		{thickness 4}
+	}
+	
+	{Volume "body10_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body11_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body1_vol001"
+		{thickness 4}
+		{component "body"}
+		{able {obstacle 0}}
+	}
+	{Volume "body2_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body3_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body4_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body5_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body6_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body7_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body8_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body9_vol001"
+		{thickness 4}
+		{component "body"}
+	}
+	{Volume "body_vol001"
+		{thickness 4}
+	}
+}

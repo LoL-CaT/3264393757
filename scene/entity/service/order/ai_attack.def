@@ -1,0 +1,92 @@
+{game_entity
+	{tag "pointer"}
+	{".pointer"}
+	{NoGetShadows}
+	{spriteview round
+		{notifyowner}
+		{sprite "/texture/fx/marker/marker04"
+			{timer
+				{mode play loop }
+				{duration 3}
+			}
+			{scale 1
+				{peak
+					{min 0.2}
+					{max 0.25}
+				}
+			}
+			{turn 1
+				{linear
+					{min 0}
+					{max 90}
+				}
+			}
+			{highlight 0xffff0000}
+		}
+		{ground}
+		{layer debug}
+		{offset 0 0 5}
+	}
+	{##spriteview round
+		{NotifyOwner }
+		{sprite "/texture/fx/ico/air_strike/marker03add"
+			{timer
+				{mode play loop }
+				{duration 3}
+			}
+			{scale 0.5
+				{peak
+					{min 0.1}
+					{max 0.3}
+				}
+			}
+			{turn 1
+				{linear
+					{min 0}
+					{max 90}
+				}
+			}
+		}
+		{ground}
+		{layer debug}
+		{offset 0 0 5.25}
+	}
+		{spriteview top
+		{NotifyOwner }
+		{sprite "/texture/fx/ico/attention_attack_ebm"
+			{timer
+				{mode play loop }
+				{duration 1.5}
+			}
+			{scale 0.5
+				{peak
+					{min 0.2}
+					{max 0.3}
+				}
+			}
+			{visibility 1}
+		}
+;		{ground}
+		{layer debug}
+		{offset 0 0 50}
+	}
+	{##spriteview centr
+		{NotifyOwner }
+		{sprite "/texture/fx/ico/attention_attack"
+			{timer
+				{mode play loop }
+				{duration 0.75}
+			}
+			{scale 0.5
+				{peak
+					{min 0.1}
+					{max 0.2}
+				}
+			}
+			{visibility 1}
+		}
+;		{ground}
+		{layer debug}
+		{offset 0 0 100}
+	}
+}

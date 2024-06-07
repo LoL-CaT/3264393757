@@ -1,0 +1,42 @@
+{game_entity
+	{Extension "/entity/service/flagstaff/flagstaff.mdl"}
+	{".pointer"}
+	{props "flag" "steel" "captureable"}
+	{obstacleID "nothing"}
+	{Volume "body"
+		{Tags  "body"}
+		{Thickness 50}
+		{able clear {visible 1}}
+	}
+	{Volume "activate"
+		{able clear {visible 1}}
+	}
+	{lodclass "decor_small"}
+	{texmod "enemy"}
+	{tag "frontline_break"}
+	{spriteview round
+		{notifyowner}
+		{sprite "/texture/fx/marker/marker04"
+			{timer
+				{mode play loop }
+				{duration 3}
+			}
+			{scale 1
+				{peak
+					{min 0.3}
+					{max 0.35}
+				}
+			}
+			{turn 1
+				{linear
+					{min 0}
+					{max 90}
+				}
+			}
+			{highlight 0xffff0000}
+		}
+		{ground}
+		{layer debug}
+		{offset 0 0 5}
+	}
+}

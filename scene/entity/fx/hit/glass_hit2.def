@@ -1,0 +1,100 @@
+{fx
+	{sound "crush/medium/glass"}
+	{particleview glasses
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 45}
+			}
+			{particleinit
+				{speed 2.375 2.125}
+				{lifetime 2.5 0.5}
+			}
+			{totalparticles 0}
+			{particlesinblock 32}
+			{timetolive 0.1}
+		}
+		{mover
+			{damping 0.95}
+			{gravity
+				{value 0.135}
+			}
+			{collisions
+				{terrain}
+				{restitution 0.25}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{flags disablesoftedge}
+				{#+ sprite "$/particles/glass01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.0325 0.0175}
+					{preturn 180 180}
+					{visibility 0.375 0.125}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1080}
+							{pow 0.075}
+						}
+					}
+				}
+				{#+ sprite "$/particles/glass02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.0325 0.0175}
+					{preturn 180 180}
+					{visibility 0.375 0.125}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1080}
+							{pow 0.075}
+						}
+					}
+				}
+				{#+ sprite "$/particles/glass03"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.0325 0.0175}
+					{preturn 180 180}
+					{visibility 0.375 0.125}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1080}
+							{pow 0.075}
+						}
+					}
+				}
+				{#+ sprite "$/particles/glass04"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{scale 0.0325 0.0175}
+					{preturn 180 180}
+					{visibility 0.375 0.125}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 1080}
+							{pow 0.075}
+						}
+					}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

@@ -1,0 +1,37 @@
+{game_entity
+	(include "/properties/building.inc")
+	{extension "house_40_g2_piece_004.mdl"}
+		{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp"}
+		{placer
+			{place "1" {attach   snipe_cover} 		{linkbone "attach1"}}
+			{place "3" {attach   hide_squat} 		{linkbone "attach3"}}
+		}
+
+		{boarder}
+		("land_patch_house")
+		("armor_stone_house")	
+		
+	{volume "body01"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}{holed}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}{Obstacle 0}{holed}}
+	}
+	{volume "hole01"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "hole02"
+		{Tags "attach" "2"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "window5"
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{bone "window5_x" {visibility 0}}
+}

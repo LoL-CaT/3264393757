@@ -1,0 +1,109 @@
+{fx
+	{##+ particleview "start fire"
+		{generator
+			{emissionarea
+				{radius 0.05 0.05}
+				{alpha0 0}
+				{alpha1 0}
+				{speed 1.5}
+			}
+			{particleinit
+				{speed 3.875 0.125}
+				{lifetime 0.1125 0.0125}
+			}
+		}
+		{mover
+			{gravity
+				{value 0.0075}
+			}
+			{nodependonwind}
+			{collisions
+				{objects}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/fire/fire01"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{light 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.3 0.025}
+							{pow 1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.03 0.005}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffffaf4b}
+				}
+				{flags trace }
+				{sprite "$/fire/fire02"
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{light 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 2}
+						}
+					}
+					{scalex 1
+						{npower
+							{min 0}
+							{max 0.3 0.025}
+							{pow 1}
+						}
+					}
+					{scaley 1
+						{npower
+							{min 0}
+							{max 0.03 0.005}
+							{pow 1}
+						}
+					}
+					{preturn 180 180}
+					{highlight 0xffffaf4b}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{particleview "burner particles"
+		{entitygenerator
+			{emissionarea
+				{alpha0 0}
+				{alpha1 0}
+				{speed 0.6}
+			}
+			{particleinit
+				{speed 28.5 1.5}
+				{lifetime 1}
+			}
+			{entity "fx_piece_flame"
+				{aimed
+					{additionalspeed 0 0.05}
+				}
+			}
+			{totalparticles 75}
+			{timetolive 2}
+		}
+	}
+}

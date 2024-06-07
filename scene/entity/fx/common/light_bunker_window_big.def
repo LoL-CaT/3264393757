@@ -1,0 +1,69 @@
+{fx
+	{lightview
+		{type spot}
+		{animator
+			{highlight 0xffffffdb}
+		}
+		{falloff 1.5}
+		{theta 85}
+		{phi 150}
+		{radius 200}
+		{priority 10}
+		{effectonground}
+		{intensity 120}
+	}
+	{spriteview flash
+		{sprite "$/flash/halo03"
+			{timer
+				{mode play loop }
+				{duration 2}
+			}
+			{highlight 0xffffffd4}
+			{light 0.4}
+			{scale 0.8}
+		}
+		{orientation normalXY}
+		{offset 0 0 5}
+	}
+	{#+ spriteview beam
+		{sprite "/texture/fx/flash/light_win2"
+			{timer
+				{mode play loop }
+				{duration 1}
+			}
+			{light 1
+				{peak
+					{min 0.25}
+					{max 0.25}
+				}
+			}
+			{scalex 3}
+			{scaley 6}
+			{highlight 0xffffffd1}
+		}
+		{orientation normal}
+		{offset 0 0 25}
+	}
+	{#+ particleview netrogat
+		{generator
+			{emissionarea
+				{radius 1}
+				{alpha0 0}
+				{speed 0.01}
+			}
+			{particleinit
+				{speed 0}
+				{lifetime 0.05}
+			}
+		}
+		{mover}
+		{visualizer
+			{stage 
+				{sprite "/texture/fx/particle/glass_small"
+					{scale 0.01}
+				}
+			}
+		}
+	}
+	{storeable 1}
+}

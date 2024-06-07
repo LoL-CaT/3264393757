@@ -1,0 +1,50 @@
+{game_entity
+(include "/properties/building.inc")
+	{obstacleID "unbreakable"}
+	{collider "rock"}
+	{extension "ch1_piece04.mdl"}
+		{boarder}
+	{placer
+		  {place "1" {attach  snipe_cover} 		{linkbone "attach1"}}
+	}
+	{volume "body1"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	{volume "body2"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	{volume "body3"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 0}{holed}}
+	}
+	{volume "body4"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	{volume "body5"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	{volume "body6"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	{volume "body7"
+		{Tags "body"}
+		{thickness 50}
+		{able {visible 1}}
+	}
+	{volume "hole"
+		{Tags "attach" "1"}
+		{able clear {hole}{touch 1}}
+	}
+	("armor_medium")
+}

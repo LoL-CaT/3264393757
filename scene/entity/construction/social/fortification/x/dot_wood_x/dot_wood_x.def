@@ -1,0 +1,23 @@
+{actor
+	(include "/properties/selection/vehicle.inc" scale(2.4))
+	{extension "dot_wood_x.mdl"}
+	{placer}
+	
+	{"structure"
+		{place "dot_wood_build" "dot_wood_wall_x"}
+		{place "dot_wood_build" "dot_wood_roof_x"}
+	}
+
+	{extender "land_patch"}
+
+	{extender "assault"
+		{holes
+			{place "dot_wood_wall_point"}
+		}
+	}
+	{"volumes"
+		{"bottom_floor"
+			{able clear {touch 1}}
+		}
+	}
+}

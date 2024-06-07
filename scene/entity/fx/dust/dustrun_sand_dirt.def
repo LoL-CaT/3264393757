@@ -1,0 +1,312 @@
+{fx
+	{particleview sand_mid
+		{generator
+			{emissionarea
+				{radius 2 2}
+				{alpha0 0}
+				{alpha1 5}
+				{speed 0.15}
+			}
+			{particleinit
+				{lifetime 3.75 0.25}
+				{speed 0.125 0.125}
+			}
+		}
+		{mover
+			{gravity
+				{value 0.0002}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/dust/dust_cloud01"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.55 0.05}
+							{pow 0.8}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.45 0.05}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffdcbe8c}
+				}
+				{#+ sprite "$/dust/dust_cloud02"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.55 0.05}
+							{pow 0.8}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.45 0.05}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffdcbe8c}
+				}
+				{sprite "$/smoke/smoke_white_small01"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 1.05 0.0500001}
+							{pow 0.8}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 120}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.1875 0.0375}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffdcc346}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview sand_near
+		{generator
+			{emissionarea
+				{radius 2 2}
+				{alpha0 0}
+				{alpha1 5}
+				{speed 0.2}
+			}
+			{particleinit
+				{lifetime 1.5 0.25}
+				{speed 0.125 0.125}
+			}
+		}
+		{mover
+			{gravity
+				{value 0.0002}
+			}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/dust/dust_cloud01"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.35 0.05}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 45}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.175 -0.075}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffdcbe8c}
+				}
+				{sprite "$/dust/dust_cloud02"
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.35 0.05}
+							{pow 0.6}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 45}
+						}
+					}
+					{visibility 1
+						{peak
+							{min 0}
+							{max 0.2 -0.05}
+						}
+					}
+					{timer
+						{mode play }
+						{duration -1}
+					}
+					{highlight 0xffdcbe8c}
+				}
+			}
+		}
+		{notifyowner}
+	}
+	{#+ particleview
+		{generator
+			{emissionarea
+				{radius 2.5 2.5}
+				{alpha0 0}
+				{alpha1 15}
+				{speed 0.5}
+				{theta -25}
+			}
+			{particleinit
+				{speed 3 1}
+				{lifetime 1.5 0.5}
+			}
+		}
+		{mover
+			{gravity
+				{value 0.1}
+			}
+			{damping 0.95}
+			{collisions
+				{terrain}
+				{restitution 0.5}
+			}
+			{nodependonwind}
+		}
+		{visualizer
+			{stage 
+				{#+ sprite "$/particles/dirt01"
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff967d64}
+				}
+				{#+ sprite "$/particles/dirt02"
+					{scale 0.055 0.015}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff967d64}
+				}
+				{#+ sprite "$/particles/rock01"
+					{scale 0.045 0.015}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff3c3228}
+				}
+				{#+ sprite "$/particles/rock02"
+					{scale 0.045 0.015}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 720}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff6e645a}
+				}
+				{#+ sprite "$/particles/grass_part01"
+					{scale 0.15 0.025}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 240}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xffe1ffd7}
+				}
+				{#+ sprite "$/particles/grass_part02"
+					{scale 0.15 0.025}
+					{preturn 180 180}
+					{turn 1
+						{npower
+							{min 0}
+							{max 0 240}
+							{pow 0.75}
+						}
+					}
+					{timer
+						{mode play }
+						{duration 0.7 0.1}
+					}
+					{highlight 0xff96c864}
+				}
+			}
+		}
+		{notifyowner}
+	}
+}

@@ -1,0 +1,48 @@
+{game_entity
+	(include "/properties/building.inc")
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning" "no_destroyed_stamp" "break_on_burn"}
+	{extension "control_office_001_piece_006.mdl"}
+	("armor_brick_house")
+	
+	{volume "body01"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{holed}{Obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{holed}{Obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{Obstacle 0}}
+	}
+	{volume "window8"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{volume "window9"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{Obstacle 0}}
+	}
+	{volume "hole_vol_007"
+			{Tags "attach" "1"}
+			{able clear {hole}{touch 1}{Obstacle 0}}
+	}
+	{volume "hole_vol_009"
+			{Tags "attach" "1"}
+			{able clear {hole}{touch 1}{Obstacle 0}}
+	}
+	{extender "structure_bone"
+		{hold "006"}	
+		;{hold "004" "005"}
+	}
+	{placer
+		{place "7" {attach  hide_squat} 		{linkbone "attach7"}}
+		{place "8" {attach  snipe_cover} 		{linkbone "attach8"}}
+	}
+}

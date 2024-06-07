@@ -1,0 +1,54 @@
+{game_entity
+(include "/properties/building.inc")
+	{extension "d004_piece04.mdl"}
+	{props  "cornered" "concrete" "windowed" "parts" "construction" "wall" "burning"}
+	{placer
+		 {place "2" {attach  snipe_cover} 		{linkbone "attach2"}}
+    }
+		{boarder}
+	{extender "structure_bone"
+		{hold "08" "10"}
+		{hold "09" "11"}
+	}
+	{volume "body01"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "body02"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "body03"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "body04"
+		{Tags "body"}
+		{thickness 100}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "floor1"
+		{Tags "body" "fire"}
+		{thickness 50}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "floor2"
+		{Tags "body" "fire"}
+		{thickness 50}
+		{able {visible 0}{obstacle 0}}
+	}
+	{volume "hole2"
+		{Tags "attach" "2"}
+		{able clear {hole}{touch 1}}
+	}
+	{volume "window2"
+		{Tags "fire"}
+		{thickness 0.2}
+		{able {visible 0}{window}{obstacle 0}}
+	}
+	{bone "window2_x" {visibility 0}}
+	("armor_stone_house")
+}

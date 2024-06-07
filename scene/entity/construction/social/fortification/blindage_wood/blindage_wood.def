@@ -1,0 +1,96 @@
+{actor
+;	(include "/properties/construction.inc")
+	{skeleton
+		{bone "socket0"
+			{Matrix34
+				-1	0	0
+				0	1	0
+				0	0	1
+				-32	0	0
+			}
+			{visibility 0}
+		}
+		{bone "socket1"
+			{Matrix34
+				1	0	0
+				0	1	0
+				0	0	1
+				32	0	0
+			}
+			{visibility 0}
+		}
+		{bone "socket2"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				0 	 16 	 0
+			}
+			{visibility 0}
+		}
+		{bone "socket3"
+			{matrix34
+				0 	 -1 	 0
+				1 	 0 	 0
+				0 	 0 	 1
+				0 	 -16 	 0
+			}
+			{visibility 0}
+		}
+	}
+	{extender "fortification"
+		{tag "sandbag"}
+		{path_profile "blindage_wood"}
+		{interval_min 4} ; do not install closest than <interval_min> to others fortifications
+		{install_time 5}
+		{install_pose "normal"}	
+		{socket "socket0"}
+		{socket "socket1"}
+		{socket "socket2"}
+		{socket "socket3"}
+	}
+
+;	{props  "sand" "parts" "construction" "small" "no_destroyed_stamp" "fortification" "camo2" "climb"}
+		{props "remove_grass_6_5"}
+
+	(include "/properties/selection/vehicle.inc" scale(2.4))
+	{extension "blindage_wood.mdl"}
+	{placer}
+	
+	{extender "structure"
+		{place "blindage_wood_wall_point" "blindage_wood_wall"}
+		{place "blindage_wood_roof_point" "blindage_wood_roof"}
+		{place "blindage_wood_land_point" "blindage_wood_land"}
+	}
+
+	{extender "house"
+        {disable_auto_emits}
+	}
+	
+	{"volumes"
+		{"bottom_floor"
+			{able clear {touch 1}}
+		}
+	}
+
+	{extender "assault"
+		{holes
+			{place "blindage_wood_wall_point"}
+		}
+	}
+
+	{extender "house_fortification"
+		{place "blindage_wood_wall_point" "blindage_wood_wall" "fort_sandbags_left" "fort_wall_l_01"}
+		{place "blindage_wood_wall_point" "blindage_wood_wall" "fort_sandbags_left" "fort_wall_l_02"}
+		{place "blindage_wood_wall_point" "blindage_wood_wall" "fort_sandbags_right" "fort_wall_r_01"}
+		{place "blindage_wood_wall_point" "blindage_wood_wall" "fort_sandbags_right" "fort_wall_r_02"}
+		{place "blindage_wood_wall_point" "blindage_wood_wall" "fort_sandbags_front" "fort_wall_f_01"}
+		{place "blindage_wood_wall_point" "blindage_wood_wall" "fort_sandbags_front" "fort_wall_f_02"}
+		{place "blindage_wood_wall_point" "blindage_wood_wall" "fort_sandbags_front" "fort_wall_f_03"}
+		{place "blindage_wood_wall_point" "blindage_wood_wall" "fort_sandbags_front" "fort_wall_f_04"}
+
+		{place "blindage_wood_roof_point" "blindage_wood_roof" "fort_roof_blindage" "fort_roof"}
+	}
+	(include "/properties/house.inc")
+	{extender "land_patch"}
+}

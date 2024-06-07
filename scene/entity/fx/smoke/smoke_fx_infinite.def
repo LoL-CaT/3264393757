@@ -1,0 +1,161 @@
+{fx
+	{#+ particleview 1
+		{#+ generator
+			{emissionarea
+				{radius 0}
+				{speed 0.75}
+				{alpha1 0}
+			}
+			{particleinit
+				{speed 0.8 0.2}
+				{lifetime 0.6}
+			}
+		}
+		{#+ mover
+			{damping 0.98}
+			{gravity
+				{value -0.02}
+			}
+		}
+		{#+ visualizer
+			{stage 
+				{sprite "$/smoke/smoke_g04a"
+					{timer
+						{mode play }
+						{duration 0.5 0.1}
+					}
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.04 0.01}
+							{pow 0.8}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 1}
+							{max 0}
+							{pow 8}
+						}
+					}
+				}
+			}
+		}
+		{offset 0 0 2}
+	}
+	{#+ particleview 2
+		{generator
+			{emissionarea
+				{radius 0}
+				{speed 0.15}
+				{alpha1 0}
+			}
+			{particleinit
+				{speed 0.875 0.125}
+				{lifetime 1.8}
+			}
+		}
+		{#+ mover
+			{damping 0.98}
+			{gravity
+				{value -0.02}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_g04a"
+					{timer
+						{mode play }
+						{duration 1.7 0.0999999}
+					}
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.26 0.02}
+							{pow 1.6 0.2}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 90}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.9 0.1}
+							{max 0}
+							{pow 8}
+						}
+					}
+				}
+			}
+		}
+		{offset 0 0 2}
+	}
+	{#+ particleview 3
+		{generator
+			{emissionarea
+				{radius 0}
+				{speed 0.1}
+				{alpha1 2.5 2.5}
+			}
+			{particleinit
+				{speed 1 0.2}
+				{lifetime 12}
+			}
+		}
+		{#+ mover
+			{damping 0.98}
+			{gravity
+				{value -0.024}
+			}
+		}
+		{visualizer
+			{stage 
+				{sprite "$/smoke/smoke_g04a"
+					{timer
+						{mode play }
+						{duration 11 1}
+					}
+					{preturn 180 180}
+					{scale 1
+						{npower
+							{min 0}
+							{max 0.9 0.1}
+							{pow 0.85}
+						}
+					}
+					{turn 1
+						{linear
+							{min 0}
+							{max 0 270}
+						}
+					}
+					{visibility 1
+						{npower
+							{min 0.7 0.1}
+							{max 0}
+							{pow 8}
+						}
+					}
+					{## visibility 1
+						{peak
+							{min 0}
+							{max 1}
+						}
+					}
+				}
+			}
+		}
+		{offset 0 0 2}
+	}
+}
