@@ -1,0 +1,26 @@
+
+{parameters
+	{range_degrees "camera_fov"		40	60}	; ”гол раскрыти€ камеры
+	{range_degrees "camera_pitch_min" 	-15	-15}	; Ќижний порог диапазона углов наклона камеры (90 - вертикально вверх, -90 - вертикально вниз)
+	{range_degrees "camera_pitch_max"	15	15}	; ¬ерхний порог диапазона углов наклона камеры (90 - вертикально вверх, -90 - вертикально вниз)
+	{range "camera_offset_up"		0.25	0.5}	; —мещение точки внимани€ по вертикальной оси
+	{range "camera_offset_side"		0.5	0.5}	; —мещение точки внимани€ по горизонтальной оси
+	{range "camera_offset_forward" 		-0.5	-3.5}	; —мещение точки внимани€ по продольной оси
+	{range "camera_distance"		1.0	1.0}	; —мещение камеры по продольной оси
+	{float "aim_spot_offset"			8}	; —мещение прицела по вертикальной оси
+	{bool "aim_spot_disabled" 0}
+	{cursor_relative_mode ""}
+	{float "zoom_steps"				12}	;  оличество шагов масштабировани€
+	{sprite "sprite" ""}
+	{visual_set "visual_set" "tps_human"}
+	{fogmap_disable_paint "fogmap_disable_paint"}
+	{bool "hide_own_icon" 1} 				; именнованные параметры могут использоватьс€ в услови€х дл€ иконок,
+								; напрмер {if control_mode_parameter_on "hide_own_icon" ..} сработает
+								; если текущее значение параметра "hide_own_icon" больше 0.5
+	{selection_sprite_hide "selection_sprite_hide" 1}
+}
+{camera "tps"}
+
+;{suitable "tps" {condition props "human"} {priority 10}} ; ”слови€ срабатывани€
+
+

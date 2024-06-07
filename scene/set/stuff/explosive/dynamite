@@ -1,0 +1,44 @@
+{from "pattern throwable"
+	{tag "smallitemin1hand" "grenade" "dynamite" "breakage" "shake_middle"}
+;	{special
+;		{PrepareTime 6}
+;		{PrepareCursor "grenade"}
+;		{mode detonate}
+;	}	
+	{throw
+		{range 10.5}		
+		{startAngle 20}
+		{spreading 0.1
+			{radiusFunction
+				0.0		0.01 
+				1.00	0.1
+			}
+			{SpreadPower	1.5}
+		}		
+		{constantSpeed 0}
+	}
+	{possibleDamageRadius 1}	
+	{entity "dynamite"}
+	{inventory
+		{weight 100}
+		{fsm "belt"}
+	}
+	{mass 10}
+	{damage fire
+		{radius 6}
+		{heating 3}
+		{time 3}
+	}
+	("blast_base"
+		energy_apc(30)
+		range_start_apc(4)
+		range_end_apc(6)
+		armorhealth(900)
+		k(1)
+
+		energy_base(3)
+		range_start(10)
+		range_end(15)
+	)
+	("seismic_heavy" energy(30))
+}

@@ -1,0 +1,79 @@
+; version 0.2 by max at 2017-10-03
+
+; limit on amount of activations of perk
+; 0 - unlimited
+; default value - 0
+{activation_limit 1}
+
+; time (in seconds) while perk is still active after activation
+; default value - 0
+{active_time 5}
+
+; time (in seconds) after deactivation during which perk is disabled and can't be activated again
+; default value - 0
+{cooldown_time 10}
+
+; if actor doesn't have this tag in props then perk will not be added to actor
+; in multiplayer perks are added to all spawned actors from slot - and it could be cannon with artillerists towed by truck
+; we need to add soldier related perks only to soldiers, not to cannon or truck and vice versa
+{property "human"}
+
+; effect pack activated on special effects
+; there could be more than one pack for each event or none 
+; --------------------------------------------------------
+; available events:
+; 	on_spawn			activated right after unit spawn
+;		while_alive     	active while unit alive
+;	on_die				activated on unit death
+;	on_activate			triggered when perk button pressed
+;		while_active		active while perk active
+;	on_deactivate		triggered when perk deactivated by timeout
+{event "on_spawn"
+
+	; point of effect application
+	; --------------------------------------------------------
+	; self		- applied only to unit with perk
+	; global	- applied to all actors on scene
+	; around	- applied in radius around unit with perk
+	; circle	- applied in radius around target position
+	; actor		- applied to target actor
+	; --------------------------------------------------------
+	; default value - self
+	{actor_selector "around"} 
+
+	; radius of selector area in meters
+	; works only for around and circle selectors
+	{radius 10}
+
+	; filter applied to all actors gathered by selector
+	; --------------------------------------------------------
+	; all		- all actors pass
+	; enemy		- only enemies pass
+	; ally		- only allies pass
+	; --------------------------------------------------------
+	; default value - all
+	{actor_filter "all"} ; all - default
+
+	; list of effects
+	; more than 1 effect could be specified
+	; effects run in order of appearance in file
+
+	; instantly remove item from unit's inventory with suitable tags
+	; --------------------------------------------------------
+	; remove_item <tags>	
+	{effect "remove_item" "smg weapon"}
+
+	; --------------------------------------------------------
+	; instantly add item to unit inventory
+	; --------------------------------------------------------
+	; add_item <tags> <amount> {[filled] | filling <fill_tags> <fill_amount>}
+	; 	tags - specifies tags of item
+	; 	amount - amount of items to add
+	;	filled - item would be automatically filled to max with suitable ammo/shell/liquid
+	;	filling - you could specify special filling
+	;		fill_tags - selects filling stuff
+	;		fill_amount - selects amount of filling stuff in item
+	; --------------------------------------------------------
+	{effect "add_item" "rpg43" 1}
+
+}

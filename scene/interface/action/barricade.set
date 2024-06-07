@@ -1,0 +1,26 @@
+{action from "fortify_merge"
+	{cursor}
+	{fx "flashred"}
+	{item "sandbag_kit"}
+	{item_in_box}
+	{entity "sandbag3"}
+	{marker "sandbag3_vis"}
+	{button}
+	{ShowCount}
+	{aux_unit "engineers"}
+	{RequireSelect}
+	{instructions
+		{bind range 1}
+		{disable_action_restart}
+		{take_item}
+		{reserve_hands}
+		{animations "build_bruster_start " totaltime 1}
+		{effect "barricade_start_sound"}
+		{animations "build_bruster"  loop totaltime 4}
+		{fsm_request "ground-drop"}
+		{effect "barricade_stop_sound"}
+		{unreserve_hands}
+		{install notify_complete "sandbag3" 0 exact_placement}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

@@ -1,0 +1,52 @@
+; SDL
+{scalers
+	{"default" ; distance in meter -> hud scale
+		0 1
+		1000 1
+	}
+}
+{select_icon "map_point"
+	{background "background/rhomb_bkg_96"}
+	{icon by_map_point_name
+		{"f1" {name "symbols/a"}}
+		{"f2" {name "symbols/b"}}
+		{"f3" {name "symbols/c"}}
+		{"f4" {name "symbols/d"}}
+		{"f5" {name "symbols/e"}}
+		{"f6" {name "symbols/f"}}
+		{"f7" {name "symbols/g"}}
+		{"f8" {name "symbols/h"}}
+		{"f9" {name "symbols/i"}}
+		{"f10" {name "symbols/j"}}
+		{"f11" {name "symbols/k"}}		
+		{"f12" {name "symbols/l"}}
+		{"f13" {name "symbols/m"}}
+		{"f14" {name "symbols/n"}}
+		{"f15" {name "symbols/o"}}	
+		{"f16" {name "symbols/p"}}	
+		{"f17" {name "symbols/q"}}	
+		{"f18" {name "symbols/r"}}
+		{"f19" {name "symbols/s"}}	
+		{"f20" {name "symbols/t"}}	
+		{"f21" {name "symbols/u"}}
+		{"f22" {name "symbols/v"}}
+		{"f23" {name "symbols/w"}}
+		{"f24" {name "symbols/x"}}
+		{"f25" {name "symbols/y"}}
+		{"f26" {name "symbols/z"}}		
+		{"f" {name "weapon_type/scoped"}}				
+	}
+	{frame
+		{sprite "background/rhomb_frame_96"}
+		{progress "map_point_capture"}
+	}
+}
+{select_slots
+	{if props "flag map_point" and not mp_game_type "battlezones_sectors"
+		{scaler "default"}
+		{"map_point"
+			{size 64 64}
+			{offset 0 0}
+		}
+	}
+}

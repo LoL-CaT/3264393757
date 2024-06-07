@@ -1,0 +1,26 @@
+{action from "fortify_merge"
+	{button "barbwire"}
+	{fx "flashred"}
+	{item "barbwire_kit"}
+	{cursor "barbwire"}
+	{item_in_box}
+	{entity "wire_square"}
+	{marker "wire_square_vis"}
+	{RequireSelect}
+	{NotifySelect}
+	{aux_unit "engineers"}
+	{ShowCount}
+	{instructions
+		{bind range 1}
+		{disable_action_restart}
+		{free_hands}	
+		{take_item}
+		{reserve_hands}
+		{effect "barbwire_start_sound"}
+		{animations "wire_setup" totaltime 0.1}
+		{unreserve_hands}
+		{effect "barbwire_stop_sound"}
+		{install notify_complete "" 0 exact_placement}
+		{take_last_item}	
+	}
+}

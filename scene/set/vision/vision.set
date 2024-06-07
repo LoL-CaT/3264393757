@@ -1,0 +1,442 @@
+{visions
+	(include "generic.inc")
+;ARENA
+;Human =====================================
+	{"arena_tankman"
+		("vision_around_soldier" args 20)
+	}
+	{"arena_creep"
+		("vision_around_soldier" args 30)
+	}	
+	{"arena_soldier"
+		("vision_around_soldier" args 40)
+	}
+	{"arena_hunter"
+		("vision_around_soldier_antistealth" args 40)
+	}
+	{"human"
+		("vision_around_soldier" args 40)
+	}
+	{"human_around"
+		("vision_around_human" args 0.5)
+	}	
+;MGUN_STAN=========================================================
+	{"mgun_stan_around"                  							;round visor 
+		("vision_around_vehicle" args 20)
+	}
+	{"mgun_stan_main"               								;main visor
+		("vision_mgun_stan_main" args 55)
+	}
+;FLAK_AUTO======================================================
+	{"flak_around"                  								;round visor 
+		("vision_around_vehicle" args 20)
+	}
+	{"flak_auto_main"               								;main visor
+		("vision_flak_auto_main" args 55)
+	}	
+;MORTAR=========================================================
+	{"mortar_around"                  								;round visor 
+		("vision_around_vehicle" args 15)
+	}
+	{"mortar_main"               									;main visor
+		("vision_mortar_main" args 30)
+	}	
+;AT_CANNON=========================================================
+	{"at_gun_around"                  								;round visor 
+		("vision_around_vehicle" args 15)
+	}
+	{"at_gun_main"               									;main visor
+		("vision_at_gun_main" args 55)
+	}
+;FIELD_CANNON=========================================================
+	{"field_gun_around"                  							;round visor 
+		("vision_around_vehicle" args 15)
+	}
+	{"field_gun_main"               								;main visor
+		("vision_at_gun_main" args 55)
+	}
+;HOWITZER=========================================================
+	{"howitzer_around"                  							;round visor 
+		("vision_around_vehicle" args 20)
+	}
+	{"howitzer_main"               									;main visor
+		("vision_howitzer_main" args 55)
+	}
+;Tracked mine======================================================	
+	{"goliath_around"                  							;round visor 
+		("vision_around_vehicle" args 1)
+	}
+;CAR===============================================================
+	{"car_open_around"                  							;round visor 
+		("vision_around_vehicle" args 25)
+	}
+	{"car_closed_around"                  							;round visor 
+		("vision_around_vehicle" args 15)
+	}	
+	{"car_closed_around"                  							;round visor 
+		("vision_around_vehicle" args 15)
+	}
+	{"car_transport_around"                  						;round visor 
+		("vision_around_vehicle" args 15)
+	}		
+	{"car_driver"                  										;driver visor
+		("vision_car_driver" args 35)
+	}
+	{"car_driver_transport"                  						;driver visor
+		("vision_car_driver" args 25)
+	}	
+	{"car_main_mgun"               									;main mgun visor
+		("vision_car_main_mgun" args 55)
+	}	
+	{"car_main_gun"               									;main gun visor
+		("vision_car_main_gun" args 55)
+	}	
+	{"car_mgun"               										;secondary mgun visor
+		("vision_car_secondary_mgun" args 50)
+	}	
+;MOTO==============================================================
+	{"moto_driver"                  								;driver visor
+		("vision_moto_driver" args 35)
+	}
+	{"moto_around"                  								;round visor 
+		("vision_around_vehicle_antistealth" args 25)
+	}
+	{"moto_main_mgun"               								;main mgun visor
+		("vision_moto_main_mgun" args 55)
+	}	
+;APC===============================================================
+	{"apc_open_around"                  							;round visor 
+		("vision_around_vehicle" args 20)
+	}
+	{"apc_closed_around"                  							;round visor
+		("vision_around_vehicle" args 15)
+	}
+	{"apc_closed_around_antistealth"                  				;round visor antistealth
+		("vision_around_vehicle_antistealth" args 20)
+	}	
+	{"apc_driver"                  									;driver visor
+		("vision_apc_driver" args 25)
+	}
+	{"apc_driver_antistealth"                  							;driver visor antispy
+		("vision_apc_driver_antistealth" args 25)
+	}	
+	{"apc_main_mgun"               									;main mgun visor
+		("vision_apc_main_mgun" args 55)
+	}
+	{"apc_main_mgun_antistealth"               					;main mgun visor antispy
+		("vision_apc_main_mgun_antistealth" args 55)
+	}	
+	{"apc_main_gun"               									;main gun visor
+		("vision_apc_main_gun" args 55)
+	}
+	{"apc_auto_cannon"               								;auto cannon visor
+		("vision_apc_auto_cannon" args 55)
+	}
+	{"apc_mgun"               										;back mgun visor
+		("vision_apc_mgun" args 50)
+	}
+	{"apc_back_mgun"               									;back mgun visor
+		("vision_apc_back_mgun" args 35)
+	}
+;Tank_Light========================================================	
+	{"tank_light_around"                  							;round visor
+		("vision_around_vehicle" args 15)
+	}
+	{"tank_light_driver"                  							;driver visor
+		("vision_tank_light_driver" args 25)
+	}
+	{"tank_light_main_mgun"               							;main mgun visor
+		("vision_tank_light_main_mgun" args 55)
+	}
+	{"tank_light_main_gun"                  	 					;gun visor
+		("vision_tank_light_main_gun" args 55)
+	}
+	{"tank_light_auto_cannon"               						;auto cannon visor
+		("vision_tank_light_auto_cannon" args 55)
+	}
+	{"tank_light_back_mgun"               							;back mgun visor
+		("vision_tank_light_back_mgun" args 16)
+	}
+	{"tank_light_top_mgun"               							;top mgun visor
+		("vision_tank_light_top_mgun" args 30)
+	}
+;Tank_Medium========================================================	
+	{"tank_medium_around"                  							;round visor
+		("vision_around_vehicle" args 15)
+	}
+	{"tank_medium_driver"                  							;driver visor
+		("vision_tank_medium_driver" args 25)
+	}
+	{"tank_medium_gun"                  	 						;gun visor
+		("vision_tank_medium_gun" args 55)
+	}
+	{"tank_medium_top_mgun"               							;top mgun visor
+		("vision_tank_medium_top_mgun" args 25)
+	}
+	{"tank_medium_back_mgun"               							;back mgun visor
+		("vision_tank_medium_back_mgun" args 16)
+	}
+	{"tank_medium_main_mgun"               							;main mgun visor
+		("vision_tank_medium_main_mgun" args 30)
+	}	
+;Tank_Heavy========================================================	
+	{"tank_heavy_around"                  							;round visor
+		("vision_around_vehicle" args 10)
+	}
+	{"tank_heavy_driver"                  							;driver visor
+		("vision_tank_heavy_driver" args 25)
+	}
+	{"tank_heavy_gun"                  	 							;gun visor
+		("vision_tank_heavy_gun" args 55)
+	}
+	{"tank_heavy_top_mgun"               							;top mgun visor
+		("vision_tank_heavy_top_mgun" args 25)
+	}
+	{"tank_heavy_back_mgun"               							;back mgun visor
+		("vision_tank_heavy_back_mgun" args 16)
+	}
+	{"tank_heavy_main_mgun"               							;main mgun visor
+		("vision_tank_heavy_main_mgun" args 30)
+	}	
+;SPG========================================================	
+	{"spg_open_around"                  							;round visor
+		("vision_around_vehicle" args 20)
+	}
+	{"spg_close_around"                  							;round visor
+		("vision_around_vehicle" args 15)
+	}
+	{"spg_driver"                  									;driver visor
+		("vision_spg_driver" args 25)
+	}
+	{"spg_gun"                  	 								;gun visor
+		("vision_spg_gun" args 55)
+	}
+	{"spg_top_mgun"               									;top mgun visor
+		("vision_spg_top_mgun" args 35)
+	}
+;Tunk_Hunt=====================================================	
+	{"tank_hunt_open_around"                  						;round visor
+		("vision_around_vehicle" args 15)
+	}
+	{"tank_hunt_close_around"                  						;round visor
+		("vision_around_vehicle" args 10)
+	}
+	{"tank_hunt_driver"                  							;driver visor
+		("vision_tank_hunt_driver" args 25)
+	}
+	{"tank_hunt_gun"                  	 							;gun visor
+		("vision_tank_hunt_gun" args 55)
+	}
+	{"tank_hunt_top_mgun"               							;top mgun visor
+		("vision_tank_hunt_top_mgun" args 35)
+	}
+	{"tank_hunt_mgun"               								;mgun visor
+		("vision_tank_hunt_mgun" args 30)
+	}	
+;Airborne========================================================	
+	{"airborne_around"                  							;round visor
+		("vision_around_vehicle" args 10)
+	}	
+	{"airborne_recon"                  								;round visor
+		("vision_around_airborne_recon" args 55)
+	}
+;AntiAirborne====================================================
+	{"anti-airborne"                  								;round visor
+		{aim_mode "anti_airborne"}
+		("vision_around_vehicle_aa" args 800)
+	}
+	{"anti-airborne-small"             								;round visor
+		{aim_mode "anti_airborne"}
+		("vision_around_vehicle_aa" args 250)
+	}	
+
+;= SPECIAL =======================================================
+	
+	{"soldier_focused"
+		{uncover 10}
+		("vision_around_soldier_antistealth" args 10)
+		{v_fov 120}
+		{h_fov 270}
+	}
+	
+	{"rifle_telescope"
+		{uncover 7}
+		("glass" args 7)
+		{h_fov 360}
+		{v_fov 120}
+	}
+	{"field_glass"
+		("glass_soldier_antistealth" args 5)
+	}	
+;Old visors ==============================
+	{"tankman"
+		{uncover 0.1}
+		("vision_human" args 10)
+		{h_fov 360}
+		{v_fov 120}
+		{uncover 0}
+	}
+	
+	{"mp_soldier"
+		{uncover 10}
+		("vision_human" args 1)
+		{h_fov 360}
+		{v_fov 120}
+	}
+	
+	{"mp_officer"
+		{uncover 20}
+		("vision_officer" args 1)
+		{h_fov 35}
+		{v_fov 90}
+	}
+	
+	{"mp_sniper"
+		{uncover 40}
+		("vision_officer" args 40)
+		{h_fov 360}
+		{v_fov 120}
+	}
+	
+	{"mp_specnaz"
+		{uncover 40}
+		("vision_human" args 40)
+		{h_fov 360}
+		{v_fov 120}
+	}
+	
+;	{"field_glass"
+;		{uncover 15}
+;		("glass" args 15)
+;		{h_fov 360}
+;		{v_fov 120}
+;	}
+	
+	;= CANNON ========================================
+	
+	{"cannon_main"
+		{uncover 60}
+		("vision_optic" args 60)
+		{h_fov 60}
+		{v_fov 140}
+	}
+	
+	{"cannon_mgun"
+		{uncover 25}
+		("vision_human" args 25)
+		{h_fov 90}
+		{v_fov 140}
+	}
+	
+	{"cannon_main-far"
+		{uncover 55}
+	("vision_optic" args 55)
+		{h_fov 60}
+		{v_fov 140}
+	}
+	
+	{"cannon_crew"
+		{uncover 20}
+		("vision_human" args 20)
+		{h_fov 180}
+		{v_fov 140}
+	}
+	
+	;= VEHICLE & MOTO ============================
+	
+	{"vehicle_main"
+		{uncover 17}
+		("vision_human" args 17)
+		{h_fov 90}
+		{v_fov 140}
+	}
+	
+	{"vehicle_top_mgun"
+		{uncover 26}
+		("vision_human" args 26)
+		{h_fov 90}
+		{v_fov 140}
+	}
+	
+	{"vehicle_top_turret"
+		{uncover 26}
+		("vision_optic" args 26)
+		{h_fov 40}
+		{v_fov 140}
+	}
+	
+	{"moto_crew"
+		{uncover 26}
+		("vision_human" args 26)
+		{h_fov 100}
+		{v_fov 60}
+	}
+	
+	{##"moto_around"
+		{uncover 20}
+		("human_stand" args 20)
+		{h_fov 360}
+		{v_fov 60}
+	}
+	
+	;= TANK ======================================
+	
+	{"tank_main-l"
+		{uncover 50}
+		("vision_optic" args 50)
+		{h_fov 30}
+		{v_fov 140}
+		{wide 2}
+	}
+	
+	{"tank_main-m"
+		{uncover 55}
+		("vision_optic" args 55)
+		{h_fov 25}
+		{v_fov 140}
+		{wide 2}
+	}
+	
+	{"tank_main-h"
+		{uncover 65}
+		("vision_optic" args 65)
+		{h_fov 25}
+		{v_fov 140}
+		{wide 2.5}
+	}
+	
+	{"tank_driver"
+		{uncover 20}
+		("vision_human" args 20)
+		{h_fov 100}
+		{v_fov 90}
+	}
+	
+	{"tank_back"
+		{uncover 20}
+		("vision_human" args 20)
+		{h_fov 80}
+		{v_fov 120}
+	}
+	
+	{"tank_around-l"
+		{uncover 17}
+		("human_stand" args 17)
+		{h_fov 360}
+		{v_fov 170}
+	}
+	
+	{"tank_around-m"
+		{uncover 10}
+		("human_stand" args 10)
+		{h_fov 360}
+		{v_fov 170}
+	}
+	
+	{"tank_around-h"
+		{uncover 10}
+		("human_stand" args 10)
+		{h_fov 360}
+		{v_fov 170}
+	}
+}

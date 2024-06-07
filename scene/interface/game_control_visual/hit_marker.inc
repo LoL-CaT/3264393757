@@ -1,0 +1,8 @@
+{pierce_marker}
+{hit_marker   				; маркер возникает при нанесении урона и повреждении компонентов
+	{time 0.25}        		; время отображения в секундах
+	{bind target_tracker}		; привязка
+	{offset 0 0}			; смещение относительно привязки
+	{sprite "hit_marker_small"}
+	{color WHITE}
+}

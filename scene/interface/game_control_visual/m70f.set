@@ -1,0 +1,36 @@
+{central_marker
+	{sprite "m70f"}	
+}
+{spread_circle
+	{sprite "dash_advanced"} 
+	{show_reload_progress}
+	{color GREEN}
+	{color_weapon_reload RED}
+}
+{target_marker
+	{sprite_pierce_optimal "simple_cross/green_advanced"}
+	{sprite_pierce_satisfaction "simple_cross/yellow_advanced"}
+	{sprite_pierce_invalid "simple_cross/red_advanced"}
+	{sprite_out_of_range "simple_cross/black_advanced"}
+}
+{hit_marker   				; маркер возникает при нанесении урона и повреждении компонентов
+	{time 0.25}        		; время отображения в секундах
+	{bind target_tracker}		; привязка
+	{offset 0 0}			; смещение относительно привязки
+	{sprite "hit_marker_small"}
+	{color WHITE}
+}
+
+{progress_bar
+	{function "ammo_filling"}	
+	{sprite "bullet_advanced"}
+	{offset 0 -70}
+	{angle 125}
+	{color_full WHITE}
+	{color_empty RED}
+}
+{weapon_reload_timer
+	{offset -190 0}
+	{format_ready "tps/format_ready"}
+	{format_busy "tps/format_busy"}
+}

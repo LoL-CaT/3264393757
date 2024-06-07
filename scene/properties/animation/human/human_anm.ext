@@ -1,0 +1,1667 @@
+;SDL
+{animation
+	(define "event"		{event %1 "%0"})
+	(define "event_2"	("event"	args	%0	%1)												("event"	args	%0	%2))
+	(define "event_3"	("event_2"	args	%0	%1	%2)											("event"	args	%0	%3))
+	(define "event_4"	("event_3"	args	%0	%1	%2	%3)										("event"	args	%0	%4))
+	(define "event_5"	("event_4"	args	%0	%1	%2	%3	%4)									("event"	args	%0	%5))
+	(define "event_6"	("event_5"	args	%0	%1	%2	%3	%4	%5)								("event"	args	%0	%6))
+	(define "event_7"	("event_6"	args	%0	%1	%2	%3	%4	%5	%6)							("event"	args	%0	%7))
+	(define "event_8"	("event_7"	args	%0	%1	%2	%3	%4	%5	%6	%7)						("event"	args	%0	%8))
+	(define "event_9"	("event_8"	args	%0	%1	%2	%3	%4	%5	%6	%7	%8)					("event"	args	%0	%9))
+	(define "event_10"	("event_9"	args	%0	%1	%2	%3	%4	%5	%6	%7	%8	%9)				("event"	args	%0	%10))
+	(define "event_11"	("event_10"	args	%0	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10)		("event"	args	%0	%11))
+	(define "event_12"	("event_11"	args	%0	%1	%2	%3	%4	%5	%6	%7	%8	%9	%10	%11)	("event"	args	%0	%12))
+
+	{smooth 0.5}
+
+;	{blend "pose_die_water" 		{pose <â¥¯¥àì ­¥â ¯®§ë!> end}}
+	{blend "pose_lie_empty" 		{pose "lie_from_squat_empty" end}}
+	{blend "pose_lie_pistol"		{pose "lie_from_squat_pistol" end}}
+	{blend "pose_lie_gun" 			{pose "lie_fire_gun" begin}}
+	{blend "pose_lie_mgun" 			{pose "lie_reload_mgun" end}}
+	{blend "pose_lie_bazooka"		{pose "lie_reload_bazooka" end}}
+
+	{blend "pose_snipe_pistol" 		{pose "snipe_take_pistol" end}}
+	{blend "pose_snipe_gun" 		{pose "cover_from_snipe_gun" begin}}
+
+	{blend "pose_stand_pistol_up"	{pose "stand_fire_pistol_up" 	begin}}
+	{blend "pose_stand_empty_1" 	{pose "stand_idle_empty_1" begin}}
+	{blend "pose_stand_strap_1" 	{pose "stand_idle_strap_1" begin}}
+	{blend "pose_stand_bazooka" 	{pose "stand_fire_bazooka"	begin}}
+	{blend "pose_stand_1hand" 		{pose "stand_idle_1hand" begin}}
+	{blend "pose_stand_2hand" 		{pose "walk_2hand" end}}
+	{blend "pose_stand_corpse" 		{pose "stand_drop_corpse" begin}}
+	{blend "pose_stand_flag" 		{pose "stand_flag" end}}
+	{blend "pose_stand_down" 		{pose "stand_down" begin}}
+	{blend "pose_stand_gun_down" 	{pose "stand_take_gun_down" end}}
+
+	{blend "pose_squat_empty" 		{pose "squat_from_stand_empty"	end}}
+	{blend "pose_squat_bazooka" 	{pose "squat_fire_bazooka"		begin}}
+	{blend "pose_stand_giveup_1" 	{pose "stand_giveup_1" end}}
+	{blend "pose_stand_giveup_2" 	{pose "stand_giveup_2" end}}
+                          	
+   	{blend "steam_locomotive_driver"{pose "steam_locomotive_driver" begin}}
+   	{blend "pose_watch_binocular" 	{pose "stand_watch_binocular" begin}}
+   	{blend "pose_squat_watch_binocular" {pose "squat_watch_binocular" begin}}
+   	{blend "pose_lie_watch_binocular" 	{pose "squat_watch_binocular" end}}
+	{blend "pose_squat_mortar" 		{pose "squat_load_mortar" begin}}
+	{blend "pose_pak40_gunlayer"	{pose "cannon_pak40_gunlayer" end}}
+	{blend "pose_pak40_charger" 	{pose "cannon_pak40_charger" begin}}
+	{blend "pose_vickers_gunlayer"	{pose "cannon_vickers_gunlayer" end}}
+	{blend "stand_on_lci" 	  		{pose "stand_look_around_gun_1" begin}}
+	{blend "pose_mgun_pz6" 		  	{pose "pose_mgun_tank_pz6_sherman" begin}}
+	{blend "pose_mgun_sherman" 	  	{pose "pose_mgun_tank_pz6_sherman" end}}
+	{blend "pose_maxson" 		  	{pose "cannon_maxson_charger" begin}}
+	{blend "pose_pdr25_gunlayer"  	{pose "cannon_pdr25_gunlayer" begin}}
+	{blend "pose_pdr25_charger"  	{pose "cannon_pdr25_charger" begin}}
+	{blend "pose_m5_gunlayer"  		{pose "cannon_m5_gunlayer" begin}}
+	{blend "pose_m5_charger"  		{pose "cannon_m5_charger" begin}}
+	{blend "pose_cannon_small_charger"		{pose "cannon_small_charger_idle" end}}
+	{blend "pose_cannon_small_commander"	{pose "cannon_small_commander_idle" end}}
+	{blend "pose_cannon_big_gunner"			{pose "cannon_big_gunner_idle" end}}
+	{blend "pose_cannon_big_commander"		{pose "cannon_big_commander_idle" end}}
+	{blend "pose_artillery_support_l"		{pose "artillery_support_idle_l" end}}
+	{blend "pose_artillery_support_r"		{pose "artillery_support_idle_r" end}}
+	{blend "pose_155gpf_gunlayer"  	{pose "cannon_155gpf_gunlayer" begin}}
+	{blend "pose_155gpf_charger"  	{pose "cannon_155gpf_charger" begin}}
+	{blend "pose_kpvt_charger"  	{pose "cannon_kpvt_charger" begin}}
+	{blend "pose_kpvt_gunlayer"  	{pose "cannon_kpvt_charger_fire" begin}}
+	{blend "pose_m8_charger"  		{pose "cannon_m8_charger" begin}}
+	{blend "pose_m8_gunlayer"  		{pose "cannon_m8_gunlayer" begin}}
+	{blend "pose_m42_charger"  		{pose "cannon_m42_charger" begin}}
+	{blend "pose_m42_gunlayer"  	{pose "cannon_m42_gunlayer" begin}}
+	{blend "pose_flak38_charger_right"  	{pose "cannon_flak38_charger_right" begin}}
+	{blend "pose_flak38_charger_left"  		{pose "cannon_flak38_charger_left" begin}}
+	{blend "pose_flak38_gunlayer"  			{pose "cannon_flak38_gunlayer" begin}}
+	{blend "pose_flak38-1_charger"  		{pose "cannon_flak38-1_charger" begin}}
+	{blend "pose_flak38-1_gunlayer"  		{pose "cannon_flak38-1_gunlayer" begin}}
+	{blend "pose_oerlikon_charger"  		{pose "cannon_oerlikon_charger" begin}}
+	{blend "pose_nebel42_gunlayer"  		{pose "cannon_nebel42_gunlayer" begin}}
+	{blend "pose_flak41_gunlayer"  			{pose "cannon_flak41_gunlayer" begin}}
+	{blend "pose_flak41_gunlayer_1" 		{pose "cannon_flak41_gunlayer_fire-alert_1" end}}
+	{blend "pose_k18_gunlayer_l1" 			{pose "cannon_k18_gunlayer_l1" begin}}
+	{blend "pose_k18_gunlayer_l2" 			{pose "cannon_k18_gunlayer_l2" begin}}
+	{blend "pose_k18_gunlayer_r1" 			{pose "cannon_k18_gunlayer_r1" begin}}
+	{blend "pose_k18_gunlayer_r2" 			{pose "cannon_k18_gunlayer_r2" begin}}
+	{blend "pose_vickers_gunlaeyr-l" 			{pose "cannon_vickers_gunlaeyr-l" begin}}
+	{blend "pose_vickers_gunlaeyr-r" 			{pose "cannon_vickers_gunlaeyr-r" begin}}
+	{blend "pose_61k_gunlayer_left" 			{pose "cannon_61k_gunlayer_left" begin}}
+	{blend "pose_61k_gunlayer_right" 			{pose "cannon_61k_gunlayer_right" begin}}
+	{blend "pose_mgun_stan" 					{pose "mgun_stan_charger" begin}}
+	{blend "pose_mgun_stan1" 					{pose "mgun_stan_charger1" begin}}
+	{blend "pose_mgun_dot"	 					{pose "mgun_stan_charger2" begin}}
+
+	{blend "pose_seat_cannon_left" 				{pose "seat_crew_cannon" begin}}
+	{blend "pose_seat_cannon_right" 			{pose "seat_crew_cannon" end}}
+	{blend "pose_seat_cannon1_left" 			{pose "seat_crew_cannon1" begin}}
+	{blend "pose_seat_cannon1_right" 			{pose "seat_crew_cannon1" end}}
+	{blend "pose_seat_armor_1" 					{pose "seat_armor1" begin}}
+	{blend "pose_seat_armor_2" 					{pose "seat_armor1" end}}
+	{blend "pose_mg_stan_charger" 				{pose "mgun_stan_down" begin}}
+	{blend "pose_maxim_gunlaeyr" 				{pose "cannon_maxim_pose" begin}}
+	{blend "pose_maxim_driver" 					{pose "cannon_maxim_move" begin}}
+	{blend "pose_thor_charger1" 				{pose "pose_thor_gunner2" begin}}
+	{blend "pose_thor_charger2" 				{pose "pose_thor_gunner2" end}}
+	{blend "pose_thor_gunlayer" 				{pose "board_thor_gunner1" end}}
+	{blend "pose_ktiger" 				  		{pose "mgun_stan_charger_pz6b" begin}}
+	{blend "pose_vicers_gunner" 		  		{pose "vicers_mgun_pose" begin}}
+	{blend "pose_vicers_commander"		  		{pose "vicers_mgun_charger" end}}
+	{blend "pose_lg40_gunner" 			  		{pose "cannon_lg40_gunlayer" end}}
+	{blend "pose_lg40_commander"		  		{pose "cannon_lg40_charger" end}}
+	{blend "pose_paratruper_flight" 			{pose "paratruper_flight" begin}}
+
+	; new poses from fire animations
+	{blend "pose_sit_chair"					{pose "pose_sit_chair"  begin}}
+	{blend "pose_stand_look_around_gun"		{pose "stand_look_around_gun"  end}}
+	{blend "pose_stand_look_around_gun_1"	{pose "stand_look_around_gun_1"  end}}
+	{blend "pose_stand_gun_aside"			{pose "pose_stand_gun_aside"  begin}}  
+	{blend "pose_stand_gun_aside_1"   	    {pose "pose_stand_gun_aside_1_2"  begin}}
+	{blend "pose_stand_gun_aside_2"     	{pose "pose_stand_gun_aside_1_2"  end}}
+
+	{blend "pose_stand_fire_gun_up_1"		{pose "stand_fire_gun_up_1"   begin}}
+	{blend "pose_stand_fire_gun_down_1"		{pose "stand_fire_gun_down_1" begin}}
+	{blend "pose_stand_fire_gun_up"    		{pose "stand_fire_gun_up"     begin}}
+	{blend "pose_stand_fire_gun_down"   	{pose "stand_fire_gun_down"   begin}}
+
+	{blend "pose_stand_fire_rifle_up"        	{pose "stand_fire_rifle_up"   begin}}
+	{blend "pose_stand_fire_rifle_down"        	{pose "stand_fire_rifle_down" begin}}
+	{blend "pose_stand_assault-fire_rifle_down"	{pose "stand_fire_rifle_down" 		begin}}
+	{blend "pose_stand_assault-fire_rifle_up"   {pose "stand_fire_rifle_up" 		begin}}
+	{blend "pose_stand_assault-fire_gun_down"	{pose "stand_assault-fire_gun_down" begin}}
+	{blend "pose_stand_assault-fire_gun_up"   	{pose "stand_assault-fire_gun_up" begin}}
+	{blend "pose_stand_assault-fire_gun_down_1"	{pose "stand_assault-fire_gun_down_1" begin}}
+	{blend "pose_stand_assault-fire_gun_up_1"   {pose "stand_assault-fire_gun_up_1" begin}}
+	{blend "pose_stand_fire_mgun_down"  	{pose "stand_fire_mgun_down"  	begin}}
+	{blend "pose_stand_fire_mgun_down_1" 	{pose "stand_fire_mgun_down_1"  begin}}
+	{blend "pose_stand_fire_mgun_up"		{pose "stand_fire_mgun_up"		begin}}
+	{blend "pose_stand_fire_mgun_up_1" 		{pose "stand_fire_mgun_up_1" 	begin}}
+
+	{blend "pose_stand_fire_pistol_down" 	{pose "stand_fire_pistol_down"	begin}}
+	{blend "pose_stand_fire_pistol_up"   	{pose "stand_fire_pistol_up" 	begin}}
+	{blend "pose_stand_fire_pistol_down_1" 	{pose "stand_fire_pistol_down"	begin}}
+	{blend "pose_stand_fire_pistol_up_1"   	{pose "stand_fire_pistol_up" 	begin}}
+	{blend "pose_stand_fire_pistol_down_2" 	{pose "stand_fire_pistol_down"	begin}}
+	{blend "pose_stand_fire_pistol_up_2"	{pose "stand_fire_pistol_up" 	begin}}
+
+	{blend "pose_squat_assault-fire_gun"	{pose "squat_fire_rifle"			begin}}
+	{blend "pose_squat_assault-fire_rifle"	{pose "squat_fire_rifle"			begin}}
+	{blend "pose_squat_fire_gun"			{pose "squat_fire_gun"				begin}}
+	{blend "pose_squat_fire_rifle"			{pose "squat_fire_rifle"			begin}}
+	{blend "pose_squat_fire_pistol"			{pose "squat_fire_pistol"			begin}}
+	{blend "pose_squat_fire_pistol_1"		{pose "squat_fire_pistol_1"			begin}}
+
+	{blend "pose_stand_fire_gun_up_old"		{pose "stand_fire_gun_up" 			begin}}
+	{blend "pose_stand_fire_mgun_up_old"	{pose "stand_fire_mgun_up"			begin}}
+
+	{blend "pose_corpse" 					{pose "corpse_move" begin}}
+	{blend "pose_dodge_sg1" 				{pose "pose_dodge_sg" begin}}
+	{blend "pose_dodge_sg2"					{pose "pose_dodge_sg" end}}
+
+	{blend "pose_squat_pistol"					{pose "squat_fire_pistol"			begin}}
+	{blend "pose_squat_rifle"					{pose "squat_fire_rifle"			begin}}
+	{blend "pose_squat_gun"						{pose "squat_fire_gun"				begin}}
+	{blend "pose_squat_mgun"					{pose "squat_fire_mgun"				begin}}
+	{blend "pose_stand_fire_pistol"			   	{pose "stand_fire_pistol" 	begin}}
+	{blend "pose_lie_mortar"		  			{pose "lie_mortar_recharge" begin}}
+	{blend "pose_walk_mortar"		  			{pose "walk_mini_mortar" begin}}
+	
+	{blend "pose_artillery_reaction_r1"			{pose "artillery_reaction_r1" end}}
+	{blend "pose_artillery_reaction_r2"	 		{pose "artillery_reaction_r2" end}}
+	{blend "pose_artillery_reaction_l1"	 		{pose "artillery_reaction_l1" end}}
+	{blend "pose_artillery_reaction_l2"	 		{pose "artillery_reaction_l2" end}}
+	{blend "pose_recharge_big_mortar"			{pose "recharge_big_mortar" begin}}
+	{blend "pose_recharge_middle_mortar"		{pose "recharge_middle_mortar" begin}}
+
+	; STAND IDLE
+	{sequence "stand_idle_1hand"}
+	{sequence "stand_idle_empty_1" 			{speed 1.4}}
+	{sequence "stand_idle_empty_2" 			{speed 1.2}}
+	{sequence "stand_idle_empty_3" 			{speed 1.2}}
+	{sequence "stand_idle_empty_4" 			{speed 1.2}}
+	{sequence "stand_idle_strap_1" 			{speed 1.2}}
+	{sequence "stand_idle_strap_2" 			{speed 1.2}}
+	{sequence "stand_idle_strap_3"			{speed 1.2}}
+	{sequence "stand_look_around_gun"		{speed 1.5}}
+	{sequence "stand_look_around_gun_1"		{speed 1.5}}
+	{sequence "stand_smoke_1"				{speed 0.5}	("event" args smoke 74)}
+	{sequence "stand_smoke_2" 				{speed 0.5}	("event" args smoke 34)}
+	{sequence "stand_smoke_3" {speed 0.5}}
+	{sequence "stand_climb_stairs" ("event_2" args pose_change 20 40) ("event" args step 25)}
+	{sequence "stand_upstairs"		("event_3" args pose_change 11 18 25)}
+;new 	
+	{sequence "stand_idle_strap_4"				{speed 1.2}}
+	{sequence "stand_idle_strap_5"				{speed 1.2}}
+	{sequence "stand_look_around_bazooka"		{speed 1.5}}
+	{sequence "stand_look_around_bazooka_1"		{speed 1.5}}
+	{sequence "stand_look_around_bazooka_2"		{speed 1.5}}
+	{sequence "stand_look_around_bazooka_3"		{speed 1.5}}
+	{sequence "stand_look_around_gun_2" 		{speed 1}}
+	{sequence "stand_look_around_gun_3" 		{speed 1}}
+	{sequence "stand_look_around_pistol_1"		{speed 1.5}}
+	{sequence "stand_look_around_pistol_2"		{speed 1.5}}
+	{sequence "stand_look_around_pistol_3"		{speed 1.5}}
+	{sequence "stand_look_around_pistol_4"		{speed 1.5}}
+	{sequence "stand_look_around_mgun"			{speed 1.5}}
+	{sequence "stand_look_around_mgun_1"		{speed 1.5}}
+	{sequence "stand_look_around_mgun_2"		{speed 1.5}}
+	{sequence "stand_look_around_mgun_3"		{speed 1.5}}
+	{sequence "stand_look_around_mgun_3"		{speed 1.5}}
+	{sequence "stand_smg_idle_1"				{speed 1.5}}
+	{sequence "stand_smg_idle_2"				{speed 1.5}}
+	{sequence "stand_smg_idle_3"				{speed 1.5}}
+	{sequence "stand_smg_idle_4"				{speed 1.5}}
+	{sequence "stand_smg_idle_5"				{speed 1.5}}
+	{sequence "vehicle_mgun_2hand_idle_1"		{speed 1.5}}
+	{sequence "vehicle_mgun_2hand_idle_2"		{speed 1.5}}
+	{sequence "vehicle_mgun_2hand_idle_3"		{speed 1.5}}
+	{sequence "vehicle_mgun_2hand_idle_4"		{speed 1.5}}
+	{sequence "vehicle_mgun_1hand_idle_1"		{speed 1.5}}
+	{sequence "vehicle_mgun_1hand_idle_2"		{speed 1.5}}
+	{sequence "vehicle_mgun_1hand_idle_3"		{speed 1.5}}
+	{sequence "vehicle_mgun_1hand_idle_4"		{speed 1.5}}
+	{sequence "artillery_support_idle_r"		{speed 1}}
+	{sequence "artillery_support_idle_r_1"		{speed 1}}
+	{sequence "artillery_support_idle_r_2"		{speed 1}}
+	{sequence "artillery_support_idle_r_3"		{speed 1}}
+	{sequence "artillery_support_idle_l"		{speed 1}}
+	{sequence "artillery_support_idle_l_1"		{speed 1}}
+	{sequence "artillery_support_idle_l_2"		{speed 1}}
+	{sequence "artillery_support_idle_l_3"		{speed 1}}
+	{sequence "cannon_crew_idle_0"				{speed 1}}
+	{sequence "cannon_crew_idle_1"				{speed 1}}
+	{sequence "cannon_crew_idle_2"				{speed 1}}
+	{sequence "cannon_crew_idle_3"				{speed 1}}
+	{sequence "cannon_crew_idle_4"				{speed 1}}
+	{sequence "cannon_crew_idle_5"				{speed 1}}
+	{sequence "cannon_big_gunner_idle"			{speed 1}}
+	{sequence "cannon_big_gunner_idle_1"		{speed 1}}
+	{sequence "cannon_big_gunner_idle_2"		{speed 1}	("event_2" args pose_change 70 180)}
+	{sequence "cannon_big_gunner_idle_3"		{speed 1}	("event_3" args pose_change 30 55 80)}
+	{sequence "cannon_big_commander_idle"		{speed 1}}
+	{sequence "cannon_big_commander_idle_1"		{speed 1}	("event_2" args pose_change 50 170)	("event" args step 160)}
+	{sequence "cannon_big_commander_idle_2"		{speed 1}	("event" args pose_change 110)	("event" args step 210)}
+	{sequence "cannon_big_commander_idle_3"		{speed 1}}
+	{sequence "zenit_charger_right_idle"		{speed 1}}
+	{sequence "zenit_charger_right_idle_1"		{speed 1}	("event_2" args pose_change 45 128)}
+	{sequence "zenit_charger_right_idle_2"		{speed 1}	("event_2" args pose_change 50 115)}
+	{sequence "zenit_charger_right_idle_3"		{speed 1}	("event_2" args pose_change 50 115)}
+	{sequence "zenit_charger_right_idle_4"		{speed 1}	("event_2" args pose_change 50 132)}
+	{sequence "zenit_pointer_right_idle"		{speed 1}}
+	{sequence "zenit_pointer_right_idle_1"		{speed 1}}
+	{sequence "zenit_pointer_right_idle_2"		{speed 1}}
+	{sequence "zenit_pointer_right_idle_3"		{speed 1}}
+	{sequence "zenit_pointer_right_idle_4"		{speed 1}}
+	{sequence "cannon_aa_gunlayer_2_idle_0"		{speed 1}}
+	{sequence "cannon_aa_gunlayer_2_idle_1"		{speed 1}}
+	{sequence "cannon_aa_gunlayer_2_idle_2"		{speed 1}}
+	{sequence "cannon_aa_gunlayer_2_idle_3"		{speed 1}}
+	{sequence "zenit_charger_left_idle"			{speed 1}}
+	{sequence "zenit_charger_left_idle_1"		{speed 1}}
+	{sequence "zenit_charger_left_idle_2"		{speed 1}}
+	{sequence "zenit_charger_left_idle_3"		{speed 1}}
+	{sequence "cannon_small_charger_idle"		{speed 1}}
+	{sequence "cannon_small_charger_idle_1"		{speed 1}}
+	{sequence "cannon_small_charger_idle_2"		{speed 1}}
+	{sequence "cannon_small_charger_idle_3"		{speed 1}	("event_2" args pose_change 100 250)}
+	{sequence "cannon_small_commander_idle"		{speed 1}}
+	{sequence "cannon_small_commander_idle_1"	{speed 1}	("event_2" args pose_change 55 135)}
+	{sequence "cannon_small_commander_idle_2"	{speed 1}}
+	{sequence "cannon_small_commander_idle_3"	{speed 1}}
+	{sequence "cannon_small_commander_idle_4"	{speed 1}}
+	{sequence "stan_mgun_idle_0"				{speed 1}}
+	{sequence "stan_mgun_idle_1"				{speed 1}}
+	{sequence "stan_mgun_idle_2"				{speed 1}}
+	{sequence "stan_mgun_idle_3"				{speed 1}}
+	{sequence "stan_mgun_idle_4"				{speed 1}}
+
+	; New artillery recharge sistem
+
+	{sequence "cannon_big_charger_charge"		{speed 1}}
+	{sequence "cannon_big_commander_charge"		{speed 1}}
+	{sequence "cannon_big_support_charge_l"		{speed 1}}
+	{sequence "cannon_big_support_charge_r"		{speed 1}}
+
+	{sequence "cannon_big_commander_aim"		{speed 1} {resume}}
+
+	{sequence "cannon_big_commander_reaction"	{speed 2}}
+	{sequence "cannon_big_charger_reaction"		{speed 2}}
+	{sequence "cannon_big_support_r_reaction"	{speed 2}}
+	{sequence "cannon_big_support_l_reaction"	{speed 2}}
+
+	{sequence "cannon_small_commander_aim"		{speed 1} {resume}}
+
+	{sequence "cannon_aa_gunlayer_aim"			{speed 1} {resume}}
+	{sequence "cannon_61k_aim_vert"				{speed 1} {resume}}
+	{sequence "cannon_61k_aim_hor"				{speed 1} {resume}}
+
+	{sequence "cannon_61k_reaction_l"				{speed 1.5}}
+	{sequence "cannon_61k_reaction_r"				{speed 1.5}}
+
+
+	{sequence "cannon_small_charger_charge"		{speed 1}}
+	{sequence "cannon_small_commander_charge"	{speed 1}}
+	{sequence "cannon_small_support_charge_l"	{speed 1}}
+	{sequence "cannon_small_support_charge_r"	{speed 1}}
+
+	{sequence "cannon_small_commander_reaction"	{speed 2}}
+	{sequence "cannon_small_charger_reaction"	{speed 2}}
+	{sequence "cannon_small_support_r_reaction"	{speed 2}}
+	{sequence "cannon_small_support_l_reaction"	{speed 2}}
+
+	{sequence "cannon_aa_gunlayer_reaction_r"	{speed 2}}
+	{sequence "cannon_aa_gunlayer_reaction_l"	{speed 2}}
+	{sequence "Cannon_aa_gunlayer_recharge_r"	{speed 2}}
+
+
+	; DIALOG OPERATIONS
+
+	{sequence "dialog_stand_salute"				{speed 1}}
+	{sequence "dialog_stand_jubilat_pistol"		{speed 1}}
+	{sequence "dialog_stand_jubilat_mgun"		{speed 1}}
+	{sequence "dialog_stand_jubilat"			{speed 1}}
+	{sequence "dialog_stand_jubilat_smg"		{speed 1}}
+	{sequence "dialog_stand_winning"			{speed 1}}
+	{sequence "dialog_stand_winning_smg"		{speed 1}}
+	{sequence "dialog_stand_winning_mgun"		{speed 1}}
+	{sequence "dialog_stand_talk_empty"		    {speed 1}}
+	{sequence "dialog_stand_talk_strict"		{speed 1}}
+	{sequence "dialog_stand_talk_listen_read"   {speed 1}}
+	{sequence "dialog_stand_talk_listen_gun"    {speed 1}}
+	{sequence "dialog_stand_talk_speach"  	    {speed 1}}
+	{sequence "dialog_stand_only_talk"			{speed 1}}
+	{sequence "dialog_stand_listen_empty"   	{speed 1}}
+	
+	{sequence "dialog_squat_talk_empty"   	    {speed 1}}
+	{sequence "dialog_squat_listen_empty"  	    {speed 1}}
+	
+	{sequence "dialog_sit_talk_listen_empty"    {speed 1}}
+	{sequence "dialog_walk_strict"   			{speed 1}}
+
+	{sequence "idle_weapon_check" 			{speed 1}}
+		
+	{smooth 0.1}
+	{sequence "stand_clime_up_rope_begin" {speed 0.5}	("event_3" args pose_change 18 35 49) ("event_2" args step 26 38)}
+	{sequence "stand_clime_up_rope_end" {speed 0.5}		("event_3" args pose_change 22 36 55)}
+	{sequence "stand_move_up_rope" {speed 0.5}			("event_2" args pose_change 15 33)}
+	{sequence "stand_giveup_1" {speed 1}}
+	{sequence "stand_giveup_2" {speed 1}}
+
+    {sequence "lie_sleep_idle_1" {smooth 0.1}}                                        
+    {sequence "lie_sleep_idle_2" {smooth 0.1}}                                        
+    {sequence "idle_passive_squat_ground_gun_strap_sleep" {smooth 0.1}}                                        
+
+	; STAND OPERATIONS
+	{sequence "stand_from_lie_back"  {speed 0.6}  {smooth 0.2}	("event" args pose_change 49)}
+	{sequence "stand_from_lie_back_1" {smooth 0.2}				("event" args pose_change 122)}
+	{sequence "stand_down"}
+	{sequence "stand_put_small" 			{speed 2.5}}
+	{sequence "stand_take_small"			{speed 2.5}}
+	{sequence "stand_take_gun_down"			{speed 0.8}}
+	{sequence "stand_take_gun_up" 			{speed 0.8}}
+	{sequence "stand_take_mgun_up" 			{speed 0.8}}
+	{sequence "stand_take_mgun_down"		{speed 0.8}}
+	{sequence "stand_take_pistol_up_begin"	{speed 0.8}}
+	{sequence "stand_take_pistol_up_end" 	{speed 0.8}}
+	{sequence "stand_take_bazooka" 			{speed 0.8}}
+	{sequence "stand_reload_piat" 			{speed 1.1}}
+	{sequence "stand_reload_mgun" {speed 1}}
+	{sequence "stand_reload_gun" 			{speed 1.2}}
+	{sequence "stand_reload_pistol"			{speed 1.2}}
+	{sequence "stand_reload_bazooka" 		{speed 1.4}}
+	{sequence "stand_reload_gun_shot" 		{speed 1.2}}
+	{sequence "stand_pick_2hand_begin" {speed 0.7}										("event" args pose_change 3)}
+	{sequence "stand_pick_2hand_end" {speed 0.7}										("event" args pose_change 8)}
+	{sequence "stand_throw-off_tarpaulin" {speed 0.3} {file "stand_pick_2hand_end.anm"}	("event" args pose_change 8)}
+	{sequence "stand_pick_small_begin"													("event" args pose_change 20)}
+	{sequence "stand_pick_small_end"													("event" args pose_change 6)}
+	{sequence "stand_holdback_gun_up"}
+	{sequence "stand_holdback_mgun_up"}
+	{sequence "stand_holdback_pistol_up"}
+	{sequence "stand_holdback_gun_down"}
+	{sequence "stand_holdback_mgun_down"}
+	{sequence "stand_holdback_pistol_down"}
+	{sequence "stand_flag"}
+	{sequence "stand_ring_gong_up"}
+	{sequence "stand_pourin_barrel"}
+	{sequence "stand_pourin_can"}
+	{sequence "stand_pourout_barrel"													("event" args pose_change 12)}
+	{sequence "stand_pourout_can"														("event" args pose_change 44)}
+	{sequence "stand_turn_railswitch" {movement} {smooth 0}								("event_4" args pose_change 14 34 150 168)	("event_8" args step 45 60 70 85 95 110 120 140)}
+	{sequence "stand_dig_trench"														("event" args dig 15) ("event" args dig_end 75)	("event_3" args pose_change 16 42 60)}
+	{sequence "stand_dig_trench_2"														{speed 1.2} ("event" args dig 45) ("event" args dig_end 85)	("event_3" args pose_change 16 42 60)}
+	{sequence "stand_drop_corpse"														("event" args pose_change 65)}
+	{sequence "stand_lift_corpse" 														("event_2" args pose_change 20 90)}
+	{sequence "corpse_drop" {smooth 0} {dynamicSpeed {102 103 1000}}					("event_2" args pose_change 50 70)}
+	{sequence "corpse_lift"																("event_3" args pose_change 80 100 118)}
+
+	; stand fire
+;	{sequence "stand_fire_mgun" 	{speed 2.1}}
+;	{sequence "stand_fire_gun" 		{speed 2.1}}
+	{sequence "stand_fire_pistol"			{speed 1}}
+	{sequence "stand_fire_bazooka"}
+
+	; stand fire new
+	{sequence "stand_assault-fire_gun_up"		{speed 4}}
+	{sequence "stand_assault-fire_gun_down"		{speed 4}}
+	{sequence "stand_assault-fire_gun_up_1"		{speed 4}}
+	{sequence "stand_assault-fire_gun_down_1"	{speed 4}}
+	{sequence "stand_assault-fire_rifle_up"		{speed 2}}
+	{sequence "stand_assault-fire_rifle_down"	{speed 2}}
+
+	{sequence "stand_fire_gun_down_1"  			{speed 1}}
+	{sequence "stand_fire_gun_down"  			{speed 1}}
+	{sequence "stand_fire_gun_up"  				{speed 1}}
+	{sequence "stand_fire_gun_up_1"  			{speed 1}}
+	{sequence "stand_fire_gun_up_old" 			{speed 0.5}}
+	{sequence "stand_fire_mgun_up_old" 			{speed 0.5}}
+	{sequence "stand_fire_rifle_up"				{speed 1.5}}
+	{sequence "stand_fire_rifle_down"			{speed 1.5}}
+
+	{sequence "stand_fire_mgun_down"  			{speed 1.5}}
+	{sequence "stand_fire_mgun_down_1"  		{speed 1.5}}
+	{sequence "stand_fire_mgun_up"				{speed 1.5}}
+	{sequence "stand_fire_mgun_up_1" 			{speed 1.5}}
+
+	{sequence "stand_fire_pistol_down"			{speed 1}}
+	{sequence "stand_fire_pistol_up" 			{speed 1.5}}
+	{sequence "stand_fire_pistol_down_1"}
+	{sequence "stand_fire_pistol_down_2"}
+	{sequence "stand_fire_pistol_up_1"}
+	{sequence "stand_fire_pistol_up_2"			{speed 1.5}}
+
+	; step aside
+	{blend "pose_step_aside_left"  		{pose "stand_step_aside_left" end}}
+	{blend "pose_step_aside_right" 		{pose "stand_step_aside_right" end}}
+	{blend "pose_step_aside_left_gun" 	{pose "stand_step_aside_left_gun" end}}
+	{blend "pose_step_aside_right_gun"	{pose "stand_step_aside_right_gun" end}}
+
+	{sequence "stand_step_aside_left"  		{speed 1.8}}
+	{sequence "stand_step_aside_right" 		{speed 1.8}}
+	{sequence "stand_step_aside_left_gun" 	{speed 1.8}}
+	{sequence "stand_step_aside_right_gun"	{speed 1.8}}
+
+	; SQUAT OPERATIONS
+
+	{sequence "squat_saper_shovel_dig_start" 		{speed 1.3}}
+	{sequence "squat_saper_shovel_dig" 				{speed 1}("event" args dig 15) ("event" args dig_end 25)}
+	{sequence "squat_saper_shovel_dig_end" 			{speed 1.3}}
+
+	; WALK/RUN
+
+	{smooth 0.25}
+	; walk
+	{sequence "walk_bazooka_up" 			{speed 0.27} {resume}}
+	{sequence "walk_gun_up" 				{speed 0.27} {resume}	("event_2" args step 11 31)}
+	{sequence "walk_down" 					{speed 0.23} {resume}	("event_2" args step 11 31)}
+	{sequence "walk_empty_up" 				{speed 0.23} {resume}}
+	{sequence "walk_strap_up" 				{speed 0.23} {resume}}
+	{sequence "walk_1hand" 					{speed 0.23} {resume}	("event_2" args step 10 30)}
+	{sequence "walk_2hand" 					{speed 0.23} {resume}	("event_2" args step 9 29)}
+	{sequence "walk_corpse"					{speed 0.4} {resume}	("event_2" args step 17 43)}
+	{sequence "corpse_move" 				{speed 0.4} {resume}}
+
+	; spot
+	{sequence "walk_spot_gun_down" 			{speed 0.45} {resume}	("event_2" args step 8 38)}
+	{sequence "walk_spot_gun_up" 			{speed 0.45} {resume}}
+	{sequence "walk_spot_gun_up_1" 			{speed 0.37} {resume}}
+	{sequence "walk_spot_gun_down_1" 		{speed 0.37} {resume}	("event_2" args step 8 38)}
+	{sequence "walk_spot_gun_up_2" 			{speed 0.45} {resume}}
+	{sequence "walk_spot_gun_down_2" 		{speed 0.45} {resume}	("event_2" args step 10 37)}
+	{sequence "walk_spot_gun_belt_down"		{speed 0.35} {resume}	("event_2" args step 9 39)}
+	{sequence "walk_spot_gun_belt_up" 		{speed 0.35} {resume}}
+	{sequence "walk_spot_gun_half-mast_down"	{speed 0.45} {resume}	("event_2" args step 10 38)}
+	{sequence "walk_spot_gun_half-mast_up" 		{speed 0.45} {resume}}
+	{sequence "walk_spot_mgun_down" 		{speed 0.45} {resume}	("event_2" args step 8 38)}
+	{sequence "walk_spot_mgun_up" 			{speed 0.45} {resume}}
+	{sequence "walk_spot_pistol_down" 		{speed 0.37} {resume}	("event_2" args step 10 38)}
+	{sequence "walk_spot_pistol_up" 		{speed 0.37} {resume}}
+	{sequence "walk_giveup_1" 				{speed 0.23} {resume}}
+	{sequence "walk_giveup_2" 				{speed 0.23} {resume}}
+	{sequence "walk_gun_up_atready" 		{speed 0.23} {resume}	("event_2" args step 9 29)}
+	{sequence "walk_mini_mortar"			{speed 0.5} {resume}	("event_2" args step 10 30)}
+
+	; run slow
+	{sequence "run_slow_down"				{speed 0.8} {smooth 0.1}{resume}	("event_2" args step 8 29)}
+	{sequence "run_slow_down_1"				{speed 0.8} {smooth 0.1}{resume}	("event_2" args step 12 30)}
+	{sequence "run_slow_empty_up"			{speed 0.8} {smooth 0.1}{resume}}
+	{sequence "run_slow_gun_up"				{speed 0.8} {smooth 0.1}{resume}	("event_2" args step 9 29)}
+	{sequence "run_slow_strap_up"			{speed 0.8} {smooth 0.1}{resume}}
+
+	; run normal
+	{sequence "run_down" 					{speed 0.55} {resume}	("event_2" args step 11 31)}
+	{sequence "run_empty_up" 				{speed 0.55} {resume}}
+	{sequence "run_strap_up" 				{speed 0.55} {resume}}
+	{sequence "run_gun_up" 					{speed 0.55} {resume}}
+	{sequence "run_flag_up" 				{speed 0.55} {resume}}
+	{sequence "run_flag_down" 				{speed 0.55} {resume}	("event_2" args step 11 31)}
+
+; 	run backward - for manual control
+;	{sequence "run_back_down"}
+;	{sequence "run_back_up"}
+;	{sequence "run_strap_back_down"}
+;	{sequence "run_strap_back_up"}
+
+	; run fast
+	{sequence "run_fast_down"				{speed 0.5} {smooth 0.1}{resume}	("event_2" args step 18 38)}
+	{sequence "run_fast_empty_up"			{speed 0.5} {smooth 0.1}{resume}}
+	{sequence "run_fast_gun_rhand_up"		{speed 0.5} {smooth 0.1}{resume}}
+	{sequence "run_fast_gun_up"				{speed 0.5} {smooth 0.1}{resume}}
+	{sequence "run_fast_strap_up"			{speed 0.5} {smooth 0.1}{resume}}
+	{sequence "run_gun_up_atready"			{speed 0.5} {smooth 0.1}{resume}}
+
+	; bow
+	{sequence "run_bow_gun_down"			{speed 0.55} {resume}	("event_2" args step 13 30)}
+	{sequence "run_bow_gun_up"				{speed 0.55} {resume}}
+	{sequence "run_bow_gun_tocover_down"	{speed 0.55} {resume}	("event_2" args step 12 30)}
+	{sequence "run_bow_gun_tocover_up"		{speed 0.55} {resume}}
+	{sequence "run_bow_tocover_down"		{speed 0.55} {resume}	("event_2" args step 12 30)}
+	{sequence "run_bow_tocover_up"			{speed 0.55} {resume}}
+;	{sequence "run_bow_flag"				{speed 0.70} {resume}}
+
+	; strafe                
+	{sequence "run_back_spot_gun_down" 	 	 	{resume}							("event_2" args step 19 36)}
+	{sequence "run_back_spot_gun_up" 			{resume}}
+	{sequence "run_spot_gun_down"				{resume}							("event_2" args step 19 36)}
+	{sequence "run_spot_gun_up"  				{resume}}
+	{sequence "run_spot_back-strafe_gun_down"	{resume} {rotate "body" 0 0 1 -90}	("event_2" args step 20 36)}
+	{sequence "run_spot_back-strafe_gun_up"  	{resume} {rotate "body" 0 0 1 -90}}
+	{sequence "run_spot_left-strafe_gun_down"	{resume} {rotate "body" 0 0 1 -90}	("event_2" args step 19 36)} 
+	{sequence "run_spot_left-strafe_gun_up"  	{resume} {rotate "body" 0 0 1 -90}} 
+
+	; STAND THROW
+	{smooth 0.2}
+	{sequence "stand_throw_1hand_begin"						("event" args step 22)	("event" args pose_change 52)}
+	{sequence "stand_throw_1hand_end"						("event_2" args step 15 44)}
+	{sequence "stand_throw_small_begin"						("event" args pose_change 54)}
+	{sequence "stand_throw_small_end"}
+	{sequence "stand_front_throw_knife_1_begin" {speed 0.9}	("event" args step 25)	("event" args pose_change 26)}
+	{sequence "stand_front_throw_knife_1_end"   {speed 0.9}	("event" args step 35)	("event" args pose_change 32)}
+	{sequence "stand_back_throw_knife_begin" 	{speed 0.9}	("event" args step 21)	("event" args pose_change 40)}
+	{sequence "stand_back_throw_knife_end"   	{speed 0.9}	("event" args step 28)	("event" args pose_change 23)}
+
+
+	{sequence "stand_throw-side_grenade_begin" {file "stand_throw-side_grenade_mp_begin.anm"} {speed 1.5}	("event" args step 18)}
+	{sequence "stand_throw-side_grenade_end"   {file "stand_throw-side_grenade_end.anm"}      {speed 1.7}	("event" args step 41)	("event" args pose_change 10)}
+	{sequence "stand_throw_grenade_begin"      {file "stand_throw_grenade_mp_begin.anm"}      {speed 1.5}	("event" args step 17)}
+	{sequence "stand_throw_grenade_end"        {file "stand_throw_grenade_end.anm"}           {speed 1.7}	("event" args step 41)	("event" args pose_change 10)}
+	{sequence "stand_throw_grenade_1_begin"    {file "stand_throw_grenade_1_mp_begin.anm"}    {speed 1.5}	("event" args step 17)}
+	{sequence "stand_throw_grenade_1_end"      {file "stand_throw_grenade_1_end.anm"}         {speed 1.7}	("event" args step 41)	("event" args pose_change 10)}
+	{sequence "stand_throw_grenade_2_begin"    {file "stand_throw_grenade_2_mp_begin.anm"}    {speed 1.5}	("event" args step 17)}
+	{sequence "stand_throw_grenade_2_end"      {file "stand_throw_grenade_2_end.anm"}         {speed 1.7}	("event" args step 41)	("event" args pose_change 10)}
+
+	; DYING
+
+	{smooth 0.5}
+	{sequence "stand_die_back_1" 			{speed 1}		{movement}	("event" args fall 65)		("event" args pose_change 44 75)}
+	{sequence "stand_die_back_2" 			{speed 1}		{movement}	("event" args fall 80)		("event_2" args pose_change 48 110)}
+	{sequence "stand_die_back_3" 			{speed 1}		{movement}	("event" args fall 80)		("event_3" args pose_change 62 104 109)}	
+	{sequence "stand_die_back_4" 			{speed 1}		{movement}	("event" args fall 111)		("event_2" args pose_change 130 180)}
+	{sequence "stand_die_back_5" 			{speed 1}		{movement}	("event" args fall 70)}
+	{sequence "stand_die_front_1" 			{speed 1}		{movement}	("event" args fall 100)		("event" args pose_change 85)}
+	{sequence "stand_die_front_2" 			{speed 1}		{movement}	("event" args fall 70)		("event_2" args pose_change 55 92)}
+	{sequence "stand_die_front_3" 			{speed 1}		{movement}	("event" args fall 50)		("event" args pose_change 70)}
+	{sequence "stand_die_front_4"			{speed 1}		{movement}	("event" args step 20)		("event" args fall 40)	("event_2" args pose_change 30 80)}
+	{sequence "death_from_shoot_front" 		{speed 1}		{movement}	("event" args fall 65)		("event" args pose_change 44 75)}
+	{sequence "death_from_shoot_back" 		{speed 1}		{movement}	("event" args fall 65)		("event" args pose_change 44 75)}
+	{sequence "death_from_explosion_front" 		{speed 1}		{movement}	{smooth 0.1}	("event" args fall 65)		("event" args pose_change 44 75)}
+	{sequence "death_from_explosion_front02" 	{speed 0.7}		{movement}	{smooth 0.1}	("event" args fall 65)		("event" args pose_change 44 75)}
+	{sequence "death_from_explosion_front03" 	{speed 0.7}		{movement}	{smooth 0.1}	("event" args fall 65)		("event" args pose_change 44 75)}
+	{sequence "death_from_explosion_front04" 	{speed 0.7}		{movement}	{smooth 0.1}	("event" args fall 65)		("event" args pose_change 44 75)}
+	{sequence "death_from_explosion_front05" 	{speed 0.7}		{movement}	{smooth 0.1}	("event" args fall 65)		("event" args pose_change 44 75)}
+	{sequence "death_from_explosion_back" 		{speed 1}		{movement}	{smooth 0.1}	{event 25 44 "fall"} {event 17 30 60 "pose_change"}}
+	{sequence "death_from_explosion_back02" 	{speed 1}		{movement}	{smooth 0.1}	{event 25 44 "fall"} {event 17 30 60 "pose_change"}}
+	{sequence "death_from_explosion_back03" 	{speed 1}		{movement}	{smooth 0.1}	{event 25 44 "fall"} {event 17 30 60 "pose_change"}}
+	{sequence "death_from_explosion_back04" 	{speed 1}		{movement}	{smooth 0.1}	{event 25 44 "fall"} {event 17 30 60 "pose_change"}}
+	{sequence "death_from_explosion_back05" 	{speed 1}		{movement}	{smooth 0.1}	{event 25 44 "fall"} {event 17 30 60 "pose_change"}}
+
+	{sequence "stand_die_back_4_blast" {movement} {speed 1.3} {file "stand_die_back_4.anm"}			("event" args fall 111)	("event_2" args pose_change 130 180)}
+	{sequence "stand_die_back_5_blast" {movement} {speed 1.3} {file "stand_die_back_5.anm"}			("event" args fall 70)}
+    {sequence "stand_die_front_1_blast" {movement} {speed 1.3} {file "stand_die_front_1.anm"}		("event" args fall 100)	("event" args pose_change 85)}
+    {sequence "stand_die_front_2_blast" {movement} {speed 1.3} {file "stand_die_front_2.anm"}		("event" args fall 70)	("event_2" args pose_change 55 92)}
+    {sequence "stand_die-force_back_1"     {movement} {speed 0.9}									("event" args fall 15)	("event" args pose_change 28)}
+    {sequence "stand_die-force_back_2_far" {movement} {speed 0.9}									("event" args fall 22)}
+    {sequence "stand_die-force_back_3_far" {movement} {speed 0.9}									("event" args fall 27)	("event_2" args pose_change 22 40)}
+    {sequence "stand_die-force_front_1"     {movement} {speed 0.8}									("event" args fall 19)	("event" args pose_change 29)}
+    {sequence "stand_die-force_front_2"     {movement} {speed 0.8}									("event" args fall 16)}
+    {sequence "stand_die-force_front_3_far" {movement} {speed 0.7}									("event" args fall 21)}
+    {sequence "stand_die-force_front_4_far" {movement} {speed 0.7}									("event" args fall 20)	("event" args pose_change 30)}
+
+	{sequence "stand_die_drowin" 																	("event_3" args swim 136 186 238)}
+	{sequence "stand_die_trench_1"		{speed 0.9} {props "dont_update_placement_after_death"}		("event" args fall 33)	("event" args pose_change 24)}
+	{sequence "stand_die_trench_2"		{speed 0.9} {props "dont_update_placement_after_death"}		("event" args fall 64)	("event" args step 19) ("event" args pose_change 48)}
+	{sequence "stand_die_trench_3"		{speed 1.2} {props "dont_update_placement_after_death"}		("event" args pose_change 45)}
+
+	{sequence "stand_scenic-die_front_1"{movement} {speed 0.9}										("event" args fall 86)	("event" args pose_change 75)}
+	{sequence "stand_scenic-die_front_2"{movement} {speed 0.7} {dynamicSpeed {0 42 2} {42 60 1.15}}	("event" args fall 82)	("event" args pose_change 38)}
+	{sequence "stand_scenic-die_back_1"	{movement} {speed 0.9}										("event" args fall 91)	("event_2" args step 31 42) ("event" args pose_change 100)}
+	{sequence "stand_scenic-die_back_2"	{movement} {speed 0.6} {dynamicSpeed {0 50 1.7}}			("event" args fall 67)	("event" args pose_change 100)}
+	{sequence "stand_die_spot"	 {speed 1.1}	{movement}											("event" args fall 172)	("event_2" args pose_change 110 195)}
+	{sequence "stand_die_spot_1" {speed 1.1}	{movement}											("event" args fall 93)	("event_2" args step 34 64)	("event" args pose_change 127)}
+
+	{sequence "squat_die" 					{speed 1}		{movement}								("event" args fall 39)	("event" args pose_change 60)}
+	{sequence "squat_die_front"				{speed 1} 		{movement}								("event" args fall 160)	("event" args pose_change 105)}
+	{sequence "squat_die_back_1"			{speed 1} 		{movement}								("event" args fall 32)	("event" args pose_change 58)}
+	{sequence "squat_die_back_2"			{speed 1} 		{movement}								("event" args fall 75)}
+	{sequence "squat_die_force-back" 		{speed 1.1}		{movement}								("event" args fall 48)	("event" args pose_change 57)}
+
+	;NEW DEATH
+
+	{sequence "swim_dying_1" 				{speed 0.6}}
+	{sequence "swim_dying_2" 				{speed 0.6}}
+	{sequence "swim_dying_3" 				{speed 0.6}}
+
+	{sequence "swim_dying_on_back_1" 		{speed 0.6}}
+	{sequence "swim_dying_on_back_2" 		{speed 0.6}}
+	{sequence "swim_dying_on_back_3" 		{speed 0.6}}
+
+
+	{sequence "lie_die_drowin"																		("event_3" args swim 100 110 125)}
+	{sequence "lie_die" 		    		{speed 1.2}{resume}										("event_2" args pose_change 38 60)}
+
+	{sequence "stand_fly_forward"																	("event_4" args pose_change 27 36 47 58)}
+	{sequence "stand_fly_forward_end"																("event" args fall 2)	("event" args pose_change 18)}
+	{sequence "stand_fly_back" 	   {smooth 0}														("event_3" args pose_change 24 34 48)}
+	{sequence "stand_fly_back_end" {smooth 0}														("event" args fall 3)	("event" args pose_change 20)}
+	{sequence "stand_fly_tumble_back"																("event_2" args pose_change 24 39)}
+	{sequence "stand_fly_tumble_back_end"															("event" args fall 15)}
+	{sequence "stand_fly_back_far" {speed 0.8}														("event_2" args pose_change 41 51)}
+	{sequence "stand_fly_back_far_end" {speed 0.8}													("event" args fall 2)}
+	{sequence "stand_fly_tumble_back_far" {speed 0.8}												("event_2" args pose_change 40 48)}    
+	{sequence "stand_fly_tumble_back_far_end" {speed 0.8}											("event" args fall 2)}
+	{sequence "stand_fly_forward_far" {speed 0.8}													("event" args pose_change 49)}
+	{sequence "stand_fly_forward_far_end" {speed 0.8}												("event" args fall 2)}
+	{sequence "stand_fly_tumble_forward_far" {speed 0.8}											("event" args pose_change 49)}
+	{sequence "stand_fly_tumble_forward_far_end" {speed 0.8}										("event" args fall 2)}
+
+	; SQUAT
+	{sequence "squat_from_stand_empty" 		{speed 2.5}{smooth 0.1}									("event" args step 23)	("event" args pose_change 48)}
+	{sequence "squat_from_stand_gun" 		{speed 2.5}{smooth 0.1}									("event" args pose_change 40)}
+	{sequence "squat_from_stand_bazooka" 	{speed 2.5}{smooth 0.1}									("event" args pose_change 40)}
+	{sequence "squat_hide"																			("event" args pose_change 14)}
+	{sequence "squat_take_gun" {speed 0.6}}
+	{sequence "squat_take_pistol"}
+	{sequence "squat_take_small" {speed 1.5}}
+	{sequence "squat_put_small" {speed 1.5}}
+	{sequence "squat_reload_gun" 			{speed 1.2}}
+	{sequence "squat_reload_piat" 			{speed 1.2}}
+	{sequence "squat_reload_pistol" 		{speed 1.2}}
+	{sequence "squat_take_bazooka" {speed 0.6}}
+	{sequence "squat_reload_bazooka" 		{speed 1.2}}
+	{sequence "squat_throw_small_begin"																("event" args pose_change 25)}
+	{sequence "squat_throw_small_end"}
+	{sequence "squat_throw_grenade_begin" {speed 1.6}												("event" args pose_change 25)}
+	{sequence "squat_throw_grenade_end"	  {speed 1.7}}
+	{sequence "squat_throw_grenade_1_begin" {speed 1.6}												("event" args pose_change 25)}
+	{sequence "squat_throw_grenade_1_end"   {speed 1.7}}
+	{sequence "squat_throw_knife_begin" {speed 0.8}													("event" args pose_change 21)}
+	{sequence "squat_throw_knife_end"   {speed 0.8}}								
+	{sequence "squat_holdback_gun"}
+	{sequence "squat_holdback_pistol"}
+
+	;healing squad
+	{sequence "squat_self-treatment_hand"								("event_2" args heal 52 103)}
+	{sequence "squat_self-treatment_hand_begin"							("event" args heal 65)}
+	{sequence "squat_self-treatment_hand_end"}
+	{sequence "squat_self-treatment_head"								("event_2" args heal 20 50)}
+	{sequence "squat_self-treatment_head_begin"							("event_2" args heal 83 173)}
+	{sequence "squat_self-treatment_head_end"}
+	{sequence "squat_self-treatment_leg"								("event_3" args heal 55 100 135)}
+	{sequence "squat_self-treatment_leg_begin"							("event_4" args heal 90 150 170 211)}
+	{sequence "squat_self-treatment_leg_end"}
+	
+	;healing lie
+	{sequence "lie_self-treatment_hand"									("event_2" args heal 52 103)}
+	{sequence "lie_self-treatment_hand_begin"							("event" args heal 65)}
+	{sequence "lie_self-treatment_hand_end"}
+	{sequence "lie_self-treatment_head"									("event_2" args heal 20 50)}
+	{sequence "lie_self-treatment_head_begin"							("event_2" args heal 83 173)}
+	{sequence "lie_self-treatment_head_end"}
+	{sequence "lie_self-treatment_leg"									("event_3" args heal 55 100 135)}
+	{sequence "lie_self-treatment_leg_begin"							("event_4" args heal 90 150 170 211)}
+	{sequence "lie_self-treatment_leg_end"}	
+
+	; squat fire old
+	{sequence "squat_fire_bazooka" 			{speed 0.5}}
+
+	; HEAL NEW
+
+	{sequence "healing_arm" 				{speed 1}					("event" args heal 20)}
+	{sequence "healing_arm_end" 			{speed 1}					("event" args pose_change 276)}
+	{sequence "healing_arm_start" 			{speed 1}					("event_2" args heal 122 248)}
+	{sequence "healing_head" 				{speed 1}					("event" args heal 80)}
+	{sequence "healing_head_end" 			{speed 1}}
+	{sequence "healing_head_start" 			{speed 1}}
+	{sequence "healing_leg" 				{speed 1}					("event_2" args heal 48 96)}
+	{sequence "healing_leg_end" 			{speed 1}}
+	{sequence "healing_leg_start" 			{speed 1}}
+
+	; squat fire new
+	{sequence "squat_assault-fire_gun"}
+	{sequence "squat_assault-fire_rifle"}
+	{sequence "squat_fire_gun" 				{speed 1}}
+	{sequence "squat_fire_rifle" 			{speed 1.5}}
+	{sequence "squat_fire_pistol" 			{speed 1.2}}
+	{sequence "squat_fire_pistol_1" 		{speed 1.2}}
+
+	; LIE
+	{sequence "crawl" 			    		{speed 0.85}{resume}		("event_2" args crawl 14 28)} 
+	{sequence "crawl_gun" 		    		{speed 0.85}{resume}		("event_2" args crawl 14 28)}
+	{sequence "lie_from_stand" 				{speed 2.5}					("event" args pose_change 59)}
+	{sequence "lie_from_squat_empty" 		{speed 2.5}					("event" args pose_change 59)}
+	{sequence "lie_from_squat_gun" 			{speed 2.5}					("event" args pose_change 40)}
+	{sequence "lie_reload_gun" {speed 2}}
+	{sequence "lie_take_gun" {speed 0.25}}
+	{sequence "lie_fire_gun"	 			{speed 2.3}}
+	{sequence "lie_holdback_gun"}
+	{sequence "lie_from_squat_mgun"			{speed 2.5}					("event" args pose_change 39)}
+	{sequence "lie_from_squat_bazooka" 		{speed 2.5}					("event" args pose_change 42)}
+	{sequence "lie_reload_mgun" {speed 2.2}}
+	{sequence "lie_reload_bazooka" {speed 1} {smooth 0}}
+	{sequence "lie_reload_piat" {speed 1}}
+	{sequence "lie_mortar_recharge" 		{speed 1}}
+	{sequence "lie_mortar_recoil"	 		{speed 2}}
+	{sequence "lie_fire_bazooka" {speed 1}}
+	{sequence "lie_take_mgun" {speed 0.25}}
+	{sequence "lie_fire_mgun"	 			{speed 2.3}}
+	{sequence "lie_from_squat_pistol" 		{speed 2.5}					("event" args pose_change 52)}
+	{sequence "lie_take_pistol" {speed 0.6}}
+	{sequence "lie_fire_pistol" 			{speed 3}}
+	{sequence "lie_reload_pistol" {speed 2.4}}
+	{sequence "lie_holdback_pistol"}
+	{sequence "lie_take_small" {speed 1.25}}
+	{sequence "lie_put_small" {speed 1.25}}
+	{sequence "lie_take_item_begin"}
+	{sequence "lie_take_item_end"}
+	{sequence "lie_throw_small_begin" {speed 0.6}						("event" args pose_change 12)}
+	{sequence "lie_throw_small_end" {speed 0.6}}
+	{sequence "lie_throw_grenade_begin" {speed 3.5}						("event" args pose_change 50)}
+	{sequence "lie_throw_grenade_end"   {speed 1}}
+	{sequence "lie_throw_grenade_1_begin" {speed 1.7}					("event" args pose_change 67)}
+	{sequence "lie_throw_grenade_1_end"   {speed 1.7}}
+	{sequence "lie_rotate_l45" {movement} 								("event_2" args crawl 11 22)}
+	{sequence "lie_rotate_r45" {movement}								("event_2" args crawl 11 22)}
+	{sequence "lie_rotate_l45_gun" {movement}							("event_2" args crawl 11 22)}
+	{sequence "lie_rotate_r45_gun" {movement}							("event_2" args crawl 11 22)}
+	{sequence "lie_grenade_alert"{smooth 0.1} {speed 0.8} {movement}	("event_2" args pose_change 16 26) ("event" args fall 32)}
+	{sequence "lie_mine_install_enter"   {speed 1}}
+	{sequence "lie_mine_install"   {speed 1}}
+	{sequence "lie_mine_install_exit"   {speed 1}}
+
+	; LIE IDLE	
+	{sequence "lie_smg_idle"				{speed 1.5}}
+	{sequence "lie_smg_idle_1"				{speed 1.5}}
+	{sequence "lie_smg_idle_2"				{speed 1.5}}
+	{sequence "lie_smg_idle_3"				{speed 1.5}}
+	{sequence "lie_mgun_idle"				{speed 1.5}}
+	{sequence "lie_mgun_idle_1"				{speed 1.5}}
+	{sequence "lie_mgun_idle_2"				{speed 1.5}}
+	{sequence "lie_mgun_idle_3"				{speed 1.5}}
+	{sequence "lie_bazooka_idle"			{speed 1.5}}
+	{sequence "lie_bazooka_idle_1"			{speed 1.5}}
+	{sequence "lie_bazooka_idle_2"			{speed 1.5}}
+	{sequence "lie_bazooka_idle_3"			{speed 1.5}}
+	{sequence "lie_pistol_idle"				{speed 1.5}}
+	{sequence "lie_pistol_idle_1"			{speed 1.5}}
+	{sequence "lie_pistol_idle_2"			{speed 1.5}}
+	{sequence "lie_pistol_idle_3"			{speed 1.5}}
+	{sequence "lie_rifle_idle"				{speed 1.5}}
+	{sequence "lie_rifle_idle_1"			{speed 1.5}}
+	{sequence "lie_rifle_idle_2"			{speed 1.5}}
+	{sequence "lie_rifle_idle_3"			{speed 1.5}}
+	{sequence "lie_empty_idle_0"			{speed 1.5}}
+	{sequence "lie_empty_idle_1"			{speed 1.5}}
+	{sequence "lie_empty_idle_2"			{speed 1.5}}
+	{sequence "lie_empty_idle_3"			{speed 1.5}}
+	{sequence "lie_empty_idle_4"			{speed 1.5}}
+
+
+	; RLOOK / LLOOK
+	{sequence "rlook_gun"		{movement}							("event" args step 22)}
+	{sequence "llook_gun" 		{movement}							("event" args step 20)}
+	{sequence "rlook_pistol"	{movement}							("event" args step 21)}
+	{sequence "llook_pistol" 	{movement}							("event" args step 20)}
+	{sequence "rlook_item" 		{movement}							("event" args step 21)}
+	{sequence "rlook_throw_item_begin" {pinback 2} {speed 2.5}		("event" args pose_change 19)}
+	{sequence "rlook_throw_item_end" {pinback 2}}
+	{sequence "llook_item" 		{movement}							("event" args step 20)}
+	{sequence "llook_throw_item_begin" {pinback 2} {speed 2.5}		("event" args pose_change 19)}
+	{sequence "llook_throw_item_end" {pinback 2}}
+
+	{sequence "rlook_peep" {movement}}
+	{sequence "llook_peep_gun" {movement}}
+	{sequence "llook_stealth_gun" {movement}						("event" args step 20)}
+	{sequence "rlook_stealth_gun" {movement}						("event" args step 30)}
+	{sequence "llook_stealth_item" {movement}						("event" args pose_change 19)}
+	{sequence "llook_stealth_throw_item_begin" {pinback 2}			("event" args pose_change 34)}
+	{sequence "llook_stealth_throw_item_end" {pinback 2}}
+	{sequence "rlook_stealth_item" {movement}						("event" args step 7)}
+	{sequence "rlook_stealth_throw_item_begin" {pinback 2}			("event" args pose_change 34)}
+	{sequence "rlook_stealth_throw_item_end" {pinback 2}}
+
+	; SNIPE/COVER
+	{sequence "snipe_take_pistol"}
+	{sequence "cover_from_stand_empty" {movement} {smooth 0.2}					("event_2" args step 9 18) ("event_2" args pose_change 4 26)}
+	{sequence "cover_from_snipe_gun" {movement} {smooth 0.2}					("event_2" args step 10 18) ("event_2" args pose_change 3 26)}
+	{sequence "cover_from_snipe_gun_for_wind" {file "cover_from_snipe_gun.anm"}	("event_2" args pose_change 12 26)}
+;	{sequence "snipe_from_cover_gun" {movement}}
+;	{sequence "snipe_from_cover_gun_for_wind" {file "snipe_from_cover_gun.anm"}}
+;	{sequence "snipe_put_gun"}
+;	{sequence "snipe_reload_gun"}
+	{sequence "cover_grenade_alert_left"{smooth 0.1} {speed 1.25}				("event" args pose_change 26)}
+	{sequence "cover_grenade_alert_left_gun"{smooth 0.1} {speed 1.25}			("event" args pose_change 26)}
+	{sequence "cover_grenade_alert_right_gun"{smooth 0.1} {speed 1.25}			("event" args pose_change 26)}
+
+	; SWIM
+	{sequence "swim_from_stand_gun" {movement} {speed 0.7} {smooth 0.3}	("event_2" args swim 20 52)}
+	{sequence "swim_gun"	  		{pinback} {speed 0.9}				("event" args swim 23)}
+	{sequence "swim_spot_gun" 		{pinback}							("event" args swim 18)}
+	{sequence "swim_from_stand_empty" {movement} {smooth 0.3}			("event" args swim 24)}
+	{sequence "swim_on_the_spot_empty"	{pinback}						("event" args swim 32)}
+	{sequence "swim_empty" 				{pinback}						("event" args swim 23)}
+	{sequence "swim_fast_empty" 		{pinback}						("event_2" args swim 13 32)}
+
+	; GET OVER
+	{sequence "getover_middle" 				{movement} {speed 1.2} 	{smooth 0.3}	("event_3" args step 23 46 55)}
+	{sequence "getover_middle_left" 		{movement} {speed 1.2}	{smooth 0.3}	("event_3" args step 21 46 54)}
+	{sequence "getover_middle_right" 		{movement} {speed 1.2}	{smooth 0.3}	("event_3" args step 22 47 52)}
+
+	;FIGHT
+	{smooth 0.2}
+	{sequence "fight_front_knife"			{movement}										("event_2" args step 18 38)} 
+	{sequence "fight_front_club_begin" {speed 1.2} {dynamicSpeed {0 2 0.25} {10 12 0.2}}	("event" args pose_change 12)}
+	{sequence "fight_club_finish"															("event_2" args step 19 79) ("event_2" args pose_change 38 69)}
+	{sequence "fight_kick_lying_begin"  {dynamicSpeed {11.5 12 0.05}}						("event" args pose_change 8)}
+
+	{sequence "fight_hit_right_hand" {speed 2} {dynamicSpeed {0 10 0.8} {16 20 0.4}}		("event" args pose_change 16)}
+	{sequence "fight_hit_left_hand"  {speed 2}  {dynamicSpeed {0 10 0.8} {15 16 0.08}}		("event" args pose_change 16)}
+	{sequence "fight_straight_hit_rhand" {speed 2}  {dynamicSpeed {0 10 0.8} {16 20 0.4}}	("event" args pose_change 15)}
+	{sequence "fight_straight_hit_lhand" {speed 2}  {dynamicSpeed {0 10 0.8} {15 16 0.08}}	("event" args pose_change 15)}
+	{sequence "fight_upper-cut_rhand"    {speed 2}  {dynamicSpeed {0 10 0.8} {16 20 0.4}}	("event" args pose_change 16)}
+	{sequence "fight_body-hit_rhand" {speed 3.0} {dynamicSpeed {0 1 0.08} {16 20 0.2}}		("event" args pose_change 17)}
+
+	{sequence "stand_after_straight_hit"}                                   
+	{sequence "stand_after_hit"   {speed 0.85}  {dynamicSpeed {10 11 0.09}}			("event" args step 11)}
+	{sequence "stand_after_hit_1" {speed 0.85}  {dynamicSpeed {10 11 0.09}}			("event" args step 11)}
+	{sequence "stand_after_body-hit" {dynamicSpeed {9 10 0.12}}}
+	{sequence "step_back_after_hit"    {movement}									("event_3" args step 11 26 33)}
+	{sequence "step_back_after_hit_1"  {movement}									("event_2" args step 12 27)}
+	{sequence "step_back_after_body-hit"   {movement} {dynamicSpeed {34 35 0.15}}	("event_3" args step 12 24 33)}
+	{sequence "step_back_after_body-hit_1" {movement} {dynamicSpeed {34 35 0.15}}	("event_2" args step 12 29)}
+	; BOARD NEW IDLE
+
+	; BOARD
+	{smooth 0}
+	{sequence "board_m26"
+		("event_4" args metal_step 11 35 120 137)
+		("event_5" args pose_change 10 34 86 119 148)
+	}
+	{sequence "board_thor_gunner1"
+		("event_11" args metal_step 10 21 35 46 50 60 75 81 94 97 117)
+		("event_5" args pose_change 45 68 95 101 118)
+	}
+	{sequence "board_thor_driver"
+		("event_6" args metal_step 10 21 33 46 50 59)
+		("event_6" args pose_change 9 20 32 45 49 58)
+	}
+	{sequence "board_bigcar" {speed 0.5}
+		("event_2" args metal_step 20 44)
+		("event_2" args pose_change 19 35)
+	}
+	{sequence "board_tank" {speed 0.5}
+		("event_3" args metal_step 6 19 36)
+		("event_4" args pose_change 5 18 35 49)
+	}
+	{sequence "board_plane_right"
+		("event_2" args step 10 20)
+		("event_3" args metal_step 47 98 130)
+		("event_7" args pose_change 39 46 64 81 95 117 150)
+	}
+	{sequence "board_plane_left"
+		("event_3" args metal_step 25 80 111)
+		("event_3" args pose_change 24 75 108)
+	}
+	{sequence "board_rubber_boat"
+		("event_3" args swim 5 25 55)
+		("event_5" args pose_change 10 32 65 102 136)
+	}
+	{sequence "board_torpedo_boat"
+		("event_4" args swim 10 38 56 125)
+		("event_5" args pose_change 64 79 96 127 182)
+	}
+	{sequence "board_steam_locomotive"
+		("event_2" args metal_step 10 51)
+		("event_2" args pose_change 9 40)
+	}
+	{sequence "board_ju-52"
+		("event_2" args step 35 55)
+		("event_2" args metal_step 75 115)
+		("event_3" args pose_change 71 103 112)
+	}
+	{sequence "board_big-midcar_driver"
+		("event" args step 36)
+		("event_3" args metal_step 60 92 110)
+		("event_3" args pose_change 57 80 99)
+	}
+	{sequence "board_big-midcar"
+		("event" args step 40)
+		("event_3" args metal_step 56 86 105)
+		("event_3" args pose_change 52 72 80)
+	}
+	{sequence "board_big-highcar_driver"
+		("event_2" args step 22 40)
+		("event_3" args metal_step 62 103 125)
+		("event_4" args pose_change 59 80 94 114)
+	}
+	{sequence "board_big-highcar"
+		("event_2" args step 23 40)
+		("event_3" args metal_step 55 100 120)
+		("event_4" args pose_change 53 73 90 115)
+	}
+	{sequence "board_willis"
+		("event" args step 19)
+		("event_2" args metal_step 54 64)
+		("event_4" args pose_change 44 53 61 85)
+	}
+	{sequence "board_willis_driver"
+		("event_3" args metal_step 10 60 89)
+		("event_4" args pose_change 6 38 52 68)
+	}
+	{sequence "board_willysat_driver"
+		("event_4" args metal_step 23 60 102 105)
+		("event_5" args pose_change 20 33 92 100 120)
+	}
+	{sequence "board_gaz-m"
+		("event" args step 45)
+		("event_3" args metal_step 60 91 120)
+		("event_3" args pose_change 57 80 110)
+	}
+	{sequence "board_gaz-m_driver"
+		("event" args step 45)
+		("event_3" args metal_step 60 88 115)
+		("event_3" args pose_change 57 74 100)
+	}
+	{sequence "board_pz4_driver"
+		("event_8" args metal_step 26 58 82 101 120 162 190 222)
+		("event_6" args pose_change 23 44 158 205 220 278)
+	}
+	{sequence "board_jtiger_driver"
+		("event_5" args metal_step 68 98 128 139 169)
+		("event_6" args pose_change 15 46 96 120 157 175)
+	}
+	{sequence "board_hummel_driver"
+		("event_9" args metal_step 15 36 49 58 73 106 109 135 180)
+		("event_8" args pose_change 13 29 46 120 132 150 165 199)
+	}
+	{sequence "board_kv2_driver" {speed 0.5}
+		("event_7" args metal_step 15 38 56 66 80 90 118)
+		("event_7" args pose_change 10 30 36 75 100 110 145)
+	}
+	{sequence "board_hummel"{dynamicSpeed {134 147 1.2}}
+		("event" args step 28)
+		("event_3" args metal_step 135 173 195)
+		("event_3" args pose_change 70 129 165)
+	}
+	{sequence "board_t34_driver"
+		("event" args metal_step 76)
+		("event_4" args pose_change 4 42 53 74)
+	}
+	{sequence "board_pz-6"
+		("event" args step 15)
+		("event_6" args metal_step 35 125 150 176 200 245)
+		("event_5" args pose_change 29 76 123 198 236)
+	}
+	{sequence "board_t-34"
+		("event_3" args metal_step 15 96 124)
+		("event_4" args pose_change 11 53 122 170)
+	}
+	{sequence "board_sherman_left"
+		("event" args step 15)
+		("event_5" args metal_step 36 146 176 205 250)
+		("event_5" args pose_change 30 75 124 200 240)
+	}
+	{sequence "board_sherman_right"
+		("event" args step 15)
+		("event_5" args metal_step 36 146 176 205 250)
+		("event_5" args pose_change 30 75 124 200 240)
+	}
+	{sequence "board_cromwell"
+		("event_3" args metal_step 85 110 136)
+		("event_3" args pose_change 49 108 180)
+	}
+	{sequence "board_kv"
+		("event_2" args metal_step 85 110)
+		("event_3" args pose_change 48 108 132)
+	}
+	{sequence "board_sdkfz7"
+		("event" args step 14)
+		("event" args metal_step 35)
+		("event_2" args pose_change 30 77)
+	}
+	{sequence "board_sdkfz251-1"
+		("event" args step 14)
+		("event" args metal_step 35)
+		("event_2" args pose_change 30 77)
+	}
+	{sequence "board_body"
+		("event" args step 14)
+		("event" args metal_step 35)
+		("event_2" args pose_change 30 77)
+	}
+	{sequence "board_kv-85"
+		("event_3" args metal_step 85 110 135)
+		("event_3" args pose_change 50 107 189)
+	}
+	{sequence "board_is-2"
+		("event_3" args metal_step 15 96 126)
+		("event_5" args pose_change 10 55 92 124 170)
+	}
+	{sequence "board_su76"
+		("event_2" args metal_step 36 134)
+		("event_5" args pose_change 28 54 104 120 132)
+	}
+	{sequence "board_tank_right"
+		("event_2" args metal_step 85 110)
+		("event_4" args pose_change 50 80 107 140)
+	}
+	{sequence "board_tank_left"
+		("event_2" args metal_step 85 110)
+		("event_4" args pose_change 50 80 107 133)
+	}
+	{sequence "board_horch_passanger_left"
+		("event" args step 44)
+		("event_2" args metal_step 60 113)
+		("event_3" args pose_change 93 118 146)
+	}
+	{sequence "board_ba-20m_driver"
+		("event_2" args step 22 36)
+		("event_3" args metal_step 60 97 120)
+		("event_4" args pose_change 58 76 88 110)
+	}
+	{sequence "board_ba-20m"
+		("event_2" args step 31 41)
+		("event_3" args metal_step 56 90 115)
+		("event_4" args pose_change 54 72 83 105)
+	}
+	{sequence "board_sd222_driver"
+		("event_3" args step 6 37 48)
+		("event" args metal_step 69)
+		("event_3" args pose_change 19 67 91)
+	}
+	{sequence "board_sd222_gunner_1"
+		("event_2" args step 37 48)
+		("event_5" args metal_step 66 80 116 130 135)
+		("event_3" args pose_change 19 65 78)
+	}
+	{sequence "board_sd222_gunner_2"
+		("event_3" args step 6 36 48)
+		("event_4" args metal_step 66 80 115 131)
+		("event_3" args pose_change 19 65 78)
+	}
+	{sequence "board_daimler_gunner"
+		("event_3" args step 6 36 48)
+		("event_2" args metal_step 66 79)
+		("event_2" args pose_change 19 65)
+	}
+	{sequence "board_sd232_driver"
+		("event" args step 7)
+		("event_2" args metal_step 35 70)
+		("event_2" args pose_change 30 61)
+	}
+	{sequence "board_kubel_driver"
+		("event" args step 45)
+		("event_3" args metal_step 60 89 115)
+		("event_3" args pose_change 57 75 101)
+	}
+	{sequence "board_kubel_commander"
+		("event" args step 45)
+		("event_3" args metal_step 60 92 120)
+		("event_3" args pose_change 57 80 109)
+	}
+	{sequence "board_kubel_leftpassenger"
+		("event" args step 37)
+		("event_3" args metal_step 60 100 130)
+		("event_3" args pose_change 57 77 120)
+	}
+	{sequence "board_kubel_rightpassenger"
+		("event_2" args step 24 41)
+		("event_3" args metal_step 56 90 120)
+		("event_3" args pose_change 52 72 111)
+	}
+	{sequence "board_lowtank_left"
+		("event_3" args metal_step 51 85 111)
+		("event_3" args pose_change 48 81 141)
+	}
+	{sequence "board_lowarmor"
+		("event_2" args metal_step 50 85)
+		("event_2" args pose_change 47 80)
+	}
+	{sequence "board_lowtank_stand"
+		("event_3" args metal_step 50 85 111)
+		("event_3" args pose_change 47 80 108)
+	}
+	{sequence "board_lowtank_stand_1"
+		("event_3" args metal_step 50 85 111)
+		("event_3" args pose_change 47 80 108)
+	}
+	{sequence "board_higharmor"
+		("event" args step 14)
+		("event_2" args metal_step 36 125)
+		("event_3" args pose_change 30 78 120)
+	}
+	{sequence "board_dodge"
+		("event_2" args step 27 41)
+		("event_2" args metal_step 55 100)
+		("event_2" args pose_change 52 88)
+	}
+	{sequence "board_dodge_body"
+		("event" args step 14)
+		("event" args metal_step 35)
+		("event_2" args pose_change 30 76)
+	}
+	{sequence "board_dodge_bodyback"
+		("event_2" args metal_step 50 85)
+		("event_2" args pose_change 47 80)
+	}
+	{sequence "board_middlearmor"
+		("event_2" args metal_step 50 85)
+		("event_2" args pose_change 47 80)
+	}
+	{sequence "board_hetzer"
+		("event" args step 10)
+		("event_5" args metal_step 20 35 66 78 90)
+		("event_5" args pose_change 19 33 62 75 99)
+	}
+	{sequence "board_isu-152"
+		("event" args step 10)
+		("event_3" args metal_step 20 36 66)
+		("event_3" args pose_change 19 34 61)
+	}
+
+	{sequence "emit_tank_1"
+		("event" args step 25)
+		("event_2" args pose_change 33 41)
+	}
+	{sequence "emit_tank_1_hold"
+		("event" args step 40)
+		("event_2" args pose_change 48 55)
+	}
+	{sequence "emit_tank_2_hold"
+		("event" args step 40)
+		("event_2" args pose_change 48 55)
+	}
+	{sequence "emit_tank_2"
+		("event" args step 25)
+		("event_2" args pose_change 33 44)
+	}
+	{sequence "emit_torpedo_boat"
+		("event" args swim 42)
+	}
+	{sequence "emit_body" {movement}
+		("event_2" args step 26 30)
+		("event_2" args pose_change 40 49)
+	}
+	{sequence "emit_cg-4a"
+		("event" args step 15)
+		("event_2" args metal_step 30 60)
+		("event_3" args pose_change 29 49 79)
+	}	
+	{sequence "emit_bk1124" {file "getover_middle.anm"}
+		("event_3" args step 8 47 53)
+		("event_3" args pose_change 19 34 48)
+	}
+	{sequence "emit_lcvp" {file "getover_middle_1.anm"} {movement}
+		("event_3" args step 10 32 41)
+		("event_2" args pose_change 17 48)
+	}
+	{sequence "emit_sd222_driver"
+		("event_2" args step 35 50)
+		("event_2" args pose_change 18 48)
+	}
+	{sequence "emit_t34_hold"
+		("event_3" args step 130 135 152)
+		("event_2" args metal_step 85 91)
+		("event_5" args pose_change 30 70 80 138 145)
+	}
+	
+	{smooth 0.2}
+	{sequence "seat_armor"}
+	{sequence "seat_armor1"}
+	{sequence "seat_crew_cannon"}
+	{sequence "seat_crew_cannon1"}
+	{sequence "seat_driver_car"}
+	{sequence "seat_driver_moto"}
+	{sequence "seat_gunner_moto"}
+	{sequence "seat_gunner_stand"}
+	{sequence "seat_passenger"}
+	{sequence "seat_willis_driver"}
+	{sequence "seat_willis_passenger"}
+	{sequence "seat_willysat_driver"}
+	{sequence "pose_mgun_tank_pz6_sherman"}
+	{sequence "seat_sd222_gunner_1"}
+	{sequence "seat_sd222_gunner_2"}
+	{sequence "seat_sd223_gunner"}
+	{sequence "seat_tankturret_gunner_1"} 
+	{sequence "seat_tankturret_gunner_2"						("event_3" args metal_step 65 97 104) ("event" args pose_change 44)} 
+	{sequence "seat_m7_mgunner"}
+	{sequence "seat_m7_gunner"}
+	{sequence "seat_m7_com"}
+	{sequence "seat_wc55_mgunner"}
+	{sequence "seat_wc55_com"}
+	{sequence "seat_sd251_mgunner"}
+	{sequence "seat_willysat_basooker"}
+	{blend 	  "seat_torpedo" {pose "lie_holdback_gun" end}}			
+
+	{sequence "cannon_pak40_charger"  {speed 0.9}  {smooth 0.1}					("event_2" args pose_change 29 129)}
+	{sequence "cannon_pak40_gunlayer" {speed 0.95} {resume} {smooth 0.03}		("event_2" args pose_change 6 214)}
+	{sequence "cannon_pak40_pusher_right" {speed 1.2}  {resume}					("event_2" args step 39 79)}
+	{sequence "cannon_pak40_pusher_left"  {speed 1.2}  {resume}					("event_2" args step 39 79)}
+	{sequence "squat_load_mortar"     {speed 0.8}								("event_2" args pose_change 59 93)}
+	{sequence "squat_load_mortar_begin"     {speed 0.8}							("event" args pose_change 59)}
+	{sequence "squat_load_mortar_end"     {speed 0.8}							("event" args pose_change 19)}
+
+	{smooth 0.025}
+	{sequence "mgun_stan_charger"        {speed 0.7}}
+	{sequence "mgun_stan_charger1"       {speed 0.7}}
+	{sequence "mgun_stan_charger2"       {speed 0.7}}
+	{sequence "cannon_aa_gunlayer_l"     {speed 1.5} {resume}}
+	{sequence "cannon_aa_gunlayer_r"     {speed 1.5} {resume}}
+	{sequence "cannon_zis3_charger_fire"    {speed 1.5}}
+	{sequence "cannon_zis3_charger_test"    {speed 0.9}							("event" args pose_change 173)}
+	{sequence "cannon_pdr25_gunlayer_fire-alert"  {speed 0.7}}
+	{sequence "cannon_zis3_gunlayer"        {speed 0.9} {resume}}
+	{sequence "cannon_zis3_charger"         {speed 1.1} {smooth 0.1}}
+	{sequence "cannon_gunlayer_fire-alert"  {speed 0.9}  {smooth 0.05}}
+	{sequence "cannon_pdr25_gunlayer"       {speed 0.9} {resume}}
+	{sequence "cannon_pdr25_charger"        {speed 1}} 
+	{sequence "cannon_pdr25_charger_fire"   {speed 1.1} {dynamicSpeed {0 7 2}}}
+	{sequence "cannon_m5_gunlayer"          {speed 0.9} {resume}}
+	{sequence "cannon_m5_charger"           {speed 0.9}}
+	{sequence "cannon_155gpf_gunlayer"      {speed 0.9} {resume}}
+	{sequence "cannon_155gpf_charger"       {speed 0.9}							("event_2" args pose_change 26 150)}
+	{sequence "cannon_flak41_gunlayer"      {speed 0.9} {resume}}
+	{sequence "cannon_flak41_gunlayer_fire-alert"   {speed 0.7}}
+	{sequence "cannon_flak41_gunlayer_fire-alert_1"  {speed 0.7}}
+	{sequence "cannon_kpvt_charger"         {speed 0.9}}
+	{sequence "cannon_kpvt_charger_fire"    {speed 1.4}}
+	{sequence "cannon_m8_gunlayer"          {speed 0.9} {resume}}
+	{sequence "cannon_m8_charger"           {speed 1.1}}
+	{sequence "cannon_m8_charger_fire"      {speed 0.9}}
+	{sequence "cannon_m42_gunlayer"          {speed 0.9} {resume}}
+	{sequence "cannon_m42_charger"           {speed 1.1}}
+	{sequence "cannon_m42_charger_fire"      {speed 1.3}}
+	{sequence "cannon_flak38_gunlayer"      {speed 0.9} {resume}}
+	{sequence "cannon_flak38_charger_right" {speed 0.9} {dynamicSpeed {1 2 0.05} {2 30 0.8}} }
+	{sequence "cannon_flak38_charger_left"  {speed 0.9} {dynamicSpeed {1 2 0.05} {2 30 2}} }
+	{sequence "cannon_flak38_gunlayer_fire" {speed 0.9}}
+	{sequence "cannon_flak38_rcharger_fire-alert"  {speed 0.9}}
+	{sequence "cannon_flak38-1_charger"  {speed 0.9}{dynamicSpeed {1 2 0.05}} }
+	{sequence "cannon_flak38_lcharger_fire-alert"  {speed 0.9}}
+	{sequence "cannon_flak38-1_gunlayer"  {speed 0.9} {resume}}
+	{sequence "cannon_flak38-1_gunlayer_fire"  {speed 0.9}}
+	{sequence "cannon_maxson_charger"  {speed 0.9}}
+	{sequence "cannon_nebel42_gunlayer"  {speed 0.9} {resume}}
+	{sequence "cannon_k18_gunlayer_l1"  {speed 0.9} {resume}}
+	{sequence "cannon_k18_gunlayer_l2"  {speed 0.9} {resume}}
+	{sequence "cannon_k18_gunlayer_r1"  {speed 0.9} {resume}}
+	{sequence "cannon_k18_gunlayer_r2"  {speed 0.9} {resume}}
+	{sequence "cannon_vickers_gunlaeyr-l"  				{speed 0.9} {resume}}
+	{sequence "cannon_vickers_gunlaeyr-l_fire-alert"  	{speed 0.9}}
+	{sequence "cannon_vickers_gunlaeyr-r"  				{speed 0.9} {resume}}
+	{sequence "cannon_vickers_gunlaeyr-r_fire-alert"  	{speed 0.9}}
+	{sequence "cannon_oerlikon_charger"  {speed 0.9}}
+	{sequence "turret_charger"              {speed 0.9}}
+	{sequence "cannon_vickers_gunlayer"     {speed 0.95}}
+	{sequence "mgun_stan_down"     			{speed 0.5}{resume}}
+	{sequence "cannon_maxim_pose"     		{speed 0.5}}
+	{sequence "cannon_maxim_move" 			{speed 0.5}{resume}					("event_2" args step 11 37)}
+	{sequence "cannon_61k_gunlayer_left" {resume}}
+	{sequence "cannon_61k_gunlayer_right"{resume}}
+	{sequence "mgun_browning_driver_l" 		{speed 0.9}{resume}					("event_2" args step 11 43)}
+	{sequence "mgun_browning_driver_r" 		{speed 0.9}{resume}					("event_2" args step 11 43)}
+	{sequence "mortar_driver_r" 		{speed 0.9}{resume}						("event_2" args step 13 44)}
+	{sequence "mortar_driver_l" 		{speed 0.9}{resume}						("event_2" args step 17 46)}
+	{sequence "pose_thor_gunner2" 		{speed 0.9}}
+	{sequence "mgun_stan_charger_pz6b"}
+	{sequence "vicers_mgun_pose"}
+	{sequence "cannon_lg40_charger"}
+	{sequence "cannon_lg40_charger_fire-alert_1"}
+	{sequence "cannon_lg40_driver1"				{speed 0.85}{resume}			("event_2" args step 40 84)}
+	{sequence "cannon_lg40_driver2"				{speed 1}{resume}				("event_2" args step 45 82)}
+	{sequence "cannon_lg40_gunlayer"				{resume}}
+	{sequence "cannon_lg40_gunlayer_fire-alert_1"}
+	{sequence "vicers_mgun_charger"}
+
+	{sequence "paratruper_flight"			{speed 0.5}}
+	{sequence "paratruper_landing"			{speed 0.8}							("event_2" args step 2 25)	("event_3" args pose_change 8 15 41)}
+	{sequence "flag_lift"					{speed 0.7}}
+	{sequence "pose_dodge_sg"				{speed 0.7}}
+	{sequence "board_dodge_sg"				{speed 1}
+		("event_2" args metal_step 34 39)
+		("event_2" args pose_change 34 64)
+	}
+	{sequence "dodge_sg_reload_bazooka"		{speed 1}}
+	{sequence "dodge_sg_reload_mgun"		{speed 1}}
+
+; new rifle & mgun animations mapped to gun
+	{sequence "stand_reload_rifle" 			{speed 1.2}}
+	{sequence "stand_holdback_rifle_up"	{file "stand_holdback_gun_up.anm"}}
+	{sequence "stand_holdback_rifle_down" {file "stand_holdback_gun_down.anm"}}
+	{sequence "stand_take_rifle_up"			{file "stand_take_gun_up.anm"} {speed 0.8} {smooth 5}}
+
+	{sequence "squat_holdback_rifle" 	{file "squat_holdback_gun.anm"}}
+	{sequence "squat_reload_rifle" 			{speed 1.2}}
+	{sequence "squat_from_stand_rifle" 		{speed 2.5}{smooth 0.1}				("event" args pose_change 33)}
+	{sequence "lie_from_squat_rifle" 	    {speed 2.5}							("event" args pose_change 65)}
+
+	{blend "pose_squat_fire_mgun"		{pose "squat_fire_mgun"				begin}}
+	{sequence "squat_fire_mgun" 			{speed 1}}
+	{sequence "squat_reload_mgun" 			{speed 1}}
+	{sequence "squat_from_stand_mgun" 		{speed 2.5}{smooth 0.1}				("event" args pose_change 44)}
+	{sequence "squat_from_stand_pistol" 	{speed 2.5}{smooth 0.1}				("event" args pose_change 33)}
+
+	{blend "pose_lie_rifle"				{pose "lie_reload_rifle" end}}
+	{blend "pose_snipe_rifle" 			{pose "cover_from_snipe_gun" begin}}
+	{sequence "lie_take_rifle" 			{file "lie_take_gun.anm"} {speed 0.25}}
+	{sequence "lie_reload_rifle"		{speed 1}}
+	{sequence "lie_fire_rifle"	 			{speed 1.2}}
+
+; new bazooka animations mapped to gun
+	{sequence "run_bazooka_up"				{speed 0.55} {resume}}
+	{sequence "run_fast_bazooka_rhand_up"	{speed 0.5} {resume}}
+	{sequence "run_bow_bazooka_up"			{speed 0.55} {resume}}
+	{sequence "run_bow_bazooka_down" 	{file "run_bow_gun_tocover_down.anm"} {speed 0.55} {resume}	("event_2" args step 12 30)}
+	
+; VEHICLE  IDLE
+
+	; AIRPLANE
+
+	{sequence "driver_airplane_idle" 		{speed 1.2}}
+	{sequence "driver_airplane_idle_1" 		{speed 1.2}}
+	{sequence "driver_airplane_idle_2" 		{speed 1.2}}
+	{sequence "driver_airplane_idle_3" 		{speed 1.2}}
+
+	; SMALL-CAR
+
+	{sequence "driver_car_small_idle" 		{speed 1.2}}
+	{sequence "driver_car_small_idle_1" 	{speed 1.2}}
+	{sequence "driver_car_small_idle_2" 	{speed 1.2}}
+	{sequence "passenger_car_small_idle" 	{speed 1.2}}
+	{sequence "passenger_car_small_idle_1" 	{speed 1.2}}
+	{sequence "passenger_car_small_idle_2" 	{speed 1.2}}
+	{sequence "passenger_car_small_idle_3" 	{speed 1.2}}
+
+	; MOTO
+
+	{sequence "moto_driver_idle_0" 	{speed 1.2}}
+	{sequence "moto_driver_idle_1" 	{speed 1.2}}
+	{sequence "moto_driver_idle_2" 	{speed 1.2}}
+	{sequence "moto_driver_idle_3" 	{speed 1.2}}
+	{sequence "moto_driver_idle_4" 	{speed 1.2}}
+
+	{sequence "moto_driver_stand_idle_0" 	{speed 1.2}}
+	{sequence "moto_driver_stand_idle_1" 	{speed 1.2}}
+	{sequence "moto_driver_stand_idle_2" 	{speed 1.2}}
+	{sequence "moto_driver_stand_idle_3" 	{speed 1.2}}
+	{sequence "moto_driver_stand_idle_4" 	{speed 1.2}}
+
+	{sequence "moto_passanger_idle_0" 	{speed 1.2}}
+	{sequence "moto_passanger_idle_1" 	{speed 1.2}}
+	{sequence "moto_passanger_idle_2" 	{speed 1.2}}
+	{sequence "moto_passanger_idle_3" 	{speed 1.2}}
+	{sequence "moto_passanger_idle_4" 	{speed 1.2}}
+
+	{sequence "moto_passanger_stand_idle_0" 	{speed 1.2}}
+	{sequence "moto_passanger_stand_idle_1" 	{speed 1.2}}
+	{sequence "moto_passanger_stand_idle_2" 	{speed 1.2}}
+	{sequence "moto_passanger_stand_idle_3" 	{speed 1.2}}
+	{sequence "moto_passanger_stand_idle_4" 	{speed 1.2}}
+
+	{sequence "moto_gunner_idle_0" 	{speed 1.2}}
+	{sequence "moto_gunner_idle_1" 	{speed 1.2}}
+	{sequence "moto_gunner_idle_2" 	{speed 1.2}}
+	{sequence "moto_gunner_idle_3" 	{speed 1.2}}
+
+	{sequence "moto_gunner_stand_idle_0" 	{speed 1.2}}
+	{sequence "moto_gunner_stand_idle_1" 	{speed 1.2}}
+	{sequence "moto_gunner_stand_idle_2" 	{speed 1.2}}
+	{sequence "moto_gunner_stand_idle_3" 	{speed 1.2}}
+	{sequence "moto_gunner_stand_idle_4" 	{speed 1.2}}
+	{sequence "moto_gunner_stand_idle_5" 	{speed 1.2}}
+
+	{sequence "moto_gunner_1_idle_0" 	{speed 1.2}}
+	{sequence "moto_gunner_1_idle_1" 	{speed 1.2}}
+	{sequence "moto_gunner_1_idle_2" 	{speed 1.2}}
+	{sequence "moto_gunner_1_idle_3" 	{speed 1.2}}
+	{sequence "moto_gunner_1_idle_3" 	{speed 1.2}}
+	{sequence "moto_gunner_1_idle_3" 	{speed 1.2}}
+
+	{sequence "moto_gunner_1_stand_idle_0" 	{speed 1.2}}
+	{sequence "moto_gunner_1_stand_idle_1" 	{speed 1.2}}
+	{sequence "moto_gunner_1_stand_idle_2" 	{speed 1.2}}
+	{sequence "moto_gunner_1_stand_idle_3" 	{speed 1.2}}
+	{sequence "moto_gunner_1_stand_idle_4" 	{speed 1.2}}
+	{sequence "moto_gunner_1_stand_idle_5" 	{speed 1.2}}
+
+	; ON-BOARD-IDLE
+
+	{sequence "idle_onboard_0" 		{speed 1.2}}
+	{sequence "idle_onboard_1" 		{speed 1.2}}
+	{sequence "idle_onboard_2" 		{speed 1.2}}
+	{sequence "idle_onboard_3" 		{speed 1.2}}
+	{sequence "idle_onboard_4" 		{speed 1.2}}
+
+	{sequence "idle_onboard_m0" 		{speed 1.2}}
+	{sequence "idle_onboard_m2" 		{speed 1.2}}
+	{sequence "idle_onboard_m3" 		{speed 1.2}}
+	{sequence "idle_onboard_m4" 		{speed 1.2}}
+
+	{sequence "idle_onboard_l0" 		{speed 1.2}}
+	{sequence "idle_onboard_l1" 		{speed 1.2}}
+	{sequence "idle_onboard_l2" 		{speed 1.2}}
+	{sequence "idle_onboard_l3" 		{speed 1.2}}
+	{sequence "idle_onboard_l4" 		{speed 1.2}}
+	{sequence "idle_onboard_l5" 		{speed 1.2}}
+
+	{sequence "idle_onboard_r0" 		{speed 1.2}}
+	{sequence "idle_onboard_r1" 		{speed 1.2}}
+	{sequence "idle_onboard_r2" 		{speed 1.2}}
+	{sequence "idle_onboard_r3" 		{speed 1.2}}
+
+	; BIG-CAR
+
+	{sequence "driver_car_big_idle" 		{speed 1.2}}
+	{sequence "driver_car_big_idle_1" 		{speed 1.2}}
+	{sequence "driver_car_big_idle_2" 		{speed 1.2}}
+	{sequence "driver_car_big_idle_3" 		{speed 1.2}}
+
+;REACTION
+	{sequence "artillery_reaction_r1"		{speed 0.6}}
+	{sequence "artillery_reaction_r2"		{speed 0.9}}
+	{sequence "artillery_reaction_l1"		{speed 0.9}}
+	{sequence "artillery_reaction_l2"		{speed 0.9}}
+
+;SQUAT IDLE
+	{sequence "squat_rifle_idle_test" 		{speed 1.4}}
+	{sequence "squat_idle_rifle_1" 			{speed 1}}
+	{sequence "squat_idle_rifle_2" 			{speed 1}}
+	{sequence "squat_idle_rifle_3" 			{speed 1}}
+	{sequence "squat_idle_rifle_4" 			{speed 1}}
+	{sequence "squat_idle_rifle_5" 			{speed 1}}
+	{sequence "squat_idle_rifle_6" 			{speed 1}}
+	{sequence "squat_idle_rifle_cover_1" 	{speed 1}}
+	{sequence "squat_idle_rifle_cover_2" 	{speed 1}}
+	{sequence "squat_idle_pistol_1" 		{speed 1}}
+	{sequence "squat_idle_pistol_2" 		{speed 1}}
+	{sequence "squat_idle_pistol_3" 		{speed 1}}
+	{sequence "squat_idle_pistol_4" 		{speed 1}}
+	{sequence "squat_idle_smg_1"	 		{speed 1}}
+	{sequence "squat_idle_smg_2" 			{speed 1}}
+	{sequence "squat_idle_smg_3" 			{speed 1}}
+	{sequence "squat_idle_smg_4" 			{speed 1}}
+	{sequence "squat_idle_mgun_1"			{speed 1}}
+	{sequence "squat_idle_mgun_2"			{speed 1}}
+	{sequence "squat_idle_mgun_3"			{speed 1}}
+	{sequence "squat_idle_mgun_4"			{speed 1}}
+	{sequence "squat_idle_empty_0" 			{speed 1}}
+	{sequence "squat_idle_empty_1" 			{speed 1}}
+	{sequence "squat_idle_empty_2" 			{speed 1}}
+	{sequence "squat_idle_empty_3" 			{speed 1}}
+
+
+;TANK ANIMATION
+	{sequence "seat_isu"}
+	{sequence "seat_isu1"}
+	{sequence "seat_isu2"}
+	{sequence "seat_isu3"}
+	{sequence "pose_gunner_isu"}
+
+	{sequence "seat_gunner_stand_ferd" 		{speed 1}}
+	{sequence "seat_gunner_stand_pz5a" 		{speed 1}}
+	{sequence "seat_gunner_stand_t34_85" 	{speed 1}}
+	{sequence "board_t34_85" 				{speed 0.7}
+		("event" args step 6)
+		("event_3" args metal_step 23 40 68)
+		("event_4" args pose_change 21 36 65 83)
+	}
+	{sequence "board_t34_85_driver" 		{speed 0.7}
+		("event" args step 10)
+		("event" args metal_step 24)
+		("event_5" args pose_change 20 37 55 68 73)
+	}
+
+	{sequence "horse_driver_idle_0"			{speed 1}}
+	{sequence "horse_driver_idle_1"			{speed 1}}
+	{sequence "horse_driver_idle_2"			{speed 1}}
+
+
+; NEW RUN
+	
+	{sequence "run_rifle_test" 			{speed 0.5} {smooth 0.1} {resume}}
+	{sequence "run_mgun_test" 			{speed 0.5} {smooth 0.1} {resume}}
+	{sequence "run_rifle_up" 			{speed 0.5} {smooth 0.1} {resume}}
+	{sequence "run_rifle_down" 			{speed 0.5} {smooth 0.1} {resume}}
+	{sequence "run_mgun_up" 			{speed 0.5} {smooth 0.1} {resume}}
+	{sequence "run_mgun_down" 			{speed 0.5} {smooth 0.1} {resume}}
+
+	{sequence "walk_strict_new" 		{speed 0.5} {smooth 0.1} {resume}}	
+
+; NEW CLIMBING
+
+	{sequence "ladder_climbing" 			{speed 1.1}{resume}}
+	{sequence "ladder_climbing_start" 			{speed 1} {smooth 0.1}}
+	{sequence "ladder_climbing_stop" 			{speed 1} {smooth 0.1}}
+
+;MORTAR RECHARGE
+	{sequence "recharge_big_mortar" {speed 1}				("event" args step 61)("event_2" args pose_change 50 134)}
+	{sequence "recharge_middle_mortar" {speed 1}}
+	
+;TRANSITION
+	{sequence "run_to_lie_empty" 			{movement} {speed 2} {smooth 0.3}	("event_2" args pose_change 16 37)}
+	{sequence "run_to_lie_rifle" 			{movement} {speed 2} {smooth 0.1}	("event_2" args pose_change 16 37)}
+	{sequence "run_to_lie_bazooka"			{movement} {speed 2} {smooth 0.1}	("event_2" args pose_change 12 32)}
+	{sequence "run_to_lie_gun" 				{movement} {speed 2} {smooth 0.1}	("event_2" args pose_change 16 37)}
+	{sequence "run_to_lie_pistol"			{movement} {speed 2} {smooth 0.1}	("event_2" args pose_change 16 37)}
+	{sequence "run_to_lie_mgun" 			{movement} {speed 2} {smooth 0.1}	("event_2" args pose_change 12 32)}
+	
+;BUILDING
+	{sequence "build_bruster" 				{speed 1.3}}
+	{sequence "build_bruster_start" 		{speed 1.2}							("event" args step 20)("event" args pose_change 30)}
+	{sequence "build_bruster_end" 			{speed 1.2}							("event" args step 37)("event" args pose_change 22)}
+	{sequence "mine_drop" 					{speed 2}							("event" args step 29)("event" args pose_change 45)}
+	{sequence "mine_install"				{speed 1.2}}
+	{sequence "wire_stand_to_sit" 			{speed 1}							("event" args step 20)("event" args pose_change 32)}
+	{sequence "wire_twist" 					{speed 1.2}}
+	{sequence "wire_correct" 				{speed 1.2}}
+	{sequence "wire_setup" 					{speed 1.2}							("event" args step 21)("event" args pose_change 32)}
+	{sequence "hedgehog_setup"				{speed 1.1}							("event" args step 44)("event" args pose_change 58)}
+	{sequence "squat_trenching_start"		{speed 1.2}}
+	{sequence "squat_trenching" 			{speed 1.2}							("event" args dig 10)	("event" args dig_end 46)}
+	{sequence "lie_trenching_start" 		{speed 1.2}}
+	{sequence "lie_trenching" 				{speed 1.2}							("event" args dig 7)	("event" args dig_end 36)}
+	{sequence "hedgehog_setup_start" 		{speed 1.2}							("event" args step 44)("event" args pose_change 58)}
+	{sequence "hedgehog_setup_cycle" 		{speed 1.2}}
+	{sequence "hedgehog_setup_cycle_2"		{speed 1.2}}
+	{sequence "squat_repair_1"				{speed 1.2}}
+	{sequence "squat_repair_2"				{speed 1.2}}
+	{sequence "squat_repair_wire"			{speed 1.2}}
+
+	
+;FIGHT
+	{sequence "fight_bayonet_stand" 		{speed 2}							("event_2" args step 25 54)}
+	{sequence "fight_bayonet_stand_1" 		{speed 2}							("event_2" args step 25 54)}
+	{sequence "fight_bayonet_stand_2" 		{speed 2}							("event_2" args step 30 68)("event" args pose_change 10)}
+	{sequence "fight_saber_stand" 			{speed 2}							("event_2" args step 15 60)("event" args pose_change 25)}
+	{sequence "fight_butt_stand" 			{speed 2}							("event" args pose_change 17)}
+
+;NEW POSES
+	{blend "driver_car_small"		{pose "driver_car_small_idle"	begin}}
+	{blend "driver_car_big"			{pose "driver_car_big_idle"	begin}}
+	{blend "driver_airplane"		{pose "driver_airplane_idle"	begin}}
+	{blend "passenger_car_small"	{pose "passenger_car_small_idle"	begin}}
+	{blend "zenit_pointer_right"	{pose "zenit_pointer_right_idle"	begin}}
+	{blend "cannon_aa_gunlayer_2"   {pose "cannon_aa_gunlayer_2_idle_1"	begin}}
+
+	
+	{blend "zenit_charger_l"		{pose "zenit_charger_left_idle"		begin}}
+	{blend "zenit_charger_r"		{pose "zenit_charger_right_idle"	begin}}
+	{blend "vehicle_mgun_1hand"		{pose "vehicle_mgun_1hand_idle_1"	begin}}
+	{blend "vehicle_mgun_2hand"		{pose "vehicle_mgun_2hand_idle_1"	begin}}
+	{blend "moto_driver"			{pose "moto_driver_stand_idle_0"	begin}}
+	{blend "moto_passanger"			{pose "moto_passanger_idle_0"	begin}}
+	{blend "moto_gunner"			{pose "moto_gunner_idle_0"	begin}}
+	{blend "cannon_small_gunner"	{pose "cannon_small_commander_idle"	begin}}
+	{blend "cannon_small_commander"	{pose "cannon_small_charger_idle"	begin}}
+	{blend "cannon_big_commander"	{pose "cannon_big_commander_idle"	begin}}
+	{blend "cannon_big_gunner"		{pose "cannon_big_gunner_idle"	begin}}
+	{blend "artillery_support_l"	{pose "artillery_support_idle_l"	begin}}
+	{blend "artillery_support_r"	{pose "artillery_support_idle_r"	begin}}
+	{blend "idle_onboard"			{pose "idle_onboard_0"	begin}}
+	{blend "idle_onboard_l"			{pose "idle_onboard_l0"	begin}}
+	{blend "idle_onboard_r"			{pose "idle_onboard_r0"	begin}}
+	{blend "idle_onboard_m"			{pose "idle_onboard_m0"	begin}}
+	{blend "cannon_crew"			{pose "cannon_crew_idle_0"	begin}}
+	{blend "stan_mgun"				{pose "stan_mgun_idle_0"	begin}}
+
+	{blend "horse_driver_idle00"	{pose "horse_driver_idle_0"	begin}}
+	{blend "horse_driver_idle01"	{pose "horse_driver_idle_1"	begin}}
+	{blend "horse_driver_idle02"	{pose "horse_driver_idle_2"	begin}}
+
+;CORE DIR IDLE
+(define "sequence_idle"
+	{sequence	"%name" {file "idle/%name.anm"}}
+)
+(define "sequence_idle_smooth"
+	{sequence	"%name" {file "idle/%name.anm"} {smooth 0.3}}
+)
+
+("sequence_idle"			name(idle_passive_squat_ground_gun_strap_ground_test))
+("sequence_idle"			name(idle_passive_squat_ground_gun_strap_scratch))
+("sequence_idle"			name(idle_passive_squat_ground_gun_strap_simple1))
+("sequence_idle"			name(idle_passive_squat_ground_gun_strap_simple2))
+("sequence_idle"			name(idle_passive_squat_ground_gun_strap_simple3))
+;("sequence_idle"			name(idle_passive_squat_ground_gun_strap_sleep));copy
+("sequence_idle"			name(idle_passive_squat_ground_gun_strap_smoke))
+("sequence_idle"			name(idle_passive_squat_gun_aside_drop))
+{sequence	"idle_passive_squat_gun_aside_fals_alarm" {file "idle/idle_passive_squat_gun_aside_fals_alarm.anm"}		("event_2" args pose_change 229 580)}
+("sequence_idle"			name(idle_passive_squat_gun_aside_ground_test))
+("sequence_idle"			name(idle_passive_squat_gun_aside_gun_test1))
+("sequence_idle"			name(idle_passive_squat_gun_aside_gun_test2))
+("sequence_idle"			name(idle_passive_squat_gun_aside_look_around))
+("sequence_idle"			name(idle_passive_squat_wall_gun_aside_simple1))
+("sequence_idle"			name(idle_passive_squat_wall_gun_aside_simple2))
+("sequence_idle"			name(idle_passive_squat_wall_gun_aside_sleep))
+("sequence_idle"			name(idle_passive_stand_gun_strap_gun_test))
+{sequence	"idle_passive_stand_gun_strap_lace" {file "idle/idle_passive_stand_gun_strap_lace.anm"}					("event_2" args pose_change 332 550)}
+("sequence_idle"			name(idle_passive_stand_gun_strap_self_clean))
+("sequence_idle"			name(idle_passive_stand_gun_strap_simple_long))
+("sequence_idle"			name(idle_passive_stand_gun_strap_simple3))
+;("sequence_idle"			name(idle_passive_stand_gun_strap_smoke));not work
+("sequence_idle"			name(idle_passive_stand_gun_strap_warming))
+("sequence_idle"			name(idle_passive_stand_gun_strap_watch_test))
+("sequence_idle"			name(idle_passive_stand_wall_gun_aside_1))
+("sequence_idle"			name(idle_passive_stand_wall_gun_aside_2))
+{sequence	"idle_squat_from_stand_ground_gun_strap" {file "idle/idle_squat_from_stand_ground_gun_strap.anm"}		("event" args pose_change 45)}
+{sequence	"idle_squat_from_stand_gun_aside" {file "idle/idle_squat_from_stand_gun_aside.anm"}						("event" args pose_change 51)}
+{sequence	"idle_squat_from_stand_wall_gun_aside" {file "idle/idle_squat_from_stand_wall_gun_aside.anm"}			("event_2" args step 28 52)("event" args pose_change 108)}
+{sequence	"idle_stand_from_squat_ground_gun_strap" {file "idle/idle_stand_from_squat_ground_gun_strap.anm"}		("event" args pose_change 80)}
+("sequence_idle"			name(idle_stand_gun_aside_test))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_aside_1))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_aside_2))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_aside_3))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_aside_4))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_strap_1))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_strap_2))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_strap_3))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_strap_4))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_strap_5))
+("sequence_idle_smooth"		name(idle_stand_listen_gun_strap_6))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_aside_1))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_aside_2))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_aside_3))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_aside_4))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_aside_5))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_aside_6))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_strap_1))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_strap_2))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_strap_3))
+("sequence_idle_smooth"		name(idle_stand_talk_gun_strap_4))
+("sequence_idle_smooth"		name(idle_walk_listen_left_gun_strap_1))
+("sequence_idle_smooth"		name(idle_walk_listen_left_gun_strap_2))
+("sequence_idle_smooth"		name(idle_walk_listen_left_gun_strap_3))
+("sequence_idle_smooth"		name(idle_walk_listen_left_gun_strap_4))
+("sequence_idle_smooth"		name(idle_walk_listen_right_gun_strap_1))
+("sequence_idle_smooth"		name(idle_walk_listen_right_gun_strap_2))
+("sequence_idle_smooth"		name(idle_walk_listen_right_gun_strap_3))
+("sequence_idle_smooth"		name(idle_walk_listen_right_gun_strap_4))
+("sequence_idle_smooth"		name(idle_walk_talk_left_gun_strap_1))
+("sequence_idle_smooth"		name(idle_walk_talk_left_gun_strap_2))
+("sequence_idle_smooth"		name(idle_walk_talk_left_gun_strap_3))
+("sequence_idle_smooth"		name(idle_walk_talk_left_gun_strap_4))
+("sequence_idle_smooth"		name(idle_walk_talk_right_gun_strap_1))
+("sequence_idle_smooth"		name(idle_walk_talk_right_gun_strap_2))
+("sequence_idle_smooth"		name(idle_walk_talk_right_gun_strap_3))
+("sequence_idle_smooth"		name(idle_walk_talk_right_gun_strap_4))
+;("sequence_idle"	name(walk_giveup_1));copy
+;("sequence_idle"	name(walk_giveup_2));copy
+}

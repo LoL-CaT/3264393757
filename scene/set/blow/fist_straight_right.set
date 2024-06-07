@@ -1,0 +1,23 @@
+{blow ;punch
+	{tags "fist" "basic" "head"} ; strikes types see at {strokes} in set\ability\melee.set
+	{distance near}
+	{self
+		{enable_items "hands_empty" "pistol" "smallitemin1hand"}
+		{disable_items "knife" "type_95"}
+		{animation "Fight_straight_hit_Rhand"}
+	}
+	{opponent
+		{orientation front}
+		{movement stand squat}
+		{damage 50 0.4}
+		{knock_down_chance 0.0}
+		{knock_down_time 0.5 1}
+	}
+	{opponent
+		{orientation back}
+		{movement stand squat}
+		{damage 50 0.4}
+		{knock_down_chance 0.5}
+		{knock_down_time 0.5 1}
+	}
+}

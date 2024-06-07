@@ -1,0 +1,106 @@
+{entitymanager
+	{group "dead" actor dead
+		{remove dissolve}
+		{limit 12}
+		{entity "human"}
+	}
+	
+	{group "broken" gameentity
+		{limit 7}
+		{remove dissolve}
+		{DeadVehicles}
+	}
+
+	{group "piece_steel" gameentity
+		{limit 10}
+		{remove dissolve}
+		{entity "piece_big_steel"}
+		{entity "piece_large_steel"}
+		{entity "piece_medium_steel"}
+		{entity "piece_medium_steel_construction"}
+	}
+	{group "piece_steel_big" gameentity
+		{limit 7}
+		{remove dissolve}
+		{entity "building_part_steel"}
+		{entity "building_part_steel_brittle"}
+	}
+	{group "piece_concrete" gameentity
+		{limit 10}
+		{remove dissolve}
+		{entity "piece_large_concrete"}
+		{entity "piece_small_concrete"}
+	}
+	{group "piece_concrete_big" gameentity
+		{limit 7}
+		{remove dissolve}
+		{entity "building_part_concrete"}
+	}
+	{group "piece_wood" gameentity
+		{limit 10}
+		{remove dissolve}
+		{entity "piece_big_wood"}
+		{entity "piece_small_wood"}
+	}
+	{group "piece_wood_big" gameentity
+		{limit 7}
+		{remove dissolve}
+		{entity "building_part_wood"}
+	}
+
+	{group "stuff" stuff
+		{remove dissolve}
+		{limit 18}
+		{tag "shell"}
+		{tag "weapon bullet"}
+		{tag "grenade"}
+		{tag "missile"}
+		{tag "sharp_edge"}
+	}
+	
+	{group "equip" stuff
+		{remove dissolve}
+		{limit 12}
+		{tag "field_glass"}
+		{tag "head"}
+		{tag "body"}
+	}
+	{group "shellhole" gameentity
+		{limit 25}
+		{remove instant}
+		{entity "grenade_shellhole"}
+		{entity "grenade_at_shellhole"}
+		{entity "shellhole_size1"}
+		{entity "shellhole_size2"}
+		{entity "shellhole_size3"}
+		{entity "shellhole_dead_moto"}
+	}
+	{group "shellhole_small" gameentity
+		{limit 20}
+		{remove instant}
+		{entity "shellhole_size0"}
+	}
+	{group "shellhole_big" gameentity
+		{limit 12}
+		{remove instant}
+		{entity "shellhole_size4"}
+		{entity "shellhole_size5"}
+		{entity "shellhole_dead_car"}
+		{entity "shellhole_dead_tank"}
+	}
+	{group "grenade_smoke" gameentity
+		{limit 20}
+		{remove instant}
+		{entity "grenade_smoke"}
+	}
+	{group "smoke_vol_sphere" gameentity
+		{limit 180}
+		{remove instant}
+		{entity "smoke_vol_sphere"}
+	}	
+	{group "smoke_on_map" gameentity
+		{limit 6}
+		{remove instant}
+		{entity "smoke_on_map_from_exp"}
+	}	
+}

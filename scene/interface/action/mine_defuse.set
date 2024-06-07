@@ -1,0 +1,16 @@
+{action from "defuse"
+	{target entity "mine"}
+	{cursor "mine_detection"}
+	{fx "flashred"}
+	{button}
+	{instructions
+		{bind range 0.7}
+		{disable_action_restart}
+		{reserve_hands}
+		{animations "mine_drop" totaltime 0.5}
+		{animations "mine_install" totaltime 1}
+		{unreserve_hands}
+		{defuse notify_complete}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

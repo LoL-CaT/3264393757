@@ -1,0 +1,27 @@
+{from "pattern ic"
+	{tag "size2" "gr_ic" "not_throw" "fx61_76" "ani_play_hit" "only_light"}
+	{mass 12.7}
+	("arena_fg"
+		energy_base(3.6)		;projectile = 18
+		energy_construction(3.6)
+		armorhealth_base(93)	;60*0.66*2.351
+
+		hp_k(0.33)
+		ult(5)
+		range_k(1)
+	)
+	{entity "shell_ic_75_ger"}
+	{trace
+		{view "/texture/fx/traces/trace4"
+			{ScaleY 0.45}
+			{ScaleX 525}
+		}
+		{length 0.01}
+	}
+	{damage cumulative
+		{damage 73}
+		{distance 1}
+		{launcher "cumulative_launcher_shell75_76"}
+		{charge "cumulative_charge_shell75_76"}
+	}
+}

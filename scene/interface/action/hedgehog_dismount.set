@@ -1,0 +1,15 @@
+{action from "dismount"
+	{target entity "antitank_hedgehog"}
+	{cursor "use"}
+	{fx "flashred"}
+	{aux_unit "engineers"}
+	{instructions
+		{bind range 1}
+		{disable_action_restart}
+		{animations "hedgehog_setup_start"}
+		{effect "hedgehog_start_sound"}
+		{animations "hedgehog_setup_cycle hedgehog_setup_cycle_2"  random loop totaltime 4}
+		{effect "hedgehog_stop_sound"}
+		{effect_object "change_model"}
+	}
+}

@@ -1,0 +1,23 @@
+{action from "fortify_merge"
+	{button "trench"}
+	{fx "flashred"}
+	{item "sapper_shovel"}	{cursor "shovel"}	{item_in_box}
+	{begin "trench_grass_cell_left"}
+	{end "trench_grass_cell_right"}
+	{segment "trench_grass_segment"}
+	{segment "trench_grass_line"}
+	{divide "trench_grass_cell_two_sided" 2.8}
+	{single "trench_single_stand"}
+	{marker "trench_marker"}
+	{RequireSelect}
+	{NotifySelect}
+	{aux_unit "engineers"}
+	{instructions
+;		{effect "trench_start_sound"}
+		(include "dig_instructions.inc")
+		{install notify_complete "" 0 exact_placement dont_drop_item}
+;		{effect "trench_stop_sound"}
+		{take_last_item}	
+		{bind range 0}
+	}
+}

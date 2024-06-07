@@ -1,0 +1,23 @@
+{any
+	{ai_damage 1}
+	(include "blast.inc")
+}
+{enemy
+	{health 1}
+	{accuracy 0.5}
+	{burst 1}
+	{firing_timeout 1}
+	{grenade_timeout 1.5}
+	{mounted_mgun 1}
+}
+{ally
+	; {health_increase 1} {health_increase 2.5}
+	{burst 0.9}
+	{health 1}
+	{mounted_mgun 1}
+}
+{neutral
+;	{health 0.9}
+	{accuracy 0.4}
+}
+(include "multiplayer.inc")

@@ -1,0 +1,284 @@
+;SDL
+(define "MARGIN" 20)
+{dialog "minimap"
+	{id "minimap"}
+	{location 
+		{if minimap_locked
+			{bind begin end}
+			{align begin end}
+			{offset 20 -10}
+		}
+		{free} ; dialog locate himself
+	}
+}
+{dialog "gc_hud2_selection"
+	{id "gc_hud2_selection"}
+	{location 
+		{if minimap_locked
+			{bind end end "minimap"}
+			{align begin end}
+			{offset 10 0}
+		}
+		{bind begin end}
+		{align begin end}
+		{offset 10 -10}
+	}
+}
+{dialog "gc_hud2_crewbar"
+	{id "gc_hud2_crewbar"}
+	{location 
+		{bind begin begin "gc_hud2_selection"}
+		{align begin end}
+		{offset 0 -2}
+	}
+}
+{dialog "gc_hud2_hotbar"
+	{id "formations"}
+	{location 
+		{bind end begin "gc_hud2_selection"}
+		{align begin begin}
+		{offset 4 0}
+	}
+}
+{dialog "gc_hud2_hotbar"
+	{id "crew_actions"}
+	{location 
+		{bind begin begin "formations"}
+		{align begin end}
+		{offset 0 -2}
+	}
+}
+{dialog "gc_hud2_hotbar" 		; ключевое слово, такой диалог должен существовать в коде
+	{id "hotbar_states_center"} 		; произвольный id панели
+	{location  			; расположение, 0 0 - верхний левый угол
+		{bind center end} 	; точка привязки - расположение относительно левого верхнего угла указанного диалога (если имя не указано, то относительно 0 0)
+		{align center end}      ; выравнивание диалога относительно точки привязки
+		{offset 0 -20}		; дополнительное смещение
+	}
+}
+{dialog "gc_hud2_hotbar"
+	{id "hotbar_actions_1"}
+	{location 
+		{bind end end}
+		{align end end}
+		{offset -10 -10}
+	}
+}
+{dialog "gc_hud2_weaponbar"
+	{id "gc_hud2_weaponbar"}
+	{location 
+		{bind center begin "hotbar_states_center"}
+		{align center end}
+		{offset 0 -30}
+	}
+}
+{dialog "gc_hud2_interactive_hint_panel"
+	{id "gc_hud2_interactive_hint_panel"}
+	{location 
+		{bind begin begin}
+		{align begin begin}
+		{offset 300 250}
+	}
+}
+{dialog "gc_hud2_unitbar"
+	{id "gc_hud2_unitbar"}
+	{location 
+		{bind begin begin}
+		{align begin begin}
+		{offset 0 270}
+	}
+}
+{dialog "unit_spawn_button_group"
+	{id "unit_spawn_button_group"}
+	{location 
+		{bind begin begin "unit_spawn_button_group"}
+	}
+	{condition multiplayer and manual_spawn_allowed and is_player_human}
+}
+{dialog "hud2_mp_unit_spawn"
+	{id "hud2_mp_unit_spawn"}
+	{location 
+		{bind end begin}
+		{align end begin}
+		{offset -10 330}
+	}
+	{condition multiplayer and manual_spawn_allowed and is_player_human}
+}
+{dialog "mp_spawn_prepare_dialog"
+	{id "mp_spawn_prepare_dialog"}
+	{location 
+		{bind begin begin "hud2_mp_unit_spawn"}
+		{align begin end}
+		{offset 0 -4}
+	}
+	{condition multiplayer and manual_spawn_allowed and not use_budget}
+}
+{dialog "cp_button"
+	{id "cp_button"}
+	{location 
+		{bind begin begin "hud2_mp_unit_spawn"}
+		{align begin end}
+		{offset 0 -4}
+	}
+	{condition multiplayer and manual_spawn_allowed and use_budget}
+}
+{dialog "mp_gamechat_hud2"
+	{id "mp_gamechat_hud2"}
+	{location 
+		{bind center end}
+		{align center end}
+		{offset 0 -190}
+	}
+	{condition multiplayer}
+}
+{dialog "unit_state_icons_selection_bar"
+	{id "unit_state_icons_selection_bar"}
+	{location 
+		{bind center begin}
+		{align center begin}
+		{offset 0 134}
+	}
+}
+{##dialog "unit_state_icons_battlezones"
+	{id "unit_state_icons_battlezones"}
+	{location 
+		{bind center begin}
+		{align center begin}
+		{offset 0 60}
+	}
+	{condition multiplayer}
+}
+{dialog "gc_hud2_hint_view"
+	{id "gc_hud2_hint_view"}
+	{location 
+		{bind end end}
+		{align end end}
+		{offset -240 -242}
+	}
+}
+{dialog "mp_replay_control_hud2"
+	{id "mp_replay_control_hud2"}
+	{location 
+		{bind begin end}
+		{align begin end}
+		{offset 20 -20}
+	}
+	{condition multiplayer}
+}
+{dialog "hud2_mp_session_guid"
+	{id "hud2_mp_session_guid"}
+	{location 
+		{bind begin end}
+		{align begin end}
+		{offset 0 0}
+	}
+	{condition multiplayer}
+}
+{dialog "gc_hud2_gamebar"
+	{id "gamebar"}
+	{location 
+		{bind center begin}
+		{align center begin}
+		{offset 0 0}
+	}
+	{condition multiplayer}
+}
+{dialog "hud2_mp_team_stats_left"
+	{id "hud2_mp_team_stats_left"}
+	{location 
+		{bind begin begin}
+		{align begin begin}
+		{offset 10 0}
+	}
+	{condition multiplayer}
+}
+{dialog "hud2_mp_team_stats_right"
+	{id "hud2_mp_team_stats_right"}
+	{location 
+		{bind end begin}
+		{align end begin}
+		{offset -10 0}
+	}
+	{condition multiplayer}
+}
+{dialog "gc_hud2_objectives"
+	{id "gc_hud2_objectives"}
+	{location 
+		{if hud_dialog_active "hud2_mp_team_stats_left"
+			{bind begin end "hud2_mp_team_stats_left"}
+			{align begin begin}
+			{offset -10 10}
+		}
+		{bind begin begin}
+		{align begin begin}
+		{offset 0 10}
+	}
+}
+{dialog "gc_hud2_damagelog_panel"
+	{id "gc_hud2_damagelog_panel"}
+	{location 
+		{if hud_dialog_active "hud2_mp_team_stats_right"
+			{bind end end "hud2_mp_team_stats_right"}
+			{align end begin}
+			{offset 0 10}
+		}
+		{bind end begin}
+		{align end begin}
+		{offset 0 10}
+	}
+	{condition multiplayer}
+}
+
+{dialog "hud2_scene_timer"
+	{id "hud2_scene_timer"}
+	{location 
+		{if hud_dialog_active "gamebar"
+			{bind center end "gamebar"}
+			{align center begin}
+			{offset 0 0}
+		}
+		{bind center begin}
+		{align center begin}
+		{offset 0 62}
+	}
+}
+{dialog "hud2_objective_progress"
+	{id "hud2_objective_progress"}
+	{location 
+		{bind center end "hud2_scene_timer"}
+		{align center begin}
+		{offset 0 10}
+	}
+}
+{dialog "hud2_objective_hint"
+	{id "hud2_objective_hint"}
+	{location 
+		{bind center end "hud2_objective_progress"}
+		{align center begin}
+		{offset 0 50}
+	}
+}
+{dialog "gc_hint_inventory"}
+
+{dialog "gc_hud2_hotbar"
+	{id "hotbar_auto"}
+	{location 
+		{bind end begin "hotbar_actions_1"}
+		{align end end}
+		{offset  0 -10}
+	}
+}
+{dialog "map_control"
+	{id "map_control"}
+	{location 
+		{bind begin begin "map_control"}
+	}
+}
+{dialog "reinforcement_bar"
+	{id "reinforcement_bar"}
+	{location 
+		{bind end begin}
+		{align end begin}
+		{offset -10 360}
+	}
+}

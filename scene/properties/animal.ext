@@ -1,0 +1,112 @@
+;SDL
+actor
+
+{obstacleID "human"	}
+{PatherID	"animal"}
+{collider "animal"}
+{able "-select"}
+
+{props "flesh" "animal" "nocover" "obstacle_ignore_height"}
+
+{brain "actor"
+	{state "animal"}
+}
+
+{Sensor
+	{Visor "eyes"
+		{vision "animal"}
+		{bone "visor"}
+	}
+}
+
+{Chassis "foot"
+	{Run
+		{Slow	3   3	100}
+		{Normal	7   7	200}
+		{Fast	25  25	500}
+	}
+}
+
+{volume "body"
+	{thickness 1}
+}
+
+(define "declare_health"
+	{extender "vitality"
+		{health
+			{max %0}
+			{current %0}
+			{inc 0.005}
+		}
+	}
+)
+
+{extender "vitality"}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+{fsm "animal"
+	{Request "dead"   		{priority 50} {interrupt}}
+	{Request "idle" 		{priority  0}}
+	{Request "move"			{priority 30} {duration 2} {exit "stop-move"}}
+	{Request "rotate"		{priority 30} {duration 2}}
+
+	{Request "stop-move"	{priority 32}}
+	{Request "switch-move"	{priority 32}}
+
+	{Request "up"			{priority 0}}
+	{Request "down"			{priority 0}}
+	{Request "quick-up"		{priority 0}}
+	{Request "quick-down"	{priority 0}}
+	{Request "squat"		{priority 0}}
+	{Request "swim"			{priority 0}}
+	{Request "alarm"		{priority 0}}
+
+    ; start state
+    {Start "stand"}
+
+    ; list of all states
+	{State "stand"
+		{to "walk"}
+		{to "idle"}
+		{to "alarm"}
+		{tag "switch-move"}
+		{tag "stop-move"}
+		{tag "rotate"}
+		{tag "stand"}
+		{tag "up"}
+		{tag "down"}
+		{tag "quick-up"}
+		{tag "quick-down"}
+		{tag "squat"}
+		{tag "swim"}
+		{tag "stored"}
+	}
+	{State "walk"
+		{to "stand"}
+		{tag "move"}
+		{tag "rotate"}
+	}
+	{State "idle"
+		{to "stand"}
+		{tag "idle"}
+    }
+	{State "alarm"
+		{to "stand"}
+		{tag "alarm"}
+	}
+    {state "dying"
+		{from "stand"}
+		{from "walk"}
+		{from "switch_move"}
+		{from "idle"}
+		{from "alarm"}
+    	{transit "dead"}
+		{tag "dying"}
+    }
+	{State "dead"
+		{tag "dead"}
+		{tag "dying"}
+		{tag "stored"}
+	}
+	{subset "default"}
+}

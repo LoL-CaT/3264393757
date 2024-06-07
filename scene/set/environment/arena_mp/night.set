@@ -1,0 +1,97 @@
+{environment
+	{light
+		{direction -0.875 0.133 -0.466}
+		{ambient 0xff030408}
+		{diffuse 0xff080b18}
+		{diffuse_intensity 0.65}
+		{environment_intensity 9}
+		{lights_intensity 0.15}
+		{envmap_amount 0.1}
+		{night}
+		{night_vision 1}
+		{fx_additive_intensity 0.2}
+		{highlight
+			{brightness 50}
+			{ambient_bounced 50}
+			{rim_intensity 0.05}
+			{rim_glossiness 0.25}
+			{highlight_brightness 52}
+		}
+	}
+	{wind
+		{speed 0.71 -0.5 0}
+		{amplitude 1}
+	}
+	{haze
+		{enable}
+		{color 0xff010102}
+		{intensity 1}
+		{start 500}
+		{end 5000}
+	}
+	{sky
+		{enable}
+		{mesh "sky_farspace"}
+		{color 0xff020204}
+		{global_environment "/texture/common/environment/hdr/night_moon_001_hdr"}
+		{relative_rotation 1.7}
+		{textures
+			{clouds "/texture/common/environment/clouds_02"}
+		}
+		{clouds_scale 3}
+		{clouds_opacity 0.1}
+		{clouds_color 0xff5e82a2}
+		{clouds_color_luminosity 0.1}
+		{tone_luminosity 0.1}
+	}
+	{weather
+		{density 0.1}
+		{fx "rain_night"}
+		{sound "world/night/02"}
+	}
+	{thunder
+		{color 0xff686c73}
+	}
+	{video_overlay
+		{file "/video/menu.avi"}
+		{color 0xff000000}
+	}
+	{post_process
+		{eye_adaptation
+			{enabled}
+			{target_exposure 0.26415}
+			{exposure_min -2.01}
+			{exposure_max -1.75}
+			{rate 0.83225}
+		}
+		{tone_mapping
+			{enabled}
+			{aces}
+			{white_point 0.01}
+			{toe_strength 0.02}
+			{toe_numenator 0.015}
+			{toe_denominator 0.12}
+			{linear_angle 0.15}
+			{shoulder_strength 0.2}
+			{shoulder_length 0.02}
+		}
+		{glare
+			{threshold 0.5408}
+			{scale 0.75}
+			{glow 3.065}
+		}
+		{blue_shift
+			{enabled}
+			{treshold 0.1}
+		}
+		{depth_of_field
+			{width 300}
+			{near 500}
+		}
+		{ssao
+			{enabled}
+		}
+		{saturation 0.6}
+		{lut "/texture/common/lut/posteffect/neutral_LUT"}
+	}
+}

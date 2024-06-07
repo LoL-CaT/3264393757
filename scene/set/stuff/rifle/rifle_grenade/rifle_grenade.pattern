@@ -1,0 +1,53 @@
+{from "pattern bullet"
+	{tag "weapon" "rifle" "bullet" "to_hand" "rifle_grenade"}
+	{tag "ui_rifle_grenade"}
+	{filling "djakonova" 1}
+	{fillingVisible "djakonova_gr_ap"}
+	{inventory
+		{size 4 2}
+		{link_bone "gun_back"}
+		{weight 100}
+	}
+	{burst
+		{short 1}
+		{Long 1}
+	}
+	{mass 4.5}
+	{fireSound "rifle/mosin_mortir/mosin_mortir"}
+	{reloadSound "mosin_reload"}
+	{range 35 35}
+	{cursor "cannon_on_fg"}
+	{cursorReloading "cannon_reload_fg"}
+
+	{recoveryTime 10}
+	{rechargeTime 10}
+
+	{aimtype curved}
+	{DisableRicochet}
+	{foresight "Foresight3"}
+	{gravity 3}
+
+	{projectileDamageThreshold 1}
+	(define "damage_arena_base"
+		{projectileDamageTable {0 %0} {30 %0} {50 %0}}
+		{armorHealthDamage	(* %1 %0)}
+		{armorhealthdamagespread (* -1 0.1 %1 %0) (* 0.1 %1 %0) 1}
+	)
+	(define "damage_arena"
+		("damage_arena_base" args %0 1)
+	)
+	{parameters "ap"
+		("damage_arena" args 40)
+		{cursor "cannon_on"}
+		{cursorReloading "cannon_reload"}
+	}
+	{parameters "fg"
+		{projectileDamageTable {0 0}}
+		{armorHealthDamageTable {0 0}}
+	}
+	("accuracy_rifle_grenade")
+	{spreading 
+		{SpreadXYRatio	1.4}
+		{SpreadYadjust	0.15}
+	}
+}

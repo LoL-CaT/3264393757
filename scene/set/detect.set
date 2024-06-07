@@ -1,0 +1,61 @@
+(define "cannon_base_table"
+			0	(* 3 %k)
+			25	(* 1 %k)
+			26	0
+)
+(define "car_base_table";and armored car
+			0	(* 1 %k)
+			190	0
+)
+(define "special_hearing"
+		{"203b4"
+			("cannon_base_table" k(%k))
+		}
+		{"truck_mortar"
+			("cannon_base_table" k(%k))
+		}
+		{"cannon flak"
+			("cannon_base_table" k(%k))
+		}
+		{"cannon medium"
+			("cannon_base_table" k(%k))
+		}
+		{"cannon heavy"
+			("cannon_base_table" k(%k))
+		}
+		{"tank";"tank_hunt"
+			("cannon_base_table" k(%k))
+		}
+		{"sdkfz251m"
+			("cannon_base_table" k(%k))
+		}
+		{"sdkfz251_22"
+			("cannon_base_table" k(%k))
+		}
+		{"sdkfz251_9"
+			("cannon_base_table" k(%k))
+		}
+		{"29k"
+			("cannon_base_table" k(%k))
+		}
+		{"car" 			("car_base_table" k(1))}
+		{"armored_car"	("car_base_table" k(2.5))}
+)
+{detect
+	; meters seconds
+	{"human" "attack"
+		{0 0}
+	}	
+	{"human" "visible"
+		{0		3.0}
+		{55		1}
+	}
+	{"vehicle" "attack"
+		{0 0}
+	}	
+	{"vehicle" "visible"
+		{0		3.0}
+		{130	1.5}
+		{500	1}
+	}
+}

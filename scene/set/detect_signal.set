@@ -1,0 +1,51 @@
+(define "cannon_base_table"
+			0	(* 3 %k)
+			25	(* 1 %k)
+			26	0
+)
+(define "car_base_table";and armored car
+			0	(* 1 %k)
+			190	0
+)
+(define "special_hearing"
+		{if weapon "welrod" "nagan_pb" "de_lisle" "knife_ger" "knife_rus" "knife_union" "f1" "m18" "m24" "m24x5" "m36" "m61" "mk1" "molotov_coctail" "n73at" "pwm1" "rg42x3" "rpg40" "rpg43" "smoke" "type_3_at" "type_97" "signal_grenade" "sapper_shovel" "dynamite" "mp35" "mp40" "pps43" "ppsh" "thompson" "m3a" "sg44" "fg42_arena" "m1_carbine" "mauzer" "mosin"	"m1903"	"g43" "svt40" "garand" "shotgun" "valter" "colt" "tt"	0 0}; потому, что работает по suspect
+		{if props "203b4" "truck_mortar" "cannon flak" "cannon medium" "cannon heavy" "tank" "sdkfz251m" "sdkfz251_22" "sdkfz251_9" "29k"
+			("cannon_base_table" k(%k))
+		}
+		{if props "car" 
+			("car_base_table" k(1))
+		}
+		{if props "armored_car"	
+			("car_base_table" k(2.5))
+		}
+)
+(define "common_settings"
+; meters seconds
+{if props "human" ; listener select
+	{signal_source ; ключевое слово, означает что условия для слушателя закончились и начинаются для источника звука
+		("special_hearing" k(1))
+		0	3
+		80	2
+		500	1
+	}
+}	
+{if props "vehicle"
+	{signal_source
+		("special_hearing" k(2))
+		0	5
+		150	3
+		170	2.5
+		190	1
+		500	1
+	}	
+}
+)
+{shot
+("common_settings")
+}
+{##hit
+("common_settings")
+}
+{##injure
+("common_settings")
+}

@@ -1,0 +1,30 @@
+;SDL
+{"crew_actions"
+	{tags "crew"}
+	{if props "house" {tags "crew_house"}}
+}
+{"hotbar_states_center"
+	{if props "human" {tags "attack install bodykit order"}}
+	{if props "horse" {tags "order"}}
+	{if props "airborne" {tags "order_airborne"}}	
+    {if props "vehicle" and props "goliath" {tags "order_kamikadze"}}	
+	{if props "vehicle" {tags "attack install bodykit order"}}	
+	{if props "no_fortification" {tags "attack install bodykit order"}}
+	{if props "house" {tags "attack install bodykit order house_fortification"}}					
+	{tags "install"}
+}
+{"hotbar_actions_1"
+	{type "battle_ui_controls"}
+}
+{"hotbar_auto"
+	{if props "airborne" {tags "state_airborne"}}
+	{if props "cannon" {tags "state state_vehicle_common"}}
+	{if props "vehicle" {tags "state state_vehicle state_vehicle_common"}}
+	{tags "state"}
+}
+{"formations"
+    {if manual_control and props "human" {tags "manual_control_human"}}
+	{if manual_control {tags "manual_control"}}
+	{if not empty_selection {tags "formation"}}
+	{type "empty"}
+}

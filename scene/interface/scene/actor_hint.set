@@ -1,0 +1,17 @@
+;SDL
+
+{if props "vehicle" 
+	{if component_state "gun" "broken"
+		{"game/damage_report/state/gun:broken"}
+	}
+
+	{if component_state "turret" "broken"
+		{"game/damage_report/state/turret:broken"}
+	}
+	{if component_state "engine" "broken"
+		{"game/damage_report/state/engine:broken"}
+	}
+	{if component_state "trackleft" "broken" or component_state "trackright" "broken"
+		{"game/damage_report/state/track:broken"}
+	}
+}

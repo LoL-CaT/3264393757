@@ -1,0 +1,104 @@
+; SDL
+; define state of soldier after spawn
+{init
+	{state "idle"}
+	{semaphore "can_smoke" 10 30} ; don't smoke right away
+	{semaphore "can_inhale" 3 5}
+	{semaphore "can_action" 5 15} ; start from breathing
+}
+{selector
+	{if fsm_tags "board"
+		{idle 
+			{run "board_breath"}
+		}
+	}
+	{if fsm_tags "snipe"
+		{idle 
+			{run "snipe_breath"}
+		}
+	}
+	{if fsm_tags "up"
+		; run smoke cycle if possible
+		; forced_smoke - external counter to make soldier smoke
+		; human_fsm_counter with "once" will drop "forced_smoke" counter anyway
+		{if human_fsm_counter "forced_smoke" once and human_stuff holding "nothing" and human_fsm_idle_state "idle"
+			{idle
+				{run "stand_smoking_begin"} ; animations request string from human_idle.inc
+				{state "smoking"} ; set new state
+				{semaphore "stop_smoking" 20 40} ; disable semaphore for seconds in range
+				{semaphore "can_inhale" 3 5} 
+			}
+		}
+		{if human_fsm_idle_state "idle"
+			{if human_fsm_idle_semaphore "can_smoke" and not able "attention" and human_stuff holding "nothing"
+				{idle
+					{run "stand_smoking_begin"} 
+					{state "smoking"} 
+					{semaphore "stop_smoking" 10 30}
+					{semaphore "can_inhale" 5 10} 
+				}
+			}
+			{if human_fsm_idle_semaphore "can_action"
+				{idle 
+					{run "stand_idle"}
+					{semaphore "can_action" 0 5}
+				}
+			}
+			{idle 
+				{run "stand_breath"}
+			}
+		}
+		{if human_fsm_idle_state "smoking"
+			{if not human_stuff holding "nothing"  ; set idle state to avoid run of a smoke animations with stuff in hands
+				{idle
+					{state "idle"}
+					{semaphore "can_smoke" 5 10}
+				}
+			}
+			{if human_fsm_idle_semaphore "stop_smoking"
+				{idle 
+					{run "stand_smoking_end"}
+					{state "idle"}
+					{semaphore "can_smoke" 60 120}
+				}
+			}
+			{if human_fsm_idle_semaphore "can_inhale"
+				{idle 
+					{run "stand_smoking_process"}
+					{semaphore "can_inhale" 3 5}
+				}
+			}
+			{idle
+				{run "stand_smoking_idle"} ; for future use
+			}
+		}
+		{idle 
+			{run ""}
+		}
+	}
+	{if fsm_tags "squat"
+		{if human_fsm_idle_semaphore "can_action"
+			{idle 
+				{run "squat_idle"}
+				{semaphore "can_action" 0 5}
+			}
+		}
+		{idle 
+			{run "squat_breath"}
+		}
+	}
+	{if fsm_tags "down"
+		{if human_fsm_idle_semaphore "can_action"
+			{idle 
+				{run "lie_idle"}
+				{semaphore "can_action" 0 50}
+			}
+		}
+		{idle 
+			{run "lie_breath"}
+		}
+	}
+	{idle 
+		{run ""} ; do nothing
+	}
+}

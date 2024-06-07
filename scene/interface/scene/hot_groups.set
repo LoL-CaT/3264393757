@@ -1,0 +1,16 @@
+{if under_fire
+	{icon "under_fire"}
+}
+{if need_repair 
+	{icon "need_repair"}
+}
+{if props "vehicle" and observed
+		{icon "observed"} ;{color DRED}
+}
+{if props "vehicle" and suspect_stage "detected" and not observed
+		{icon "detected"} ;{color DRED}
+}
+{if props "vehicle" and suspect_stage "hidden" and not observed
+		{icon "hided"} ;{color DGREEN}
+}
+

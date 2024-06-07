@@ -1,0 +1,189 @@
+;SDL
+actor
+
+{obstacleID "human"	}
+{PatherID	"animal"}
+{collider "dog"}
+{able "select"}
+
+{props "flesh" "animal" "nocover" "obstacle_ignore_height"}
+
+{brain "actor"
+	{state "dog"}
+	
+	{const "range_attack"		15} ; in meters. Distance for start attacking
+	{const "range_find_friend"	15} ; in meters. Distance for start finding of friend
+	{const "range_lose_friend"	5}	; in meters. Distance at which a friend is considered lost
+	{const "time_alert"			10}	; in seconds.
+	{const "range_alert"		20}	; in meters.
+}
+
+{Sensor
+	{Visor "eyes"
+		{vision "animal"}
+		{bone "visor"}
+	}
+}
+
+{volume "body"
+	{thickness 2}
+}
+
+(define "declare_health"
+	{extender "vitality"
+		{health
+			{max %0}
+			{current %0}
+			{inc 0.005}
+		}
+	}
+)
+
+{extender "vitality"}
+
+{extender "animation_sound"
+	{event "bark_alarm"
+		{play "animal/dog/dog_bark_alarm"}
+	}
+	{event "bark_friendly"
+		{play "animal/dog/dog_bark_friendly"}
+	}
+	{event "growl"
+		{play "animal/dog/dog_bark_alarm"}
+	}
+	{event "whimper_friendly"
+		{play "animal/dog/dog_bark_friendly_whimper"}
+	}
+	{event "dying"
+		{play "animal/dog/dog_bark_hit_whimper"}
+	}
+	{event "step"
+		{play "animal/dog/dog_walk"}
+	}
+}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+{FSM "dog"
+	{Request "dead"   		{priority 50} {interrupt}}
+	{Request "idle" 		{priority  0}}
+	{Request "move"			{priority 30} {duration 2} {exit "stop-move"}}
+	{Request "rotate"		{priority 30} {duration 2}}
+	
+	{Request "stop-move"	{priority 32}}
+	{Request "switch-move"	{priority 32}}
+	
+	{Request "up"			{priority 0}}
+	{Request "down"			{priority 0}}
+	{Request "quick-up"		{priority 0}}
+	{Request "quick-down"	{priority 0}}
+	{Request "squat"		{priority 0}}
+	{Request "swim"			{priority 0}}
+	{Request "alert"		{priority 0}}
+	{Request "eat"			{priority 0}}
+	{Request "lie"			{priority 0}}
+	{Request "sit"			{priority 0}}
+	{Request "sleep"		{priority 0}}
+	
+;	{Request "stop-rotate"		{priority 30}}
+	{Request "stop-animation" 	{priority 30}}
+	{Request "animation"		{priority  0} {duration 1} {exit "stop-animation"}}
+
+	; start state
+    {Start "stand"}
+	
+	; list of all states
+	{State "stand"
+		{to "walk"}
+		{to "idle"}
+		{to "alert"}
+		{to "eat"}
+		{tag "switch-move"}
+		{tag "stop-move"}
+		{tag "rotate"}
+		{tag "stand"}
+		{tag "up"}
+		{tag "down"}
+		{tag "quick-up"}
+		{tag "quick-down"}
+		{tag "squat"}
+		{tag "swim"}
+		{tag "stored"}
+	}
+	{State "walk"
+		{to "stand"}
+		{tag "animation"}
+		{tag "move"}
+		{tag "rotate"}
+	}
+	{State "idle"
+		{to "stand"}
+		{tag "idle"}
+    }
+	{state "dying"
+		{from "stand"}
+		{from "walk"}
+		{from "switch_move"}
+		{from "idle"}
+		{from "alert"}
+		{from "eat"}
+    	{transit "dead"}
+		{tag "dying"}
+    }
+	{State "dead"
+		{tag "dead"}
+		{tag "dying"}
+		{tag "stored"}
+	}
+	{State "alert"
+		{to "stand"}
+		{tag "alert"}
+	}
+	{State "eat"
+		{transit "stand"}
+		{tag "eat"}
+	}
+	{State "sleep_enter"
+		{transit "sleep"}
+		{tag "sleep"}
+	}
+	{State "sleep"
+		{transit "sleep_exit"}
+		{tag "sleep"}
+	}
+	{State "sleep_exit"
+		{transit "lie"}
+		{tag "sleep"}
+	}
+	{State "lie"
+		{to "sleep_enter"}
+		{tag "lie"}
+	}
+	
+	; Pose transitions
+	{State "stand_to_sit"
+		{from "stand"}
+		{transit "sit"}
+	}
+	{State "stand_to_lie"
+		{from "stand"}
+		{transit "lie"}
+	}
+	{State "lie_to_stand"
+		{from "lie"}
+		{transit "stand"}
+	}
+	{State "lie_to_sit"
+		{from "lie"}
+		{transit "sit"}
+	}
+	{State "sit_to_stand"
+		{from "sit"}
+		{transit "stand"}
+	}
+	{State "sit_to_lie"
+		{from "sit"}
+		{transit "lie"}
+	}
+	
+	{subset "default"}
+}

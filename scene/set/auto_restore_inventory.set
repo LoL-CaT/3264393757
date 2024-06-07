@@ -1,0 +1,413 @@
+(define "rule_warehouse_static"
+	{rule "warehouse_static"
+		{condition is_near_warehouse "static" and not abandoned}
+		{amount_for_restore_start 0.99}
+		{warehouse_type "static"}
+	}
+)
+(define "rule_warehouse_consumable"
+	{rule "warehouse_consumable"
+		{condition not is_warehouse_consumable and is_near_warehouse "consumable" and not abandoned}
+		{amount_for_restore_start 0.99}
+		{warehouse_type "consumable"}
+	}
+)
+(define "rule_friendly_territory"
+	{rule "friendly_territory"
+		{condition territory_type "friendly" and not territory_surrounded and not abandoned}
+		{amount_for_restore_start 0}
+	}
+)
+(define "rule_warehouse_static_check_tags"
+	{rule "warehouse_static"
+		{condition not tags "no_inventory_autorestore" and is_near_warehouse "static" and not abandoned}
+		{amount_for_restore_start 0.99}
+		{warehouse_type "static"}
+	}
+)
+(define "rule_warehouse_consumable_check_tags"
+	{rule "warehouse_consumable"
+		{condition not tags "no_inventory_autorestore" and not is_warehouse_consumable and is_near_warehouse "consumable" and not abandoned}
+		{amount_for_restore_start 0.99}
+		{warehouse_type "consumable"}
+	}
+)
+(define "rule_friendly_territory_check_tags"
+	{rule "friendly_territory"
+		{condition not tags "no_inventory_autorestore" and territory_type "friendly" and not territory_surrounded and not abandoned}
+		{amount_for_restore_start 0}
+	}
+)
+(define "rule_captured_flag"
+	{rule "captured_flag"
+		{condition in_captured_map_point and not abandoned}
+		{amount_for_restore_start 0.5}
+	}
+)
+
+{recovery_rules
+	{"battlezones*"
+		("rule_warehouse_static")
+		("rule_warehouse_consumable")
+		("rule_captured_flag")
+	}
+	{"combat*"
+		("rule_warehouse_static")
+		("rule_warehouse_consumable")
+	}	
+	{"groundcontrol*"
+		("rule_warehouse_static")
+		("rule_warehouse_consumable")
+		("rule_friendly_territory")
+	}
+	{"frontline_*"
+		("rule_warehouse_static")
+		("rule_warehouse_consumable")
+		("rule_friendly_territory")
+	}
+	{"tutorial"
+		("rule_warehouse_static")
+		("rule_warehouse_consumable")
+		("rule_friendly_territory_check_tags")
+	}	
+	{"mission"
+		("rule_warehouse_static_check_tags")
+		("rule_warehouse_consumable_check_tags")
+		("rule_friendly_territory_check_tags")
+	}
+	{"mission_combat"
+		("rule_warehouse_static_check_tags")
+		("rule_warehouse_consumable_check_tags")
+	}
+	{""; editor
+		("rule_warehouse_static_check_tags")
+		("rule_warehouse_consumable_check_tags")
+	}
+}
+{recovery_items
+	;Пули
+	{"ammo mgun" 0.075}
+	{"ammo hmgun" 0.075}
+	
+	{"ammo ptr" 0.3}
+	
+	{"ammo rifle" 0.3}
+	{"ammo pistol" 0.1125}
+	{"ammo flaergun" 1}
+	{"ammo flaergun signal" 1}	
+	
+	;Гранаты для гранатомётов
+	{"ammo panzershreck" 1}
+	{"ammo panzerfaust" 1}
+	{"ammo panzerfaust100" 1}
+	{"ammo panzerfaust150" 1}
+	{"ammo bazooka" 1}
+	{"ammo uber_bazooka" 1}
+	{"ammo uber_bazooka" 1}
+	
+	;Гранаты для ружейных гранатомётов	
+	{"ammo djakonova ap" 5}
+	{"ammo djakonova fg" 5}	
+	
+	;Дымовые гранаты мортирок 
+	{"ammo smoke gr m3" 40}
+	{"ammo smoke gr" 40}
+	{"tank_smoke grenade" 40}
+	
+	;Осколочные гранты мортирок 
+	{"ammo ap gr m3" 60}
+	
+	;Сигнальная шашка
+	{"ammo shell_signal" 20}
+	{"ammo flaergun" 20}	
+	
+	;Мины для миномётов
+	{"ammo mortar" 2}
+	{"ammo mortar_rus" 2}
+	{"ammo mortar60" 2}	
+	{"ammo mortar80" 2}
+	{"ammo mortar81" 2}
+	{"ammo mortar82" 2}
+	{"ammo mortar107 fg" 3}
+	{"ammo mortar120 fg" 3}
+	{"ammo mortar120_rus fg" 3}
+	{"ammo mortar107 sk" 30}
+	{"ammo mortar120 sk" 30}
+	{"ammo mortar120_rus sk" 30}
+	
+	;Реактивные снаряды самолётов
+	{"ammo rs82" 5}
+	{"ammo m8rocket" 8.75}
+	
+	;Авиабомбы
+	{"air_bomb sc50" 60}	
+	{"air_bomb 100lb" 60}
+	{"air_bomb 500lb" 50}
+	{"air_bomb 1000lb" 115}
+	{"air_bomb 1600lb" 525}
+	{"air_bomb sc500k" 300}	
+	{"air_bomb sc250ja" 115}	
+	{"air_bomb ptab" 10}
+	{"air_bomb sd4yh1" 10}
+	{"air_bomb fab50" 60}		
+	{"air_bomb fab100" 50}
+	{"air_bomb fab250" 115}
+	{"air_bomb fab250" 115}	
+	
+	;Реактивные снаряды пусковых систем
+	{"ammo panzerwerfer42" 3}
+	{"ammo sturmtiger" 12}
+	{"ammo 132mm_rocket fg" 5.625}
+	{"ammo 150mm_rocket" 7.5}
+	{"ammo 210mm_rocket" 7.5}
+	{"ammo 310mm_rocket" 5.625}
+	{"ammo calliope" 3}
+	
+	;Снаряды
+	
+	{"ammo bullet20 ap ger ptr" 0.4}
+	{"ammo bullet20 fg ger ptr" 0.4}
+	
+	{"ammo bullet20 fg ger breda" 0.4}
+	{"ammo bullet20 bzt ger breda" 0.4}
+	
+	{"ammo bullet20 ap ger flak" 0.4}	
+	{"ammo bullet20 bzt ger flak" 0.4}
+	{"ammo bullet20 fg ger flak" 0.4}
+	
+	{"ammo bullet20 ap rus tns" 0.4}
+	{"ammo bullet20 bzt rus tns" 0.4}	
+	{"ammo bullet20 fg rus tns" 0.4}
+	
+	{"ammo bullet20 ap ally oerlikon" 0.4}	
+	{"ammo bullet20 fg ally oerlikon" 0.4}
+	
+	{"ammo bullet20 ap jap type2" 0.4}	
+	{"ammo bullet20 fg jap type2" 0.4}
+	
+	{"ammo bullet20 fg ally hispano" 0.4}
+	
+	{"ammo bullet20 fg usa m1" 0.4}
+	
+	{"ammo bullet20 fg ger mg151" 0.4}
+	
+	{"ammo bullet20 fg ger mgff" 0.4}
+	
+	{"ammo bullet20 fg jap type99a" 0.4}
+	
+	{"ammo bullet20 fg rus shvak" 0.4}
+	
+	{"ammo bullet23 fg rus vja" 0.45}
+	
+	{"ammo bullet25 fg std" 0.5}
+	
+	{"ammo bullet28 apcr ger spzb41" 0.5}
+	{"ammo bullet28 ap ger spzb41" 0.5}
+	{"ammo bullet28 fg ger spzb41" 0.5}
+	
+	{"ammo bullet30 fg ger mk108" 0.5}
+	
+	{"ammo bullet37 ap ger bk" 0.74}
+	{"ammo bullet37 fg ger bk" 0.74}
+	
+	{"ammo bullet37 ap rus ns" 0.74}
+	{"ammo bullet37 fg rus ns" 0.74}
+	
+	{"ammo bullet37 ap rus zenite" 0.74}
+	{"ammo bullet37 fg rus zenite" 0.74}
+	
+	{"ammo bullet37 ap usa m1" 0.74}
+	{"ammo bullet37 fg usa m1" 0.74}
+	
+	{"ammo bullet37 ap jap type94" 0.74}
+	{"ammo bullet37 fg jap type94" 0.74}
+	
+	{"ammo bullet37 ap jap type1" 0.74}
+	
+	{"ammo bullet37 ap ger cz" 0.74}
+	{"ammo bullet37 fg ger cz" 0.74}
+	
+	{"ammo bullet37 ap usa std" 0.74}
+	{"ammo bullet37 fg usa std" 0.74}
+	
+	{"ammo bullet37 ap ger std" 0.74}
+	{"ammo bullet37 fg ger std" 0.74}
+	
+	{"ammo bullet40 ap eng std" 0.8}
+	{"ammo bullet40 fg eng std" 0.8}
+	
+	{"ammo bullet40 ap ally bofors" 0.8}
+	{"ammo bullet40 fg ally bofors" 0.8}
+	
+	{"ammo bullet42 apcr ger pak41" 0.84}
+	
+	{"ammo bullet45 ap rus std" 0.9}
+	{"ammo bullet45 fg rus std" 0.9}
+	
+	{"ammo bullet47 ap ger l40" 0.94}
+	{"ammo bullet47 fg ger l40" 0.94}
+	
+	{"ammo bullet47 ap ger std" 0.94}
+	{"ammo bullet47 fg ger std" 0.94}
+	{"ammo bullet47 apcr ger std" 0.94}
+	
+	{"ammo bullet47 ap ger sa35" 0.94}
+	{"ammo bullet47 fg ger sa35" 0.94}
+	
+	{"ammo bullet47 ap jap type1" 0.94}
+	{"ammo bullet47 fg jap type1" 0.94}
+	
+	{"ammo bullet50 ap ger std" 1}
+	{"ammo bullet50 fg ger std" 1}
+	
+	{"ammo bullet57 ap jap type1" 1.14}
+	{"ammo bullet57 fg jap type1" 1.14}
+	
+	{"ammo bullet57 ap jap type97" 1.14}
+	{"ammo bullet57 fg jap type97" 1.14}
+	
+	{"ammo bullet57 ap rus std" 1.14}
+	{"ammo bullet57 fg rus std" 1.14}
+	{"ammo bullet57 apcr rus std" 15.0}
+	
+	{"ammo bullet57 ap eng std" 1.14}
+	{"ammo bullet57 fg eng std" 1.14}
+	
+	{"ammo bullet75 ap jap std" 1.5}
+	{"ammo bullet75 fg jap std" 1.5}
+	
+	{"ammo bullet75 ap ger std" 1.5}
+	{"ammo bullet75 fg ger std" 1.5}
+	{"ammo bullet75 fr ger std" 1.5}
+	{"ammo bullet75 ic ger std" 7.6}
+	{"ammo bullet75 sk ger std" 4.5}
+	{"ammo bullet75 apcr ger std" 15.0}
+	
+	{"ammo bullet75 ap ger sa35" 1.5}
+	{"ammo bullet75 fg ger sa35" 1.5}
+	
+	{"ammo bullet75 ap ger kwk42" 1.5}
+	{"ammo bullet75 fg ger kwk42" 1.5}
+	
+	{"ammo bullet75 ap ally std" 1.5}
+	{"ammo bullet75 fg ally std" 1.5}
+	{"ammo bullet75 apcr ally std" 15.0}
+	{"ammo bullet75 ph ally std" 15.0}
+	
+	{"ammo bullet75 fg ger lelg18" 1.5}
+	{"ammo bullet75 fr ger lelg18" 1.5}
+	{"ammo bullet75 ic ger lelg18" 7.6}
+	
+	{"ammo bullet76 ap rus std" 1.52}
+	{"ammo bullet76 fg rus std" 1.52}
+	{"ammo bullet76 fr rus std" 1.52}
+	{"ammo bullet76 sr rus std" 1.52}	
+	{"ammo bullet76 apcr rus std" 15.0}
+	
+	{"ammo bullet76 ap eng std" 1.52}
+	{"ammo bullet76 fg eng std" 1.52}
+	
+	{"ammo bullet76 ap usa std" 1.52}
+	{"ammo bullet76 fg usa std" 1.52}
+	{"ammo bullet76 apcr usa std" 15.0}
+	{"ammo bullet76 ph usa std" 15.0}
+	
+	{"ammo bullet76 ap ger std" 1.52}
+	{"ammo bullet76 fg ger std" 1.52}
+	
+	{"ammo bullet76 ap rus_spec 29k" 1.52}
+	{"ammo bullet76 fg rus_spec 29k" 1.52}
+	
+	{"ammo bullet76 ap rus how" 1.52}
+	{"ammo bullet76 fg rus how" 1.52}
+	{"ammo bullet76 sr rus how" 1.52}
+	{"ammo bullet76 ic rus how" 7.6}
+	
+	{"ammo bullet85 ap rus std" 1.7}
+	{"ammo bullet85 fg rus std" 1.7}
+	{"ammo bullet85 apcr rus std" 15.0}
+	
+	{"ammo bullet88 ap ger std" 1.76}
+	{"ammo bullet88 fg ger std" 1.76}
+	
+	{"ammo bullet88 ap ger pak43" 1.76}
+	{"ammo bullet88 fg ger pak43" 1.76}
+	{"ammo bullet88 apcr ger pak43" 15.0}
+	
+	{"ammo bullet88 ap eng std" 1.76}
+	{"ammo bullet88 fg eng std" 1.76}
+	
+	{"ammo bullet88 ap jap std" 1.76}
+	{"ammo bullet88 fg jap std" 1.76}
+	
+	{"ammo bullet90 ap usa std" 1.80}
+	{"ammo bullet90 fg usa std" 1.80}
+	{"ammo bullet90 apcr usa std" 15.0}
+	
+	{"ammo bullet94 ap eng std" 1.86}
+	{"ammo bullet94 fg eng std" 1.86}
+	
+	{"ammo bullet100 ap rus std" 2}
+	{"ammo bullet100 fg rus std" 2}
+	
+	{"ammo bullet105 ap ger std" 2.1}
+	{"ammo bullet105 fg ger std" 2.1}
+	
+	{"ammo bullet105 ap ger sk18" 2.1}
+	{"ammo bullet105 fg ger sk18" 2.1}
+	
+	{"ammo bullet105 fg ger lg40" 2.1}
+	
+	{"ammo bullet105 fg ally std" 2.1}
+	{"ammo bullet105 ic ally std" 10}
+	
+	{"ammo bullet105 ap usa t5e2" 2.1}
+	{"ammo bullet105 fg usa t5e2" 2.1}
+	
+	{"ammo bullet105 ap jap type6" 2.1}
+	{"ammo bullet105 fg jap type6" 2.1}
+	
+	{"ammo bullet105 fg jap std" 2.1}
+	
+	{"ammo bullet120 fg rus l50" 2.4}
+	
+	{"ammo bullet120 fg jap std" 2.4}
+	
+	{"ammo bullet122 ap rus tank" 2.44}
+	{"ammo bullet122 fg rus tank" 2.44}
+	
+	{"ammo bullet122 fg rus std" 2.44}
+	{"ammo bullet122 fr rus std" 2.44}
+	{"ammo bullet122 ic rus std" 15.0}
+	
+	{"ammo bullet128 ap ger std" 2.56}
+	{"ammo bullet128 fg ger std" 2.56}
+	
+	{"ammo bullet150 ap ger std" 3}
+	{"ammo bullet150 fg ger std" 3}
+	{"ammo bullet150 ph ger std" 15}
+	
+	{"ammo bullet150 ap jap std" 3}
+	{"ammo bullet150 fg jap std" 3}
+	
+	{"ammo bullet152 fg eng std" 3.04}
+	
+	{"ammo bullet152 ap rus std" 3.04}
+	{"ammo bullet152 fg rus std" 3.04}
+	
+	{"ammo bullet152 fg rus m10t" 3.04}
+	
+	{"ammo bullet155 fg ally std" 3.1}
+	{"ammo bullet155 sk ally std" 3.1}
+	
+	{"ammo bullet203 ap rus std" 4.06}
+	{"ammo bullet203 fg rus std" 4.06}
+	
+	{"ammo bullet203 fg usa std" 4.06}
+	
+	{"ammo bullet210 fg ger std" 4.06}
+	
+	{"ammo bullet305 fg spec std" 6.1}
+	
+	{"ammo bullet600 fg spec std" 12}
+}

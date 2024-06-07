@@ -1,0 +1,17 @@
+{action from "fortify_inplace"
+	{button "pit_lie"}
+;	{fx "flashred"}
+	{item "sapper_shovel"}
+	{item_in_box}
+	{entity "trench_single_lie"}
+	{entity_merge "trench_grass_segment"}
+	{marker "trench_marker"}
+	{RequireSelect}
+;	{NotifySelect}
+	{no_check}
+	{instructions
+		(include "dig_instructions.inc")
+		{install notify_complete "trench_single_lie" 0 exact_placement dont_drop_item}
+		{take_last_item}	
+	}
+}

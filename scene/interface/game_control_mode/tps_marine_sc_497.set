@@ -1,0 +1,14 @@
+(include "tps.inc")
+{switch_to_time 0.25}
+{parameters
+	{range "camera_offset_up"		 7	10}   ; точка прицела относительно крыши машины
+	{range "camera_distance"		 10	45}     ;отдаление камеры от юнита
+	{range "camera_offset_forward" 		5	0}	; Смещение точки внимания по продольной оси	
+	{range_degrees "camera_fov"		60	60}	
+	{float "aim_spot_offset"			5}	; Смещение прицела по вертикальной оси
+	{range "camera_offset_side"		-5	-5}	; Смещение точки внимания по горизонтальной оси	
+	{visual_set "visual_set" "tps_tank"}	
+}
+{suitable "sc_497 tps" {priority 15}}
+
+

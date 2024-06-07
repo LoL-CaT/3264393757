@@ -1,0 +1,541 @@
+;SDL
+{sensor
+	{visor "main"
+		{vision "cannon_main"}
+		{bone "visor"}
+	}
+	{visor "view-around"
+		{vision "at_gun_around"}
+		{bone "basis"}
+	}
+}
+(define "bullet_pass_default"
+	{bullet_pass
+		{threshold 100
+			{destroyed 50}
+		}
+	}
+)
+(define "bullet_pass_gun"
+	{bullet_pass
+		{threshold 100
+			{destroyed 50}
+		}
+		{stuff "fg"
+			{threshold 50
+				{destroyed 50}
+			}
+		}
+	}
+)
+(define "module_gun"
+	{setting "gun"
+		{thickness %tur}
+		{threshold
+			{blast {value (* 1 %t_thr)}}
+			{pierce	{koef 0.99}}
+		}
+		{durability
+			{blast {value (* 3 %t_dur)}}
+			{pierce {value 20}}
+		}
+		{health_reducing
+			{pierce {koef %hp_k}}
+			{blast {koef %hp_k}}
+		}
+		{threshold_weakness_calibre 14}
+		("bullet_pass_gun")
+		{fragment_pass_threshold 1}
+		{whole_wound}
+		{volumes "gun*"}
+	}
+)
+(define "armor_cannon"
+	{armor
+		{setting "turret"
+			{thickness %s}
+			{threshold {pierce {calibre 14}}}
+			{durability 
+				{blast {value (* %tur 7)}}
+				{pierce {value 999}}
+			}
+			{volumes "turret*"}
+			{health_reducing
+				{pierce {koef 1}}
+				{blast {koef 1}}
+			}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+		}
+		{setting "shield"
+			{thickness (* 1 %s)}
+			{threshold {pierce {calibre 14}}}
+			{durability 
+				{blast {value (* %tur 1)}}
+				{pierce {value 999}}
+			}
+			{volumes "*shield*"}
+			{health_reducing
+				{pierce {koef 1}}
+				{blast {koef 1}}
+			}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+		}
+		{setting "wheel"
+			{thickness %w}
+			{threshold
+				{blast		{value 10}}
+				{pierce		{value 1}}
+			}
+			{durability
+				{blast		{value 10}}
+				{pierce		{value 5}}
+			}
+			{volumes "wheel*"}
+			{health_reducing
+				{pierce {koef 0.3}}
+				{blast {koef 0}}
+			}
+			{threshold_weakness_calibre 12}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+		}
+		{setting "body"
+			{thickness %b}
+			{threshold
+				{blast {value %t_thr}}
+				{pierce {calibre 14}}
+			}	
+			{durability {pierce {value 999}}}	
+			{volumes "body*"}
+			{health_reducing
+				{pierce {koef 1}}
+				{blast {koef 1}}
+			}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+		}
+		{setting "stand"
+			{thickness %tur}
+			{threshold  
+				{blast {value %t_thr}}
+				{pierce {value 999}}
+			}
+			{durability 
+				{blast {value %t_dur}}
+				{pierce {value 999}}
+			}
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+			{volumes "stand*"}
+		}
+		{setting "other"
+			{thickness 10}
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+		}
+	}
+)
+(define "armor_5"
+	("armor_cannon" tur(5) t_thr(3) t_dur(%t_dur) s(5) b(5) w(5))
+)
+(define "armor_mortar"
+	;("armor_cannon" tur(5) t_thr(3) t_dur(40) s(10) b(10) w(5))
+	("armor_5" t_dur(40))
+)
+(define "armor_mortar_hp"
+	{armor 
+		{health %hp}
+		("module_gun" tur(5) t_thr(3) t_dur(40) hp_k(1))
+	}
+	("armor_mortar")
+)
+(define "armor_light"
+	;("armor_cannon" tur(7) t_thr(3) t_dur(50) s(10) b(10) w(5))
+	("armor_5" t_thr(3) t_dur(50))
+)
+(define "armor_light_hp"
+	{armor
+		{health %hp}
+		("module_gun" tur(7) t_thr(3) t_dur(50) hp_k(0))
+	}
+	("armor_light")
+)
+(define "armor_medium"
+	;("armor_cannon" tur(7) t_thr(6) t_dur(60) s(15) b(15) w(5))
+	("armor_5" t_dur(60))
+)
+(define "armor_medium_hp"
+	{armor
+		{health %hp}
+		("module_gun" tur(7) t_thr(6) t_dur(60) hp_k(0))
+	}
+	("armor_medium")
+)
+(define "armor_heavy"
+	;("armor_cannon" tur(7) t_thr(7) t_dur(80) s(20) b(20) w(5))
+	("armor_5" t_dur(80))
+)
+(define "armor_heavy_hp"
+	{armor
+		{health %hp}
+		("module_gun" tur(7) t_thr(7) t_dur(80) hp_k(0))
+	}
+	("armor_heavy")
+)
+(define "speed_value" (* %value 0.75 %k))
+(define "maxspeed"	{MaxSpeed       ("speed_value" value(%0) k(1))})
+(define "speed"
+    {speed
+        {Slow   ("speed_value" value(%0) k(0.33 0.8))}    ; km/h
+        {Normal ("speed_value" value(%0) k(0.66 0.8))}
+        {Fast   ("speed_value" value(%0) k(1))}
+    }
+)
+(define "loco_params"
+	{StopTime	0.2}
+	{BrakeTime	0.7}
+	{TurnRadius	3}
+	{TurnStart	0.8}
+	{TurnStop	0.5}
+	{Gears		0.35 0.5 0.7 1.0}
+	{RearGears	0.33 0.5}
+)
+(define "loco_easy_carrier"
+	{locomotion
+		("loco_params")
+		("maxspeed" args 16.875)
+		{StartTime	2}
+		{TurnTime	4}
+		{TurnRadius	2}
+	}
+)
+(define "loco_carrier"
+	{locomotion
+		("loco_params")
+		("maxspeed" args 14)
+		{StartTime	2}
+		{TurnTime	4}
+		{TurnRadius	2}
+	}
+)
+(define "loco_small"
+	{locomotion
+		("loco_params")
+		{MaxSlope   50}
+		{FallSlope  60}
+		("maxspeed" args 12)
+		{StartTime	2}
+		{TurnTime	4}
+		{TurnRadius	2}
+	}
+)
+(define "loco_medium"
+	{locomotion
+		("loco_params")
+		{FallSlope  60}
+		("maxspeed" args 10)
+		{StartTime	3}
+		{TurnTime	10}
+		{TurnRadius	3}
+	}
+)
+(define "loco_massive"
+	{locomotion
+		("loco_params")
+		{FallSlope  60}
+		("maxspeed" args 8)
+		{StartTime	4}
+		{TurnTime	10}
+		{TurnRadius	3}
+	}
+)
+(define "loco_big"
+	{locomotion
+		("loco_params")
+		{FallSlope  60}
+		("maxspeed" args 6)
+		{StartTime	5}
+		{TurnTime	20}
+		{TurnRadius	3}
+	}
+)
+(define "loco_field"
+	("loco_medium")
+	{locomotion
+		("maxspeed" args 13.5)
+	}
+)
+;ARENA
+;MGUN_________________________________________________________________________________________________________________________
+(define "arena_mgun_stan_2gunners_carrier"
+	{locomotion
+		("maxspeed" args 15)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	0.5}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	{disableBackward}
+)
+(define "arena_mgun_stan_1gunner_carrier"
+	{locomotion
+		("maxspeed" args 15)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	0.5}
+		{TurnRadius	0.1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	{disableBackward}
+)
+(define "arena_mgun_stan_1gunner_carrier_maxson"
+	{locomotion
+		("maxspeed" args 15)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	0.5}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	{disableBackward}
+)
+(define "arena_mgun_stan_4gunners_carrier"
+	{locomotion
+		("maxspeed" args 14)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	{disableBackward}
+)
+;MORTARS____________________________________________________________________________________________________________________
+(define "arena_mortar_light_1gunner_carrier"
+	{locomotion
+		("maxspeed" args 15)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	0.5}
+		{TurnRadius	1}
+		{TurnStart	3}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	{disableBackward}
+)
+(define "arena_mortar_medium_2gunners_carrier"
+	{locomotion
+		("maxspeed" args 14)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	{disableBackward}
+)
+(define "arena_mortar_heavy_2gunners_carrier"
+	{locomotion
+		("maxspeed" args 12)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	{disableBackward}
+)
+;Cannon_________________________________________________________________________________________________________________________
+(define "arena_cannon_light_2gunners_carrier"
+	{locomotion
+		("maxspeed" args 15)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 15)
+)
+(define "arena_cannon_light_4gunners_carrier"
+	{locomotion
+		("maxspeed" args 14)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 14)
+)
+(define "arena_cannon_medium_4gunners_carrier"
+	{locomotion
+		("maxspeed" args 12)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 12)
+)
+(define "arena_cannon_heavy_4gunners_carrier"
+	{locomotion
+		("maxspeed" args 8)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 8)
+)
+(define "arena_flak_stan_4gunners_carrier"
+	{locomotion
+		("maxspeed" args 10)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 10)
+)
+(define "arena_flak_stan_6gunners_carrier"
+	{locomotion
+		("maxspeed" args 4)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	2}
+		{TurnStart	2}
+		{TurnTime	12}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 4)
+)
+(define "arena_flak_stan_1gunner_carrier"
+	{locomotion
+		("maxspeed" args 15)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	0.5}
+		{TurnRadius	1}
+		{TurnStart	0.5}
+		{TurnTime	2}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 15)
+)
+(define "arena_howitzer_6gunners_carrier"
+	{locomotion
+		("maxspeed" args 4)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	2}
+		{TurnStart	2}
+		{TurnTime	12}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 4)
+)
+(define "arena_howitzer_6gunners_carrier_fast"
+	{locomotion
+		("maxspeed" args 9)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	2}
+		{TurnStart	2}
+		{TurnTime	12}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 9)
+)
+(define "arena_howitzer_6gunners_carrier_heavy"
+	{locomotion
+		("maxspeed" args 4)
+		{StartTime	2}	
+		{StopTime	0.01}
+		{BrakeTime	1}
+		{TurnRadius	2}
+		{TurnStart	2}
+		{TurnTime	120}		
+		{TurnStop	0.1}
+		{Gears		0.35 0.5 0.7 1.0}
+		{RearGears	0.35 0.5 0.7 1.0}
+	}
+	("speed" args 4)
+)

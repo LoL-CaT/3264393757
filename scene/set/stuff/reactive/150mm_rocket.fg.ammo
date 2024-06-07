@@ -1,0 +1,27 @@
+{bullet	;nebel41
+	{tag "big shell fg bomb ani_play_hit ui_rocket"}
+	{inventory
+		{size 4 1}
+		{weight 100}
+	}	
+	{entity "150mm_rocket_ammo"}
+	{mass 36.05}
+	{view "nebel_ammo"
+		{tail "rocket_smoke_med" "tail"}
+	}
+;	{detonationThickness 1}
+	{applyProjectile}
+	("antitank_range_base_energy6"
+		energy_base(32.8)
+		energy_construction(32.8)
+		armorhealth_base(698)
+		range_end(8)
+	)
+	{damage fire
+		{radius 6}
+		{heating 1}
+		{time 5}
+	}	
+	("antipersonnel_75plus" cal(150))
+	("seismic_heavy" energy(32.8))
+}

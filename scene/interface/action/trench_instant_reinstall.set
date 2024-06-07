@@ -1,0 +1,16 @@
+{action from "fortify_merge_instant"
+	{target ground}
+	{cursor "shovel"}
+	{fx "flashred"}
+	{item "sapper_shovel"}
+	{item_in_box}
+	{aux_unit "engineers"}
+	{crushed}
+	{tag "trench"}
+	{instructions
+		(include "dig_instructions.inc")
+		{reinstall_fortification notify_complete {tag "trench"}}
+		{take_last_item}	
+		{bind range 0}
+	}
+}

@@ -1,0 +1,98 @@
+;SDL
+{weapon_bullet
+	{tag "rocketlauncher to_hand ap cannot_lie nokeep"}
+	{tag "ui_rocketlauncher"}
+	{calibre 50}
+	{inventory
+		{size 5 2}
+		{link_bone "gun_back"}
+		{weight 100}
+		{fsm "bazooka"}
+;		{fsm "smg"}
+	}
+	{mass 6.1}
+	{states
+		{reload	"reload-bazooka"}
+		{unload	"unload-bazooka"}
+		{fire	"fire-bazooka"	}
+		{aim 	"aim-bazooka"	}
+		{can_aim  "can-aim-bazooka"	}
+	}
+;	{states
+;		{reload		"reload"}
+;		{unload		"unload"}
+;		{fire		"fire"	}
+;		{aim 		"aim"	}
+;		{can_aim	"can-aim"}
+;	}
+;	{DisableRicochet}
+	{foresight "Foresight3"}
+	{reactive}	
+	{gravity 0}	
+	{rechargeTime 4}
+	{curve "cumulative_bazooka"}
+	{projectileDamageThreshold 1}
+	("damage_arena" args 300)
+	{speed 80}
+	{AimingTolerance 0.25}
+	{cursor "cannon_on"}
+	{spreading 7
+		{SpreadXYRatio	1}
+		{radiusFunction
+			0.0		0
+			1.0		1.0
+			1.5		3.0
+			3.0		5.0
+		}
+		{SmokeHitMultiplier 15}			
+	}	
+	{parameters "rocketlauncher" "human"
+		{spreading 7
+			{SpreadXYRatio	0}
+			{SpreadPower	0.75}				
+			{radiusTable {0 0} {15 2} {40 7}}
+			{SmokeHitMultiplier 15}				
+		}
+	}
+	{parameters "rocketlauncher" "cannon"
+		{spreading 4
+			{SpreadXYRatio	0}
+			{SpreadPower	1}				
+			{radiusTable {0 0} {15 2} {40 4}}
+			{SmokeHitMultiplier 15}				
+		}
+	}	
+	{parameters "rocketlauncher" "vehicle"
+		{spreading 1
+			{SpreadXYRatio	0}
+			{SpreadPower	1}				
+			{radiusTable {0 0} {15 1} {40 1.5}}
+			{SmokeHitMultiplier 15}				
+		}
+	}	
+	{TimeToReadyAfterAim
+		{0 0}
+		{40 0.2}
+	}	
+	{RicochetChance
+		{0 0.0}
+		{70 0.0}
+		{75 0.0}
+		{90 0.0}
+	}
+	{RicochetEnergyDamping 	; penetration energy damping after ricochet (angle - damping)	
+		{0  1}
+		{20 0.9}
+		{30 0.8}
+		{45 0.75}
+		{60 0.5}
+	}
+	{OvermatchDamping
+		{0  0.0001}
+		{20 0.0001}
+	}
+	{aimRange 36}	
+	{maxRange 36}
+	{destructive 0 60}
+	{ArmorPassability 50}
+}

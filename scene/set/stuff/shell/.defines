@@ -1,0 +1,92 @@
+; heavy : 4-6, [2-3, 4-6]
+; medium: 3-4  [2, 3-4]
+; light : 1-2  [1, 2-3]
+
+(include "\set\armorhealth.inc")
+(define "_tr"
+	{trace
+		{view "/texture/fx/trace"
+			{Light 1}
+			{ScaleY 0.2}
+		}
+		{length (* %0 5)}
+	}
+)
+(define "arena_fg"
+		("antitank_range_base"
+			energy_base(%energy_base)
+			energy_construction(%energy_construction)
+			armorhealth_base(%armorhealth_base)
+			range_end(2)
+		)
+		("antipersonnel_low_ext" range_k(%range_k) energy_k(%hp_k) ult(%ult))
+;		("stun_low" range_k(%range_k))
+		("seismic_low" energy(%energy_base))
+		
+	("_tr" args (* %0 0.4))
+)
+(define "arena_fg_medium"
+		("antitank_range_base_energy6"
+			energy_base(%energy_base)
+			energy_construction(%energy_base)
+			armorhealth_base(%armorhealth_base)
+			range_end(3.5)
+		)
+		("antipersonnel_75plus" cal(%cal))
+		("stun_medium" cal(%cal))
+		("seismic_low" energy(%energy_base))
+		
+	("_tr" args (* %0 0.4))
+)
+(define "arena_fg_medium_custom"
+		("antitank_range_base_energy6"
+			energy_base(%energy_base)
+			energy_construction(%energy_base)
+			armorhealth_base(%armorhealth_base)
+			range_end(%range_end)
+		)
+		("antipersonnel_75plus" cal(%cal))
+		("stun_medium_plus" cal(%cal))
+		("seismic_medium" energy(%energy_base))
+	("_tr" args (* %0 0.4))
+)
+(define "arena_fg_heavy_old"
+		("antitank_range_base_energy6_old"
+			energy_base(%energy_base)
+			energy_construction(%energy_base)
+			armorhealth_base(%armorhealth_base)
+			range_end(6)
+		)
+		("antipersonnel_75plus" cal(%cal))
+		("stun_heavy" cal(%cal))
+		("seismic_heavy" energy(%energy_base))
+)
+(define "arena_fg_heavy"
+		("antitank_range_base_energy6"
+			energy_base(%energy_base)
+			energy_construction(%energy_base)
+			armorhealth_base(%armorhealth_base)
+			range_end(6)
+		)
+		("antipersonnel_75plus" cal(%cal))
+		("stun_heavy" cal(%cal))
+		("seismic_heavy" energy(%energy_base))
+)
+(define "arena_fg_super_heavy"
+		("antitank_range_base_energy6"
+			energy_base(%energy_base)
+			energy_construction(%energy_base)
+			armorhealth_base(%armorhealth_base)
+			range_end(8)
+		)
+		("antipersonnel_75plus" cal(%cal))
+		("stun_heavy" cal(%cal))
+		("seismic_custom" energy(%energy_base) radius(8))
+)
+(define "ap"
+	;{damage blastwave
+	;	{energy 1}
+	;	{area 0 1}
+	;}
+	;("_tr" args (* %0 6))
+)

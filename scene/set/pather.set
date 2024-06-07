@@ -1,0 +1,659 @@
+{Pathers
+	; default profile must be first
+	; Terrain:
+	;	K <= 0 	  - move disabled
+	;	K >= 1	  - move without penalties
+	;	0 < K < 1 - speed = maxSpeed * K
+	;	cost = 1 / K
+	; Height:
+	;	cost < 0 - move disabled
+	;	cost = 0 - move without penalties
+	;	cost > 0 - move with penalties
+	; pathCost = distance * (terrainCost + heightCost)
+
+	(define "slope"
+		{SlopeDown
+			0		0		0		0		0		;  6..12..18..24..30
+			0		0		0		0		1		; 36..42..48..54..60
+			%d66	%d72	%d78	-1		-1		; 66..72..78..84..90
+		}
+		{SlopeUp
+			0	0	0	0	0						;  6..12..18..24..30
+			0	-1	-1	-1	-1						; 36..42..48..54..60
+			-1	-1	-1	-1	-1						; 66..72..78..84..90
+		}
+	)
+	(define "slope_tank_light"		("slope"	d66(1) d72(1) d78(1)))
+	(define "slope_tank"			("slope"	d66(1) d72(1) d78(-1)))
+	(define "slope_vehicle"			("slope"	d66(-1) d72(-1) d78(-1)))
+	
+	(define "no_pass"				{forbidden_flags "no_pass"})
+	{Profile "human"
+		{Network}
+		{Human}
+		{Priority 1}
+		{Radius 0.3}
+		{Terrain
+			"ground"		1
+			"no_dig"		1
+			"no_pass"		0
+			"swamp"			0.25
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0.5		0	; ai movement disabled
+			"deep_water"	0.5		0	; ai movement disabled
+			("no_pass")			
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			0  0  1  -1  -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+
+	{Profile "human_flying"
+		{Priority 1}
+		{Radius 0.3}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			-1 -1 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+
+	{Profile "animal"
+		{Priority 0}
+		{Radius 0.6}
+		{Terrain
+			"ground"		1
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")			
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			1  1  1  1  1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	(define "horse"
+	{Profile "%name"
+		{Priority 0}
+		{Radius %r}
+		{Terrain
+			"ground"		1
+			"no_pass"		0
+			"swamp"			0
+			"shallow_water"	0
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		{Height
+			0  0  0  1  1 ;  0...6..12..18..24..29
+			1  1  1  1  1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	)
+	("horse" name(horse) 		r(2))
+	("horse" name(horse_double) r(2.2))
+
+	{Profile "tank"
+		{Radius 2.25}
+		{Priority 5}
+		{BattleCrusher}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"		    0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		("slope_tank")
+	}
+
+	{Profile "tank.light"
+		{Radius 2.25}
+		{Priority 4}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		("slope_tank_light")
+	}
+
+	{Profile "amphibia"
+		{Radius 2.25}
+		{Priority 5}
+		{BattleCrusher}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.7
+			"deep_snow"		0.5
+			"shallow_water"	1
+			"water"			0.7
+			"deep_water"	0.5
+			("no_pass")
+		}
+		("slope_tank_light")
+	}
+
+	{Profile "amphibia.light"
+		{Radius 2.25}
+		{Priority 3}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.7
+			"deep_snow"		0.5
+			"shallow_water"	1
+			"water"			0.7
+			"deep_water"	0.5
+			("no_pass")
+		}
+		("slope_tank_light")
+	}
+
+	{Profile "armored"
+		{Radius   2.25}
+		{Priority 3}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		("slope_vehicle")
+	}
+
+	{Profile "vehicle.large"
+		{Radius 2}
+		{Priority 2}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		("slope_vehicle")
+	}
+
+	{Profile "vehicle.small"
+		{Radius 1.5}
+		{Priority 2}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		("slope_vehicle")
+	}
+
+	{Profile "moto"
+		{Radius 1.5}
+		{Priority 2}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		("slope_vehicle")
+	}
+
+	{Profile "vehicle.trailer"
+		{Radius 2.2}
+		{Priority 2}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		("slope_vehicle")
+	}
+
+	{Profile "cannon.large"
+		{Radius 2}
+		{Priority 2}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			1  1  1  1  1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90
+		}
+	}
+
+	{Profile "cannon.small"
+		{Radius 1.5}
+		{Priority 2}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.33
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			1  1  1  1  1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90
+		}
+	}
+
+	{Profile "cannon.carried"
+		{Radius 0.8}
+		{Priority 2}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			1  1  1  1  1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+
+	{Profile "cannon.micro"
+		{Radius 0.6}
+		{Priority 2}
+		{Terrain
+			"road"			1
+			"ground"		0.8
+			"no_dig"		0.8
+			"no_pass"		0
+			"swamp"			0.5
+			"deep_snow"		0.5
+			"shallow_water"	0.5
+			"water"			0
+			"deep_water"	0
+			("no_pass")
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			1  1  1  1  1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+
+	{Profile "airborne"
+		{SkipImpregnable}
+		{Radius 3.25}
+		{Priority 2}
+		{Terrain
+			"undef"			1
+			"ground"		1
+			"no_dig"		1
+			"no_pass"		1
+			"swamp"			1
+			"deep_snow"		1
+			"shallow_water"	1
+			"water"			1
+			"deep_water"	1
+		}
+	}
+
+	{Profile "railway"
+		{LinearPath}
+		{Radius 1.5}
+		{Priority 6}
+		{Terrain
+			"undef"			1
+			"ground"		1
+			"no_dig"		1
+			"no_pass"		1
+			"swamp"			1
+			"deep_snow"		1
+			"shallow_water"	1
+			"water"			1
+			"deep_water"	1
+		}
+	}
+	{Profile "shallow_water"
+		{Radius 2}
+		{Priority 5}
+		{Terrain
+			"ground"		0
+			"no_dig"		0
+			"no_pass"		0
+			"shallow_water"	1
+			"water"			1
+			"deep_water"	1
+		}
+	}
+	{Profile "shallow_water_0"	; lcvp
+		{Radius 5}
+		{Priority 5}
+		{Terrain
+			"ground"		0
+			"no_dig"		0
+			"no_pass"		0
+			"shallow_water"	1
+			"water"			1
+			"deep_water"	1
+		}
+	}
+	{Profile "water"
+		{Radius 3.5}
+		{Priority 6}
+		{Terrain
+			"ground"		0
+			"no_dig"		0
+			"no_pass"		0
+			"shallow_water"	0
+			"water"			1
+			"deep_water"	1
+		}
+	}
+	{Profile "deep_water"
+		{Radius 7}
+		{Priority 7}
+		{Terrain
+			"ground"		0
+			"no_dig"		0
+			"no_pass"		0
+			"shallow_water"	0
+			"water"			0
+			"deep_water"	1
+		}
+	}
+	{Profile "deep_water_0"	; armor barge
+		{Radius 14}
+		{Priority 7}
+		{Terrain
+			"ground"		0
+			"no_dig"		0
+			"no_pass"		0
+			"shallow_water"	0
+			"water"			0
+			"deep_water"	1
+		}
+	}
+	{Profile "trench"
+		{Priority 1}
+		{Radius 0.1}
+		{Terrain
+			"ground"		1
+			"road"			0
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	0
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		0
+			{forbidden_flags "no_dig no_pass"}
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			0  0 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "trench_cannon"
+		{Priority 1}
+		{Radius 8}
+		{Terrain
+			"ground"		1
+			"road"			0
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	0
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		0
+			{forbidden_flags "no_dig no_pass"}
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			0  0 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "wire"
+		{Priority 1}
+		{Radius 1.5}
+		{Terrain
+			"ground"		1
+			"road"			1
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	1
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		1
+			{forbidden_flags "no_install no_pass"}
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			0  0 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "sandbag"
+		{Priority 1}
+		{Radius 0.1}
+		{Terrain
+			"ground"		1
+			"no_dig"		1
+			"no_pass"		0
+			"swamp"			0.0
+			"shallow_water"		0.5
+			"water"			0.0		0	; ai movement disabled
+			"deep_water"	0.0		0	; ai movement disabled
+			{forbidden_flags "no_install no_pass"}
+		}
+		{Height
+			0  0  0  0  0 ;  0...6..12..18..24..29
+			0  0 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "dot_small"
+		{Priority 1}
+		{Radius 3}
+		{Terrain
+			"ground"		1
+			"road"			1
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	0
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		0
+			{forbidden_flags "no_install no_dig no_pass"}
+		}
+		{Height
+			0  0  -1  -1  -1 ;  0...6..12..18..24..29
+			-1  -1 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "dot_wood"
+		{Priority 1}
+		{Radius 6}
+		{Terrain
+			"ground"		1
+			"road"			1
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	0
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		0
+			{forbidden_flags "no_install no_dig no_pass"}
+		}
+		{Height
+			0  0  -1  -1  -1 ;  0...6..12..18..24..29
+			-1  -1 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "blindage_wood"
+		{Priority 1}
+		{Radius 7}
+		{Terrain
+			"ground"		1
+			"road"			1
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	0
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		0
+			{forbidden_flags "no_install no_dig no_pass"}
+		}
+		{Height
+			0  -1  -1  -1  -1 ;  0...6..12..18..24..29
+			-1  -1 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "tower"
+		{Priority 1}
+		{Radius 3}
+		{Terrain
+			"ground"		1
+			"road"			1
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	0
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		0
+			{forbidden_flags "no_install no_pass"}
+		}
+		{Height
+			0  0  -1  -1  -1 ;  0...6..12..18..24..29
+			-1  -1 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "supp_point"
+		{Priority 1}
+		{Radius 5}
+		{Terrain
+			"ground"		1
+			"road"			1
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	0
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		0
+			{forbidden_flags "no_install no_pass"}
+		}
+		{Height
+			0  0  -1  -1  -1 ;  0...6..12..18..24..29
+			-1  -1 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+	{Profile "fuel_point"
+		{Priority 1}
+		{Radius 6.5}
+		{Terrain
+			"ground"		1
+			"road"			1
+			"no_pass"		0
+			"swamp"			0
+			"deep_snow"		1
+			"shallow_water"	0
+			"water"			0		; ai movement disabled
+			"deep_water"	0		; ai movement disabled
+			"no_dig"		0
+			{forbidden_flags "no_install no_pass"}
+		}
+		{Height
+			0  0  -1  -1  -1 ;  0...6..12..18..24..29
+			-1  -1 -1 -1 -1 ; 30..36..42..48..54..59
+			-1 -1 -1 -1 -1 ; 60..66..72..78..84..90 
+		}
+	}
+}

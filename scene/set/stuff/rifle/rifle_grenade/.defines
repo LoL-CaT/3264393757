@@ -1,0 +1,10 @@
+(include "\set\small_firearms_accuracy.inc")
+(define "damage_arena_base"
+;	{projectileDamage	%0}
+	{projectileDamageTable {0 %0} {30 %0} {50 %0}}
+	{armorHealthDamage	(* %1 %0)}
+	{armorhealthdamagespread (* -1 0.1 %1 %0) (* 0.1 %1 %0) 1}
+)
+(define "damage_arena"
+	("damage_arena_base" args %0 1)
+)

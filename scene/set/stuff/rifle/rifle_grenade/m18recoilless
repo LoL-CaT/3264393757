@@ -1,0 +1,34 @@
+{from "pattern rifle_grenade"
+	{tag "-rifle" "-bullet" "-rifle_grenade" "rocketlauncher" "to_hand" "ap" "cannot_lie" "nokeep"}
+	{fireSound "reactive/launch04"}
+	{inventory
+		{size 6 2}
+		{link_bone "gun_back"}
+		{weight 100}
+		{fsm "bazooka"}
+	}	
+	{filling "m18rr" 1}
+	{entity "m18rr"}
+	{states
+		{reload	"reload-bazooka"}
+		{unload	"unload-bazooka"}
+		{fire	"fire-bazooka"	}
+		{aim 	"aim-bazooka"	}
+		{can_aim  "can-aim-bazooka"	}
+	}
+	("damage_arena" args 300)
+	{projectileDamageTable {0 100} {30 100} {50 100}}
+	{recoveryTime 6}
+	{rechargeTime 6}
+	{gravity 10}
+	{range 50 50}
+	{speed 100}
+	{aimtype angle_by_distance 0 0 30 5 50 10}
+	("accuracy_rifle_m18rr")
+	{TimeToReadyAfterAim
+		{0 0}
+		{40 0.2}
+	}
+	{destructive 0 34}
+	{ArmorPassability 50}
+}

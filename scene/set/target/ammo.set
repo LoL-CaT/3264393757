@@ -1,0 +1,448 @@
+;;; Select best weapon and ammo ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;{ready_for_shot}	- ammo charged (shell in the breech & gun ready for shot)
+;;{charging} 		- ammo is charging (gun is`t ready for shot)
+;;{crew}		- check ammo against targets crew
+;;{check_range}		- check weapon range
+;;{disabled_for_active} - ignore holded stuff check for human
+;;{disabled_for_ranged} - ignore near range check for human
+{select_ammo
+	{house
+		{"dynamite" {enable_for_human_user 0}}	
+		{"flame"}
+		{"fuel"} 
+		{"ptr"}		
+		{"calliope" {ready_for_shot}}
+		{"shell ph"}		
+		{"shell fg" {weapon "howitzer"} {ground}}
+		{"shell fg"}
+		{"mortar fg" {ground}}		
+		{"zenite" {enable_for_human_user 0}}
+		{"grenade ap"}		
+		{"grenade fg"}		
+		{"hmgun"}
+		{"mgun"}		
+		{"fuel"}      
+		{"bullet"}
+		{"dynamite"}		
+		{"shell apcr"}
+		{"shell bzt"}
+		{"shell fr"}
+		{"zenite"}		
+	}	
+	{human in_bush	
+		{"flame"}
+		{"fuel"} 
+		{"ptr"}		
+		{"calliope" {ready_for_shot} {ignore_fortification}}
+		{"shell fr"	{ground} {ignore_fortification}}		
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"shell fg"	{ground} {ignore_fortification}}
+		{"shell fg std"	{ground}}
+		{"shell ph"	{ground} {ignore_fortification}}		
+		{"sharp_edge" {ready_for_shot}}			
+		{"grenade fg" {ground}}		
+		{"grenade ic" {ready_for_shot}}
+		{"gs" {ready_for_shot}}
+		{"mortar fg" {ground} {ignore_fortification}}
+		{"grenade fg" {check_grenade}}
+		{"shell fg" {ground} {ready_for_shot}}
+		{"shell fg" {ready_for_shot}}
+		{"zenite" {enable_for_human_user 0}}
+		{"hmgun"} 
+		{"rocketlauncher fg" {ground} {enable_for_user 0} {ignore_fortification}}		
+		{"rocketlauncher ap" {ground} {enable_for_user 0} {ignore_fortification}}		
+		{"bullet"}
+		{"grenade fg" {ground}}			
+		{"grenade ap" {ignore_fortification}}
+		{"shell bzt"}		
+		{"sharp_edge"}			
+		{"shell apcr"}
+		{"zenite"}		
+		{"light"}
+	}
+	{human in_cover "trench"
+		{"flame"}
+		{"fuel"} 
+		{"ptr"}	
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"shell fg" {weapon "no_ground"}{ground} {ignore_fortification}}
+		{"shell fg std"	{ground} {ignore_fortification}}		
+		{"shell fg" {ground} {ignore_fortification}}
+		{"shell fr" {ground} {ignore_fortification}}	
+		{"calliope" {ready_for_shot}{ground} {ignore_fortification}}
+		{"shell ph" {ground} {ignore_fortification}}		
+		{"mortar fg" {ground} {ignore_fortification}}	
+		{"size3 fg" {ground}}
+		{"grenade fg" {check_grenade}}
+		{"grenade ap" {check_grenade} {ignore_fortification}}			
+		{"grenade fg" {ground} {volume "grenade_fg_target"}}
+		{"grenade ap" {ground} {volume "grenade_fg_target"} {ignore_fortification}}			
+		{"zenite"}
+		{"bullet"}
+		{"rocketlauncher fg" {ground} {enable_for_user 0} {ignore_fortification}}		
+		{"rocketlauncher ap" {ground} {enable_for_user 0} {ignore_fortification}}		
+		{"shell bzt"}			
+		{"shell apcr"}		
+		{"melee"}	
+	}
+	{human in_cover "crater"
+		{"flame"}
+		{"fuel"} 
+		{"ptr"}	
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"shell fg" {weapon "no_ground"}{ground} {ignore_fortification}}
+		{"shell fg std"	{ground} {ignore_fortification}}		
+		{"shell fg" {ground} {ignore_fortification}}
+		{"calliope" {ready_for_shot}{ground} {ignore_fortification}}
+		{"shell ph" {ground} {ignore_fortification}}
+		{"shell fr" {ground} {ignore_fortification}}		
+		{"mortar fg" {ground} {ignore_fortification}}	
+		{"size3 fg" {ground}}
+		{"grenade fg" {check_grenade}}
+		{"grenade ap" {check_grenade}}			
+		{"grenade fg" {ground} {volume "grenade_fg_target"}}
+		{"grenade ap" {ground} {volume "grenade_fg_target"} {ignore_fortification}}	
+		{"rocketlauncher fg" {ground} {enable_for_user 0} {ignore_fortification}}		
+		{"rocketlauncher ap" {ground} {enable_for_user 0} {ignore_fortification}}		
+		{"zenite"}
+		{"bullet"}			
+		{"shell apcr"}
+		{"shell bzt"}			
+		{"melee"}	
+	}
+	{human in_cover
+		{"flame"}	
+		{"fuel"} 
+		{"ptr"}	
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"shell fg"	{ground} {ignore_fortification}}
+		{"shell fg std"	{ground} {ignore_fortification}}
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"shell ph"	{ground} {ignore_fortification}}		
+		{"sharp_edge" {ready_for_shot}}			
+		{"grenade fg"}		
+		{"grenade ic" {ready_for_shot}}
+		{"calliope" {ready_for_shot} {ignore_fortification}}		
+		{"gs" {ready_for_shot} {ignore_fortification}}
+		{"mortar fg" {ground} {ignore_fortification}}
+		{"grenade fg" {check_grenade}}
+		{"grenade ap" {enable_for_ai 0} {check_grenade} {ignore_fortification}}
+		{"shell fg" {ground} {ready_for_shot}}
+		{"shell fg" {ready_for_shot} {ignore_fortification}}
+		{"zenite" {enable_for_human_user 0}}
+		{"hmgun"}     
+		{"bullet"}	
+		{"sharp_edge"}	
+		{"rocketlauncher fg" {ground} {enable_for_user 0} {ignore_fortification}}		
+		{"rocketlauncher ap" {ground} {enable_for_user 0} {ignore_fortification}}
+;		{"ammo rocketlauncher" {enable_for_user 0}}
+		{"grenade ap" {enable_for_ai 0} {ignore_fortification}}
+		{"grenade ic" {enable_for_ai 0}}			
+		{"shell fg"}		
+		{"shell apcr"}	
+		{"shell bzt"}			
+		{"light"}
+		{"zenite"}		
+	}
+	{human in_air
+		{"flame"}	
+		{"shell ap"}
+		{"shell sr"	{ground} {ignore_fortification}}
+		{"shell fr"	{ground} {ignore_fortification}}		
+		{"shell fg" {ignore_fortification}}		
+		{"ptr"}
+		{"zenite" {enable_for_human_user 0}} ; prohibit the usage (for player infantry)
+		{"zenite"}
+		{"hmgun"}      
+		{"bullet"}
+;		{"ammo rocketlauncher" }			
+		{"shell apcr"}
+		{"shell bzt"}			
+		{"light"}
+	}
+	{human
+		{"flame"}	
+		{"fuel"}
+		{"ptr"} 		
+		{"grenade fg" {ground}}
+		{"sharp_edge" {ready_for_shot}}		
+		{"calliope" {ready_for_shot}}
+		{"shell sr"	{ground} {ignore_fortification}}
+		{"shell fr"	{ground} {ignore_fortification}}		
+		{"shell fg"	{ground} {ignore_fortification}}		
+		{"grenade ic" {ready_for_shot}}
+		{"gs" {ready_for_shot} {ignore_fortification}}
+		{"shell fg" {weapon "no_ground"}{ready_for_shot}}
+		{"shell fg" {weapon "solothurn"} {ground}}			
+		{"shell fg" {ground} {ready_for_shot}}
+		{"shell fg" {ready_for_shot}}
+		{"shell ph"	{ground} {ignore_fortification}}		
+		{"mortar fg" {ground} {ignore_fortification}}
+		{"zenite" {enable_for_human_user 0}} ; prohibit the usage (for player infantry)
+		{"hmgun"} 
+		{"rifle"}
+		{"pistol"}		
+		{"bullet"}
+		{"sharp_edge"}
+		{"rocketlauncher fg" {ground} {enable_for_user 0} {ignore_fortification}}		
+		{"rocketlauncher ap" {ground} {enable_for_user 0} {ignore_fortification}}
+		{"grenade fg"}
+		{"grenade ap" {ignore_fortification}}		
+		{"shell apcr"}
+		{"shell bzt"}			
+;		{"ammo rocketlauncher" }
+		{"light"}
+		{"zenite"}	
+	}
+	{car	
+		{"flame"}
+		{"fuel" {volume "engine"}} 
+		{"shell ap" {weapon "solothurn"}}			
+		{"shell fg" {weapon "no_ground"} {ignore_fortification}}
+		{"shell ph" {weapon "no_ground"} {ignore_fortification}}			
+		{"shell fg" {ground}}
+		{"shell fr" {ground}}		
+		{"mortar fg" {ground} {ignore_fortification}}	
+		{"ammo rocketlauncher"}	
+		{"hmgun"}		
+		{"bullet" {crew} {weapon "sniper"} {volume "head"} {enable_for_ai 0}}		
+		{"bullet" {crew}}		
+		{"shell ap"}	
+		{"shell fg"}
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"grenade fg" {ground} {ignore_fortification}}		
+		{"grenade ap"}
+		{"grenade ic"}
+		{"zenite"}
+		{"airplane"}
+		{"calliope" {ready_for_shot}}		
+		{"bullet"}		
+		{"shell fg"}
+		{"shell ap"}	; for training
+		{"shell bzt"}			
+		{"shell apcr"}		
+		{"shell ic"}	
+		{"light"}
+		{"dynamite" {enable_for_human_user 0}}
+        {"goliath_charge" {ground} {ignore_fortification}}
+		{"dynamite"}		
+	}
+	{cannon
+		{"dynamite" {enable_for_human_user 0} {ignore_fortification}}		
+		{"flame"}
+		{"fuel" {crew}} 	
+		{"calliope" {ready_for_shot} {ignore_fortification}}
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"shell fg" {ground} {ignore_fortification}}	
+		{"mortar fg" {ground} {ignore_fortification}}
+		{"gs" {ready_for_shot} {ignore_fortification}}		
+		{"shell fg" {ignore_fortification}}
+		{"shell sr" {ground} {ready_for_shot} {ignore_fortification}}
+		{"shell sr" {ready_for_shot} {ignore_fortification}}
+		{"shell fr" {ground} {ignore_fortification}}		
+		{"shell ph" {ground} {ignore_fortification}}		
+		{"ammo rocketlauncher"{check_range} {enable_for_human_user 0}}		
+		{"grenade ap" {check_range} {enable_for_human_user 0} {ignore_fortification}}
+		{"grenade fg" {check_range} {enable_for_human_user 0}}		
+		{"grenade ic" {check_range} {enable_for_human_user 0}}	
+		{"grenade gr_ic" {check_range} {enable_for_human_user 0}}			
+		{"shell ap"{enable_for_human_user 0}}
+		{"shell apcr"{enable_for_human_user 0}}		
+		{"shell ic"{enable_for_human_user 0}}		
+		{"ptr"}
+		{"grenade ap" {enable_for_human_user 0}}
+		{"bullet" {crew} {weapon "sniper"} {volume "head"} {enable_for_ai 0} {disabled_for_active} {disabled_for_ranged}}			
+		{"bullet" {crew} {volume "body"} {disabled_for_active} {disabled_for_ranged}}
+		{"ammo rocketlauncher"{check_range}}			
+		{"light"}
+		{"sharp_edge" {crew}}
+        {"goliath_charge" {ground} {ignore_fortification}}
+		{"dynamite"}		
+	}
+	{cannon_tower
+		{"dynamite" {enable_for_human_user 0} {ignore_fortification}}		
+		{"flame"}
+		{"fuel" {crew}} 	
+		{"calliope" {ready_for_shot} {ignore_fortification}}
+		{"shell sr"	{volume "body"} {ignore_fortification}}		
+		{"shell fg" {volume "body"} {ignore_fortification}}	
+		{"mortar fg" {volume "body"} {ignore_fortification}}
+		{"gs" {ready_for_shot} {ignore_fortification}}		
+		{"shell fg" {volume "body"} {ignore_fortification}}
+		{"shell sr" {volume "body"} {ready_for_shot} {ignore_fortification}}
+		{"shell sr" {volume "body"} {ready_for_shot} {ignore_fortification}}
+		{"shell fr" {volume "body"} {ignore_fortification}}		
+		{"shell ph" {volume "body"} {ignore_fortification}}		
+		{"ammo rocketlauncher"{check_range} {volume "body"} {enable_for_human_user 0}}		
+		{"grenade ap" {check_range} {enable_for_human_user 0} {ignore_fortification}}
+		{"grenade fg" {check_range} {enable_for_human_user 0}}		
+		{"grenade ic" {check_range} {enable_for_human_user 0}}	
+		{"grenade gr_ic" {check_range} {enable_for_human_user 0}}			
+		{"shell ap"{enable_for_human_user 0}}
+		{"shell apcr"{enable_for_human_user 0}}		
+		{"shell ic"{enable_for_human_user 0}}		
+		{"ptr" {volume "body"}}
+		{"grenade ap" {enable_for_human_user 0}}			
+		{"bullet" {crew} {weapon "sniper"} {volume "head"} {enable_for_ai 0} {disabled_for_active} {disabled_for_ranged}}			
+		{"bullet" {crew} {volume "body"} {disabled_for_active} {disabled_for_ranged}}
+		{"ammo rocketlauncher"{check_range}}			
+		{"light"}
+		{"sharp_edge" {crew}}
+        {"goliath_charge" {ground} {ignore_fortification}}
+		{"dynamite"}
+		{"grenade gr_ic" {check_range}}		
+	}	
+	{cannon_howitzer
+		{"flame"}
+		{"fuel"} 	
+		{"calliope" {ready_for_shot} {ignore_fortification}}
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"shell fg" {ground} {ignore_fortification}}
+		{"shell ph" {ground} {ignore_fortification}}		
+		{"mortar fg" {ground} {ignore_fortification}}
+		{"shell fr" {ground} {ignore_fortification}}		
+		{"gs" {ready_for_shot} {ignore_fortification}}		
+		{"shell fg" {ignore_fortification}}
+		{"shell sr" {ground} {ready_for_shot}}	
+		{"ammo rocketlauncher"{check_range} {enable_for_human_user 0}}		
+		{"grenade ap" {check_range} {enable_for_human_user 0}}
+		{"grenade fg" {check_range} {enable_for_human_user 0} {ignore_fortification}}		
+		{"grenade ic" {check_range} {enable_for_human_user 0}}	
+		{"grenade gr_ic" {check_range} {enable_for_human_user 0}}			
+		{"shell ap"{enable_for_human_user 0}}
+		{"shell apcr"{enable_for_human_user 0}}		
+		{"shell ic"{enable_for_human_user 0}}		
+		{"ptr"}
+		{"grenade ap" {enable_for_human_user 0} {ignore_fortification}}
+		{"bullet" {crew} {weapon "sniper"} {volume "head"} {enable_for_ai 0} {disabled_for_active} {disabled_for_ranged}}			
+		{"bullet" {crew} {volume "body"} {disabled_for_active} {disabled_for_ranged}}
+		{"ammo rocketlauncher"{check_range}}			
+		{"light"}
+		{"shell ap"}			
+		{"shell apcr"}		
+		{"sharp_edge" {crew}}	
+		{"goliath_charge" {ground} {ignore_fortification}}	
+	}	
+	{airborne
+		{"zenite" {weapon "aa"} {volume "body"}}
+		{"airplane" {weapon "aa"} {volume "body"}}
+		{"shell bzt" {weapon "aa"} {volume "body"}}			
+		{"shell ap" {weapon "aa"} {volume "body"}}		
+		{"shell fg" {weapon "aa"} {volume "body"} {ignore_fortification}}
+		{"bullet" {weapon "aa"} {volume "body"}}
+	}
+	{armoredcar	
+		{"flame"}
+		{"fuel" {volume "engine"}}  
+		{"shell ap" {weapon "solothurn"}}		
+		{"shell fg" {weapon "howitzer"} {ground} {ignore_fortification}}			
+		{"shell ap"}
+		{"shell bzt"}		
+		{"shell apcr"}		
+		{"shell ic"}		
+		{"shell fg" {weapon "no_ground"} {ignore_fortification}}		
+		{"shell fg" {ground} {ignore_fortification}}	
+		{"mortar fg" {ground}}
+		{"shell sr"	{ground} {ignore_fortification}}		
+		{"calliope" {ready_for_shot}}		
+		{"size3 fg" {volume "body"} {ready_for_shot} {ignore_fortification}}
+		{"shell ap" {volume "body"} {ready_for_shot}}
+		{"zenite" {volume "body"}}
+		{"zenite ap" {volume "body"}}
+		{"airplane"}		
+		{"hmgun" {volume "body"}}
+		{"size3 fg" {volume "body"} {charging} {ignore_fortification}}
+		{"size2 fg" {volume "body"} {ready_for_shot} {ignore_fortification}}
+		{"shell ap" {volume "body"}}
+		{"grenade ic" {ready_for_shot}}
+		{"grenade ap" {volume "body"}}
+		{"grenade fg" {volume "grenade_fg_target"} {ignore_fortification}}
+		{"grenade ic" {volume "engine"}}
+		{"dynamite" {enable_for_human_user 0}}			
+		{"shell ap"}		
+		{"shell fg" {ignore_fortification}}
+		{"shell ph" {ignore_fortification}}	
+		{"shell fr" {ignore_fortification}}			
+		{"shell sr" {ignore_fortification}}
+		{"bullet" {crew} {weapon "sniper"} {volume "head"} {enable_for_ai 0} {disabled_for_active} {disabled_for_ranged}}		
+		{"bullet" {crew}}		
+		{"light"}
+		{"sharp_edge" {crew}}
+        {"goliath_charge" {ground} {ignore_fortification}}
+		{"dynamite"}		
+	}
+	{light_tank
+		{"flame"}
+		{"dynamite" {enable_for_human_user 0}}		
+		{"fuel" {volume "engine"}}
+		{"shell ap" {weapon "solothurn"}}			
+		{"shell fg" {weapon "howitzer"} {ground} {ignore_fortification}}					
+		{"shell ap"}
+		{"shell bzt"}		
+		{"shell apcr"}		
+		{"shell ic"}		
+		{"shell fg" {weapon "no_ground"} {ignore_fortification}}		
+		{"shell fg" {ground} {ignore_fortification}}	
+		{"mortar fg" {ground} {ignore_fortification}}	
+		{"calliope" {ready_for_shot}}
+		{"size3 fg" {volume "body"} {ready_for_shot} {ignore_fortification}}
+		{"shell ap" {volume "body"} {ready_for_shot}}
+		{"hmgun" {volume "body"}}
+		{"size3 fg" {volume "body"} {charging} {ignore_fortification}}
+		{"size2 fg" {volume "body"} {ready_for_shot} {ignore_fortification}}
+		{"rocketlauncher ap" {volume "body"} {ready_for_shot}}
+		{"shell ap" {volume "body"}}
+		{"zenite" {volume "body"}}
+		{"zenite ap" {volume "body"}}
+		{"airplane"}		
+		{"grenade ic" {volume "engine"} {ready_for_shot}}
+		{"grenade ap" {volume "body"}}
+		{"grenade fg" {volume "grenade_fg_target"} {ignore_fortification}}
+		{"grenade ic" {volume "engine"}}
+		{"shell ap"}
+		{"shell fg" {ignore_fortification}}	
+		{"shell ph" {ignore_fortification}}		
+		{"shell sr" {ignore_fortification}}
+		{"shell fr"}			
+		{"light"}
+		{"goliath_charge" {ground} {ignore_fortification}}
+		{"dynamite"}		
+	}
+	{tank
+		{"dynamite" {enable_for_human_user 0}}	
+		{"flame"}
+		{"fuel" {volume "engine"}} 	
+		{"shell ap" {weapon "solothurn"}}			
+		{"shell fg" {weapon "howitzer"} {ground} {ignore_fortification}}					
+		{"shell ap"}
+		{"shell bzt"}		
+		{"shell apcr"}		
+		{"shell ic"}		
+		{"shell fg" {weapon "no_ground"} {ignore_fortification}}		
+		{"shell fg" {ground} {ignore_fortification}}	
+		{"mortar fg" {ground} {ignore_fortification}}	
+		{"calliope" {ready_for_shot}}
+		{"size3 fg" {volume "body"} {ready_for_shot} {ignore_fortification}}
+		{"size3 fg" {volume "body"} {charging} {ignore_fortification}}
+		{"shell ap" {volume "body"}}
+		{"rocketlauncher ap" {volume "body"} {ready_for_shot}}
+		{"shell ap"}		
+		{"calliope" {ready_for_shot} {ignore_fortification}}		
+		{"zenite" {volume "mover"}}
+		{"zenite ap" {volume "mover"}}
+		{"grenade ic" {volume "engine"} {ready_for_shot}}
+		{"grenade ap" {volume "body"}}
+		{"grenade fg" {volume "grenade_fg_target"} {ignore_fortification}}
+		{"grenade ic" {volume "engine"}}		
+		{"shell fg" {ignore_fortification}}	
+		{"shell ph" {ignore_fortification}}	
+		{"shell fr" {ignore_fortification}}		
+		{"shell sr" {ignore_fortification}}
+		{"hmgun"}	
+		{"light"}
+		{"goliath_charge" {ground} {ignore_fortification}}
+		{"dynamite"}		
+	}
+	{unknown}
+}

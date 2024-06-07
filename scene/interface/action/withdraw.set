@@ -1,0 +1,12 @@
+{action
+	{RequireSelect}
+	{button}
+	{condition not tags "hidden_slot"}
+	{condition_timer_start 
+		{if game "combat" 1}
+		{if game "battlezones" 1}		
+		{if props "airborne" or breed_mask "*/engineer" "*/corpsman" "*/universal_miner" or not observed
+			{if territory_type "friendly" 1}
+		}	
+	}
+}

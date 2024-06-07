@@ -1,0 +1,59 @@
+;SDL
+;	у волюмов - left,right,top,bottom,front,back
+;	у армора - front,side,top,back
+;	учавствуют волюмы тэг + нет_компонента либо тэг + компонент_с_нужным_именем
+
+{volumes {from "body"} {to "body engine"}}; движок участвует в выборке для брони корпуса
+;USSR
+{if props "t60"										{armor	{front	{"body3" front}}	{top	{"engine" top}}}}
+{if props "su76"									{armor	{back	{"body8" right}}}}
+{if props "su100" "t34_76"	"t34_76_inf"						{armor	{top	{"body2" top}}}}
+{if props "t34_76_41" "su85"						{armor	{top	{"body02" top}}}}
+{if props "isu152" "isu122"							{armor	{side	{"body01" right}}}}
+{if props "t26" "t26e"								{armor	{top	{"engine01" top}}}}
+{if props "bt7a"									{armor	{front	{"body1" front}}	{top	{"engine" top}}}}
+{if props "t28" "t28e"								{armor	{back	{"body01" back}}}}
+{if props "t34_1" "t34_57_43"						{armor	{front	{"body02" front}}	{side	{"body02" right}}}}
+{if props "t34_2" "ot34_76_42"						{armor	{front	{"body02" front}}	{side	{"body02" right}}}}
+{if props "t34_armored"								{armor	{side	{"body02" right}	{"body05" top}}}}
+{if props "t34_85" "t34_85m"						{armor	{top	{"body04" top}}}}
+{if props "kv1" "kv1e" "kv8" "kv1_za_rodinu" "kv1_zis5" "kv2"	{armor	{front	{"turret01" front}}	{back	{"engine01" back}}}}
+{if props "kv1s"									{armor	{front	{"body02" front} {"turret01" right}}	{top 	{"body10" top} {"turret01" top}}	{back	{"turret02" back}}}}
+{if props "is1" "is2"								{armor	{front	{"body02" front}}	{top	{"engine" top}}}}
+{if props "is2_44"									{armor	{front	{"body03" top}}		{side	{"body01" right}}}}
+{if props "mk4_rus"									{armor	{front	{"body1" front}}	{top	{"engine1" top}}}}
+{if props "valentine_rus"							{armor	{back	{"engine02" top}}}}
+{if props "t34m"									{armor	{front	{"body1" front}}}}
+{if props "su122"									{armor	{top	{"body02" top}}}}
+;GER
+{if props "marder2"									{armor	{front	{"body01" front}}	{side	{"body02" right}}}}
+{if props "hetzer"									{armor	{back	{"engine01" back}}}}
+{if props "jagdpanzer_iv" "jagdpanzer_iv_wacher" "jagdpanzer"				{armor	{front	{"body4" front}}}}
+{if props "nashorn"									{armor	{back	{"body5" back}}		{side	{"body5" left}}}}
+{if props "jagdtiger"								{armor	{front	{"body03" front}}	{top	{"engine02" top}}}}
+{if props "pz4d" "pz4e"								{armor	{front	{"body03" front}}	{top	{"turret" top}}}}
+{if props "pz4h"									{armor	{top	{"turret" top}}}}
+{if props "ferdinand"								{armor	{side	{"body1" right}}	{top	{"body7" top}}}}
+{if props "pz4f2" "pz4f2_inf" "pz4g"				{armor	{side	{"engine" right}}	{top	{"engine" top}	{"turret" top}}}}
+{if props "pzb2740f"								{armor	{front	{"body05" front}	{"turret01" front}}}}
+{if props "brumbar"									{armor	{side	{"engine01" right}}	{back {"body01" back}}}}
+{if props "sturmtiger"								{armor	{top	{"engine" top}}}}
+{if props "hummel" "sturmpz1"						{armor	{front	{"body1" front}}}}
+{if props "stug3b"									{armor	{top	{"body02" top}}}}
+{if props "stuh42"									{armor	{back	{"body01" back}}	{top	{"body10" top}}}}
+{if props "stug3g"									{armor	{back	{"body01" back}}	{top	{"body03" top}}}}
+{if props "stug3f"									{armor	{back	{"body01" back}}	{top	{"body02" top}}}}
+{if props "welberwind"								{armor	{back	{"body1" back}}}}
+{if props "pz3n"									{armor	{back	{"engine01" back}}}}
+{if props "pz35t"									{armor	{side	{"turret01" right}}	{back	{"turret01" back}}	{top {"turret01" top}}}}
+{if props "sdkfz234" "pz3m"							{armor	{back	{"engine" back}}}}
+{if props "pz6bh"									{armor	{top	{"turret01" top}}}}
+{if props "pz5a"									{armor	{front	{"turret01" front}}	{side	{"turret01" left}}	{back {"turret01" back}}	{top {"turret01" top}}}}
+
+{if props "m4a1" "m4a1_inf" "m4a2" "m4a2_rus" "m4a2_76w" "m4a2_76w_rus" "m4a3_75" "m4a4" "m4a3dd" "m4a3_105" "m4a3_zippo" "m4a3c" "m4a3e8" "m10wolverine" "m18" "m26" "m26e4" 
+"lvt4" "m4a3dd_inf" "m4a3e2" "m4a3e2_jumbo_76" "m4a3e8_po" "m4a3m" "m8"
+	{armor	{front	{"turret01" front}}}
+}
+{if props "m8grayhound" {armor {front {"turret01" front}}}}
+{if props "m24" {armor {front {"turret03" front}}}}
+{if props "m36" {armor {front {"turret01" front} {"body02" front}}	{top {"engine01" top}}}}

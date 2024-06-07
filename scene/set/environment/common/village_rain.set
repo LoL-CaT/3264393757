@@ -1,0 +1,84 @@
+{environment
+	{light
+		{direction 0.523 -0.234 -0.819}
+		{ambient 0xff161b1b}
+		{ambient_intensity 2}
+		{diffuse 0xff3b3c3e}
+		{diffuse_intensity 2}
+		{specular_intensity 5}
+		{lights_intensity 0.6}
+		{envmap_amount 0.1}
+		{night}
+		{highlight
+			{brightness 50}
+			{ambient_bounced 50}
+			{rim_intensity 0.5}
+			{rim_glossiness 0.25}
+			{highlight_brightness 50}
+		}
+	}
+	{wind
+		{speed 0.71 -0.5 0}
+		{amplitude 3}
+	}
+	{haze
+		{enable}
+		{color 0xff414541}
+		{intensity 1}
+		{start -600}
+		{end 3000}
+	}
+	{sky
+		{enable}
+		{mesh "sky_farspace"}
+		{color 0xff63796b}
+		{global_environment "/texture/common/environment/day_moskow"}
+		{relative_rotation 3.18}
+		{textures {clouds "/texture/common/environment/clouds_02"}}
+		{clouds_scale 3}
+		{clouds_color 0xffaeaeae}
+	}
+	{weather
+		{enable}
+		{density 100}
+		{fx "rain"}
+		{sound "world/rain/02"}
+	}
+	{thunder
+		{interval 1 30}
+		{color 0xff002e46}
+		{sound "world/thunder/01"}
+	}
+	{video_overlay
+		{file "/video/menu.avi"}
+		{color 0xff000000}
+	}
+	{post_process
+		{eye_adaptation
+			{enabled}
+			{target_exposure 1.28374}
+			{exposure_max -1.07}
+			{rate 0.50335}
+			{fix_exposure}
+		}
+		{tone_mapping
+			{enabled}
+			{aces}
+			{white_point 0.01}
+			{toe_strength 0.03}
+			{toe_numenator 0.15}
+			{toe_denominator 0.38}
+			{linear_angle 0.12}
+			{shoulder_strength 0.2}
+			{shoulder_length 0.01}
+		}
+		{blue_shift
+			{treshold 0.01}
+		}
+		{ssao
+			{enabled}
+		}
+		{saturation 0.5}
+		{lut "/texture/common/lut/posteffect/neutral_LUT"}
+	}
+}

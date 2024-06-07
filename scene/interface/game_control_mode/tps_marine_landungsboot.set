@@ -1,0 +1,12 @@
+(include "tps.inc")
+{switch_to_time 0.25}
+{parameters
+	{range "camera_offset_up"		 3	7}   ; точка прицела относительно крыши машины
+	{range "camera_distance"		 5	25}     ;отдаление камеры от юнита
+	{range "camera_offset_forward" 		5	0}	; Смещение точки внимания по продольной оси	
+	{range_degrees "camera_fov"		60	60}	
+	{visual_set "visual_set" "tps_tank"}	
+}
+{suitable "landungsboot tps" {priority 15}}
+
+

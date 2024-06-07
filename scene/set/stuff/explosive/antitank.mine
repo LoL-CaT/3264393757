@@ -1,0 +1,24 @@
+{item
+	{tag "itemin2hands dropboxed breakage"}
+	{entity "mine_antitank"}
+	{inventory
+		{weight 100}
+		{fsm "stuff"}
+	}
+	{mass 8}
+	("blast_base"
+		;track thickness=33, blast_koef=6*dur, dur=1|1.5|2
+		;[light(198),medium(297),heavy(396)] - 396/5=79.2
+
+		energy_apc(79.2)
+		range_start_apc(0.5)
+		range_end_apc(1)
+		armorhealth(400)
+		k(1)
+
+		energy_base(1)
+		range_start(3)
+		range_end(6)
+	)
+	("seismic_heavy" energy(79.2))
+}

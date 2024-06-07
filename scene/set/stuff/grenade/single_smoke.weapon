@@ -1,0 +1,43 @@
+{weapon_bullet
+;	{tag "mrl gun damage_mortar agf"}
+	{tag "gun"}
+	{filling "gr m3" 1}
+	{fillingVisible "rocket"}
+
+	{fireSound	"pistol/nagan/nagan_shot"}
+	{foresight "foresight"}
+	
+	{spreading 
+			{radiusTable {0 0} {120 12} {250 22} {500 35}}
+			{SpreadPower 0.5}
+	}  	
+	{aimRange 25}
+	{maxRange 25}
+	{rechargeTime 40}
+	{gravity 5}
+	{burst {min 1}{noaiming}}
+	
+	{ZeroingAccuracy
+		{Distance 30
+			{AccuracyTable 0.75 0.5 0.3 0.2 0.1}
+		}
+		{Distance 75
+			{AccuracyTable 0.8 0.6 0.5 0.4 0.3 0.2}
+		}
+		{Distance 125
+			{AccuracyTable 0.9 0.8 0.75 0.7 0.65 0.62 0.6}
+		}
+		{Distance 250
+			{AccuracyTable 1 1 1 1}
+		}		
+	}
+
+	{projectileDamage 10}
+	{speed 50}
+	{AimingTolerance 0.1}
+	{AimingToleranceCorrection "mortar"}
+	
+	{aimtype curved}
+	{cursor "cannon_on"}
+	{cursorReloading "cannon_reload"}
+}

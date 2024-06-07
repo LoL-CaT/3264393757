@@ -1,0 +1,31 @@
+{action from "construction"
+	{cursor "hammer"}
+	{fx "flashred"}
+	{item "dot_kit"}
+	{item_in_box}
+	{able_vehicle}		
+	{button}
+	{ShowCount}
+	{abledrag}
+	{aux_unit "engineers"}
+	{RequireSelect}
+	{entity "dot_small_build"}
+	{workshop "dot_small_build_vis"}
+	{condition ability {"build" basic}}
+	{pather "dot_small"}
+	{time 300}
+	{instructions
+		{bind range 3}
+;		{disable_action_restart}
+;		{take_item}
+		{free_hands}
+;		{animations "build_bruster_start " totaltime 1}
+		{effect "barricade_start_sound"}
+		{fsm_request "repair"}
+		{construct notify_complete}
+		{take_last_item}
+		{effect "barricade_stop_sound"}
+		{unreserve_hands}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

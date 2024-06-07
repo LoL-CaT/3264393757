@@ -1,0 +1,63 @@
+(define "rule_tanker_static"
+	{rule "fuel_tanker_static"
+		{condition is_near_fuel_point "static" and not abandoned}
+		{amount_for_restore_start 0.99}
+		{fuel_point_type "static"}
+	}
+)
+(define "rule_tanker_consumable"
+	{rule "fuel_tanker_consumable"
+		{condition not is_fuel_point_consumable and is_near_fuel_point "consumable" and not abandoned}
+		{amount_for_restore_start 0.99}
+		{fuel_point_type "consumable"}
+	}
+)
+(define "rule_tanker_static_check_tags"
+	{rule "fuel_tanker_static"
+		{condition not tags "no_fuel_autorestore" and is_near_fuel_point "static" and not abandoned}
+		{amount_for_restore_start 0.99}
+		{fuel_point_type "static"}
+	}
+)
+(define "rule_tanker_consumable_check_tags"
+	{rule "fuel_tanker_consumable"
+		{condition not tags "no_fuel_autorestore" and not is_fuel_point_consumable and is_near_fuel_point "consumable" and not abandoned}
+		{amount_for_restore_start 0.99}
+		{fuel_point_type "consumable"}
+	}
+)
+
+{recovery_rules
+	{"battlezones*"
+		("rule_tanker_static")
+		("rule_tanker_consumable")
+	}
+	{"combat*"
+		("rule_tanker_static")
+		("rule_tanker_consumable")
+	}	
+	{"groundcontrol*"
+		("rule_tanker_static")
+		("rule_tanker_consumable")
+	}
+	{"frontline_*"
+		("rule_tanker_static")
+		("rule_tanker_consumable")
+	}
+	{"tutorial"
+		("rule_tanker_static")
+		("rule_tanker_consumable")
+	}	
+	{"mission"
+		("rule_tanker_static_check_tags")
+		("rule_tanker_consumable_check_tags")
+	}
+	{"mission_combat"
+		("rule_tanker_static_check_tags")
+		("rule_tanker_consumable_check_tags")
+	}
+	{""; editor
+		("rule_tanker_static_check_tags")
+		("rule_tanker_consumable_check_tags")
+	}
+}

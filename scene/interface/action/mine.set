@@ -1,0 +1,24 @@
+{action from "install"
+	{cursor "mine"}
+	{fx "flashred"}
+	{item "mine"}
+	{item_in_box}
+	{button}
+	{ShowCount}
+	{free_hands}
+	{aux_unit "uni_miners"}
+	{RequireSelect}
+	{instructions
+		{bind range 0.25}
+		{disable_action_restart}
+		{reserve_hands}
+		{animations "mine_drop" totaltime 0.5}
+		{animations "mine_install" totaltime 1}
+		{effect "mine_start_sound"}
+;		{fsm_request "ground-drop"}
+		{unreserve_hands}
+		{install_mine notify_complete}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}
+

@@ -1,0 +1,74 @@
+; Как работает air_attack:
+; ap0 - точка-цель
+; ap1 - точка на расстоянии distance1 от цели
+; ap2 - точка на расстоянии distance2 от цели 
+; ap_aim - точка на расстоянии distance_aim от _самолета_ и ориентированная по его Forward() - в эту точку всегда направлен прицел самолета.
+; Точки ap0, ap1 и ap2 лежат на одной прямой.
+; После получения приказа пилот летит в точку ap2, в которой разворачивается и летит в направлении ap1, 
+; при этом начинает набирать заданную высоту altitude
+; В точке ap1 пилот нажимает на гашетку (открывает бомболюк).
+; Нужно подобрать distance1 и distance_aim так, чтобы при выстреле снаряды попадали в цель
+; Нужно подобрать distance2, чтобы в точке ap1
+; а) самолет был развернут точно к ap0 (для всего оружия)
+; б) крен был нулевым (для ракет, расположенных на крыльях)
+; в) не улетал при этом надолго за клип.
+
+; значения по умолчанию
+{distance1  50}
+{distance2 90}
+{distance_aim 0}
+{altitude 20}
+
+; Если выполнится очередное условие, значения из него перекроют значения из 
+; предущих выполненных условий (или по умолчанию, если таковых еще не было).
+; Поддерживаются вложенные условия.
+
+{if weapon "bomb_dropper_il2_fab250" "bomb_dropper_il2_fab100" "bomb_dropper_il2" "bomb_dropper_il2_flame" "bomb_dropper_ju-87_sd4yh1" "bomb_dropper_a20_500lb" "bomb_dropper_a20_1000lb" "bomb_dropper_a20_100lb"
+	{distance1 55}
+	{distance2 90}
+}
+{if weapon "arl_il2" "arl_i16" "wfrgr21"
+	{distance1 120}
+	{distance2 150}
+}
+{if weapon "arl_mustang"
+	{distance1 90}
+	{distance2 150}
+}
+{if weapon "20mm_m1"
+	{distance1 140}
+	{distance2 180}
+}
+{if weapon "20mm_shvak"
+	{distance1 140}
+	{distance2 180}
+	{distance_aim 140}
+}
+{if weapon "shkas_x4" "shkas_x2"
+	{distance1 140}
+	{distance2 180}
+}
+{if weapon "20mm_hispano" "browning_x6" "20mm_mg151" "30mm_mk108" "mg131_x2" "20mm_mgff" "mg81_x2" "mg15_x2" "23mm_vja"
+	{distance1 140}
+	{distance2 180}
+}
+{if weapon "37mm_bordkanone" "37mm_ns37"
+	{distance1 80}
+	{distance2 150}
+}
+{if weapon "bomb_dropper_2x_fab50" "bomb_dropper_4x_fab50"
+	{distance1 15}
+	{distance2 45}
+}
+{if weapon "bomb_dropper_sc50" "bomb_dropper_bf109_sc250ja"
+	{distance1 15}
+	{distance2 45}
+}
+{if weapon "bomb_dropper_4x_100lb"
+	{distance1 15}
+	{distance2 45}
+}
+{if weapon "bomb_dropper_p51d_1600lb"
+	{distance1 30}
+	{distance2 60}
+}

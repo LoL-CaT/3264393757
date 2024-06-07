@@ -1,0 +1,28 @@
+{action from "construction"
+	{cursor "hammer"}
+	{fx "flashred"}
+	{item "blindage_wood_kit"}
+	{item_in_box}
+	{able_vehicle}	
+	{button}
+	{ShowCount}
+	{abledrag}
+	{aux_unit "engineers"}
+	{RequireSelect}
+	{entity "blindage_wood"}
+	{workshop "blindage_wood_vis"}
+	{condition ability {"build" basic}}
+	{pather "blindage_wood"}
+	{time 200}
+	{instructions
+		{bind range 3}
+		{free_hands}
+		{effect "barricade_start_sound"}
+		{fsm_request "repair"}
+		{construct notify_complete}
+		{take_last_item}
+		{effect "barricade_stop_sound"}
+		{unreserve_hands}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

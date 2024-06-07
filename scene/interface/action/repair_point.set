@@ -1,0 +1,25 @@
+{action from "construction"
+	{cursor "hammer"}
+	{item "repair_point_kit"}
+	{item_in_box}
+	{able_vehicle}
+	{button}
+	{ShowCount}
+	{apply_to_all}
+	{requireSelect}
+	{abledrag}
+	{condition ability {"build" basic}}
+	{entity "repair_point"}
+	{workshop "repair_point_vis"}
+	{pather "fuel_point"}
+	{time 10}
+	{instructions
+		{bind range 2}
+		{disable_action_restart}
+		{free_hands}
+		{effect "build_supp_point_start_sound"}
+		{fsm_request "repair"}
+		{construct notify_complete}
+		{take_last_item}
+	}
+}

@@ -1,0 +1,21 @@
+; экшен достройки (присоединения к строительству) - активируется при наведении на активную стройку
+; с пустым селектом будут выбегать инжи (если есть) и достраивать
+; также будут достраивать юниты в селекте, удовлятворяющие {condition
+; достраиваться будет любая стройка, если нужно персональные, то тогда нужен фильтр {target entity ".."}
+
+{action from "construct"
+	{target entity "med_point_vis"}
+	{able_vehicle}
+	{cursor "hammer"}
+	{aux_unit "engineers"}
+	{condition ability {"build" basic} or props "dodge_med" or props "gaz_aa_med" or props "opel_blitz_med"}
+	{instructions
+		{bind range 2}
+;		{disable_action_restart}
+		{free_hands}
+		{effect "build_supp_point_start_sound"}
+		{fsm_request "repair"}
+		{construct notify_complete}
+		{take_last_item}
+	}
+}

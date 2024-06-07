@@ -1,0 +1,178 @@
+;SDL
+
+(define "shell"
+	{register "vehicle/shell" {icon "shell/ui_%0"} {shell "%0"} {key "actions/shell_gun_%0"} {title "weapon_load/gun/%0"} {name "shell_gun_%0"} {tags "shell"}}
+)
+
+("shell" args fg)
+("shell" args fr)
+("shell" args ap)
+("shell" args sk)
+("shell" args ic)
+("shell" args sr)
+("shell" args apcr)
+("shell" args ph)
+("shell" args bzt)
+
+{register "custom" {name "round_sandbag"} {icon "sandbag"} {self}}
+{register "custom" {name "emit"} {applicable entity} {title "vehicle/emit"} {key "actions/emit"} {tags "crew"}}
+{register "custom" {name "repair"} {applicable entity} {key "actions/repair"} {use_aim}}
+{register "custom" {action "move_backward"} {name "move_backward"} {icon "move_backward"} {type "action"} {key "actions/move_backward"} {applicable entity}}
+{register "custom" {action "round_dot"} {name "round_dot"} {type "build"} {key "actions/round_dot"} {icon "round_dot"} {self} {group "bodykit"}}
+{register "custom" {action "trench_cannon"} {name "trench_cannon"} {self} {icon "trench"} {group "bodykit"} {type "build"} {key "actions/trench_cannon"}}
+{register "custom" {action "build_supp_point"} {name "build_supp_point"} {type "build"} {key "actions/build_supp_point"} {icon "supp_point"} {group "bodykit"}}
+{register "custom" {name "emit_passengers"} {applicable entity} {key "actions/emit_passengers"} {icon "emit_passengers"} {title "vehicle/emit_passengers"} {tags "crew"}}
+
+{register "vehicle/passengers" {icon "emit_drop_passengers"} {key "actions/passengers"} {title "vehicle/emit_passengers"}  {tags "crew"}}
+
+{modify "hide_gunners" {key "actions/hide_gunners"} {tags "state_vehicle"}}
+{modify "weapon_reload" {group "weapon_state1"}}
+{modify "weapon_unload" {group "weapon_state1"} {title "weapon_reload/off/action"}}
+{modify "leave_unit" {key "multiplayer/leave_unit"} {tags "state_vehicle_common"}}
+{modify "round_sandbag" {type "build"} {key "actions/round_sandbag"} {group "bodykit"} {tags "bodykit"}}
+{modify "round_sandbag1" {type "build"} {key "actions/round_sandbag1"} {group "bodykit"} {tags "bodykit"}}
+{modify "build_mgun" {type "build"} {group "bodykit"} {tags "bodykit"}}
+{modify "build_supp_point" {type "build"} {group "bodykit"} {tags "bodykit"}}
+{modify "vehicle/mount_toggle" {key "actions/mount_toggle"} {tags "state"}}
+{modify "vehicle/mount" {key "actions/mount"}}
+{modify "vehicle/unmount" {key "actions/unmount"}}
+{modify "aim_mode" {key "actions/aim_mode"} {tags "state"}}
+{modify "formation"}
+{modify "repair" {tags "order"}}
+{modify "rotate" {tags "order order_kamikadze"}}
+{modify "emit" {tags "crew crew_house"}}
+{modify "emit_passengers" {tags "crew"}}
+{modify "cancel" {tags "order order_kamikadze"}}
+{modify "move_backward" {tags "state_vehicle"}}
+{modify "round_dot" {tags "bodykit"}}
+{modify "trench_cannon" {tags "bodykit"}}
+;==========vehicle end
+
+;==========human
+
+
+{register "custom" {action "mine_ap"} {name "install_mine_ap"} {icon "mine_ap"} {group "install1"} {tags "install"}}
+{register "custom" {action "mine_at"} {name "install_mine_at"} {icon "mine_at"} {group "install1"} {tags "install"}}
+{register "custom" {name "barricade"} {icon "sandbag"} {group "install2"} {tags "install"}}
+{register "custom" {name "barbwire"} {group "install2"} {tags "install"}}
+{register "custom" {name "hedgehog"} {group "install2"} {tags "install"}}
+{register "custom" {name "dot_small"} {group "install2"} {tags "install"}}
+{register "custom" {name "dot_wood"} {group "install2"} {tags "install"}  {applicable entity empty_selection} {type "build"} {key "actions/dot_wood"}}
+{register "custom" {name "blindage_wood"} {group "install2"} {tags "install"}  {applicable entity empty_selection} {type "build"} {key "actions/blindage_wood"}}
+{register "custom" {name "tower_rus"} {group "install2"} {tags "install"} {applicable entity empty_selection} {type "build"} {key "actions/tower"}}
+{register "custom" {name "tower_usa"} {group "install2"} {tags "install"} {applicable entity empty_selection} {type "build"} {key "actions/tower"}}
+{register "custom" {name "tower_ger"} {group "install2"} {tags "install"} {applicable entity empty_selection} {type "build"} {key "actions/tower"}}
+{register "custom" {name "tower_telescope"} {group "install2"} {tags "install"} {applicable entity empty_selection} {type "build"} {key "actions/tower_telescope"}}
+{register "custom" {name "med_point"} {group "install2"} {tags "install"}  {applicable entity empty_selection} {type "build"} {key "actions/med_point"}}
+{register "custom" {name "fuel_point"} {group "install2"} {tags "install"}  {applicable entity empty_selection} {type "build"} {key "actions/fuel_point"}}
+{register "custom" {name "repair_point"} {group "install2"} {tags "install"}  {applicable entity empty_selection} {type "build"} {key "actions/repair_point"}}
+
+{register "custom" {name "pour_in"} {icon "funnel"} {group "pour_actions"} {applicable active_entity} {use_aim}}
+{register "custom" {name "pour_out"} {icon "can"} {group "pour_actions"} {applicable active_entity} {use_aim}}
+{register "custom" {name "pour_over"} {icon "pour_over"} {group "pour_actions"} {applicable active_entity}}
+{register "custom" {name "injection"} {applicable active_entity} {use_aim}}
+{register "custom" {name "throw_ap_grenade"} {group "human_shot"} {key "actions/throw_ap_grenade"} {applicable entity}}
+{register "custom" {name "throw_ap_grenade_2"} {icon "throw_ap_grenade"} {group "human_shot"} {key "actions/throw_ap_grenade_2"} {use_aim}}
+{register "custom" {name "throw_ap_grenade_3"} {icon "throw_ap_grenade"} {group "human_shot"} {key "actions/throw_ap_grenade_3"} {self}}
+{register "custom" {name "throw_at_grenade"} {group "human_shot"} {key "actions/throw_at_grenade"} {applicable entity}}
+{register "custom" {name "throw_sk_grenade"} {group "human_shot"} {key "actions/throw_sk_grenade"} {applicable entity}}
+{register "custom" {action "throw_sl_grenade"} {name "throw_sl_grenade"} {group "human_shot"} {type "action"} {key "actions/throw_sl_grenade"} {applicable entity}}
+{register "custom" {name "throw_bl_grenade"} {group "human_shot"} {key "actions/throw_bl_grenade"} {type "action"} {applicable entity}}
+{register "custom" {name "throw_dynamite"} {group "human_shot"} {key "actions/throw_dynamite"} {type "action"} {icon "dynamite"} {applicable entity}}
+{register "custom" {name "aimed_shot"} {group "human_shot"} {key "actions/aimed_shot"} {applicable entity} {use_aim}}
+{register "custom" {name "bazooka_shot"} {group "human_shot"} {key "actions/bazooka_shot"} {applicable entity} {use_aim}}
+{register "custom" {name "examine"} {applicable entity} {key "actions/examine"}}
+{register "custom" {name "collect"} {applicable active_entity} {use_aim}}
+{register "custom" {name "attack_melee"} {applicable entity} {use_aim} {title "human/attack_melee"} {key "actions/attack_melee"}}
+{register "custom" {action "pit"} {name "pit"} {applicable entity} {self} {group "install2"} {type "build"} {key "actions/pit"}}
+{register "custom" {action "barricade_inplace"} {name "barricade_inplace"} {icon "sandbag"} {applicable entity} {self} {group "install2"} {type "build"}}
+{register "custom" {action "trench"} {name "trench"} {applicable entity empty_selection} {icon "trench"} {group "install2"} {type "build"} {key "actions/trench"} {tags "install"}}
+{register "custom" {name "house_assault"} {use_aim} {type "action"} {key "actions/house_assault"} {title "house/assault"} {tags "attack"}}
+{register "custom" {name "house_fortification_start"} {applicable entity} {self} {type "build"} {title "house/fortify_start"} {key "actions/house_fortification_start"}}
+{register "custom" {name "house_fortification_stop"} {applicable entity} {self} {type "build"} {title "house/fortify_stop"} {key "actions/house_fortification_stop"}}
+
+{register "custom" {action "put_dynamite"} {name "install_dynamite"} {icon "put_dynamite"} {key "actions/put_dynamite"} {group "install1"}}
+{register "custom" {action "burn"} {name "burn"} {icon "burn"} {key "actions/throw_bl_grenade"} {group "install1"}}
+{register "custom" {action "attack"} {name "attack"} {group "human_shot"} {applicable entity}}
+{register "custom" {action "throw_knife"} {name "throw_knife"} {group "human_shot"} {key "actions/throw_knife"} {applicable entity} {type "action"}}
+{register "custom" {name "heal"} {type "action"} {key "actions/heal"} {title "human/heal"} {applicable entity} {self}}
+{register "custom" {name "cut_wire"} {applicable entity} {use_aim}}
+
+{modify "move_mode/at_will" {key "actions/move_mode"} {tags "state"}} ; work as toggle, 'at_will' in name remain for compatibility with const localization
+{modify "mine_detection" {key "actions/mine_detection"} {tags "state"}}
+{modify "gas_mask/off" {icon "gas_mask_off"}}
+{modify "barricade" {applicable entity empty_selection} {type "build"} {key "actions/barricade"} {tags "install"}}
+{modify "barbwire" {applicable entity empty_selection} {type "build"} {key "actions/barbwire"} {tags "install"}}
+{modify "hedgehog" {applicable entity empty_selection} {type "build"} {key "actions/hedgehog"} {tags "install"}}
+{modify "dot_small" {applicable entity empty_selection} {type "build"} {key "actions/dot_small"} {tags "install"}}
+{modify "bazooka_shot"	{use_aim 0} {type "action"} {tags "attack"}}
+{modify "install_mine_ap" {applicable entity empty_selection} {key "actions/install_mine_ap"} {tags "install"}}
+{modify "install_mine_at" {applicable entity empty_selection} {key "actions/install_mine_at"} {tags "install"}}
+{modify "attack_melee"	{use_aim 0} {type "action"} {tags "attack"}}
+{modify "throw_ap_grenade" {tags "attack"}}
+{modify "throw_at_grenade" {tags "attack"}}
+{modify "throw_sk_grenade" {tags "attack"}}
+{modify "throw_bl_grenade" {tags "attack"}}
+{modify "throw_sl_grenade" {tags "attack"}}
+{modify "throw_knife" {tags "attack"}}
+{modify "throw_dynamite" {tags "attack"}}
+{modify "fire_mode" {tags "state"}}
+{modify "pit" {tags "install"}}
+{modify "trench" {tags "install"}}
+{modify "hose_fortification_start" {tags "order"}}
+{modify "put_dynamite" {tags "install"}}
+{modify "install_dynamite" {tags "install"}}
+{modify "burn" {tags "install"}}
+{modify "examine" {tags "order"}}
+{modify "heal" {tags "order"}}
+{modify "house_fortification_start" {tags "house_fortification"}}
+{modify "house_fortification_stop" {tags "house_fortification"}}
+
+;==========human end
+
+;==========common
+{register "perk/custom" 
+	{name "perk/inf_commander_voice"} 
+	{perk_name "inf_commander_voice"}
+	{icon "inf_commander_voice"}
+	{title "perk/inf_commander_voice"}
+	{applicable entity}
+}
+{register "custom" {action "capture_flag"} {title "capture_flag"} {type "action"}}
+
+{register "custom" {action "suppression_fire"} {name "suppression_fire"} {key "actions/suppression_fire"} {group "human_shot"} {type "action"}}
+{register "custom" {action "camouflage"} {name "camouflage"}  {icon "plant"} {self} {key "actions/camouflage"} {type "build"} {group "bodykit"} {tags "bodykit"}}
+{register "custom" {action "smoke_gl"} {name "smoke_gl"}  {icon "throw_sk_grenade"} {self} {key "actions/smoke_gl"} {type "action"} {tags "attack"}}
+{register "custom" {action "stuff_detonate"} {name "stuff_detonate"}  {icon "leave_unit"} {self} {key "actions/stuff_detonate"} {type "action"} {tags "order_kamikadze"}}
+{register "custom" {action "detonate_on_target"} {name "detonate_on_target"}  {icon "put_dynamite"} {key "actions/detonate_on_target"} {type "action"} {tags "order_kamikadze"}}
+
+;{modify "hotbar_toggle" {group "hotbar"} {icon "options"}}
+;{modify "hotbar_customize" {group "hotbar"} {icon "options"}}
+{modify "map" {tags "options"}}
+{modify "toggle_hud" {tags "options"} {icon "toggle_hud"}}
+{modify "map_control" {tags "options"}}
+{modify "attack" {key "actions/attack"} {tags "attack"}}
+{modify "attack_ground"	{key "actions/attack_ground"} {tags "attack order_kamikadze"}}
+{modify "attack_ground_forced" {tags "attack"}}
+{modify "charge" {icon "sprint"} {key "actions/charge"} {type "state"} {tags "order"}}
+{modify "camouflage" {tags "bodykit"}}
+{modify "transfer_units" {tags "state"}}
+{modify "auto_withdraw_reason" {tags "state_airborne"}}
+{modify "withdraw" {key "actions/withdraw"} {tags "order order_airborne order_kamikadze"}}
+{modify "pose/normal" {tags "state"}}
+{modify "pose/squat" {tags "state"}}
+{modify "pose/crawl" {tags "state"}}
+{modify "attach" {tags "order"}}
+{modify "detach" {tags "order"}}
+{modify "weapon_prepare/on" {tags "state"}}
+{modify "weapon_prepare/off" {tags "state"}}
+{modify "inventory" {tags "state"}}
+
+;==========manual control
+{modify "control_mode_switch" {name "control_manual/switch_control_mode"} {title "control_manual/switch_control_mode"} {icon "control_manual/switch"} {key "control_manual/switch_control_mode"} {tags "manual_control"} }
+{register "control_mode_set" {name "control_manual/set_control_mode_tps"} {title "control_manual/set_control_mode_tps"} {icon "control_manual/tps"} {key "control_manual/set_control_mode_tps"} {tags "manual_control"} {mode "tps"}}
+{register "control_mode_set" {name "control_manual/set_control_mode_snipe"} {title "control_manual/set_control_mode_snipe"} {icon "control_manual/snipe"} {key "control_manual/set_control_mode_snipe"} {tags "manual_control"} {mode "snipe"}}
+{register "control_mode_set" {name "control_manual/set_control_mode_tracking"} {title "control_manual/set_control_mode_tracking"} {icon "control_manual/toggle"} {key "control_manual/toggle"} {tags "manual_control manual_control_human"} {mode "tracking"}}
+
+
+;==========end

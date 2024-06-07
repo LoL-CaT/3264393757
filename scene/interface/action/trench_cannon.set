@@ -1,0 +1,17 @@
+{action
+	{item "sapper_shovel"}
+	{item_in_box}
+	{able_vehicle}
+	{button}
+	{ShowCount}
+	{apply_to_all}
+	{requireSelect}
+	{condition bodykit_able "trench_cannon" and not position_blocked "trench_cannon"}
+	{to_self}
+	{instructions
+		{disable_action_restart}
+		{wait_stationary}
+		{cannon_state "fire"}
+		{bodykit notify_complete "trench_cannon"}
+	}
+}

@@ -1,0 +1,132 @@
+;SDL
+actor
+
+(include "vehicle.ext")
+(include "cannon_crew.ext")
+(include "cannon_armor.ext")
+;(include "shadow/tank.inc"  scale(0.7))
+(include "selection/vehicle.inc"  scale(0.7))
+{PatherID "cannon.carried"}
+{simulation {able 1} {disableLinked 1}}
+{obstacleID "tank"}
+{collider "cannon"}
+{constrain ground}
+{props "mg_stan" "vehicle" "steel" "cannon" "emit_on_sink" "ignore_uplink_fogged" "trace_interceptor"}
+{able "emit_crew_on_injure"}
+{targetClass "cannon" "bullet"}
+{targetSelector "cannon_bullet"}
+
+{brain "vehicle" 
+	{state "vehicle"}
+}
+
+{extender "bodykit"
+	{"camouflage"
+		{delay 5}
+		{"camouflage_vehicle_01" "basis" {no_link}} ;entity bone			
+	}       	
+}
+
+{placer
+	{crew}
+	{place "commander" {visor "main"}}
+	{place "driver1" {visor "main"}}
+	{place "driver2" {visor "main"}}
+}
+
+{sensor
+	{visor "view-around"
+		{vision "mgun_stan_around"}
+			{bone "basis"}
+	}
+	{visor "main"
+		{vision "mgun_stan_main"}
+		{bone "turret"}
+	}
+}
+
+{extender "inventory"
+	{Box
+		{Size 6 6}
+		{weight 1000}
+		{item "ammo" "mgun" 500}
+		{item "ammo" "mgun" 1200}
+;		{item "plant" 3 {cell 0 1}}
+	}
+}
+
+{Weaponry
+    {ManualAccuracy 1.5}
+	{place "mgun"
+		{charger "gunner"}
+		{LinkBone "mgun"}
+		{LinkAnimation "off"}
+	}
+}  	
+
+
+("crew_2_human")
+("crew_human" place(driver1) bone(driver1)	door(emit1) animation(driver1))
+("crew_human" place(driver2) bone(driver2)	door(emit2) animation(driver2))
+{boarder
+	{anm "gunner"
+		{forward	{end "stan_mgun"}}
+	}
+	{anm "commander"
+		{forward	{end "artillery_support_l"}}
+	}
+	{anm "driver1"
+		{forward {end "mgun_browning_driver_r"}}
+	}
+	{anm "driver2"
+		{forward {end "mgun_browning_driver_l"}}
+	}
+	{link "driver1" "gunner"}
+	{link "driver2" "commander"}
+}
+
+{extender "cannon"
+	{state move}
+	{animation
+		{switch "close"}
+		{move "mgun_browning_driver_r" "mgun_browning_driver_l"}
+		{aim "" ""}
+		{fire  "" ""}
+		{reload  "mgun_stan_charger" ""}
+	}
+	{attack {workers "gunner" "commander"}}
+}
+
+{Chassis "human_carrier"
+	("loco_carrier")
+}
+
+{volume "shield" {thickness 10}}
+{component "shield" {RepairTime 20}}
+{extender "shield"
+	{on}
+	;{no_blast} off for arena
+}
+
+{armor
+	{setting "shield"
+		{volumes "*shield*"}
+		{thickness 10}
+	}
+}
+
+{mass 50}
+
+{volume "select"
+	{able clear {select}}
+	{density 0}
+}
+{component "body"
+	{RepairTime 15}
+}
+
+{extender "talk"
+	{talker "cannon"}
+}
+
+("armor_light" args 0.7)

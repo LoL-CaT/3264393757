@@ -1,0 +1,27 @@
+{action
+	{target ground}
+	{fx "flashred"}
+	{item "sandbag_kit"}
+	{item_in_box}
+	{button}
+	{ShowCount}
+	{apply_to_all}
+	{to_self}
+	{RequireSelect}
+	{instructions
+		{bind range 0.8}
+		{disable_action_restart}
+		{take_item}
+		{reserve_hands}
+		{animations "build_bruster_start " totaltime 1}
+		{effect "barricade_start_sound"}
+		{animations "build_bruster"  loop totaltime 4}
+		{fsm_request "ground-drop"}
+		{effect "barricade_stop_sound"}
+		{animations "build_bruster_end " totaltime 1}
+		{unreserve_hands}
+		{install notify_complete "sandbag3" 1 exact_placement }
+		{fsm_request nocheck "hold-nothing"}
+		{hideout nocheck {radius 1}}
+	}
+}

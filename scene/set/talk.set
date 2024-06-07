@@ -1,0 +1,296 @@
+{talks
+
+;////////////////////////////////////////////////
+;// defines
+;////////////////////////////////////////////////
+(define "phrase_voice"
+	{phrase
+		{language "%1"}
+		{voice %2}
+		{sound "%0/talk/%1/%3/v%2"}
+		{text_dbg "(%1) %1/%3/v%2"}
+	}
+)
+
+(define "phrase_voice_text"
+	{phrase
+		{language "%1"}
+		{voice %2}
+		{sound "%0/talk/%1/%3/v%2"}
+		{text_dbg "(%1) %1/%3/v%2"}
+		{text "talk/%3"}
+	}
+)
+
+(define "phrases"
+	("phrase_voice" args %0 rus 1 %1)
+	;("phrase_voice" args %0 rus 2 %1)
+	;("phrase_voice" args %0 rus 3 %1)
+
+	("phrase_voice" args %0 ger 1 %1)
+;	("phrase_voice" args %0 ger 2 %1)
+
+	("phrase_voice" args %0 eng 1 %1)
+	
+	("phrase_voice" args %0 fra 1 %1)
+
+	("phrase_voice" args %0 usa 1 %1)
+;	("phrase_voice" args %0 usa 2 %1)
+	
+;	("phrase_voice" args %0 jap 1 %1)
+;	("phrase_voice" args %0 jap 2 %1)
+)
+(define "phrases_text"
+	("phrase_voice_text" args %0 rus 1 %1)
+	;("phrase_voice_text" args %0 rus 2 %1)
+	;("phrase_voice_text" args %0 rus 3 %1)
+
+	("phrase_voice_text" args %0 ger 1 %1)
+;	("phrase_voice_text" args %0 ger 2 %1)
+
+	("phrase_voice_text" args %0 eng 1 %1)
+	
+	("phrase_voice_text" args %0 fra 1 %1)
+
+	("phrase_voice_text" args %0 usa 1 %1)
+;	("phrase_voice_text" args %0 usa 2 %1)
+	
+;	("phrase_voice_text" args %0 jap 1 %1)
+;	("phrase_voice_text" args %0 jap 2 %1)
+)
+
+(define "human_phrases"
+	("phrases" args human %0)
+)
+(define "human_phrases_text"
+	("phrases_text" args human %0)
+)
+(define "tank_phrases"
+	("phrases" args vehicle %0)
+)
+(define "tank_phrases_text"
+	("phrases_text" args vehicle %0)
+)
+(define "cannon_phrases"
+	("phrases" args cannon %0)
+)
+(define "cannon_phrases_text"
+	("phrases_text" args cannon %0)
+)
+;//-----------------------------------------
+(define "component"
+	{talk "%0_broken"
+		("tank_phrases" args %1_broken)
+		{freq 1}
+		{priority %2}
+	}
+	{talk "%0_injured"
+		("tank_phrases" args %1_injured)
+		{freq 1}
+		{priority %3}
+	}
+)
+(define "component_default"	("component" args %0 %0 %1 %2))
+(define "component_custom"	("component" args %0 %1 %2 %3))
+(define "target_broke_component_default"
+	{talk "%0_target_broke_%1"
+		("%0_phrases" args target_broke_%1)
+		{freq 1}
+		{priority %2}
+	}
+)
+(define "target_broke_component_immobilized"
+	{talk "%0_target_broke_%1"
+		("%0_phrases" args target_broke_%1)
+		("%0_phrases" args target_immobilized)
+		{freq 1}
+		{priority %2}
+	}
+)
+(define "target_pierced"
+	{talk "%0_target_pierced"
+		("%0_phrases" args target_pierced)
+		{freq 1}
+		{priority 40}
+	}
+)
+(define "target_bullet_reflected"
+	{talk "%0_target_bullet_reflected" ;//scripts
+		("%0_phrases" args target_bullet_reflected)
+		("%0_phrases" args target_bullet_stucked)
+		{freq 1}
+		{priority 30}
+	}
+)
+(define "target_destroyed_base"
+	{talk "%0_target_destroyed_%1" ;//scripts
+		("%0_phrases" args target_destroyed_%1)
+		("%0_phrases" args target_destroyed)
+		{freq 1}
+		{priority 99}
+	}
+)
+(define "target_destroyed"
+	("target_destroyed_base"						args %0 cannon)
+	("target_destroyed_base"						args %0 mgun)
+	("target_destroyed_base"						args %0 tank)
+	("target_destroyed_base"						args %0 mortar)
+	("target_destroyed_base"						args %0 armored_car)
+	("target_destroyed_base"						args %0 car)
+)
+(define "unable_move_reason"
+	{talk "%0_%1"
+		("%0_phrases_text" args %1)
+		{freq 1}
+		{priority 50}
+	}
+)
+;////////////////////////////////////////////////
+;// talks for engine generated events
+;////////////////////////////////////////////////
+
+;// human
+; default period    = 5
+; default deviation = 0
+{talk "selection"			("human_phrases" args selection_of_units)	{freq 1}}
+{talk "selection_support"		("human_phrases" args selection_support)	{freq 1}}
+{talk "executing_order"
+	("human_phrases" args executing_an_order)
+	;("human_phrases" args selection_of_units)
+	{freq 1}	
+}
+{talk "attack"					("human_phrases" args attack)}
+{talk "injuring"				("human_phrases" args scream_of_pain)			{freq 1}}
+{talk "things_look_blue"
+	("human_phrases" args things_look_blue)
+	("human_phrases" args retreat)
+	{freq 1}	
+}
+{talk "aimed_shot"				("human_phrases" args shot_from_a_sniper_rifle)	{freq 1}}
+{talk "bazooka_shot"			("human_phrases" args shot_from_a_bazooka)		{freq 1}}
+{talk "throwing_grenade"
+	("human_phrases" args throwing_a_grenade)
+	("human_phrases" args cover_fire)
+	("human_phrases" args attack)
+	{freq 1}	
+}
+{talk "in_action"
+	("human_phrases" args in_action)
+	("human_phrases" args cries_in_battle)
+	("human_phrases" args attack)
+	("human_phrases" args cover_fire)
+	{freq 1}	
+}
+{talk "death_cry"					("human_phrases" args death_cry)				{freq 0.5}}
+{talk "ill_take_ammo"				("human_phrases" args ill_take_ammo)			{freq 0.5}	{period 7.5}	{deviation 2.5}}
+{talk "ill_take_grenades"			("human_phrases" args ill_take_grenades)		{freq 1}}
+
+;//cut from cries_in_battle
+{talk "ally_die"					("human_phrases" args ally_die)					{freq 1}	{period 7.5}	{deviation 2.5}}
+
+;//cut from cries_in_battle//scripts
+{talk "drop_morale"					("human_phrases" args drop_morale)				{freq 1}	{period 7.5}	{deviation 2.5}}
+
+{talk "cover"						("human_phrases" args cover)						{freq 1}}
+{talk "house_fortification_start"	("human_phrases" args house_fortification_start)	{freq 1}}
+{talk "house_fortification_stop"	("human_phrases" args house_fortification_stop)		{freq 1}}
+{talk "house_leave"					("human_phrases" args house_leave)					{freq 1}}
+{talk "board to house"				("human_phrases" args board_to_house)				{freq 1}}
+{talk "board to vehicle"			("human_phrases" args board_to_vehicle)				{freq 1}}
+;{talk "human_bullet_hit_obstacle"	("human_phrases" args bullet_hit_obstacle)			{freq 1}	{priority 99}};срабатывает при обычной стрельбе - надо чинить
+{talk "camouflage_begin"			("human_phrases" args camouflage_begin)				{freq 1}}
+{talk "not_enough_crew"				("human_phrases_text" args not_enough_crew)			{freq 1}	{priority 99}}
+{talk "human_mines"					("human_phrases_text" args mines)					{freq 1}	{priority 99}}
+{talk "explosives"					("human_phrases_text" args explosives)				{freq 1}	{priority 99}}
+{talk "killed_by_sniper"			("human_phrases_text" args killed_by_sniper)		{freq 1}	{priority 99}}
+{talk "human_enemy_observed"		("human_phrases_text" args enemy_observed)			{freq 1}	{priority 99}}
+{talk "observed_by_enemy"			("human_phrases" args observed_by_enemy)			{freq 1}	{priority 99}}
+{talk "destroyed_by_spy"			("human_phrases" args destroyed_by_spy)				{freq 1}	{priority 100}}
+{talk "withdraw"					("human_phrases" args withdraw)						{freq 1}}
+{talk "trench_enter"				("human_phrases" args trench_enter)					{freq 1}}
+{talk "install_sapper_shovel"		("human_phrases" args install_sapper_shovel)		{freq 1}}
+{talk "install_sandbag_kit"			("human_phrases" args install_sandbag_kit)			{freq 1}}
+{talk "install_hedgehog_kit"		("human_phrases" args install_hedgehog_kit)			{freq 1}}
+{talk "install_barbwire_kit"		("human_phrases" args install_barbwire_kit)			{freq 1}}
+{talk "install_mine antitank"		("human_phrases" args install_mine_antitank)		{freq 1}}
+{talk "install_mine antipersonnel"	("human_phrases" args install_mine_antipersonnel)	{freq 1}}
+("target_broke_component_immobilized"	args human track 50)
+("target_broke_component_immobilized"	args human engine 60)
+("target_broke_component_default" 		args human turret 70)
+("target_broke_component_default"		args human gun 80)
+("target_pierced" 						args human)
+("target_bullet_reflected" 				args human)
+("target_destroyed"						args human)
+
+{talk "repair begin"
+	("human_phrases" args repair)
+	("tank_phrases" args repair)
+	{freq 1}	
+}
+{talk "repair_end"					("human_phrases" args repair_end)				{freq 1}}
+
+;// tanks
+{talk "tank_selection"				("tank_phrases" args selection_of_units)		{freq 1}}
+{talk "tank_executing_order"		("tank_phrases" args executing_an_order)		{freq 1}}
+{talk "tank_in_action"				("tank_phrases" args in_action)					{freq 1} 	{priority 99}}
+{talk "tank_burning"				("tank_phrases" args burning)					{freq 1}}
+{talk "tank_leave"					("tank_phrases" args leave)						{freq 1}	{priority 99}}
+;{talk "tank_bullet_hit_obstacle"	("tank_phrases" args bullet_hit_obstacle)		{freq 1}	{priority 99}};срабатывает при обычной стрельбе - надо чинить
+{talk "tank_mines"					("tank_phrases_text" args mines)				{freq 1}	{priority 99}}
+{talk "tank_enemy_observed"			("tank_phrases_text" args enemy_observed)		{freq 1}	{priority 99}}
+{talk "tank_bullet_reflect" ;//script
+	("tank_phrases" args bullet_reflect)
+	("tank_phrases" args bullet_stuck)
+	{freq 1}
+	{priority 31}
+}
+{talk "tank_pierce"					("tank_phrases" args pierce)					{freq 1}	{priority 41}}
+("component_default" 					args engine 61 59)
+("component_default" 					args turret 71 69)
+("component_default" 					args gun 81 79)
+("component_custom" 					args trackright track 51 49)
+("component_custom" 					args trackleft track 51 49)
+("target_broke_component_immobilized"	args tank track 50)
+("target_broke_component_immobilized"	args tank engine 60)
+("target_broke_component_default" 		args tank turret 70)
+("target_broke_component_default"		args tank gun 80)
+("target_pierced"						args tank)
+("target_bullet_reflected"				args tank)
+("target_destroyed"						args tank)
+("unable_move_reason" args tank track_broken)
+("unable_move_reason" args tank engine_broken)
+("unable_move_reason" args tank need_more_crew)
+{talk "tank_executing_order_weapon_fire_barrage"			("tank_phrases" args executing_order_weapon_fire_barrage)			{freq 1}}
+{talk "tank_executing_order_weapon_fire_non_stop_ground"	("tank_phrases" args executing_order_weapon_fire_non_stop_ground)	{freq 1}}
+{talk "hide_gunners"										("tank_phrases" args hide_gunners)									{freq 1}}
+{talk "return_to_base"										("tank_phrases" args return_to_base)								{freq 1}}
+{talk "tank_repairer_fail"									("tank_phrases" args repairer_fail)									{freq 1}}
+
+;// cannons
+{talk "cannon_executing_order"		("human_phrases" args executing_an_order)		{freq 1}}
+{talk "cannon_in_action"			("cannon_phrases" args in_action)				{freq 1} 	{priority 99}}
+{talk "cannon_leave"				("cannon_phrases" args leave)					{freq 1}	{priority 99}}
+{talk "cannon_pierce"				("cannon_phrases" args pierce)					{freq 1}	{priority 41}}
+{talk "cannon_bullet_reflect" ;//script
+	("cannon_phrases" args bullet_reflect)
+	("cannon_phrases" args bullet_stuck)
+	{freq 1}
+	{priority 31}
+}
+("unable_move_reason" args cannon need_more_crew)
+{talk "round_sandbag_begin"		("cannon_phrases" args round_sandbag_begin)			{freq 1}}
+{talk "round_dot_begin"			("cannon_phrases" args round_dot_begin)				{freq 1}}
+{talk "cannon_executing_order_weapon_fire_barrage"			("cannon_phrases" args executing_order_weapon_fire_barrage)			{freq 1}}
+{talk "cannon_executing_order_weapon_fire_non_stop_ground"	("cannon_phrases" args executing_order_weapon_fire_non_stop_ground)	{freq 1}}
+{talk "anti_airborne_mode_on"								("cannon_phrases" args anti_airborne_mode_on)						{freq 1}}
+{talk "cannon_repairer_fail"								("cannon_phrases" args repairer_fail)								{freq 1}}
+
+;////////////////////////////////////////////////
+;// talks for missions designers
+;////////////////////////////////////////////////
+
+{talk "alert"		("human_phrases" args alert)}
+{talk "amazement"	("human_phrases" args amazement)}
+{talk "jubilation"	("human_phrases" args jubilation)}
+
+}

@@ -1,0 +1,33 @@
+(include "\set\small_firearms_accuracy.inc")
+(define "damage_arena_ptr"                              
+	{projectileDamageTable {0 %0} {30 %0} {70 %1} {1000 %2} {120 %3}}
+;	{armorHealthDamageTable {0 (* 4.5 %0)}}
+	{armorHealthDamageTable {0 100} {35 50}}
+	
+	{projectiledamagespread (* -1 0.1 %0) (* 0.1 %0) 1}
+	{armorhealthdamagespread (* -1 0.1 1.5 %0) (* 0.1 1.5 %0) 1}
+	
+	{parameters "ap" "cannon"
+		{armorHealthDamageTable {0 60} {35 25}}		
+	}	
+	{parameters "ptr" "cannon"
+		{armorHealthDamageTable {0 40} {35 20}}		
+	}
+	{parameters "ptr" "airborne"
+		{armorHealthDamageTable {0 20} {35 10}}		
+	}	
+	{parameters "fg" "cannon"
+		{armorHealthDamageTable {0 20} {35 10}}		
+	}	
+	{parameters "ap" "airborne"
+		{armorHealthDamageTable {0 20} {35 10}}		
+	}
+	{parameters "fg" "airborne"
+		{armorHealthDamageTable {0 20} {35 10}}		
+	}	
+;	{parameters "ptr" "cannon"
+;		{cursor "zenite_on"}
+;		{cursorReloading "zenite_reload"}	
+;	}	
+)
+

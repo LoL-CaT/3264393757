@@ -1,0 +1,22 @@
+{action from "fortify_merge_instant"
+	{cursor "barbwire"}
+	{fx "flashred"}
+	{item "barbwire_kit"}
+	{item_in_box}
+	{aux_unit "engineers"}
+	{planned}
+	{instructions
+		{bind range 1}
+		{disable_action_restart}
+		{free_hands}	
+		{take_item}
+		{reserve_hands}
+		{effect "barbwire_start_sound"}
+		{animations "wire_setup" totaltime 0.1}
+		{unreserve_hands}
+		{effect "barbwire_stop_sound"}
+		{install notify_complete "" 0 exact_placement dont_drop_item}
+		{take_last_item}	
+	}
+	{tag "barbwire"}
+}

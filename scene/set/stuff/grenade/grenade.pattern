@@ -1,0 +1,22 @@
+{from "pattern throwable"
+	{tag "fg" "grenade"}
+	{inventory {size 1 1}}	
+	{special
+		{PrepareTime 5}
+		{PrepareCursor "grenade"}
+		{mode detonate}
+	}
+	{throw
+		{range 18}
+		{startAngle 20}
+		{spreading 2.5
+			{radiusFunction
+				0.0	0.01 
+				1.00	0.2
+			}
+			{SpreadPower	1}
+		}	
+		{constantSpeed 0}		
+	}	
+	{possibleDamageRadius 4}
+}

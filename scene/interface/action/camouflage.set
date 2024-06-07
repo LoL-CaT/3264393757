@@ -1,0 +1,18 @@
+{action
+	{cursor "plant"}
+	{able_vehicle}
+	{requireSelect}
+	{button}
+	{drag_optional}
+	{apply_to_all}
+	{condition vehicle or breed_mask "*/saboteur*" "*/scout" "*/sniper*" "*/brandenburger*" "*/nkvd*" "*/hunter"}
+	{condition bodykit_able "camouflage"}
+	{to_self}
+	{instructions
+		{disable_action_restart}
+		{wait_stationary}
+		{cannon_state "fire"}
+		{effect "camouflage_start_sound"}
+		{bodykit notify_complete "camouflage"} ;  "leafbush_01a"
+	}
+}

@@ -1,0 +1,244 @@
+;SDL
+; selector make requests by movement mode
+; slow normal fast walk bow assault spot sneak
+
+(define "walk_items"
+	{if human_stuff holding "1hand"
+		{walk single "walk_1hand"}
+	}
+	{if human_stuff holding "2hands"
+		{walk single "walk_2hand"}
+	}
+	{if human_stuff holding "body"
+		{walk single "walk_corpse"}
+	}
+)
+(define "flag"
+	{if human_stuff holding "flag"
+		{walk "run_flag_up" "run_flag_down"}
+	}
+)
+
+{walk
+	{if human_stuff holding "pistol"
+		{walk "walk_empty_up" "walk_down"}
+	}
+	{if human_stuff holding "nothing" "small"
+		{if human_hold_strap
+			{walk "walk_strap_up" "walk_down"}
+		}
+		{walk "walk_empty_up" "walk_down"}
+	}
+	{if human_stuff holding "smg" "mgun" "flamer" "rifle"
+		{walk "walk_gun_up" "walk_down"}
+	}
+	{if human_stuff holding "bazooka"
+		{walk "walk_bazooka_up" "walk_down"}
+	}
+	("walk_items")
+}
+
+{spot
+	{if human_stuff holding "pistol"
+		{walk "walk_spot_pistol_up" "walk_spot_pistol_down"}
+	}	
+	{if human_stuff holding "nothing" "small"
+		{if human_hold_strap
+			{walk "walk_strap_up" "walk_down"}
+		}
+		{walk "walk_empty_up" "walk_down"}
+	}
+	{if human_stuff holding "mgun"
+		{walk "walk_spot_mgun_up" "walk_spot_mgun_down"}
+	}
+	{if human_stuff holding "smg" "flamer" "rifle"
+		{switch_by_counter "walk"
+			{pick 1
+				"walk_spot_gun_up" "walk_spot_gun_down"
+			}
+			{pick 1
+				"walk_spot_gun_up_2" "walk_spot_gun_down_2"
+			}
+			{pick 1
+				"walk_spot_gun_half-mast_up" "walk_spot_gun_half-mast_down"
+			}
+		}
+	}
+	{if human_stuff holding "bazooka"
+		{walk wind "pose_stand_bazooka" "walk_spot_gun_down"}
+	}	
+	("walk_items")
+}
+
+{sneak
+	{if human_stuff holding "pistol"
+		{walk "walk_spot_pistol_up" "walk_spot_pistol_down"}
+	}
+	{if human_stuff holding "nothing" "small"
+		{if human_hold_strap
+			{walk "walk_strap_up" "walk_down"}
+		}
+		{walk "walk_empty_up" "walk_down"}
+	}
+	{if human_stuff holding "mgun"
+		{walk "walk_spot_mgun_up" "walk_spot_mgun_down"}
+	}
+	{if human_stuff holding "smg" "flamer" "rifle"
+		{switch_by_counter "walk"
+			{pick 1
+				"walk_spot_gun_up_1" "walk_spot_gun_down_1"
+			}
+			{pick 1
+				"walk_spot_gun_belt_up" "walk_spot_gun_belt_down"
+			}
+		}
+	}
+	{if human_stuff holding "bazooka"
+		{walk wind "pose_stand_bazooka" "walk_spot_gun_down_1"}
+	}
+	("walk_items")
+}
+
+
+{slow
+	{if human_stuff holding "pistol"
+		{walk "run_slow_empty_up" "run_slow_down"}
+	}
+	{if human_stuff holding "nothing" "small"
+		{if human_hold_strap
+			{walk "run_slow_strap_up" "run_slow_down_1"}
+		}
+		{walk "run_slow_empty_up" "run_slow_down"}
+	}
+	{if human_stuff holding "smg" "mgun" "flamer" "rifle" "bazooka"
+		{walk "run_slow_gun_up" "run_slow_down_1"}
+	}
+	("flag")
+}
+
+{normal
+	{if human_stuff holding "pistol"
+		{walk "run_empty_up" "run_down"}
+	}
+	{if human_stuff holding "nothing" "small"
+		{if human_hold_strap
+			{walk "run_strap_up" "run_down"}
+		}
+		{walk "run_empty_up" "run_down"}
+	}
+	{if human_stuff holding "smg" "mgun" "flamer" "rifle"
+		{walk "run_gun_up" "run_down"}
+	}
+	{if human_stuff holding "bazooka"
+		{walk "run_bazooka_up" "run_down"}
+	}
+	("flag")
+}
+
+{fast
+	{if human_stuff holding "pistol"
+		{walk "run_fast_empty_up" "run_fast_down"}
+	}
+	{if human_stuff holding "nothing" "small"
+		{if human_hold_strap
+			{walk "run_fast_strap_up" "run_fast_down"}
+		}
+		{walk "run_fast_empty_up" "run_fast_down"}
+	}
+	{if human_stuff holding "smg" "flamer"
+		{if have_enemy
+			{switch_by_counter "walk"
+				{pick 1
+					"run_fast_gun_rhand_up" "run_fast_down"
+				}
+				{pick 2
+					"run_fast_gun_up" "run_fast_down"
+				}
+			}
+		}
+		; no enemy
+		{switch_by_counter "walk"
+			{pick 1
+				"run_fast_gun_up" "run_fast_down"
+			}
+			{pick 2
+				"run_fast_gun_rhand_up" "run_fast_down"
+			}
+		}		
+	}
+	{if human_stuff holding "mgun"
+		{if have_enemy
+			{switch_by_counter "walk"
+				{pick 1
+					"run_fast_gun_rhand_up" "run_fast_down"
+				}
+				{pick 2
+					"run_fast_gun_up" "run_fast_down"
+				}
+			}
+		}
+		; no enemy
+		{switch_by_counter "walk"
+			{pick 1
+				"run_mgun_up" "run_mgun_down"
+			}
+			{pick 2
+				"run_mgun_up" "run_mgun_down"
+			}
+		}		
+	}
+	{if human_stuff holding "rifle"
+		{if item_in_hand "at_rifle"
+			{walk "run_fast_gun_rhand_up" "run_fast_down"}
+		}
+		{if have_enemy
+			{switch_by_counter "walk"
+				{pick 1
+					"run_fast_gun_rhand_up" "run_fast_down"
+				}
+				{pick 2
+					"run_fast_gun_up" "run_fast_down"
+				}
+			}
+		}
+		; no enemy
+		{switch_by_counter "walk"
+			{pick 1
+				"run_rifle_up" "run_rifle_down"
+			}
+			{pick 2
+				single "run_rifle_test"
+			}
+		}		
+	}	
+	{if human_stuff holding "bazooka"
+		{walk "run_fast_bazooka_rhand_up" "run_fast_down"}
+	}
+	("flag")
+}
+
+{bow
+	{if human_stuff holding "pistol" "nothing" "small"
+		{walk "run_bow_tocover_up" "run_bow_tocover_down"}
+	}
+	{if human_stuff holding "smg" "mgun" "flamer" "rifle"
+		{walk "run_bow_gun_tocover_up" "run_bow_gun_tocover_down"}
+	}
+	{if human_stuff holding "bazooka"
+		{walk "run_bow_bazooka_up" "run_bow_bazooka_down"}
+	}
+	("flag")
+}
+
+{assault
+	{if human_stuff holding "pistol" "nothing" "small"
+		{walk "run_bow_tocover_up" "run_bow_tocover_down"}
+	}
+	{if human_stuff holding "smg" "mgun" "flamer" "rifle"
+		{walk "run_bow_gun_up" "run_bow_gun_tocover_down"}
+	}
+	{if human_stuff holding "bazooka"
+		{walk "run_bow_bazooka_up" "run_bow_bazooka_down"}
+	}
+	("flag")
+}

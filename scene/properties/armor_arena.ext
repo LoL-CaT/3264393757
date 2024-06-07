@@ -1,0 +1,702 @@
+;modules
+(define "damage_passer"
+			{damage_passer
+				{chance 1
+					{pierce {value 0}}
+				}
+			}
+)
+(define "bullet_pass"
+	{bullet_pass
+		{threshold %th}
+	}
+)
+(define "bullet_pass_default"
+	("bullet_pass" th(100))
+)
+(define "bullet_pass_gun"
+	{bullet_pass
+		{threshold 100}
+		{stuff "fg"
+			{threshold 50}
+		}
+	}
+)
+(define "set_track"
+			("damage_passer")
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{threshold_weakness_calibre 14}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+			{cumulative_overcoming}
+			;{cumulative_overcoming_for_breaking 0.5}
+)
+(define "set_gun"
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{threshold_weakness_calibre 14}
+			("bullet_pass_gun")
+			{fragment_pass_threshold 1}
+)
+(define "set_other"
+	{thickness %t}
+	{durability
+		{pierce	{koef 0.99}}			;1}}
+	}
+	{health_reducing
+		{pierce {koef 0}}
+		{blast {koef 0}}
+	}
+	{threshold_weakness_calibre 1000}
+	("bullet_pass" th(%bullet_pass))
+	{fragment_pass_threshold 1}
+)
+(define "module_other"
+	{setting "other"
+		("set_other" t(%t) bullet_pass(49))
+	}
+)
+(define "module_detail"
+	{setting "detail%n"
+		("set_other" t(%t) bullet_pass(49))
+		{volumes %vol}
+	}
+)
+(define "module_detail_shield"
+	{setting "detail%n"
+		("set_other" t(%t) bullet_pass(100))
+		{volumes %vol}
+	}
+)
+(define "module_cabine"
+		{setting "cabin%n"
+			{thickness %t}
+			{threshold
+				{blast 
+					{value 1}
+				}
+			}
+			{durability 
+				{blast
+					{value 5}
+				}
+				{pierce
+					{value (* 5 0.6)}
+				}
+			}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+			{volumes "cabin_armor%n"}
+		}
+)
+(define "module_glass"
+		{setting "glass"
+			{thickness 1}
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{volumes "glass*"}
+		}
+)
+(define "module_shields_car"
+		{setting "shields"
+			{thickness %t}
+			{threshold
+				{blast	{koef 1}}
+				{pierce	{koef 1}}
+			}
+			{durability
+				{blast	{value 17}}
+				{pierce	{value 22}}
+			}
+			{volumes "shield*"}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+		}
+)
+(define "module_shields"
+		{setting "shield%n"
+			{thickness %t}
+			{volumes %vol}
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{cumulative_overcoming}
+			{threshold_weakness_calibre 14}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+			{damage_passer
+				{chance 0.3
+				   {pierce {value (* 0.8 %t)}}
+				}
+				{chance 1
+				   {pierce {value %t}}
+				}
+			}
+		}
+)
+(define "module_wheel"
+	{setting "wheel"
+		{thickness 5}
+		{threshold
+			{blast	{value 10}}
+			{pierce	{value 0.99}}
+		}
+		{durability
+			{blast	{value 10}}
+			{pierce	{value 20}}
+		}
+		{health_reducing
+			{pierce {koef 0}}
+			{blast {koef 0}}
+		}
+		{threshold_weakness_calibre 7.62}
+		("bullet_pass_default")
+		{fragment_pass_threshold 1}
+		{whole_wound}
+		{volumes "wheel*"}
+	}
+)
+(define "set_body"
+	{thickness %t}
+	{durability
+		;{blast	{koef %dur}}
+		{pierce	{koef 1}}
+	}
+	{threshold
+		{blast	{koef 1}}
+		{pierce	{koef 1}}
+	}
+	{threshold_weakness_calibre 1000}
+	("bullet_pass_default")
+	{fragment_pass_threshold 1}
+)
+(define "module_track" 
+	{setting "track"
+		{thickness %track}
+		{durability
+			{blast	{koef (* %dur 6)}}
+			{pierce	{value %pierce_dur}};2 hits
+		}
+		{threshold
+			{blast	{koef 0.99}}
+			{pierce {koef 0.99}}
+		}
+		{volumes "track*"}
+		("set_track")
+		{whole_wound}
+	}
+)
+(define "set_open_roof";"set_turret_hp_k"
+	{setting "%name"
+		{health_reducing
+			{pierce {koef 1}}
+			{blast {koef 1}}
+		}
+	}
+)
+(define "module_turret"
+	{setting "turret%number"
+		{health_reducing
+			{pierce {koef %hp_k}}
+			{blast {koef %hp_k}}
+		}
+		("bullet_pass_default")
+		{fragment_pass_threshold 1}
+		{threshold_weakness_calibre 1000}
+		{thickness %t}
+		{durability
+			{pierce
+				{koef %pierce_dur}
+			}
+		}
+		{threshold
+			{blast	{koef  1}}
+			{pierce	{koef 1}}
+		}
+		{volumes "turret_armor%number"}
+	}
+)
+(define "module_gun"
+	{setting "gun%number"
+		("set_gun")
+		{thickness %t}
+		{durability
+			{blast  {koef 3}}
+			{pierce {value %pierce_dur}}
+		}
+		{threshold
+			{blast	{koef 0.99}}
+			{pierce	{koef 0.99}}
+		}
+		{whole_wound}
+		;{pierce_durability_normalization 1}
+		{volumes "gun_armor%number"}
+	}
+)
+(define "module_crew"
+	{setting "crew"
+		{health_reducing
+			{pierce {koef 0}}
+			{blast {koef 0}}
+		}
+		{threshold_weakness_calibre 1000}
+		{durability
+			{pierce	{koef 1}}
+		}
+		{volumes "crew"}
+	}
+)
+(define "module_inventory"
+	{setting "inventory"
+		{health_reducing
+			{pierce {koef 0}}
+			{blast {koef 0}}
+		}
+		{threshold_weakness_calibre 1000}
+		{durability
+			{pierce	{koef 1}}
+		}
+		{volumes "inventory"}
+	}
+)
+(define "module_engine"
+	{setting "engine%number"
+			{health_reducing
+				{pierce {koef 1}}
+				{blast {koef 1}}
+			}
+		{threshold_weakness_calibre 14}
+		("bullet_pass_default")
+		{fragment_pass_threshold 1}
+		{thickness %t}
+		{durability
+			;{blast	{koef %dur}}
+			{pierce	{value %pierce_dur}}
+		}
+		{threshold
+			{blast	{koef 1}}
+			{pierce {koef 1}}			;add for fix weakness
+		}
+		{whole_wound %wound}
+		{volumes "engine_armor%number"}
+	}
+)
+(define "module_body"
+	{setting "body%number"
+		("set_body" t(%t) dur(%dur))
+		{volumes "body_armor%number"}
+	}
+)
+;-------------------------------------------------Assembly------------------------------------------
+;car
+(define "module_engine_car"			("module_engine"	t(%engine) 	dur(1) pierce_dur(1) thr(1) number(%n) wound(1)))
+
+;light
+(define "module_track_light"		("module_track"		dur(1)		track(%track) pierce_dur(12)))
+(define "module_turret_light"		("module_turret"	t(%turret)	pierce_dur(1) number(%n) hp_k(%hp_k)))
+(define "module_gun_light"			("module_gun"		t(%gun)		number(%n) pierce_dur(20)));t(15)
+(define "module_engine_light"		("module_engine"	t(%engine) 	dur(1) number(%n) wound(0) pierce_dur(50)))
+(define "module_body_light"			("module_body"		t(%body)	dur(1) number(%n)))
+
+
+;medium
+(define "module_track_medium"		("module_track"		dur(1.5)	track(%track) pierce_dur(50)))
+(define "module_turret_medium"		("module_turret"	t(%turret)	pierce_dur(1) number(%n) hp_k(%hp_k)))
+(define "module_gun_medium"			("module_gun"		t(%gun)		number(%n) pierce_dur(20)));t(35)
+(define "module_engine_medium"		("module_engine"	t(%engine)	dur(1.5) number(%n) wound(0) pierce_dur(80)))
+(define "module_body_medium"		("module_body"		t(%body)	dur(1.5) number(%n)))
+
+
+;heavy
+(define "module_track_heavy"		("module_track"		dur(2)		track(%track) pierce_dur(60)))
+(define "module_turret_heavy"		("module_turret"	t(%turret)	pierce_dur(1) number(%n) hp_k(%hp_k)))
+(define "module_gun_heavy"			("module_gun"		t(%gun)		number(%n) pierce_dur(20)));t(45)
+(define "module_engine_heavy"		("module_engine"	t(%engine)	dur(2) number(%n) wound(0) pierce_dur(96)))
+(define "module_body_heavy"			("module_body"		t(%body)	dur(2) number(%n)))
+
+
+(define "arena_armor_mantlet"
+    {volume "mantlet"
+        {tags "mantlet"}
+        {component "mantlet"}
+    }
+    {armor
+        {setting "mantlet"
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{threshold_weakness_calibre 1000}
+			("bullet_pass_default")
+			{fragment_pass_threshold 1}
+            {thickness %t}
+            {volumes "mantlet"}
+			{threshold	{pierce {koef 0.99}}}			;add for fix weakness
+        }
+    }
+)
+(define "arena_armor_car"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		("module_cabine" t(%cabin) n())
+		("module_glass")
+		("module_shields_car" t(%shield))
+		
+;		("module_gun_light"		gun(%gun) n())
+;		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_car"	engine(%engine) n())
+	}
+	("components_car" 
+		repair_body(12)
+		repair_engine(10)
+		repair_turret(12)
+		repair_gun(7)
+		repair_track(5)
+		repair_wheel(5)
+	)
+)
+(define "arena_armor_btr"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		
+		("module_gun_light"		gun(%gun) n())
+		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_btr" 
+		repair_body(16)
+		repair_engine(15)
+		repair_turret(16)
+		repair_gun(8)
+		repair_track(5)
+		repair_wheel(7)
+	)
+)
+(define "arena_armor_btr_with_track"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		
+		("module_track_light"	track(%track))
+		("module_gun_light"		gun(%gun) n())
+		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_btr" 
+		repair_body(18)
+		repair_engine(18)
+		repair_turret(18)
+		repair_gun(9)
+		repair_track(6)
+		repair_wheel(6)
+	)
+)
+(define "arena_armor_light"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_light"	track(%track))
+		("module_gun_light"		gun(%gun) n())
+		("module_turret_light"	turret(%turret) n() hp_k(1))
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(18)
+		repair_engine(18)
+		repair_turret(18)
+		repair_gun(9)
+		repair_track(6)
+	)
+	{sensor
+		{visor "view-around"
+			{vision "tank_around-l"}
+			{bone "basis"}
+		}
+		{visor "main"
+			{vision "tank_main-l"}
+		}
+	}
+)
+(define "arena_armor_medium"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_medium"	track(%track))
+		("module_gun_medium"	gun(%gun) n())
+		("module_turret_medium"	turret(%turret) n() hp_k(1))
+		("module_body_medium"	body(%body) n())
+		("module_engine_medium"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(25)
+		repair_engine(25)
+		repair_turret(25)
+		repair_gun(15)
+		repair_track(10)
+	)
+   {sensor
+        {visor "view-around"
+            {vision "tank_around-m"}
+            {bone "basis"}
+        }
+        {visor "main"
+            {vision "tank_main-m"}
+        }
+    }
+)
+(define "arena_armor_heavy"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_heavy"	track(%track))
+		("module_gun_heavy"		gun(%gun) n())
+		("module_turret_heavy"	turret(%turret) n() hp_k(1))
+		("module_body_heavy"	body(%body) n())
+		("module_engine_heavy"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(30)
+		repair_engine(30)
+		repair_turret(30)
+		repair_gun(18)
+		repair_track(14)
+	)
+    {sensor
+        {visor "view-around"
+            {vision "tank_around-h"}
+            {bone "basis"}
+        }
+        {visor "main"
+            {vision "tank_main-h"}
+        }
+    }
+)
+(define "arena_armor_spa_btr"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		
+		("module_gun_light"		gun(%gun) n())
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_btr" 
+		repair_body(16)
+		repair_engine(15)
+		repair_turret(16)
+		repair_gun(8)
+		repair_track(5)
+		repair_wheel(7)
+	)
+)
+(define "arena_armor_spa_btr_with_track"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_wheel")
+		
+		("module_track_light"	track(%track))
+		("module_gun_light"		gun(%gun) n())
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_btr" 
+		repair_body(16)
+		repair_engine(15)
+		repair_turret(16)
+		repair_gun(8)
+		repair_track(5)
+		repair_wheel(7)
+	)
+)
+(define "arena_armor_spa_light"
+    {volume "turret"
+       {component "turret"}
+       {tags "turret" "body" "turret_armor"}
+    }
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_light"	track(%track))
+		("module_gun_light"		gun(%gun) n())
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(3)
+		repair_engine(18)
+		repair_turret(18)
+		repair_gun(9)
+		repair_track(6)
+	)
+	{sensor
+		{visor "view-around"
+			{vision "tank_around-l"}
+			{bone "basis"}
+		}
+		{visor "main"
+			{vision "tank_main-l"}
+		}
+	}
+)
+(define "arena_armor_spa_medium"
+    {volume "turret"
+       {component "turret"}
+       {tags "turret" "body" "turret_armor"}
+    }
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_medium"	track(%track))
+		("module_gun_medium"	gun(%gun) n())
+		("module_body_medium"	body(%body) n())
+		("module_engine_medium"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(25)
+		repair_engine(25)
+		repair_turret(25)
+		repair_gun(15)
+		repair_track(10)
+	)
+   {sensor
+        {visor "view-around"
+            {vision "tank_around-m"}
+            {bone "basis"}
+        }
+        {visor "main"
+            {vision "tank_main-m"}
+        }
+    }
+)
+(define "arena_armor_spa_heavy"
+    {volume "turret"
+       {component "turret"}
+       {tags "turret" "body" "turret_armor"}
+    }
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+
+		("module_track_heavy"	track(%track))
+		("module_gun_heavy"		gun(%gun) n())
+		("module_body_heavy"	body(%body) n())
+		("module_engine_heavy"	engine(%engine) n())
+	}
+	("components_tank" 
+		repair_body(30)
+		repair_engine(30)
+		repair_turret(30)
+		repair_gun(18)
+		repair_track(14)
+	)
+    {sensor
+        {visor "view-around"
+            {vision "tank_around-h"}
+            {bone "basis"}
+        }
+        {visor "main"
+            {vision "tank_main-h"}
+        }
+    }
+)
+(define "arena_armor_train"
+	{armor
+	    {health %hp}
+		("module_body_medium"	body(%body) n())
+		{setting "wheel"
+		    {thickness %wheel}
+		    ("bullet_pass_default")
+		    {fragment_pass_threshold 1}
+		    {whole_wound}
+		    {volumes "wheel*"}
+		}
+		{setting "fuel"
+		    {thickness 20}
+		    ("bullet_pass_default")
+		    {fragment_pass_threshold 1}
+		    {whole_wound}
+		    {volumes "fuel*"}
+		}
+	}
+)
+(define "arena_armor_marine_light"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_body_light"	body(%body) n())
+		("module_engine_light"	engine(%engine) n())
+	}
+	{component "body"
+        {RepairTime 15}
+    }
+    {component "engine"
+        {RepairTime 15}
+    }
+)
+(define "arena_armor_marine_heavy"
+	{armor
+		{health %hp}
+		("module_crew")
+		("module_inventory")
+		("module_body_heavy"	body(%body) n())
+		("module_engine_heavy"	engine(%engine) n())
+		("module_gun_heavy"	gun(%gun) n())
+		("module_turret_heavy"	turret(%turret) n() hp_k(0.1))
+	}
+	{component "body"
+        {RepairTime 15}
+    }
+    {component "engine"
+        {RepairTime 15}
+    }
+	{component "turret"
+        {RepairTime 15}
+    }
+    {component "gun"
+        {RepairTime 15}
+    }
+)

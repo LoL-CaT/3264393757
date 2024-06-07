@@ -1,0 +1,463 @@
+
+; Принцип работы: сканируются условия из каждого блока {selector}, 
+; при срабатывании условия выполняются действия, прописанные в его блоке {actions},
+; и дальнейший поиск условий в этом блоке {selector} прекращается. Чтобы выполнить несколько несвязанных
+; действий по разным условиям, используйте несолько блоков {selector}
+
+; Условия {if ...} :
+; game_option <string name>			- включена игровая опция <name>
+; mouse_focus_dialog <string id> 	- курсор мыши наведен на диалог с заданным ID. 
+;				   					ID диалога можно узнать, включив по F10 отладочный процесс 'game_control'
+; action_on_cursor <string name> 	- Имя активного экшена равно заданному. Узнать имя активного экшена можно 
+; 				   					с помощью все того же отладочного процесса 'game_control'
+; action_current <string name> 	 	- Имя текущего (выбранного) экшена равно заданному. Узнать имя текущего экшена можно 
+; 				  					с помощью все того же отладочного процесса 'game_control' (action_current)
+; aim_on_cursor <target> 	 		- проверяет соответствие цели под курсором заданным условиям. 
+;				  					 формат target такой же как в interface action.
+; manual_control	 	 			- включено прямое управление
+; selection_empty	 	 			- selection empty )
+; selection_single	 	 			- в селекте один юнит и не ПУ
+; selection_actor [any|all] <actor condition term> - тестирует выбранных юнитов указанным условием из набора актор-тестов (props, stealth etc)
+;				   если указано ключевое слово all, тестировать будут все юниты из селекта, в противном случае тест будет
+;				   пройден на первом удовлетворяющему условию юните
+
+; Действия:
+; con <string text>		 			- вывод текста в консоль
+; sprite mouse_action_button|mouse_action_button_dc|<string file_name> - рисует спрайт. Если задано ключевое слово 'mouse_action_button[_dc]', 
+;				   будет выбран
+;				   один из спрайтов sprite_lmb[_dc] или sprite_lmb[_dc] в зависимости от игровой опции 'команды левой кнопкой мыши'.
+;				   Кисть перемещается по X на ширину спрайта.
+; text [hotkey] <string text> 	- выводится текст. Если указано ключевое слово 'hotkey', text будет воспринят 
+;				   как код горяей клавиши. Кисть перемещается по X на ширину текста.
+; selector			- новый блок selector (вложенные условия и дейтвия).
+
+;Пути к спрайтам
+(define "path_ico" "/interface/interactive_hints/%0")
+{sprite_lmb			("path_ico" args lmb)}					;регистрация иконки ЛКМ для инвертирования при изменении управления
+{sprite_rmb			("path_ico" args rmb)}					;регистрации инонки ПКМ для инвертирования при изменении управления
+{sprite_lmb_dc			("path_ico" args lmb_dc)}				;регистрация иконки ДК ЛКМ для инвертирования при изменении управления
+{sprite_rmb_dc			("path_ico" args rmb)}					;регистрации инонки ДК ПКМ для инвертирования при изменении управления
+(define "lmb"		{sprite mouse_action_button})			;иконка ЛКМ для инвертирования
+(define "rmb"		{sprite mouse_non_action_button})		;иконка ПКМ для инвертирования
+(define "lmb_only"	{sprite ("path_ico" args lmb)})			;иконка ЛКМ не инвертируется при изменении управления
+(define "rmb_only"	{sprite ("path_ico" args rmb)})			;иконка ПКМ не инвертируется при изменении управления
+(define "lmb_dc"	{sprite mouse_action_button_dc})			;иконка ЛКМ double click
+(define "scroll"	{sprite ("path_ico" args scroll)})		;иконка скролла
+(define "space"		{sprite ("path_ico" args space)})		;иконка пробела
+(define "test"		{sprite "/interface/cursor/info"})		;иконка-заглушка
+
+;Макросы
+
+;<Тексты:>
+(define "path_txt"			"interactive_hints/hints/%0")			;путь к тексту
+(define "path_actionbar"	"actionbar/%0")							;путь к локализации экшена
+(define "path_action"		"actionbar/%0/action")					;путь к локализации экшена
+(define "path_action2"		"actionbar/%0/%1/action")				;путь к локализации экшена
+(define "path_action_custom"	"actionbar/%0/%1")						;путь к локализации экшена
+(define "path_keys"			"options/keys/%0")						;путь к локализации описания хоткея
+(define "path_keys2"		"options/keys/%0/%1")					;путь к локализации описания хоткея
+
+(define "txt"			{text ("path_txt" args %0)})
+(define "actionbar_txt"	{text ("path_actionbar" args %0)})
+(define "action_txt"	{text ("path_action" args %0)})
+(define "action_custom"	{text ("path_action_custom" args %0 %1)})
+(define "action2_txt"	{text ("path_action2" args %0 %1)})
+(define "hotkey2_txt"	{text ("path_keys2" args %0 %1)})
+
+(define "hotkey2"		{text hotkey "%0/%1"})
+
+;<Шаблоны строк:>
+;<макрос иконки> <макрос текста> <переход на новую строку>
+(define "ico_txt"	 		("%0")("txt" args %1) {new_row})
+(define "ico_hint_txt"		("%0")("txt" args %1)("txt" args %2) {new_row})
+
+(define "ico_actionbar"		("%0")("actionbar_txt" args %1) {new_row})
+(define "ico_action"		("%0")("action_txt" args %1) {new_row})
+(define "ico_action_custom"	("%0")("action_custom" args %1 %2) {new_row})
+(define "ico_action2"		("%0")("action2_txt" args %1 %2) {new_row})
+(define "ico_hint_action"	("%0")("txt" args %1)("action_txt" args %2) {new_row})
+(define "ico_action_custom_space"	("%0")("action_custom" args %1 %2)("txt" args space){new_row})
+
+(define "ico_hint_key2"		("%0")("txt" args %1)("hotkey2_txt" args %2 %3)("hotkey2" args %2 %3){new_row})
+
+(define "key2"				("hotkey2" args %0 %1)("hotkey2_txt" args %0 %1){new_row})
+(define "key2_replace"		("hotkey2" args %0 %1)("txt" args %2) {new_row})
+
+;<Строки:>
+(define "select"					("ico_txt"			args	lmb_only		select))
+(define "selection_area"			("ico_hint_txt"		args 	lmb_only		press_drag	selection_area))
+(define "beacon"					("ico_hint_key2"	args 	lmb				press_hold	multiplayer	show_user_guide))
+(define "show_user_guide"			("key2"				args	multiplayer		show_user_guide))
+(define "show_quick_user_guide"		("key2"				args	multiplayer		show_quick_user_guide))
+(define "show_quick_user_message"	("key2"				args	multiplayer		show_quick_user_message))
+(define "toggle_map_control"		("key2"				args	common			toggle_map_control))
+(define "menu_actions"				("ico_hint_key2"	args 	lmb				press_hold common menu_actions))
+(define "reset_selection"			("ico_txt"			args 	rmb				reset_selection))
+(define "move"						("ico_txt"			args	lmb				move))
+(define "move_to_wps"				("ico_hint_txt"		args 	lmb				plus_shift move_to_wps))
+(define "formation"					("ico_hint_txt" 	args	rmb_only		press_drag formation))
+(define "cover_formation"			("ico_hint_txt" 	args 	rmb_only		press_drag cover_formation))
+(define "run"						("ico_txt"			args	lmb_dc			run))
+(define "select_all"				("ico_txt"			args	lmb_dc			select_all))
+(define "move_forward"				("ico_txt"			args	lmb_dc			move_forward))
+(define "cover"						("ico_txt" 			args	lmb				cover))
+(define "stay_lie"					("key2"				args	control_human	stay_lie))
+(define "stop_stay_lie"				("key2_replace"		args 	control_human	stay_lie stop_stay_lie))
+(define "stop"						("key2_replace"		args 	control_human 	stay_lie stop))
+(define "rotate"					("key2"				args	actions			rotate))
+(define "rotate_rmb"				("ico_hint_action"	args	rmb_only		press_drag	rotate))
+(define "cancel"					("key2"				args	actions			cancel))
+(define "cancel_rmb"				("ico_txt" 			args 	rmb_only		cancel))
+(define "emit"						("key2"				args	actions			emit))
+(define "center_active"				("key2"				args	common			center_active))
+(define "next_ammo"					("key2"				args	control_manual	next_ammo))
+(define "toggle"					("key2"				args	control_manual	toggle))
+(define "modify"					("key2"				args	control_manual	modify))
+(define "trench_mw"					("ico_txt"			args	scroll			trench_scroll))
+(define "trench_alt_mw"				("ico_hint_txt"		args	scroll			plus_alt	trench_scroll_alt))
+(define "forward"					("key2"				args	control_manual	forward))
+(define "backward"					("key2"				args	control_manual	backward))
+(define "left"						("key2"				args	control_manual	left))
+(define "right"						("key2"				args	control_manual	right))
+
+;std_action
+(define "trench_enter"			("ico_txt" 					args 	lmb			trench_enter))
+(define "trench_instant"		("ico_actionbar" 			args	lmb_only	trench))
+;(define "attack"				("ico_action" 				args	lmb			attack))
+(define "attack_ground_once"	("ico_txt" 					args 	lmb			attack_ground_once))
+(define "attack_ground"			("ico_action" 				args 	lmb			attack_ground))
+(define "attack_ground_actor"	("ico_txt" 					args 	lmb			attack_ground_actor))
+(define "attack_actor_and_ground"("ico_txt" 				args 	lmb			attack_actor_and_ground))
+(define "attack_ground_forced"	("ico_txt" 					args 	lmb			attack_ground_forced))
+(define "hospitalization"		("ico_txt" 					args 	lmb			hospitalization))
+(define "board"					("ico_action_custom" 		args 	lmb			vehicle	board))
+(define "attach"				("ico_action_custom_space"	args 	lmb			attach on))
+(define "detach"				("ico_action_custom_space" 	args 	lmb			attach off))
+
+;<Сборки:>
+(define "preset_keys"
+	{selector
+		{if selection_actor all props "human"
+			{actions
+				("modify")
+				("toggle")
+				("stay_lie")
+				("rotate")
+				("center_active")
+				("cancel")
+				;("show_user_guide")
+				;("show_quick_user_guide")
+				;("show_quick_user_message")
+				;("toggle_map_control")
+			}
+		}
+		{if selection_actor any props "human"
+			{actions
+				("modify")
+				("toggle")
+				;("next_ammo")
+				("stop_stay_lie")
+				("rotate")
+				("emit")
+				("center_active")
+				("cancel")
+				;("show_user_guide")
+				;("show_quick_user_guide")
+				;("show_quick_user_message")
+				;("toggle_map_control")
+			}
+		}
+		{actions
+			("modify")
+			("toggle")
+			;("next_ammo")
+			("stop")
+			("rotate")
+			("emit")
+			("center_active")
+			("cancel")
+			;("show_user_guide")
+			;("show_quick_user_guide")
+			;("show_quick_user_message")
+			;("toggle_map_control")
+		}
+	}
+)
+(define "none")
+(define "spec_move_actions"
+	("move_forward")
+	("formation")
+)
+(define "preset_actions"
+	{actions
+		("%0")
+		("%1")
+		("menu_actions")
+		("reset_selection")
+		;("preset_keys")
+	}
+)
+(define "std_action"
+	{if action_on_cursor "%0"
+		("preset_actions" args %0 %1)
+	}
+)
+(define "std_action2"
+	{if action_on_cursor "%0" or action_on_cursor "%1"
+		("preset_actions" args %0 %2)
+	}
+)
+
+(define "preset_spec_actions"
+	{actions
+		("ico_action" args lmb_only %0)
+		("cancel_rmb")
+	}
+)
+(define "preset_spec_actionbar"
+	{actions
+		("ico_actionbar" args lmb_only %0)
+		("cancel_rmb")
+	}
+)
+(define "preset_spec_actions2"
+	{actions
+		("ico_action2" args lmb_only %0 %1)
+		("cancel_rmb")
+	}
+)
+(define "std_spec_action"
+	{if action_on_cursor "%0"
+		("preset_spec_actions" args %0)
+	}
+)
+(define "std_spec_actionbar"
+	{if action_on_cursor "%0"
+		("preset_spec_actionbar" args %0)
+	}
+)
+(define "std_spec_action2"
+	{if action_on_cursor "%1"
+		("preset_spec_actions2" args %0 %1)
+	}
+)
+(define "std_spec_action_grenade"
+	{if action_on_cursor "%0"
+		("preset_spec_actions" args grenade)
+	}
+)
+(define "preset_spec_action_process"
+	{if action_on_cursor "%0"
+		("preset_spec_actionbar" args %1)
+	}
+	{if action_current "%0"
+		{actions
+			("ico_txt" args lmb_only end_markup)
+			;("cancel_rmb")
+		}
+	}
+)
+(define "std_spec_action_process"
+	("preset_spec_action_process" args %0 %0)
+)
+(define "std_spec_action_process_mine"
+	("preset_spec_action_process" args %0 mine)
+)
+(define "std_spec_action_process_trench"
+	{if action_current "trench"
+		{actions
+			("ico_actionbar" args lmb_only trench)
+			("cancel_rmb")
+			("trench_mw")
+			("trench_alt_mw")
+		}
+	}
+)
+
+{selector
+	{if game_option "interactive_hints" 
+		{if manual_control
+			{actions
+				("toggle")
+				{selector
+					{if selection_actor any props "tank" "cannon"
+						{actions
+							("next_ammo")
+							;("show_user_guide")
+							;("show_quick_user_guide")
+							;("show_quick_user_message")
+						}
+					}
+				}
+				("forward")
+				("backward")
+				("left")
+				("right")
+			}
+		}
+		{if mouse_focus_dialog "scene_view" or mouse_focus_dialog "actor_icon" or mouse_focus_dialog "actor_icon_slot"	;курсор на поле боя и без ПУ
+			{if action_on_cursor "select"			;экшен select
+				{if not aim_on_cursor ground
+					{if selection_empty
+						{actions 
+							("select")
+							("select_all")
+							("selection_area")
+							("beacon")
+							;("show_quick_user_guide")
+							;("show_quick_user_message")
+							;("toggle_map_control")
+						}
+					}
+					{actions
+						("select")
+						("select_all")
+						("selection_area")
+						("menu_actions")
+						{selector
+							{if selection_single
+								{actions
+									("rotate_rmb")
+								}
+							}
+							{actions
+								("formation")
+							}
+						}
+						("reset_selection")
+						("preset_keys")
+					}
+				}
+				{actions
+					("selection_area")
+					("beacon")
+					;("show_quick_user_guide")
+					;("show_quick_user_message")
+					;("toggle_map_control")
+				}
+			}
+			{if action_on_cursor "move"
+				{if selection_actor any props "human"
+					{actions
+						("move")
+						{selector
+							{if selection_actor any fsm_pose "down squat"
+								{actions
+									("run")
+								}
+							}
+						}
+						("move_to_wps")
+						("selection_area")
+						("menu_actions")
+						("formation")
+						("reset_selection")
+						("preset_keys")
+					}
+				}
+				{actions
+					("move")
+					("move_forward")
+					("move_to_wps")
+					("selection_area")
+					("menu_actions")
+					("formation")
+					("reset_selection")
+					("preset_keys")
+				}
+			}
+			{if action_on_cursor "cover"			;укрытия
+				{actions
+					("cover")
+					("menu_actions")
+					("cover_formation")
+					("reset_selection")
+					;("preset_keys")
+				}
+			}
+			{if action_on_cursor "hospitalization"			;госпитализация
+				{actions
+					("hospitalization")
+					{selector
+						{if not selection_empty
+							{actions
+								("reset_selection")
+							}
+						}
+					}
+					;("preset_keys")
+				}
+			}
+			("std_action2" 					args trench_enter enter none)
+			("std_action" 					args trench_instant none)
+			;("std_action" 					args attack none)
+			{if action_on_cursor "attack"
+				{actions
+					("ico_action" 		args lmb attack)
+					{selector
+						{if selection_actor any props "human" and aim_on_cursor entity "house"
+							{actions
+								("ico_txt" args lmb_dc		house_assault)
+							}
+						}
+					}
+					("menu_actions")
+					("reset_selection")
+					;("preset_keys")
+				}
+			}
+			("std_action" 						args attack_ground_once spec_move_actions)
+			("std_action" 						args attack_ground spec_move_actions)
+			("std_action" 						args attack_ground_actor none)
+			("std_action" 						args attack_actor_and_ground none)
+			("std_action" 						args attack_ground_forced spec_move_actions)
+			("std_action" 						args board none)
+			("std_spec_action2"					args vehicle emit)
+			("std_spec_action2"					args human attack_melee)
+			("std_spec_action"					args rotate)
+			("std_action" 						args attach none)
+			("std_action" 						args detach none)
+			("std_spec_action"					args throw_ap_grenade)
+			("std_spec_action"					args throw_at_grenade)
+			("std_spec_action"					args throw_sk_grenade)
+			("std_spec_action"					args throw_sl_grenade)
+			("std_spec_actionbar"				args throw_knife)
+			("std_spec_action"					args bazooka_shot)
+			("std_spec_actionbar"				args put_dynamite)
+			("std_spec_action"					args suppression_fire)
+			
+			("std_spec_action_process_mine"		args mine_ap)
+			("std_spec_action_process_mine"		args mine_at)
+			("std_spec_action_process"			args barricade)
+			("std_spec_action_process"			args barricade_inplace)
+			("std_spec_action_process"			args barbwire)
+			("std_spec_action_process"			args hedgehog)
+			
+			("std_spec_action_process_trench")
+		}
+		{if mouse_focus_dialog "largemap"			;курсор на миникарте
+			{actions
+				("ico_hint_txt" args lmb_only	press_drag	move_map)
+				("ico_txt" 		args rmb_only	change_camera_position)
+				("ico_hint_txt" args rmb_only	press_drag	move_camera)
+				{selector
+					{if selection_empty
+						{actions
+							("toggle_map_control")
+						}
+					}
+					{actions
+						;("preset_keys")
+						("toggle_map_control")
+					}
+				}
+			}
+		}
+		{if mouse_focus_dialog "menu_actions" or mouse_focus_dialog "mp_quick_user_guide" or mouse_focus_dialog "mp_quick_user_message"		;курсор на колесе команд
+			{actions
+				("ico_txt" args lmb_only	select_action)
+				("cancel_rmb")
+			}
+		}
+	}
+}

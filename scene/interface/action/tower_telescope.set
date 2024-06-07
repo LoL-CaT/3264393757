@@ -1,0 +1,30 @@
+{action from "construction"
+	{cursor "hammer"}
+	{fx "flashred"}
+	{item "tower_telescope_kit"}
+	{item_in_box}
+	{button}
+	{ShowCount}
+	{abledrag}
+	{aux_unit "engineers"}
+	{condition ability {"build" basic}}
+	{RequireSelect}
+	{entity "watch_tower_stereotelescope"}
+	{workshop "watch_tower_stereotelescope_vis"}
+	{pather "tower"}
+	{time 200}
+	{instructions
+		{bind range 3}
+;		{disable_action_restart}
+;		{take_item}
+		{free_hands}
+;		{animations "build_bruster_start " totaltime 1}
+		{effect "barricade_start_sound"}
+		{fsm_request "repair"}
+		{construct notify_complete}
+		{take_last_item}
+		{effect "barricade_stop_sound"}
+		{unreserve_hands}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

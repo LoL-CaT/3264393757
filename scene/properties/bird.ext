@@ -1,0 +1,52 @@
+;SDL
+actor
+
+{obstacleID 	"human"}
+{PatherID	"airborne"}
+
+{sensor
+	{visor "eyes"
+		{vision "animal"}
+		{bone "visor"}
+	}
+}
+
+{brain "actor"
+	{state "bird"}
+}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+{fsm "bird"
+	{request "move"}
+	{request "idle"}
+	{request "idle_scream"}
+	{request "fly"}
+	{request "fly_scream"}
+
+	; start state
+    	{start "stand"}
+	
+	; list of all states
+	{state "stand"
+		{to "fly"}
+		{to "idle"}
+		{to "idle_scream"}
+		{to "fly_scream"}
+	}
+	{state "fly"
+		{to "stand"}
+		{tag "fly"}
+	}
+	{state "fly_scream"
+		{to "fly"}
+		{tag "fly_scream"}
+	}
+	{state "idle"
+		{to "stand"}
+		{tag "idle"}
+	}
+	{state "idle_scream"
+		{to "idle"}
+		{tag "idle_scream"}
+	}
+}

@@ -1,0 +1,233 @@
+;SDL
+
+;//////////////////////////////////////////////////////////////////////////////
+(define "crew_inside"
+	{boarder
+		{anm "gunner"
+			{forward	{end "seat_driver_car"}}
+		}
+		{anm "commander"
+			{forward	{end "seat_driver_car"}}
+		}
+		{anm "passenger"
+			{forward	{end "seat_driver_car"}}
+		}
+	}
+)
+(define "crew_human"
+	{placer
+		{place "%place"
+			{group "%place"} {linkbone "%bone"} {turnoff {sensor} {shadow}} {openForCrush}
+		}
+	}
+	{boarder
+		{door "%door"}
+		{link "%door" "%place" {anm "%animation"} {forward putoff} {reverse puton}}
+	}
+)
+
+(define "crew_2_human"
+	("crew_inside")
+	("crew_human" place(gunner)		bone(gunner)	door(emit1) animation(gunner))
+	("crew_human" place(commander)	bone(commander)	door(emit2) animation(commander))
+	{placer
+		{place "gunner" {group "crew"}}
+		{place "commander" {group "crew"}}
+	}
+)
+(define "crew_gunner"
+	("crew_inside")
+	("crew_human" place(gunner)		bone(gunner)	door(emit) animation(gunner))
+)
+
+(define "stand_human"
+	{placer
+		{place "%place" {group "%place"} {linkbone "%bone"} {turnoff {sensor}} {openForCrush}} 
+	}
+	{boarder
+		{door "emit"}
+		{door "emit1"}
+		{door "emit2"}
+		{door "emit3"}
+		{door "emit4"}
+		{link "emit"	"%place" {anm "%animation"} {forward putoff}}
+		{link "emit1"	"%place" {anm "%animation"} {forward putoff}}
+		{link "emit2"	"%place" {anm "%animation"} {forward putoff}}
+		{link "emit3"	"%place" {anm "%animation"} {forward putoff}}
+		{link "emit4"	"%place" {anm "%animation"} {forward putoff}}
+	}
+)
+
+(define "crew_stan_gunner"
+	{boarder
+		{anm "gunner"
+			{forward	{end "stan_mgun"}}
+		}
+	}
+	("stand_human" place(gunner)	bone(gunner)	animation(gunner))
+)
+{placer
+	{place "gunner" {visor "main"}}
+}
+
+(define "crew_gun"
+	("crew_2_human")
+	("crew_human" place(driver1) bone(driver1) door(emit1) animation(driver1))
+	("crew_human" place(driver2) bone(driver2) door(emit2) animation(driver2))
+	{placer
+		{place "driver1" {visor "main"}}
+		{place "driver2" {visor "main"}}
+	}
+	{boarder
+		{link "driver1" "gunner"}
+		{link "driver2" "commander"}
+	}
+)
+
+(define "crew_wheeled_gun"
+	("crew_gun")
+	("crew_human" place(seat1)   bone(seat1)   door(emit1) animation(seat1))
+	("crew_human" place(seat2)   bone(seat2)   door(emit2) animation(seat2))
+	{placer
+		{place "seat1" {visor "main"}}
+		{place "seat2" {visor "main"}}
+	}
+	{boarder
+		{link "seat1" "driver1"}
+		{link "seat2" "driver2"}
+	}
+)
+(define "crew_2_supporter_custom"
+	("crew_human" place(seat3)   bone(seat3)   door(%door3) animation(%anm_seat3))
+	("crew_human" place(seat4)   bone(seat4)   door(%door4) animation(%anm_seat4))
+	("crew_human" place(support1) bone(sup1) door(%door3) animation(support1))
+	("crew_human" place(support2) bone(sup2) door(%door4) animation(support2))
+	("crew_human" place(supportmove1) bone(supmove1) door(%door3) animation(supportmove1))
+	("crew_human" place(supportmove2) bone(supmove2) door(%door4) animation(supportmove2))
+	{placer
+		{place "support1" {visor "main"} {group "crew"}}
+		{place "support2" {visor "main"} {group "crew"}}
+		{place "supportmove1" {visor "main"} {group "crew"}}
+		{place "supportmove2" {visor "main"} {group "crew"}}
+		{place "driver1" {group "crew"}}
+		{place "driver2" {group "crew"}}
+	}
+	{boarder
+		{link "support1" "supportmove1"}
+		{link "support2" "supportmove2"}
+		{link "seat3" "supportmove1"}
+		{link "seat4" "supportmove2"}
+		{anm "supportmove1"
+			{forward {end "mgun_browning_driver_r"}}
+		}
+		{anm "supportmove2"
+			{forward {end "mgun_browning_driver_l"}}
+		}
+		{anm "support1"
+			{forward {end "pose_artillery_support_l" 2}}
+		}
+		{anm "support2"
+			{forward {end "pose_artillery_support_l" 2}}
+		}
+	}
+)
+(define "crew_2_supporter"
+	("crew_2_supporter_custom" door3(emit3) door4(emit4) anm_seat3(seat1) anm_seat4(seat2))
+)
+(define "crew_4_supporter_custom"
+	("crew_2_supporter_custom" door3(%door3) door4(%door4) anm_seat3(%anm_seat3) anm_seat4(%anm_seat4))
+	("crew_human" place(seat5)   bone(seat5)   door(%door5) animation(%anm_seat5))
+	("crew_human" place(seat6)   bone(seat6)   door(%door6) animation(%anm_seat6))
+	("crew_human" place(support3) bone(sup3) door(%door5) animation(support3))
+	("crew_human" place(support4) bone(sup4) door(%door6) animation(support4))
+	("crew_human" place(supportmove3) bone(supmove3) door(%door5) animation(supportmove1))
+	("crew_human" place(supportmove4) bone(supmove4) door(%door6) animation(supportmove2))
+	{placer
+		{place "support3" {visor "main"} {group "crew"}}
+		{place "support4" {visor "main"} {group "crew"}}
+		{place "supportmove3" {visor "main"} {group "crew"}}
+		{place "supportmove4" {visor "main"} {group "crew"}}
+	}
+	{boarder
+		{link "support3" "supportmove3"}
+		{link "support4" "supportmove4"}
+		{link "seat5" "supportmove3"}
+		{link "seat6" "supportmove4"}
+		{anm "support3"
+			{forward {end "pose_artillery_support_l" 2}}
+		}
+		{anm "support4"
+			{forward {end "pose_artillery_support_l" 2}}
+		}
+	}
+)
+(define "crew_4_supporter"
+	("crew_4_supporter_custom" door3(emit3) door4(emit4) door5(emit3) door6(emit4) anm_seat3(seat1) anm_seat4(seat2) anm_seat5(seat1) anm_seat6(seat2))
+)
+(define "crew_2_supporter_any_set"
+	("crew_human" place(seat3)   bone(seat3)   door(emit_l1) animation(seat3))
+	("crew_human" place(seat4)   bone(seat4)   door(emit_r1) animation(seat4))
+	
+	("crew_human" place(%place_l1) bone(attack_l1) door(emit_l1) animation(%place_l1))
+	("crew_human" place(%place_r1) bone(attack_r1) door(emit_r1) animation(%place_r1))
+	
+	("crew_human" place(driver_l1) bone(driver_l1) door(emit_l1) animation(driver_l1))
+	("crew_human" place(driver_r1) bone(driver_r1) door(emit_r1) animation(driver_r1))
+	{placer
+		{place "%place_l1" {visor "main"} {group "crew"}}
+		{place "%place_r1" {visor "main"} {group "crew"}}
+		{place "driver_l1" {visor "main"} {group "crew"}}
+		{place "driver_r1" {visor "main"} {group "crew"}}
+		{place "driver1" {group "crew"}}
+		{place "driver2" {group "crew"}}
+	}
+	{boarder
+		{link "%place_l1" "driver_l1"}
+		{link "%place_r1" "driver_r1"}
+		{link "seat3" "driver_l1"}
+		{link "seat4" "driver_r1"}
+		{anm "driver_l1"
+			{forward {end "mgun_browning_driver_r"}}
+		}
+		{anm "driver_r1"
+			{forward {end "mgun_browning_driver_l"}}
+		}
+		{anm "%place_l1"
+			{forward {end "pose_artillery_support_l" 2}}
+		}
+		{anm "%place_r1"
+			{forward {end "pose_artillery_support_l" 2}}
+		}
+	}
+)
+
+(define "crew_4_supporter_any_set"
+	("crew_2_supporter_any_set"
+		place_l1(%place_l1)
+		place_r1(%place_r1)
+	)
+	("crew_human" place(seat5)   bone(seat5)   door(emit_l2) animation(seat5))
+	("crew_human" place(seat6)   bone(seat6)   door(emit_r2) animation(seat6))
+	("crew_human" place(%place_l2) bone(attack_l2) door(emit_l2) animation(%place_l2))
+	("crew_human" place(%place_r2) bone(attack_r2) door(emit_r2) animation(%place_r2))
+	("crew_human" place(driver_l2) bone(driver_l2) door(emit_l2) animation(driver_l2))
+	("crew_human" place(driver_r2) bone(driver_r2) door(emit_r2) animation(driver_r2))
+	{placer
+		{place "%place_l2" {visor "main"} {group "crew"}}
+		{place "%place_r2" {visor "main"} {group "crew"}}
+		{place "driver_l2" {visor "main"} {group "crew"}}
+		{place "driver_r2" {visor "main"} {group "crew"}}
+	}
+	{boarder
+		{link "%place_l2" "driver_l2"}
+		{link "%place_r2" "driver_r2"}
+		{link "seat5" "driver_l2"}
+		{link "seat6" "driver_r2"}
+		{anm "%place_l2"
+			{forward {end "pose_artillery_support_l" 2}}
+		}
+		{anm "%place_r2"
+			{forward {end "pose_artillery_support_l" 2}}
+		}
+	}
+)

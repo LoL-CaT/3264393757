@@ -1,0 +1,28 @@
+{action from "fortify_merge"
+	{target ground}
+	{cursor "hedgehog"}
+	{fx "flashred"}
+	{item "hedgehog_kit"}
+	{item_in_box}
+	{entity "hedgehog_1"}
+	{marker "hedgehog_1_vis"}
+	{button "hedgehog"}
+	{ShowCount}
+	{aux_unit "engineers"}
+	{RequireSelect}
+	{NotifySelect}
+	{instructions
+		{bind range 1}
+		{disable_action_restart}
+		{take_item}
+		{reserve_hands}
+		{animations "hedgehog_setup_start"}
+		{effect "hedgehog_start_sound"}
+		{animations "hedgehog_setup_cycle hedgehog_setup_cycle_2"  random loop totaltime 4}
+		{effect "hedgehog_stop_sound"}
+		{fsm_request "ground-drop"}
+		{unreserve_hands}
+		{install notify_complete "hedgehog_1" 0 exact_placement}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

@@ -1,0 +1,27 @@
+{action from "construction"
+	{cursor "hammer"}
+	{item "supp_point_kit"}
+	{item_in_box}
+	{able_vehicle}
+	{button}
+	{ShowCount}
+	{apply_to_all}
+	{requireSelect}
+	{abledrag}
+;	{condition bodykit_able "build_supp_point"}
+	{condition ability {"build" basic} or props "gmc_supp" or props "gaz_aa_supp" or props "opel_blitz_supp"}
+	{entity "supp_point"}
+;	{entity "big_cloth_g2"}
+	{workshop "supp_point_vis"}
+	{pather "supp_point"}
+	{time 10}
+	{instructions
+		{bind range 2}
+		{disable_action_restart}
+		{free_hands}
+		{effect "build_supp_point_start_sound"}
+		{fsm_request "repair"}
+		{construct notify_complete}
+		{take_last_item}
+	}
+}

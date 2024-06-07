@@ -1,0 +1,25 @@
+{bullet										;mortar50
+	{tag "dropboxed mortar 50 damage_mortar ani_play_hit only_light ui_mortar"}
+	{desc "desc/ammo/mortar fg"}
+	{inventory
+;		{size 4 2}
+		{size 2 1}
+		{weight 70}
+	}	{mass 2}
+	{entity "mortar_rus_fg_ammo"}
+	{view "mortar_ammo"
+		{tail "shell_tail" "tail"}
+	}
+;	{detonationThickness 1}
+	("blast_mortar"
+		energy_base(2)				;200hp
+		energy_apc(2);(2.8)			;projectile 14
+		energy_construction(4.68)	;5
+		armorhealth(43)				;116;50mm.fg;80*0.66*2.351
+		range_end_apc(2)
+		range_end(7)
+		k(0)
+		cal(50)
+	)
+	("antipersonnel_low_ext_mortar" range_k(1) energy_k(0.5) ult(5))
+}

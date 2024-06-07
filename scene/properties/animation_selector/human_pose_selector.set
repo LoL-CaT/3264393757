@@ -1,0 +1,471 @@
+;SDL
+; 4 pose types - stand, squat, lie, snipe
+;
+; initially poses are empty
+; if aim is set but idle is empty, than aim is used instead of idle
+; each pose can have 1 animation (full body) or 2 animations (legs and upper body)
+; aim - aiming pose
+; idle - idle pose
+; fire - fire animation
+
+{stand
+	{if human_stuff holding "nothing" "small"
+		{if item_in_hand "binocular"
+			{if human_hold_strap
+				{pose 
+					{idle "pose_stand_down" "pose_stand_strap_1"}
+					{aim "" "pose_watch_binocular"}
+				}
+			}
+			{pose 
+				{idle "pose_stand_down" "pose_stand_empty_1"}
+				{aim "" "pose_watch_binocular"}
+			}
+		}
+		{if human_hold_strap
+			{pose 
+				{aim "pose_stand_down" "pose_stand_strap_1"}
+			}
+		}
+		{pose 
+			{aim "pose_stand_down" "pose_stand_empty_1"}
+		}
+	}
+	{if human_stuff holding "pistol"
+		{if have_enemy
+			{switch_by_counter "pose"
+				{pick 1
+					{aim "pose_stand_fire_pistol_down" "pose_stand_fire_pistol_up"}
+					{fire "stand_fire_pistol_down" "stand_fire_pistol_up"}
+				}
+				{pick 1
+					{aim "pose_stand_fire_pistol_down_1" "pose_stand_fire_pistol_up_1"}
+					{fire "stand_fire_pistol_down_1" "stand_fire_pistol_up_1"}
+				}
+				{pick 1
+					{aim "pose_stand_fire_pistol_down_2" "pose_stand_fire_pistol_up_2"}
+					{fire "stand_fire_pistol_down_2" "stand_fire_pistol_up_2"}
+				}
+			}
+		}
+		; no enemy
+		{switch_by_counter "pose"
+			{pick 1
+				{aim "pose_stand_fire_pistol_down" "pose_stand_fire_pistol_up"}
+				{fire "stand_fire_pistol_down" "stand_fire_pistol_up"}
+			}
+			{pick 1
+				{aim "pose_stand_fire_pistol_down" "pose_stand_fire_pistol_up"}
+				{fire "stand_fire_pistol_down" "stand_fire_pistol_up"}
+				{idle "pose_stand_down" "pose_stand_empty_1"}
+			}
+			{pick 1
+				{aim "pose_stand_fire_pistol_down_2" "pose_stand_fire_pistol_up_2"}
+				{fire "stand_fire_pistol_down_2" "stand_fire_pistol_up_2"}
+			}
+		}
+	}
+	{if human_stuff holding "mgun"
+		{if have_enemy
+			{switch_by_counter "pose"
+				{pick 1
+					{aim "pose_stand_fire_mgun_down" "pose_stand_fire_mgun_up"}
+					{fire "stand_fire_mgun_down" "stand_fire_mgun_up"}
+				}
+				{pick 1
+					{aim "pose_stand_fire_mgun_down_1" "pose_stand_fire_mgun_up_1"}
+					{fire "stand_fire_mgun_down_1" "pose_stand_fire_mgun_up_1"}
+				}
+			}
+		}
+		; no enemy
+		{switch_by_counter "pose"
+			{common
+				{aim "pose_stand_fire_mgun_down" "pose_stand_fire_mgun_up"}
+				{fire "stand_fire_mgun_down" "stand_fire_mgun_up"}
+			}
+			{pick 1
+				; from common
+			}
+			{pick 1
+				{aim "pose_stand_fire_mgun_down_1" "pose_stand_fire_mgun_up_1"}
+				{fire "stand_fire_mgun_down_1" "pose_stand_fire_mgun_up_1"}
+			}
+			{pick 1
+				{idle "pose_stand_look_around_gun_1"}
+			}
+			{pick 1
+				{idle "pose_stand_gun_aside_2"}
+			}
+		}
+	}
+	; same as mgun, but without recoil
+	{if human_stuff holding "flamer"
+		{if have_enemy
+			{switch_by_counter "pose"
+				{pick 1
+					{aim "pose_stand_fire_mgun_down" "pose_stand_fire_mgun_up"}
+				}
+				{pick 1
+					{aim "pose_stand_fire_mgun_down_1" "pose_stand_fire_mgun_up_1"}
+				}
+			}
+		}
+		; no enemy
+		{switch_by_counter "pose"
+			{common
+				{aim "pose_stand_fire_mgun_down" "pose_stand_fire_mgun_up"}
+			}
+			{pick 1
+				; from common
+			}
+			{pick 1
+				{aim "pose_stand_fire_mgun_down_1" "pose_stand_fire_mgun_up_1"}
+			}
+			{pick 1
+				{idle "pose_stand_look_around_gun_1"}
+			}
+			{pick 1
+				{idle "pose_stand_gun_aside_2"}
+			}
+		}
+	}
+	{if human_stuff holding "rifle"
+		{if have_enemy
+			{switch_by_counter "pose"
+				{pick 1
+					{aim "pose_stand_fire_rifle_down" "pose_stand_fire_rifle_up"}
+					{fire "stand_fire_rifle_down" "stand_fire_rifle_up"}
+				}
+				{pick 1
+					{aim "pose_stand_assault-fire_rifle_down" "pose_stand_assault-fire_rifle_up"}
+					{fire "stand_assault-fire_rifle_down" "stand_assault-fire_rifle_up"}
+				}
+			}
+		}
+		; no enemy
+		{switch_by_counter "pose"
+			{common
+				{aim "pose_stand_fire_rifle_down" "pose_stand_fire_rifle_up"}
+				{fire "stand_fire_rifle_down" "stand_fire_rifle_up"}
+			}
+			{pick 1
+				; construct completely from common
+			}
+			{pick 1
+				{aim "pose_stand_assault-fire_rifle_down" "pose_stand_assault-fire_rifle_up"}
+				{fire "stand_assault-fire_rifle_down" "stand_assault-fire_rifle_up"}
+			}
+			{pick 1
+				{idle "pose_stand_look_around_gun_1"}
+			}
+			{pick 1
+				{idle "pose_stand_gun_aside"}
+			}
+			{pick 1
+				{idle "pose_stand_gun_aside_1"}
+			}
+			{pick 1
+				{idle "pose_stand_gun_aside_2"}
+			}
+		}
+	}
+
+	{if human_stuff holding "smg"
+		{if human_after_move
+			{if have_enemy
+				{switch_by_counter "pose"
+					{pick 1
+						{aim "pose_stand_fire_gun_down" "pose_stand_fire_gun_up"}
+						{fire "stand_fire_gun_down" "stand_fire_gun_up"}
+					}
+					{pick 1
+						{aim "pose_stand_fire_gun_down_1" "pose_stand_fire_gun_up_1"}
+						{fire "stand_fire_gun_down_1" "stand_fire_gun_up_1"}
+					}
+					{pick 1
+						{fire "stand_assault-fire_gun_down_1" "stand_assault-fire_gun_up_1"}
+						{aim "pose_stand_assault-fire_gun_down_1" "pose_stand_assault-fire_gun_up_1"}
+					}
+					{pick 1
+						{fire "stand_assault-fire_gun_down" "stand_assault-fire_gun_up"}
+						{aim "pose_stand_assault-fire_gun_down" "pose_stand_assault-fire_gun_up"}
+					}
+				}
+			}
+			; no enemy
+			{switch_by_counter "pose"
+				{common
+					{aim "pose_stand_fire_gun_down" "pose_stand_fire_gun_up"}
+					{fire "stand_fire_gun_down" "stand_fire_gun_up"}
+				}
+				{pick 1
+					; construct completely from common
+				}
+				{pick 1
+					{aim "pose_stand_fire_gun_down_1" "pose_stand_fire_gun_up_1"}
+					{fire "stand_fire_gun_down_1" "stand_fire_gun_up_1"}
+				}
+				{pick 1
+					{idle "pose_stand_look_around_gun_1"}
+				}
+				{pick 1
+					{idle "pose_stand_gun_aside"}
+				}
+				{pick 1
+					{idle "pose_stand_gun_aside_1"}
+				}
+				{pick 1
+					{idle "pose_stand_gun_aside_2"}
+				}
+			}
+		}
+		; not after move
+		{if have_enemy or human_after_strafe
+			{switch_by_counter "pose"
+				{pick 1
+					{aim "pose_stand_fire_gun_down_1" "pose_stand_fire_gun_up_1"}
+					{fire "stand_fire_gun_down_1" "stand_fire_gun_up_1"}
+				}
+				{pick 1
+					{fire "stand_assault-fire_gun_down_1" "stand_assault-fire_gun_up_1"}
+					{aim "pose_stand_assault-fire_gun_down_1" "pose_stand_assault-fire_gun_up_1"}
+				}
+				{pick 1
+					{fire "stand_assault-fire_gun_down" "stand_assault-fire_gun_up"}
+					{aim "pose_stand_assault-fire_gun_down" "pose_stand_assault-fire_gun_up"}
+				}
+			}
+		}
+		; not after move and not after strafe and no enemy
+		{switch_by_counter "pose"
+			{common
+				{aim "pose_stand_fire_gun_down" "pose_stand_fire_gun_up"}
+				{fire "stand_fire_gun_down" "stand_fire_gun_up"}
+			}
+			{pick 1
+				; construct completely from common
+			}
+			{pick 1
+				{idle "pose_stand_look_around_gun"}
+			}
+			{pick 1
+				{idle "pose_stand_look_around_gun_1"}
+			}
+			{pick 1
+				{idle "pose_stand_gun_aside"}
+			}
+			{pick 1
+				{idle "pose_stand_gun_aside_1"}
+			}
+			{pick 1
+				{idle "pose_stand_gun_aside_2"}
+			}
+		}
+	}
+
+	{if human_stuff holding "bazooka"
+		{pose 
+			{aim "pose_stand_bazooka"}
+		}
+	}
+	{if human_stuff holding "1hand"
+		{pose 
+			{idle "pose_stand_1hand"}
+		}
+	}
+	{if human_stuff holding "2hands"
+		{pose 
+			{idle "pose_stand_2hand"}
+		}
+	}
+	{if human_stuff holding "body"
+		{pose 
+			{idle "pose_stand_corpse"}
+		}
+	}
+	{if human_stuff holding "flag"
+		{pose 
+			{idle "pose_stand_flag"}
+		}
+	}
+}
+
+{snipe
+	{if human_stuff holding "nothing" "small"
+		{if item_in_hand "binocular"
+			{pose 
+				{aim "pose_watch_binocular"}
+			}
+		}
+		{pose 
+			{aim "pose_stand_empty_1"}
+		}
+	}
+	{if human_stuff holding "pistol"
+		{pose 
+			{aim "pose_snipe_pistol"}
+		}
+	}
+	{if human_stuff holding "rifle"
+		{pose 
+			{aim "pose_snipe_rifle"}
+		}
+	}
+	{if human_stuff holding "smg" "mgun" "flamer"
+		{pose 
+			{aim "pose_snipe_gun"}
+		}
+	}
+	{if human_stuff holding "bazooka"
+		{pose 
+			{aim "pose_stand_bazooka"}
+		}
+	}
+	{pose}
+}
+
+{squat
+	{if human_stuff holding "nothing" "small"
+		{if item_in_hand "binocular"
+			{pose 
+				{aim "pose_squat_watch_binocular"}
+				{idle "pose_squat_empty"}
+			}
+		}
+		{pose 
+			{aim "pose_squat_empty"}
+		}
+	}
+	{if human_stuff holding "pistol"
+		{if have_enemy
+			{switch_by_counter "pose"
+				{pick 1
+					{aim "pose_squat_fire_pistol"}
+					{fire "squat_fire_pistol"}
+				}
+				{pick 2
+					{aim "pose_squat_fire_pistol_1"}
+					{fire "squat_fire_pistol_1"}
+				}
+			}
+		}
+		; no enemy
+		{switch_by_counter "pose"
+			{pick 1
+				{aim "pose_squat_fire_pistol"}
+				{fire "squat_fire_pistol"}
+			}
+			{pick 1
+				{aim "pose_squat_fire_pistol_1"}
+				{fire "squat_fire_pistol_1"}
+			}
+		}
+	}	
+	{if human_stuff holding "mgun"
+		{pose 
+			{aim "pose_squat_fire_mgun"}
+			{fire "squat_fire_mgun"}
+		}
+	}
+	{if human_stuff holding "flamer"
+		{pose 
+			{aim "pose_squat_fire_gun"}
+		}
+	}
+	{if human_stuff holding "smg"
+		{if have_enemy and human_after_move_or_strafe
+			{switch_by_counter "pose"
+				{pick 1
+					{aim "pose_squat_fire_gun"}
+					{fire "squat_fire_gun"}
+				}
+				{pick 2
+					{aim "pose_squat_assault-fire_gun"}
+					{fire "squat_assault-fire_gun"}
+				}
+			}
+		}
+		; no enemy
+		{pose 
+			{aim "pose_squat_fire_gun"}
+			{fire "squat_fire_gun"}
+		}
+	}
+	{if human_stuff holding "rifle"
+		{if have_enemy and human_after_move_or_strafe
+			{switch_by_counter "pose"
+				{pick 1
+					{aim "pose_squat_fire_rifle"}
+					{fire "squat_fire_rifle"}
+				}
+				{pick 2
+					{aim "pose_squat_assault-fire_rifle"}
+					{fire "squat_assault-fire_rifle"}
+				}
+			}
+		}
+		; no enemy
+		{pose 
+			{aim "pose_squat_fire_rifle"}
+			{fire "squat_fire_rifle"}
+		}
+	}
+	{if human_stuff holding "bazooka"
+		{pose 
+			{aim "pose_squat_bazooka"}
+			{fire "squat_fire_bazooka"}
+		}
+	}
+	{pose}
+}
+
+{lie
+	{if human_stuff holding "nothing" "small"
+		{if item_in_hand "binocular"
+			{pose 
+				{aim "pose_lie_watch_binocular"}
+				{idle "pose_lie_empty"}
+			}
+		}
+		{pose 
+			{aim "pose_lie_empty"}
+		}
+	}
+	{if human_stuff holding "pistol"
+		{pose 
+			{aim "pose_lie_pistol"}
+			{fire "lie_fire_pistol"}
+		}
+	}
+	{if human_stuff holding "rifle"
+		{pose 
+			{aim "pose_lie_rifle"}
+			{fire "lie_fire_rifle"}
+		}
+	}
+	{if human_stuff holding "smg"
+		{pose 
+			{aim "pose_lie_gun"}
+			{fire "lie_fire_gun"}
+		}
+	}
+	{if human_stuff holding "mgun"
+		{pose 
+			{aim "pose_lie_mgun"}
+			{fire "lie_fire_mgun"}
+		}
+	}
+	{if human_stuff holding "bazooka"
+		{pose 
+			{aim "pose_lie_bazooka"}
+			{fire "lie_fire_bazooka"}
+		}
+	}
+	{if human_stuff holding "flamer"
+		{pose 
+			{aim "pose_lie_gun"}
+		}
+	}
+	{pose}
+}

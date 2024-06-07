@@ -1,0 +1,61 @@
+;SDL
+actor
+
+(include "vehicle.ext")
+(include "armor_arena.ext")
+{able "-emit_passangers_on_enemy"}
+
+("brain_vehicle")
+
+{Chassis "water"
+	("chassis_defaults")
+}
+{simulatorid "water"}
+{patherid "water"}
+{collider "marine"}
+{obstacleID "marine"}
+
+{extender "inventory"
+	{box
+		{Size 6 10}
+		{Weight 3000}
+	}
+}
+
+(define "locomotion"
+	{MaxSpeed	25	}		; максимальная скорость, kmph
+	{StartTime	10	}		; время разгона до макс. скорости с 0, seconds
+	{BrakeTime	2	}		; время торможения с макс. скорости до 0, seconds
+	{StopTime	4	}		; время остановки после отключения двигателя с макс. скорости до 0, seconds
+	{TurnRadius	8	}		; мин. радиус разворота, meter
+	{SplineRadius 3	}		; ограничение радиуса поворота на сплайнах, метров
+
+	{SteerOn	20	}
+	{SteerOff	40	}
+	{Gears 0.5 0.7 1.0} ; передаточные коэф-ты коробки передач
+	{RearGears 0.15 0.3} ; передаточные коэф-ты коробки передач
+)
+
+(define "armor_marine"
+	{armor
+		{setting "body"
+			{thickness (* %b %k)}
+			{volumes "body*"}
+		}
+	}
+)
+
+(define "armor_light"
+	("armor_marine" b(15) k(%0))
+)
+(define "armor_medium"
+	("armor_marine" b(55) k(%0))
+)
+(define "armor_heavy"
+	("armor_marine" b(85) k(%0))
+)
+
+("armor_medium" args 1)
+
+{targetClass "tank" "ap fg bullet"}
+{targetSelector "tank"}

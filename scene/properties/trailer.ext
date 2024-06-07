@@ -1,0 +1,54 @@
+;SDL
+(include "vehicle.ext")
+(include "cannon_armor.ext")
+
+("brain_vehicle")
+
+{PatherID  "cannon.small"}
+{targetClass "cannon" "ap fg"}
+{collider "cannon"}
+{props "-with_gun" "trailer" "emit_on_sink" "trace_interceptor"}
+{able "emit_crew_on_injure"}
+
+{extender "inventory"
+	{box
+		{Size 6 10}
+		{weight 10000}
+;		{item "plant" 3 {cell 0 2}}
+		{item "repair_kit" {cell 4 0}}
+;		{item "netting" 3 {cell 6 2}}
+	}
+}
+{extender "bodykit"}
+
+{placer
+	{place "gunner"}
+	{place "commander" {visor "main"}}
+}
+(include "cannon_crew.ext")
+
+{volume "body"
+	{thickness 4}
+}
+{volume "standr"
+	{able {Visible 0} {nolook 1}}
+}
+{volume "standl"
+	{able {Visible 0} {nolook 1}}
+}
+(define "v_stand"
+{volume "stand*"
+	{able {Visible 0} {nolook 1}}
+}
+)
+{component "body"
+	{RepairTime 25}
+}
+
+{extender "talk"
+	{talker "cannon"}
+}
+{able "talk"}
+(define "attach_time"
+	{attach_time 2}
+)

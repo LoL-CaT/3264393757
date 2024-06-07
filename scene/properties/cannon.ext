@@ -1,0 +1,151 @@
+;SDL
+actor
+
+(include "trailer.ext")
+
+(include "/properties/action_target/repair_patrol.inc")
+
+(define "trench_cannon"
+	("bodykit_trench_cannon" name("trench_cannon") entity("trench_cannon"))
+	{extender "inventory"
+		{box
+			{item "sapper_shovel"}
+		}
+	}
+)
+(define "trench_cannon_med"
+	("bodykit_trench_cannon_med" name("trench_cannon") entity("trench_cannon_med"))
+	{extender "inventory"
+		{box
+			{item "sapper_shovel"}
+		}
+	}
+)
+(define "trench_cannon_big"
+	("bodykit_trench_cannon_big" name("trench_cannon") entity("trench_cannon_big"))
+	{extender "inventory"
+		{box
+			{item "sapper_shovel"}
+		}
+	}
+)
+{extender "bodykit"	
+	{"camouflage"
+		{drop_on_move}
+		{delay 5}
+		{"camouflage_vehicle_01b" "basis" {no_link}} ;entity bone
+	}
+}
+
+(define "spreadattenuation_basic"
+		{SpreadAttenuation 0 0 6 0 15 1}
+)
+(define "spreadattenuation_how"
+		{SpreadAttenuation 0 0 6 0 15 1}
+)
+(define "accuracy_by_motion" ;  spreading depending on the speed of "body", "gun" volumes
+	{AccuracyByMotion
+		{MaxLinearSpeed %max_linear}               ;km/h
+		{ByLinearSpeed %accuracy_by_linear}
+		{MaxAngularSpeed %max_angular}             ;deg/s
+		{ByAngularSpeed %accuracy_by_angular}
+;		{MaxTargetSpeed %max_target}
+;		{ByTargetSpeed %accuracy_by_target}
+		("%namesa")
+		{DisorderTime %disorder_time}              ;s
+		{OrderTime %order_time}                    ;s
+	}
+)
+
+(define "abm_field_gun"
+	("accuracy_by_motion"
+		max_linear(4) accuracy_by_linear(0.5)
+		max_angular(2) accuracy_by_angular(0.5)
+		disorder_time(1) order_time(1.5)
+		namesa(spreadattenuation_basic)
+	)
+)
+(define "abm_mortar"
+	("accuracy_by_motion"
+		max_linear(10) accuracy_by_linear(0.5)
+		max_angular(10) accuracy_by_angular(0.2)
+		disorder_time(2) order_time(10)
+		namesa(spreadattenuation_how)
+	)
+)
+
+(define "abm_zenite"
+	("accuracy_by_motion"
+		max_linear(2) accuracy_by_linear(0.9)
+		max_angular(2) accuracy_by_angular(0.9)
+		disorder_time(0.5) order_time(0.5)
+		namesa(spreadattenuation_basic)
+	)
+)
+
+(define "abm_howitzer"
+	("accuracy_by_motion"
+		max_linear(10) accuracy_by_linear(0.5)
+		max_angular(1) accuracy_by_angular(0.3)
+		namesa(spreadattenuation_how)
+		disorder_time(0.8) order_time(5.0)
+	)
+)
+(define "abm_howitzer_medium"
+	("accuracy_by_motion"
+		max_linear(10) accuracy_by_linear(0.5)
+		max_angular(1) accuracy_by_angular(0.35)
+		namesa(spreadattenuation_how)
+		disorder_time(1.0) order_time(3)
+	)
+)
+(define "abm_howitzer_medium2"
+	("accuracy_by_motion"
+		max_linear(10) accuracy_by_linear(0.5)
+		max_angular(1) accuracy_by_angular(0.35)
+		namesa(spreadattenuation_how)
+		disorder_time(1.0) order_time(4)
+	)
+)
+
+{brain
+	{const "cannon/to_fire_delay_ai"	2}
+	{const "cannon/to_fire_delay_user"	4}
+}
+
+{targetSelector "cannon_shell"}
+
+{props "with_gun"}
+
+
+{Weaponry
+	{ManualAccuracy 1.25}
+	{place "gun"
+		{charger "gunner"}
+	}
+}
+
+{volume "turret"
+	{thickness 3}
+}
+
+(define "v_gun" 
+	{volume "gun%n"
+		{thickness 3}
+		{able {Visible 0} {Obstacle 0} {Contact 0} {nolook 1}}
+		{component "gun"}
+		{tags "gun"}
+	}
+)
+("v_gun" n())
+
+{component "turret"
+	{RepairTime 15}
+}
+{component "gun"
+	{RepairTime 15}
+}
+
+(define "restore_ik_time"
+	{RestoreIKTime 10}
+)

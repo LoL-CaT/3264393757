@@ -1,0 +1,473 @@
+;SDL
+actor
+
+(include "vehicle.ext")
+(include "car_crew.ext")
+(include "armor_arena.ext")
+(include "tank_bodykit.ext")
+
+(include "/properties/action_target/repair_patrol.inc")
+
+("brain_vehicle")
+
+{extender "talk"
+	{talker "human"}
+}
+{extender "bodykit"
+	{"camouflage"
+		{delay 5}
+		{drop_on_move}
+		{"leafbush_01b_scale06" "visor"} ;entity bone
+		{"leafbush_01b_scale06" "visor1"} ;entity bone
+		{"leafbush_01b_scale06" "visor2"} ;entity bone
+		{"leafbush_01b_scale06" "visor3"} ;entity bone		
+		{"leafbush_01b_scale05" "seat01"} ;entity bone
+		{"leafbush_01b_scale04" "seat02"} ;entity bone
+		{"leafbush_01b_scale05" "seat03"} ;entity bone
+		{"leafbush_01b_scale04" "seat04"} ;entity bone	
+		{"leafbush_01b_scale06" "mgun"} ;entity bone
+		{"leafbush_01b_scale05" "cover1"} ;entity bone
+		{"leafbush_01b_scale05" "cover2"} ;entity bone
+		{"leafbush_01b_scale05" "cover3"} ;entity bone
+		{"leafbush_01b_scale05" "cover4"} ;entity bone
+		{"leafbush_01b_scale04" "fxsmoke1"} ;entity bone
+		{"leafbush_01b_scale05" "fxsmoke2"} ;entity bone
+		{"leafbush_01b_scale04" "enumerator"} ;entity bone
+		{"leafbush_01b_scale04" "enumerator1"} ;entity bone	
+		{"leafbush_01b_scale06" "emit0"} ;entity bone			
+	}       	
+}
+(define "auto_restore_warehouse"
+{extender "auto_restore_fuel_point"
+	{radius 22}
+	{type "consumable"}
+}
+)
+
+(define "turret_speed"
+	{speed (+ %0 0.002)}
+)
+(define "spreadattenuation_basic"
+		{SpreadAttenuation 0 0 6 0 15 1}	
+)
+(define "spreadattenuation_how"
+		{SpreadAttenuation 0 0 6 0 15 1}		
+)
+
+(define "accuracy_by_motion" ; 	spreading depending on the speed of "body", "gun" volumes
+	{AccuracyByMotion
+		{MaxLinearSpeed %max_linear}               ;km/h
+		{ByLinearSpeed %accuracy_by_linear}
+		{MaxAngularSpeed %max_angular}             ;deg/s
+		{ByAngularSpeed %accuracy_by_angular}
+		{DisorderTime %disorder_time}              ;s
+		{OrderTime %order_time}                    ;s
+	}
+)
+(define "abm_25"
+	("accuracy_by_motion"
+		max_linear(14) accuracy_by_linear(0.2)
+		max_angular(4) accuracy_by_angular(0.6)
+		disorder_time(1.2) order_time(2)
+	)
+)
+(define "abm_zenite"
+    ("accuracy_by_motion"
+        max_linear(10) accuracy_by_linear(0.5)
+        max_angular(4) accuracy_by_angular(0.8)
+        disorder_time(1.2) order_time(1.4)
+    )
+)
+(define "abm_howitzer"
+    ("accuracy_by_motion"
+        max_linear(10) accuracy_by_linear(0.9)
+        max_angular(1) accuracy_by_angular(0.3)
+        disorder_time(0.8) order_time(6.5)
+    )
+)
+
+(define "abm_zenite"
+    ("accuracy_by_motion"
+        max_linear(10) accuracy_by_linear(0.6);(0.2)
+        max_angular(4) accuracy_by_angular(0.8)
+        disorder_time(1.2) order_time(1.4)
+    )
+)
+;new
+(define "abm_mgun"
+	("accuracy_by_motion"
+		max_linear(16) accuracy_by_linear(0.8);(0.3)
+		max_angular(4) accuracy_by_angular(0.8);(0.8)
+		disorder_time(1.2) order_time(2)
+	)
+)
+
+(define "abm_mgun_heavy"
+	("accuracy_by_motion"
+		max_linear(16) accuracy_by_linear(0.75);
+		max_angular(4) accuracy_by_angular(0.75);
+		disorder_time(1.2) order_time(2)
+	)
+)
+(define "abm_auto_cannon"
+	("accuracy_by_motion"
+		max_linear(20) accuracy_by_linear(0.5);
+		max_angular(10) accuracy_by_angular(0.7);
+		disorder_time(1.2) order_time(2)
+	)
+)
+(define "abm_gun"
+    ("accuracy_by_motion"
+        max_linear(4) accuracy_by_linear(0.5)
+        max_angular(2) accuracy_by_angular(0.5)
+        disorder_time(1) order_time(1.5)
+		namesa(spreadattenuation_basic)
+    )
+)
+(define "abm_reactive1"
+	("accuracy_by_motion"
+		max_linear(16) accuracy_by_linear(0.75);
+		max_angular(4) accuracy_by_angular(0.75);
+		disorder_time(1.2) order_time(2)
+	)
+)
+
+{hearingBias 4.5} ; in meters
+{collider "car"}
+{props "car" "wheeled" "emit_on_sink" "tractor"}
+{targetClass "car"}
+{targetSelector "tank_bullet"}
+
+{able "ally_crew" "talk"}
+
+{placer
+	{place "driver"
+		{visor "main"}
+		{UseVision 0}
+	}
+}
+
+{extender "inventory"
+	{box
+		{Size 6 10}
+		{weight 10000}
+	       	  {item "repair_kit"}
+              	  {item "can"}
+	}
+}
+(define "v_cabin"
+{volume "cabin%n"
+	{thickness hollow 1}
+	{tags "cabin_armor"}
+}
+)
+("v_cabin" n())
+{volume "body"
+	{thickness 8}
+	{tags "body_armor"}
+}
+{volume "bodyback"
+	{thickness 3}
+	{whole_wound}
+}
+{volume "glass"
+	{thickness 0.1}
+}
+(define "v_window"
+{volume "window%n"
+	{thickness 0.1}
+	{tags "glass"}
+}
+)
+("v_window" n())
+{volume "engine"
+	{thickness 5}
+	{tags "engine_armor"}
+}
+{volume "inventory"
+	{tags "explosive"}
+	{thickness 0.2}
+}
+{volume "fuel"
+	{tags "explosive"}
+	{thickness 1}
+}
+	
+{component "body"
+	{RepairTime 25}
+	{tags "mover"}
+}
+{component "bodyback"
+	{RepairTime 25}
+}
+{component "cabin"
+	{RepairTime 15}
+}
+{component "engine"
+	{RepairTime 15}
+}
+{component "fuel"
+}
+(define "components_with_tracks"
+    {component "trackleft"
+        {RepairTime %repair_track}
+    }
+    {component "trackright"
+        {RepairTime %repair_track}
+    }
+)
+(define "components_with_gun"
+    {component "turret"
+        {RepairTime %repair_turret}
+    }
+    {component "gun"
+        {RepairTime %repair_gun}
+    }
+    {component "gun2"
+        {RepairTime %repair_gun}
+    }
+    {component "gun3"
+        {RepairTime %repair_gun}
+    }
+    {component "guns" ;calliope
+        {RepairTime %repair_gun}
+    }
+)
+
+(define "components_car"
+    {component "engine"
+        {RepairTime %repair_engine}
+    }
+    {component "wheelright1"
+        {RepairTime %repair_wheel}
+    }
+    {component "wheelright2"
+        {RepairTime %repair_wheel}
+    }
+    {component "wheelright3"
+        {RepairTime %repair_wheel}
+    }
+    {component "wheelright4"
+        {RepairTime %repair_wheel}
+    }
+    {component "wheelleft1"
+        {RepairTime %repair_wheel}
+    }
+    {component "wheelleft2"
+        {RepairTime %repair_wheel}
+    }
+    {component "wheelleft3"
+        {RepairTime %repair_wheel}
+    }
+    {component "wheelleft4"
+        {RepairTime %repair_wheel}
+    }
+)
+(define "wheel_custom"
+	{volume "%v"
+		{thickness 0.5}
+		{tags "wheel"}
+		{component "%c"}
+		{able {NoWoundDecal}}
+	}
+	{component "%c"
+		{RepairTime 10}
+		{tags "wheel"}
+	}
+)
+
+{Chassis "wheel"
+	("chassis_defaults")
+	{speed
+		{Slow	10	}	; km/h
+		{Normal	20	}
+		{Fast	25	}
+	}
+}
+
+(define "locomotion"
+	(define "maxspeed"	{MaxSpeed       (* %0 %1 0.75)})
+	{MaxSpeed	100	}		; максимальная скорость, kmph
+	{StartTime	15	}		; время разгона до макс. скорости с 0, seconds
+	{maxSpeedAtMaxTurn 15}
+	{BrakeTime	2	}		; время торможения с макс. скорости до 0, seconds
+	{StopTime	4	}		; время остановки после отключения двигателя с макс. скорости до 0, seconds
+	{TurnRadius	4	}		; мин. радиус разворота, meter
+	{Gears		0.1 0.5 0.8 1.0} ; передаточные коэф-ты коробки передач
+	{RearGears	0.35}		; передаточные коэф-ты коробки передач
+	{SteerOn	20}			; скорость поворота колес, градусов в секунду
+	{SteerOff	40}         ; скорость возврата колес в исх. состояние, градусов в секунду
+	{SplineRadius 1}		; ограничение радиуса поворота на сплайнах, метров
+	{FallSlope 90}			; угол наклона, при котором включается физика, придается импульс
+	{MaxSlope 36}			;at this angle traction at minimal gear is equal to 0
+)
+(define "chassis_add"
+    {Chassis
+        {Locomotion
+			("maxspeed" args %speed 0.6)
+		}
+        {speed
+			{Fast %speed}
+        }
+		{PatherIDWithTrailer "vehicle.trailer"}
+	}
+)
+
+(define "armor_car"
+	{armor
+		{setting "body"
+			{bullet_pass	{threshold 100}}
+			{fragment_pass_threshold 1}
+			{thickness (* %b %k)}
+			{threshold
+				{blast 					
+					{value 3}
+				}								
+				{pierce 
+					{value 3}
+				}
+			}						
+			{durability 
+				{blast 					
+					{value %b}
+				}			
+			}
+			{volumes "body*"}
+		}
+		{setting "body_back"
+			{bullet_pass	{threshold 100}}
+			{fragment_pass_threshold 1}
+			{thickness %bb}
+			{threshold
+				{blast 					
+					{value 3}
+				}								
+				{pierce 
+					{value 1}
+				}
+			}						
+			{durability 
+				{blast 					
+					{value %b}
+				}			
+				{pierce
+					{value 15}
+				}
+			}				
+			{volumes "bodyback*"}
+		}
+		{setting "engine"
+			{bullet_pass	{threshold 100}}
+			{fragment_pass_threshold 1}
+			{thickness (* 1 %b)}
+			{threshold								
+				{blast 					
+					{value 3}
+				}
+				{pierce 
+					{value 3.5}
+				}
+			}						
+			{durability 		
+				{blast 					
+					{value %b}
+				}							
+				{pierce
+					{value (* 1 %b)}				
+				}
+			}		
+			{whole_wound}		
+			{volumes "engine*"}
+		}
+		{setting "wheel"
+			{bullet_pass	{threshold 100}}
+			{fragment_pass_threshold 1}
+			{thickness 5}
+			{threshold
+				{blast 
+					{value 3}
+				}				
+				{pierce 
+					{value 1}
+				}
+			}			
+			{durability 
+				{blast 
+					{value 6}
+				}				
+				{pierce 
+					;{value 10}
+					{koef 1}
+				}
+			}			
+			{whole_wound}
+			{volumes "wheel*"}
+		}
+		{setting "cabin"
+			{bullet_pass	{threshold 100}}
+			{fragment_pass_threshold 1}
+			{thickness 3}
+			{threshold
+				{blast 
+					{value 1}
+				}
+			}
+			{durability 
+				{blast 					
+					{value (* %b %k)}
+				}			
+				{pierce					
+					{value (* %b 0.6)}
+				}			
+			}
+			{volumes "cabin*"}
+		}
+			{setting "shields"
+				{bullet_pass	{threshold 100}}
+				{fragment_pass_threshold 1}
+				{thickness 5}
+				{threshold
+					{blast 					
+						{value 3}
+					}								
+					{pierce 
+						{value 7}
+					}
+				}
+				{durability 
+					{blast 					
+						{value 17}
+					}			
+					{pierce
+						{value 22}
+					}
+				}				
+				{volumes "shield*"}
+			}
+			{setting "glass"
+				{bullet_pass	{threshold 100}}
+				{thickness 1}
+				{volumes "glass*"}
+			}
+		}
+
+		{sensor
+			{visor "view-around"
+		                {vision "moto_around"}
+				{bone "basis"}
+			}		
+			{visor "main"
+				{vision "vehicle_main"}
+			}		
+		}
+)
+
+(define "armor_light"
+	("armor_car" b(5) k(%0) bb(0.5))
+)
+(define "armor_medium"
+	("armor_car" b(7) k(%0) bb(0.5))
+)
+(define "armor_fuel"
+	("armor_car" b(5) k(%0) bb(6))
+)

@@ -1,0 +1,263 @@
+;SDL
+{PatherID  "vehicle.large"}
+{obstacleID "tank"}
+{Simulation {Able 1}}
+{props "steel" "vehicle" "obstacle_ignore_height" "inventory_transfer"}
+{able "emit_passangers_on_enemy" "repaired"}
+{lodclass "vehicle_small"}
+{collider "vehicle"}
+{extender "bodykit"}
+{sensor
+	{Visor "main"
+		{vision "vehicle_main"}
+		{bone "visor"}
+	}
+	{RecognizeTime 0.1}
+	{InformRange 150}
+}
+
+{boarder}
+{placer {crew}}
+
+(define "fuelbag"
+	{FuelBag
+		{volume %volume }   ; liters
+		{rate   %rate }    ; liters per kilometer
+		{remain %remain }
+		{fuel "fuel"}
+	}
+)
+
+(define "v_std"
+	{volume "%vol%n"
+		{component "%vol"}
+		{tags "%vol" "%vol_armor%tag" %add}
+	}
+)
+(define "v_body" ("v_std" vol(body) n(%n) tag(%t) add()))
+(define "v_turret" ("v_std" vol(turret) n(%n) tag(%t) add()))
+(define "v_gun" ("v_std" vol(gun) n(%n) tag(%t) add("no_target")))
+(define "v_engine" ("v_std" vol(engine) n(%n) tag(%t) add()))
+
+(define "trackl_support_parameters"
+	{parameters "id=trackleft;radius=%r;support=1;"}
+)
+(define "trackr_support_parameters"
+	{parameters "id=trackright;radius=%r;support=1;"}
+)
+(define "wheel_support_parameters"
+	{parameters "radius=%r;support=1;"}
+)
+(define "wheell_support_parameters"
+	{parameters "id=wheelleft;radius=%r;support=1;"}
+)
+(define "wheelr_support_parameters"
+	{parameters "id=wheelright;radius=%r;support=1;"}
+)
+(define "support_bones"
+	{bone "wheell%n"
+		("%lname_support_parameters" r(%r))
+	}
+	{bone "wheelr%n"
+		("%rname_support_parameters" r(%r))
+	}
+)
+(define "bone_rotator"
+	{extender "bone_rotator"
+		{"watch.turret"}
+	}
+)
+(define "brain_vehicle"
+	{brain "vehicle"
+		{state "vehicle"}
+		{const "crush/min_danger_zone_time" 	1}
+		{const "crush/min_danger_zone_length"	1}
+		{const "withdraw/cooldown"		30} ; sec
+	}
+)
+
+{## extender "detail"
+	{random}
+}
+
+{IgnoreSaturation 1}
+
+(define "chassis_defaults"
+	{##FuelBag
+		{volume 200 }	; liters
+		{rate	20 }   	; liters per kilometer
+		{remain 150 }
+		{fuel "fuel"}
+	}
+	{speed
+		{Slow	10	}	; km/h
+		{Normal	17	}
+		{Fast	30	}
+	}
+)
+
+(define "wheel"
+	{volume %0
+		{thickness 0.5}
+		{tags "wheel"}
+		{component %0}
+		{able {NoWoundDecal}}
+	}
+	{component %0
+		{RepairTime 10}
+		{tags "wheel"}
+	}
+)
+
+(define "tracks"
+	{volume "trackleft"
+		{thickness 33}
+		{tags "mover" "track"}
+		{able {NoWoundDecal}}
+	}
+	{volume "trackright"
+		{thickness 33}
+		{tags "mover" "track"}
+		{able {NoWoundDecal}}
+	}
+	{component "trackleft"
+		{RepairTime 10}
+		{tags "mover" "track"}
+	}
+	{component "trackright"
+		{RepairTime 10}
+		{tags "mover" "track"}
+	}
+)
+
+(define "car_trace"
+    {Track %wheell
+	    {Tracer
+    		{View %fx}
+    		{Bone %bonel}
+	    	{Step %step}
+    	}
+    }
+    {Track %wheelr
+    	{Tracer 
+	    	{View %fx}
+    		{Bone %boner}
+    		{Step %step}
+	    }
+    }
+)
+
+(define "tank_trace_ex"
+    {Track "left"
+	    {Tracer
+    		{View %fx} ; "tracks"
+    		{Bone %boneleft}
+	    	{Step %step}			; 0.7 meters
+    	}
+		{TextureScroller
+	    	{Bone "TrackL"}
+    		{Length %len}		; 0.6 meters per animation
+    	}
+    }
+    {Track "right"
+    	{Tracer 
+	    	{View %fx}
+    		{Bone %boneright}
+    		{Step %step}			; in meters
+	    }
+		{TextureScroller
+	    	{Bone "TrackR"}
+    		{Length %len}		; meters per animation
+    	}
+    }
+)
+
+(define "tank_trace"
+	("tank_trace_ex" fx(%fx) step(%step) len(%len) boneleft("fxtracel1") boneright("fxtracer1"))
+)
+
+{able "ally_crew"}
+
+{Weaponry
+    {ManualAccuracy 1.25}
+}
+(define "animation_resume"
+{skeleton
+	{animation
+		{sequence "stop" {speed 0.5} {resume}}
+		{sequence "start" {speed 0.5} {resume}}
+	}
+}
+)
+(define "shield"
+	{armor
+		{setting "shield"
+			{thickness %0}
+			{volumes "shield*"}
+			{health_reducing
+				{pierce {koef 0}}
+				{blast {koef 0}}
+			}
+			{cumulative_overcoming}
+			{threshold_weakness_calibre 14}
+			{damage_passer
+				{chance 0.3
+				   {pierce {value (* 0.8 %0)}}
+				}
+				{chance 1
+				   {pierce {value %0}}
+				}
+			}
+			{bullet_pass	{threshold 100}}
+			{fragment_pass_threshold 1}
+		}
+	}
+)
+(define "bodykit_item"
+{extender "bodykit"
+	{%name
+		{delay %delay}
+		{drop_on_move %drop_on_move}
+		{%entity %bone {no_link}}
+	}	
+}
+)
+(define "bodykit_trench_cannon"
+	("bodykit_item" name(%name) delay(10) drop_on_move(0) entity(%entity) bone("basis"))
+)
+(define "bodykit_trench_cannon_med"
+	("bodykit_item" name(%name) delay(15) drop_on_move(0) entity(%entity) bone("basis"))
+)
+(define "bodykit_trench_cannon_big"
+	("bodykit_item" name(%name) delay(20) drop_on_move(0) entity(%entity) bone("basis"))
+)
+(define "bodykit_sandbag"
+	("bodykit_item" name(%name) delay(10) drop_on_move(0) entity(%entity) bone("basis"))
+)
+(define "round_sandbag"
+	("bodykit_sandbag" name("round_sandbag") entity("sandbag_woodbeam1_round"))
+)
+(define "round_sandbag2"
+	("bodykit_sandbag" name("round_sandbag") entity("sandbag2_round"))
+)
+(define "round_sandbag3"
+	("bodykit_sandbag" name("round_sandbag") entity("dot_sack"))
+)
+(define "round_sandbag_ba64"
+	("bodykit_sandbag" name("round_sandbag") entity("sandbags_pz35t"))
+)
+(define "round_sandbag_flak"
+	("bodykit_sandbag" name("round_sandbag") entity("sandbags_flak"))
+)
+(define "round_sandbag_flak_m2"
+	("bodykit_sandbag" name("round_sandbag") entity("sandbags_flak_m2"))
+)
+(define "round_dot"
+	("bodykit_sandbag" name("round_dot") entity("sandbag_woodbeam1_001_g2"))
+)
+(define "round_dot2"
+	("bodykit_sandbag" name("round_dot") entity("sandbag_woodbeam1_003_g2"))
+)
+(define "sequential_aim"
+	{SequentialAim 0} ; enables simultaneous rotation with turret
+)
