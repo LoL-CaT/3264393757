@@ -1,0 +1,138 @@
+{game_entity
+	(include "/properties/tank_without_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.2))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+	{collider "tank.heavy"}
+	("bone_rotator")
+	{props "medium" "-turret" "opened" "vision_lev04" "howitzer" "spg" "level04" "open_wheelhouse" "bkg_sound" "ram_lvl6" "deploy_support" "texmod_cw_cf_cd" "anm_tank_cannon"}
+	("trench_cannon_big")	
+	{extender "enumerator"
+		{group "usa"}
+	}
+	{targetSelector "cannon_howitzer"}
+
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{component "sticky_body"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t(2))
+	("v_body" n(03) t(3))
+	("v_body" n(04) t(4))
+	("v_body" n(05) t(4))
+	("v_body" n(06) t(6))
+	("v_body" n(07) t(6))
+	("v_body" n(08) t(6))
+	("v_body" n(09) t(4))
+	("v_body" n(10) t(4))
+	("v_body" n(11) t(11))
+	("v_body" n(12) t(12))
+	("v_body" n(13) t(12))
+	("v_gun" n(_rot01) t())
+
+	("arena_armor_spa_medium" gun(25) engine(12.7) body(50.8 19 19 12.7) track(20) hp(521))
+	{armor
+		("module_body_medium" n(2) body(12.7 19 19 12.7))
+		("module_body_medium" n(3) body(25.4 19 19 12.7))
+		("module_body_medium" n(4) body(19 19 19 12.7))
+		("module_body_medium" n(6) body(25.4 14.5 19 12.7))
+		("module_body_medium" n(9) body(19 19 19 12.7))
+		("module_body_medium" n(11) body(19))
+		("module_body_medium" n(12) body(50.8))
+		("module_turret_medium" n() turret(19) hp_k(1))
+		("module_detail_shield" n() vol("gun_rot02") t(19))
+		("module_other" t(4))
+	}
+	
+	("crew_human_single_door" 		place(driver)		door1(emit0) anm(driver) visor(driver))
+	("crew_human_single_door" 		place(commander)	door1(emit1) anm(commander) visor(main))
+	("crew_human_visible_anm_single_door" 	place(gunner)		door1(emit2) anm(left) visor(main))
+	("crew_human_visible_anm_single_door" 	place(charger)		door1(emit3) anm(right) visor(main))
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_hummel"} {base "doorleft"}} 
+			{reverse 	{end	"emit_body" 1} {base "doorleft" -1}}
+		}
+		{anm "left"
+			{forward	{begin	"board_hummel"} {end "cannon_small_commander"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_hummel"} {end "cannon_small_charger"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "commander"
+			{forward	{begin	"board_hummel"} {base "doorright"}}
+			{reverse 	{end	"emit_body" 1} {base "doorright" -1}}
+		}
+
+	}
+
+	{extender "inventory"
+		{box
+			{item "ammo bullet155 fg ally std" 10}
+		}
+	}
+	{Weaponry
+		{ManualAccuracy 1}
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "155mm_m1917" filling "bullet155 fg ally std" 1}
+			{charger "gunner"}
+			("abm_howitzer")
+		}
+	}
+	
+	{mass 42500}
+	{Chassis
+		("tank_trace" fx("tracks_sm") step(0.3) len(0.49))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       34}
+			{maxSpeedAtMaxTurn 12.75}
+			{StartTime	       4}
+			{TurnTime	        8}
+			{TurnStart        1.1} 
+			{BrakeTime        0.5}
+			{StopTime         0.5} 
+			{TurnRadius         5} 
+			{TurnStop         0.7} 
+			{Gears      0.2 0.5 1.0}
+			{RearGears       0.2 0.45}
+		}
+		("fuelbag"
+			volume(231)
+			rate(50)
+			remain(231)
+		)
+		{DisableMoveWhileFiring}
+	}
+	("chassis_add_medium" speed(34))
+	{Extension "m12gmc.mdl"}
+    ("animation_resume")
+	
+	{bone "turret"
+		{limits -15 15}
+		{speed 0.01}
+	}
+	{bone "gun_rot"
+		{limits -5 30}
+		{speed 0.013}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.4))
+	("support_bones_std" n(2) r(0.31))
+	("support_bones_std" n(3) r(0.31))
+	("support_bones_std" n(4) r(0.31))
+	("support_bones_std" n(5) r(0.31))
+	("support_bones_std" n(6) r(0.31))
+	("support_bones_std" n(7) r(0.31))
+	("support_bones_std" n(8) r(0.3))
+}

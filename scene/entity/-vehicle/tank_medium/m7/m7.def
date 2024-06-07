@@ -1,0 +1,173 @@
+{entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.2))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+	("bone_rotator")
+	{props "medium" "-turret" "opened" "vision_lev04" "howitzer" "spg" "level04" "open_wheelhouse" "bkg_sound" "ram_lvl6" "texmod_w_cf_cd" "anm_tank_m7"}
+	
+	{targetSelector "cannon_howitzer"}
+
+	("sandbags_m7")	
+	("trench_cannon_big")
+	{extender "enumerator"
+		{group "usa"}
+	}
+	
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	
+	{component "sticky_body"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t(2))
+	("v_body" n(03) t(3))
+	("v_body" n(04) t(3))
+	("v_body" n(05) t(3))
+	("v_body" n(06) t(3))
+	("v_body" n(07) t(3))
+	("v_body" n(08) t(3))
+	("v_body" n(09) t(3))
+	("v_body" n(10) t(3))
+	("v_body" n(11) t(3))
+	("v_body" n(12) t(3))
+	("v_body" n(13) t(3))
+
+	("v_engine" n(01) t())
+	("v_engine" n(02) t())
+
+	("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(03) t())
+	("v_gun" n(04) t())
+	("v_gun" n(05) t())
+	("v_gun" n(06) t())
+	("v_gun" n(07) t())
+	("v_gun" n(_rot) t())
+
+	("v_turret" n(01) t())
+	("v_turret" n(02) t())
+	
+	("arena_armor_spa_medium" gun(25) engine(12.7) body(101.6 38.1 12.7 38.1) track(20) hp(584))
+	{armor
+		("module_body_medium" n(2) body(101.6 12.7))
+		("module_body_medium" n(3) body(12.7))
+		("module_other" t(4))
+	}
+
+	{extender "enumerator"}
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_tank_left"} {end "driver_car_small"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "gunner"
+			{forward	{begin	"board_tank_left"} {end "zenit_pointer_right"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "commander"
+			{forward	{begin	"board_tank_left"} {end "cannon_small_charger"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "crew"
+			{forward	{begin	"board_tank_right"} {end "vehicle_mgun_2hand"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+	}
+	
+	("crew_human_visible_anm" place(driver)		door1(emit1) door2(emit2) anm_left(driver) anm_right(driver) visor(driver))
+	("crew_human_visible_anm" place(gunner)		door1(emit1) door2(emit2) anm_left(gunner) anm_right(gunner) visor(main))
+	("crew_human_visible_anm" place(commander)	door1(emit1) door2(emit2) anm_left(commander) anm_right(commander) visor(main))
+	("crew_human_visible_anm" place(gunner2)	door1(emit1) door2(emit2) anm_left(crew) anm_right(crew) visor(main))
+	("gunner_visible")
+	
+	{placer 
+		{place "driver" {openForCrush 0}}
+		{place "gunner" {openForCrush 0}}
+	}	
+	
+	{extender "inventory"
+		{box
+			{item "ammo hmgun" 500}
+			{item "bullet105 fg ally std" 30}
+			{item "bullet105 ic ally std" 10}
+			{item "browning" filled {user "mgun"}}
+			{item "sandbag_kit2"}			
+		}
+	}
+	
+	{Weaponry
+		{ManualAccuracy 1}
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "105mm_m2a1" filling "ammo bullet105 fg ally std" 1}
+			{charger "gunner"}
+			("abm_howitzer_medium")
+		}
+		{place "mgun"
+			{type "aa"}
+			{gunner "gunner2"}
+			{charger "gunner2"}
+			{LinkBone "mgun"}
+			{LinkAnimation "off"}
+			("abm_mgun_heavy")
+			{basic}
+		}
+	}
+
+	{mass 22900}
+	{Chassis
+		("tank_trace" fx("tracks_sm") step(0.3) len(0.49))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       39}
+			{maxSpeedAtMaxTurn 14.625}
+			{StartTime	       4}
+			{TurnTime	        8}
+			{TurnStart        1.1} 
+	    		{BrakeTime        0.5}
+     			{StopTime         0.5} 
+	    		{TurnRadius         5} 
+    			{TurnStop         0.7} 
+	    		{Gears      0.2 0.5 1.0}
+    			{RearGears       0.2 0.45}
+		}
+		("fuelbag"
+			volume(194)
+			rate(50)
+			remain(194)
+		)
+	}	
+	("chassis_add_medium" speed(39))
+
+	{Extension "m7.mdl"}
+    ("animation_resume")
+
+	{bone "gun_rot"
+		{limits -5 45}
+		{speed 0.03}
+	}
+	{bone "turret"
+		{limits -12 26}
+		("arena_turret_speed" args 0.0143)
+	}
+	{bone "turret_mgun"
+		("arena_turret_hmgun_aa_speed" args 0.025)
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.4))
+	("support_bones_std" n(2) r(0.31))
+	("support_bones_std" n(3) r(0.31))
+	("support_bones_std" n(4) r(0.31))
+	("support_bones_std" n(5) r(0.31))
+	("support_bones_std" n(6) r(0.31))
+	("support_bones_std" n(7) r(0.31))
+	("support_bones_std" n(8) r(0.3))
+}

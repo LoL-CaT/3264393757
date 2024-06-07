@@ -1,0 +1,148 @@
+{entity
+	(include "/properties/tank_without_mgun.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.3))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+	("bone_rotator")
+	{props "medium" "turret_rotator" "vision_lev05" "ram_lvl5" "texmod_w_cf_cd"}
+	
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_body" n(03) t(03))
+	("v_turret" n(01) t())
+	("v_turret" n(02) t(02))
+	("v_turret" n(03) t(03))
+	("v_turret" n(04) t(03))
+	("v_engine" n(01) t())
+	("v_engine" n(02) t(02))
+	("v_engine" n(03) t(03))
+
+	("arena_armor_mantlet" t(65))
+	("arena_armor_medium" turret(65 60 65 20) gun(15) engine(30 30 30 17) body(60 60 60 30) track(20) hp(607))
+	{armor
+		("module_body_medium" n(03) body(60 60 60 10))
+		("module_engine_medium" n(02) engine(60 60 30 17))
+		("module_engine_medium" n(03) engine(17 30 30 10))
+		("module_turret_medium" n(02) turret(65 65 65 15) hp_k(1))
+		("module_turret_medium" n(03) turret(65 65 65 65) hp_k(1))
+		("module_other" t(5))
+	}
+
+	{extender "enumerator"}
+	
+	("crew_3_human")
+
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_tank_left"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_tank_right"}}
+			{reverse 	{end	"emit_tank_1_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_LowArmor"} 	{end "seat_armor"}}
+			{reverse 	{end	"emit_tank_1"}}
+		}
+	}
+
+	("seat_human" place(seat1) bone(seat01) door(emit6)  animation(armor))
+	("seat_human" place(seat2) bone(seat02) door(emit5)  animation(armor))
+	("seat_human" place(seat3) bone(seat03) door(emit4)  animation(armor))
+	("seat_human" place(seat4) bone(seat04) door(emit3)  animation(armor))
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(28)
+		repair_turret(28)
+		repair_gun(18)
+		repair_track(12)
+	)
+
+	{extender "inventory"
+		{box
+			{item "ammo mgun" 3550}
+			{item "ammo bullet40 ap eng std" 30}
+			{item "ammo bullet40 fg eng std" 20}
+		}
+	}
+	
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "40mm_oqf2pdr" filled}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("abm_tank_cannon")
+			{basic}
+		}
+		{place "mgun2"
+			{type "coaxial"}
+			{weapon "besa" filled}
+			{foresight "foresight5"}
+			{gunner "gunner"}
+			{charger "gunner"}
+			("sequential_aim")
+			("abm_mgun")
+			{basic}
+		}
+	}
+
+	{Chassis
+		("tank_trace" fx("tracks_mid") step(0.52) len(0.36))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       25}
+			{maxSpeedAtMaxTurn 9.375}
+			{StartTime	       4}
+			{TurnTime	        8}
+			{TurnStart        1.1} 
+	    		{BrakeTime        0.5}
+     			{StopTime         0.5} 
+	    		{TurnRadius         4} 
+    			{TurnStop         0.7} 
+	    		{Gears      0.2 0.5 1.0}
+    			{RearGears       0.2 0.45}
+		}
+		("fuelbag"
+			volume(150)
+			rate(50)
+			remain(150)
+		)
+	}
+
+	{Extension "valentine_rus.mdl"}
+    ("animation_resume")
+
+	{bone "turret"
+		("arena_turret_speed" args 0.0112)
+	}	
+	{bone "gun_rot"
+		{speed 0.0055}
+	}
+	{##bone "foresight5"
+		{limits 15}
+	}
+
+
+	("chassis_add_medium" speed(27))
+	
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+
+	{mass 15700}
+	{bone "basis"
+		{parameters "WheelRadius=0.26;"}
+	}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.34))
+	("support_bones_std" n(2) r(0.35))
+	("support_bones_std" n(3) r(0.29))
+	("support_bones_std" n(4) r(0.29))
+	("support_bones_std" n(5) r(0.29))
+	("support_bones_std" n(6) r(0.29))
+	("support_bones_std" n(7) r(0.35))
+	("support_bones_std" n(8) r(0.34))
+}

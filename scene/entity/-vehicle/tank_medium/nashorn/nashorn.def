@@ -1,0 +1,184 @@
+{game_entity
+	(include "/properties/tank_without_mgun.ext")
+	(include "/properties/shadow/tank.inc" scale(1.3))
+	(include "/properties/selection/vehicle.inc" scale(1.2))
+	{props "medium" "-turret" "opened" "vision_lev05" "tank_hunt" "level05" "open_wheelhouse" "ram_lvl4" "texmod_w_cf_cd" "muzzle_brake" "anm_hummel"}
+	{targetSelector "cannon_howitzer"}
+	{extender "enumerator"}
+
+	{volume "sticky"
+		{tags "grenade_fg_target"}
+		{able clear {contact} {touch}}
+		{component "sticky_body"}
+	}
+	{component "sticky_body"}
+	("v_body" n(01) t())
+	("v_body" n(02) t(1))
+	("v_body" n(06) t(2))
+	("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(03) t())
+	("v_gun" n(_rot01) t(_rot))
+	("v_gun" n(_rot02) t(_rot))
+	("v_gun" n(_rot03) t(_rot))
+	("v_gun" n(_rot04) t(_rot))
+	("v_gun" n(_rot05) t(_rot))
+	("v_gun" n(_rot06) t(_rot))
+	("v_gun" n(_rot07) t(_rot))
+	("v_turret" n(02) t())
+	("v_turret" n(03) t())
+	{volume "turret01"
+		{component "body"}
+		{tags "body" "body_armor3"}
+	}
+	{volume "inventory"
+	        {thickness 2}
+	}
+	{volume "crew"
+		{able clear}
+	}
+
+	("arena_armor_medium" turret(15) gun(25) engine(20 20 20 15) body(30 20 20 15) track(20) hp(420))
+	{armor
+		("module_body_medium" n(1) body(15 20 20 15))
+		("module_body_medium" n(2) body(30 10 10 15))
+		("module_body_medium" n(3) body(10 10 10 0))
+		("module_gun_medium" n(_rot) gun(15))
+		("module_detail" n(1) t(4) vol("body03" "body04" "body05" "body07"))
+		("module_other"		t(4))
+	}
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_hummel_driver"} {end "seat_gunner_stand"} {base "open_driver"}}
+			{reverse 	{end	"board_hummel_driver" -1} {base "open_driver" }}
+		}
+		{anm "charger"
+			{forward	{begin	"board_hummel"} {end "artillery_support_l"} {base "doors"}}
+			{reverse 	{end	"emit_body" 1} {base "doors"}}
+		}
+		{anm "gunner"
+			{forward	{begin	"board_hummel"} {end "cannon_big_commander"} {base "doors"}}
+			{reverse 	{end	"emit_body" 1} {base "doors"}}
+		}
+		{anm "commander"
+			{forward	{begin	"board_hummel"} {end "passenger_car_small"} {base "doors"}}
+			{reverse 	{end	"emit_body" 1} {base "doors"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_hummel"} {end "passenger_car_small"} {base "doors"}}
+			{reverse 	{end	"emit_body" 1} {base "doors"}}
+		}
+	}
+
+	(define "crew_human"
+		{placer
+			{place "%place" {group "crew"} {linkbone "%place"} {turnoff {sensor} {shadow}}}
+		}
+		{boarder
+			{door "%door1"}
+			{door "%door2"}
+			{link "%door1" "%place" {anm "%place"} {forward putoff} {reverse puton}}
+			{link "%door2" "%place" {anm "%place"} {forward putoff} {reverse puton}}
+		}
+	)
+
+	{placer
+		{place "driver" {group "crew"} {visor "driver"}}
+	}
+	{placer
+		{place "support1" {group "crew"} {visor "main"}}
+	}
+	{placer
+		{place "gunner" {visor "main"}}
+	}
+	{placer
+		{place "charger" {visor "main"}}
+	}
+	{placer
+		{place "commander" {visor "view-around"}}
+	}
+	{boarder
+		{door "emit0"}
+		{door "emit1"}
+		{link "emit0" "driver" {anm "driver"} {forward putoff} {reverse puton}}
+		{link "emit1" "support1" {anm "right"} {forward putoff} {reverse puton}}
+	}
+
+	("crew_human" place(commander)	door1(emit1))
+	("crew_human" place(gunner)	    door1(emit1))
+	("crew_human" place(charger)	door1(emit1))
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(37)
+		repair_turret(37)
+		repair_gun(27)
+		repair_track(18)
+	)
+	
+	{extender "inventory"
+		{box
+            {item "bullet88 ap ger pak43" 40}
+            {item "bullet88 fg ger pak43" 40}
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+			{RestoreIKAfterAim}
+			{weapon "88mm_pak43_nashorn" filling "ammo bullet88 ap ger pak43" 1}
+			("abm_tank_hunt")
+		}
+	}
+	{mass 24000}
+	{Chassis
+		("tank_trace" fx("tracks_mid") step(0.56) len(0.48))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       40}
+			{maxSpeedAtMaxTurn 15}
+			{StartTime	       4}
+			{TurnTime	        8}
+			{TurnStart        1.1} 
+	    		{BrakeTime        0.5}
+     			{StopTime         0.5} 
+    			{TurnRadius         4} 
+	    		{TurnStop         0.7} 
+    			{Gears      0.2 0.5 1.0}
+    			{RearGears       0.2 0.45}
+		}
+		("fuelbag"
+			volume(163)
+			rate(50)
+			remain(163)
+		)
+	}
+	("chassis_add_medium" speed(40))
+	{Extension "nashorn.mdl"}
+    ("animation_resume")
+	
+	{bone "gun_rot"
+		("arena_turret_speed" args 0.0071)
+		{limits -5 35}
+	}
+	{bone "turret"
+		{limits -19 19}
+		("arena_turret_speed" args 0.0071)
+	}
+    ("chassis_add_medium" speed(40))
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.42))
+	("support_bones_std" n(2) r(0.27))
+	("support_bones_std" n(3) r(0.27))
+	("support_bones_std" n(4) r(0.27))
+	("support_bones_std" n(5) r(0.27))
+	("support_bones_std" n(6) r(0.27))
+	("support_bones_std" n(7) r(0.27))
+	("support_bones_std" n(8) r(0.27))
+	("support_bones_std" n(9) r(0.27))
+	("support_bones_std" n(10) r(0.4))
+}

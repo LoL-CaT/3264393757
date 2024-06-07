@@ -1,0 +1,137 @@
+{entity
+	(include "/properties/tank_unarmed.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.2))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+	{targetClass "tank" "bullet"}
+	{targetSelector "tank_bullet"}
+	{collider "minesweeper"}
+	{patherId "tank.light"}
+	{props "medium" "mine_exploder" "vision_lev04" "ram_lvl5" "texmod_cw_cf_cd" "anm_tank" "smoke_mortars"}
+
+	("v_body" n(01) t())
+	("v_body" n(02) t())
+	("v_engine" n(01) t())
+
+
+	{volume "roller_01"
+		{component "roller"}
+	}
+	{volume "roller_02"
+		{component "roller"}
+	}
+
+
+	("arena_armor_spa_medium" gun(0) engine(20 30 20 10) body(30 30 20 25) track(20) hp(905))
+	{armor
+		("module_detail_shield" n(1) vol("roller_01" "roller_02" "body03" "body04" "body05" "body06" "body07") t(150))
+		("module_detail" n(2) vol("engine02" "engine03" "engine04" "engine05" "engine06" "engine07") t(10))
+	}
+	
+	("crew_human" place(driver) door1(emit1) door2(emit2) visor(driver))
+	("crew_human" place(commander) door1(emit1) door2(emit2) visor(driver))
+	("crew_human" place(gunner)	door1(emit1) door2(emit2) visor(driver))
+
+	{extender "enumerator"}
+
+	{boarder
+		{anm "left"
+			{forward	{begin	"board_HighArmor"}}
+			{reverse 	{end	"emit_tank_2_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_HighArmor"}}
+			{reverse 	{end	"emit_tank_2_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_HighArmor"} 	{end "idle_onboard_m"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_HighArmor"} {end "idle_onboard_l"}}
+			{reverse 	{end	"emit_body"}}
+		}
+		{anm "armor2"
+			{forward	{begin	"board_HighArmor"} {end "idle_onboard_r"}}
+			{reverse 	{end	"emit_body"}}
+		}
+	}
+
+	("seat_human" place(seat_l1) bone(seat01) door(emit3)  animation(armor1))
+	("seat_human" place(seat_r1) bone(seat02) door(emit4)  animation(armor2))
+	("seat_human" place(seat_m1) bone(seat03) door(emit5)  animation(armor))
+	("seat_human" place(seat_m2) bone(seat04) door(emit6)  animation(armor))
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(31)
+		repair_turret(31)
+		repair_gun(21)
+		repair_track(14)
+	)
+
+	{extender "inventory"
+		{box
+			{item  "ammo mgun" 2000}
+			{item "tank_smoke grenade" 2}
+		}
+	}
+	{Weaponry
+		{place "mgun1"
+			{weapon "mg34_vh" filled}
+			{foresight "foresight4"}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_mgun")
+			{basic}
+		}
+		;{place "smoke_gun"
+		;	{weapon "nhgf_smoke" filled}
+		;	{foresight "foresight_shooter"}
+		;	{barrels 4}
+		;	{gunner "gunner"}
+		;	{charger "gunner"}
+		;	("sequential_aim")
+		;	("abm_mgun")
+		;	{basic}
+		;}
+	}
+	{mass 22000}
+	{Chassis
+		("tank_trace" fx("tracks_mid") step(0.3) len(0.36))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       35}
+			{maxSpeedAtMaxTurn 13.125}
+			{StartTime	       4}
+			{TurnTime	        8}
+			{TurnStart        1.1} 
+	    		{BrakeTime        0.5}
+     			{StopTime         0.5} 
+	    		{TurnRadius         4} 
+    			{TurnStop         0.7} 
+	    		{Gears      0.2 0.5 1.0}
+    			{RearGears       0.2 0.45}
+		}
+		("fuelbag"
+			volume(106)
+			rate(50)
+			remain(106)
+		)
+	}
+	{Extension "pz3m.mdl"}
+    ("animation_resume")
+	("chassis_add_medium" speed(35))
+	{bone "mgun1"
+		{limits 15}
+	}
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(2) r(0.28))
+	("support_bones_std" n(3) r(0.28))
+	("support_bones_std" n(4) r(0.28))
+	("support_bones_std" n(5) r(0.28))
+	("support_bones_std" n(6) r(0.28))
+	("support_bones_std" n(7) r(0.28))
+}

@@ -1,0 +1,174 @@
+{Entity
+	(include "/properties/tank.ext")
+	(include "/properties/shadow/tank.inc"  scale(1.2))
+	(include "/properties/selection/vehicle.inc"  scale(1.2))
+	("bone_rotator")
+	{targetSelector "tank_autocannon_aa"}	
+	{props "medium" "turret_rotator" "flak" "turret" "vision_lev04" "art_spec" "open_wheelhouse" "ram_lvl6" "texmod_cw_cf_c2f_cd" "anm_welberwind"}
+	("sandbags_pz4")
+	("v_body" n(01) t())
+	("v_body" n(03) t(1))
+	("v_body" n(06) t(2))
+	("v_engine" n(01) t())
+	("v_gun" n(01) t())
+	("v_gun" n(02) t())
+	("v_gun" n(03) t())
+	("v_gun" n(04) t())
+
+	("arena_armor_medium" turret(16) gun(10) engine(10 20 20 10) body(80 30 20 20) track(20) hp(680))
+	{armor
+	    ("module_body_medium"	n(1) body(0 30 20 12))
+		("module_body_medium"	n(2) body(80))
+		("set_open_roof"	name(turret))
+		("module_detail" n(1) t(4) vol("body02" "body04" "engine02"))
+		("module_other"		t(4))
+	}
+
+	("components_tank" 
+		repair_body(45)
+		repair_engine(34)
+		repair_turret(34)
+		repair_gun(24)
+		repair_track(16)
+	)
+
+	{extender "enumerator"}
+
+	{extender "inventory"
+		{box
+			{weight 40000}
+			{item "bullet20 bzt ger flak" 1600}
+			{item "bullet20 fg ger flak" 1600}			
+			{item  "ammo mgun" 1350}
+			{item "sandbag_kit2"}			
+		}
+	}
+	{Weaponry
+		("restore_ik_time")
+		{place "gun"
+;			{RestoreIKAfterAim}
+			{weapon "20mm_flak38_x4" filling "ammo bullet20 bzt ger flak" 80}
+			("abm_zenite")
+			{Barrels 4}
+			{charger "gunner"}			
+		}
+		{place "mgun"
+			{type "hull"}
+			{weapon "mg34_vh" filled}
+			{foresight "foresight4"}
+			{gunner "driver"}
+			{charger "driver"}
+			("abm_mgun")
+		}
+	}
+
+	{boarder
+		{anm "driver"
+			{forward	{begin	"board_pz4_driver"} {end "seat_sd222_gunner2"} {base "open_driver"}}
+			{reverse 	{end	"board_pz4_driver" -1} {base "open_driver" -1}}
+		}
+		{anm "left"
+			{forward	{begin	"board_tank_left"} {end "zenit_pointer_right"}}
+			{reverse 	{end	"emit_tank_2_hold"}}
+		}
+		{anm "right"
+			{forward	{begin	"board_tank_right"} {end "zenit_pointer_right"}}
+			{reverse 	{end	"emit_tank_2_hold"}}
+		}
+		{anm "armor"
+			{forward	{begin	"board_HighArmor"} 	{end "idle_onboard_l"}}
+			{reverse 	{end	"emit_tank_2"}}
+		}
+		{anm "armor1"
+			{forward	{begin	"board_HighArmor"} {end "idle_onboard_r"}}
+			{reverse 	{end	"emit_body"}}
+		}
+	}
+
+	{placer
+		{place "driver" {group "crew"} {visor "driver"}}
+		{place "gunner" {visor "main"}}
+		{place "charger" {visor "main"}}
+		{place "charger2" {visor "main"}}
+		{place "commander" {group "crew"} {visor "driver"}}
+	}
+	{boarder
+		{door "emit0"}
+		{door "emit3"}
+		{link "emit0" "driver" {anm "driver"} {forward putoff} {reverse puton}}
+		{link "emit3" "commander" {anm "right"} {forward putoff} {reverse puton}}
+	}
+	("crew_human_visible" place(gunner)	door1(emit1) door2(emit2) visor(main))
+	("crew_human_visible" place(charger) door1(emit1) door2(emit2) visor(main))
+	("crew_human_visible" place(charger2) door1(emit1) door2(emit2) visor(main))
+
+	("seat_human" place(seat_l1) bone(seat01) door(emit5)  animation(armor))
+	("seat_human" place(seat_r1) bone(seat02) door(emit4)  animation(armor1))
+
+	{placer
+		{place "gunner" {openForCrush 0}}
+		{place "charger" {openForCrush 0}}
+		{place "charger2" {openForCrush 0}}
+	}
+	
+	{mass 22000}
+	{Chassis
+		("tank_trace" fx("tracks_mid") step(0.52) len(0.37))
+		{Locomotion ("locomotion")
+			{MaxSpeed	       40}
+			{maxSpeedAtMaxTurn 15}
+			{StartTime	       4}
+			{TurnTime	        8}
+			{TurnStart        1.1} 
+	    		{BrakeTime        0.5}
+     			{StopTime         0.5} 
+	    		{TurnRadius         4} 
+    			{TurnStop         0.7} 
+	    		{Gears      0.2 0.5 1.0}
+    			{RearGears       0.2 0.45}
+		}
+		("fuelbag"
+			volume(163)
+			rate(50)
+			remain(163)
+		)
+	}
+
+	{Extension "welberwind.mdl"}
+    ("animation_resume")
+
+	{bone "gun_rot"
+		("arena_turret_speed" args 0.0357)
+		{limits -65 15}
+	}
+	{bone "turret"
+		("arena_turret_speed" args 0.0357)
+	}	
+	{bone "mgun"
+		{limits 15}
+		{speed2 80}
+	}
+	("chassis_add_medium" speed(40))
+	{extension "sensor.ext"}
+	{extension "camouflage.ext"}
+	{extender "bone_rotator"
+		{"look_at.gun_rotator1" {bone "gun_rotator2"} {on}}
+		{"look_at.gun_rotator2" {bone "gun_rotator1"} {on}}
+		{"look_at.gun_rotator3" {bone "gun_rotator4"} {on}}
+		{"look_at.gun_rotator4" {bone "gun_rotator3"} {on}}
+	}
+
+	(define "support_bones_std"
+		("support_bones" n(%n) r(%r) lname(trackl) rname(trackr))
+	)
+	("support_bones_std" n(1) r(0.46))
+	("support_bones_std" n(2) r(0.26))
+	("support_bones_std" n(3) r(0.26))
+	("support_bones_std" n(4) r(0.26))
+	("support_bones_std" n(5) r(0.26))
+	("support_bones_std" n(6) r(0.26))
+	("support_bones_std" n(7) r(0.26))
+	("support_bones_std" n(8) r(0.26))
+	("support_bones_std" n(9) r(0.26))
+	("support_bones_std" n(10) r(0.36))
+}
