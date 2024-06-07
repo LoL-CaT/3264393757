@@ -1,0 +1,50 @@
+{
+	(include "/properties/trench.inc")
+	{extension "trench_segment.mdl"}
+	{tag "trench" }				;для миссий		
+	{props "sand" "remove_grass_2_5"}
+	("boneLand"  args "trench_segment")
+	{volume "place"
+		{able clear {touch 1}}
+		{tags "1"}
+	}
+	{placer
+		{place "1" {attach trench} {linkbone "attach1"}}
+	}
+	{boarder}
+	{extender "fortification"
+		{tag "trench"}
+		{path_profile "trench"}
+		{radius_min 1} 					; минимально возможный радиус скругления траншеи
+		{able_replacing}   				; сегмент может быть заменен (см. delete_connected) 
+		{socket "socket0"                               ; имя сокета = имя кости
+			{accept "trench_segment"}
+			{angle 90}                             ; диапазон углов присоединения
+			{flexible}                            	; кость будет притянута к кости присоединенного сокета
+			{plug "trench_exit_left"}		; имя сущности-заглушки, которой будет затыкаться дырка при отсуствии соединения
+		}
+		{socket "socket1"
+			{accept "trench_segment"}
+			{angle 90}
+			{flexible}
+			{plug "trench_exit_right"}
+		}
+		{socket "socket2"
+			{accept "trench_segment"}
+			{angle 90}
+			{replace "trench_t_crossroad" 			; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+				{delete_connected "socket0 socket1"} 	; и при этом будут удалены элементы, присоединенные к указанным сокетам 
+									; (если для них установлен able_replacing, в противном случае присоединение к сокету невозможно)
+				{reflect} 				; новая сущность будет ориентирована в противоположную сторону
+                        }
+		}
+		{socket "socket3"
+			{accept "trench_segment"}
+			{angle 90}
+			{replace "trench_t_crossroad" 
+				{delete_connected "socket0 socket1"}
+			} 
+		}
+		{install_time 4}	                        	; время установки в секундах
+	}
+}

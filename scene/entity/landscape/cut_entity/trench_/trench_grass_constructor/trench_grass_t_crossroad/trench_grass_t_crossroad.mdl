@@ -1,0 +1,159 @@
+;Exported by:	 vic
+;Date:			 28.07.2017 11:21:42
+;File:			 E:\Git\gem2-mdl-soldiers\models\landscape\trench\trench_constructor\trench_constructor_001_skin_test4.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "ground"
+			{parameters "commonmesh;land;ground;"}
+			{Position 0 	 0 	 0}
+			{VolumeView "ground.ply" {Ground}}
+		}
+		{bone "grass"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				0 	 0 	 0
+			}
+			{parameters "align;"}
+			{VolumeView "grass.ply"}
+		}
+		{bone "attach3"
+			{matrix34
+				-0.0003 	 1 	 0
+				-1 	 -0.0003 	 0
+				0 	 0 	 1
+				-0.044 	 17.7235 	 -32.7779
+			}
+		}
+		{bone "attach2"
+			{matrix34
+				-0.0003 	 1 	 0
+				-1 	 -0.0003 	 0
+				0 	 0 	 1
+				17.7407 	 0.0096 	 -32.7779
+			}
+		}
+		{bone "attach1"
+			{matrix34
+				-0.0003 	 1 	 0
+				-1 	 -0.0003 	 0
+				0 	 0 	 1
+				-17.7809 	 0.0096 	 -32.7779
+			}
+		}
+		{bone "dummy"
+			{parameters "lastpose=undefined;"}
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				0 	 0 	 -15.2003
+			}
+			{bone "socket3"
+				{parameters "lastpose=undefined;"}
+				{matrix34
+					0 	 -1 	 0
+					1 	 0 	 0
+					0 	 0 	 1
+					-0.0029 	 -25.5907 	 0
+				}
+			}
+			{bone "socket1"
+				{parameters "lastpose=undefined;"}
+				{matrix34
+					-1 	 0 	 0
+					0 	 -1 	 0
+					0 	 0 	 1
+					-25.5918 	 0 	 0
+				}
+			}
+			{bone "socket0"
+				{parameters "lastpose=undefined;"}
+				{Position 25.5892 	 0 	 0}
+			}
+			{bone "socket2"
+				{parameters "lastpose=undefined;"}
+				{matrix34
+					0 	 1 	 0
+					-1 	 0 	 0
+					0 	 0 	 1
+					0 	 25.5905 	 0
+				}
+			}
+		}
+		{bone "ground_x0"
+			{enable 0}
+			{parameters "commonmesh;land;ground;"}
+			{orientation
+				1 	 0 	 0
+				0 	 1 	 0
+				0 	 0 	 1
+			}
+			{VolumeView "ground_x0.ply" {Ground}}
+		}
+		{bone "ground_x"
+			{enable 0}
+			{parameters "commonmesh;land;ground;"}
+			{VolumeView "ground_x.ply" {Ground}}
+		}
+		{bone "ground_x1"
+			{enable 0}
+			{parameters "commonmesh;land;ground;"}
+			{VolumeView "ground_x1.ply" {Ground}}
+		}
+		{bone "ground_x3"
+			{enable 0}
+			{parameters "commonmesh;land;ground;"}
+			{orientation
+				1 	 0 	 0
+				0 	 1 	 0
+				0 	 0 	 1
+			}
+			{VolumeView "ground_x3.ply" {Ground}}
+		}
+	}
+}
+{obstacle "obstacle01"
+	{polygon2
+		{radius 0}
+		{vertex -31 9.84241}
+		{vertex -31 -9.84265}
+		{vertex -9.84259 -31}
+		{vertex 9.84247 -31}
+		{vertex 27.559 -9.84266}
+		{vertex 27.559 9.8424}
+	}
+	{rotate}
+}
+{area "cut"
+	{polygon2
+		{radius 0}
+		{vertex 12.76362 -9}
+		{vertex -12.92144 -9}
+		{vertex -9.41666 -32.8851}
+		{vertex 9.4514 -32.8851}
+	}
+	{rotate}
+}
+{area "cut2"
+	{polygon2
+		{radius 0}
+		{vertex -32 10.0885}
+		{vertex -32 -9.59655}
+		{vertex 32 -9.09177}
+		{vertex 32 10.77629}
+	}
+	{rotate}
+	{tag "cut"}
+}
+{volume "pit_range"
+	{box 51.1811 51.1811 0.001}
+	{bone "basis"}
+	{Position 0 	 0 	 0}
+}

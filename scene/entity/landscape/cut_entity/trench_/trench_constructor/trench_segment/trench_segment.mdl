@@ -1,0 +1,90 @@
+;Exported by:	 stentsel
+;Date:			 23.02.2017 17:05:53
+;File:			 G:\_GIT_\gem2\gem2-mdl-soldiers\models\landscape\trench\trench_constructor\trench_constructor_001_skin.max
+{skeleton
+	{bone "trench_segment"
+		{parameters "commonmesh;land;ground;"}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{VolumeView "trench_segment.ply" {Ground}}
+		{bone "attach1"
+			{parameters "lastpose=undefined;"}
+			{matrix34
+				-0.0003 	 1 	 0
+				-1 	 -0.0003 	 0
+				0 	 0 	 1
+				0 	 0 	 -26.7889
+			}
+		}
+		{bone "trench_m"
+			{parameters "lastpose=undefined;"}
+			{Position 0 	 0 	 -15.5982}
+			{bone revolute "socket0"
+				{limits -15 15}
+				{matrix34
+					-1 	 0 	 0
+					0 	 -1 	 0
+					0 	 0 	 1
+					-9.3604 	 0.0001 	 0
+				}
+			}
+			{bone revolute "socket1"
+				{limits -15 15}
+				{Position 9.188 	 0.0001 	 0}
+			}
+			{bone "socket2"
+				{matrix34
+					0 	 -1 	 0
+					1 	 0 	 0
+					0 	 0 	 1
+					0 	 -29.5276 	 0
+				}
+			}
+			{bone "socket3"
+				{matrix34
+					0 	 1 	 0
+					-1 	 0 	 0
+					0 	 0 	 1
+					0 	 29.5275 	 0
+				}
+			}
+		}
+	}
+}
+{obstacle "obstacle00"
+	{polygon2
+		{radius 0}
+		{vertex -15.748 -10.8268}
+		{vertex 15.748 -10.8268}
+		{vertex 15.748 -9.84247}
+		{vertex -15.748 -9.84247}
+	}
+	{rotate}
+}
+{obstacle "obstacle01"
+	{polygon2
+		{radius 0}
+		{vertex -15.748 9.8425}
+		{vertex 15.748 9.8425}
+		{vertex 15.748 10.8268}
+		{vertex -15.748 10.8268}
+	}
+	{rotate}
+}
+{area "cut"
+	{polygon2
+		{radius 0}
+		{vertex -16.1414 -22.6966}
+		{vertex 16.1274 -22.6966}
+		{vertex 16.1274 22.7041}
+		{vertex -16.1414 22.7041}
+	}
+	{rotate}
+}
+{volume "place"
+	{box 25.685 20.5276 9.84252}
+	{bone "trench_segment"}
+}

@@ -1,0 +1,20 @@
+{actor
+	{skeleton}
+	{props "fogged_as_gameentity" "mp_gather_for_linked" "trench"}
+	{able "ally_crew"}
+	{extender "structure"}
+	{extender "structure_placer"
+		{tracked_cover_types "snipe_cover"}
+		{mover "trench"}
+	}
+	{targetClass "trench" "fg ap bullet"}
+	{brain "structure"
+		{state "structure"}
+		{const "place_change_period" 6}
+		{place_changer
+			{subjects_priority "cannon" "tank heavy" "vehicle"}
+			{move_time_limit 10}
+			{distance_to_subject_limit 70}
+		}
+	}
+}

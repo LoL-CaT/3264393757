@@ -1,0 +1,46 @@
+{
+	(include "/properties/trench.inc")
+	{extension "trench_grass_crossroad.mdl"}
+	{tag "trench" }				;для миссий
+	{props "sand" "camo2" "sand" "remove_grass_2_5"}
+	("boneLand"  args "ground")
+	("boneLand"  args "ground_x")
+	("boneLand"  args "ground_x0")
+	("boneLand"  args "ground_x1")
+	("boneLand"  args "ground_x2")
+	("boneLand"  args "ground_x3")
+	("boneAlign" args "grass")
+	("volume_pit")
+	("volume_place")
+	("volume_target_fg")
+	("volume_attach" args 1 20)
+	("volume_attach" args 2 20)
+	("volume_attach" args 3 20)
+	("volume_attach" args 4 20)
+	{placer
+		{place "1" {obstacle disable} {attach hide_squat} {linkbone "attach1"} {group "wait"}}
+		{place "2" {obstacle disable} {attach hide_squat} {linkbone "attach2"} {group "wait"}}
+		{place "3" {obstacle disable} {attach hide_squat} {linkbone "attach3"} {group "wait"}}
+		{place "4" {obstacle disable} {attach hide_squat} {linkbone "attach4"} {group "wait"}}
+	}
+	("place_battle_inside" name(5) offset(0 0))
+	{boarder}
+	{extender "fortification"
+		("extender_common_settings")
+		("socket_with_plug" id(0))
+		("socket_with_plug" id(1))
+		("socket_with_plug" id(2))
+		("socket_with_plug" id(3))
+		("install_time" t(18.0))
+		{replace_rule "trench_grass_segment" "socket0 socket1"} ; при замене элемента с таким ResourceId будут удалены элементы, присоединенные к указанным сокетам
+		("crush")
+		{places
+			{disable_by_bones
+				{"1" "ground_x ground_x1"}            	; если хоть одна из костей видима, плейс будет выключен и юнит в нем убит
+				{"2" "ground_x ground_x0"}
+				{"3" "ground_x ground_x2"}
+				{"4" "ground_x ground_x3"}
+			}	
+		}
+	}
+}

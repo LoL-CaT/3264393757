@@ -1,0 +1,40 @@
+{game_entity
+	(include "/properties/trench.inc")
+	{extension "trench_t_crossroad.mdl"}
+	{volume "pit_range"
+		{able clear {touch 1}}
+	}
+	{props "sand" "remove_grass_2_5"}
+	("boneLand"  args "trench_t_crossroad")
+	{extender "fortification"
+		{tag "trench"}
+		{path_profile "trench"}
+		{socket "socket0"                       ; имя сокета = имя кости
+			{accept "trench_segment"}
+			{angle 90}                      ; диапазон углов присоединения
+			{flexible}                      ; кость будет притянута к кости присоединенного сокета
+			{plug "trench_exit_left"}	; имя сущности-заглушки, которой будет затыкаться дырка при отсуствии соединения
+		}
+		{socket "socket1"
+			{accept "trench_segment"}
+			{angle 90}
+			{flexible}
+			{plug "trench_exit_right"}
+		}
+		{socket "socket2"
+			{accept "trench_segment"}
+			{angle 90}
+			{flexible}
+			{plug "trench_exit_right"}
+		}
+		{socket "socket3"
+			{accept "trench_segment"}
+			{angle 90}
+			{replace "trench_crossroad" 	; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+				{delete_connected ""} 	; и при этом будут удалены элементы, присоединенные к указанным сокетам 
+			}				; (если для них установлен able_replacing, в противном случае присоединение к сокету невозможно)
+		}
+		{install_time 6}	                ; время установки в секундах
+		{replace_rule "trench_segment" "socket0 socket1"} ; при замене элемента с таким ResourceId будут удалены элементы, присоединенные к указанным сокетам
+	}
+}

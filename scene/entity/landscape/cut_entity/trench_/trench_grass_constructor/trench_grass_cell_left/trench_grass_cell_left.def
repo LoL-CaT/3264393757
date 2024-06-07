@@ -1,0 +1,64 @@
+{
+	(include "/properties/trench.inc")
+	{extension "trench_grass_cell_left.mdl"}
+	{tag "trench" }				;для миссий
+	{props "sand" "camo2" "sand" "remove_grass_2_5"}
+	("boneLand"  args "ground")
+	("boneLand"  args "ground_x")
+	("boneLand"  args "ground_x1")
+	("boneAlign" args "grass")
+
+	("linkbones_for_attach_places")
+	{placer
+		{place "1" {obstacle disable} {attach snipe_cover} {linkbone "attach1"} {group "battle"} {block_on_collect "mg_stan maxim browning browning_m2 mg34_sit"}}
+		{place "2" {obstacle disable} {attach hide_squat} {linkbone "attach2"} {group "wait"}}
+;		{place "3" {obstacle disable} {attach snipe_cover} {linkbone "attach3"} {group "batlle_back"}}
+		{place "mg_stan" {obstacle disable} {attach snipe_cover} {linkbone "attach1"} {group "battle"} {accept "place_mg_stan"} {block_on_collect "maxim 1 4 browning browning_m2 mg34_sit"} {rotate_limit 45}}
+		{place "maxim" {obstacle disable} {attach snipe_cover} {linkbone "attach_maxim"} {group "battle"} {accept "maxim"} {block_on_collect "mg_stan 1 4 browning browning_m2 mg34_sit"} {rotate_limit 45}}
+		{place "browning" {obstacle disable} {attach snipe_cover} {linkbone "attach_browning"} {group "battle"} {accept "browning_stan"} {block_on_collect "maxim mg_stan 1 4 browning_m2 mg34_sit"} {rotate_limit 45}}
+		{place "browning_m2" {obstacle disable} {attach snipe_cover} {linkbone "attach_browning_m2"} {group "battle"} {accept "browning_m2_stan"} {block_on_collect "maxim mg_stan 1 4 browning mg34_sit"} {rotate_limit 45}}
+		{place "mg34_sit" {obstacle disable} {attach snipe_cover} {linkbone "attach_mg34_sit"} {group "battle"} {accept "mg34_sit"} {block_on_collect "maxim mg_stan 1 browning browning_m2"} {rotate_limit 45}}
+	}
+	("place_battle_inside" name(4) offset(0 0))
+	("boarder")
+	("volume_pit")
+	("volume_place")
+	{volume "place"
+		{position 0.0504 	 10.0709 	 4.9213}
+	}
+	("volume_target_fg")
+	("volume_attach" args 2 20)
+	{extender "fortification"
+		("extender_common_settings")
+		{unity_actor "trench_actor"}
+		{socket "socket0"
+			{accept "trench_grass_segment"}
+			{angle 90}
+			{replace "trench_grass_cell_two_sided"} 		; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+		}
+		("socket_with_plug" id(1))
+		{socket "socket2"
+			{accept "trench_grass_segment"}
+			{angle 90}
+			{replace "trench_grass_cell_back_left"} 		; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+		}
+		{socket "socket3"
+			{accept "trench_grass_segment"}
+			{angle 90}
+			{replace "trench_grass_crossroad"}
+		}
+		("install_time" t(9.0))
+		("crush")
+		{places
+			{disable_by_bones
+				{"1" "ground_x"}            	; если хоть одна из костей видима, плейс будет выключен и юнит в нем убит
+				{"2" "ground_x ground_x1"}
+				{"maxim" "ground_x"}
+				{"browning_m2" "ground_x"}
+				{"browning" "ground_x"}
+				{"mg_stan" "ground_x"}
+				{"mg34_sit" "ground_x"}
+			}	
+		}
+	}
+}

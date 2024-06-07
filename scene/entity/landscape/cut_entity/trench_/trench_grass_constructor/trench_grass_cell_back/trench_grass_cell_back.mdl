@@ -1,0 +1,145 @@
+;Exported by:	 vic
+;Date:			 25.07.2017 16:47:22
+;File:			 E:\Git\gem2-mdl-soldiers\models\landscape\trench\trench_constructor\trench_constructor_001_skin_test4.max
+{skeleton
+	{bone "basis"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "grass"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				0 	 0.0002 	 0
+			}
+			{parameters "align;"}
+			{VolumeView "grass.ply"}
+		}
+		{bone "emit1"
+			{matrix34
+				-0.0003 	 1 	 0
+				-1 	 -0.0003 	 0
+				0 	 0 	 1
+				0 	 0.0001 	 -21.7203
+			}
+			{visibility 0}
+		}
+		{bone "dummy"
+			{Position 0 	 0.0001 	 -15.2003}
+			{bone "socket0"
+				{matrix34
+					-1 	 0 	 0
+					0 	 -1 	 0
+					0 	 0 	 1
+					-25.5905 	 0.0002 	 0
+				}
+			}
+			{bone "socket1"
+				{Position 25.5905 	 0.0001 	 0}
+			}
+			{bone "socket2"
+				{matrix34
+					0 	 -1 	 0
+					1 	 0 	 0
+					0 	 0 	 1
+					0 	 -25.5906 	 0
+				}
+			}
+			{bone "socket3"
+				{matrix34
+					0 	 1 	 0
+					-1 	 0 	 0
+					0 	 0 	 1
+					0 	 25.5905 	 0
+				}
+			}
+		}
+		{bone "attach2"
+			{matrix34
+				-0.0003 	 1 	 0
+				-1 	 -0.0003 	 0
+				0 	 0 	 1
+				0 	 -17.7164 	 -32.7779
+			}
+		}
+		{bone "attach1"
+			{matrix34
+				-0.0003 	 1 	 0
+				-1 	 -0.0003 	 0
+				0 	 0 	 1
+				-1.5583 	 10.0377 	 -26.7889
+			}
+		}
+		{bone "ground"
+			{parameters "commonmesh;land;ground;"}
+			{Position 0 	 0 	 0}
+			{VolumeView "ground.ply" {Ground}}
+		}
+		{bone "ground_x2"
+			{enable 0}
+			{parameters "commonmesh;land;ground;"}
+			{VolumeView "ground_x2.ply" {Ground}}
+		}
+		{bone "ground_x"
+			{enable 0}
+			{parameters "commonmesh;land;ground;"}
+			{VolumeView "ground_x.ply" {Ground}}
+		}
+	}
+}
+{obstacle "obstacle01"
+	{polygon2
+		{radius 0}
+		{vertex -9.84259 -11.8112}
+		{vertex -3.93708 -19.6851}
+		{vertex 3.93695 -19.6851}
+		{vertex 9.84247 -11.8112}
+		{vertex 9.84247 27.559}
+		{vertex -9.84252 27.559}
+	}
+	{rotate}
+}
+{area "cut"
+	{polygon2
+		{radius 0}
+		{vertex -9.84247 -11.8112}
+		{vertex -3.93708 -19.6851}
+		{vertex 3.93695 -19.6851}
+		{vertex 9.84247 -11.8112}
+		{vertex 9.84254 27.559}
+		{vertex -9.84246 27.559}
+	}
+	{rotate}
+}
+{obstacle "place"
+	{obb2
+		{center 0.00866699 -13.071}
+		{extent 14.7665 9.84658}
+		{axis 1 0}
+	}
+	{rotate}
+	{Tags "attach" "1"}
+}
+{volume "pit_range"
+	{box 59.0551 51.1811 0.001}
+	{bone "basis"}
+	{matrix34
+		-0.0003 	 1 	 0
+		-1 	 -0.0003 	 0
+		0 	 0 	 1
+		-0.0083 	 5.3086 	 0
+	}
+}
+{volume "place"
+	{box 19.685 29.5276 9.84252}
+	{bone "basis"}
+	{matrix34
+		-0.0003 	 1 	 0
+		-1 	 -0.0003 	 0
+		0 	 0 	 1
+		0.0087 	 13.071 	 4.9213
+	}
+}

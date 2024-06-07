@@ -1,0 +1,110 @@
+;Exported by:	 vic
+;Date:			 21.06.2017 16:54:27
+;File:			 E:\Git\gem2-mdl-soldiers\models\landscape\trench\trench_lie_socket.max
+{skeleton
+	{bone "ground"
+		{parameters "commonmesh;land;ground;"}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{VolumeView "ground.ply" {Ground}}
+		{bone "attach1"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				-1.5495 	 8.3277 	 -26.7889
+			}
+		}
+		{bone "emit1"
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				0 	 -27.5591 	 0
+			}
+			{visibility 0}
+		}
+		{bone "socket0"
+			{parameters "lastpose=undefined;"}
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				-25.5905 	 0.0021 	 -15.1969
+			}
+		}
+		{bone "socket1"
+			{parameters "lastpose=undefined;"}
+			{Position 25.5905 	 0.0021 	 -15.1969}
+		}
+		{bone "grass"
+			{orientation
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+			}
+			{parameters "align;"}
+			{VolumeView "grass.ply"}
+		}
+		{bone "socket2"
+			{parameters "lastpose=undefined;"}
+			{matrix34
+				0 	 -1 	 0
+				1 	 0 	 0
+				0 	 0 	 1
+				0 	 -25.5906 	 -15.1969
+			}
+		}
+		{bone "socket3"
+			{parameters "lastpose=undefined;"}
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				0 	 25.5906 	 -15.1969
+			}
+		}
+	}
+}
+{area "cut"
+	{polygon2
+		{radius 0}
+		{vertex 9.84253 -17.7165}
+		{vertex 9.84254 9.84252}
+		{vertex -9.8425 9.84252}
+		{vertex -9.84251 -17.7165}
+	}
+	{rotate}
+}
+{obstacle "place"
+	{obb2
+		{center 0 -3.93701}
+		{extent 12.7953 19.685}
+		{axis 1 0}
+	}
+	{rotate}
+	{Tags "attach" "1"}
+}
+{volume "pit_range"
+	{box 78.7402 78.7402 0.001}
+	{bone "ground"}
+	{matrix34
+		0 	 1 	 0
+		-1 	 0 	 0
+		0 	 0 	 1
+		0 	 5.9055 	 0
+	}
+}
+{volume "place"
+	{box 39.3701 25.5906 9.84252}
+	{bone "ground"}
+	{matrix34
+		0 	 1 	 0
+		-1 	 0 	 0
+		0 	 0 	 1
+		0 	 3.937 	 4.9213
+	}
+}

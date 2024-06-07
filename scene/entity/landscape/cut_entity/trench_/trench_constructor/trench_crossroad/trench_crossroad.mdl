@@ -1,0 +1,158 @@
+;Exported by:	 vic
+;Date:			 25.01.2017 15:23:17
+;File:			 E:\Git\gem2-mdl-soldiers\models\landscape\trench\trench_constructor\trench_constructor_001_skin.max
+{skeleton
+	{bone "trench_crossroad"
+		{parameters "commonmesh;land;ground;"}
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{VolumeView "trench_crossroad.ply" {Ground}}
+		{bone revolute "socket0"
+			{parameters "lastpose=undefined;"}
+			{limits -15 15}
+			{Position 29.5276 	 0 	 -15.5982}
+		}
+		{bone revolute "socket1"
+			{parameters "lastpose=undefined;"}
+			{limits -15 15}
+			{matrix34
+				0 	 -1 	 0
+				1 	 0 	 0
+				0 	 0 	 1
+				0 	 -29.5276 	 -15.5982
+			}
+		}
+		{bone revolute "socket2"
+			{parameters "lastpose=undefined;"}
+			{limits -15 15}
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				-29.5275 	 0 	 -15.5982
+			}
+		}
+		{bone revolute "socket3"
+			{parameters "lastpose=undefined;"}
+			{limits -15 15}
+			{matrix34
+				0 	 1 	 0
+				-1 	 0 	 0
+				0 	 0 	 1
+				0 	 29.5275 	 -15.5982
+			}
+		}
+		{bone revolute "dummy"
+			{parameters "lastpose=undefined;"}
+			{limits -15 15}
+			{matrix34
+				-1 	 0 	 0
+				0 	 -1 	 0
+				0 	 0 	 1
+				0 	 0 	 -15.5982
+			}
+		}
+	}
+}
+{obstacle "obstacle00"
+	{polygon2
+		{radius 0}
+		{vertex 9.84257 -10.8268}
+		{vertex 29.5276 -10.8268}
+		{vertex 29.5276 -9.84247}
+		{vertex 9.84257 -9.84247}
+	}
+	{rotate}
+}
+{obstacle "obstacle01"
+	{polygon2
+		{radius 0}
+		{vertex 10.8268 -29.5275}
+		{vertex 10.8268 -9.84247}
+		{vertex 9.84254 -9.84247}
+		{vertex 9.84255 -29.5275}
+	}
+	{rotate}
+}
+{obstacle "obstacle02"
+	{polygon2
+		{radius 0}
+		{vertex -9.84244 -29.5275}
+		{vertex -9.84244 -9.84247}
+		{vertex -10.8267 -9.84247}
+		{vertex -10.8267 -29.5275}
+	}
+	{rotate}
+}
+{obstacle "obstacle03"
+	{polygon2
+		{radius 0}
+		{vertex -29.5275 -10.8268}
+		{vertex -9.84247 -10.8268}
+		{vertex -9.84247 -9.84247}
+		{vertex -29.5275 -9.84247}
+	}
+	{rotate}
+}
+{obstacle "obstacle04"
+	{polygon2
+		{radius 0}
+		{vertex -29.5275 9.8425}
+		{vertex -9.84247 9.8425}
+		{vertex -9.84247 10.8268}
+		{vertex -29.5275 10.8268}
+	}
+	{rotate}
+}
+{obstacle "obstacle05"
+	{polygon2
+		{radius 0}
+		{vertex -9.84244 9.84251}
+		{vertex -9.84244 29.5275}
+		{vertex -10.8267 29.5275}
+		{vertex -10.8267 9.84251}
+	}
+	{rotate}
+}
+{obstacle "obstacle06"
+	{polygon2
+		{radius 0}
+		{vertex 9.84257 9.8425}
+		{vertex 29.5276 9.8425}
+		{vertex 29.5276 10.8268}
+		{vertex 9.84257 10.8268}
+	}
+	{rotate}
+}
+{obstacle "obstacle07"
+	{polygon2
+		{radius 0}
+		{vertex 10.8268 9.84251}
+		{vertex 10.8268 29.5275}
+		{vertex 9.84254 29.5275}
+		{vertex 9.84255 9.84251}
+	}
+	{rotate}
+}
+{area "cut"
+	{polygon2
+		{radius 0}
+		{vertex -11.4419 -34.3256}
+		{vertex 11.4419 -34.3256}
+		{vertex 34.3257 -11.4418}
+		{vertex 34.3257 11.4419}
+		{vertex 11.4419 34.3257}
+		{vertex -11.4419 34.3257}
+		{vertex -34.3253 11.4419}
+		{vertex -34.3253 -11.4418}
+	}
+	{rotate}
+}
+{volume "pit_range"
+	{box 59.0551 59.0551 0.001}
+	{bone "trench_crossroad"}
+	{Position 0 	 0 	 0}
+}

@@ -1,0 +1,24 @@
+{
+	(include "/properties/trench.inc")
+	{extension "trench_cell_right.mdl"}
+	{props "sand" "remove_grass_2_5"}
+	("boneLand"  args "trench_cell_right")
+	{obstacleID "construction"}
+	{placer
+		{place "1" {attach snipe_cover} {linkbone "attach1"}}
+	}
+	{boarder
+		{door "emit1"}
+		{link "emit1" "1"}
+	}
+	{volume "pit_range"
+		{able clear}
+	}
+	{volume "place"
+		{Tags "attach" "1"}
+		{able clear {touch 1}}
+	}
+	{extender "fortification"
+		{tag "trench"}
+	}
+}

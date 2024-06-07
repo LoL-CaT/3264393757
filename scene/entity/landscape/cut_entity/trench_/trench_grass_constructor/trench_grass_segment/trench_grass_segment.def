@@ -1,0 +1,52 @@
+{
+	(include "/properties/trench.inc")
+	{extension "trench_grass_segment.mdl"}
+	{props "sand" "camo2" "sand" "remove_grass_2_5"}
+	{tag "trench" }				;для миссий			
+	("boneLand"  args "ground")
+	("boneLand"  args "ground_x")
+	("boneLand"  args "ground_x0")
+	("boneLand"  args "ground_x1")
+	("boneAlign" args "grass")
+	("volume_pit")
+	("volume_place")
+	("volume_target_fg")
+	("volume_attach" args 1 20)
+	{placer
+		{place "1" {obstacle disable} {attach hide_squat} {linkbone "attach1"} {group "wait"}}
+	}
+	("place_battle_inside" name(2) offset(0 0))
+	("add_trench_climb_bones" args 1 0)
+	{boarder}
+	{extender "fortification"
+		("extender_common_settings")
+		{radius_min 1} 					; минимально возможный радиус скругления траншеи
+		{able_replacing}   				; сегмент может быть заменен (см. delete_connected) 
+		("socket_with_plug" id(0))
+		("socket_with_plug" id(1))
+		{socket "socket2"
+			{accept "trench_grass_segment"}
+			{angle 90}
+			{replace "trench_grass_t_crossroad" 		; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+				{delete_connected "socket0 socket1"} 	; и при этом будут удалены элементы, присоединенные к указанным сокетам 
+									; (если для них установлен able_replacing, в противном случае присоединение к сокету невозможно)
+				{reflect}				; новая сущность будет ориентирована в противоположную сторону
+                        }
+		}
+		{socket "socket3"
+			{accept "trench_grass_segment"}
+			{angle 90}
+			{replace "trench_grass_t_crossroad" 
+				{delete_connected "socket0 socket1"}
+			} 
+		}
+		("install_time" t(10.0))	                        	; время установки в секундах
+		{install_pose "normal"}	
+		("crush")
+		{places
+			{disable_by_bones
+				{"1" "ground_x ground_x0 ground_x1"}            ; если хоть одна из костей видима, плейс будет выключен и юнит в нем убит
+			}	
+		}
+	}
+}

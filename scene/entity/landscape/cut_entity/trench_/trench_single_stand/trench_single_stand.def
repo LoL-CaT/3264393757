@@ -1,0 +1,40 @@
+{
+	(include "/properties/trench.inc")
+	{extension "trench_single_stand.mdl"}
+	{props "sand" "remove_grass_2_5"}
+	("boneLand"  args "ground")
+	("boneAlign" args "grass")
+	{placer
+		{place "1" {attach  snipe_cover} {group "battle"} {linkbone "attach1"}}
+	}
+	{boarder}
+	{volume "pit_range"
+		{able clear {obstacle 1}}
+	}
+	{volume "place"
+		{Tags "1"}
+		{able clear {touch 1}}
+	}
+	("volume_target_fg_ground")
+	{extender "fortification"
+		{tag "trench"}
+		{path_profile "trench"}
+		{socket "socket0"
+			{accept "trench_grass_segment"}
+			{replace "trench_grass_cell_right"} 			; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+			{angle 100}
+		}
+		{socket "socket1"
+			{accept "trench_grass_segment"}
+			{replace "trench_grass_cell_left"} 			; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+			{angle 100}
+		}
+		{socket "socket2"
+			{accept "trench_grass_segment"}
+			{replace "trench_grass_cell_back"} 			; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+			{angle 100}
+		}
+		("install_time" t(12.0))
+	}
+	{DecalOrder 15}
+}

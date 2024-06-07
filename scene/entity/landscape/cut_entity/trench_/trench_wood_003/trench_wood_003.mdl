@@ -1,0 +1,87 @@
+;Exported by	: KobaA
+;Date			: 10.05.2024 14:53:41
+;File			: d:\git\gem2-mdl-soldiers\models\landscape\trench\constructor.max
+{skeleton
+	{bone "basis_003"
+		{orientation
+			1 	 0 	 0
+			0 	 -1 	 0
+			0 	 0 	 1
+		}
+		{bone "trench"
+			{parameters "land;ground;"}
+			{poly "trench" {ground}{DecalTarget}{NoCastShadows}}
+			{bone "point1"
+				{Position -0.6736 	 17.4724 	 -23.5376}
+			}
+			{bone "point"
+				{Position -0.6736 	 -17.5341 	 -23.5376}
+			}
+			{bone "grass"
+				{parameters "align;"}
+				{poly "grass"}
+			}
+			{bone "wood"
+				{parameters "align;"}
+				{poly "wood"}
+			}
+			{bone "detail1"
+				{parameters "land;ground;"}
+				{orientation
+					-0.0785 	 0.9969 	 0
+					-0.9969 	 -0.0785 	 0
+					0 	 0 	 1
+				}
+				{poly "detail1" {ground}}
+			}
+		}
+	}
+}
+{obstacle "body"
+	{obb2
+		{center -0.695068 19.8329}
+		{extent 15.748 3.73011}
+		{axis 1 0}
+	}
+	{rotate}
+}
+{obstacle "body1"
+	{obb2
+		{center -0.421947 -19.9079}
+		{extent 3.73011 15.748}
+		{axis 0.0174522 0.999848}
+	}
+	{rotate}
+}
+{area "cut"
+	{polygon2
+		{radius 0}
+		{vertex -21.9351 25.2851}
+		{vertex -21.9351 -19.9677}
+		{vertex 20.1864 -19.9677}
+		{vertex 20.1864 25.2851}
+	}
+	{rotate}
+}
+{"volumes"
+	{"body"
+		{box 31.4961 3.93701 25.5906}
+		{bone "point"}
+		{matrix34
+			1 	 0 	 0
+			0 	 0.9903 	 0.1392
+			0 	 -0.1392 	 0.9903
+			-0.0215 	 -2.2988 	 12.2436
+		}
+	}
+	{"body1"
+		{box 31.4961 3.93701 25.5906}
+		{bone "point1"}
+		{matrix34
+			0.9998 	 0.0175 	 0
+			-0.0173 	 0.9901 	 -0.1392
+			-0.0024 	 0.1392 	 0.9903
+			0.2516 	 2.4356 	 12.2436
+		}
+	}
+}

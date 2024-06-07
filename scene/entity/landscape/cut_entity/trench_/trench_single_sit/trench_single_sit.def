@@ -1,0 +1,36 @@
+{
+	(include "/properties/trench.inc")
+	{extension "trench_single_sit.mdl"}
+	{props "sand" "camo2" "remove_grass_2_5"}
+	("boneLand"  args "ground")
+	("boneAlign" args "grass")
+	{placer
+		{place "1" {attach  squat_lie} {group "battle"} {linkbone "attach1"}}
+	}
+	{boarder}
+	{volume "pit_range"
+		{able clear {obstacle 1}}
+	}
+	{volume "place"
+		{Tags "1"}
+		{able clear {touch 1}}
+	}
+	("volume_target_fg_ground")
+	{extender "fortification"
+		{tag "trench"}
+		{path_profile "trench"}
+		{next "trench_single_stand"}
+		{socket "socket0"
+			{accept "trench_grass_segment"}
+			{angle 100}
+			{replace "trench_single_sit"} 			; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+		}
+		{socket "socket1"
+			{accept "trench_grass_segment"}
+			{angle 100}
+			{replace "trench_single_sit"} 			; если возможно присоединение к этому сокету, сегмент будет заменен на указанный
+		}
+		{install_time 4}	
+	}
+	{DecalOrder 15}
+}
