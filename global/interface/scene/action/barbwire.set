@@ -1,0 +1,23 @@
+{action from "install"
+	{cursor}
+	{fx "flashred"}
+	{item "barbwire_kit"}
+	{item_in_box}
+	{entity "wires_11_post"}
+	{button}
+	{ShowCount}
+	{abledrag}
+	{ignore_blocked}
+	{free_hands}
+	{instructions
+		{bind range 1}
+		{disable_action_restart}
+		{take_item}
+		{reserve_hands}
+		{animations "squat_repair_1 squat_repair_2" random loop totaltime 8}
+		{fsm_request "ground-drop"}
+		{unreserve_hands}
+		{install notify_complete "wires_11_post" 0 exact_placement}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

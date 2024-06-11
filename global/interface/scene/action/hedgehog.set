@@ -1,0 +1,25 @@
+{action from "install"
+	{target ground}
+	{cursor "use"}
+	{fx "flashred"}
+	{item "hedgehog_kit"}
+	{item_in_box}
+	{entity "eg"}
+	{spacing 2.5}
+	{button "hedgehog"}
+	{ShowCount}
+	{abledrag}
+	{ignore_blocked}
+	{free_hands}
+	{instructions
+		{bind range 1}
+		{disable_action_restart}
+		{take_item}
+		{reserve_hands}
+		{animations "squat_repair_1 squat_repair_2" random loop totaltime 10}
+		{fsm_request "ground-drop"}
+		{unreserve_hands}
+		{install notify_complete "eg" 0 exact_placement}
+		{fsm_request nocheck "hold-nothing"}
+	}
+}

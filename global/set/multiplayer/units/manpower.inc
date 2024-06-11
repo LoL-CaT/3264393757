@@ -433,7 +433,7 @@
 
 ;=======08_aviation=======
 ;rus
-    {"po-2_scout"			            {tags "man_power recon"} {cost 20} {button "08_aviation"} {icon 801} ("ch" c(60) fore(-300))}
+    {"po-2_scout"			            {tags "man_power recon"} {cost 19} {button "08_aviation"} {icon 801} ("ch" c(60) fore(-300))}
 	{"airstrike_po-2(rus)"	            {tags "man_power airstrike"} {cost 125} {button "08_aviation"} {group "airstrike"} {icon 802} ("ch" c(120) fore(-440))}
 	{"airstrike_i-16(rus)"	            {tags "man_power airstrike"} {cost 150} {button "08_aviation"} {group "airstrike"} {icon 803} ("ch" c(120) fore(-440))}
 	{"airstrike(rus)"		            {tags "man_power airstrike"} {cost 200} {button "08_aviation"} {group "airstrike_2"} {icon 804} ("ch" c(120) fore(-860))}						            
