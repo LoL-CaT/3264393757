@@ -8,6 +8,8 @@
 ; limit - maximum played sounds
 ; no_avoid_silence - disable immediate speaker restarting after sound moved out by distance
 ; area - sound with area; multiple areas with same tag merged; all merged areas use single sound for playback;
+; 	stereo - set if sound in stereo format
+;	any sound parameter - can override any available parameters
 ; loop - loop playback of a sound
 ; radius - area sound circle radius
 {speaker
@@ -133,7 +135,10 @@
 	{stop_distance 160}
 	{radius 50}
 	{loop}
-	{area}
+	{area
+		{loudness "local environment medium"}
+		{stereo}
+	}
 }
 {speaker
 	{name "world/sea/pm"}
@@ -143,32 +148,55 @@
 	{stop_distance 160}
 	{radius 50}
 	{loop}
-	{area}
+	{area
+		{loudness "local environment medium"}
+		{stereo}
+	}
 }
 {speaker
-	{name "world/water/river"}
+	{name "world/water/02"}
 	{tags river}
 	{play_distance 80}
 	{stop_distance 80}
 	{radius 25}
 	{loop}
-	{area}
+	{area
+		{loudness "local environment medium"}
+		{volume 0.5}
+	}
 }
 {speaker
-	{name "world/water/river_fast"}
+	{name "world/water/02"}
 	{tags river_fast}
 	{play_distance 80}
 	{stop_distance 80}
 	{radius 25}
 	{loop}
-	{area}
+	{area	
+		{loudness "local environment medium"}
+		{volume 0.8}
+	}
 }
 {speaker
-	{name "world/water/lake"}
+	{name "world/water/01"}
 	{tags lake}
 	{play_distance 80}
 	{stop_distance 80}
 	{radius 25}
 	{loop}
-	{area}
+	{area
+		{loudness "local environment medium"}
+		{volume 0.26}
+	}
+}
+{speaker
+	{name "fire/big/big"}
+	{tags burning_extender}
+	{play_distance 80}
+	{stop_distance 80}
+	{radius 12}
+	{loop}
+	{area
+		{loudness "local environment medium"}
+	}
 }

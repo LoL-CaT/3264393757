@@ -92,8 +92,6 @@
 					{call "smoke_for_burn"}
 				}
 			}
-			{link_sound "flame" "fire/big"}
-			{play_sound_in_channel "flame" "flame_ch" 1}
  			{delay 35 3
  				{call "next_stage"}
  				{call "burn_end"}
@@ -164,7 +162,6 @@
 	{on "burn_end" overload
 		{bone hide "roof_hide"}
 		{tex_morph "burn_a" 3}
-		{stop_sound "flame" 0 0.5}
 		{delay 5
 			{call "break"}
 		}

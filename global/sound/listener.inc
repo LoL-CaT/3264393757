@@ -1,12 +1,12 @@
 {listener 
-	; look_at_offset - смещение "ушей" в сторону точки куда смотрит камера: 1й аргумент при "горизонтальной" камере, 2й - при "вертикальной"
-	; pitch_enabled - учет наклона камеры
+	; look_at_offset - offset of the "ears" towards the point where the camera is looking: 1st argument for a "horizontal" camera, 2nd - for a "vertical" one
+	; pitch_enabled - camera tilt taken into account
 	; stereo_pan - {angle {left right}}
-	; 		angle - угол между направлением взгяда слушателя в 2d плоскости и направлением до источника звука; в диапазоне 0.. 360 (0 - источник спереди, 90 - справа, 180 - сзади, 270 - слева)
-	;		left - громкость левого канала
-	;		right - громкость правого канала
-	; lpf_from_pan - приглушение высоких частот позади слушателя
-	; sector - угол раскрытия от слушателя до 3д звуков на которые разделяется стерео 3д звук (60 градусов по умолчанию)
+	; 		 angle - the angle between the listener's viewing direction in the 2d plane and the direction to the sound source; in the range 0.. 360 (0 - source front, 90 - right, 180 - rear, 270 - left)
+	;		 left - left channel volume
+	;		 right - right channel volume
+	; lpf_from_pan - mute high frequencies behind the listener
+	; sector - opening angle from the listener to the 3D sounds into which the stereo 3D sound is divided (60 degrees by default)
 
 	{look_at_offset 0.0 0.0}
 	{pitch_enabled}
@@ -21,22 +21,22 @@
 	}
 	{lpf_from_pan 0.4}
 
-	; Hdr окно используется для преобразования звуков из широкого диапазона в диапазон устройства, где:
-	; 	широикий диапазон (dB) - диапазон "виртуальных" звуков игры
-	;	диапазон устройства (dBFS) - верхнее значение соответствует максимальной громкости звука; каждые -6 dB громкость уменьшается вдвое
-	; Окно имеет свою позицию в широком диапазоне. Оно двигается так, чтобы найболее громкий звук попал в верхнюю границу окна
-	; Звук выше окна соответствует верхнему значению диапазона устройcтва
-	; Звук внутри окна преобразуется в диапазон устройства
-	; Звук ниже окна не слышимый
+	; The HDR window is used to convert sounds from a wide range to the device range, where:
+	; 	 wide range (dB) - the range of “virtual” game sounds
+	;	 device range (dBFS) - the upper value corresponds to the maximum sound volume; every -6 dB the volume is halved
+	; The window has its position in a wide range. It moves so that the loudest sound hits the upper border of the window
+	; The sound above the window corresponds to the upper range of the device
+	; The sound inside the window is converted to the range of the device
+	; The sound below the window is not audible
 	;
-	; Доступно 3 экземпляра окна с общими настройками. Работают независимо друг от друга. Сэмпл может влиять на несколько окон, а управляться только одним. См. описание параметра сэмпла и пример (2)
+	; There are 3 instances of the window with general settings available. They work independently of each other. A sample can affect several windows, but can only be controlled by one. See sample parameter description and example (2)
 
-	; Параметры:
-	; 	threshold - исходное положение окна (его верхняя граница); максимально громкий звук смещает окно вверх (dB)
-	; 	range - размер окна (dB)
-	; 	release_speed - скорость возвращения окна в изначальное положение (полной адаптации) (dB). Первый аргумент таблицы - текущее положение окна.
-	; 	audibility a0 a1 - a0 затухание при начале пропадания *слышимости, a1 - затухание при полном пропадании слышимости (dB)
-	; 	* слышимость - механика по уменьшению громкости вражеским юнитам в тумане войны
+	; Options:
+	; 	 threshold - the initial position of the window (its upper border); the loudest sound moves the window up (dB)
+	; 	 range - window size (dB)
+	; 	 release_speed - speed of the window returning to its original position (full adaptation) (dB). The first argument of the table is the current position of the window.
+	; 	 audibility a0 a1 - a0 attenuation at the beginning of the loss of *audibility, a1 - attenuation at the complete loss of audibility (dB)
+	; 	 * audibility - mechanics to reduce the volume of enemy units in the fog of war
 	{hdr "environment"
 		{threshold 0}
 		{range 40}
@@ -77,20 +77,19 @@
 		{audibility 0 0}
 	}
 
-	; playback_limit - критерии что звуки одинаковы и для них срабатывают ограничения воспроизвдения
-	;	angle - разница горизонтальной составляющей угла между направлениями от слушателя до источника звука
-	;	volume - разница итоговой громкости
-	;	start_time_interval - максимально допустимая разница во времени (в секундах) между запущенным звуком, при меньшей разнице звук не запускается
-
+	; playback_limit - criteria that the sounds are the same and playback restrictions are triggered for them
+	;	 angle - the difference in the horizontal component of the angle between the directions from the listener to the sound source
+	;	 volume - difference in final volume
+	;	 start_time_interval - the maximum allowable time difference (in seconds) between the launched sound; if the difference is smaller, the sound does not start
 	{playback_limit
 		{angle 33}
 		{volume 0.25}
 		{start_time_interval 0.066}
 	}
 	
-	; suppress - подавляет громкость звука сцены на период пригрывания реплик запускаемых из миссий
-	; fade_out - время за которое звук сцены возвращается в свою исходную громкость
-	; volume - множитель громкости звука сцены, который применяется на период проигрывание реплики
+	; suppress - suppresses the volume of the stage sound for the period of playing lines launched from missions
+	; fade_out - time during which the stage sound returns to its original volume
+	; volume - stage sound volume multiplier, which is applied for the period of cue playback	
 	{suppress
 		{fade_out 1.0}
 		{volume 0.05}

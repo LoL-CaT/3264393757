@@ -60,6 +60,8 @@
 		("shellhole" args 2)
     else stuff "shell sr fx61_76"
 		{spawn "srapnel"};{spawn "smoke_gen_med"}
+	else stuff "shell sr fx131_190"
+		{spawn "srapnel_big"};{spawn "smoke_gen_med"}		
     else stuff "shell fg fx77_90"
 		{spawn "hit_shellfg_ground_77_90"};{spawn "smoke_gen_med"}
 		("shellhole" args 2)

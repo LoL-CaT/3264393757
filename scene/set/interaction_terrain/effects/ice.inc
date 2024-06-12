@@ -70,9 +70,9 @@
     else stuff "shell fg fx61_76"
 		{spawn "hit_shellfg_ground_61_76"}
     else stuff "shell sr fx61_76"
-		{spawn "srapnel"};{spawn "smoke_gen_med"}
+		{spawn "srapnel_w"};{spawn "smoke_gen_med"}
     else stuff "shell sr fx131_190"
-		{spawn "srapnel_big"};{spawn "smoke_gen_big"}	 	  
+		{spawn "srapnel_big_w"};{spawn "smoke_gen_big"}	 	  
     else stuff "shell fg fx77_90"
 		{spawn "hit_shellfg_ground_77_90"};{spawn "smoke_gen_med"}
     else stuff "shell fg fx91_130"

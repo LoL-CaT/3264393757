@@ -58,11 +58,13 @@
 {"detect_throwing"
 	{on "onThrow"
 		{with_effector
-			{if not territory_type "friendly"
-				{if spy
-					{detect 5}
+			{if against_humans
+				{if not territory_type "friendly"
+					{if spy
+						{detect 5}
+					}
 				}
-			}
+			}	
 		}
 	}
 }

@@ -167,7 +167,6 @@
 	{on "burn_end"
 		{bone hide "roof_hide"}
 		{tex_morph "burned" 3}
-		{stop_sound "flame" 0 0.5}
 		{if rand 0.5
 			{call "smoke_for_burn"}
 		}

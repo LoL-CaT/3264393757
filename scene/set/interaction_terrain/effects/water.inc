@@ -253,9 +253,9 @@
       {spawn "hit_shellfg_puddle_61_76"}
 	  ("shellhole" args 2)
     else stuff "shell sr fx61_76"
-      {spawn "srapnel"};{spawn "smoke_gen_med"}
+      {spawn "srapnel_water"};{spawn "smoke_gen_med"}
     else stuff "shell sr fx131_190"
-      {spawn "srapnel_big"};{spawn "smoke_gen_big"}	 	  
+      {spawn "srapnel_big_water"};{spawn "smoke_gen_big"}	 	  
     else stuff "shell fg fx77_90"
       {spawn "hit_shellfg_puddle_77_90"};{spawn "smoke_gen_med"}
 	  ("shellhole" args 2)
