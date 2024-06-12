@@ -1,0 +1,172 @@
+{entity
+	(include "/properties/railway.ext")
+;	(include "/properties/shadow/marine.inc"  scaleX(2.3) scaleY(1.0))
+	(include "/properties/selection/vehicle.inc"  scale(2.0))
+	(include "/properties/car_crew.ext")
+	{lodclass "vehicle_large"}
+	{extension "crane_rail_new.mdl"}
+    {mass 250000}
+	{props "turret_rotator" "crane_m" "one" "staged" "construction" "no_destroyed_stamp" "flag" "no_minimap_view" "unarmed" "windowed"}
+
+	{extension "crew.ext"}
+	{Chassis
+		{Locomotion ("locomotion")
+			{MaxSpeed	2	}
+			{StartTime	5	}
+			{BrakeTime	5	}
+			{StopTime	10	}
+		}
+	}
+	{armor
+		{health 2500}
+		{setting "wheel"
+		    {thickness 50}
+		    ("bullet_pass_default")
+		    {fragment_pass_threshold 1}
+		    {whole_wound}
+		    {volumes "wheel*"}
+		}
+		("module_gun_medium"	gun(20) n())
+		("module_turret_medium"	turret(20) n() hp_k(1))
+		("module_body_medium"	body(30) n())
+		("module_other" t(10))
+	}	
+	{component "body"
+		{RepairTime 25}
+	}
+	{component "turret"
+		{RepairTime 25}
+	}
+	{Weaponry
+		{place "aim"
+			{weapon "searchlight"}
+			{foresight "foresight"}
+			{gunner "driver"}
+		}
+	}
+	{extender "inventory"
+		{box}
+	}
+
+	{extender "light"
+		{lamp "1"}
+		{lightfx "light_search"}
+		{breakfx "glass_hit"}
+		{check_operatable}
+	}
+
+	{Volume "body01"
+		{tags "body"}
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}{obstacle 1}}
+	}
+	{Volume "body02"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}{obstacle 1}}
+	}
+	{Volume "body03"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}{obstacle 1}}
+	}
+	{Volume "body04"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}{obstacle 1}}
+	}
+	{Volume "body05"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body06"
+		{tags "body"}
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body07"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body08"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body09"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body10"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body11"
+		{tags "body"}
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body12"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "body13"
+		{component "body"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+
+	{Volume "turret_01"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "turret_02"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "turret_03"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "turret_04"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "turret_05"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "turret_06"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{Volume "turret_07"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+
+	{Volume "hook"
+		{component "turret"}
+		{Thickness 20}
+		{able {visible 0}}
+	}
+	{bone "turret"
+		{limits}
+		{speed 0.003}
+	}
+}
