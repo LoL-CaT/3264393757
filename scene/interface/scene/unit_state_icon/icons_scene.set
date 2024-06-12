@@ -28,13 +28,12 @@
 			{progress "auto_restore_inventory"}
 		}
 	}
-	{if ("human_need_observed_icon")
-		("observed_or_suspected" _type(infantry) _condition_suspected(suspected))
-	}		
+;	{if ("human_need_observed_icon")
+;		("observed_or_suspected" _type(infantry) _condition_suspected(suspected))
+;	}		
 	{if evacuating or heal {icon "heal"}}
 	{if install {icon "install"}}
 	{if tags "repairing" {icon "repair"}}
-	{if tags "med_point_crew" {icon "heal"}}
 	{if tags "obtain_supply"
 		{icon "obtain_supply"}
 ;		{duration 1.0}														;dev note/ Пропиши время работы ивентов в скриптах
@@ -333,33 +332,35 @@
 
 
 {select_icon "human_own"
-	{if not option_show_human_own_icons_never
+	{if not option_show_human_own_icons_never 
 		{if option_show_human_own_icons_always or icon_event "human_damage" or is_mouse_focused or cursor_near 60
 			{background "background/rhomb_bkg_80"}
 			{icon {color WHITE}}
 			; пришли к варианту на пробу, что здоровье в ромбе показывается только когда юниты в селекте, 
 			;когда в него попали оно на пару секунд загорается и когда рядом навел курсор
-			{if selected or manual_control or icon_event "human_damage" or is_mouse_focused or cursor_near 60
-				("hp_frame")
-			}
+		;	{if selected or manual_control or icon_event "human_damage" or is_mouse_focused or cursor_near 60
+		;		("hp_frame")
+		;	}
+			("hp_bar")
 			("icons_by_state")
 			("icons_by_weapon")
 		}
 	}
 }
 {select_icon "human_ally"
-	{if not option_show_human_ally_icons_never
-
+	("hp_bar")
+	{if not option_show_human_ally_icons_never 
 		{if option_show_human_ally_icons_always or icon_event "human_damage" or is_mouse_focused or cursor_near 60
-			("hp_frame")
+;			("hp_frame")
 			{background "background/rhomb_bkg_80"}
-			{icon {color WHITE}}
+			{icon {color 0xff00f7ff}}	
 			("icons_by_weapon")		
 		}	
 
 	}	
 }
 {select_icon "human_ally_manual_control"
+	{icon {color 0xff00f7ff}}	
 	{if manual_control
 		{icon "manual_control"}
 	}
@@ -405,22 +406,20 @@
 }
 
 {select_icon "human_enemy"
+    ("hp_bar")
 	{if not option_show_human_enemy_icons_never
-		{icon {color WHITE}}
-		{if 	option_show_human_enemy_icons_always
-			or breed_mask "*/engineer" "*/corpsman"
-			or item_in_hand "dynamite" "flame_thrower" "flame_thrower_usa" "flame_thrower_roks3" "pzb39" "ptrd" "ptrs" "boyes" "panzerfaust" "panzerfaust100" "panzerfaust150"
-					"panzershreck" "bazooka" "uber_bazooka" "molotov_coctail" "grenade"	"solothurn_s18_1000" "mosin_mortir" "m18recoilless"
+		{icon {color RED}}
+		{if option_show_human_enemy_icons_always
 			or is_mouse_focused 
 			or cursor_near 20
 			{background "background/rhomb_bkg_80"}
 ;			("hp_frame")
-			{if icon_event "human_damage" or is_mouse_focused or cursor_near 20
-				{frame
-					{sprite "background/rhomb_frame_80"}
-					{progress "health"}
-				}
-			}
+;			{if icon_event "human_damage" or is_mouse_focused or cursor_near 20
+;				{frame
+;					{sprite "background/rhomb_frame_80"}
+;					{progress "health"}
+;				}
+;			}
 			{if not in_assault and cover_kind "vertical" "horizontal"
 				("suppressed" _level(0) _icon("suppressed_low"))
 				("suppressed" _level(1) _icon("suppressed_normal"))
@@ -429,7 +428,6 @@
 			("icons_by_weapon")
 		}	
 	}
-	("hp_bar")
 }
 
 {select_icon "vehicle_own_main"
@@ -442,10 +440,10 @@
 		{icon "withdraw_vehicle"}
 	}
 	{if props "goliath"
-		{icon "vehicle_silhouette/goliath"}
+		{icon "vehicle_silhouette/additonal/tank_light"}
 	}	
 	{if props "radar_mount"
-		{icon "vehicle_silhouette/radar"}
+		{icon "vehicle_silhouette/additonal/cannon"}
 	}
 	{if props "steam_locomotive"
 		{icon "vehicle_silhouette/steam_locomotive"}
@@ -460,7 +458,7 @@
 		{icon "vehicle_silhouette/marine"}
 	}	
 	{if props "searchlight" and not props "sc_497"
-		{icon "vehicle_silhouette/searchlight"}
+		{icon "vehicle_silhouette/additonal/cannon"}
 	}	
 	{if props "kp42" "kitchen"
 		{icon "vehicle_silhouette/kitchen"}
@@ -469,19 +467,19 @@
 		{icon "inventory_crate"}
 	}	
 	{if props "unarmed" and props "armored_car"
-		{icon "vehicle_silhouette/armored_car"}
+		{icon "vehicle_silhouette/additonal/apc"}
 	}
 	{if props "kettenkrad"
-		{icon "vehicle_silhouette/moto"}
+		{icon "vehicle_silhouette/additonal/vehicle"}
 	}
 	{if props "horse"
-		{icon "vehicle_silhouette/horse"}
+		{icon "vehicle_silhouette/additonal/vehicle"}
 	}	
 	{if props "unarmed" and props "car"
-		{icon "vehicle_silhouette/car"}
+		{icon "vehicle_silhouette/additonal/supp_truck"}
 	}
 	{if props "stereotelescope"
-		{icon "vehicle_silhouette/spotter"}
+		{icon "vehicle_silhouette/additonal/cannon"}
 	}	
 	{if props "unarmed" and props "cannon"
 		{icon "vehicle_silhouette/cannon"}
@@ -491,7 +489,7 @@
 	}	
 	{icon by_ammo ; by_ammo - новая фича "умного" селектора имён по типу боеприпасов. Можно использовать и для background
 		{"132mm_rocket" "310mm_rocket" "210mm_rocket" "150mm_rocket" "calliope" "m8rocket" "rs82" {name "shell_type/shell_zalp"}}
-		{"air_bomb" 				{name "shell_type/bomb"}}		
+		{"air_bomb" 					{name "shell_type/bomb"}}		
 		{"ap" 						{name "shell_type/shell_ap"}}
 		{"bzt" 						{name "shell_type/shell_bzt"}}
 		{"apcr" 					{name "shell_type/shell_apcr"}}
@@ -514,10 +512,10 @@
 		{sprite "background/rhomb_fill_128"}
 		{progress "recharge"}
 	}
-	{frame
-		{sprite "background/rhomb_frame_128"}
-		{progress "armor"}
-	}
+	;{frame
+	;	{sprite "background/rhomb_frame_128"}
+	;	{progress "armor"}
+	;}	
 }
 {select_icon "vehicle_own_1"
 	{background "background/rhomb_bkg_64"}
@@ -529,7 +527,7 @@
 }
 {select_icon "vehicle_own_2"
 	{background "background/rhomb_bkg_64"}
-	{if observed {icon "observed_vehicle" {color RED}}}
+;	{if observed {icon "observed_vehicle" {color RED}}}
 	{if true ; = else
 		{frame	; заливка иконки
 			{sprite "background/rhomb_frame_64"}
@@ -538,7 +536,7 @@
 		}
 		{if suspect_stage "detected"	{icon "suspect_vehicle/stage3" {color DRED}}}
 		{if suspect_stage "suspected"	{icon "suspect_vehicle/stage2" {color DYELLOW}}}
-		{if suspect_stage "hidden"	{icon "suspect_vehicle/stage1" {color DGREEN}}}
+		{if suspect_stage "hidden"		{icon "suspect_vehicle/stage1" {color DGREEN}}}
 	}	
 }
 (define "repairing_progress"
@@ -557,8 +555,8 @@
 	{if icon_event "crew_dead"
 		{icon "crew_dead"}
 ;			{duration 3.0} 											;dev note/ Пропиши время работы ивентов в скриптах
-	}	
-	("repairing_progress")			
+	}
+	("repairing_progress")
 	{if need_repair 
 		{icon "need_repair"}
 		{frame
@@ -566,7 +564,7 @@
 			{progress "repair"}
 			{color 0xfff5f5f5}
 		}			
-	}	
+	}
 }
 
 {select_icon "vehicle_own_4"
@@ -584,7 +582,6 @@
 	("bodykit_in_progress" _bodykit_name("round_sandbag") _icon("round_sandbag_vehicle"))	
 	("bodykit_in_progress" _bodykit_name("build_mgun") _icon("round_sandbag_vehicle"))
 	("bodykit_in_progress" _bodykit_name("build_supp_point") _icon("object_type/supp_point"))				
-	("bodykit_in_progress" _bodykit_name("build_med_point") _icon("object_type/med_point"))	
 }
 {select_icon "vehicle_own_6"
 	{background "background/rhomb_bkg_64"}
@@ -674,17 +671,13 @@
 		}
 		{if warehouse_consumable_empty
 			{icon "need_ammo"}
-		}
+		}		
 		{icon "supp_state"}							;{icon "supp_state/00"}
 		{frame
 			{sprite "background/rhomb_frame_80"}
 			{progress "warehouse_consumable"}
 		}
 	}
-}
-{select_icon "vehicle_own_12"
-	{background "background/rhomb_bkg_64"}
-	{icon {color WHITE}}
 	{if is_fuel_point_consumable
 		{if is_fuel_point_consumable "restoring"
 			{icon "heal"}
@@ -708,15 +701,12 @@
 			{sprite "background/rhomb_frame_80"}
 			{progress "fuel_point_consumable"}
 		}
-	}
+	}	
 }
 {select_icon "vehicle_enemy_main"
-	{background "background/rhomb_bkg_96"}
-;	{icon {color WHITE}}
-	{frame
-		{sprite "background/rhomb_frame_96"}
-		{progress "armor"}
-	}
+	{background "background/rhomb_bkg_128"}
+	{icon {color RED}}
+
 	{if has_order "withdraw"
 		{icon "withdraw_vehicle"}
 	}
@@ -730,10 +720,10 @@
 		{icon "vehicle_silhouette/kitchen"}
 	}
 	{if props "goliath"
-		{icon "vehicle_silhouette/goliath"}
+		{icon "vehicle_silhouette/additonal/tank_light"}
 	}	
 	{if props "radar_mount"
-		{icon "vehicle_silhouette/radar"}
+		{icon "vehicle_silhouette/additonal/cannon"}
 	}
 	{if props "steam_locomotive"
 		{icon "vehicle_silhouette/steam_locomotive"}
@@ -751,55 +741,62 @@
 		{icon "vehicle_silhouette/marine"}
 	}	
 	{if props "searchlight" and not props "sc_497"
-		{icon "vehicle_silhouette/searchlight"}
+		{icon "vehicle_silhouette/additonal/cannon"}
 	}		
 	{if props "inventory_crate_icon"
 		{icon "inventory_crate"}
 	}	
 	{if props "stereotelescope"
-		{icon "vehicle_silhouette/spotter"}
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}
+	{if props "paratroopers_carrier"
+		{icon "vehicle_silhouette/additonal/paraplane"}
 	}	
 	{if props "airborne"
-		{icon "vehicle_silhouette/airborne"}
+		{icon "vehicle_silhouette/additonal/plane"}
 	}
-	{if props "moto" "kettenkrad"
-		{icon "vehicle_silhouette/moto"}
+	{if props "moto" or props "kettenkrad"
+		{icon "vehicle_silhouette/additonal/vehicle"}
 	}	
-	{if props "car"
-		{icon "vehicle_silhouette/car"}
+	{if props "gaz_aa_supp" or props "opel_blitz_supp" or props "gmc_supp"
+		{icon "vehicle_silhouette/additonal/supp_truck"}
 	}	
-	{if props "armored_car"
-		{icon "vehicle_silhouette/armored_car"}
+	{if props "armored_car" or props "car" or props "sdkfz251_16"
+		{icon "vehicle_silhouette/additonal/apc"}
 	}
-	{if props "spg"
-		{icon "vehicle_silhouette/spg"}
+	{if props "stug3b" or props "sdkfz251_9" or props "sturmpz1" or props "m8" or props "sdkfz124" or props "hummel" or props "bishop" or props "m12gmc" or props "m7" or props "stuh42" or props "su122" or props "brumbar" or props "sturmtiger" or props "karlthor" or props "su152"
+		{icon "vehicle_silhouette/additonal/spg"}
 	}
-	{if props "tank_hunt"
-		{icon "vehicle_silhouette/spg"}
+	{if props "stug3g" or props "sdkfz251_22" or props "hetzer" or props "m18" or props "marder2" or props "marder3" or props "pzjager1" or props "su76" or props "zis_30" or props "achilles" or props "archer" or props "jagdpanther" or props "jagdpanzer_iv" or props "jagdpanzer_iv_wacher" or props "m10wolverine" or props "m36" or props "nashorn" or props "stug3f" or props "stug4g" or props "su100" or props "su85" or props "elefant" or props "ferdinand" or props "ho-ri" or props "ho-ri_1" or props "isu122" or props "isu152" or props "jagdtiger"	
+		{icon "vehicle_silhouette/additonal/tank_hunt"}
+	}
+	{if props "bt7" or props "bt7_ger" or props "bt7a" or props "chi-ha57" or props "ha-go" or props "ht26" or props "ke-nu" or props "lvt1" or props "lvt4" or props "m24" or props "m3a1" or props "m5a1" or props "mk7" or props "pz1b" or props "pz1c" or props "pz2c" or props "pz2l" or props "pz2h" or props "pz2f" or props "pz35t" or props "pz38g" or props "ss-d" or props "t26" or props "t26e" or props "t40" or props "t40_tns" or props "t60" or props "t70" or props "carro15" or props "m19"
+		{icon "vehicle_silhouette/additonal/tank_light"}
 	}	
-	{if props "tank"
-		{icon "vehicle_silhouette/tank"}
+	{if props "chi-ha120" or props "chi-ha47" or props "m4a1" or props "m4a1_eng" or props "m4a1_inf" or props "pz4f2" or props "pz4f2_inf" or props "t34_76" or props "ot34_76_42" or props "t34_76_inf" or props "t34_85" or props "t34_85_po" or props "t34_85m" or props "t34_85m_po" or props "chi-he" or props "chi-nu" or props "chi-nu" or props "chi-to" or props "cometa34" or props "cromwell_mk_vi" or props "grant_m3" or props "ho-i" or props "m2a1_med" or props "m3_lee" or props "m4a2" or props "m4a2_76w" or props "m4a2_76w_thunderbolt" or props "m4a2_76w_rus" or props "m4a2_rus" or props "m4a3_105" or props "m4a3_75" or props "m4a3_zippo" or props "m4a3c" or props "m4a3dd" or props "m4a3dd_inf" or props "m4a3e2" or props "m4a3e2_jumbo_76" or props "m4a3e8" or props "m4a3e8_po" or props "m4a3m" or props "m4a3m_eng" or props "m4a3vc" or props "m4a4" or props "m4a4_tulip" or props "mk3" or props "mk6" or props "mk8" or props "pz3" or props "pz3f" or props "pz3f_rus" or props "pz3j" or props "pz3m" or props "pz3n" or props "pz4d" or props "pz4e" or props "pz4g" or props "pz4g_inf" or props "pz4h" or props "pz5a" or props "pz5a_po" or props "pz5g" or props "t28" or props "t28e" or props "t34_0" or props "t34_1" or props "t34_2" or props "t34_2_inf" or props "ot_34_42" or props "t34_3" or props "t34_57_43" or props "t34_76_41" or props "t34_armored" or props "t34m" or props "valentine_rus" or props "welberwind"
+		{icon "vehicle_silhouette/additonal/tank_medium"}
 	}
-	{if props "truck_mortar"
-		{icon "vehicle_silhouette/mortar"}
+	{if props "mk2a" or props "mk4" or props "black_prince" or props "centurion" or props "chi-ri" or props "churchill_avre" or props "churchill_crocodile" or props "churchill_mk_vii" or props "is1" or props "is2" or props "is2_44" or props "is2_early" or props "is3" or props "kv1" or props "kv1_za_rodinu" or props "kv1_zis5" or props "kv1e" or props "kv1s" or props "kv2" or props "kv85" or props "kv8" or props "m26" or props "m26e4" or props "mk4_rus" or props "pz6b" or props "pz6bh" or props "pz6e" or props "pz6h" or props "pzb2740f" or props "t29" or props "t35"
+		{icon "vehicle_silhouette/additonal/tank_heavy"}
+	}	
+	{if props "d1" or props "ml20" or props "120mm_l50" or props "120mm_l50_360" or props "120mm_l50_360_ny" or props "203b4" or props "203_m1" or props "155gpf" or props "bl6" or props "lefh18" or props "m114" or props "m1909" or props "m2a1l" or props "m30" or props "m8_howitzer" or props "mrs18" or props "sfh18" or props "type96_150mm" or props "sig33" or props "t90_75m" or props "t91_105m"
+		{icon "vehicle_silhouette/additonal/cannon_howitzer"}
 	}
-	{if props "mg_stan"
-		{icon "vehicle_silhouette/mgun"}
-	}		
+	{if props "52k" or props "m2cannon90mm" or props "61k" or props "m1_aa" or props "bofors" or props "bofors_eng" or props "oerlikon" or props "oerlikon_eng" or props "20mm_u_boat" or props "flak-38-1" or props "flak18" or props "flak38" or props "flak38_4_wheeled" or props "flak38_platform" or props "flak38_wheeled" or props "maxim_quad" or props "maxson" or props "mk10" or props "type2_20mm" or props "type4_75mm" or props "88mm_u_boat" or props "flak41" or props "flak41_platform" or props "vickers"
+		{icon "vehicle_silhouette/additonal/cannon_aa"}
+	}
 	{if props "cannon"
-		{icon "vehicle_silhouette/cannon"}
-	}	
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}
+	
+	
 	{if props "horse"
 		{icon "vehicle_silhouette/horse"}
 	}	
 }
 {select_icon "vehicle_ally_main"
 	{background "background/rhomb_bkg_96"}
-;	{icon {color WHITE}}
-	{frame
-		{sprite "background/rhomb_frame_96"}
-		{progress "armor"}
-	}
+	{icon {color 0xff00f7ff}}	
 	{if has_order "withdraw"
 		{icon "withdraw_vehicle"}
 	}
@@ -807,10 +804,10 @@
 		{icon "vehicle_silhouette/kitchen"}
 	}
 	{if props "goliath"
-		{icon "vehicle_silhouette/goliath"}
+		{icon "vehicle_silhouette/additonal/tank_light"}
 	}	
 	{if props "radar_mount"
-		{icon "vehicle_silhouette/radar"}
+		{icon "vehicle_silhouette/additonal/cannon"}
 	}
 	{if props "steam_locomotive"
 		{icon "vehicle_silhouette/steam_locomotive"}
@@ -828,49 +825,60 @@
 		{icon "vehicle_silhouette/marine"}
 	}	
 	{if props "searchlight" and not props "sc_497"
-		{icon "vehicle_silhouette/searchlight"}
+		{icon "vehicle_silhouette/additonal/cannon"}
 	}	
 	{if props "inventory_crate_icon"
 		{icon "inventory_crate"}
 	}	
 	{if props "stereotelescope"
-		{icon "vehicle_silhouette/spotter"}
+		{icon "vehicle_silhouette/additonal/cannon"}
+	}	
+	{if props "paratroopers_carrier"
+		{icon "vehicle_silhouette/additonal/paraplane"}
 	}	
 	{if props "airborne"
-		{icon "vehicle_silhouette/airborne"}
+		{icon "vehicle_silhouette/additonal/plane"}
 	}
-	{if props "moto" "kettenkrad"
-		{icon "vehicle_silhouette/moto"}
+	{if props "moto" or props "kettenkrad"
+		{icon "vehicle_silhouette/additonal/vehicle"}
 	}	
-	{if props "car"
-		{icon "vehicle_silhouette/car"}
+	{if props "gaz_aa_supp" or props "opel_blitz_supp" or props "gmc_supp"
+		{icon "vehicle_silhouette/additonal/supp_truck"}
+	}
+	{if props "armored_car" or props "car" or props "sdkfz251_16"
+		{icon "vehicle_silhouette/additonal/apc"}
+	}
+	{if props "stug3b" or props "sdkfz251_9" or props "sturmpz1" or props "m8" or props "sdkfz124" or props "hummel" or props "bishop" or props "m12gmc" or props "m7" or props "stuh42" or props "su122" or props "brumbar" or props "sturmtiger" or props "karlthor" or props "su152"
+		{icon "vehicle_silhouette/additonal/spg"}
+	}
+	{if props "stug3g" or props "sdkfz251_22" or props "hetzer" or props "m18" or props "marder2" or props "marder3" or props "pzjager1" or props "su76" or props "zis_30" or props "achilles" or props "archer" or props "jagdpanther" or props "jagdpanzer_iv" or props "jagdpanzer_iv_wacher" or props "m10wolverine" or props "m36" or props "nashorn" or props "stug3f" or props "stug4g" or props "su100" or props "su85" or props "elefant" or props "ferdinand" or props "ho-ri" or props "ho-ri_1" or props "isu122" or props "isu152" or props "jagdtiger" or props "t95"	
+		{icon "vehicle_silhouette/additonal/tank_hunt"}
+	}
+	{if props "bt7" or props "bt7_ger" or props "bt7a" or props "chi-ha57" or props "ha-go" or props "ht26" or props "ke-nu" or props "lvt1" or props "lvt4" or props "m24" or props "m3a1" or props "m5a1" or props "mk7" or props "pz1b" or props "pz1c" or props "pz2c" or props "pz2l" or props "pz2h" or props "pz2f" or props "pz35t" or props "pz38g" or props "ss-d" or props "t26" or props "t26e" or props "t40" or props "t40_tns" or props "t60" or props "t70" or props "carro15" or props "m19"
+		{icon "vehicle_silhouette/additonal/tank_light"}
 	}	
-	{if props "armored_car"
-		{icon "vehicle_silhouette/armored_car"}
+	{if props "chi-ha120" or props "chi-ha47" or props "m4a1" or props "m4a1_eng" or props "m4a1_inf" or props "pz4f2" or props "pz4f2_inf" or props "t34_76" or props "ot34_76_42" or props "t34_76_inf" or props "t34_85" or props "t34_85_po" or props "t34_85m" or props "t34_85m_po" or props "chi-he" or props "chi-nu" or props "chi-nu" or props "chi-to" or props "cometa34" or props "cromwell_mk_vi" or props "grant_m3" or props "ho-i" or props "m2a1_med" or props "m3_lee" or props "m4a2" or props "m4a2_76w" or props "m4a2_76w_thunderbolt" or props "m4a2_76w_rus" or props "m4a2_rus" or props "m4a3_105" or props "m4a3_75" or props "m4a3_zippo" or props "m4a3c" or props "m4a3dd" or props "m4a3dd_inf" or props "m4a3e2" or props "m4a3e2_jumbo_76" or props "m4a3e8" or props "m4a3e8_po" or props "m4a3m" or props "m4a3m_eng" or props "m4a3vc" or props "m4a4" or props "m4a4_tulip" or props "mk3" or props "mk6" or props "mk8" or props "pz3" or props "pz3f" or props "pz3f_rus" or props "pz3j" or props "pz3m" or props "pz3n" or props "pz4d" or props "pz4e" or props "pz4g" or props "pz4g_inf" or props "pz4h" or props "pz5a" or props "pz5a_po" or props "pz5g" or props "t28" or props "t28e" or props "t34_0" or props "t34_1" or props "t34_2" or props "t34_2_inf" or props "ot_34_42" or props "t34_3" or props "t34_57_43" or props "t34_76_41" or props "t34_armored" or props "t34m" or props "valentine_rus" or props "welberwind"
+		{icon "vehicle_silhouette/additonal/tank_medium"}
 	}
-	{if props "spg"
-		{icon "vehicle_silhouette/spg"}
-	}
-	{if props "tank_hunt"
-		{icon "vehicle_silhouette/spg"}
+	{if props "mk2a" or props "mk4" or props "black_prince" or props "centurion" or props "chi-ri" or props "churchill_avre" or props "churchill_crocodile" or props "churchill_mk_vii" or props "is1" or props "is2" or props "is2_44" or props "is2_early" or props "is3" or props "kv1" or props "kv1_za_rodinu" or props "kv1_zis5" or props "kv1e" or props "kv1s" or props "kv2" or props "kv85" or props "kv8" or props "m26" or props "m26e4" or props "mk4_rus" or props "pz6b" or props "pz6bh" or props "pz6e" or props "pz6h" or props "pzb2740f" or props "t29" or props "t35"
+		{icon "vehicle_silhouette/additonal/tank_heavy"}
 	}	
-	{if props "tank"
-		{icon "vehicle_silhouette/tank"}
+	{if props "d1" or props "ml20" or props "120mm_l50" or props "120mm_l50_360" or props "120mm_l50_360_ny" or props "203b4" or props "203_m1" or props "155gpf" or props "bl6" or props "lefh18" or props "m114" or props "m1909" or props "m2a1l" or props "m30" or props "m8_howitzer" or props "mrs18" or props "sfh18" or props "type96_150mm" or props "sig33" or props "t90_75m" or props "t91_105m"
+		{icon "vehicle_silhouette/additonal/cannon_howitzer"}
 	}
-	{if props "truck_mortar"
-		{icon "vehicle_silhouette/mortar"}
-	}
-	{if props "mg_stan"
-		{icon "vehicle_silhouette/mgun"}
-	}		
+	{if props "52k" or props "m2cannon90mm" or props "61k" or props "m1_aa" or props "bofors" or props "bofors_eng" or props "oerlikon" or props "oerlikon_eng" or props "20mm_u_boat" or props "flak-38-1" or props "flak18" or props "flak38" or props "flak38_4_wheeled" or props "flak38_platform" or props "flak38_wheeled" or props "maxim_quad" or props "maxson" or props "mk10" or props "type2_20mm" or props "type4_75mm" or props "88mm_u_boat" or props "flak41" or props "flak41_platform" or props "vickers"
+		{icon "vehicle_silhouette/additonal/cannon_aa"}
+	}	
 	{if props "cannon"
-		{icon "vehicle_silhouette/cannon"}
+		{icon "vehicle_silhouette/additonal/cannon"}
 	}	
+	
 	{if props "horse"
 		{icon "vehicle_silhouette/horse"}
 	}	
 }
 {select_icon "vehicle_ally_manual_control"
+	{icon {color 0xff00f7ff}}
 	{if manual_control
 		{icon "manual_control"}
 	}
@@ -879,7 +887,10 @@
 	{background "background/rhomb_bkg_96"}
 	{icon {color WHITE}}
 	{if props "cannon" {icon "vehicle_type/art_point"}}
-	{if props "tank" {icon "vehicle_type/tank"}}
+	{if props "tank" 
+		{if tags "broken_body" {icon "vehicle_type/tank_broken"}}
+		{if not tags "broken_body" {icon "vehicle_type/tank"}}
+	}
 	{if not dead and able "crew" {icon "vehicle_type/car"}}
 }
 {select_icon "vehicle_abandoned_repair"
@@ -889,7 +900,7 @@
 }
 {select_icon "house_main"
 	{if relation "ally" or relation "enemy" and observed	
-		{background "background/rhomb_bkg_96"}
+		;{background "background/rhomb_bkg_96"}
 		{frame
 			{sprite "background/rhomb_frame_96"}
 			{progress "house_fortification"}
@@ -912,13 +923,13 @@
 		{if not house_is_empty
 			{icon "house_fortify_empty"}
 		}
-	}
+	}	
 }
 {select_icon "human_in_house"
 	{background "background/rhomb_bkg_80"}
-	{if relation "ally" or relation "enemy" and observed	
+	;{if current_user
 		("hp_frame")
-	}		
+	;}		
 	{icon {color white}}
 	{if relation "ally" or relation "enemy" and observed	
 		{if not in_assault and cover_kind "vertical" "horizontal"
@@ -927,12 +938,9 @@
 			("suppressed" _level(2) _icon("pinned"))
 		}
 	}
-	{if current_user
-		{if tags "med_point_crew" {icon "heal"}}
-	}
 	{if relation "ally" or relation "enemy" and observed	
 		("icons_by_weapon")
-	}	
+	}		
 }
 {select_icon "human_in_house_fire_mode"
 	{if current_user and not in_assault 
@@ -984,7 +992,6 @@
 		{"human_in_house_fire_mode" {entity "%entity" 17} {size 24 24} {offset %sign125 +44}}
 		{"human_in_house_fire_mode" {entity "%entity" 18} {size 24 24} {offset %sign161 +44}}
 		{"human_in_house_fire_mode" {entity "%entity" 19} {size 24 24} {offset %sign197 +44}}
-
 )
 {select_icon "dynamite"
 	{background "background/rhomb_bkg_80"}
@@ -1036,22 +1043,16 @@
 	}
 }
 {select_icon "supp_point"
-	{if not tags "crushed" and not tags "no_icon"
-		{if props "supp_point" or tags "supp_point" {icon "object_type/supp_point" {color 0xffffd800}}}
-	}
+	{if props "supp_point" and not tags "no_icon" and not tags "crushed" or tags "supp_point" {icon "object_type/supp_point" {color 0xffffd800}}}
 }
 {select_icon "fuel_point"
-	{if not tags "crushed" and not tags "no_icon"
-		{if props "fuel_point" or tags "fuel_point" {icon "object_type/fuel_point" {color 0xffffd800}}}
-	}
+	{if props "fuel_point" and not tags "no_icon" and not tags "crushed" or tags "fuel_point" {icon "object_type/fuel_point" {color 0xffffd800}}}
 }
 {select_icon "med_point"
-	{if not tags "crushed" and not tags "no_icon"
-		{if props "med_point" {icon "object_type/med_point" {color 0xffffd800}}}
-	}	
+	{if props "med_point" and not tags "no_icon" and not tags "crushed" {icon "object_type/med_point" {color 0xffffd800}}}
 }
 {select_icon "construction"
-	{if construction "supp_point"
+	{if construction "supp_point" 
 		{icon "object_type/supp_point"} 
 	}
 	{if construction "fuel_point"
@@ -1138,9 +1139,9 @@
 						{offset 0 16}
 					}
 					{"human_add_fire_mode"
-						{size 24 24}
+						{size 26 26}
 						{offset 0 16}
-					}
+					}					
 				}
 			}
 			{if relation "enemy" and not dying 			; живой вражеский пехотинец
@@ -1153,23 +1154,23 @@
 				}
 			}       	
 			{if relation "ally" 				; союзный пехотинец
-					{if dying 				; умирающий
-						("if_dying" ally(_ally))
+				{if dying 				; умирающий
+					("if_dying" ally(_ally))
+				}
+				{if not linked or in_fortification "trench" or linked "watch_tower" or linked "platform_attach_icon_rules" ; в поле или окопе (исключаем экипажи, в домах и т.п.)
+					{scaler "default"}
+					{"human_ally" ; имя (id) селектора иконок (если такой не будет найден - упадет с соответсвующей ошибкой)
+						{size 40 40}
+						{offset 0 0}
 					}
-					{if not linked or linked "watch_tower" or linked "platform_attach_icon_rules" ; в поле или окопе (исключаем экипажи, в домах и т.п.)
-						{scaler "default"}
-						{"human_ally" ; имя (id) селектора иконок (если такой не будет найден - упадет с соответсвующей ошибкой)
-							{size 40 40}
-							{offset 0 0}
-						}
-						{"vehicle_ally_manual_control"
-							{size 26 26}
-							{offset 0 -26}
-						}
+					{"human_ally_manual_control"
+						{size 26 26}
+						{offset 0 26}
 					}
+				}
 			}       	
 		}
-			{if vehicle and not vehicle_broken and not props "platform_attach_icon_rules"; техника не поломанная и не платформа для линкования техники
+		{if vehicle and not vehicle_broken and not props "platform_attach_icon_rules"; техника не поломанная и не платформа для линкования техники
 			{if not linked or in_fortification "trench" or props "icon_for_linked" or linked "platform_attach_icon_rules"; и не прицепленная к другой технике, кроме тех, что со спец пропсом
 				{if abandoned and can_board	; покинутая и можно захватить
 					{if props "cannon"	; для пушек показываем всегда, 
@@ -1186,18 +1187,21 @@
 						{if not manual_control or not control_mode_parameter_on "hide_own_icon" ; не в ПУ или выключен control mode параметр "hide_own_icon"
 							{scaler "vehicle_own"}
 							{"vehicle_own_main" 	{size 64 64} {offset 0 0}}
-							{"vehicle_own_1"	{size 32 32} {offset 35 -19}	{group 1}} ; если указана группа, то неактивная иконка будет замещена следующей активной в это же группе
-							{"vehicle_own_2"	{size 32 32} {offset 53 0}	{group 1}}
-							{"vehicle_own_3"	{size 32 32} {offset 71 -19}	{group 1}}
-							{"vehicle_own_4"	{size 32 32} {offset 89 0}	{group 1}}
-							{"vehicle_own_5"	{size 32 32} {offset 107 -19}	{group 1}}
-							{"vehicle_own_6"	{size 32 32} {offset 125 -0} {group 1}}
-							{"vehicle_own_7"	{size 32 32} {offset 143 -19}	{group 1}}
-							{"vehicle_own_8"	{size 32 32} {offset 162 0}	{group 1}}
-							{"vehicle_own_9"	{size 32 32} {offset 181 -19}	{group 1}}
-							{"vehicle_own_10"	{size 32 32} {offset 203 0} {group 1}}
-							{"vehicle_own_11"	{size 32 32} {offset 225 -19} {group 1}}
-							{"vehicle_own_12"	{size 32 32} {offset 240 0} {group 1}}
+							{"vehicle_own_1"	{size 26 26} {offset 24 -1}	{group 1}} 	;режим стрельбы ;если указана группа, то неактивная иконка будет замещена следующей активной в это же группе
+						
+							{"vehicle_own_2"	{size 26 26} {offset 24 -25}	{group 2}}	;детектор обнаружения
+							{"vehicle_own_3"	{size 26 26} {offset -0 -25}	{group 3}}	;экипаж мертв и ремонт
+							{"vehicle_own_4"	{size 26 26} {offset -24 -25}	{group 4}}  ;камуфляж
+						
+							{"vehicle_own_5"	{size 26 26} {offset 24 -49}	{group 2}}	;траншеи и укрытия
+							{"vehicle_own_6"	{size 26 26} {offset 0 -49} 	{group 3}}	;сцепка
+							{"vehicle_own_7"	{size 26 26} {offset -24 -49}	{group 4}}	;пополнение бк
+						
+							{"vehicle_own_8"	{size 26 26} {offset 24 -73}	{group 2}}	;огнемет
+							{"vehicle_own_9"	{size 26 26} {offset 0 -73}		{group 3}}	;контузия
+							{"vehicle_own_10"	{size 26 26} {offset -24 -73}	{group 4}}	;саппли
+						
+							{"vehicle_own_11"	{size 26 26} {offset 24 -97}	{group 2}}	;топливо 
 						}
 					}
 				}
@@ -1208,7 +1212,7 @@
 							{offset 0 0}
 						}
 					}
-				}		
+				}
 				{if not option_show_vehicle_ally_icons_never and relation "ally" 		; союзная техника
 					{if option_show_vehicle_ally_icons_always or is_mouse_focused or cursor_near 20				
 						{"vehicle_ally_main"
@@ -1217,13 +1221,13 @@
 						}
 						{"vehicle_ally_manual_control"
 							{size 24 24}
-							{offset 0 -32}
+							{offset 0 26}
 						}
 					}	
 				}				
 			}
 		}
-			{if house_is_assaulted
+		{if house_is_assaulted
 			{"house_main"
 				{size 64 64}
 				{offset 0 0}
@@ -1231,28 +1235,28 @@
 			("house_side" sign(-) entity(house_defender))
 			("house_side" sign(+) entity(house_attacker))
 		}
-			{if house and not house_is_empty
+		{if house and not house_is_empty
 			{"house_main"
 				{size 64 64}
 				{offset 0 0}
 			}
 			("house_side" sign(+) entity(dweller))
 		}
-			{if not in_fog and props "mine remote" and tags "fuse" and not linked
+		{if not in_fog and props "mine remote" and tags "fuse" and not linked
 			{scaler "default"}
 			{"dynamite"
 				{size 40 40}
 				{offset 0 0}
 			}
 		}
-			{if props "mine_fuze" and not linked
+		{if props "mine_fuze" and not linked
 			{scaler "default"}
 			{"fuze"
 				{size 40 40}
 				{offset 0 0}
 			}
 		}
-			{if props "flag map_point"
+		{if props "flag map_point"
 			{scaler "default"}
 			{bind_bone "handle"}
 			{"map_point"
@@ -1283,15 +1287,15 @@
 				{size 64 64}
 				{offset 0 0}
 			}			
-		}
-		{if construction
-;		{if props "workshop"
-			{scaler "default"}
-			{"construction"
-				{size 64 64}
-				{offset 0 0}
-			}			
 		}		
+		{if construction
+;			{if props "workshop"
+				{scaler "default"}
+				{"construction"
+					{size 64 64}
+					{offset 0 0}
+				}			
+			}		
 		}
 	}
 }
