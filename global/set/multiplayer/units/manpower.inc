@@ -53,88 +53,95 @@
 	;}
 ;=======01_squad1=======
 ;rus
-    {"recruits_squad(rus)"				{tags "man_power infantry_only"} {cost 40} {button "01_squad1"} {group "infantry"} {icon 100} ("ch" c(30) fore(30))}   
-    {"infantry_squad(rus)"				{tags "man_power infantry_only"} {cost 75} {button "01_squad1"} {group "infantry_1"} {icon 101} ("ch" c(30) fore(30))}
-	{"hunters(rus)"					    {tags "man_power infantry_only"} {cost 80} {button "01_squad1"} {group "infantry_1"} {icon 102} ("ch" c(60) fore(60))
-	                                    {content "arena_mp/rus/hunter_ai_commander:1 arena_mp/rus/hunter:3"}
-	}
-	{"assault_squad(rus)"				{tags "man_power infantry_only"} {cost 90} {button "01_squad1"} {group "infantry_1"} {icon 103} ("ch" c(30) fore(30))}
-	{"mgs_late(rus)"                    {tags "man_power infantry_only"} {cost 100} {button "01_squad1"} {group "infantry_1"} {icon 104} ("ch" c(30) fore(-90))
-	                                    {content "arena_mp/rus/mgun_supporter_late:1 arena_mp/rus/mgun_late:1 arena_mp/rus/mgun_commander_late:1 arena_mp/rus/mgun_late:1 arena_mp/rus/mgun_supporter_late:1 arena_mp/rus/smg:2"}
-	}
-	{"marines(rus)"					    {tags "man_power infantry_only"} {cost 125} {button "01_squad1"} {group "infantry_2"} {icon 105} ("ch" c(60) fore(-180))
+    {"recruits_squad(rus)"				{tags "man_power infantry_only"} {cost 5} {button "01_squad1"} {group "infantry"} {icon 100} ("ch" c(30) fore(30))}   
+    {"infantry_squad(rus)"				{tags "man_power infantry_only"} {cost 7} {button "01_squad1"} {group "infantry_1"} {icon 101} ("ch" c(30) fore(30))}
+	{"marines(rus)"					    {tags "man_power infantry_only"} {cost 14} {button "01_squad1"} {group "infantry_2"} {icon 105} ("ch" c(60) fore(-180))
 									    {content "arena_mp/rus/marine:2 arena_mp/rus/marine_mgun:1 arena_mp/rus/marine:1 arena_mp/rus/marine_avs:1 arena_mp/rus/marine:1 arena_mp/rus/marine_mgun:1 arena_mp/rus/marine:1"}	
 	}
-	{"stormtroopers(rus)"			    {tags "man_power infantry_only"} {cost 175} {button "01_squad1"} {group "infantry_3"} {icon 106} ("ch" c(120) fore(-540))
+	{"stormtroopers(rus)"			    {tags "man_power infantry_only"} {cost 18} {button "01_squad1"} {group "infantry_3"} {icon 106} ("ch" c(120) fore(-540))
 									    {content "arena_mp/rus/sturmovik:3 arena_mp/rus/sturmovik_rifle:2 arena_mp/rus/sturmovik_atr:1 arena_mp/rus/sturmovik_flame:1  arena_mp/rus/sturmovik_mgun:1"}
 	}
-    {"paratroopers(rus)"				{tags "man_power infantry_only"} {cost 160} {button "01_squad1"} {group "paratroopers"} {icon 107} ("ch" c(120) fore(-540))
+    {"paratroopers(rus)"				{tags "man_power infantry_only"} {cost 70} {button "01_squad1"} {group "paratroopers"} {icon 107} ("ch" c(120) fore(-540))
 										{content "dc-47_rus ( arena_mp/rus/pilot:2 arena_mp/rus/paratrooper:5 arena_mp/rus/paratrooper_mgun:1 )"}
 	}
-	{"saboteurs(rus)"		            {tags "man_power infantry_only saboteurs"} {cost 220} {button "01_squad1"} {icon 108} ("ch" c(360) fore(-320))}
-    {"t20"				               	{tags "man_power"} {cost 125} {button "01_squad1"} {icon 109} ("ch" c(120) fore(-60))}
-    {"m3_g"				                {tags "man_power"} {cost 175} {button "01_squad1"} {group "infantry_2"} {icon 110} ("ch" c(120) fore(-540))}	
-	{"riflemans_reserv(rus)"				{tags "infantry_only"} {cost 65} {button "01_squad1"} {group "infantry"} {icon 111} ("ch" c(60) fore(-30))}
+    {"t20"				               	{tags "man_power"} {cost 55} {button "01_squad1"} {icon 109} ("ch" c(120) fore(-60))}
+    {"m3_g"				                {tags "man_power"} {cost 55} {button "01_squad1"} {group "infantry_2"} {icon 110} ("ch" c(120) fore(-540))}	
+	{"riflemans_reserv(rus)"			{tags "infantry_only"} {cost 65} {button "01_squad1"} {group "infantry"} {icon 111} ("ch" c(60) fore(-30))}
+	
+	
+	
+;	{"hunters(rus)"					    {tags "man_power infantry_only"} {cost 80} {button "01_squad1"} {group "infantry_1"} {icon 102} ("ch" c(60) fore(60))
+;	                                    {content "arena_mp/rus/hunter_ai_commander:1 arena_mp/rus/hunter:3"}
+;	}
+	{"assault_squad(rus)"				{tags "man_power infantry_only"} {cost 10} {button "01_squad1"} {group "infantry_1"} {icon 103} ("ch" c(30) fore(30))}
+;	{"mgs_late(rus)"                    {tags "man_power infantry_only"} {cost 100} {button "01_squad1"} {group "infantry_1"} {icon 104} ("ch" c(30) fore(-90))
+;	                                    {content "arena_mp/rus/mgun_supporter_late:1 arena_mp/rus/mgun_late:1 arena_mp/rus/mgun_commander_late:1 arena_mp/rus/mgun_late:1 arena_mp/rus/mgun_supporter_late:1 arena_mp/rus/smg:2"}
+;	}	
+	
 ;ger    
-	{"recruits_squad(ger)"				{tags "man_power infantry_only"} {cost 40} {button "01_squad1"} {group "infantry"} {icon 100} ("ch" c(30) fore(30))}
-	{"infantry_squad(ger)"				{tags "man_power infantry_only"} {cost 75} {button "01_squad1"} {group "infantry_1"} {icon 101} ("ch" c(30) fore(30))}
-	{"hunters(ger)"					    {tags "man_power infantry_only"} {cost 80} {button "01_squad1"} {group "infantry_1"} {icon 102} ("ch" c(60) fore(60))
-	                                    {content "arena_mp/ger/hunter_ai_commander:1 arena_mp/ger/hunter:3"}
-	}	
-	{"assault_squad(ger)"				{tags "man_power infantry_only"} {cost 90} {button "01_squad1"} {group "infantry_1"} {icon 103} ("ch" c(30) fore(30))}
-	{"mgs_late(ger)"                    {tags "man_power infantry_only"} {cost 100} {button "01_squad1"} {group "infantry_1"} {icon 104} ("ch" c(30) fore(-90))
-	                                    {content "arena_mp/ger/mgun_supporter_late:1 arena_mp/ger/mgun_late:1 arena_mp/ger/mgun_commander_late:1 arena_mp/ger/mgun_late:1 arena_mp/ger/mgun_supporter_late:1 arena_mp/ger/smg:2"}
-	}
-	{"edelweiss(ger)"				    {tags "man_power infantry_only"} {cost 125} {button "01_squad1"} {group "infantry_2"} {icon 105} ("ch" c(60) fore(-180))
-									    {content "arena_mp/ger/edelweiss:1 arena_mp/ger/edelweiss_g43:2 arena_mp/ger/edelweiss_fg42:1 arena_mp/ger/edelweiss_mgun:1 arena_mp/ger/edelweiss_g43:2 arena_mp/ger/edelweiss:1"}
-	}
-	{"grenadiers(ger)"				    {tags "man_power infantry_only"} {cost 175} {button "01_squad1"} {group "infantry_2"} {icon 106} ("ch" c(120) fore(-540))
+	{"recruits_squad(ger)"				{tags "man_power infantry_only"} {cost 5} {button "01_squad1"} {group "infantry"} {icon 100} ("ch" c(30) fore(30))}
+	{"infantry_squad(ger)"				{tags "man_power infantry_only"} {cost 7} {button "01_squad1"} {group "infantry_1"} {icon 101} ("ch" c(30) fore(30))}
+;	{"hunters(ger)"					    {tags "man_power infantry_only"} {cost 10} {button "01_squad1"} {group "infantry_1"} {icon 102} ("ch" c(60) fore(60))
+;	                                    {content "arena_mp/ger/hunter_ai_commander:1 arena_mp/ger/hunter:3"}
+;	}	
+	{"assault_squad(ger)"				{tags "man_power infantry_only"} {cost 10} {button "01_squad1"} {group "infantry_1"} {icon 103} ("ch" c(30) fore(30))}
+;	{"mgs_late(ger)"                    {tags "man_power infantry_only"} {cost 100} {button "01_squad1"} {group "infantry_1"} {icon 104} ("ch" c(30) fore(-90))
+;	                                    {content "arena_mp/ger/mgun_supporter_late:1 arena_mp/ger/mgun_late:1 arena_mp/ger/mgun_commander_late:1 arena_mp/ger/mgun_late:1 arena_mp/ger/mgun_supporter_late:1 arena_mp/ger/smg:2"}
+;	}
+;	{"edelweiss(ger)"				    {tags "man_power infantry_only"} {cost 14} {button "01_squad1"} {group "infantry_2"} {icon 105} ("ch" c(60) fore(-180))
+;									    {content "arena_mp/ger/edelweiss:1 arena_mp/ger/edelweiss_g43:2 arena_mp/ger/edelweiss_fg42:1 arena_mp/ger/edelweiss_mgun:1 arena_mp/ger/edelweiss_g43:2 arena_mp/ger/edelweiss:1"}
+;	}
+	{"grenadiers(ger)"				    {tags "man_power infantry_only"} {cost 14} {button "01_squad1"} {group "infantry_2"} {icon 106} ("ch" c(120) fore(-540))
 									    {content "arena_mp/ger/grenadier:2 arena_mp/ger/grenadier_pfaust:2 arena_mp/ger/grenadier_mgun:1 arena_mp/ger/grenadier_pfaust:1 arena_mp/ger/grenadier:2"}
 	}
-	{"sturmpioneers(ger)"				{tags "man_power infantry_only"} {cost 175} {button "01_squad1"} {group "infantry_3"} {icon 107} ("ch" c(120) fore(-540))
+	{"sturmpioneers(ger)"				{tags "man_power infantry_only"} {cost 18} {button "01_squad1"} {group "infantry_3"} {icon 107} ("ch" c(120) fore(-540))
 										{content "arena_mp/ger/sturmpioneer_saper:2 arena_mp/ger/sturmpioneer_mgun:1 arena_mp/ger/sturmpioneer_flamer:1 arena_mp/ger/sturmpioneer_commander:1 arena_mp/ger/sturmpioneer_flamer:1 arena_mp/ger/sturmpioneer_radioman:1 arena_mp/ger/sturmpioneer_mgun:1 arena_mp/ger/sturmpioneer_saper:2"}	
 	}
-	{"paratroopers(ger)"				{tags "man_power infantry_only"} {cost 160} {button "01_squad1"} {group "paratroopers"} {icon 108} ("ch" c(120) fore(-790))
+	{"paratroopers(ger)"				{tags "man_power infantry_only"} {cost 70} {button "01_squad1"} {group "paratroopers"} {icon 108} ("ch" c(120) fore(-790))
 										{content "ju-52 ( arena_mp/ger/pilot:3 arena_mp/ger/paratrooper:5 arena_mp/ger/paratrooper_mgun:1 )"}	
 	}
-	{"saboteurs(ger)"		            {tags "man_power infantry_only saboteurs"} {cost 220} {button "01_squad1"} {icon 109} ("ch" c(360) fore(-320))}
-	{"sdkfz251c"	                    {tags "man_power"} {cost 125} {button "01_squad1"} {group "motorised"} {icon 110} ("ch" c(120) fore(-60))}
+;	{"saboteurs(ger)"		            {tags "man_power infantry_only saboteurs"} {cost 220} {button "01_squad1"} {icon 109} ("ch" c(360) fore(-320))}
+	{"sdkfz251c"	                    {tags "man_power"} {cost 55} {button "01_squad1"} {group "motorised"} {icon 110} ("ch" c(120) fore(-60))}
 	{"stormtroopers(ger)"	            {tags "man_power"} {cost 200} {button "01_squad1"} {group "infantry_3"} {icon 111} ("ch" c(120) fore(-540))}
 ;usa	
-	{"recruits_squad(usa)"				{tags "man_power infantry_only"} {cost 40} {button "01_squad1"} {group "infantry"} {icon 100} ("ch" c(30) fore(30))}
-	{"infantry_squad(usa)"				{tags "man_power infantry_only"} {cost 75} {button "01_squad1"} {group "infantry_1"} {icon 101} ("ch" c(30) fore(30))}
-	{"hunters(usa)"					    {tags "man_power infantry_only"} {cost 80} {button "01_squad1"} {group "infantry_1"} {icon 102} ("ch" c(60) fore(60))
-	                                    {content "arena_mp/usa/hunter_ai_commander:1 arena_mp/usa/hunter:3"}
-	}
-	{"assault_squad(usa)"				{tags "man_power infantry_only"} {cost 90} {button "01_squad1"} {group "infantry_1"} {icon 103} ("ch" c(30) fore(30))}
-	{"mgs_late(usa)"                    {tags "man_power infantry_only"} {cost 100} {button "01_squad1"} {group "infantry_1"} {icon 104} ("ch" c(30) fore(-90))
-	                                    {content "arena_mp/usa/mgun_supporter_late:1 arena_mp/usa/mgun_late:1 arena_mp/usa/mgun_commander_late:1 arena_mp/usa/mgun_late:1 arena_mp/usa/mgun_supporter_late:1 arena_mp/usa/smg:2"}
-	}
-	{"marines(usa)"					    {tags "man_power infantry_only"} {cost 125} {button "01_squad1"} {group "infantry_2"} {icon 105} ("ch" c(60) fore(-180))
+	{"recruits_squad(usa)"				{tags "man_power infantry_only"} {cost 5} {button "01_squad1"} {group "infantry"} {icon 100} ("ch" c(60) fore(60))}          ; начало 38
+	{"infantry_squad(usa)"				{tags "man_power infantry_only"} {cost 8} {button "01_squad1"} {group "infantry_1"} {icon 100} ("ch" c(120) fore(120))}      ; начало 38
+	{"assault_squad(usa)"				{tags "man_power infantry_only"} {cost 13} {button "01_squad1"} {group "infantry_1"} {icon 103} ("ch" c(240) fore(-2463))}   ; начало 42
+	{"marines(usa)"					    {tags "man_power infantry_only"} {cost 13} {button "01_squad1"} {group "infantry_2"} {icon 105} ("ch" c(480) fore(-2222)) 
 									    {content "arena_mp/usa/marine_bar:1 arena_mp/usa/marine:2 arena_mp/usa/marine_radioman:1 arena_mp/usa/marine:1 arena_mp/usa/marine_mgun:1 arena_mp/usa/marine_bar:1 arena_mp/usa/marine:1"}
-	}
-	{"stormtroopers(usa)"			    {tags "man_power infantry_only"} {cost 175} {button "01_squad1"} {group "infantry_3"} {icon 106} ("ch" c(120) fore(-540))
+	}                                                                                                                                                                ; начало 42 
+	{"stormtroopers(usa)"			    {tags "man_power infantry_only"} {cost 15} {button "01_squad1"} {group "infantry_3"} {icon 106} ("ch" c(900) fore(-3598))
 									    {content "arena_mp/usa/ranger:2 arena_mp/usa/ranger_mgun:1 arena_mp/usa/ranger_shotgun:2  arena_mp/usa/ranger_mgun:1 arena_mp/usa/ranger:2"}
-	}
-	{"paratroopers(usa)"				{tags "man_power infantry_only"} {cost 160} {button "01_squad1"} {group "paratroopers"} {icon 107} ("ch" c(120) fore(-790))
+	}                                                                                                                                                                ; начало 44
+	{"m2_ally"		                    {tags "man_power"} {cost 50} {button "01_squad1"} {icon 107} ("ch" c(900) fore(-3598))
+									    {content "m2_ally ( arena_mp/usa/ranger:2 arena_mp/usa/ranger_mgun:1 arena_mp/usa/ranger_shotgun:2  arena_mp/usa/ranger_mgun:1 arena_mp/usa/ranger:2 )"}
+	}                                                                                                                                                                ; начало 44	
+;---------------	
+	{"paratroopers(usa)"				{tags "man_power infantry_only"} {cost 70} {button "01_squad1"} {group "paratroopers"} {icon 109} ("ch" c(900) fore(900))
 										{content "dc-47 ( arena_mp/usa/pilot:2 arena_mp/usa/paratrooper:5 arena_mp/usa/paratrooper_mgun:1 )"}	
-	}
-	{"saboteurs(usa)"		            {tags "man_power infantry_only saboteurs"} {cost 220} {button "01_squad1"} {icon 108} ("ch" c(360) fore(-320))}
-	{"paratroopers_elite(usa)"			{tags "man_power infantry_only"} {cost 200} {button "01_squad1"} {group "paratroopers"} {icon 109} ("ch" c(120) fore(-840))
+	}                                                                                                                                                                ; начало 38
+	{"paratroopers_elite(usa)"			{tags "man_power infantry_only"} {cost 100} {button "01_squad1"} {group "paratroopers"} {icon 111} ("ch" c(900) fore(-1808))
 										{content "dc-47 ( arena_mp/usa/pilot:2 arena_mp/usa/paratrooper_elite:2 arena_mp/usa/paratrooper_elite_mgun:1 arena_mp/usa/paratrooper_elite_smg:3 )"}	
-	}
-	{"m3_ally_g"	                    {tags "man_power"} {cost 175} {button "01_squad1"} {group "infantry_2"} {icon 110} ("ch" c(120) fore(-540))}	
-	{"m2_ally"		                    {tags "man_power"} {cost 150} {button "01_squad1"} {icon 111} ("ch" c(120) fore(-60))}
-	
+	}	                                                                                                                                                             ; начало 42
+;---------------			
+;	{"hunters(usa)"					    {tags "man_power infantry_only"} {cost 10} {button "01_squad1"} {group "infantry_1"} {icon 102} ("ch" c(60) fore(60))
+;	                                    {content "arena_mp/usa/hunter_ai_commander:1 arena_mp/usa/hunter:3"}
+;	}
+;	{"mgs_late(usa)"                    {tags "man_power infantry_only"} {cost 100} {button "01_squad1"} {group "infantry_1"} {icon 104} ("ch" c(30) fore(-90))
+;	                                    {content "arena_mp/usa/mgun_supporter_late:1 arena_mp/usa/mgun_late:1 arena_mp/usa/mgun_commander_late:1 arena_mp/usa/mgun_late:1 arena_mp/usa/mgun_supporter_late:1 arena_mp/usa/smg:2"}
+;	}
+;	{"saboteurs(usa)"		            {tags "man_power infantry_only saboteurs"} {cost 220} {button "01_squad1"} {icon 108} ("ch" c(360) fore(-320))}
+;	{"m3_ally_g"	                    {tags "man_power"} {cost 70} {button "01_squad1"} {group "infantry_2"} {icon 110} ("ch" c(120) fore(-540))}	
+;---------------		
 	
 ;=======02_squad2=======
 ;rus    
-    {"riflemans(rus)"				    {tags "man_power infantry_only single"} {cost 8} {button "02_squad2"} {icon 201} ("ch" c(1) fore(1))
-	                                    {content "arena_mp/rus/rifle:1"}
-	}                                   
-    {"smgs(rus)"					    {tags "man_power infantry_only single"} {cost 10} {button "02_squad2"} {icon 202} ("ch" c(1) fore(1))
-	                                    {content "arena_mp/rus/smg:1"}
-	}
+;   {"riflemans(rus)"				    {tags "man_power infantry_only single"} {cost 8} {button "02_squad2"} {icon 201} ("ch" c(1) fore(1))
+;	                                    {content "arena_mp/rus/rifle:1"}
+;	}                                   
+;   {"smgs(rus)"					    {tags "man_power infantry_only single"} {cost 10} {button "02_squad2"} {icon 202} ("ch" c(1) fore(1))
+;	                                    {content "arena_mp/rus/smg:1"}
+;	}
     {"mgs(rus)"				            {tags "man_power infantry_only"} {cost 25} {button "02_squad2"} {icon 203} ("ch" c(15) fore(15))
 							            {content "arena_mp/rus/mgun:1 arena_mp/rus/mgun_supporter:1"}
 	}	
@@ -158,13 +165,13 @@
 	{"tankmans(rus)"				    {tags "man_power tanks_only crewman"} {cost 20} {button "02_squad2"} {icon 211} ("ch" c(30) fore(-60))}
     {"artman(rus)"					    {tags "man_power crewman"} {cost 20} {button "02_squad2"} {icon 212} ("ch" c(30) fore(-60))}	
 ;ger                                    	
-    {"riflemans(ger)"				    {tags "man_power infantry_only single"} {cost 8} {button "02_squad2"} {icon 201} ("ch" c(1) fore(1))
-	                                    {content "arena_mp/ger/rifle:1"}
-	}                                   
-    {"smgs(ger)"					    {tags "man_power infantry_only single"} {cost 10} {button "02_squad2"} {icon 202} ("ch" c(1) fore(1))
-	                                    {content "arena_mp/ger/smg:1"}
-	}
-    {"mgs(ger)"				            {tags "man_power infantry_only"} {cost 25} {button "02_squad2"} {icon 203} ("ch" c(15) fore(15))
+;    {"riflemans(ger)"				    {tags "man_power infantry_only single"} {cost 8} {button "02_squad2"} {icon 201} ("ch" c(1) fore(1))
+;	                                    {content "arena_mp/ger/rifle:1"}
+;	}                                   
+;    {"smgs(ger)"					    {tags "man_power infantry_only single"} {cost 10} {button "02_squad2"} {icon 202} ("ch" c(1) fore(1))
+;	                                    {content "arena_mp/ger/smg:1"}
+;	}
+    {"mgs(ger)"				        {tags "man_power infantry_only"} {cost 25} {button "02_squad2"} {icon 203} ("ch" c(15) fore(15))
 							            {content "arena_mp/ger/mgun:1 arena_mp/ger/mgun_supporter:1"}
 	}	
     {"at_rifle(ger)"				    {tags "man_power"} {cost 25} {button "02_squad2"} {icon 204} ("ch" c(15) fore(15))
@@ -193,12 +200,12 @@
 	{"tankmans(ger)"				    {tags "man_power tanks_only crewman"} {cost 20} {button "02_squad2"} {icon 212} ("ch" c(30) fore(-60))}	
     {"artman(ger)"					    {tags "man_power crewman"} {cost 20} {button "02_squad2"} {icon 213} ("ch" c(30) fore(-60))}	
 ;usa	                                		
-	{"riflemans(usa)"				    {tags "man_power infantry_only single"} {cost 10} {button "02_squad2"} {icon 201} ("ch" c(1) fore(1))
-	                                    {content "arena_mp/usa/rifle:1"}
-	}                                   
-	{"smgs(usa)"					    {tags "man_power infantry_only single"} {cost 10} {button "02_squad2"} {icon 202} ("ch" c(1) fore(1))
-	                                    {content "arena_mp/usa/smg:1"}
-	}
+;	{"riflemans(usa)"				    {tags "man_power infantry_only single"} {cost 10} {button "02_squad2"} {icon 201} ("ch" c(1) fore(1))
+;	                                    {content "arena_mp/usa/rifle:1"}
+;	}                                   
+;	{"smgs(usa)"					    {tags "man_power infantry_only single"} {cost 10} {button "02_squad2"} {icon 202} ("ch" c(1) fore(1))
+;	                                    {content "arena_mp/usa/smg:1"}
+;	}
     {"mgs(usa)"				            {tags "man_power infantry_only"} {cost 20} {button "02_squad2"} {icon 203} ("ch" c(15) fore(15))
 							            {content "arena_mp/usa/mgun:1 arena_mp/usa/mgun_supporter:1"}
 	}
