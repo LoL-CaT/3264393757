@@ -3,7 +3,7 @@
 	 ability {"stealth"} or breed_mask "*/bazooker" "*/bazooker_m18" "*/flamer" "*/sturmovik_flame" "*/sniper" "*/jaeger_sniper" "*/nkvd_sniper" "*/devil_sniper"
 )
 (define "observed_or_suspected"
-	;{if observed {icon "observed_%_type" {color DRED}}}
+	{if observed {icon "observed_%_type" {color DRED}}}
 	{if %_condition_suspected 
 		{fill
 			{sprite "background/rhomb_fill_64"}

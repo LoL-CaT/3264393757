@@ -1,6 +1,141 @@
+g_stateIconCellsForAssaultHouse 5				;количество ячеек для иконок в доме при штурме
+
+cam_viewAngleFree 0
+cam_distanceMin 200
+cam_distanceMax 900	
+cam_viewAngleMax 90 ;85
+cam_viewAngleMin 0 ;32
+cam_viewAngleDistanceK 0.1
+cam_liftSteadyUpMin 0.2
+cam_liftSteadyDownMin 0.3
+cam_liftSteadyBlendStart 0.02
+cam_liftSteadyBlendEnd 0.9
+cam_liftSteadyUpMax -5
+cam_liftSteadyDownMax 5
+cam_viewFovMin 40
+cam_viewFovMax 70
+cam_zFar 10000 									;500м глобальная дальность прорисовки
+
+r_fogSaturation 0.5
+r_fogBrightness 0.6
+r_fogFullRangeOpacity 0
+r_foggedByHumanRadius 1
+
+r_zNearClipOpacity 0.2
+r_zNearClipHideMs 300
+r_zNearClipDistance 6.5
+v_pathVisualizerOpacity 255
+
+r_grassDistance 3000							;для регулировки дальности отрисовки травы
+r_fadeDistance 3000								;для регулировки дальности отрисовки травы
+
+g_alwaysReloadSceneSettings 1					;применяет новые настройки set файлов перезагрузкой сцены без перезапуска редактора
+
+g_humanInHouseAttackDelayMin 0.15				;минимальная задержка выстрела/автоматной очереди для пехотинца в доме
+g_humanInHouseAttackDelayMax 0.5				;максимальная задержка выстрела/автоматной очереди для пехотинца в доме
+
+g_houseBoardTimeMin 2.5
+g_houseBoardTimeMax 2.5
+g_houseEmitTimeMin 1.5
+g_houseEmitTimeMax 1.5
+
+g_humanStunDamageMin 1
+g_humanStunTimeMax 7
+
+g_breakComponentsWithoutArmorHealthEnabled 1	;test
+v_ArmorHealthBarDisabledForEnemy 0
+
+g_disableSignalForDamage 0						;включение передачи сигнала по дамагу
+
+g_shellAPMissCannon 0							;шанс пролетания бронебойного сквозь орудие без регистрации попадания
+g_shellAPZeniteMissCannon 0						;шанс пролетания зенитного сквозь орудие без регистрации попадания
+g_shellAPMissHuman 0							;шанс пролетания бронебойного сквозь человека без регистрации попадания
+
+g_weaponTargetingSmokeObstacleSpreadMultiplier 3 ;увеличивает круг разсброса при прицеливании через дым
+
+g_bulletOvermatchMin 0.0001						;позволяет выставить минимальный OvermatchDamping для кумулятивов
+
+g_spreadMinByActorRadiusScale 1					;максимальное сведение относительно радиуса дома для гаубиц
+g_spreadMinByActorRadiusOffset 0				;дополнительное значечние к радиусу сведения на домах
+
+g_zeroingForHouseCount = 3						;кол-во выстрелов до максимального сведения для стрельбы дом для гаубиц
+
+g_armorHealthDamageRangeMin 1					;минимальный множитель урона ХП брони
+g_armorHealthDamageRangeMax 1             		;максимальный множитель урона ХП брони
+
+g_armorPierceNormalizationAngle 0 					;выключает нормализацию 
+g_armorPierceNormalizationAngle_TwoCalibresRule 0 	;выключает нормализацию и правило 2х калибров
+
+g_moveForceForwardSectorAngle 90			;угол, внутри которого, будет применён задний ход
+g_moveForceForwardSectorLength 40			;дальность, в пределах которой будет применён задний ход
+
+g_pathMinSearchRadius 40						; минимальный радиус поиска объезда в поиске пути
+
+g_fogSimpleXRayVision 1							;Включает правило простого тумана и для AI юнитов
+
+mp_spawnPrepareDelay  100.0						;Время отката "дороги подкрепления"
+mp_spawnPrepareSlotCount 2						;Количество "дорог подкрепления"
+
+g_autoTargetingRange 7							;радиус курсора при котором срабатывает "фиксация наведения" в юнитах
+
+g_quickMenuActionsDelay 0.2						;задержка перед появлением прогрессбара кругового меню экшенов
+g_quickMenuActionsTime 0.3						;время прогрессбара кругового меню экшенов				
+
+
+g_mineOnEnemyTerritoryDiscoverTime 90			;время обнаружения мин территорией
+g_mineDeleteDefusedTime 120						;время удаления разминированных мин
+
+;ed_missionEditorWindowWidth 500				;устанавливает ширину интерфейса редактора миссий в 500 пикселей
+;dbg_canSelectEmptyVehicles 1					;включает селект пустых юнитов
+
+
+ui_possiblePierceChance 0.2						;вероятность пробития, выше которого "светофор" пробития - желтый
+ui_successPierceChance 0.3						;вероятность пробития, выше которого "светофор" пробития - зелёный
+
+;g_energyByPierceChanceUpscale 0.2				;дополнительная энергия снаряда, позволяющая пробивать больше приведённой брони по шансу
+
+ui_showScoreReport 0							;отключает отображение цифр получение очков за фактическую территорию в groundcontrol
+
+ui_hideHealthBar 0								;может отключить отображения хелсбаров в ui							
+
+g_armorWeaknessWithoutThreshold 1
+g_armorPierceThresholdClip 0
+g_effectiveStrengthMaxK	2.0						;максимальное значение приведённой брони по отношению к толщине
+
+g_trailerMassRatioToSpeedDamping "(0, 0.2) (1, 1)"; таблица штрафа скорости трейлера
+
+g_actorAttackGroundLostRadius 1					;радиус после которого происходит сброс прицеливания с атаки в юнита на атаку в землю (для пушек)
+g_howitzerAttackGroundLostRadius 1				;радиус после которого происходит сброс прицеливания с атаки в юнита на атаку в землю (для гаубиц)
+
+mp_unfogEnemyTerritoryDistanceToBorder 3		;глубина подсвеченной вражеской территории за линией фронта
+
+g_chassisIntegratorDepth 6						;коэф. сглаживания, убирает тряску во время езды через часто меняющиеся высоты
+
+g_delayUseUserMessage 0							; задержка перед повторной отправкой сообщения игрокам из списка (круговое меню)
+g_delayUseUserGuide 0							; задержка перед повторной установкой указателя для команды
+
+g_aimingSectorInHouseAngle 80					;ограничитель для стрельбы из плейса в доме. Значение 80 приводило к стрельбе сквозь стены.
+
+g_maxAltitude 1800								;ограничитель высоты для прицеливания в юнитах
+
+ui_loadingTips 1								;включает работу loading tips
+
+g_orderWithdrawTime 8							;время отсутпления
+
+mp_afkTimeConnect 180							;время, за которое если игрок не смог подключиться и начать загружаться, его кикнет из сессии
+mp_afkTimeConnectSingle 180						;то же самое, только для сингла и коопа
+mp_afkTimeCommand 150							;АФК таймер в пвп
+mp_afkTimeCommandSingle 7200					;АФК таймер для сингла и коопа
+
+g_formationIntervalMin 1.5                      ;минимальная дистанция между юнитами в формации при протягивании с зажатой ПКМ. Учитывается радиус юнита
+g_formationIntervalMax 40                       ;максимальная дистанция между юнитами в формации при протягивании с зажатой ПКМ. Учитывается радиус юнита
+
+g_coverSelectBush 1								;включает в селектор укрытий кусты	
+
+g_talksPriorityDelay 0.5 			;коэффициент для задержки между толками
 
 cam_distanceMin 200
-cam_distanceMax 1000	
+cam_distanceMax 2000	
 
 dbg_canSelectEmptyVehicles 1					;включает селект пустых юнитов
 g_mineOnEnemyTerritoryDiscoverTime 9999			;время обнаружения мин территорией
