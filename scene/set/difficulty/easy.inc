@@ -3,7 +3,7 @@
 	(include "blast.inc")
 }
 {enemy
-	{health 1}
+	{health 0.2}
 	{accuracy 0.5}
 	{burst 1}
 	{firing_timeout 1}
@@ -13,7 +13,7 @@
 {ally
 	; {health_increase 1} {health_increase 2.5}
 	{burst 0.9}
-	{health 1}
+	{health 0.2}
 	{mounted_mgun 1}
 }
 {neutral

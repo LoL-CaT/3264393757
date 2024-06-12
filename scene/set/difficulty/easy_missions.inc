@@ -7,7 +7,7 @@
 	{vehicle_burst 1.5}		; increase timeout between bursts for all vehicles
 }
 {enemy
-	{health 0.45}  				
+	{health 0.5}  				
 	{accuracy 0.35}				
 	{burst 0.85}
 	{cover_damage 1}  			; damage when protected by cover
@@ -20,7 +20,7 @@
 {ally
 	{translate_damage 5}		; damage translation output modifier
 	{accuracy 2}	
-	{health 1.8}					; health increase
+	{health 0.5}					; health increase
 	{health_increase 1				; health regeneration
 		{if tags "med_point_crew" 25}		
 	}
@@ -31,7 +31,7 @@
 	{mounted_mgun 5}
 }
 {neutral
-	{health 0.8}
+	{health 0.5}
 	{accuracy 0.2}
 }
 (include "multiplayer.inc")

@@ -31,7 +31,7 @@
 	{burst 1
 		{if in_house 2}		
 	}
-	{health 1
+	{health 0.2}
 		{if tags "creep" and use_budget 0.5}
 	}
 	{health_increase 0.1
